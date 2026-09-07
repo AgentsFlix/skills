@@ -7,7 +7,7 @@ Não substitui teste de comportamento; pega a vírgula sobrando que derrubaria a
 import json, pathlib, re, shutil, subprocess, sys, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-HTML = ["site/index.html", "site/assistir/index.html"]
+HTML = ["site/index.html", "site/assistir/index.html", "site/privacidade.html"]
 JSON_FILES = ["site/assistir/series.json", "site/vercel.json", "site/package.json", "catalog.json"]
 SCRIPT = re.compile(r"<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>", re.S)
 

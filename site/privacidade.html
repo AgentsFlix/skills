@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacidade · AgentFlix</title>
+<meta name="description" content="O que o AgentFlix coleta, por quê, e como você muda sua escolha.">
+<link rel="icon" href="/brand/favicon-dark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap">
+<style>
+:root { --accent: #30B0C7; --accent-text: #5FC9DC; --bg: #141414; --panel: #181818; --line: #404040; --muted: #a3a3a3; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: #fff; font-family: Archivo, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent-text); }
+.top { display: flex; align-items: center; gap: 18px; height: 60px; padding: 0 28px; }
+.top b { font-weight: 900; letter-spacing: -.02em; font-size: 18px; }
+.top a { color: #ddd; text-decoration: none; font-size: 13px; }
+main { width: min(760px, 100%); margin: 0 auto; padding: 10px 20px 70px; line-height: 1.6; }
+h1 { font-size: 28px; letter-spacing: -.01em; margin: 10px 0 6px; }
+.sub { color: var(--muted); margin: 0 0 26px; }
+h2 { font-size: 18px; margin: 28px 0 8px; }
+p, li { color: #e5e5e5; font-size: 15px; }
+ul { padding-left: 20px; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; margin: 18px 0; }
+button { height: 40px; padding: 0 18px; border-radius: 4px; border: 0; font: inherit; font-weight: 700; cursor: pointer; background: var(--accent); color: #14161A; }
+.mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="top"><b>AGENTFLIX</b><a href="/">vitrine</a><a href="/assistir/">assistir</a></div>
+<main>
+  <h1>Privacidade, em português claro</h1>
+  <p class="sub">O que a gente coleta, por quê, e como você muda de ideia. Atualizado em 07/09/2026.</p>
+
+  <h2>1. Como o site é usado (Microsoft Clarity)</h2>
+  <p>A gente usa o Microsoft Clarity para ver como as pessoas usam o site: onde clicam, até onde rolam, onde travam. Isso vira mapas de calor e gravações de sessão. O que você digita é mascarado; a gente não vê texto de campo nenhum.</p>
+  <p>O Clarity só usa cookie depois que você clica em <b>Aceitar</b> na barra do rodapé. Se você clicar em <b>Agora não</b>, ele funciona sem cookie: cada visita é anônima e separada da anterior. Os cookies do Clarity, quando aceitos, chamam-se <span class="mono">_clck</span> e <span class="mono">_clsk</span>. A política da Microsoft está em <a href="https://privacy.microsoft.com/privacystatement" rel="noopener">privacy.microsoft.com</a>.</p>
+  <div class="box"><p style="margin:0 0 10px">Sua escolha atual: <b id="estado">…</b></p><button id="trocar">Trocar minha escolha</button></div>
+
+  <h2>2. Métrica própria, anônima</h2>
+  <p>Quando a loja estiver ligada, o site registra eventos de uso na nossa própria base (abrir um card, copiar um comando, começar uma compra, assistir), sem nome e sem e-mail enquanto você não entra. Serve para a gente decidir o que gravar primeiro.</p>
+
+  <h2>3. O que fica só no seu aparelho</h2>
+  <p>Onde você parou em cada episódio, o caminho que escolheu numa aula ramificada, o agente que você prefere na instalação e a sua "Minha lista" ficam no armazenamento do seu navegador. Não saem do aparelho. Limpar os dados do site apaga tudo isso.</p>
+
+  <h2>4. Conta e pagamento (quando a loja abrir)</h2>
+  <p>Entrar é por link mágico no e-mail, sem senha. Pagamento é pelo Stripe; a gente não vê nem guarda número de cartão. O que fica com a gente: seu e-mail, o que você comprou e o direito de acesso.</p>
+
+  <h2>5. Links de indicação</h2>
+  <p>Alguns vídeos indicam a Hostinger por um link de indicação: você paga o mesmo, e o AgentFlix recebe comissão. Está escrito ao lado de cada botão.</p>
+
+  <h2>6. Falar com a gente</h2>
+  <p>Dúvida, pedido de acesso ou de remoção: <a href="mailto:jcarlosamorim.ceo@agentsflix.ai">jcarlosamorim.ceo@agentsflix.ai</a>.</p>
+</main>
+<script>
+(function () {
+  const K = "agentflix-consent"; const el = document.getElementById("estado");
+  const ler = () => { let c = null; try { c = localStorage.getItem(K); } catch (e) {} return c; };
+  const paint = () => { const c = ler(); el.textContent = c === "granted" ? "aceitou cookies do Clarity" : c === "denied" ? "sem cookies (Agora não)" : "ainda não escolheu"; };
+  document.getElementById("trocar").addEventListener("click", () => { try { localStorage.removeItem(K); } catch (e) {} paint(); el.textContent += " (pronto: na próxima página a barra pergunta de novo)"; });
+  paint();
+})();
+</script>
+</body>
+</html>

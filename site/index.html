@@ -330,7 +330,25 @@
     #intro.sweep::before { display: none; }
     .card, .btn-red { transition: none; }
   }
+
+/* barra de consentimento (Clarity só usa cookie depois do Aceitar) */
+.consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 18px; padding: 14px 18px; background: rgba(24,24,24,.97); border: 1px solid #3a3a3a; border-left: 3px solid #30B0C7; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,.6); font-family: Archivo, Helvetica, Arial, sans-serif; }
+.consent p { margin: 0; flex: 1 1 420px; font-size: 13px; line-height: 1.45; color: #ddd; }
+.consent p a { color: #5FC9DC; text-decoration: underline; }
+.consent .acts { display: flex; gap: 8px; }
+.consent button { height: 36px; padding: 0 16px; border-radius: 4px; font-weight: 700; font-size: 13px; font-family: inherit; cursor: pointer; border: 0; }
+.consent .ok { background: #30B0C7; color: #14161A; }
+.consent .no { background: rgba(109,109,110,.6); color: #fff; }
+@media (max-width: 600px) { .consent { left: 8px; right: 8px; bottom: 8px; padding: 12px; } }
 </style>
+<script>
+// Microsoft Clarity (projeto yenn89e53y): mapas de calor e gravações de sessão para entender o uso. Texto digitado é mascarado.
+// Sem cookie até a pessoa aceitar (barra de consentimento, LGPD): antes disso o Clarity roda no modo sem cookie.
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yenn89e53y");
+window.CONSENT_KEY = "agentflix-consent";
+(function () { let c = null; try { c = localStorage.getItem(window.CONSENT_KEY); } catch (e) {} window.clarity("consentv2", { ad_Storage: "denied", analytics_Storage: c === "granted" ? "granted" : "denied" }); })();
+window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((k) => window.clarity("set", k, String(tags[k]))); if (evt) window.clarity("event", evt); } catch (e) {} };
+</script>
 </head>
 <body>
 
@@ -369,6 +387,8 @@
     <span id="footTotal">…</span>
     <button class="tapbtn" data-act="copy" data-key="tap" data-text="" data-idle="COPIAR" data-done="COPIADO ✓" id="tapBtn"><span id="tapText">hermes skills tap add …</span><span class="cta-lbl" id="tapLbl">COPIAR</span></button>
     <button class="replay" data-act="replay">REVER ABERTURA</button>
+    <span>·</span>
+    <a href="/privacidade.html">PRIVACIDADE</a>
   </footer>
 </div>
 
@@ -758,7 +778,7 @@
   function openModal(slug) {
     hidePreview();
     if (!state.open) lastFocus = document.activeElement;
-    if (state.open !== slug) track("card_open", slug);
+    if (state.open !== slug) { track("card_open", slug); clar("abriu_card", { skill: slug, alvo: state.target }); }
     state.open = slug;
     if (location.hash !== "#" + slug) history.replaceState(null, "", "#" + slug);
     renderModal();
@@ -800,6 +820,7 @@
     if ($("results").hidden) refreshRow("lista"); else if (state.filter === "Minha lista") renderCatalog();
   }
   function copyText(el) {
+    clar("copiou_comando", { alvo: state.target, chave: el.dataset.key || "" });
     const text = el.dataset.text || "", key = el.dataset.key || "";
     const done = () => {
       document.querySelectorAll(`[data-act="copy"][data-key="${CSS.escape(key)}"]`).forEach((c) => {
@@ -1269,6 +1290,16 @@
     catch (e) { console.error(e); showLoadError("catálogo inválido: " + (e && e.message || e)); return; }
     initShop();   // só muda algo se a loja estiver ligada em /api/config
   })();
+})();
+</script>
+<div class="consent" id="consent" hidden role="dialog" aria-label="Privacidade e cookies">
+  <p>A gente usa o Microsoft Clarity para entender como o site é usado: mapas de calor e gravações de sessão, sem o que você digita. Cookie só com o seu ok. <a href="/privacidade.html">Saiba mais</a></p>
+  <div class="acts"><button class="ok" data-consent="granted">Aceitar</button><button class="no" data-consent="denied">Agora não</button></div>
+</div>
+<script>
+(function () { const bar = document.getElementById("consent"); let c = null; try { c = localStorage.getItem(window.CONSENT_KEY); } catch (e) {}
+  if (!c) bar.hidden = false;
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-consent]"); if (!b) return; const v = b.dataset.consent; try { localStorage.setItem(window.CONSENT_KEY, v); } catch (err) {} bar.hidden = true; window.clarity("consentv2", { ad_Storage: "denied", analytics_Storage: v === "granted" ? "granted" : "denied" }); });
 })();
 </script>
 </body>
