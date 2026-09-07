@@ -51,6 +51,13 @@ class Series(unittest.TestCase):
                     uids.append(e["uid"])
                     if e.get("preplay") is not None:
                         self.assertIsInstance(e["preplay"].get("req"), list, f"{e['t']}: preplay.req tem que ser lista")
+                        for r in e["preplay"]["req"]:
+                            self.assertIsInstance(r.get("t"), str, f"{e['t']}: item do preplay sem texto em t (t é o texto, não o segundo)")
+                            self.assertIn(type(r.get("need", False)), (bool,), f"{e['t']}: preplay.need tem que ser booleano")
+                            if r.get("acao") is not None:
+                                self.assertIsInstance(r["acao"], int, f"{e['t']}: preplay.acao é o índice do capítulo")
+                                self.assertTrue(0 <= r["acao"] < len(e.get("ch") or []), f"{e['t']}: preplay.acao aponta para capítulo inexistente")
+                                self.assertTrue((e["ch"][r["acao"]].get("acao") or {}).get("parar"), f"{e['t']}: preplay.acao tem que apontar para uma parada")
             self.assertEqual(len(uids), len(set(uids)), f"{s['slug']}: uid repetido")
 
     def test_capitulos_e_links_de_indicacao(self):
@@ -65,6 +72,11 @@ class Series(unittest.TestCase):
                         a = c.get("acao") or {}
                         if a.get("parar") and a.get("tipo") == "comando":
                             self.assertTrue(a.get("texto"), f"{e['t']}: parada de prompt sem texto")
+                        elif a.get("parar") and a.get("tipo") == "videos":
+                            vids = a.get("videos") or []
+                            self.assertTrue(vids, f"{e['t']}: parada de vídeos sem vídeos")
+                            for v in vids:
+                                self.assertRegex(v["uid"], UID, f"{e['t']}: vídeo do insert sem uid do Stream")
                         elif a.get("parar") and a.get("tipo") == "passo":
                             self.assertTrue(a.get("titulo") or c.get("n"), f"{e['t']}: parada de passo sem título")
                         elif a.get("parar"):
