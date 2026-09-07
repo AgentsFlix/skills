@@ -576,7 +576,7 @@ function loadEp(season, ep, { from } = {}) {
   history.replaceState(null, "", `#t${sN(season)}e${ep + 1}`); // uma entrada de histórico por visita: Voltar não empilha episódio
   paintMarks(); renderDrawer(); paint(); showUI(true);
   // antes de começar: só informação, quando o episódio pede algo de fora e ainda não foi marcado como feito
-  const pk = `${e.uid}`; const needs = e.preplay && e.preplay.req.some((r) => r.need && (r.acao === undefined || r.acao === null || !isDone(e.uid, r.acao)));
+  const pk = `${e.uid}`; const needs = e.preplay && e.preplay.req.some((r) => r.need);
   if (needs && !state.preSeen[pk]) { state.preSeen[pk] = true; attach(e.uid, startAt, false); showPreplay(); return; }
   attach(e.uid, startAt, true);
 }
@@ -662,9 +662,10 @@ function paint() {
 function onChapter() {
   const e = curEp(); const k = chapterAt(e, video.currentTime); if (k === state.lastChapter) return; state.lastChapter = k;
   if (k < 0) return; const c = chapters(e)[k]; const a = c.acao;
-  if (a && a.parar && !isDone(e.uid, k) && !state.stopped[doneKey(e.uid, k)] && !video.paused) { state.stopped[doneKey(e.uid, k)] = true; openCheckout(k, { pausar: a.pausar_em === undefined }); return; }
+  // a parada abre uma vez por carregamento da página (state.stopped); o "feito" gravado no navegador só marca check e rótulos, não suprime a pausa: Cmd+R rearma tudo
+  if (a && a.parar && !state.stopped[doneKey(e.uid, k)] && !video.paused) { state.stopped[doneKey(e.uid, k)] = true; openCheckout(k, { pausar: a.pausar_em === undefined }); return; }
   if (a) {
-    // quem já comprou ou pulou vê só o aviso, clicável, sem pausa
+    // quem já passou por esta parada neste carregamento vê só o aviso, clicável, sem pausa
     const t = $("toast"); t.className = "toast" + (a.humano ? " human" : ""); t.dataset.act = a.parar ? "buy" : ""; if (!a.parar) delete t.dataset.act;
     const rot = a.parar ? (a.tipo === "comando" ? (isDone(e.uid, k) ? "PROMPT COPIADO · VER DE NOVO" : "COPIAR O PROMPT") : a.tipo === "passo" ? (isDone(e.uid, k) ? "PASSO FEITO · VER DE NOVO" : "PASSO") : a.tipo === "videos" ? (isDone(e.uid, k) ? "VÍDEOS VISTOS · VER DE NOVO" : "VÍDEOS") : a.tipo === "link" && !a.indicacao ? (isDone(e.uid, k) ? "LINK ABERTO · VER DE NOVO" : "ABRIR O LINK") : (isDone(e.uid, k) ? "COMPRA FEITA · VER OS PLANOS" : "PLANOS DA VPS")) : (a.humano ? "REQUER VOCÊ" : "AÇÃO");
     t.innerHTML = `<b>${rot} →</b>${esc(a.label || c.n)}`;
