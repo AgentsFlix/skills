@@ -176,6 +176,10 @@ a { color: inherit; text-decoration: none; }
 .buybox .steps .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--dim); margin-bottom: 8px; }
 .buybox .steps ol { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.55; color: #cfcfcf; }
 .buybox .skipbtn { display: block; margin-top: 22px; font-size: 13px; color: #bbb; text-decoration: underline; }
+.buybox .minis { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 6px 0 12px; }
+.buybox .mini { margin: 0; }
+.buybox .mini iframe { display: block; width: 100%; aspect-ratio: 9/16; border: 0; border-radius: 8px; background: #000; }
+.buybox .mini figcaption { margin-top: 6px; font-size: 12px; line-height: 1.4; color: #cfcfcf; }
 .buybox .cmdbox { position: relative; overflow: hidden; isolation: isolate; border-radius: 6px; padding: 2px; background: #4a4a4a; cursor: pointer; margin: 6px 0 16px; }
 .buybox .cmdbox::before { content: ""; position: absolute; z-index: 0; width: 260%; height: 260%; top: -80%; left: -80%; background: conic-gradient(from 0deg, transparent 0 70%, rgba(48,176,199,.2) 78%, var(--accent) 87%, #e6fbff 91%, var(--accent) 95%, transparent 100%); animation: cmdSweep 3.2s linear infinite; }
 .buybox .cmdbox.copied::before { animation: none; background: var(--accent); }
@@ -496,7 +500,7 @@ function resumeEp() {
 }
 const chapters = (e) => e.ch || [];
 const chapterAt = (e, t) => { let k = -1; chapters(e).forEach((c, i) => { if (t >= c.t) k = i; }); return k; };
-const buyIdx = (e) => chapters(e).findIndex((c) => c.acao && (c.acao.tipo === "link" || c.acao.tipo === "comando" || c.acao.tipo === "passo") && c.acao.parar);
+const buyIdx = (e) => chapters(e).findIndex((c) => c.acao && ["link", "comando", "passo", "videos"].includes(c.acao.tipo) && c.acao.parar);
 const optDefault = (a) => (a.opcoes || []).find((o) => o.padrao) || (a.opcoes || [])[0];
 const optChosen = (a, uid, k) => { const i = state.periodo[doneKey(uid, k)]; return i === undefined ? optDefault(a) : a.opcoes[i]; };
 
@@ -566,19 +570,19 @@ function loadEp(season, ep, { from } = {}) {
   $("mtitle").innerHTML = `<b>${esc(SERIE.name)}</b> · T${sN(season)}:E${ep + 1} ${esc(e.t)}`;
   $("pi-title").textContent = SERIE.name; $("pi-ep").textContent = `T${sN(season)}:E${ep + 1} · ${e.t}`; $("pi-desc").textContent = e.desc;
   $("btn-next").style.visibility = nextEp() ? "visible" : "hidden";
-  const bi = buyIdx(e); $("btn-buy").hidden = bi < 0; if (bi >= 0) $("btn-buy").querySelector(".lab").textContent = { comando: "Prompt (P)", passo: "Passo (P)" }[chapters(e)[bi].acao.tipo] || "Planos da VPS (P)";
+  const bi = buyIdx(e); $("btn-buy").hidden = bi < 0; if (bi >= 0) $("btn-buy").querySelector(".lab").textContent = { comando: "Prompt (P)", passo: "Passo (P)", videos: "Vídeos (P)" }[chapters(e)[bi].acao.tipo] || "Planos da VPS (P)";
   video.poster = thumb(e.uid, 720);
   const saved = store.get(progKey(e.uid), null); const startAt = from !== undefined ? from : (saved && !isWatched(e) ? saved.t : 0);
   history.replaceState(null, "", `#t${sN(season)}e${ep + 1}`); // uma entrada de histórico por visita: Voltar não empilha episódio
   paintMarks(); renderDrawer(); paint(); showUI(true);
   // antes de começar: só informação, quando o episódio pede algo de fora e ainda não foi marcado como feito
-  const pk = `${e.uid}`; const needs = e.preplay && e.preplay.req.some((r) => r.need && r.acao !== undefined && !isDone(e.uid, r.acao));
+  const pk = `${e.uid}`; const needs = e.preplay && e.preplay.req.some((r) => r.need && (r.acao === undefined || r.acao === null || !isDone(e.uid, r.acao)));
   if (needs && !state.preSeen[pk]) { state.preSeen[pk] = true; attach(e.uid, startAt, false); showPreplay(); return; }
   attach(e.uid, startAt, true);
 }
 function showPreplay() {
   const e = curEp(); const ch = chapters(e);
-  const list = e.preplay.req.map((r) => { const d = r.acao !== undefined && isDone(e.uid, r.acao); const c = r.acao !== undefined ? ch[r.acao] : null; return `<li class="${r.need && !d ? "need" : ""}"><i>${d ? "✓" : r.need ? "!" : "·"}</i><div>${esc(r.t)}${r.need && !d && c ? `<small>Ainda não tem? Sem problema: em ${fmt(c.t)} o vídeo para e abre a compra do lado.</small>` : ""}</div></li>`; }).join("");
+  const list = e.preplay.req.map((r) => { const temAcao = r.acao !== undefined && r.acao !== null; const d = temAcao && isDone(e.uid, r.acao); const c = temAcao ? ch[r.acao] : null; const oque = c && c.acao ? ({ comando: "o prompt", passo: "o passo", videos: "os vídeos", link: c.acao.indicacao ? "a compra" : "o link" })[c.acao.tipo] || "a ajuda" : ""; return `<li class="${r.need && !d ? "need" : ""}"><i>${d ? "✓" : r.need ? "!" : "·"}</i><div>${esc(r.t)}${r.need && !d && c ? `<small>Ainda não tem? Sem problema: em ${fmt(c.t)} o vídeo para e abre ${oque} do lado.</small>` : ""}</div></li>`; }).join("");
   $("preplay").innerHTML = `<div class="pre-card"><div class="k">ANTES DE COMEÇAR · T${sN(state.season)}:E${state.ep + 1}</div><h3>${esc(e.t)}</h3><div class="lbl">VOCÊ VAI PRECISAR DE</div><ul>${list}</ul><div class="tp-actions" style="margin-top:0"><button class="btn primary" data-act="pre-go">Começar</button></div></div>`;
   $("preplay").hidden = false; $("player").classList.add("pre");
 }
@@ -596,8 +600,17 @@ function openCheckout(k, { pausar = true } = {}) {
   const e = curEp(); const c = chapters(e)[k]; const a = c.acao;
   if (pausar) video.pause(); openDrawer(false); openPop(false); $("toast").hidden = true;
   state.checkout = k; $("player").classList.add("checkout");
-  const acao = a.tipo === "comando" ? "Copie o prompt" : a.tipo === "passo" ? "Faça o passo" : "Escolha o plano";
+  const acao = a.tipo === "comando" ? "Copie o prompt" : a.tipo === "passo" ? "Faça o passo" : a.tipo === "videos" ? "Veja os vídeos ao lado" : a.tipo === "link" && !a.indicacao ? "Abra o link ao lado" : "Escolha o plano";
   $("vidcap").innerHTML = pausar ? `<i></i><span><b>Pausado.</b> ${acao} e a gente continua.</span>` : `<i></i><span>${acao} quando quiser${a.pausar_em !== undefined ? `; o vídeo pausa em ${fmt(a.pausar_em)}` : ""}.</span>`; $("vidcap").hidden = false;
+  if (a.tipo === "videos") {
+    // vídeos curtos ao lado (inserts de celular): o player pronto do Stream, um por clipe
+    const vids = (a.videos || []).map((v, i) => `<figure class="mini"><iframe src="https://${SERIE.customer}.cloudflarestream.com/${esc(v.uid)}/iframe?preload=metadata&muted=true&letterboxColor=%23000000" loading="lazy" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen title="${esc(v.label || "vídeo " + (i + 1))}"></iframe><figcaption>${i + 1}. ${esc(v.label || "")}</figcaption></figure>`).join("");
+    $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · VÍDEOS</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p><div class="minis">${vids}</div>
+      ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
+      <div class="psel-row" style="margin-top:18px"><button class="btn primary" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
+      <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Pular este passo")} ▶</button>`;
+    $("checkout").hidden = false; return;
+  }
   if (a.tipo === "passo") {
     $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · PASSO</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p>
       ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
@@ -613,7 +626,7 @@ function openCheckout(k, { pausar = true } = {}) {
       <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Já copiei, continuar o vídeo")} ▶</button>`;
     $("checkout").hidden = false; return;
   }
-  $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · COMPRA</div><h3>${esc(a.titulo || "Escolha o seu plano")}</h3><p>${esc(a.nota || "")}</p>
+  $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · ${a.indicacao ? "COMPRA" : "LINK"}</div><h3>${esc(a.titulo || (a.indicacao ? "Escolha o seu plano" : "Abra o link"))}</h3><p>${esc(a.nota || "")}</p>
     ${a.opcoes && a.opcoes.length > 1 ? periodSel(a, e.uid, k) : `<div class="psel-row"><button class="btn primary" data-act="ext" data-url="${esc(optDefault(a).url)}" data-k="${k}">${esc(a.cta || a.label)} ↗</button></div>`}
     ${a.indicacao ? `<div class="selo">${SELO}<br>Abre em nova aba. Assim que você clicar, o vídeo continua daqui.</div>` : ""}
     ${a.depois ? `<div class="steps"><div class="lbl">NA HOSTINGER, DEPOIS DO CARRINHO</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
@@ -653,7 +666,7 @@ function onChapter() {
   if (a) {
     // quem já comprou ou pulou vê só o aviso, clicável, sem pausa
     const t = $("toast"); t.className = "toast" + (a.humano ? " human" : ""); t.dataset.act = a.parar ? "buy" : ""; if (!a.parar) delete t.dataset.act;
-    const rot = a.parar ? (a.tipo === "comando" ? (isDone(e.uid, k) ? "PROMPT COPIADO · VER DE NOVO" : "COPIAR O PROMPT") : a.tipo === "passo" ? (isDone(e.uid, k) ? "PASSO FEITO · VER DE NOVO" : "PASSO") : (isDone(e.uid, k) ? "COMPRA FEITA · VER OS PLANOS" : "PLANOS DA VPS")) : (a.humano ? "REQUER VOCÊ" : "AÇÃO");
+    const rot = a.parar ? (a.tipo === "comando" ? (isDone(e.uid, k) ? "PROMPT COPIADO · VER DE NOVO" : "COPIAR O PROMPT") : a.tipo === "passo" ? (isDone(e.uid, k) ? "PASSO FEITO · VER DE NOVO" : "PASSO") : a.tipo === "videos" ? (isDone(e.uid, k) ? "VÍDEOS VISTOS · VER DE NOVO" : "VÍDEOS") : a.tipo === "link" && !a.indicacao ? (isDone(e.uid, k) ? "LINK ABERTO · VER DE NOVO" : "ABRIR O LINK") : (isDone(e.uid, k) ? "COMPRA FEITA · VER OS PLANOS" : "PLANOS DA VPS")) : (a.humano ? "REQUER VOCÊ" : "AÇÃO");
     t.innerHTML = `<b>${rot} →</b>${esc(a.label || c.n)}`;
     t.hidden = false; clearTimeout(state.toastTimer); state.toastTimer = setTimeout(() => { t.hidden = true; }, 5000); showUI(false);
   }
@@ -679,7 +692,7 @@ function onPausaAgendada() {
   const e = curEp(); const c = chapters(e)[state.checkout]; const a = c && c.acao; if (!a || a.pausar_em === undefined) return;
   const kk = doneKey(e.uid, state.checkout); if (state.pausou[kk] || video.paused || video.currentTime < a.pausar_em) return;
   state.pausou[kk] = true; video.pause();
-  const acao = a.tipo === "comando" ? "Copie o prompt" : a.tipo === "passo" ? "Faça o passo" : "Escolha o plano";
+  const acao = a.tipo === "comando" ? "Copie o prompt" : a.tipo === "passo" ? "Faça o passo" : a.tipo === "videos" ? "Veja os vídeos ao lado" : a.tipo === "link" && !a.indicacao ? "Abra o link ao lado" : "Escolha o plano";
   $("vidcap").innerHTML = `<i></i><span><b>Pausado.</b> ${acao} e a gente continua.</span>`;
 }
 function onEscolha() {

@@ -269,19 +269,15 @@
               "preplay": {
                 "req": [
                   {
-                    "t": 112,
-                    "need": "Cartão de crédito ou PIX para alugar a VPS (o vídeo abre a escolha do plano em 1:52)",
+                    "t": "Cartão de crédito ou PIX para alugar a VPS (o vídeo abre a escolha do plano em 1:52)",
+                    "need": true,
                     "acao": 1
                   },
                   {
-                    "t": 290,
-                    "need": "Uma conta Google, para entrar na Hostinger rápido",
-                    "acao": null
+                    "t": "Uma conta Google, para entrar na Hostinger rápido"
                   },
                   {
-                    "t": 47,
-                    "need": "Conta do ChatGPT com plano pago (é o que o Codex usa, no próximo episódio)",
-                    "acao": null
+                    "t": "Conta do ChatGPT com plano pago (é o que o Codex usa, no próximo episódio)"
                   }
                 ]
               },
