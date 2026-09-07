@@ -68,6 +68,32 @@ class Series(unittest.TestCase):
                                 self.assertIn("REFERRALCODE=JOSEAMORIM20", o["url"], f"{e['t']}: link da Hostinger sem o código de indicação")
                                 self.assertIn("referral_id=", o["url"], f"{e['t']}: link da Hostinger sem referral_id")
 
+    def test_aula_ramificada(self):
+        """escolha aponta para temporadas existentes; temporada de caminho tem rótulo; depois aponta para temporada existente."""
+        for s in self.data["series"]:
+            ns = {int(se["n"]) for se in s["seasons"]}
+            for se in s["seasons"]:
+                if "caminho" in se:
+                    self.assertIsInstance(se["caminho"], str); self.assertTrue(se["caminho"].strip(), f"{s['slug']} T{se['n']}: caminho vazio")
+                if "depois" in se:
+                    self.assertIn(int(se["depois"]), ns, f"{s['slug']} T{se['n']}: depois aponta para temporada inexistente")
+                    self.assertNotEqual(int(se["depois"]), int(se["n"]))
+                for e in se["eps"]:
+                    ch = e.get("escolha")
+                    if ch is None:
+                        continue
+                    self.assertTrue(ch.get("pergunta"), f"{e['t']}: escolha sem pergunta")
+                    ops = ch.get("opcoes") or []
+                    self.assertTrue(2 <= len(ops) <= 4, f"{e['t']}: escolha precisa de 2 a 4 opções")
+                    for o in ops:
+                        self.assertTrue(o.get("label"), f"{e['t']}: opção sem label")
+                        self.assertIn(int(o["temporada"]), ns, f"{e['t']}: opção aponta para temporada inexistente")
+                        self.assertNotEqual(int(o["temporada"]), int(se["n"]), f"{e['t']}: opção aponta para a própria temporada")
+                    if "t" in ch:
+                        self.assertLess(ch["t"], e["d"], f"{e['t']}: escolha.t depois do fim do episódio")
+                    if "tempo" in ch:
+                        self.assertGreater(ch["tempo"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

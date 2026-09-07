@@ -129,6 +129,25 @@ a { color: inherit; text-decoration: none; }
 
 /* antes de começar (só informação) */
 .preplay { position: absolute; inset: 0; z-index: 8; display: flex; align-items: center; padding: 0 80px; }
+/* aula ramificada: a escolha congela o vídeo e espera (sem relógio, salvo `tempo` no dado) */
+.escolha { position: absolute; inset: 0; z-index: 8; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 60px 30px; background: linear-gradient(180deg, rgba(0,0,0,.05) 25%, rgba(0,0,0,.84) 70%); }
+.escolha .pergunta { font-size: 24px; font-weight: 800; letter-spacing: -.01em; text-shadow: 0 2px 18px rgba(0,0,0,.8); margin-bottom: 14px; }
+.escolha .pergunta small { display: block; font-size: 13px; font-weight: 400; color: #ddd; margin-top: 4px; }
+.escolha .opcoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; max-width: 900px; }
+.escolha .op { position: relative; text-align: left; background: rgba(24,24,24,.94); border: 2px solid rgba(255,255,255,.18); border-radius: 6px; overflow: hidden; transition: transform .15s, border-color .15s; }
+.escolha .op:hover, .escolha .op:focus-visible { transform: translateY(-3px); border-color: var(--accent); outline: none; }
+.escolha .op img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; background: #222; }
+.escolha .op .t { display: block; padding: 10px 12px 12px; }
+.escolha .op .t b { display: block; font-size: 14px; }
+.escolha .op .t span { display: block; font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+.escolha .op .k { position: absolute; top: 8px; left: 8px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 4px; background: rgba(0,0,0,.7); font-family: var(--mono); font-size: 12px; font-weight: 700; }
+.escolha .relogio { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 12px; color: #ddd; max-width: 900px; }
+.escolha .relogio .bar { flex: 1; height: 3px; background: rgba(255,255,255,.25); border-radius: 2px; overflow: hidden; }
+.escolha .relogio .bar i { display: block; height: 100%; width: 100%; background: #fff; transition: width .25s linear; }
+#player.escolha .vig, #player.escolha .controls, #player.escolha .toast, #player.escolha .pause-info, #player.escolha .flash, #player.escolha .spin, #player.escolha .postplay { display: none !important; }
+#player.escolha .back { opacity: 1; }
+.tp-side .lnk { color: var(--accent-text); text-decoration: underline; font-size: inherit; }
+@media (max-width: 860px) { .escolha { padding: 0 14px 14px; } .escolha .pergunta { font-size: 17px; } .escolha .opcoes { grid-template-columns: 1fr; gap: 8px; } .escolha .op img { display: none; } .escolha .op .k { position: static; margin: 10px 0 0 12px; } }
 .pre-card { width: min(520px, 100%); background: rgba(18,18,18,.92); border: 1px solid #333; border-radius: 8px; padding: 26px 28px; box-shadow: 0 30px 80px rgba(0,0,0,.7); }
 .pre-card .k { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--accent-text); }
 .pre-card h3 { margin: 8px 0 14px; font-size: 24px; font-weight: 800; letter-spacing: -.01em; line-height: 1.15; }
@@ -353,6 +372,7 @@ a { color: inherit; text-decoration: none; }
   <div class="vidcap" id="vidcap" hidden></div>
   <aside class="buybox" id="checkout" hidden></aside>
   <div class="preplay" id="preplay" hidden></div>
+  <div class="escolha" id="escolha" hidden></div>
   <div class="err" id="err" hidden></div>
 
   <div class="controls">
@@ -410,7 +430,7 @@ const SELO = "LINK DE INDICAÇÃO · você paga o mesmo, o AgentFlix recebe comi
 
 // ---------- dados ----------
 let SERIES = [], SERIE = null;
-const state = { season: 0, ep: 0, hls: null, uiTimer: null, drawer: false, pop: false, dseason: 0, ppTimer: null, seasonMenu: false, allSeasons: false, toastTimer: null, lastSave: 0, lastChapter: -1, checkout: null, stopped: {}, preSeen: {}, periodo: {}, pselOpen: null };
+const state = { season: 0, ep: 0, hls: null, uiTimer: null, drawer: false, pop: false, dseason: 0, ppTimer: null, seasonMenu: false, allSeasons: false, toastTimer: null, lastSave: 0, lastChapter: -1, checkout: null, stopped: {}, preSeen: {}, periodo: {}, pselOpen: null, escolha: false, escolhaTimer: null, escolhaVista: {} };
 const video = $("video");
 const curEp = () => SERIE.seasons[state.season].eps[state.ep];
 const base = (uid) => `https://${SERIE.customer}.cloudflarestream.com/${uid}`;
@@ -421,13 +441,23 @@ const isWatched = (e) => prog(e) >= 0.95;
 const doneKey = (uid, k) => `${uid}-${k}`;
 const isDone = (uid, k) => !!store.get("agentflix-done", {})[doneKey(uid, k)];
 const markDoneStore = (uid, k) => { const d = store.get("agentflix-done", {}); d[doneKey(uid, k)] = Date.now(); store.set("agentflix-done", d); };
-const nextSeasonWithEps = (after) => SERIE.seasons.findIndex((x, i) => i > after && x.eps && x.eps.length);
-const nextEp = () => { const s = SERIE.seasons[state.season]; if (state.ep + 1 < s.eps.length) return { season: state.season, ep: state.ep + 1 }; const ns = nextSeasonWithEps(state.season); return ns >= 0 ? { season: ns, ep: 0 } : null; };
+const nextSeasonWithEps = (after) => SERIE.seasons.findIndex((x, i) => i > after && x.eps && x.eps.length && !x.caminho);   // temporada de caminho só se entra pela escolha
+const seasonIdxByN = (n) => SERIE.seasons.findIndex((x) => +x.n === +n);
+const caminhoKey = () => `agentflix-caminho-${SERIE.slug}`;
+const rootEscolha = () => { for (let si = 0; si < SERIE.seasons.length; si++) { const ei = SERIE.seasons[si].eps.findIndex((e) => e.escolha); if (ei >= 0) return { season: si, ep: ei }; } return null; };
+const depoisDe = (s) => { if (!s.caminho) return -1; if (s.depois === undefined) return -1; const di = seasonIdxByN(s.depois); return di >= 0 && SERIE.seasons[di].eps.length ? di : -1; };
+const nextEp = () => { const s = SERIE.seasons[state.season]; if (state.ep + 1 < s.eps.length) return { season: state.season, ep: state.ep + 1 }; if (s.caminho) { const di = depoisDe(s); return di >= 0 ? { season: di, ep: 0 } : null; } const ns = nextSeasonWithEps(state.season); return ns >= 0 ? { season: ns, ep: 0 } : null; };
 function resumeEp() {
   let last = null;
   SERIE.seasons.forEach((s, si) => s.eps.forEach((e, ei) => { const p = store.get(progKey(e.uid), null); if (p && (!last || p.at > last.at)) last = { season: si, ep: ei, at: p.at, done: isWatched(e) }; }));
   if (!last) return { season: Math.max(0, nextSeasonWithEps(-1)), ep: 0, fresh: true };
-  if (last.done) { const s = SERIE.seasons[last.season]; if (last.ep + 1 < s.eps.length) return { season: last.season, ep: last.ep + 1, fresh: true }; const ns = nextSeasonWithEps(last.season); if (ns >= 0) return { season: ns, ep: 0, fresh: true }; }
+  if (last.done) {
+    const s = SERIE.seasons[last.season]; const e = s.eps[last.ep];
+    if (last.ep + 1 < s.eps.length) return { season: last.season, ep: last.ep + 1, fresh: true };
+    if (e.escolha) { const c = store.get(caminhoKey(), null); const ci = c ? seasonIdxByN(c.temporada) : -1; if (ci >= 0 && SERIE.seasons[ci].eps.length) return { season: ci, ep: 0, fresh: true }; return { season: last.season, ep: last.ep, fresh: true }; }
+    if (s.caminho) { const di = depoisDe(s); if (di >= 0) return { season: di, ep: 0, fresh: true }; return { season: last.season, ep: last.ep, fresh: true }; }
+    const ns = nextSeasonWithEps(last.season); if (ns >= 0) return { season: ns, ep: 0, fresh: true };
+  }
   return { season: last.season, ep: last.ep, fresh: last.done };
 }
 const chapters = (e) => e.ch || [];
@@ -448,15 +478,16 @@ function renderTitle() {
   $("tp-resume").hidden = !(p > 0); $("tp-bar").style.width = Math.round(p * 100) + "%";
   $("tp-resume-text").textContent = `T${r.season + 1}:E${r.ep + 1} · ${re.t} · ${fmt(re.d * (1 - p))} restantes`;
   $("tp-syn").textContent = SERIE.syn;
-  $("tp-side").innerHTML = `<p><span>Elenco:</span> ${SERIE.cast.map(esc).join(", ")}</p><p><span>Gêneros:</span> ${SERIE.gen.map(esc).join(", ")}</p><p><span>Esta série é:</span> ${SERIE.traits.map(esc).join(", ")}</p>`;
+  const cam = rootEscolha() ? store.get(caminhoKey(), null) : null;
+  $("tp-side").innerHTML = `<p><span>Elenco:</span> ${SERIE.cast.map(esc).join(", ")}</p><p><span>Gêneros:</span> ${SERIE.gen.map(esc).join(", ")}</p><p><span>Esta série é:</span> ${SERIE.traits.map(esc).join(", ")}</p>${cam ? `<p><span>Seu caminho:</span> ${esc(cam.label)} · <button class="lnk" data-act="trocar-caminho">trocar</button></p>` : ""}`;
   renderSeasonSel(); renderEps();
 }
 function renderSeasonSel() {
   const s = SERIE.seasons[state.season]; const el = $("season-sel");
   el.classList.toggle("open", state.seasonMenu);
   el.innerHTML = `<button data-act="season-menu" aria-haspopup="listbox" aria-expanded="${state.seasonMenu}">${state.allSeasons ? "Todos os episódios" : `Temporada ${s.n}`} <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>` +
-    (state.seasonMenu ? `<div class="menu" role="listbox">${SERIE.seasons.map((x, i) => `<button class="${!state.allSeasons && i === state.season ? "on" : ""}" data-act="season" data-i="${i}">Temporada ${x.n} <span>(${x.eps.length} episódios)</span></button>`).join("")}<hr><button class="${state.allSeasons ? "on" : ""}" data-act="season-all">Ver todos os episódios</button></div>` : "");
-  $("eps-title").textContent = state.allSeasons ? "Todos os episódios" : `Temporada ${s.n}`;
+    (state.seasonMenu ? `<div class="menu" role="listbox">${SERIE.seasons.map((x, i) => `<button class="${!state.allSeasons && i === state.season ? "on" : ""}" data-act="season" data-i="${i}">Temporada ${x.n}${x.caminho ? ` · Caminho: ${esc(x.caminho)}` : ""} <span>(${x.eps.length} episódios)</span></button>`).join("")}<hr><button class="${state.allSeasons ? "on" : ""}" data-act="season-all">Ver todos os episódios</button></div>` : "");
+  $("eps-title").textContent = state.allSeasons ? "Todos os episódios" : `Temporada ${s.n}${s.caminho ? ` · Caminho: ${s.caminho}` : ""}`;
 }
 function epRow(e, si, ei, n, cur) {
   const p = prog(e);
@@ -492,7 +523,7 @@ function attach(uid, startAt, autoplay) {
   } else showErr(window.Hls ? "Este navegador não toca o vídeo. Use Chrome, Safari, Edge ou Firefox atualizados." : "O componente de vídeo não carregou (rede ou bloqueador). Recarregue a página ou tente outra rede.");
 }
 function showErr(msg) { $("spin").hidden = true; $("err").textContent = msg; $("err").hidden = false; }
-function resetOverlays() { $("postplay").hidden = true; $("preplay").hidden = true; closeCheckout(); $("player").classList.remove("pp", "pre"); clearInterval(state.ppTimer); $("toast").hidden = true; }
+function resetOverlays() { $("postplay").hidden = true; $("preplay").hidden = true; closeCheckout(); fecharEscolha(); $("player").classList.remove("pp", "pre"); clearInterval(state.ppTimer); $("toast").hidden = true; }
 function loadEp(season, ep, { from } = {}) {
   state.season = season; state.ep = ep; const e = curEp(); state.lastChapter = -1;
   resetOverlays();
@@ -572,6 +603,7 @@ function saveProgress(force) {
 }
 function endOfEpisode() {
   const e = curEp(); store.set(progKey(e.uid), { t: video.duration || e.d, at: Date.now() });
+  if (e.escolha && e.escolha.t === undefined) { abrirEscolha(e); return; }   // aula ramificada: a raiz termina e a pessoa escolhe o caminho
   const nx = nextEp(); $("player").classList.add("pp"); $("pp-this").textContent = `T${state.season + 1}:E${state.ep + 1} · ${e.t}`;
   if (!nx) { $("pp-card").innerHTML = `<div class="k">FIM DA SÉRIE</div><div class="box"><img src="${SERIE.cover_wide}" alt=""><div><h4>${esc(SERIE.name)}</h4><p>Você chegou ao fim dos episódios abertos. Volte à vitrine ou reveja um episódio.</p></div></div><button class="go pass" data-act="close-player"><span>Voltar para a série</span></button>`; $("postplay").hidden = false; return; }
   const ne = SERIE.seasons[nx.season].eps[nx.ep];
@@ -580,6 +612,41 @@ function endOfEpisode() {
   let n = 5; const w = $("pp-wipe"); w.style.transition = "width 5s linear"; requestAnimationFrame(() => { w.style.width = "100%"; });
   state.ppTimer = setInterval(() => { n--; if ($("pp-n")) $("pp-n").textContent = n; if (n <= 0) { clearInterval(state.ppTimer); loadEp(nx.season, nx.ep, { from: 0 }); } }, 1000);
 }
+// ---------- aula ramificada ----------
+function onEscolha() {
+  const e = curEp(); const ch = e.escolha;
+  if (!ch || ch.t === undefined || state.escolha || state.escolhaVista[e.uid] || video.paused) return;
+  if (video.currentTime >= ch.t) { state.escolhaVista[e.uid] = true; video.pause(); abrirEscolha(e); }
+}
+function abrirEscolha(e) {
+  const ch = e.escolha; state.escolha = true;
+  clearInterval(state.ppTimer); $("postplay").hidden = true; $("player").classList.remove("pp"); closeCheckout();
+  $("player").classList.add("escolha");
+  const ops = ch.opcoes.map((o, i) => { const si = seasonIdxByN(o.temporada); const f = si >= 0 && SERIE.seasons[si].eps[0]; return `<button class="op" data-act="escolher" data-i="${i}"><span class="k">${i + 1}</span><img src="${f ? thumb(f.uid, 300, 4) : SERIE.cover_wide}" alt=""><span class="t"><b>${esc(o.label)}</b><span>${esc(o.desc || "")}</span></span></button>`; }).join("");
+  const dica = ch.tempo ? `Escolha com o clique ou com as teclas 1, 2 e 3. Sem escolha, segue o caminho padrão.` : `Sem pressa: leia, compare e escolha com o clique ou com as teclas 1, 2 e 3. O vídeo espera.`;
+  $("escolha").innerHTML = `<div class="pergunta">${esc(ch.pergunta)}<small>${dica}</small></div><div class="opcoes">${ops}</div>${ch.tempo ? `<div class="relogio"><span class="mono" id="esc-n">${ch.tempo}s</span><div class="bar"><i id="esc-bar"></i></div><span>caminho padrão em</span></div>` : ""}`;
+  $("escolha").hidden = false; showUI(true);
+  // aquece os caminhos: baixa o manifesto do primeiro episódio de cada opção enquanto a pessoa lê
+  ch.opcoes.forEach((o) => { const si = seasonIdxByN(o.temporada); const f = si >= 0 && SERIE.seasons[si].eps[0]; if (f) fetch(`${base(f.uid)}/manifest/video.m3u8`, { mode: "cors" }).catch(() => {}); });
+  clearInterval(state.escolhaTimer);
+  if (ch.tempo) { const t0 = performance.now(); state.escolhaTimer = setInterval(() => { const r = Math.max(0, ch.tempo - (performance.now() - t0) / 1000); const n = $("esc-n"), b = $("esc-bar"); if (n) n.textContent = Math.ceil(r) + "s"; if (b) b.style.width = (r / ch.tempo * 100) + "%"; if (r <= 0) escolher(Math.max(0, ch.opcoes.findIndex((o) => o.padrao))); }, 100); }
+}
+function fecharEscolha() { state.escolha = false; clearInterval(state.escolhaTimer); $("escolha").hidden = true; $("player").classList.remove("escolha"); }
+function escolher(i) {
+  const e = curEp(); const ch = e.escolha; if (!ch || !state.escolha) return;
+  const o = ch.opcoes[i]; if (!o) return;
+  const si = seasonIdxByN(o.temporada); if (si < 0 || !SERIE.seasons[si].eps.length) return;
+  store.set(caminhoKey(), { temporada: o.temporada, label: o.label, at: Date.now() });
+  fecharEscolha(); loadEp(si, 0, { from: 0 });
+  const t = $("toast"); t.className = "toast"; delete t.dataset.act; t.innerHTML = `<b>VOCÊ ESCOLHEU →</b>${esc(o.label)}`; t.hidden = false; clearTimeout(state.toastTimer); state.toastTimer = setTimeout(() => { t.hidden = true; }, 3500);
+}
+function trocarCaminho() {
+  const r = rootEscolha(); if (!r) return;
+  store.set(caminhoKey(), null); state.escolhaVista = {};
+  const e = SERIE.seasons[r.season].eps[r.ep]; const from = e.escolha.t !== undefined ? Math.max(0, e.escolha.t - 1) : Math.max(0, (e.d || 0) - 4);
+  openPlayer(r.season, r.ep, { from });
+}
+
 function renderDrawer() {
   $("stabs").innerHTML = SERIE.seasons.map((s, i) => `<button class="${i === state.dseason ? "on" : ""}" data-act="dseason" data-i="${i}">T${s.n} · ${esc(s.title)}</button>`).join("");
   const s = SERIE.seasons[state.dseason];
@@ -606,7 +673,7 @@ video.addEventListener("play", () => { setPaused(false); $("spin").hidden = true
 video.addEventListener("pause", () => { setPaused(true); saveProgress(true); showUI(true); });
 video.addEventListener("waiting", () => { if (!$("player").classList.contains("pre")) $("spin").hidden = false; });
 video.addEventListener("playing", () => { $("spin").hidden = true; });
-video.addEventListener("timeupdate", () => { paint(); saveProgress(false); onChapter(); });
+video.addEventListener("timeupdate", () => { paint(); saveProgress(false); onChapter(); onEscolha(); });
 video.addEventListener("progress", paint);
 video.addEventListener("ended", endOfEpisode);
 video.addEventListener("volumechange", () => { $("btn-mute").style.opacity = video.muted || video.volume === 0 ? .5 : 1; });
@@ -641,6 +708,8 @@ document.addEventListener("click", (ev) => {
   else if (a === "buy") { if (!$("preplay").hidden) return; const k = buyIdx(curEp()); if (k >= 0) { if (state.checkout !== null) { closeCheckout(); video.play().catch(() => {}); } else openCheckout(k); } }
   else if (a === "mark") { ev.stopPropagation(); const k = +el.dataset.k; const c = chapters(curEp())[k]; video.currentTime = c.t; state.lastChapter = k; paint(); if (c.acao && c.acao.tipo === "link") openCheckout(k); }
   else if (a === "close-player") { clearInterval(state.ppTimer); show("title"); }
+  else if (a === "escolher") escolher(+el.dataset.i);
+  else if (a === "trocar-caminho") trocarCaminho();
 });
 document.addEventListener("click", (ev) => {
   if (state.seasonMenu && !ev.target.closest("#season-sel") && !ev.target.closest('[data-act="season-menu"]')) { state.seasonMenu = false; renderSeasonSel(); }
@@ -649,6 +718,7 @@ document.addEventListener("click", (ev) => {
 document.addEventListener("keydown", (ev) => {
   if ($("player").hidden || ev.target.tagName === "INPUT") return;
   const k = ev.key.toLowerCase();
+  if (state.escolha) { if (["1", "2", "3", "4"].includes(ev.key)) escolher(+ev.key - 1); else if (ev.key === "Escape") { clearInterval(state.ppTimer); show("title"); } return; }
   if (ev.key === " ") { ev.preventDefault(); if (state.checkout !== null || !$("preplay").hidden) return; toggle(); }
   else if (ev.key === "ArrowLeft") seek(-10); else if (ev.key === "ArrowRight") seek(10);
   else if (k === "e") openDrawer(); else if (k === "f") toggleFs(); else if (k === "m") video.muted = !video.muted;
