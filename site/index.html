@@ -232,7 +232,19 @@
   .tgt { padding: 7px 11px; border-radius: 2px; cursor: pointer; font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; transition: all 160ms; border: 1px solid var(--line); background: transparent; color: #9a9a9a; }
   .tgt.on { border-color: var(--accent); background: var(--accent); color: var(--on-accent); font-weight: 700; }
   .cmdhead { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
-  .copybtn { background: transparent; border: 0; padding: 4px 0; min-height: 24px; color: var(--agent); font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; cursor: pointer; }
+  /* caixa do comando: a caixa inteira copia; um feixe percorre a borda até a primeira cópia; o botão sólido diz o que acontece */
+  .cmdbox { position: relative; overflow: hidden; isolation: isolate; border-radius: 6px; padding: 2px; background: var(--line); cursor: pointer; transition: transform .12s, box-shadow .15s; }
+  .cmdbox::before { content: ""; position: absolute; z-index: 0; width: 260%; height: 260%; top: -80%; left: -80%; background: conic-gradient(from 0deg, transparent 0 70%, rgba(48,176,199,.2) 78%, var(--agent) 87%, #e6fbff 91%, var(--agent) 95%, transparent 100%); animation: cmdSweep 3.2s linear infinite; }
+  .cmdbox.copied::before { animation: none; background: var(--agent); }
+  .cmdbox .inner { position: relative; z-index: 1; display: block; background: var(--ink); border-radius: 5px; border-left: 2px solid var(--agent); padding: 13px 15px 48px; }
+  .cmdbox code.cmd { border: 0; background: transparent; padding: 0; border-radius: 0; }
+  .cmdbox:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+  .cmdbox:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .copybtn { position: absolute; right: 12px; bottom: 11px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px; border-radius: 4px; background: var(--agent); color: #14161A; font-family: var(--sans, inherit); font-size: 12px; font-weight: 800; letter-spacing: .01em; pointer-events: none; transition: background .15s; }
+  .copybtn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+  .cmdbox:hover .copybtn { background: #4cc3d8; }
+  .cmdbox.copied .copybtn { background: #e6fbff; }
+  @keyframes cmdSweep { to { transform: rotate(360deg); } }
   code.cmd { display: block; padding: 13px 15px; background: var(--ink); border: 1px solid var(--line); border-left: 2px solid var(--agent); border-radius: 4px; font-family: var(--mono); font-size: 11.5px; line-height: 1.6; color: #fff; word-break: break-all; white-space: pre-wrap; }
   .warn { margin: 8px 0 0; font-size: 10.5px; line-height: 1.5; color: var(--accent-text); }
   .hint { margin: 8px 0 0; font-size: 10.5px; line-height: 1.5; color: #9a9a9a; }
@@ -325,6 +337,7 @@
     #intro .skip { bottom: 20px; right: 20px; }
   }
   @media (prefers-reduced-motion: reduce) {
+    .cmdbox::before { animation: none; }
     #intro .enter, #intro .grain { animation: none; }
     #intro.sweep .veil { animation: aFadeOut 600ms ease both; }
     #intro.sweep::before { display: none; }
@@ -702,8 +715,8 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       <div>
         <div class="lbl mono mb9">INSTALAR EM</div>
         <div class="targets">${TARGETS.map((x) => `<button class="tgt ${x.id === t.id ? "on" : ""}" data-act="target" data-target="${esc(x.id)}">${esc(x.id)}</button>`).join("")}</div>
-        <div class="cmdhead"><span class="lbl mono tight">${kindLabel}</span><button class="copybtn" data-act="copy" data-key="${esc(s.slug)}-cli" data-text="${esc(value)}" data-idle="COPIAR" data-done="COPIADO ✓">COPIAR</button></div>
-        <code class="cmd">${esc(value)}</code>
+        <div class="cmdhead"><span class="lbl mono tight">${kindLabel}</span></div>
+        <div class="cmdbox" role="button" tabindex="0" aria-label="Copiar ${kindLabel.toLowerCase()}" data-act="copy" data-key="${esc(s.slug)}-cli" data-text="${esc(value)}" data-idle="Copiar" data-done="Copiado ✓"><span class="inner"><code class="cmd">${esc(value)}</code><span class="copybtn" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span class="cta-lbl">Copiar</span></span></span></div>
         ${note ? `<p class="warn mono">${esc(note)}</p>` : ""}
         ${hint ? `<p class="hint mono">${esc(hint)}</p>` : ""}
         ${t.kind !== "cmd" && s.activation ? `<div class="lbl mono mt">DEPOIS DE INSTALAR, DIGA</div><code class="cmd">${esc(s.activation)}</code>` : ""}
@@ -819,14 +832,15 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     if (est && state.open === slug) est.textContent = s.inList ? "na lista" : "disponível";
     if ($("results").hidden) refreshRow("lista"); else if (state.filter === "Minha lista") renderCatalog();
   }
+  document.addEventListener("keydown", (e) => { const a = document.activeElement; if ((e.key === "Enter" || e.key === " ") && a && a.matches && a.matches('.cmdbox[data-act="copy"]')) { e.preventDefault(); copyText(a); } });
   function copyText(el) {
     clar("copiou_comando", { alvo: state.target, chave: el.dataset.key || "" });
     const text = el.dataset.text || "", key = el.dataset.key || "";
     const done = () => {
       document.querySelectorAll(`[data-act="copy"][data-key="${CSS.escape(key)}"]`).forEach((c) => {
         const lbl = c.querySelector(".cta-lbl") || c;
-        lbl.textContent = c.dataset.done || "COPIADO ✓";
-        clearTimeout(c._t); c._t = setTimeout(() => { lbl.textContent = c.dataset.idle || "COPIAR"; }, 1600);
+        lbl.textContent = c.dataset.done || "COPIADO ✓"; c.classList.add("copied");
+        clearTimeout(c._t); c._t = setTimeout(() => { lbl.textContent = c.dataset.idle || "COPIAR"; }, 2200);
       });
     };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
