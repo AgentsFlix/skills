@@ -12,6 +12,7 @@
 <style>
 :root {
   --accent: #30B0C7; --accent-rgb: 48,176,199; --accent-text: #5FC9DC; --on-accent: #14161A;
+  --continuar: #E07A4F; --continuar-rgb: 224,122,79;
   --bg: #141414; --panel: #181818; --row-hover: #333333; --line: #404040; --muted: #a3a3a3; --dim: #737373;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace; --sans: Archivo, Helvetica, Arial, sans-serif;
 }
@@ -43,6 +44,13 @@ a { color: inherit; text-decoration: none; }
 .btn { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 22px; border-radius: 4px; font-size: 15px; font-weight: 700; }
 .btn.primary { background: var(--accent); color: var(--on-accent); }
 .btn.primary:hover { background: #4cc3d8; }
+/* continuar o vídeo: é a pessoa dizendo "terminei"; cor própria (terracota) para não confundir com a ação (ciano) */
+.btn.continuar { background: var(--continuar); color: #14161A; animation: pulsar 1.5s ease-out 3; }
+.btn.continuar:hover { background: #ee8b60; }
+@keyframes pulsar { 0% { box-shadow: 0 0 0 0 rgba(var(--continuar-rgb), .6); } 100% { box-shadow: 0 0 0 16px rgba(var(--continuar-rgb), 0); } }
+.buybox .cont-row { margin-top: 18px; }
+.buybox .cont-row:empty { display: none; }
+.buybox .cont-hint { margin: 0 0 10px; font-size: 13px; line-height: 1.5; color: #f0c674; }
 .btn.ghost { background: rgba(109,109,110,.7); color: #fff; }
 .btn.ghost:hover { background: rgba(109,109,110,.5); }
 .btn svg { width: 20px; height: 20px; fill: currentColor; }
@@ -500,7 +508,7 @@ function resumeEp() {
 }
 const chapters = (e) => e.ch || [];
 const chapterAt = (e, t) => { let k = -1; chapters(e).forEach((c, i) => { if (t >= c.t) k = i; }); return k; };
-const buyIdx = (e) => chapters(e).findIndex((c) => c.acao && ["link", "comando", "passo", "videos"].includes(c.acao.tipo) && c.acao.parar);
+const buyIdx = (e) => { const cs = chapters(e); const t = video.currentTime || 0; let k = -1, first = -1; cs.forEach((c, i) => { if (c.acao && ["link", "comando", "passo", "videos"].includes(c.acao.tipo) && c.acao.parar) { if (first < 0) first = i; if (c.t <= t) k = i; } }); return k >= 0 ? k : first; };
 const optDefault = (a) => (a.opcoes || []).find((o) => o.padrao) || (a.opcoes || [])[0];
 const optChosen = (a, uid, k) => { const i = state.periodo[doneKey(uid, k)]; return i === undefined ? optDefault(a) : a.opcoes[i]; };
 
@@ -607,14 +615,14 @@ function openCheckout(k, { pausar = true } = {}) {
     const vids = (a.videos || []).map((v, i) => `<figure class="mini"><iframe src="https://${SERIE.customer}.cloudflarestream.com/${esc(v.uid)}/iframe?preload=metadata&muted=true&letterboxColor=%23000000" loading="lazy" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen title="${esc(v.label || "vídeo " + (i + 1))}"></iframe><figcaption>${i + 1}. ${esc(v.label || "")}</figcaption></figure>`).join("");
     $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · VÍDEOS</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p><div class="minis">${vids}</div>
       ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
-      <div class="psel-row" style="margin-top:18px"><button class="btn primary" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
+      <div class="psel-row" style="margin-top:18px"><button class="btn continuar" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
       <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Pular este passo")} ▶</button>`;
     $("checkout").hidden = false; return;
   }
   if (a.tipo === "passo") {
     $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · PASSO</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p>
       ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
-      <div class="psel-row" style="margin-top:18px"><button class="btn primary" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
+      <div class="psel-row" style="margin-top:18px"><button class="btn continuar" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
       <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Pular este passo")} ▶</button>`;
     $("checkout").hidden = false; return;
   }
@@ -623,30 +631,40 @@ function openCheckout(k, { pausar = true } = {}) {
     $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · PROMPT</div><h3>${esc(a.titulo || "Copie este prompt")}</h3><p>${esc(a.nota || "")}</p>
       <div class="cmdbox ${isDone(e.uid, k) ? "copied" : ""}" role="button" tabindex="0" aria-label="Copiar prompt" data-act="copiar-prompt" data-k="${k}"><span class="inner"><code>${esc(a.texto || "")}</code><span class="copybtn" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span class="cta-lbl">${isDone(e.uid, k) ? "Copiado ✓" : "Copiar"}</span></span></span></div>
       ${a.depois ? `<div class="steps"><div class="lbl">DEPOIS DE COLAR</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
-      <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Já copiei, continuar o vídeo")} ▶</button>`;
+      <div class="cont-row">${isDone(e.uid, k) ? continuarHtml(k) : ""}</div>
+      ${isDone(e.uid, k) ? "" : `<button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Já copiei, continuar o vídeo")} ▶</button>`}`;
     $("checkout").hidden = false; return;
   }
   $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · ${a.indicacao ? "COMPRA" : "LINK"}</div><h3>${esc(a.titulo || (a.indicacao ? "Escolha o seu plano" : "Abra o link"))}</h3><p>${esc(a.nota || "")}</p>
     ${a.opcoes && a.opcoes.length > 1 ? periodSel(a, e.uid, k) : `<div class="psel-row"><button class="btn primary" data-act="ext" data-url="${esc(optDefault(a).url)}" data-k="${k}">${esc(a.cta || a.label)} ↗</button></div>`}
-    ${a.indicacao ? `<div class="selo">${SELO}<br>Abre em nova aba. Assim que você clicar, o vídeo continua daqui.</div>` : ""}
+    ${a.indicacao ? `<div class="selo">${SELO}<br>Abre em nova aba. O vídeo fica pausado esperando você voltar.</div>` : ""}
     ${a.depois ? `<div class="steps"><div class="lbl">NA HOSTINGER, DEPOIS DO CARRINHO</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
-    <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Já tenho, continuar o vídeo")} ▶</button>`;
+    <div class="cont-row">${isDone(e.uid, k) ? continuarHtml(k) : ""}</div>
+    ${isDone(e.uid, k) ? "" : `<button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Já tenho, continuar o vídeo")} ▶</button>`}`;
   $("checkout").hidden = false;
+}
+const continuarHtml = (k) => `<p class="cont-hint">Quando terminar por lá, volte aqui:</p><button class="btn continuar" data-act="checkout-continuar" data-k="${k}">Continuar o vídeo ▶</button>`;
+// depois da ação (copiar, abrir o link) o vídeo continua pausado: só o botão terracota retoma
+function mostrarContinuar(k, msg) {
+  const row = $("checkout").querySelector(".cont-row"); if (row) row.innerHTML = continuarHtml(k);
+  const skip = $("checkout").querySelector(".skipbtn"); if (skip) skip.remove();
+  $("vidcap").innerHTML = `<i></i><span><b>Pausado.</b> ${msg}</span>`; $("vidcap").hidden = false;
 }
 function closeCheckout() { state.checkout = null; $("player").classList.remove("checkout"); $("checkout").hidden = true; $("vidcap").hidden = true; }
 function copiarPrompt(k) {
   const e = curEp(); const a = chapters(e)[k] && chapters(e)[k].acao; if (!a) return;
   const texto = a.texto || ""; const box = $("checkout").querySelector(".cmdbox"); const lbl = box && box.querySelector(".cta-lbl");
-  const done = () => { markDoneStore(e.uid, k); paintMarks(); clar("prompt_copiado", { serie: SERIE.slug }); if (box) { box.classList.add("copied"); if (lbl) lbl.textContent = "Copiado ✓"; } setTimeout(() => { if (state.checkout === k) { closeCheckout(); video.play().catch(() => {}); } }, 1200); };
+  const done = () => { markDoneStore(e.uid, k); paintMarks(); clar("prompt_copiado", { serie: SERIE.slug }); if (box) { box.classList.add("copied"); if (lbl) lbl.textContent = "Copiado ✓"; } if (state.checkout === k) mostrarContinuar(k, "Cole no Codex e dê Enter. Quando terminar, clique em Continuar o vídeo."); };
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texto).then(done, done);
   else { const ta = document.createElement("textarea"); ta.value = texto; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (err) {} ta.remove(); done(); }
 }
 function goExternal(url, k) {
   clar("comprar_clicado", { serie: SERIE.slug });
   try { window.open(url, "_blank", "noopener"); } catch (err) {}
-  const e = curEp(); const a = chapters(e)[k] && chapters(e)[k].acao;
-  if (a && a.humano) { markDoneStore(e.uid, k); paintMarks(); }
-  if (state.checkout !== null) { closeCheckout(); video.play().catch(() => {}); }
+  const e = curEp(); const a = chapters(e)[k] && chapters(e)[k].acao; if (!a) return;
+  markDoneStore(e.uid, k); paintMarks();
+  if (!video.paused) video.pause(); state.pausou[doneKey(e.uid, k)] = true; // a pausa agendada não precisa mais disparar
+  if (state.checkout === k) mostrarContinuar(k, "Quando terminar por lá, volte e clique em Continuar o vídeo.");
 }
 function setPaused(p) { $("player").classList.toggle("paused", p); $("ic-play").hidden = !p; $("ic-pause").hidden = p; }
 function toggle() { if (video.paused) video.play().catch(() => {}); else video.pause(); flash(); }
@@ -666,7 +684,8 @@ function onChapter() {
   if (a && a.parar && !state.stopped[doneKey(e.uid, k)] && !video.paused) { state.stopped[doneKey(e.uid, k)] = true; openCheckout(k, { pausar: a.pausar_em === undefined }); return; }
   if (a) {
     // quem já passou por esta parada neste carregamento vê só o aviso, clicável, sem pausa
-    const t = $("toast"); t.className = "toast" + (a.humano ? " human" : ""); t.dataset.act = a.parar ? "buy" : ""; if (!a.parar) delete t.dataset.act;
+    if (state.checkout === k) return;
+    const t = $("toast"); t.className = "toast" + (a.humano ? " human" : ""); t.dataset.act = a.parar ? "buy" : ""; if (!a.parar) delete t.dataset.act; t.dataset.k = k;
     const rot = a.parar ? (a.tipo === "comando" ? (isDone(e.uid, k) ? "PROMPT COPIADO · VER DE NOVO" : "COPIAR O PROMPT") : a.tipo === "passo" ? (isDone(e.uid, k) ? "PASSO FEITO · VER DE NOVO" : "PASSO") : a.tipo === "videos" ? (isDone(e.uid, k) ? "VÍDEOS VISTOS · VER DE NOVO" : "VÍDEOS") : a.tipo === "link" && !a.indicacao ? (isDone(e.uid, k) ? "LINK ABERTO · VER DE NOVO" : "ABRIR O LINK") : (isDone(e.uid, k) ? "COMPRA FEITA · VER OS PLANOS" : "PLANOS DA VPS")) : (a.humano ? "REQUER VOCÊ" : "AÇÃO");
     t.innerHTML = `<b>${rot} →</b>${esc(a.label || c.n)}`;
     t.hidden = false; clearTimeout(state.toastTimer); state.toastTimer = setTimeout(() => { t.hidden = true; }, 5000); showUI(false);
@@ -790,8 +809,9 @@ document.addEventListener("click", (ev) => {
   else if (a === "copiar-prompt") copiarPrompt(+el.dataset.k);
   else if (a === "passo-feito") { const e = curEp(); markDoneStore(e.uid, +el.dataset.k); paintMarks(); clar("passo_feito", { serie: SERIE.slug }); closeCheckout(); video.play().catch(() => {}); }
   else if (a === "checkout-skip") { closeCheckout(); video.play().catch(() => {}); }
-  else if (a === "buy") { if (!$("preplay").hidden) return; const k = buyIdx(curEp()); if (k >= 0) { if (state.checkout !== null) { closeCheckout(); video.play().catch(() => {}); } else openCheckout(k); } }
-  else if (a === "mark") { ev.stopPropagation(); const k = +el.dataset.k; const c = chapters(curEp())[k]; video.currentTime = c.t; state.lastChapter = k; paint(); if (c.acao && c.acao.tipo === "link") openCheckout(k); }
+  else if (a === "checkout-continuar") { clar("continuar_clicado", { serie: SERIE.slug }); closeCheckout(); video.play().catch(() => {}); }
+  else if (a === "buy") { if (!$("preplay").hidden) return; const k = el.dataset.k !== undefined ? +el.dataset.k : buyIdx(curEp()); if (k >= 0) { if (state.checkout !== null) { closeCheckout(); video.play().catch(() => {}); } else openCheckout(k); } }
+  else if (a === "mark") { ev.stopPropagation(); const k = +el.dataset.k; const c = chapters(curEp())[k]; video.currentTime = c.t; state.lastChapter = k; paint(); if (c.acao && c.acao.parar) { state.stopped[doneKey(curEp().uid, k)] = true; openCheckout(k); } }
   else if (a === "close-player") { clearInterval(state.ppTimer); show("title"); }
   else if (a === "escolher") escolher(+el.dataset.i);
   else if (a === "trocar-caminho") trocarCaminho();
