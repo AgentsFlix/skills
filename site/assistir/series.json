@@ -408,6 +408,217 @@
                   }
                 }
               ]
+            },
+            {
+              "t": "Instalação completa",
+              "d": 1165,
+              "uid": "5cb85a79cfb17a245105623984f44b35",
+              "desc": "O agente instala e configura o Hermes na VPS pelo repositório: o prompt, o acesso pelo arquivo (IP, senha root, senha do painel), o modelo pela sua conta do ChatGPT, a alma, as chaves do Maton e do Zernio e o bot do Telegram. No fim, o teste.",
+              "preplay": {
+                "req": [
+                  {
+                    "t": "O Codex aberto na pasta que ele criou, em acesso completo (o EP2 deixou você aqui)",
+                    "need": true
+                  },
+                  {
+                    "t": "A janela da Hostinger aberta na sua VPS: o IP, a senha root e a senha do painel saem de lá",
+                    "need": true
+                  },
+                  {
+                    "t": "A sua conta do ChatGPT (plano pago) logada no navegador",
+                    "need": true
+                  },
+                  {
+                    "t": "O Telegram no celular: é lá que o bot nasce",
+                    "need": true
+                  },
+                  {
+                    "t": "Uns 25 minutos, com pausas"
+                  }
+                ]
+              },
+              "ch": [
+                {
+                  "t": 2,
+                  "n": "Codex em acesso completo"
+                },
+                {
+                  "t": 67,
+                  "n": "Copiar o prompt e colar no Codex",
+                  "acao": {
+                    "tipo": "comando",
+                    "parar": true,
+                    "label": "Copiar o prompt",
+                    "titulo": "Copie o prompt e cole no Codex",
+                    "nota": "É este texto que faz o Codex instalar e configurar o Hermes na sua VPS pelo repositório. Copie, cole na janela do Codex e dê Enter. Ele vai abrir um arquivo chamado acesso.local no seu computador; quando abrir, volte aqui.",
+                    "texto": "Instale e configure o meu Hermes Agent seguindo https://github.com/AgentsFlix/hermes-vps\nClone o repositório nesta pasta, leia o AGENTS.md inteiro antes de rodar qualquer comando, e\nsiga as fases na ordem usando só os scripts de harness/. Não improvise comando fora deles.\nPare em cada fase que precisar de mim, uma coisa por vez, e me diga exatamente o que fazer.",
+                    "cta": "Copiar o prompt",
+                    "feito": "Copiado, continuar o vídeo",
+                    "pular": "Já colei, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 78,
+                  "n": "O arquivo acesso.local: credenciais só no arquivo, nunca no chat"
+                },
+                {
+                  "t": 145,
+                  "n": "Colar o IP da VPS",
+                  "acao": {
+                    "tipo": "passo",
+                    "parar": true,
+                    "titulo": "Cole o IP da VPS no acesso.local",
+                    "nota": "Na linha Acesso SSH, no lugar de COLE_O_IP_AQUI.",
+                    "depois": [
+                      "Na janela da Hostinger, clique em Visão geral: o IP aparece ali.",
+                      "Clique no botãozinho de copiar ao lado do IP.",
+                      "No acesso.local, apague COLE_O_IP_AQUI e cole o IP (Ctrl+V ou Cmd+V).",
+                      "Se a sua VPS é de outro lugar, é o IP dela do mesmo jeito."
+                    ],
+                    "cta": "Feito, continuar o vídeo",
+                    "pular": "Pular este passo"
+                  }
+                },
+                {
+                  "t": 223,
+                  "n": "Definir e colar a senha root",
+                  "acao": {
+                    "tipo": "passo",
+                    "parar": true,
+                    "titulo": "Defina a senha root e cole no acesso.local",
+                    "nota": "Na Hostinger, em Configurações, Configuração principal.",
+                    "depois": [
+                      "Crie uma senha que cumpra os requisitos (ou clique em Gerar) e salve num lugar seguro.",
+                      "Clique em Atualizar a senha; leva alguns minutinhos.",
+                      "Cole essa senha no acesso.local, na linha da senha root."
+                    ],
+                    "cta": "Feito, continuar o vídeo",
+                    "pular": "Pular este passo"
+                  }
+                },
+                {
+                  "t": 273,
+                  "n": "Copiar a senha do painel",
+                  "acao": {
+                    "tipo": "passo",
+                    "parar": true,
+                    "titulo": "Copie a senha do painel e cole no acesso.local",
+                    "nota": "É a senha que apareceu na tela Parabéns. Se não salvou, ela está na Hostinger.",
+                    "depois": [
+                      "Visão geral, três pontinhos, Gerenciar.",
+                      "Embaixo, clique em Ambiente e ache o admin password.",
+                      "Clique no olhinho, copie e cole no acesso.local.",
+                      "Salve o arquivo (Cmd+S no Mac, Ctrl+S no Windows) e só então feche.",
+                      "No Codex, responda: Feito."
+                    ],
+                    "cta": "Feito, continuar o vídeo",
+                    "pular": "Pular este passo"
+                  }
+                },
+                {
+                  "t": 298,
+                  "n": "Ler o que o Codex diz, sempre"
+                },
+                {
+                  "t": 370,
+                  "n": "Ativar o código de dispositivo no ChatGPT (chatgpt.com, Configurações, Segurança e login)"
+                },
+                {
+                  "t": 459,
+                  "n": "Abrir o link e colar o código que o Codex mandou"
+                },
+                {
+                  "t": 495,
+                  "n": "A alma: cinco perguntas para o Hermes já nascer sabendo de você"
+                },
+                {
+                  "t": 669,
+                  "n": "Duas chaves opcionais: Maton (apps) e Zernio (redes sociais)"
+                },
+                {
+                  "t": 763,
+                  "n": "Pegar a chave do Maton",
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "label": "Abrir o Maton",
+                    "titulo": "Pegue a sua chave do Maton",
+                    "cta": "Abrir maton.ai",
+                    "nota": "O hub geral: Gmail, agenda, Notion, Slack e outros apps. Entre com o Google; em Settings, API Keys, copie a chave e cole no arquivo de chaves que o Codex abriu. Nunca no chat.",
+                    "opcoes": [
+                      {
+                        "label": "maton.ai",
+                        "url": "https://maton.ai"
+                      }
+                    ],
+                    "pular": "Sem Maton por enquanto, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 831,
+                  "n": "Pegar a chave do Zernio",
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "label": "Abrir o Zernio",
+                    "titulo": "Pegue a sua chave do Zernio",
+                    "cta": "Abrir zernio.com",
+                    "nota": "O hub das redes sociais: Instagram, X e as outras. Continue com o Google; na primeira vez a chave aparece na tela; copie e cole no arquivo de chaves. Depois salve o arquivo, feche e responda Feito no Codex. Sem alguma das chaves, deixe o campo vazio: a integração fica de fora.",
+                    "opcoes": [
+                      {
+                        "label": "zernio.com",
+                        "url": "https://zernio.com"
+                      }
+                    ],
+                    "pular": "Sem Zernio por enquanto, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 907,
+                  "n": "Conectar ao Telegram (mais fácil que o WhatsApp)"
+                },
+                {
+                  "t": 977,
+                  "n": "Criar o bot e pegar o seu ID",
+                  "acao": {
+                    "tipo": "videos",
+                    "parar": true,
+                    "label": "Ver os vídeos",
+                    "titulo": "No celular: o token do bot e o seu ID",
+                    "nota": "Dois números vão no arquivo: o Telegram Bot Token e o seu User ID. Os vídeos abaixo mostram, no Telegram do celular, como pegar cada um.",
+                    "videos": [
+                      {
+                        "uid": "905ae88f2aaac65ea55a040b27559094",
+                        "label": "Achar o @BotFather"
+                      },
+                      {
+                        "uid": "2784fd35dc7781b07b4d6b22231633bd",
+                        "label": "Criar o bot e copiar o token"
+                      },
+                      {
+                        "uid": "ccb7ed8af219992317a010b485d36bf0",
+                        "label": "Pegar o seu ID no @userinfobot"
+                      }
+                    ],
+                    "depois": [
+                      "Baixe o Telegram, se não tem (App Store ou Play Store).",
+                      "No @BotFather, crie o bot (/newbot) e copie o token.",
+                      "No @userinfobot, copie o seu Id.",
+                      "Cole os dois no arquivo, salve (Cmd+S ou Ctrl+S), feche e responda Feito no Codex."
+                    ],
+                    "cta": "Feito, continuar o vídeo",
+                    "pular": "Pular o Telegram por enquanto"
+                  }
+                },
+                {
+                  "t": 1021,
+                  "n": "Instalação feita: testar no Telegram (/new e Always approve)"
+                },
+                {
+                  "t": 1104,
+                  "n": "A tela do painel: login hermes e a senha do painel"
+                }
+              ]
             }
           ],
           "caminho": "Difícil (VPS)"
