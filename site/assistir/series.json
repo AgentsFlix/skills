@@ -292,11 +292,11 @@
                   "acao": {
                     "tipo": "link",
                     "parar": true,
-                    "pausar_em": 186,
+                    "pausar_em": 189.3,
                     "label": "Comprar a KVM 2 na Hostinger",
                     "titulo": "Escolha o seu plano",
                     "cta": "Comprar a VPS",
-                    "nota": "KVM 2, a máquina que o Hermes precisa. Um mês para testar, se a grana está apertada; 12 ou 24 meses se você tem certeza. Comprando por aqui tem 20% de desconto pela parceria, e parte volta para manter o AgentFlix. O vídeo pausa em 3:06 para você escolher.",
+                    "nota": "KVM 2, a máquina que o Hermes precisa. Um mês para testar, se a grana está apertada; 12 ou 24 meses se você tem certeza. Comprando por aqui tem 20% de desconto pela parceria, e parte volta para manter o AgentFlix. O vídeo pausa em 3:09 para você escolher.",
                     "depois": [
                       "Aplicativos: procure Hermes Agent (o com a estrelinha) e confirme.",
                       "IA pronta para uso: marque (é grátis).",
@@ -326,7 +326,7 @@
                   }
                 },
                 {
-                  "t": 229,
+                  "t": 238.3,
                   "n": "Escolher o aplicativo Hermes Agent",
                   "acao": {
                     "tipo": "passo",
@@ -343,7 +343,7 @@
                   }
                 },
                 {
-                  "t": 282,
+                  "t": 289.8,
                   "n": "IA pronta para uso e localização Brasil",
                   "acao": {
                     "tipo": "passo",
@@ -360,7 +360,7 @@
                   }
                 },
                 {
-                  "t": 368,
+                  "t": 370.7,
                   "n": "Salvar a senha e implantar",
                   "acao": {
                     "tipo": "passo",
@@ -389,7 +389,7 @@
                   "n": "Sem plano pago do ChatGPT? Antigravity (este caminho não ensina)"
                 },
                 {
-                  "t": 63,
+                  "t": 69.2,
                   "n": "Baixar o Codex",
                   "acao": {
                     "tipo": "link",
@@ -443,7 +443,7 @@
                   "n": "Codex em acesso completo"
                 },
                 {
-                  "t": 67,
+                  "t": 78,
                   "n": "Copiar o prompt e colar no Codex",
                   "acao": {
                     "tipo": "comando",
@@ -458,11 +458,11 @@
                   }
                 },
                 {
-                  "t": 78,
+                  "t": 84,
                   "n": "O arquivo acesso.local: credenciais só no arquivo, nunca no chat"
                 },
                 {
-                  "t": 145,
+                  "t": 151.6,
                   "n": "Colar o IP da VPS",
                   "acao": {
                     "tipo": "passo",
@@ -480,7 +480,7 @@
                   }
                 },
                 {
-                  "t": 223,
+                  "t": 226.2,
                   "n": "Definir e colar a senha root",
                   "acao": {
                     "tipo": "passo",
@@ -497,7 +497,7 @@
                   }
                 },
                 {
-                  "t": 273,
+                  "t": 276.5,
                   "n": "Copiar a senha do painel",
                   "acao": {
                     "tipo": "passo",
@@ -536,7 +536,7 @@
                   "n": "Duas chaves opcionais: Maton (apps) e Zernio (redes sociais)"
                 },
                 {
-                  "t": 763,
+                  "t": 778,
                   "n": "Pegar a chave do Maton",
                   "acao": {
                     "tipo": "link",
@@ -555,7 +555,7 @@
                   }
                 },
                 {
-                  "t": 831,
+                  "t": 844.1,
                   "n": "Pegar a chave do Zernio",
                   "acao": {
                     "tipo": "link",
@@ -578,7 +578,7 @@
                   "n": "Conectar ao Telegram (mais fácil que o WhatsApp)"
                 },
                 {
-                  "t": 977,
+                  "t": 997,
                   "n": "Criar o bot e pegar o seu ID",
                   "acao": {
                     "tipo": "videos",
