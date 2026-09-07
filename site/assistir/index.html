@@ -140,6 +140,10 @@ a { color: inherit; text-decoration: none; }
 .escolha .op .t { display: block; padding: 10px 12px 12px; }
 .escolha .op .t b { display: block; font-size: 14px; }
 .escolha .op .t span { display: block; font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+.escolha .op.breve { opacity: .55; cursor: default; }
+.escolha .op .semcapa { display: block; aspect-ratio: 16/9; background: repeating-linear-gradient(135deg, #1c1c1c 0 12px, #222 12px 24px); }
+.escolha .op.breve:hover { transform: none; border-color: rgba(255,255,255,.18); }
+.escolha .op .badge { position: absolute; top: 8px; right: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; padding: 4px 6px; border-radius: 3px; background: #333; color: #ddd; }
 .escolha .op .k { position: absolute; top: 8px; left: 8px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 4px; background: rgba(0,0,0,.7); font-family: var(--mono); font-size: 12px; font-weight: 700; }
 .escolha .relogio { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 12px; color: #ddd; max-width: 900px; }
 .escolha .relogio .bar { flex: 1; height: 3px; background: rgba(255,255,255,.25); border-radius: 2px; overflow: hidden; }
@@ -172,6 +176,17 @@ a { color: inherit; text-decoration: none; }
 .buybox .steps .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--dim); margin-bottom: 8px; }
 .buybox .steps ol { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.55; color: #cfcfcf; }
 .buybox .skipbtn { display: block; margin-top: 22px; font-size: 13px; color: #bbb; text-decoration: underline; }
+.buybox .cmdbox { position: relative; overflow: hidden; isolation: isolate; border-radius: 6px; padding: 2px; background: #4a4a4a; cursor: pointer; margin: 6px 0 16px; }
+.buybox .cmdbox::before { content: ""; position: absolute; z-index: 0; width: 260%; height: 260%; top: -80%; left: -80%; background: conic-gradient(from 0deg, transparent 0 70%, rgba(48,176,199,.2) 78%, var(--accent) 87%, #e6fbff 91%, var(--accent) 95%, transparent 100%); animation: cmdSweep 3.2s linear infinite; }
+.buybox .cmdbox.copied::before { animation: none; background: var(--accent); }
+.buybox .cmdbox .inner { position: relative; z-index: 1; display: block; background: #0f0f0f; border-radius: 5px; border-left: 2px solid var(--accent); padding: 12px 14px 48px; }
+.buybox .cmdbox code { display: block; font-family: var(--mono); font-size: 12px; line-height: 1.6; color: #fff; white-space: pre-wrap; word-break: break-word; }
+.buybox .cmdbox:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.buybox .copybtn { position: absolute; right: 10px; bottom: 10px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px; border-radius: 4px; background: var(--accent); color: var(--on-accent); font-size: 12px; font-weight: 800; pointer-events: none; }
+.buybox .copybtn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+.buybox .cmdbox.copied .copybtn { background: #e6fbff; }
+@keyframes cmdSweep { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .buybox .cmdbox::before { animation: none; } }
 .psel-lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--dim); margin-bottom: 6px; }
 .psel-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 4px 0 14px; }
 .psel { position: relative; display: inline-block; min-width: 168px; }
@@ -448,7 +463,7 @@ const SELO = "LINK DE INDICAÇÃO · você paga o mesmo, o AgentFlix recebe comi
 
 // ---------- dados ----------
 let SERIES = [], SERIE = null;
-const state = { season: 0, ep: 0, hls: null, uiTimer: null, drawer: false, pop: false, dseason: 0, ppTimer: null, seasonMenu: false, allSeasons: false, toastTimer: null, lastSave: 0, lastChapter: -1, checkout: null, stopped: {}, preSeen: {}, periodo: {}, pselOpen: null, escolha: false, escolhaTimer: null, escolhaVista: {} };
+const state = { season: 0, ep: 0, hls: null, uiTimer: null, drawer: false, pop: false, dseason: 0, ppTimer: null, seasonMenu: false, allSeasons: false, toastTimer: null, lastSave: 0, lastChapter: -1, checkout: null, stopped: {}, preSeen: {}, periodo: {}, pselOpen: null, escolha: false, escolhaTimer: null, escolhaVista: {}, pausou: {} };
 const video = $("video");
 const curEp = () => SERIE.seasons[state.season].eps[state.ep];
 const base = (uid) => `https://${SERIE.customer}.cloudflarestream.com/${uid}`;
@@ -461,6 +476,7 @@ const isDone = (uid, k) => !!store.get("agentflix-done", {})[doneKey(uid, k)];
 const markDoneStore = (uid, k) => { const d = store.get("agentflix-done", {}); d[doneKey(uid, k)] = Date.now(); store.set("agentflix-done", d); };
 const nextSeasonWithEps = (after) => SERIE.seasons.findIndex((x, i) => i > after && x.eps && x.eps.length && !x.caminho);   // temporada de caminho só se entra pela escolha
 const seasonIdxByN = (n) => SERIE.seasons.findIndex((x) => +x.n === +n);
+const sN = (si) => { const x = SERIE.seasons[si]; return x && x.n !== undefined ? x.n : si + 1; };   // número real da temporada, não a posição
 const caminhoKey = () => `agentflix-caminho-${SERIE.slug}`;
 const rootEscolha = () => { for (let si = 0; si < SERIE.seasons.length; si++) { const ei = SERIE.seasons[si].eps.findIndex((e) => e.escolha); if (ei >= 0) return { season: si, ep: ei }; } return null; };
 const depoisDe = (s) => { if (!s.caminho) return -1; if (s.depois === undefined) return -1; const di = seasonIdxByN(s.depois); return di >= 0 && SERIE.seasons[di].eps.length ? di : -1; };
@@ -480,7 +496,7 @@ function resumeEp() {
 }
 const chapters = (e) => e.ch || [];
 const chapterAt = (e, t) => { let k = -1; chapters(e).forEach((c, i) => { if (t >= c.t) k = i; }); return k; };
-const buyIdx = (e) => chapters(e).findIndex((c) => c.acao && c.acao.tipo === "link" && c.acao.parar);
+const buyIdx = (e) => chapters(e).findIndex((c) => c.acao && (c.acao.tipo === "link" || c.acao.tipo === "comando" || c.acao.tipo === "passo") && c.acao.parar);
 const optDefault = (a) => (a.opcoes || []).find((o) => o.padrao) || (a.opcoes || [])[0];
 const optChosen = (a, uid, k) => { const i = state.periodo[doneKey(uid, k)]; return i === undefined ? optDefault(a) : a.opcoes[i]; };
 
@@ -492,9 +508,9 @@ function renderTitle() {
   $("tp-hero").style.backgroundImage = `url(${SERIE.cover})`;
   $("tp-kick").textContent = `${SERIE.badge} · ${SERIE.ano} · ${SERIE.seasons.length} TEMPORADAS · ${nEps} EPISÓDIOS · HD`;
   $("tp-name").innerHTML = `${esc(SERIE.name)} <span>${esc(SERIE.sub)}</span>`;
-  $("tp-resume-label").textContent = p > 0 ? `Continuar T${r.season + 1}:E${r.ep + 1}` : (r.season || r.ep ? `Assistir T${r.season + 1}:E${r.ep + 1}` : "Assistir");
+  $("tp-resume-label").textContent = p > 0 ? `Continuar T${sN(r.season)}:E${r.ep + 1}` : (r.season || r.ep ? `Assistir T${sN(r.season)}:E${r.ep + 1}` : "Assistir");
   $("tp-resume").hidden = !(p > 0); $("tp-bar").style.width = Math.round(p * 100) + "%";
-  $("tp-resume-text").textContent = `T${r.season + 1}:E${r.ep + 1} · ${re.t} · ${fmt(re.d * (1 - p))} restantes`;
+  $("tp-resume-text").textContent = `T${sN(r.season)}:E${r.ep + 1} · ${re.t} · ${fmt(re.d * (1 - p))} restantes`;
   $("tp-syn").textContent = SERIE.syn;
   const cam = rootEscolha() ? store.get(caminhoKey(), null) : null;
   $("tp-side").innerHTML = `<p><span>Elenco:</span> ${SERIE.cast.map(esc).join(", ")}</p><p><span>Gêneros:</span> ${SERIE.gen.map(esc).join(", ")}</p><p><span>Esta série é:</span> ${SERIE.traits.map(esc).join(", ")}</p>${cam ? `<p><span>Seu caminho:</span> ${esc(cam.label)} · <button class="lnk" data-act="trocar-caminho">trocar</button></p>` : ""}`;
@@ -504,7 +520,7 @@ function renderSeasonSel() {
   const s = SERIE.seasons[state.season]; const el = $("season-sel");
   el.classList.toggle("open", state.seasonMenu);
   el.innerHTML = `<button data-act="season-menu" aria-haspopup="listbox" aria-expanded="${state.seasonMenu}">${state.allSeasons ? "Todos os episódios" : `Temporada ${s.n}`} <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>` +
-    (state.seasonMenu ? `<div class="menu" role="listbox">${SERIE.seasons.map((x, i) => `<button class="${!state.allSeasons && i === state.season ? "on" : ""}" data-act="season" data-i="${i}">Temporada ${x.n}${x.caminho ? ` · Caminho: ${esc(x.caminho)}` : ""} <span>(${x.eps.length} episódios)</span></button>`).join("")}<hr><button class="${state.allSeasons ? "on" : ""}" data-act="season-all">Ver todos os episódios</button></div>` : "");
+    (state.seasonMenu ? `<div class="menu" role="listbox">${SERIE.seasons.map((x, i) => `<button class="${!state.allSeasons && i === state.season ? "on" : ""}" data-act="season" data-i="${i}">Temporada ${x.n}${x.caminho ? ` · Caminho: ${esc(x.caminho)}` : ""} <span>(${x.eps.length} ${x.eps.length === 1 ? "episódio" : "episódios"})</span></button>`).join("")}<hr><button class="${state.allSeasons ? "on" : ""}" data-act="season-all">Ver todos os episódios</button></div>` : "");
   $("eps-title").textContent = state.allSeasons ? "Todos os episódios" : `Temporada ${s.n}${s.caminho ? ` · Caminho: ${s.caminho}` : ""}`;
 }
 function epRow(e, si, ei, n, cur) {
@@ -544,16 +560,16 @@ function showErr(msg) { $("spin").hidden = true; $("err").textContent = msg; $("
 function resetOverlays() { $("postplay").hidden = true; $("preplay").hidden = true; closeCheckout(); fecharEscolha(); $("player").classList.remove("pp", "pre"); clearInterval(state.ppTimer); $("toast").hidden = true; }
 function loadEp(season, ep, { from } = {}) {
   state.season = season; state.ep = ep; const e = curEp(); state.lastChapter = -1;
-  clar("assistiu", { serie: SERIE.slug, episodio: `T${season + 1}E${ep + 1}` });
+  clar("assistiu", { serie: SERIE.slug, episodio: `T${sN(season)}E${ep + 1}` });
   resetOverlays();
-  $("ctl-title").textContent = SERIE.name; $("ctl-ep").textContent = `T${season + 1}:E${ep + 1} ${e.t}`;
-  $("mtitle").innerHTML = `<b>${esc(SERIE.name)}</b> · T${season + 1}:E${ep + 1} ${esc(e.t)}`;
-  $("pi-title").textContent = SERIE.name; $("pi-ep").textContent = `T${season + 1}:E${ep + 1} · ${e.t}`; $("pi-desc").textContent = e.desc;
+  $("ctl-title").textContent = SERIE.name; $("ctl-ep").textContent = `T${sN(season)}:E${ep + 1} ${e.t}`;
+  $("mtitle").innerHTML = `<b>${esc(SERIE.name)}</b> · T${sN(season)}:E${ep + 1} ${esc(e.t)}`;
+  $("pi-title").textContent = SERIE.name; $("pi-ep").textContent = `T${sN(season)}:E${ep + 1} · ${e.t}`; $("pi-desc").textContent = e.desc;
   $("btn-next").style.visibility = nextEp() ? "visible" : "hidden";
-  $("btn-buy").hidden = buyIdx(e) < 0;
+  const bi = buyIdx(e); $("btn-buy").hidden = bi < 0; if (bi >= 0) $("btn-buy").querySelector(".lab").textContent = { comando: "Prompt (P)", passo: "Passo (P)" }[chapters(e)[bi].acao.tipo] || "Planos da VPS (P)";
   video.poster = thumb(e.uid, 720);
   const saved = store.get(progKey(e.uid), null); const startAt = from !== undefined ? from : (saved && !isWatched(e) ? saved.t : 0);
-  history.replaceState(null, "", `#t${season + 1}e${ep + 1}`); // uma entrada de histórico por visita: Voltar não empilha episódio
+  history.replaceState(null, "", `#t${sN(season)}e${ep + 1}`); // uma entrada de histórico por visita: Voltar não empilha episódio
   paintMarks(); renderDrawer(); paint(); showUI(true);
   // antes de começar: só informação, quando o episódio pede algo de fora e ainda não foi marcado como feito
   const pk = `${e.uid}`; const needs = e.preplay && e.preplay.req.some((r) => r.need && r.acao !== undefined && !isDone(e.uid, r.acao));
@@ -563,7 +579,7 @@ function loadEp(season, ep, { from } = {}) {
 function showPreplay() {
   const e = curEp(); const ch = chapters(e);
   const list = e.preplay.req.map((r) => { const d = r.acao !== undefined && isDone(e.uid, r.acao); const c = r.acao !== undefined ? ch[r.acao] : null; return `<li class="${r.need && !d ? "need" : ""}"><i>${d ? "✓" : r.need ? "!" : "·"}</i><div>${esc(r.t)}${r.need && !d && c ? `<small>Ainda não tem? Sem problema: em ${fmt(c.t)} o vídeo para e abre a compra do lado.</small>` : ""}</div></li>`; }).join("");
-  $("preplay").innerHTML = `<div class="pre-card"><div class="k">ANTES DE COMEÇAR · T${state.season + 1}:E${state.ep + 1}</div><h3>${esc(e.t)}</h3><div class="lbl">VOCÊ VAI PRECISAR DE</div><ul>${list}</ul><div class="tp-actions" style="margin-top:0"><button class="btn primary" data-act="pre-go">Começar</button></div></div>`;
+  $("preplay").innerHTML = `<div class="pre-card"><div class="k">ANTES DE COMEÇAR · T${sN(state.season)}:E${state.ep + 1}</div><h3>${esc(e.t)}</h3><div class="lbl">VOCÊ VAI PRECISAR DE</div><ul>${list}</ul><div class="tp-actions" style="margin-top:0"><button class="btn primary" data-act="pre-go">Começar</button></div></div>`;
   $("preplay").hidden = false; $("player").classList.add("pre");
 }
 function paintMarks() {
@@ -575,13 +591,29 @@ function periodSel(a, uid, k) {
   const menu = open ? `<div class="psel-menu">${a.opcoes.map((o, i) => `<button class="${o === cur ? "on" : ""}" data-act="psel-pick" data-key="${kk}" data-i="${i}">${esc(o.label)}</button>`).join("")}</div>` : "";
   return `<div class="psel-lbl">PERÍODO</div><div class="psel-row"><div class="psel ${open ? "open" : ""}" data-psel="${kk}"><button class="psel-btn" data-act="psel-toggle" data-key="${kk}">${esc(cur.label)}<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>${menu}</div><button class="btn primary" data-act="ext" data-url="${esc(cur.url)}" data-k="${k}">${esc(a.cta || a.label)} · ${esc(cur.label)} ↗</button></div>`;
 }
-function openCheckout(k) {
+function openCheckout(k, { pausar = true } = {}) {
   clar("parada_compra", { serie: SERIE.slug });
   const e = curEp(); const c = chapters(e)[k]; const a = c.acao;
-  video.pause(); openDrawer(false); openPop(false); $("toast").hidden = true;
+  if (pausar) video.pause(); openDrawer(false); openPop(false); $("toast").hidden = true;
   state.checkout = k; $("player").classList.add("checkout");
-  $("vidcap").innerHTML = `<i></i><span><b>Pausado.</b> Escolha o plano e a gente continua.</span>`; $("vidcap").hidden = false;
-  $("checkout").innerHTML = `<div class="k">T${state.season + 1}:E${state.ep + 1} · ${fmt(c.t)} · COMPRA</div><h3>${esc(a.titulo || "Escolha o seu plano")}</h3><p>${esc(a.nota || "")}</p>
+  const acao = a.tipo === "comando" ? "Copie o prompt" : a.tipo === "passo" ? "Faça o passo" : "Escolha o plano";
+  $("vidcap").innerHTML = pausar ? `<i></i><span><b>Pausado.</b> ${acao} e a gente continua.</span>` : `<i></i><span>${acao} quando quiser${a.pausar_em !== undefined ? `; o vídeo pausa em ${fmt(a.pausar_em)}` : ""}.</span>`; $("vidcap").hidden = false;
+  if (a.tipo === "passo") {
+    $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · PASSO</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p>
+      ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
+      <div class="psel-row" style="margin-top:18px"><button class="btn primary" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
+      <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Pular este passo")} ▶</button>`;
+    $("checkout").hidden = false; return;
+  }
+  if (a.tipo === "comando") {
+    $("vidcap").innerHTML = `<i></i><span><b>Pausado.</b> Copie o prompt e a gente continua.</span>`;
+    $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · PROMPT</div><h3>${esc(a.titulo || "Copie este prompt")}</h3><p>${esc(a.nota || "")}</p>
+      <div class="cmdbox ${isDone(e.uid, k) ? "copied" : ""}" role="button" tabindex="0" aria-label="Copiar prompt" data-act="copiar-prompt" data-k="${k}"><span class="inner"><code>${esc(a.texto || "")}</code><span class="copybtn" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span class="cta-lbl">${isDone(e.uid, k) ? "Copiado ✓" : "Copiar"}</span></span></span></div>
+      ${a.depois ? `<div class="steps"><div class="lbl">DEPOIS DE COLAR</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
+      <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Já copiei, continuar o vídeo")} ▶</button>`;
+    $("checkout").hidden = false; return;
+  }
+  $("checkout").innerHTML = `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · COMPRA</div><h3>${esc(a.titulo || "Escolha o seu plano")}</h3><p>${esc(a.nota || "")}</p>
     ${a.opcoes && a.opcoes.length > 1 ? periodSel(a, e.uid, k) : `<div class="psel-row"><button class="btn primary" data-act="ext" data-url="${esc(optDefault(a).url)}" data-k="${k}">${esc(a.cta || a.label)} ↗</button></div>`}
     ${a.indicacao ? `<div class="selo">${SELO}<br>Abre em nova aba. Assim que você clicar, o vídeo continua daqui.</div>` : ""}
     ${a.depois ? `<div class="steps"><div class="lbl">NA HOSTINGER, DEPOIS DO CARRINHO</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
@@ -589,6 +621,13 @@ function openCheckout(k) {
   $("checkout").hidden = false;
 }
 function closeCheckout() { state.checkout = null; $("player").classList.remove("checkout"); $("checkout").hidden = true; $("vidcap").hidden = true; }
+function copiarPrompt(k) {
+  const e = curEp(); const a = chapters(e)[k] && chapters(e)[k].acao; if (!a) return;
+  const texto = a.texto || ""; const box = $("checkout").querySelector(".cmdbox"); const lbl = box && box.querySelector(".cta-lbl");
+  const done = () => { markDoneStore(e.uid, k); paintMarks(); clar("prompt_copiado", { serie: SERIE.slug }); if (box) { box.classList.add("copied"); if (lbl) lbl.textContent = "Copiado ✓"; } setTimeout(() => { if (state.checkout === k) { closeCheckout(); video.play().catch(() => {}); } }, 1200); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texto).then(done, done);
+  else { const ta = document.createElement("textarea"); ta.value = texto; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (err) {} ta.remove(); done(); }
+}
 function goExternal(url, k) {
   clar("comprar_clicado", { serie: SERIE.slug });
   try { window.open(url, "_blank", "noopener"); } catch (err) {}
@@ -610,11 +649,12 @@ function paint() {
 function onChapter() {
   const e = curEp(); const k = chapterAt(e, video.currentTime); if (k === state.lastChapter) return; state.lastChapter = k;
   if (k < 0) return; const c = chapters(e)[k]; const a = c.acao;
-  if (a && a.parar && !isDone(e.uid, k) && !state.stopped[doneKey(e.uid, k)] && !video.paused) { state.stopped[doneKey(e.uid, k)] = true; openCheckout(k); return; }
+  if (a && a.parar && !isDone(e.uid, k) && !state.stopped[doneKey(e.uid, k)] && !video.paused) { state.stopped[doneKey(e.uid, k)] = true; openCheckout(k, { pausar: a.pausar_em === undefined }); return; }
   if (a) {
     // quem já comprou ou pulou vê só o aviso, clicável, sem pausa
     const t = $("toast"); t.className = "toast" + (a.humano ? " human" : ""); t.dataset.act = a.parar ? "buy" : ""; if (!a.parar) delete t.dataset.act;
-    t.innerHTML = `<b>${a.parar ? (isDone(e.uid, k) ? "COMPRA FEITA · VER OS PLANOS" : "PLANOS DA VPS") : (a.humano ? "REQUER VOCÊ" : "AÇÃO")} →</b>${esc(a.label || c.n)}`;
+    const rot = a.parar ? (a.tipo === "comando" ? (isDone(e.uid, k) ? "PROMPT COPIADO · VER DE NOVO" : "COPIAR O PROMPT") : a.tipo === "passo" ? (isDone(e.uid, k) ? "PASSO FEITO · VER DE NOVO" : "PASSO") : (isDone(e.uid, k) ? "COMPRA FEITA · VER OS PLANOS" : "PLANOS DA VPS")) : (a.humano ? "REQUER VOCÊ" : "AÇÃO");
+    t.innerHTML = `<b>${rot} →</b>${esc(a.label || c.n)}`;
     t.hidden = false; clearTimeout(state.toastTimer); state.toastTimer = setTimeout(() => { t.hidden = true; }, 5000); showUI(false);
   }
 }
@@ -625,15 +665,23 @@ function saveProgress(force) {
 function endOfEpisode() {
   const e = curEp(); store.set(progKey(e.uid), { t: video.duration || e.d, at: Date.now() });
   if (e.escolha && e.escolha.t === undefined) { abrirEscolha(e); return; }   // aula ramificada: a raiz termina e a pessoa escolhe o caminho
-  const nx = nextEp(); $("player").classList.add("pp"); $("pp-this").textContent = `T${state.season + 1}:E${state.ep + 1} · ${e.t}`;
+  const nx = nextEp(); $("player").classList.add("pp"); $("pp-this").textContent = `T${sN(state.season)}:E${state.ep + 1} · ${e.t}`;
   if (!nx) { $("pp-card").innerHTML = `<div class="k">FIM DA SÉRIE</div><div class="box"><img src="${SERIE.cover_wide}" alt=""><div><h4>${esc(SERIE.name)}</h4><p>Você chegou ao fim dos episódios abertos. Volte à vitrine ou reveja um episódio.</p></div></div><button class="go pass" data-act="close-player"><span>Voltar para a série</span></button>`; $("postplay").hidden = false; return; }
   const ne = SERIE.seasons[nx.season].eps[nx.ep];
-  $("pp-card").innerHTML = `<div class="k">PRÓXIMO EPISÓDIO · T${nx.season + 1}:E${nx.ep + 1}</div><div class="box"><img src="${thumb(ne.uid)}" alt=""><div><h4>${esc(ne.t)}</h4><p>${esc(ne.desc)}</p></div></div><button class="go" data-act="next"><i id="pp-wipe"></i><span>▶ Reproduzindo em <em id="pp-n">5</em></span></button><button class="stay" data-act="stay">Ficar neste episódio</button>`;
+  $("pp-card").innerHTML = `<div class="k">PRÓXIMO EPISÓDIO · T${sN(nx.season)}:E${nx.ep + 1}</div><div class="box"><img src="${thumb(ne.uid)}" alt=""><div><h4>${esc(ne.t)}</h4><p>${esc(ne.desc)}</p></div></div><button class="go" data-act="next"><i id="pp-wipe"></i><span>▶ Reproduzindo em <em id="pp-n">5</em></span></button><button class="stay" data-act="stay">Ficar neste episódio</button>`;
   $("postplay").hidden = false;
   let n = 5; const w = $("pp-wipe"); w.style.transition = "width 5s linear"; requestAnimationFrame(() => { w.style.width = "100%"; });
   state.ppTimer = setInterval(() => { n--; if ($("pp-n")) $("pp-n").textContent = n; if (n <= 0) { clearInterval(state.ppTimer); loadEp(nx.season, nx.ep, { from: 0 }); } }, 1000);
 }
 // ---------- aula ramificada ----------
+function onPausaAgendada() {
+  if (state.checkout === null) return;
+  const e = curEp(); const c = chapters(e)[state.checkout]; const a = c && c.acao; if (!a || a.pausar_em === undefined) return;
+  const kk = doneKey(e.uid, state.checkout); if (state.pausou[kk] || video.paused || video.currentTime < a.pausar_em) return;
+  state.pausou[kk] = true; video.pause();
+  const acao = a.tipo === "comando" ? "Copie o prompt" : a.tipo === "passo" ? "Faça o passo" : "Escolha o plano";
+  $("vidcap").innerHTML = `<i></i><span><b>Pausado.</b> ${acao} e a gente continua.</span>`;
+}
 function onEscolha() {
   const e = curEp(); const ch = e.escolha;
   if (!ch || ch.t === undefined || state.escolha || state.escolhaVista[e.uid] || video.paused) return;
@@ -643,19 +691,19 @@ function abrirEscolha(e) {
   const ch = e.escolha; state.escolha = true;
   clearInterval(state.ppTimer); $("postplay").hidden = true; $("player").classList.remove("pp"); closeCheckout();
   $("player").classList.add("escolha");
-  const ops = ch.opcoes.map((o, i) => { const si = seasonIdxByN(o.temporada); const f = si >= 0 && SERIE.seasons[si].eps[0]; return `<button class="op" data-act="escolher" data-i="${i}"><span class="k">${i + 1}</span><img src="${f ? thumb(f.uid, 300, 4) : SERIE.cover_wide}" alt=""><span class="t"><b>${esc(o.label)}</b><span>${esc(o.desc || "")}</span></span></button>`; }).join("");
+  const ops = ch.opcoes.map((o, i) => { if (o.em_breve) return `<button class="op breve" disabled aria-disabled="true"><span class="k">${i + 1}</span><span class="badge">EM BREVE</span><span class="semcapa"></span><span class="t"><b>${esc(o.label)}</b><span>${esc(o.desc || "")}</span></span></button>`; const si = seasonIdxByN(o.temporada); const f = si >= 0 && SERIE.seasons[si].eps[0]; return `<button class="op" data-act="escolher" data-i="${i}"><span class="k">${i + 1}</span><img src="${f ? thumb(f.uid, 300) : SERIE.cover_wide}" alt=""><span class="t"><b>${esc(o.label)}</b><span>${esc(o.desc || "")}</span></span></button>`; }).join("");
   const dica = ch.tempo ? `Escolha com o clique ou com as teclas 1, 2 e 3. Sem escolha, segue o caminho padrão.` : `Sem pressa: leia, compare e escolha com o clique ou com as teclas 1, 2 e 3. O vídeo espera.`;
   $("escolha").innerHTML = `<div class="pergunta">${esc(ch.pergunta)}<small>${dica}</small></div><div class="opcoes">${ops}</div>${ch.tempo ? `<div class="relogio"><span class="mono" id="esc-n">${ch.tempo}s</span><div class="bar"><i id="esc-bar"></i></div><span>caminho padrão em</span></div>` : ""}`;
   $("escolha").hidden = false; showUI(true);
   // aquece os caminhos: baixa o manifesto do primeiro episódio de cada opção enquanto a pessoa lê
-  ch.opcoes.forEach((o) => { const si = seasonIdxByN(o.temporada); const f = si >= 0 && SERIE.seasons[si].eps[0]; if (f) fetch(`${base(f.uid)}/manifest/video.m3u8`, { mode: "cors" }).catch(() => {}); });
+  ch.opcoes.forEach((o) => { if (o.em_breve) return; const si = seasonIdxByN(o.temporada); const f = si >= 0 && SERIE.seasons[si].eps[0]; if (f) fetch(`${base(f.uid)}/manifest/video.m3u8`, { mode: "cors" }).catch(() => {}); });
   clearInterval(state.escolhaTimer);
   if (ch.tempo) { const t0 = performance.now(); state.escolhaTimer = setInterval(() => { const r = Math.max(0, ch.tempo - (performance.now() - t0) / 1000); const n = $("esc-n"), b = $("esc-bar"); if (n) n.textContent = Math.ceil(r) + "s"; if (b) b.style.width = (r / ch.tempo * 100) + "%"; if (r <= 0) escolher(Math.max(0, ch.opcoes.findIndex((o) => o.padrao))); }, 100); }
 }
 function fecharEscolha() { state.escolha = false; clearInterval(state.escolhaTimer); $("escolha").hidden = true; $("player").classList.remove("escolha"); }
 function escolher(i) {
   const e = curEp(); const ch = e.escolha; if (!ch || !state.escolha) return;
-  const o = ch.opcoes[i]; if (!o) return;
+  const o = ch.opcoes[i]; if (!o || o.em_breve) return;
   const si = seasonIdxByN(o.temporada); if (si < 0 || !SERIE.seasons[si].eps.length) return;
   store.set(caminhoKey(), { temporada: o.temporada, label: o.label, at: Date.now() }); clar("escolheu_caminho", { serie: SERIE.slug, caminho: o.label });
   fecharEscolha(); loadEp(si, 0, { from: 0 });
@@ -694,7 +742,7 @@ video.addEventListener("play", () => { setPaused(false); $("spin").hidden = true
 video.addEventListener("pause", () => { setPaused(true); saveProgress(true); showUI(true); });
 video.addEventListener("waiting", () => { if (!$("player").classList.contains("pre")) $("spin").hidden = false; });
 video.addEventListener("playing", () => { $("spin").hidden = true; });
-video.addEventListener("timeupdate", () => { paint(); saveProgress(false); onChapter(); onEscolha(); });
+video.addEventListener("timeupdate", () => { paint(); saveProgress(false); onChapter(); onPausaAgendada(); onEscolha(); });
 video.addEventListener("progress", paint);
 video.addEventListener("ended", endOfEpisode);
 video.addEventListener("volumechange", () => { $("btn-mute").style.opacity = video.muted || video.volume === 0 ? .5 : 1; });
@@ -725,6 +773,8 @@ document.addEventListener("click", (ev) => {
   else if (a === "psel-toggle") { state.pselOpen = state.pselOpen === el.dataset.key ? null : el.dataset.key; if (state.checkout !== null) openCheckout(state.checkout); }
   else if (a === "psel-pick") { state.periodo[el.dataset.key] = +el.dataset.i; state.pselOpen = null; if (state.checkout !== null) openCheckout(state.checkout); }
   else if (a === "ext") goExternal(el.dataset.url, +el.dataset.k);
+  else if (a === "copiar-prompt") copiarPrompt(+el.dataset.k);
+  else if (a === "passo-feito") { const e = curEp(); markDoneStore(e.uid, +el.dataset.k); paintMarks(); clar("passo_feito", { serie: SERIE.slug }); closeCheckout(); video.play().catch(() => {}); }
   else if (a === "checkout-skip") { closeCheckout(); video.play().catch(() => {}); }
   else if (a === "buy") { if (!$("preplay").hidden) return; const k = buyIdx(curEp()); if (k >= 0) { if (state.checkout !== null) { closeCheckout(); video.play().catch(() => {}); } else openCheckout(k); } }
   else if (a === "mark") { ev.stopPropagation(); const k = +el.dataset.k; const c = chapters(curEp())[k]; video.currentTime = c.t; state.lastChapter = k; paint(); if (c.acao && c.acao.tipo === "link") openCheckout(k); }
@@ -740,6 +790,7 @@ document.addEventListener("keydown", (ev) => {
   if ($("player").hidden || ev.target.tagName === "INPUT") return;
   const k = ev.key.toLowerCase();
   if (state.escolha) { if (["1", "2", "3", "4"].includes(ev.key)) escolher(+ev.key - 1); else if (ev.key === "Escape") { clearInterval(state.ppTimer); show("title"); } return; }
+  if ((ev.key === "Enter" || ev.key === " ") && ev.target.matches && ev.target.matches('[data-act="copiar-prompt"]')) { ev.preventDefault(); copiarPrompt(+ev.target.dataset.k); return; }
   if (ev.key === " ") { ev.preventDefault(); if (state.checkout !== null || !$("preplay").hidden) return; toggle(); }
   else if (ev.key === "ArrowLeft") seek(-10); else if (ev.key === "ArrowRight") seek(10);
   else if (k === "e") openDrawer(); else if (k === "f") toggleFs(); else if (k === "m") video.muted = !video.muted;
@@ -765,7 +816,8 @@ fetch("series.json", { cache: "no-store" }).then((r) => r.json()).then((j) => {
   SERIE = SERIES.find((s) => s.slug === want) || SERIES[0];
   if (!SERIE) { document.body.innerHTML = '<p style="padding:40px;font-family:sans-serif">Nenhuma série cadastrada.</p>'; return; }
   const m = /^#t(\d+)e(\d+)$/.exec(location.hash);
-  if (m && SERIE.seasons[m[1] - 1] && SERIE.seasons[m[1] - 1].eps[m[2] - 1]) { $("title-page").hidden = true; openPlayer(m[1] - 1, m[2] - 1); }
+  const hsi = m ? seasonIdxByN(m[1]) : -1;
+  if (m && hsi >= 0 && SERIE.seasons[hsi].eps[m[2] - 1]) { $("title-page").hidden = true; openPlayer(hsi, m[2] - 1); }
   else show("title");
 }).catch(() => { document.body.innerHTML = '<p style="padding:40px;font-family:sans-serif">Não consegui carregar a lista de episódios. Recarregue a página.</p>'; });
 </script>

@@ -184,6 +184,239 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "hermes-agent",
+      "name": "Como instalar o seu Hermes Agent",
+      "sub": "Três modos: fácil, intermediário e difícil. A raiz explica; você escolhe o caminho.",
+      "badge": "HERMES AGENT",
+      "ano": 2026,
+      "customer": "customer-7o8y5tffw1185pu3",
+      "cover": "img/hermes-agent-desktop.jpg",
+      "cover_wide": "img/hermes-agent-wide.jpg",
+      "syn": "Um Hermes Agent seu, respondendo pela sua assinatura do ChatGPT, com o seu nome e o seu tom. A raiz mostra os três jeitos de instalar, com o que cada um custa e exige; no fim dela você escolhe o caminho, e a aula continua por ele. Cada caminho é uma temporada; dá para voltar e trocar.",
+      "cast": [
+        "José Carlos Amorim"
+      ],
+      "gen": [
+        "Instalação",
+        "Hermes Agent",
+        "Passo a passo"
+      ],
+      "traits": [
+        "Ramificada",
+        "Prática",
+        "Direta"
+      ],
+      "seasons": [
+        {
+          "n": 1,
+          "title": "Comece aqui: qual Hermes é o seu",
+          "note": "Cinco minutos para entender os três modos e escolher o seu. No fim, o vídeo espera você decidir.",
+          "eps": [
+            {
+              "t": "Como instalar o Hermes Agent: os três modos",
+              "d": 344,
+              "uid": "d51d7eb227defd60e3f3a180ff678636",
+              "desc": "Fácil, intermediário e difícil: quem instala, quanto custa, quando fica disponível e o risco de cada um. No fim, você escolhe o caminho.",
+              "ch": [
+                {
+                  "t": 32,
+                  "n": "O que é o Hermes Agent (links nos materiais, em breve)"
+                },
+                {
+                  "t": 124,
+                  "n": "O que define o nível: risco, custo, disponibilidade"
+                },
+                {
+                  "t": 259,
+                  "n": "Como escolher: as duas perguntas"
+                }
+              ],
+              "escolha": {
+                "pergunta": "Por onde você vai instalar o Hermes?",
+                "opcoes": [
+                  {
+                    "label": "Fácil: uma empresa instala para você",
+                    "desc": "Sempre disponível, segurança feita por eles. Você paga pela paz.",
+                    "em_breve": true
+                  },
+                  {
+                    "label": "Intermediário: no seu computador",
+                    "desc": "Você instala; o Hermes funciona enquanto o computador estiver ligado.",
+                    "em_breve": true
+                  },
+                  {
+                    "label": "Difícil: numa VPS, com controle total",
+                    "desc": "Você aluga uma máquina na nuvem e faz tudo. Sempre ligado. Para quem já tem VPS ou quer o controle.",
+                    "temporada": 3
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "n": 3,
+          "title": "Difícil: numa VPS, com o seu agente",
+          "note": "Você aluga uma máquina na nuvem e um agente de codificação instala e configura o Hermes com você. Controle total, sempre ligado.",
+          "eps": [
+            {
+              "t": "Introdução e compra da VPS",
+              "d": 421,
+              "uid": "de3f70ed367638631a92e8bf860bf2c8",
+              "desc": "O que é o caminho difícil, o que ele exige, e a compra da VPS KVM 2 na Hostinger com o plano escolhido na tela: aplicativo Hermes Agent, localização Brasil, pagamento e a senha que você guarda.",
+              "preplay": {
+                "req": [
+                  {
+                    "t": 112,
+                    "need": "Cartão de crédito ou PIX para alugar a VPS (o vídeo abre a escolha do plano em 1:52)",
+                    "acao": 1
+                  },
+                  {
+                    "t": 290,
+                    "need": "Uma conta Google, para entrar na Hostinger rápido",
+                    "acao": null
+                  },
+                  {
+                    "t": 47,
+                    "need": "Conta do ChatGPT com plano pago (é o que o Codex usa, no próximo episódio)",
+                    "acao": null
+                  }
+                ]
+              },
+              "ch": [
+                {
+                  "t": 47,
+                  "n": "Precisa do plano pago do ChatGPT (ou Antigravity, que este caminho não ensina)"
+                },
+                {
+                  "t": 112,
+                  "n": "Escolha o seu plano",
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "pausar_em": 186,
+                    "label": "Comprar a KVM 2 na Hostinger",
+                    "titulo": "Escolha o seu plano",
+                    "cta": "Comprar a VPS",
+                    "nota": "KVM 2, a máquina que o Hermes precisa. Um mês para testar, se a grana está apertada; 12 ou 24 meses se você tem certeza. Comprando por aqui tem 20% de desconto pela parceria, e parte volta para manter o AgentFlix. O vídeo pausa em 3:06 para você escolher.",
+                    "depois": [
+                      "Aplicativos: procure Hermes Agent (o com a estrelinha) e confirme.",
+                      "IA pronta para uso: marque (é grátis).",
+                      "Localização do servidor: Brasil (menor latência).",
+                      "Continuar, entrar com o Google, pagar no carrinho.",
+                      "Na tela Parabéns: clique no olhinho e salve a senha. Depois, Implantar."
+                    ],
+                    "opcoes": [
+                      {
+                        "label": "24 meses",
+                        "url": "https://www.hostinger.com/br/cart?product=vps%3Avps_kvm_2&period=24&referral_type=cart_link&REFERRALCODE=JOSEAMORIM20&referral_id=01a0785e-857d-71f6-a0dc-465676af25c2"
+                      },
+                      {
+                        "label": "12 meses",
+                        "url": "https://www.hostinger.com/br/cart?product=vps%3Avps_kvm_2&period=12&referral_type=cart_link&REFERRALCODE=JOSEAMORIM20&referral_id=01a0785e-62fe-734e-9808-ba1761039370",
+                        "padrao": true
+                      },
+                      {
+                        "label": "1 mês",
+                        "url": "https://www.hostinger.com/br/cart?product=vps%3Avps_kvm_2&period=1&referral_type=cart_link&REFERRALCODE=JOSEAMORIM20&referral_id=01a0785d-8089-70d1-b344-e5cddd404442"
+                      }
+                    ],
+                    "indicacao": true,
+                    "humano": true,
+                    "feito": "Já comprei",
+                    "pular": "Já tenho uma VPS, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 229,
+                  "n": "Escolher o aplicativo Hermes Agent",
+                  "acao": {
+                    "tipo": "passo",
+                    "parar": true,
+                    "titulo": "Escolha o aplicativo Hermes Agent",
+                    "nota": "Na tela da Hostinger, depois do carrinho.",
+                    "depois": [
+                      "Clique em Aplicativos.",
+                      "Procure Hermes Agent; se não estiver no lugar do vídeo, pesquise pelo nome.",
+                      "Escolha o que tem a estrelinha e confirme."
+                    ],
+                    "cta": "Feito, continuar o vídeo",
+                    "pular": "Pular este passo"
+                  }
+                },
+                {
+                  "t": 282,
+                  "n": "IA pronta para uso e localização Brasil",
+                  "acao": {
+                    "tipo": "passo",
+                    "parar": true,
+                    "titulo": "Marque a IA pronta para uso e escolha Brasil",
+                    "nota": "As duas opções ficam na mesma tela.",
+                    "depois": [
+                      "Marque \"Uma IA pronta para uso\" (é grátis; não paga nada a mais).",
+                      "Em Localização do servidor, escolha Brasil: menor latência, Hermes mais rápido.",
+                      "Clique em Continuar."
+                    ],
+                    "cta": "Feito, continuar o vídeo",
+                    "pular": "Pular este passo"
+                  }
+                },
+                {
+                  "t": 368,
+                  "n": "Salvar a senha e implantar",
+                  "acao": {
+                    "tipo": "passo",
+                    "parar": true,
+                    "titulo": "Salve a senha e clique em Implantar",
+                    "nota": "Depois do pagamento, na tela Parabéns. Só isso; nada mais nessa tela.",
+                    "depois": [
+                      "Clique no olhinho e copie a senha que aparece.",
+                      "Guarde num lugar seguro (bloco de notas serve, por enquanto).",
+                      "Clique em Implantar e espere alguns minutos."
+                    ],
+                    "cta": "Feito, continuar o vídeo",
+                    "pular": "Pular este passo"
+                  }
+                }
+              ]
+            },
+            {
+              "t": "Baixar o Codex",
+              "d": 151,
+              "uid": "9928fd25a6afb168267e982a085fe00c",
+              "desc": "O agente que vai ler o repositório e instalar o Hermes por você. Baixar, instalar, entrar com a conta do ChatGPT e achar o Codex no menu.",
+              "ch": [
+                {
+                  "t": 42,
+                  "n": "Sem plano pago do ChatGPT? Antigravity (este caminho não ensina)"
+                },
+                {
+                  "t": 63,
+                  "n": "Baixar o Codex",
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "label": "Abrir a página do Codex",
+                    "titulo": "Baixe o Codex",
+                    "cta": "Abrir a página do Codex",
+                    "nota": "Baixe para Mac ou Windows, instale e entre com a sua conta do ChatGPT (plano pago). Quando o Codex estiver aberto, o vídeo continua.",
+                    "opcoes": [
+                      {
+                        "label": "openai.com/codex",
+                        "url": "https://openai.com/codex"
+                      }
+                    ],
+                    "pular": "Já tenho o Codex, continuar o vídeo"
+                  }
+                }
+              ]
+            }
+          ],
+          "caminho": "Difícil (VPS)"
+        }
+      ]
     }
   ]
 }

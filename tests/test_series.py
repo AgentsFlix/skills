@@ -59,8 +59,15 @@ class Series(unittest.TestCase):
                 for e in se["eps"]:
                     for c in e.get("ch", []):
                         self.assertIn("t", c); self.assertIn("n", c)
+                        self.assertLess(c["t"], e["d"], f"{e['t']}: capítulo depois do fim")
+                        if (c.get("acao") or {}).get("pausar_em") is not None:
+                            self.assertGreater(c["acao"]["pausar_em"], c["t"], f"{e['t']}: pausar_em antes do capítulo")
                         a = c.get("acao") or {}
-                        if a.get("parar"):
+                        if a.get("parar") and a.get("tipo") == "comando":
+                            self.assertTrue(a.get("texto"), f"{e['t']}: parada de prompt sem texto")
+                        elif a.get("parar") and a.get("tipo") == "passo":
+                            self.assertTrue(a.get("titulo") or c.get("n"), f"{e['t']}: parada de passo sem título")
+                        elif a.get("parar"):
                             self.assertTrue(a.get("opcoes"), f"{e['t']}: parada de compra sem opções")
                         for o in a.get("opcoes", []):
                             self.assertRegex(o["url"], URL, f"{e['t']}: url inválida")
@@ -85,8 +92,11 @@ class Series(unittest.TestCase):
                     self.assertTrue(ch.get("pergunta"), f"{e['t']}: escolha sem pergunta")
                     ops = ch.get("opcoes") or []
                     self.assertTrue(2 <= len(ops) <= 4, f"{e['t']}: escolha precisa de 2 a 4 opções")
+                    self.assertTrue(any(not o.get("em_breve") for o in ops), f"{e['t']}: escolha só com opções em breve")
                     for o in ops:
                         self.assertTrue(o.get("label"), f"{e['t']}: opção sem label")
+                        if o.get("em_breve"):
+                            continue
                         self.assertIn(int(o["temporada"]), ns, f"{e['t']}: opção aponta para temporada inexistente")
                         self.assertNotEqual(int(o["temporada"]), int(se["n"]), f"{e['t']}: opção aponta para a própria temporada")
                     if "t" in ch:
