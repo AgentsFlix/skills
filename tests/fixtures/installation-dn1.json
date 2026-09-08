@@ -1,0 +1,512 @@
+{
+  "copy-metodo-halbert": {
+    "Hermes CLI": "7d5236c83e333c429d7688c85bf8b80a9bf32b4f4c95cd410dc38cd6720898a2",
+    "Hermes chat": "a4f38d7c9ec4b92ed100cdd1dd8259ec28570d63565c0cc593e065bacf17ac8f",
+    "Claude.ai": "fb9dab29146b0a7927133017590537724390405a6180509db79ef3f30b34f13e",
+    "Claude Code": "d3c90a13963653678aef857e65b4a905e2d0950a16f9187e194f087f118c0362",
+    "ChatGPT": "fb9dab29146b0a7927133017590537724390405a6180509db79ef3f30b34f13e",
+    "ChatGPT Project": "56aca329e11f82fe36623c9fd331d52db17a1779bc941e909ed51aeda5778f82",
+    "Codex": "a4c9979196c69c02e3b093375103ccab4ff4b1066bc2336779851ca5a821f5b2",
+    "Outros agentes": "0e1c634f11c10217b370ec9f2d015179f78e476e08815d168ca7ee78e64f6482"
+  },
+  "copy-metodo-ogilvy": {
+    "Hermes CLI": "a961fe3f59c436688e17f8a9ee533fd111fbf92ae33b93b1e234542128852d5c",
+    "Hermes chat": "a69353689ee7140463f87ca22ee8c6aa3ea2c8a1a3f9efcd85469b7fdaa41936",
+    "Claude.ai": "fe3700c309100ede5ce5f4284be2bdda7ffe12cf5081706a64186feb2c87fe1b",
+    "Claude Code": "b0703c90814691f396bb9dab0bfad592f9926dc1819965ce5b5e86d2623bb3bd",
+    "ChatGPT": "fe3700c309100ede5ce5f4284be2bdda7ffe12cf5081706a64186feb2c87fe1b",
+    "ChatGPT Project": "a76b237644817d03b137c1f94084e8123756aedbbc0ec58dea2c531be4e71280",
+    "Codex": "0dff784e4170a73523b98479b2d28c9dec7f21fcb0bfa5f4350dc000e372a57c",
+    "Outros agentes": "8ee19994a8aabf0ec2fcc4762b1ec671d70f049b156610278538e6f90033a040"
+  },
+  "copy-metodo-schwartz": {
+    "Hermes CLI": "64d26f9615c69230538550d7889e3d79749fc909000b4e9f7d8d735b58a5c7a9",
+    "Hermes chat": "798d1f939c4d563c68774272ae3ded06e03acacb8764e170041e909432ac4318",
+    "Claude.ai": "44e22197ed923f5f950e2240545380f97b70a37e5463270dda126a26c0349c6e",
+    "Claude Code": "4c01fd0d76bebc77528c5c9312099bb471578589ac8ce66b79c69ae6e8d28ac5",
+    "ChatGPT": "44e22197ed923f5f950e2240545380f97b70a37e5463270dda126a26c0349c6e",
+    "ChatGPT Project": "c87d04e8230eed2d185958029bc0a51af2de08fbde6eb42e871562e6a2802a1e",
+    "Codex": "de70a3d2f9ec8ed01c9f70ff8ca3b045167700749262786ce51ca9ad6c1e1c54",
+    "Outros agentes": "5c8d40b41c145d69260a88af211dc85a6f4bdf0496d3b0606edf3add2cfbde6e"
+  },
+  "copy-metodo-hopkins": {
+    "Hermes CLI": "179b6358ce46b3b81111aa3f32555d9b3ccc9270eab23f61ad864cb17418216d",
+    "Hermes chat": "b72a3d3cc6e6907837ea2ebf15a2650b5845a075b1867e2a9c67a46c087001f6",
+    "Claude.ai": "6d93fd03f17b4ee4178f676bc6c48002459913d32adbffe9c68b7ef3a2a12e01",
+    "Claude Code": "8b984b1448d5fb503b2bdef01542e1e8100e4f89e7d62943c55b04be44adf5f5",
+    "ChatGPT": "6d93fd03f17b4ee4178f676bc6c48002459913d32adbffe9c68b7ef3a2a12e01",
+    "ChatGPT Project": "5a998f45fa32bf1d5ec3ba2bde27915fc1853181c3a05a8d60d36c939cbce66c",
+    "Codex": "26b6b1990591f6d6dbb1316a42a56e720044fd3d8692f5cf3ee9a8e7de85508e",
+    "Outros agentes": "667c9c3d470db2b05e4399ce7697205ba134670dd84966d8a2b95bf0079c3e6c"
+  },
+  "copy-metodo-kennedy": {
+    "Hermes CLI": "57ac8e4c004807117fc8c644785e8077959643603da67e9d15351574f11422d7",
+    "Hermes chat": "c00c81b0cdd3a1c04286a19dd8897cbc75f9b1845e7f2f7116a41386e3d6d8b4",
+    "Claude.ai": "29428c370c4b36162d08cb22904300682c98d9d905d59f7a0acdf4f054d4f3ce",
+    "Claude Code": "c17fe90243008158869b1a27f21a333fb5e0d0ce98290e5ffca6661529028f7f",
+    "ChatGPT": "29428c370c4b36162d08cb22904300682c98d9d905d59f7a0acdf4f054d4f3ce",
+    "ChatGPT Project": "0b547c162cf230d49607108e56cea1807a4710809854570fff2948c368268b68",
+    "Codex": "c0f290e03c7ff1425661a8bd89cc3fcc353cae52e6160997ae8d6de2e8fe6ce3",
+    "Outros agentes": "1992b518dc2621c2c0a6107432eaabbbd3580e55698facba61a4f15432e482ac"
+  },
+  "copy-metodo-bencivenga": {
+    "Hermes CLI": "fe3242856457b65101ff02c637f8319a31a688a7b23eefabfef256389c7ab061",
+    "Hermes chat": "895b3610cd5c030081c4ece2c8da8b581a68ceea33cb8c6deec84d095e6b3c3b",
+    "Claude.ai": "f14c5771de5bc08adb50ac97b74e428437ae3d3e5368e63fb32d72577bf160d6",
+    "Claude Code": "fea3c7ced2d9a20613b00c59faa9363bdbd82a11172b8712234bb1a81832af5f",
+    "ChatGPT": "f14c5771de5bc08adb50ac97b74e428437ae3d3e5368e63fb32d72577bf160d6",
+    "ChatGPT Project": "925fcbed3b5971149bc500cc623ad8b552f72dc809aec316c9819a4b1e14e574",
+    "Codex": "61e93101afedb21b764a92b598970f94568087bd61e99f96464a64dd6e7631f7",
+    "Outros agentes": "9aa1fb6f4f6e4756e6dcf12919b270fea21fc82b1afcb824f2766b6dca420093"
+  },
+  "copy-metodo-sugarman": {
+    "Hermes CLI": "23b70c808d9a9faba8f959c37a013c2efe0cae942dd3f87398145535e3025a43",
+    "Hermes chat": "9bac9a2a991b6e7232d9b9475945072721d613f39ea1760c4754a5209f8eafe6",
+    "Claude.ai": "3595eb2a645bdde6e1a8937d2c2d2bb12d760e4647eb8f8948e6f535f23a4cb4",
+    "Claude Code": "75a5babe8ebb27d7a25cd341872ca41d026e23e65dfa9500a738790503903d66",
+    "ChatGPT": "3595eb2a645bdde6e1a8937d2c2d2bb12d760e4647eb8f8948e6f535f23a4cb4",
+    "ChatGPT Project": "cd8533e530467b2a04dc1ca2fe92a9881eccfe83e0a657d96d965a43f536f200",
+    "Codex": "677159c2f6c75ec00ff32021f6a1c3ed7c502da01e6e620882b464a506fd301a",
+    "Outros agentes": "d3d8ab190939064142b09ebc313bfa037d54f6abeb26573da1ac40a610a4ac3a"
+  },
+  "copy-metodo-kern": {
+    "Hermes CLI": "8a8f794d73c36cac16135d963e1b2480d2c90a9410f66880c30e5c338cb195d2",
+    "Hermes chat": "d700c87aa45cc235297c0796c99c0f2dca30dd5cb9546a430c321ef9c6632066",
+    "Claude.ai": "92e64ab89ac477339c0e3c57b576802d334bfe88a517eff642ecca4eb1f19a61",
+    "Claude Code": "90e8fb14da60cc056ed6c3bdf5133304b282ae36c82faf40628bdba84065cf4e",
+    "ChatGPT": "92e64ab89ac477339c0e3c57b576802d334bfe88a517eff642ecca4eb1f19a61",
+    "ChatGPT Project": "e81a1f7b0e5cb71d31b2daa51b697283a6197f472cb0d62e9654fb7776a9c6e8",
+    "Codex": "c16336ea70a48962938edf5c9627bd0f0ae20f8f16bbefa4c4b94608517ee68c",
+    "Outros agentes": "856d1aa1cb24ef9d947a5ca5981a10832327390cf5403874eb9840ba8512af76"
+  },
+  "copy-metodo-benson": {
+    "Hermes CLI": "f0835d46e3122b973f1dde52bb4fd9c787791c6195879ce4517b1750e1c4b974",
+    "Hermes chat": "0ba95c3e8fbb79ba2e2e6fe5ac288734f41b5c1a079448b0e14c4b5f80e6797a",
+    "Claude.ai": "a7d2f53d0f45ecbb65864743aadf479ce0b8a9658636e93853b378e96496f682",
+    "Claude Code": "6a0eef5596d64811ba3adc980c6fbda19bbf53198d26fc39629aee63c0b91be4",
+    "ChatGPT": "a7d2f53d0f45ecbb65864743aadf479ce0b8a9658636e93853b378e96496f682",
+    "ChatGPT Project": "9ac87c5d3b98e33d8f1cc413ea46b5fb418948a47e270ab13ed26b5c41a07c30",
+    "Codex": "f7f67a0427c4c9441a7a94aa4146aa685cfe8536fa0727209fefe4fce21ada24",
+    "Outros agentes": "647599bcb740c77b951b0bfb0e34b3c265f11320e527c757181f69d1ac42e084"
+  },
+  "copy-metodo-sethi": {
+    "Hermes CLI": "a08e3ec5cf05c003077d9be6ea4b2e7f439f2db9b4708b8cb415cbfc8b303400",
+    "Hermes chat": "0a37e2786e6627bbeea8169c4b7bbffd0fd973839ac22d26659fefe5f692cd8c",
+    "Claude.ai": "45dfe134eaa3d04461885aa84fa4960650ed707a29d622899f04268d5840f2fc",
+    "Claude Code": "b8636ebeff91975a247bb2742e017f4e8bc16519beff550f2dd432a868ccce61",
+    "ChatGPT": "45dfe134eaa3d04461885aa84fa4960650ed707a29d622899f04268d5840f2fc",
+    "ChatGPT Project": "01ce4b30236b2f28e54d240c29e38b1acd6810c1aedcb8efdc5be6d7b875a6ba",
+    "Codex": "ef92743914658ff907f2a9deac91363e9edff910ebbe394f9e35b5241670b2ee",
+    "Outros agentes": "9d3b3e9faafcf7929bb9a17407973c06d932d9d410a7aa8773140d2181af3559"
+  },
+  "copy-metodo-hormozi": {
+    "Hermes CLI": "4a7d83d46c461c54b5cdd7533fcd615e9e4882218a67be355081747a6b949f7a",
+    "Hermes chat": "99c58165e4d6e77af166e9b8a0c58f75d9e5a5a61ff2e1ac69b24517dd1f9a3d",
+    "Claude.ai": "3203216dd88fe316dbb0b881294016e7fce1cd22c3d613328b17fc57c07fe3a0",
+    "Claude Code": "29a805b4aba401c6ea324757ef6bc492c3e714175f1b96b05061d9343341b16b",
+    "ChatGPT": "3203216dd88fe316dbb0b881294016e7fce1cd22c3d613328b17fc57c07fe3a0",
+    "ChatGPT Project": "7f472cc87d62e96eaca0e989fea467264b4f975ffc829bb4d3fb8861795564d3",
+    "Codex": "af77f12058c2f87f7485a8967d22d3fafed102f4ef79aeae518bb5b766e8682d",
+    "Outros agentes": "549aa3db130a3c85dc60c88a899f71d347c7e6cac60eedb94052361835c7807d"
+  },
+  "copy-metodo-koe": {
+    "Hermes CLI": "057fe28edb8341a24caff3de037d9fd0db2f9e3a64bd1043f8a029d349656f27",
+    "Hermes chat": "f677a064123df9b6bea0e737201ed2bb059ba50789326e554ce639667c1ef352",
+    "Claude.ai": "f6712406586d8f23f622f909faea3f079bdb420f9563d6ba48cdcb181b4a4733",
+    "Claude Code": "ebe805b68567baca33674f25a0459bc4222c7104dae64267f05c244b8ace189c",
+    "ChatGPT": "f6712406586d8f23f622f909faea3f079bdb420f9563d6ba48cdcb181b4a4733",
+    "ChatGPT Project": "fb166745d7e146c4c29385a0c619ca0722d4d48cf4a7538f1d0315d9fa009c5f",
+    "Codex": "acd138f6b622df3a57453c709a4d8f4f5712d8b67724c2d32bdb2c6dbd03f181",
+    "Outros agentes": "091ea697cf7d3cdc5b281516abe446216c0e55cb1917da27e432f49fc2ebba85"
+  },
+  "copy-metodo-khayat": {
+    "Hermes CLI": "c48133f50ff4d3efaf38fc37a8d1d0965a0852afd087cdc6f240c43639b8b2d2",
+    "Hermes chat": "e7f9fcab32996a34a2eeca9bc8a3222d43dbb7e63080a9ba9b3614da88d118c4",
+    "Claude.ai": "3973785b60203f810a22eac1132ad4f14107baa37577d94606ddce2962f692b3",
+    "Claude Code": "af06fb4fe1d34ca0628dbc1e18f99a20998e7bbcb13aebfbdea8f99cdc7513f1",
+    "ChatGPT": "3973785b60203f810a22eac1132ad4f14107baa37577d94606ddce2962f692b3",
+    "ChatGPT Project": "b1b0a1d6d3babc20023e558a75a9eb7ca4a44324f35d1e335f44ee735383cb6b",
+    "Codex": "bb70fd1f398d4d6288c8c60dfd621fe5c7495868aa0d2952e3cdfba0554691f2",
+    "Outros agentes": "b798f5a06cc8e88be06fc7e58a420295ebe7f58fa48d62c01f24d80eed844286"
+  },
+  "copy-metodo-brown": {
+    "Hermes CLI": "0b909b2037664a4cad76b32a8dc9b972d1710f52d2a72dac368fc2527b3093ef",
+    "Hermes chat": "694179fea051617d9dd0bec5633cefa19475405706fb2363f4b59f37524bd53d",
+    "Claude.ai": "1b544c8c2c0d364d8e1294aad2d75f345b40276605a2616d89c9a286426acfe1",
+    "Claude Code": "5de5559044d96b99b8835b035f485fac0f722bb68b77ea76238c539cd8e9f526",
+    "ChatGPT": "1b544c8c2c0d364d8e1294aad2d75f345b40276605a2616d89c9a286426acfe1",
+    "ChatGPT Project": "9419346fb9146b0cdda7933887676f2641b8a090b2a5ce632f52926aee3ac20a",
+    "Codex": "e3e9b727c9ae47095ede12c85249c4b17cf9fe040e3415ba73501e6768d6dfcb",
+    "Outros agentes": "48f62c5ec14bf43fdf4d7d7e14dadb68969b7a9fe7e5dee11c66c9e5e9e33d1c"
+  },
+  "copy-headlines": {
+    "Hermes CLI": "8a8d754f1a5e2c51fc868e454f9ef7ea0f459ff4f9b59167564210b3e07a589d",
+    "Hermes chat": "de74a2511d2516fffe196baf2a29a6a879bc81e1e6c931c4ebe33a2f92f4acf8",
+    "Claude.ai": "43abe923bc30caf7fd629f2181fa42e37ba5900ecc2a30f053548fb0b8a64f2f",
+    "Claude Code": "9a9a0d824e5163a5c81aeb121f83a6b88dc7bbe0accb327fea197bef432dbee9",
+    "ChatGPT": "43abe923bc30caf7fd629f2181fa42e37ba5900ecc2a30f053548fb0b8a64f2f",
+    "ChatGPT Project": "18534ade63f2509f0598dd61e45d228caf73574f155bdfe7e9bb41a36c614d43",
+    "Codex": "3a11f3c611ed80456a2524c413a1b304f88544af4a490fa210866aa2f86784a8",
+    "Outros agentes": "eaf36a72a9395a9e0f3877e32ebdb43c47eb34b8fd8db285926d14a36b17f289"
+  },
+  "copy-sales-page": {
+    "Hermes CLI": "ffae17852c16e36c051123c2d0801d473e2092e1b1c488aa853bcc0fbcc64b6b",
+    "Hermes chat": "3961f01ee639163c6febad6605651ea2ac625b931e98f202d3086d3cc5bc6774",
+    "Claude.ai": "0de709f2f59147955c4243de9da5a25b822c97a5ea9253dcedc963ab95c9ddc7",
+    "Claude Code": "af5f8081ca45e0f5979c760b8429c6aa13d4cb74b6cf456cc0fa0c89e61c8d30",
+    "ChatGPT": "0de709f2f59147955c4243de9da5a25b822c97a5ea9253dcedc963ab95c9ddc7",
+    "ChatGPT Project": "cfbbffb7af9a43d3c878a3eeb782212a0615ac6329139fc5f973084a3db4d6c7",
+    "Codex": "48028e9ee22c84e4def95f41d137317b73dedb075e6552ffa022e091f0127663",
+    "Outros agentes": "22f2658fd335fa5c498d37a8bf31f6fb4d23cd5cffb9b446b7503d64294dfda2"
+  },
+  "copy-oferta": {
+    "Hermes CLI": "2f227fc10037923de36479ee74fe1d0d6d7b1e667ceb27e3dfc97dd6434f74f5",
+    "Hermes chat": "83397c50867eea374c832bb99e17cae1292ad8e45d83e71bb3bc9bb41db3cd3f",
+    "Claude.ai": "0ad7680bd09b008c6ecadb5d58848d8ae7309c5545e17beaf1851e1aa7f229b0",
+    "Claude Code": "b5edfa8ecf44fcab6aae5056f01e57dd336ba3a456917b0b5b2a4da85f6d7b5d",
+    "ChatGPT": "0ad7680bd09b008c6ecadb5d58848d8ae7309c5545e17beaf1851e1aa7f229b0",
+    "ChatGPT Project": "407f7dd93270afe31cba6ce2c7f9b625bada14f81b47221f373ddb4ff1f2e3f2",
+    "Codex": "2fbece1b00826c9242f9679f10d6ba4fa8fd1d721bd6e64ebc5ffedeee32eecb",
+    "Outros agentes": "527a36699d5d821fd8fde3e8334c8ae91b4c29fdcc8ae1dae485ff050a18d04d"
+  },
+  "copy-email": {
+    "Hermes CLI": "9cc6d6baa9667de9ce3387d941862a6beca50ecf7802c0e4ec3548fc052cd9da",
+    "Hermes chat": "546d804815711adcce59ba07fad8a9cf01fcc1b1b6deacd3cc012a0ea42e65f1",
+    "Claude.ai": "cd5cb91967dc9a4ee7c749ee07889ad14282cc30d10360f189b94873d1aa7ec4",
+    "Claude Code": "650d74a071e072d40711e5b55ff1d0b7274287a419d7eb2836e3b58ebf94fb12",
+    "ChatGPT": "cd5cb91967dc9a4ee7c749ee07889ad14282cc30d10360f189b94873d1aa7ec4",
+    "ChatGPT Project": "1bfd43e5ee5585ee5ba95f76f695a0a9638a7829a22eb05ebcf5316c6959c528",
+    "Codex": "a82fbaa72220b8717deb6db2612821f44db375daf30f59fb9dfba81faab791a9",
+    "Outros agentes": "7487b7ad4c7385717d0e47c83fa8390a2541d9b18d20f402b21c79de04a9e512"
+  },
+  "copy-anuncios": {
+    "Hermes CLI": "1d6010de619a4d24b3b9a8c3a4e8e3209538edd2c61e162ccf2dca0512468f05",
+    "Hermes chat": "0912fac3fb81f1bbd589be51406e6511b1bd56b6795443b73be281f4f1ceb5c5",
+    "Claude.ai": "59bc7b01ffb57f08b93542bdbb184f5ee2fd4dab21efc3d76f533c147ea470a3",
+    "Claude Code": "fe0055bdaaeea39ae2b277630768690e864f857e1132c2b15ca56d96cf0f5a70",
+    "ChatGPT": "59bc7b01ffb57f08b93542bdbb184f5ee2fd4dab21efc3d76f533c147ea470a3",
+    "ChatGPT Project": "ef5051e0cd7f5568bf161f819136105a42437644d2285a8f125a3ba4d5a299ad",
+    "Codex": "b3342cefdf950f736d19293c6ab22197be6c27b0a21f838ce3465a1736b0e551",
+    "Outros agentes": "9f4cb53685f1c84fea7b8a688ca659dd4ff21a3b4166a00d5fc67047c1965cca"
+  },
+  "copy-vsl-webinar": {
+    "Hermes CLI": "e1852bcf33add0a5ad82bd09f29985440086767e9c082693331532a870401af3",
+    "Hermes chat": "e17be2ca29516b5a9968c9c59b0f99cbc920affbe0b97a24d02f22184fce9e8a",
+    "Claude.ai": "38a2a17cc2796b0d461aede2752d280eb2955d96d0daca895cfb705e5f1a107a",
+    "Claude Code": "c4bd4ea554e517205d1f8cceb83035b9b8ed03d6bfddb576070f026c76ef94aa",
+    "ChatGPT": "38a2a17cc2796b0d461aede2752d280eb2955d96d0daca895cfb705e5f1a107a",
+    "ChatGPT Project": "97761cc88d717e62981199ee6f2c44b58a3453fabb8eb33b82a97c93c71496f9",
+    "Codex": "7ea2f62c76ff08edd27a3d02c006b1b52f51bdb8117e933c21ad5d779edaa595",
+    "Outros agentes": "580836fd95524fb214c0deaa7f1a5e3b8483e13e4aa4539cba71869c819526cc"
+  },
+  "copy-vendas-por-chamada": {
+    "Hermes CLI": "cfafdf44c9b224525739b842817fb34e846cc06634e9875cb0bc3afe7509bb6e",
+    "Hermes chat": "a1a8ff6a7e223242bee8a20207cb3778e1b7901094f7c386e177f7b0debc0083",
+    "Claude.ai": "006293b313488d8d6aa40ca0e0b09a0df4a45086eeee243a83d2fddca1a39108",
+    "Claude Code": "6183f6b1ec8f0fb7030641d0bacdafc64cbaab953f2cff19296cdc8b671ee221",
+    "ChatGPT": "006293b313488d8d6aa40ca0e0b09a0df4a45086eeee243a83d2fddca1a39108",
+    "ChatGPT Project": "765b93cbb7dfb195b9c0a4a4b77898b9137a6cd75042db031d692066f91bf31a",
+    "Codex": "8073a952a42a6293b7d651c880e5ab6fdf78bca4cb38e222e1cc9291e33c5a99",
+    "Outros agentes": "dae93c2663a3d21bd0b5014b9c0641b2b7de3698e68eccf7628b778b248a2d7d"
+  },
+  "copy-pesquisa-avatar": {
+    "Hermes CLI": "40bedbe20c5252a7d69d47317708f40c176dfc0f7fa25c8d522a398faebc683a",
+    "Hermes chat": "7af06a70c6ea564ae26643d6bfe90ffd3a86921c67a88b33ba0ded7b3b4c7765",
+    "Claude.ai": "a519c50111accf2767e006d85ce6fb3443c698796dc74b6d6dea90eca85034e1",
+    "Claude Code": "7c492a7a3ebb4e78bd17ff04e18153c256d96a1d0ee7496e30280e266b0c4f3e",
+    "ChatGPT": "a519c50111accf2767e006d85ce6fb3443c698796dc74b6d6dea90eca85034e1",
+    "ChatGPT Project": "ac02c6f125f80fae87128c79718ff15f6612b7a9a5384eb92b94e393279571eb",
+    "Codex": "f13f0b1c513b22a622f577eb0b90102273a3720d72750434fd83d8db8527edb1",
+    "Outros agentes": "17e28ab65d131ae916e96144472c397048802a271690c07b6102ae111e3923e7"
+  },
+  "copy-big-idea-lead-magnet": {
+    "Hermes CLI": "1044133aa3bc14a0dd46314fe3d071fadf0749cb60331bb80459e7055a73c39c",
+    "Hermes chat": "7877b3b64694d02fa26de8090e06d85796f2c5d9d8bfbee0d0bce32023418e62",
+    "Claude.ai": "c41706975b58983042a4e6b3ccd17bd56962021cb734f0faa367e5cb76ae173f",
+    "Claude Code": "42d5df1c2c694a63a5fc67e8430633283db1853f29765c72c066b611c8257092",
+    "ChatGPT": "c41706975b58983042a4e6b3ccd17bd56962021cb734f0faa367e5cb76ae173f",
+    "ChatGPT Project": "83c7d19831f2bff268f8ae84168cc917bee2b9e29de12e0035a6f46e4f15fa15",
+    "Codex": "9c78406d8373e695e303be7b9d226e73fb6878817c732bbbb40a2e8e29c0d2d2",
+    "Outros agentes": "11028dbd90729d36e264c8f5e352d703e4786c097f47822c1976e4adab7492a8"
+  },
+  "copy-voz": {
+    "Hermes CLI": "cc1d0257e9a36930fba1fc1076500cd255ee3c8e6ac9bf76ccc76f992eb32e78",
+    "Hermes chat": "8fd86a994ca025ef02b8773ff87d592dab0ebcb067ffbcc62dcac75534a617b5",
+    "Claude.ai": "41319c6c041acf63382d5d423d39ac64f19acee4932552fe429775b161367028",
+    "Claude Code": "a9df062d46f1d504fed0a92af4d2e57e27ac3082038df0949af26ad64e6d9f11",
+    "ChatGPT": "41319c6c041acf63382d5d423d39ac64f19acee4932552fe429775b161367028",
+    "ChatGPT Project": "ddedeec803d1341c63c0576e276c8d8f6ded17fc9a52413ed2b47617066b01fb",
+    "Codex": "c4f4a100531b0ae24927d8211b2264be89f848712aed3e22ee8879fcec516771",
+    "Outros agentes": "8a46d0c35af43bd5f043f934d88d0e42667f46148000d19ebbc61a49aeba15a2"
+  },
+  "copy-auditoria": {
+    "Hermes CLI": "5df920e69482d3478588a460ee921b5b587e88c542cfe24ef6d4ff4d640b1fc3",
+    "Hermes chat": "d4167c6fcb1bed50d4ab636e27033deddffc861dc78787c301865aa9abc81304",
+    "Claude.ai": "e6b855f36afc2951428ba36ff0f023f68cba2fb1dacc97368a6efe27757336ea",
+    "Claude Code": "8135f6a662dc1a3064e5a49918a9abf5d9cdfb107c0934020e5c5a31ba179609",
+    "ChatGPT": "e6b855f36afc2951428ba36ff0f023f68cba2fb1dacc97368a6efe27757336ea",
+    "ChatGPT Project": "74a7fa690ac9e07be9ddfc3dd2bfc069ba47c0718ccafc69dc4b5f6114a1e85c",
+    "Codex": "61d7910b1aae339fc14fe79290c66e146516f6eee9d95e369f0b85043399c644",
+    "Outros agentes": "f5c18b885467baf0931f0df3cd54018b49af0b5226535540c7f8dba19044d795"
+  },
+  "copy-pipeline": {
+    "Hermes CLI": "387884da6f2908ffb790363a00d1ea83ca6751e9a108ebaafa5c37d35e8a3c6d",
+    "Hermes chat": "b992ba6ad60ab63c6601e17b8934ed803e9140e30fb673c322696d65d166a4c5",
+    "Claude.ai": "402495f73a7719f874f324d0a0ebf232edc9639cfa26db023fca1e7614656f92",
+    "Claude Code": "df7f0bc9e6957e561d59dfcc2fe1f41c08c683b9191b40cfaa1114fa4c91e87f",
+    "ChatGPT": "402495f73a7719f874f324d0a0ebf232edc9639cfa26db023fca1e7614656f92",
+    "ChatGPT Project": "36cc915cab1ee4f27f034001b20eb644b265790ed369354865bae1ef0103a53b",
+    "Codex": "3e118891071520f9b38747cff3f049e19613f287e9eb66fd78c30f70c1520561",
+    "Outros agentes": "1eab6673a9267a6b2f79768f19da38edd6fd38ba07e4d5ab917e95c4cc0634fc"
+  },
+  "copy-lancamento": {
+    "Hermes CLI": "9e7f6f5d2e66877e4f731bf4a74b64e7c897dfbc09ea68eed8f46af72cd50f59",
+    "Hermes chat": "985efd853fe3d422a9dad099735c4f011bcd7ba8fa7fb4ea3e23a8f2c5d9496c",
+    "Claude.ai": "e8b0c3ac9995d19268c2647b72aeec93c7d34da01ffc7d236815fbc1aeb5b41e",
+    "Claude Code": "cdffa1f9c9553783aa4b65cc623c4d1b5bb3ce14ab22d43bb29fd833d85a0aa9",
+    "ChatGPT": "e8b0c3ac9995d19268c2647b72aeec93c7d34da01ffc7d236815fbc1aeb5b41e",
+    "ChatGPT Project": "ada87e94ad43adc59125ae2e72d1dfab5b7efba204cf5de66bd9335629e4f49a",
+    "Codex": "0f979e8dbab31cd58ba8642e9a9c1857e2e8ca54b85495bfdbffdb569891f770",
+    "Outros agentes": "532ced01c17e9a81f567ee24cf382523d83fab13de260b91ef1783e18b6b9df6"
+  },
+  "ops-rotear-tarefa": {
+    "Hermes CLI": "ab679de018aa7f2c382fbdc453595a8e07c2a8619f2f569824ad648e21b901ca",
+    "Hermes chat": "11a72bd9d36345f245665ff9dd91e6f35312c3515b858ceae62fed2559019e98",
+    "Claude.ai": "d0ac4d886f8cf48adafc145f27b6882bf2e690c7f6b2033ff13226372f77b71e",
+    "Claude Code": "78c31725737c62b4d5542fd8095087895815204d749cff2965a5df41718b5841",
+    "ChatGPT": "d0ac4d886f8cf48adafc145f27b6882bf2e690c7f6b2033ff13226372f77b71e",
+    "ChatGPT Project": "c280577938c07f76ee0058f83e8327b6953e6b4ea0abfed095f8a5b2add534fe",
+    "Codex": "f911068b848622d04e63489a1565f7017e74f146d0019c79cae0138282bd49f8",
+    "Outros agentes": "007e9f9d87f62b3e92a9ae7852608e38ab6cdc0bf67942c8306ba2719de19efa"
+  },
+  "ops-briefing": {
+    "Hermes CLI": "4bf9db8ac5732474f861bc234ec56ef318c7e8f2d074bd06728303e06b47c829",
+    "Hermes chat": "5bd2de1428c21a557fbc479d3c5d147b9d13fb3594fc43abdbbe2a26e561b4ae",
+    "Claude.ai": "c475576b679d49a84070fb6f87c870065d76282ea63189c4fdf7b994ba44625d",
+    "Claude Code": "12e6c515568ade8481e0a673d79c78d4a300428ceab9e76927c85c07c67128a7",
+    "ChatGPT": "c475576b679d49a84070fb6f87c870065d76282ea63189c4fdf7b994ba44625d",
+    "ChatGPT Project": "9dfb1405f5463a71c4b842a40a9f5fcd366abef689b5e4136bf59b17306fc153",
+    "Codex": "0386658b634ab172a2b3cddbcd0a3348bcfdee8ca2cb0593bdfe951b5b1cbbad",
+    "Outros agentes": "a7d7621b4c11fd53d336e455180cad32cd8bd685a374357f78f195b25e0ff823"
+  },
+  "ops-revisao-semanal": {
+    "Hermes CLI": "c2f7ab45410180c88a45933c1f428ece559c416146a3b6ca4f51b07f6f88bdce",
+    "Hermes chat": "20abd627f32a1602b5f735b09b70d7768f49ede1d3a9951fc508c4bcce1f2197",
+    "Claude.ai": "7c9b636fd28e3108ba5b33e4e54da42948cc24e3d0265cb795d1c7cf1dcbe50f",
+    "Claude Code": "00acc026608c478427a7c5d68bcc0e1c8a89c175c4e7340982538597181f5c5c",
+    "ChatGPT": "7c9b636fd28e3108ba5b33e4e54da42948cc24e3d0265cb795d1c7cf1dcbe50f",
+    "ChatGPT Project": "1465c6673ee2d453a195bef3af427110bb634d4d650d3ea76e876d3acc34a440",
+    "Codex": "4012242cca4adbfd47c5fafe04eb6b66d7db8ec2e890164774723d81402a1af4",
+    "Outros agentes": "77e3c44f70be8caee28e6e6d138cb30815bded6c0817b7158494694689defbc7"
+  },
+  "ops-avaliar-fit": {
+    "Hermes CLI": "61ac0288f0d513d7b1ba767fdf35dbf228d40c252a8e7b4610a8113284dc751e",
+    "Hermes chat": "acd87493c83692b73d5f3f6e2d5d89b12be0c7a67e92e9872e8556a44aa40960",
+    "Claude.ai": "13e25a8e69b4e99259f790166dc7e55ac10028535df1dc8f47c3a14866bfeaf4",
+    "Claude Code": "6f918e0eae44acafb6cca19440199d2f122522d0ec28c5f760c55c5ce089bdd8",
+    "ChatGPT": "13e25a8e69b4e99259f790166dc7e55ac10028535df1dc8f47c3a14866bfeaf4",
+    "ChatGPT Project": "5874df999fde39ddbac9edc0cd52a809d1051fdc7f6884f1f1adb74ae0d00559",
+    "Codex": "15f3f379645ccef4dccb4fa38e64e1f4c432428cc9c4ebd05aa7467bba4a7aec",
+    "Outros agentes": "5d46f1b7a54735e58b37d65cc593d4f27b0fe4d62424a29bbbfd69ee5cb0137e"
+  },
+  "ads-gate-compliance": {
+    "Hermes CLI": "128390a09af2339a97fe1fd2707addcf62cf243b1eec96ff1f4e07c18d80bf2a",
+    "Hermes chat": "823a09824b42cd1563d0d2431f7e070a12c0bc41b66fe32dd56933dd08291746",
+    "Claude.ai": "8b38310f71e72268a344f09e2306ed837afbe7788d4196d382104838095db5ea",
+    "Claude Code": "d850d8ceb86fb17cc9503a62a3403c8b9ab30057918a4aac9034bb7ed346dd89",
+    "ChatGPT": "8b38310f71e72268a344f09e2306ed837afbe7788d4196d382104838095db5ea",
+    "ChatGPT Project": "f3538bce7dbede2bd1be6c5f930f0e241bf046882350f8423ec85c2235ebd94d",
+    "Codex": "82555735e6518e155a6412a3b714f8bbbea5fe3c0564a93ee159c00cd2e115aa",
+    "Outros agentes": "a854eab7e1ae2359d036b3aa67947635c01ab02b733805c2bfef2b7af16a3360"
+  },
+  "ads-plano": {
+    "Hermes CLI": "4cd1e513fbee8f30832e768633aa2297955464b589c980a38da7bcc0ca7bd21e",
+    "Hermes chat": "6fbc9ac185b848dadf1e8dda4d3ee116d64cd08d49e25a66618d64cdf055fa2f",
+    "Claude.ai": "1eb1b45773a374a40029fc64de18221e4bfca70c25ef6aec57a13f3beab67837",
+    "Claude Code": "9b12f44dc2d7bea35e8a67b0ab3cbbb0cff3fb25fd833454bbbf4ce35185abb6",
+    "ChatGPT": "1eb1b45773a374a40029fc64de18221e4bfca70c25ef6aec57a13f3beab67837",
+    "ChatGPT Project": "d6d55cc84eca553a8eaa2773e09294e6bbd712a3e410e01faa54e0219750129f",
+    "Codex": "c9fd09fc96f31d79db0825e82974b22d69529feef1df4dc10143d3508c071265",
+    "Outros agentes": "d75b3879ebdc8e82a3773e7753ff53ec24f3af13d2096fbe5a9d91d6bed8b0f0"
+  },
+  "ads-otimizar": {
+    "Hermes CLI": "0c637855fdc6e05738437b4132399927237d1f170b5f148e3d3a9d30d363d62e",
+    "Hermes chat": "6d15a337bb15759f20f142a64968d3e1c26145636bc956d279fb4c579e034d99",
+    "Claude.ai": "0ac408a6c8dfdb3ca1b60e41520487efdf3f8091c80f469cfda8b64e8752a4d4",
+    "Claude Code": "a9520544579e527e79f9065a4e2f6212bd72e9f9391a3c34d59dca71c88837cc",
+    "ChatGPT": "0ac408a6c8dfdb3ca1b60e41520487efdf3f8091c80f469cfda8b64e8752a4d4",
+    "ChatGPT Project": "b082396bd1ac359a7be3a66a2906b2b1edd6e7fd57a5463e74d54d4726cae59d",
+    "Codex": "c1b9daf6021516e7af1e058820377714a2dfa25aaf7cad162fc607f30098f924",
+    "Outros agentes": "6dea55a956c506066f47d0e3fe44a9c0897f8abb80ca46a8012aaa239fec02fe"
+  },
+  "ads-pesquisa": {
+    "Hermes CLI": "913cabb6b7787dd98596b32f2e6904867458d0f3a8c1a5f868fed55ffb34c01b",
+    "Hermes chat": "dfc00db9136bb0253037b7ba989580a1de801ed68b6800620660218250d71f0d",
+    "Claude.ai": "b9a7050133f9be0dfcffe62a77a23eb441edb7e2e1269ffb3c3bca29bd76147f",
+    "Claude Code": "ea2fe67ee2d8ded0c316c56f597661d1809579356ce938d643c3fc43330eef75",
+    "ChatGPT": "b9a7050133f9be0dfcffe62a77a23eb441edb7e2e1269ffb3c3bca29bd76147f",
+    "ChatGPT Project": "e4603c74d474dc2a3a973670c6e5fe6966547b7f7c4e14b7a869fd025135bbf3",
+    "Codex": "ef3378dd8aed80a5b4f6a32d581142d073ff01d2690431010fe0b68b5b003b2b",
+    "Outros agentes": "c257478f1f4d12d689ce34dd51e093b462b2dc1dee34460572a1efc0de9e726f"
+  },
+  "ads-criativos": {
+    "Hermes CLI": "fba921387d7106ec07106338d0ee2cbb5386e6cfd737c2068af830a31c1835d9",
+    "Hermes chat": "7fb63305dc8ea5b1cbbf4dabd4208dc38e2652ab9947adaa37cf1f36dfb1cbf1",
+    "Claude.ai": "becac610cacc617017bfc31c03441fa37dced96dcd94674c993dbc8037a01ae6",
+    "Claude Code": "8eaad26aa2d0a915d81a4c03a9f1484d4a0a30267a4839180277e649724ffd51",
+    "ChatGPT": "becac610cacc617017bfc31c03441fa37dced96dcd94674c993dbc8037a01ae6",
+    "ChatGPT Project": "7d9809f4bc0002defd9ad77f6b4be5ea3e346807f0d40e173073b45cc74d6621",
+    "Codex": "f231bf1b06743ea0ebec51eb6766c76d989f08b77a63a64a1ad765aeaa248086",
+    "Outros agentes": "514a7b1500163c242a555bd8f4ac5f15d82b764aab52ea25c0c1d419ef1fb1cd"
+  },
+  "ads-tracking": {
+    "Hermes CLI": "f93090478f11423e45dd789703662984a89ad3c32e5fb2ce9b2577775278cc32",
+    "Hermes chat": "843dfb27ef71b15616af6800a1ea960b94f376ffd49323195b51020a1d6f3ddb",
+    "Claude.ai": "af7add1c577bfd8f7beaba01c219e6e299ae5cb672030d033ee40eb16343ef32",
+    "Claude Code": "6c065c8b79ec8c0d3192c948cecc3ea384450adaa2544e64866db4b38fecc6a5",
+    "ChatGPT": "af7add1c577bfd8f7beaba01c219e6e299ae5cb672030d033ee40eb16343ef32",
+    "ChatGPT Project": "ce122594b88c1946c3425718fb02d5a63507e7027c48e743cf59daca001e46e5",
+    "Codex": "1595b06286f83b0ccd2dab3bdea220e9f9f3e8424551efa0731ed99ba2e7e85f",
+    "Outros agentes": "55b1d114fab7114dcdb2d9a2fd4a16b36097139e23cbfa2e350c20b1d09f6d81"
+  },
+  "hybrid-diagnostico": {
+    "Hermes CLI": "5912fcfefd28947329a25fd76c45f8a3d108fb23516d7c2baee485fd12df5ffc",
+    "Hermes chat": "ab6d8a323793228e742dde0411134541f3422fcdf87d6040e6c73da2b9dca62b",
+    "Claude.ai": "6f5826aa2d8fd5c66a888f386b99ce1cde9d711a4cb03b8bad032be05687ecdc",
+    "Claude Code": "0d0be80b4b8f110f04387e2f18ad1e11dc8dfdaafca6104b8abc09265cc0a9c8",
+    "ChatGPT": "6f5826aa2d8fd5c66a888f386b99ce1cde9d711a4cb03b8bad032be05687ecdc",
+    "ChatGPT Project": "ef875ecd23f8f77594f1d36797e879045e874e3b3314040ac02ff34cdd363c8a",
+    "Codex": "4d9e681458b66567a007122277bb779df76559fd34a4382a148672b60b03a943",
+    "Outros agentes": "f1da80252ceec1ce385a6a9e199c7ee4f027f357fdc9f3b7aa977507c535f8b5"
+  },
+  "hybrid-proxima-acao": {
+    "Hermes CLI": "decbef03ed27bdfacc3a4ab5cf0f4b4b8cb10579a617a7d3d49f2626de63ef3c",
+    "Hermes chat": "ec78b67c3207125f75778433ba002e95ef3064691667bc7a54fd392255ceb881",
+    "Claude.ai": "410d3b86cbe316bb0207888c80f785e8f07e9d2a2acc031c36320f0dfb217cd2",
+    "Claude Code": "ebd9d8f99c05f2553fa28a235412c1e6b675cd4d7fd1bb9f5a591e11ed96c4d0",
+    "ChatGPT": "410d3b86cbe316bb0207888c80f785e8f07e9d2a2acc031c36320f0dfb217cd2",
+    "ChatGPT Project": "b4a7d5f02a41dd6d7e6a2358e184121bad4d1f33c2f5abcd5f8cb249ee2681ee",
+    "Codex": "acd243cf6995a29ce2972f3d67355aeb0ee2735ddd8f8fb84bc75b8738b19a8f",
+    "Outros agentes": "d912f23a9932c17a40cb2a12531cf17dc6c14e606219d4e7651d4d3c1d4cb042"
+  },
+  "hybrid-perfil": {
+    "Hermes CLI": "f09e3943d9ce52a6b79e1be39fdc79a6bcba2ac83fcf6babacbd0ea00266f13a",
+    "Hermes chat": "7f719889326fabb9552b009ee450fca8f1c96e2ae7911617ba517d26bf368305",
+    "Claude.ai": "f2d861e04c3f2392a308470a7bfdebdb6e71e22373067928fd123f8c8aee9f83",
+    "Claude Code": "42d5371e84ed3c7b8619a8b26df4e8e5b482c3f8dd7f63ebceac1130e7eaead6",
+    "ChatGPT": "f2d861e04c3f2392a308470a7bfdebdb6e71e22373067928fd123f8c8aee9f83",
+    "ChatGPT Project": "4f3a53cfe9e76c0847a8653cad82dcaab09dde7045f06bcb477eda1ac3abddd9",
+    "Codex": "37a6877d46e18814d497dad741e12c54c6f49c3436a798b0b677f31aa97a400f",
+    "Outros agentes": "0d6fd2698d58c8516dd5eeef4842792774df193fe4124fcc8267bf527d4571fa"
+  },
+  "hybrid-fundador": {
+    "Hermes CLI": "a46b29d9ce30454d84c49a19852bef5d2834d1927bca628d1dcdf56fadef73a9",
+    "Hermes chat": "097cd562f842267e12dc8f3ae042556a66fb278b805228266ca5ebc15b4de679",
+    "Claude.ai": "b521bb7b002efb312fcb10e3c717e20e839e6739c3f493469d49eedbb3cf8024",
+    "Claude Code": "20a90a6ef32baee717365f7f237b73c8c9d506060a589103b0dcc2da52fc70e9",
+    "ChatGPT": "b521bb7b002efb312fcb10e3c717e20e839e6739c3f493469d49eedbb3cf8024",
+    "ChatGPT Project": "ddae7bc7c4c187f1518ea39bc6c3601e528a0b882b40b2484621bd2a504e1069",
+    "Codex": "8a7dad353ba38ee86d696ba5acf06f1db7aa0640f77c0857b017992b7936ca00",
+    "Outros agentes": "c7b3d3aad5c6d023c6fe40025a0d57dcd9a711c92a4214b7e4e91d2b2e464911"
+  },
+  "hybrid-icp": {
+    "Hermes CLI": "55cff7381f51f6be82a267f85d69aa1ece8110a25e14352e7ba877cae6098721",
+    "Hermes chat": "bc77554daddb2d8644a9404815cbb7eb1aa45aaf6ed08f1526819998a999eafc",
+    "Claude.ai": "da98d00c47c808fc03f8eb65aa79a3f12827635be92b7e2bf0b45947a197fd79",
+    "Claude Code": "a33e909a0ee17d5e658ccc2bc4f1f985c57b269f15d5e74bb1dff2c8009d3f5d",
+    "ChatGPT": "da98d00c47c808fc03f8eb65aa79a3f12827635be92b7e2bf0b45947a197fd79",
+    "ChatGPT Project": "5371fefb61bcb79f5797848a2e3a6c90ec080d78bf6509b137380b93498dcba6",
+    "Codex": "8098dbd8e9073add39b9019eef1903a99babc082933de3eff61b1edddb34d714",
+    "Outros agentes": "5244cb3bd99f3f81dcdde48828e6b0752574ee7b03b8337a5213c7d0c8cbe77e"
+  },
+  "hybrid-marca": {
+    "Hermes CLI": "3e509073603b2cd584060b1cf1ef1624a8ba6adce7264d1faa22748b3229d6fd",
+    "Hermes chat": "64d1a9b31259edb1c81632022efee6f3850888880be91b96a87b7a27353c857d",
+    "Claude.ai": "f5802eb61e31208d7cebee9cce9901ee825e1075b9e361799cab0bde1c68fc58",
+    "Claude Code": "67cd707e017997290408520b4af4d88043905aac6e2153509c130a5fca573e4f",
+    "ChatGPT": "f5802eb61e31208d7cebee9cce9901ee825e1075b9e361799cab0bde1c68fc58",
+    "ChatGPT Project": "5ff87a6bd931b488fa39a61249706870677e0a40e55e63ef6a7c3072f574fee6",
+    "Codex": "a7f344d218919d0fc65da4c19acd9c4281eb0e6fd0b48cf84077b36e804c7848",
+    "Outros agentes": "2a5298d33d87fb75adf50853679582b3564ac4db12e2e4d83ce7079b651788a2"
+  },
+  "hybrid-oferta": {
+    "Hermes CLI": "e298e8a333bdf70cda16130a562759966fa5c6b6c281e63eeca32f3382fa5847",
+    "Hermes chat": "2cb5e9730f2fd622f2e06e277826b59cc187660417db38c664defb9e3af23a96",
+    "Claude.ai": "8f95c0164a9b664f1717344696c6366f3996d4bcc24a13f416b54f4ebcce53da",
+    "Claude Code": "320c9eeb23fad2f7128362af1674e42f265c488c49a0fe8c1e157d3cfc334f14",
+    "ChatGPT": "8f95c0164a9b664f1717344696c6366f3996d4bcc24a13f416b54f4ebcce53da",
+    "ChatGPT Project": "c928337a8b3689b8f7473b5f9fe5c54a4787f479dd1b6db4fe113320f170d805",
+    "Codex": "81d135e957bf16510f1fe5167a103d02ce39deee402129824cad2bd2719f539f",
+    "Outros agentes": "f621b6d3ff6f23e3b8e01a07f2118cdcac269b5bc8275135024f02daa6f53b54"
+  },
+  "hybrid-cultura": {
+    "Hermes CLI": "1154486bef613f9d5b05afc64112684f890383c7f60e3ffc4451dbfe688fc7d2",
+    "Hermes chat": "12fae7baecea3a95d6b1887ccfe81a0222972787ed5db2da0c508ebdaa47be62",
+    "Claude.ai": "7e8ded25d95814f02fe86b5229d5d9b3f1f8a9459bc21fcbf94f8cbfa4ba8c97",
+    "Claude Code": "60b4c72c5cbf14b8becc3edfee0ad2684c51e37952c7a4079cabc6c0ecc22e31",
+    "ChatGPT": "7e8ded25d95814f02fe86b5229d5d9b3f1f8a9459bc21fcbf94f8cbfa4ba8c97",
+    "ChatGPT Project": "2cf77193d54b214919cf7476fb76c79509a144a7a13df968c90e5ed5b7adc0a0",
+    "Codex": "816c570414092492abb588a1dd89002d69bd0154a9f8186dc2e2248cb6edd254",
+    "Outros agentes": "6cc07e93900bbb105f359b44b8f1fdb25c8ca7bb8be4194951597fba49d47c59"
+  },
+  "hybrid-time": {
+    "Hermes CLI": "e327ca6cdd76981732eb8336c8c9f1f0beefb0ed6487d6fd53fcf6853b9d452d",
+    "Hermes chat": "b315c5e3655edaa1769f3ba324df1111a8c7936d27c7d5738c60ddabda1be855",
+    "Claude.ai": "821db0190b8b1c6da6c418aa9e6c8113c0ac2819d3b9ba08011ac7b0d40fb76b",
+    "Claude Code": "0f575d9b2afb2bc324c5c3a01506d0830c9f11f27d7ef6ac249dd2d4877a70df",
+    "ChatGPT": "821db0190b8b1c6da6c418aa9e6c8113c0ac2819d3b9ba08011ac7b0d40fb76b",
+    "ChatGPT Project": "6dd5136b8080ce1451285988e5e48373a169e7cb5c1a4980c4e2b7697c7dcb02",
+    "Codex": "e59f4383212eaa4a43602447577b53e01f789155854049ee8748f21dcdfd575a",
+    "Outros agentes": "b6552527310681237b775b8d7cb31028f269964bf62266327b09dd7ab68623ce"
+  },
+  "hybrid-tech": {
+    "Hermes CLI": "304d65a1fce08cccb984b54518c7beae3dbbd4bcea43d026aff5951510a31842",
+    "Hermes chat": "06e7b0d240b19cbf486b85b36910679e20b42a160f22a1ceb3dc040737286b21",
+    "Claude.ai": "6c87149917c14332b5a0f603737f07e90fc798b175a7cb86c26feb2bdba4618f",
+    "Claude Code": "5905f5fff5f69d0c18245c6feabad7e26ab8272023a97a6b1aff44aed834423f",
+    "ChatGPT": "6c87149917c14332b5a0f603737f07e90fc798b175a7cb86c26feb2bdba4618f",
+    "ChatGPT Project": "c180140509585d17f4fe2c481425b8a6e53963a36c233e58929f32884df1ed18",
+    "Codex": "904cb382feb1077b4e3ee71d239a9bc3143d6f319919f086bdde7eaa37724d29",
+    "Outros agentes": "0df210036047fa032eafd817f33739654ca30dc02cd5f0f75b0146bb9e826e73"
+  },
+  "hybrid-etl": {
+    "Hermes CLI": "086740c768734df972e5e5a4e73492a95af2570407add4994c7740115d6e5b64",
+    "Hermes chat": "cc15961ec829c4fe32ec70322d87c512977a780fe679ff238b871cfe5cc544f2",
+    "Claude.ai": "c968bda88fe60ce8619db896c17386395ebc028024d8d1a57d10069f1762a3a6",
+    "Claude Code": "0db88f975d3e3070539d21d27fd20df2e0dcff6e4ad0aac059f0646409a03829",
+    "ChatGPT": "c968bda88fe60ce8619db896c17386395ebc028024d8d1a57d10069f1762a3a6",
+    "ChatGPT Project": "69076ea9562815c3b29ced59b8859eaa6e9fcea5d4e94786b1c1268f4007154e",
+    "Codex": "6097acb04abd7a720c6295a80253bdfea5c81f173092350e4ea49acc672455f6",
+    "Outros agentes": "02271b0d020e8b46af8faa736dd8afbf6c3e91a00d1dad0fe08bf978bc360d30"
+  },
+  "sop-extrair": {
+    "Hermes CLI": "deb2e64d262a02693a2569447b68a15e9f114ea3c0925414be796371bc4cc250",
+    "Hermes chat": "e51931f83593316cbc75ed2cd7d6d904b7b6a22fedaf0715f994c3c5e5cd9ac3",
+    "Claude.ai": "ede7b1ba9bffe7df5dafb4cbabb8806a2d1787b2fd913df8f14d41f773f6241b",
+    "Claude Code": "39c8be839363fa2f3228857eaf15ade0b1cc0195f06bc7bb7d289196a659f20d",
+    "ChatGPT": "ede7b1ba9bffe7df5dafb4cbabb8806a2d1787b2fd913df8f14d41f773f6241b",
+    "ChatGPT Project": "07d2599e3cd0277c0ca5eef92b518297772b3bfb64365d62224ae5360dd04205",
+    "Codex": "5bc1ec3cf9faf2a5f89441c84bb971979bf2f6515cf7a56bfdc3297132383e03",
+    "Outros agentes": "f15eefd40746349635b4414d6a6ace762666fd1ccc5527e9cca82af245bed307"
+  },
+  "sop-criar": {
+    "Hermes CLI": "7d10be937335d9c26b404ce3c274f999d5b7b432a93975899be794397e648cb7",
+    "Hermes chat": "8c303456b2c3fec1317787ddfccd022a3bb7c107c055925dc429883c24df2ce1",
+    "Claude.ai": "0fae22ec44687ea568b593dab73e157c588c00ad295587e1f908c9d6483ed4b1",
+    "Claude Code": "522db805a9331929dd57bef4f5d6ebca1bbca33fb2bf096df726e0097db1b782",
+    "ChatGPT": "0fae22ec44687ea568b593dab73e157c588c00ad295587e1f908c9d6483ed4b1",
+    "ChatGPT Project": "94f5958ec71a93c64a12e32570ef4b6cd6448e1f6dd4ffc6c6db1a28e7076759",
+    "Codex": "935a7984daaee6a6cfa54074a3a3b505aab883aa831028d7e4e7d489a6575b9f",
+    "Outros agentes": "352b285715eaa77011c243a8b8949d63aa28ad48dd164855928d1a03c03c119c"
+  },
+  "sop-auditar": {
+    "Hermes CLI": "cfa18bc533f308e80322f705126710452529368e5e4cecfe12a721348af0ad7c",
+    "Hermes chat": "5c08b847cc104d2199ede9fbbf0b28e4d275dde5af86b8c1b8c6dc9329533db7",
+    "Claude.ai": "2e20a7f6380bb103175072504d0e4924913f9eaa3bcb8f6ef5058a62c723e972",
+    "Claude Code": "2f3648163c208415e05763105748efb0ef2ac2efe98d6236699cca8e82ed3462",
+    "ChatGPT": "2e20a7f6380bb103175072504d0e4924913f9eaa3bcb8f6ef5058a62c723e972",
+    "ChatGPT Project": "efacebcffe437fc3b730e9b11a19661531487ed95d5d276bfb058a166c67967a",
+    "Codex": "4bed8603c023f0003f8a40c1b68cd9b99d5cec33e601a9d21fa0b0159a39ac5d",
+    "Outros agentes": "77178d73cd423b500584742e183faffa10c77eb5eca07f512dfdd9c5b74ef352"
+  }
+}
