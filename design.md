@@ -30,6 +30,7 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 - Três escolhas de entrada com a mesma altura, padding e peso visual. Desktop em três colunas; tablet e celular em uma coluna com linhas iguais. Título, explicação, visual e ação na mesma ordem.
 - Botões principais brancos, texto escuro; secundários neutros. Uma ação principal por decisão. Novas ações de descoberta usam cápsulas; controles de vídeo conservam sua proporção aprovada.
 - Hover do catálogo: área clicável 44 × 44 px; círculo contornado visível 32 px de diâmetro, raio 16 px; círculo branco 28 px. SVG do mais, check e seta com 20 px, centralizado. Não substituir por glifos tipográficos de alinhamento variável.
+- Hover depende de mouse disponível (`any-hover`/`any-pointer`) e ignora eventos de toque. Não desativar pela largura: uma janela de 752 px com mouse também tem prévia. A capa e o corpo da prévia têm um botão de abertura cobrindo a superfície; ações como Minha lista ficam acima dele e não abrem a ficha. O clique respeita os pré-requisitos e o retorno de foco ao card.
 - Intenção de hover 300 ms, expansão 220 ms, tolerância de saída 120 ms, fechamento 160 ms. Preview sobreposto, sem mover os outros cards, limitado às bordas da tela. Respeitar movimento reduzido.
 
 ## Onboarding obrigatório

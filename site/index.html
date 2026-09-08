@@ -292,6 +292,11 @@
   /* preview no hover (desktop): a miniatura cresce num cartão flutuante com ações e a ficha mínima */
   #preview { position: fixed; z-index: 80; background: var(--panel); border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,.8); opacity: 0; transform: scale(.94); transition: opacity 200ms ease, transform 220ms cubic-bezier(.2,.8,.2,1); }
   #preview.on { opacity: 1; transform: none; }
+  #preview .preview-open { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; background: transparent; border: 0; border-radius: inherit; cursor: pointer; }
+  #preview .preview-open:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+  #preview .pv-actions { position: relative; z-index: 2; pointer-events: none; }
+  #preview .pv-actions button { pointer-events: auto; }
+  #preview .pv-body > .guide-primary { position: relative; z-index: 2; }
   #preview.closing { opacity: 0; transform: scale(.97); pointer-events: none; transition-duration: 160ms; }
   #preview .art { border-radius: 0; aspect-ratio: 16/9; }
   #preview .art.has-cover .foot { opacity: 0; }   /* a arte já traz o título; a ficha fica no corpo do cartão */
@@ -365,7 +370,6 @@
     .chips { padding-bottom: 22px; }
     .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
     .art { aspect-ratio: 16/9; }
-    #preview { display: none; }
     .rowsec .head { padding-bottom: 12px; }
     .rowsec .arrows { display: flex; gap: 0; }
     .rowsec h2 { font-size: 20px; }
@@ -1028,7 +1032,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
 
   // ---------- preview no hover (desktop) ----------
   // Parar o mouse ~300 ms num card abre um cartão flutuante ancorado nele, com a arte maior, ações e a ficha mínima.
-  const PREVIEW_OK = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 861px)");
+  const PREVIEW_OK = window.matchMedia("(any-hover: hover) and (any-pointer: fine)");
   let pvTimer = null, pvSlug = null;
   function previewHtml(s) {
     if(DISCOVERY?.locked(s.slug)) return `${artHtml(s, coverImg(s, "cover", "wide", { eager: true }))}<div class="pv-body"><div class="pv-name">${esc(s.name)}</div><p class="pv-sub">${esc(DISCOVERY.status(s))}</p><button class="guide-primary" data-act="open" data-slug="${esc(s.slug)}">Ver pré-requisitos</button></div>`;
@@ -1050,9 +1054,10 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     if (!DISCOVERY?.completed || !card.isConnected || state.open || !PREVIEW_OK.matches) return;
     const s = BY[card.dataset.slug]; if (!s) return;
     clearPreviewTimers();
-    const r = card.getBoundingClientRect(), pv = $("preview");
+    const r = (card.querySelector(".art") || card).getBoundingClientRect(), pv = $("preview");
     pvCard = card; pvSlug = s.slug;
-    pv.innerHTML = previewHtml(s); pv.classList.remove("on", "closing");
+    pv.innerHTML = `<button class="preview-open" data-act="open" data-slug="${esc(s.slug)}" aria-label="Abrir ${esc(s.name)}"></button>` + previewHtml(s);
+    pv.classList.remove("on", "closing");
     const width = Math.min(Math.max(r.width * 1.35, 340), 420, innerWidth - 32);
     pv.style.width = width + "px"; pv.hidden = false;
     const height = pv.offsetHeight;
@@ -1075,19 +1080,21 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     }, 120);
   }
   function keepPreview() { clearTimeout(pvExit); clearTimeout(pvClose); $("preview").classList.remove("closing"); if (!$("preview").hidden) $("preview").classList.add("on"); }
-  document.addEventListener("mouseover", e => {
-    if (!PREVIEW_OK.matches || state.open) return;
+  document.addEventListener("pointerover", e => {
+    if (e.pointerType === "touch" || e.buttons || !PREVIEW_OK.matches || state.open) return;
     if (e.target.closest("#preview")) { keepPreview(); return; }
     const card = e.target.closest(".card[data-slug]"); if (!card || card.contains(e.relatedTarget)) return;
     if (pvCard === card && !$("preview").hidden) { keepPreview(); return; }
     hidePreview(); pvTimer = setTimeout(() => showPreview(card), 300);
   });
-  document.addEventListener("mouseout", e => {
+  document.addEventListener("pointerout", e => {
+    if (e.pointerType === "touch") return;
     const card = e.target.closest(".card[data-slug]");
     if (card && !(e.relatedTarget instanceof Element && (card.contains(e.relatedTarget) || e.relatedTarget.closest("#preview")))) schedulePreviewExit();
   });
-  $("preview").addEventListener("mouseleave", e => { if (!(e.relatedTarget instanceof Node && pvCard?.contains(e.relatedTarget))) schedulePreviewExit(); });
-  $("preview").addEventListener("mouseenter", keepPreview);
+  $("preview").addEventListener("pointerleave", e => { if (!(e.relatedTarget instanceof Node && pvCard?.contains(e.relatedTarget))) schedulePreviewExit(); });
+  $("preview").addEventListener("pointerenter", keepPreview);
+  PREVIEW_OK.addEventListener("change", hidePreview);
   $("hero").addEventListener("mouseenter", () => { heroHover = true; });
   $("hero").addEventListener("mouseleave", () => { heroHover = false; });
   $("hero").addEventListener("focusin", () => { heroHover = true; });
