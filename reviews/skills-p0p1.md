@@ -27,3 +27,9 @@ As correções de hybrid-oferta separam criar offerbook, pricing e diagnóstico.
 Testes executam o runtime e o motor com dados sintéticos, bloqueiam rede no cenário de anúncios e comparam identidade, versões e conteúdo entre pacote, portable, ZIP, catálogo e colável. Não há teste contra conta real. Simulações conversacionais foram revisadas pelo agente autor, sem avaliador independente. Isso não garante aderência de todo modelo/hospedeiro às instruções.
 
 OKF permanece draft, sem revisão editorial alegada. Uso não renova validade. Registros ficam privados fora do pacote e dos repositórios. Sem observação contínua, não afirmar ausência de uso. Sem agendador autorizado, não prometer alertas. As 47 skills legadas restantes ainda aguardam migração completa; quatro delas receberam somente as correções de procedimento desta rodada.
+
+## Resultado técnico desta rodada
+
+Depois de integrar a main atual, 52 testes passaram; o validador aceitou 52 pacotes e o scanner Hermes bloqueou zero. O build foi repetido sem mudar os 1.308 arquivos de skills, docs e portable, incluindo ZIPs. Os 51 cards e seus textos editoriais foram comparados com a base e preservados. Nenhum dado pessoal foi usado nos testes.
+
+O quick_validate local do skill-creator recusou o campo compatibility, já usado pelo projeto. Esse campo é aceito pela [especificação Agent Skills](https://agentskills.io/specification); foi preservado e validado pelas checagens do repositório. Isso é uma divergência do validador local, não aprovação de instalação em todos os hospedeiros.
