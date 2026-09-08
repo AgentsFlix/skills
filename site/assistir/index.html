@@ -365,14 +365,8 @@ a { color: inherit; text-decoration: none; }
 .consent .no { background: rgba(109,109,110,.6); color: #fff; }
 @media (max-width: 600px) { .consent { left: 8px; right: 8px; bottom: 8px; padding: 12px; } }
 </style>
-<script>
-// Microsoft Clarity (projeto yenn89e53y): mapas de calor e gravações de sessão para entender o uso. Texto digitado é mascarado.
-// Sem cookie até a pessoa aceitar (barra de consentimento, LGPD): antes disso o Clarity roda no modo sem cookie.
-(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yenn89e53y");
-window.CONSENT_KEY = "agentflix-consent";
-(function () { let c = null; try { c = localStorage.getItem(window.CONSENT_KEY); } catch (e) {} window.clarity("consentv2", { ad_Storage: "denied", analytics_Storage: c === "granted" ? "granted" : "denied" }); })();
-window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((k) => window.clarity("set", k, String(tags[k]))); if (evt) window.clarity("event", evt); } catch (e) {} };
-</script>
+<script src="/analytics.js"></script>
+<script src="/clipboard.js"></script>
 </head>
 <body>
 
@@ -590,7 +584,7 @@ function showErr(msg) { $("spin").hidden = true; $("err").textContent = msg; $("
 function resetOverlays() { $("postplay").hidden = true; $("preplay").hidden = true; closeCheckout(); fecharEscolha(); $("player").classList.remove("pp", "pre"); clearInterval(state.ppTimer); $("toast").hidden = true; }
 function loadEp(season, ep, { from } = {}) {
   state.season = season; state.ep = ep; const e = curEp(); state.lastChapter = -1;
-  clar("assistiu", { serie: SERIE.slug, episodio: `T${sN(season)}E${ep + 1}` });
+  window.clar?.("assistiu", { serie: SERIE.slug, episodio: `T${sN(season)}E${ep + 1}` });
   resetOverlays();
   $("ctl-title").textContent = SERIE.name; $("ctl-ep").textContent = `T${sN(season)}:E${ep + 1} ${e.t}`;
   $("mtitle").innerHTML = `<b>${esc(SERIE.name)}</b> · T${sN(season)}:E${ep + 1} ${esc(e.t)}`;
@@ -622,7 +616,7 @@ function periodSel(a, uid, k) {
   return `<div class="psel-lbl">PERÍODO</div><div class="psel-row"><div class="psel ${open ? "open" : ""}" data-psel="${kk}"><button class="psel-btn" data-act="psel-toggle" data-key="${kk}">${esc(cur.label)}<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>${menu}</div><button class="btn primary" data-act="ext" data-url="${esc(cur.url)}" data-k="${k}">${esc(a.cta || a.label)} · ${esc(cur.label)} ↗</button></div>`;
 }
 function openCheckout(k, { pausar = true } = {}) {
-  clar("parada_compra", { serie: SERIE.slug });
+  window.clar?.("parada_compra", { serie: SERIE.slug });
   const e = curEp(); const c = chapters(e)[k]; const a = c.acao;
   if (pausar) video.pause(); openDrawer(false); openPop(false); $("toast").hidden = true;
   state.checkout = k; $("player").classList.add("checkout");
@@ -669,15 +663,16 @@ function mostrarContinuar(k, msg) {
   $("vidcap").innerHTML = `<i></i><span><b>Pausado.</b> ${msg}</span>`; $("vidcap").hidden = false;
 }
 function closeCheckout() { state.checkout = null; $("player").classList.remove("checkout"); $("checkout").hidden = true; $("vidcap").hidden = true; }
-function copiarPrompt(k) {
+async function copiarPrompt(k) {
   const e = curEp(); const a = chapters(e)[k] && chapters(e)[k].acao; if (!a) return;
   const texto = a.texto || ""; const box = $("checkout").querySelector(".cmdbox"); const lbl = box && box.querySelector(".cta-lbl");
-  const done = () => { markDoneStore(e.uid, k); paintMarks(); clar("prompt_copiado", { serie: SERIE.slug }); if (box) { box.classList.add("copied"); if (lbl) lbl.textContent = "Copiado ✓"; } if (state.checkout === k) mostrarContinuar(k, "Cole no Codex e dê Enter. Quando terminar, clique em Continuar o vídeo."); };
-  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texto).then(done, done);
-  else { const ta = document.createElement("textarea"); ta.value = texto; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (err) {} ta.remove(); done(); }
+  const done = () => { markDoneStore(e.uid, k); paintMarks(); window.clar?.("prompt_copiado", { serie: SERIE.slug }); if (box) { box.classList.add("copied"); if (lbl) lbl.textContent = "Copiado ✓"; } if (state.checkout === k) mostrarContinuar(k, "Cole no Codex e dê Enter. Quando terminar, clique em Continuar o vídeo."); };
+  window.clar?.('copia_tentada',{serie:SERIE.slug,tipo:'prompt_player'});
+  if (await window.agentflixCopy?.(texto)) done();
+  else { window.clar?.('copia_falhou',{serie:SERIE.slug,tipo:'prompt_player'});if(box)box.classList.remove('copied');if(lbl)lbl.textContent='Não foi possível copiar. Selecione o texto.'; }
 }
 function goExternal(url, k) {
-  clar("comprar_clicado", { serie: SERIE.slug });
+  window.clar?.("comprar_clicado", { serie: SERIE.slug });
   try { window.open(url, "_blank", "noopener"); } catch (err) {}
   const e = curEp(); const a = chapters(e)[k] && chapters(e)[k].acao; if (!a) return;
   markDoneStore(e.uid, k); paintMarks();
@@ -756,7 +751,7 @@ function escolher(i) {
   const e = curEp(); const ch = e.escolha; if (!ch || !state.escolha) return;
   const o = ch.opcoes[i]; if (!o || o.em_breve) return;
   const si = seasonIdxByN(o.temporada); if (si < 0 || !SERIE.seasons[si].eps.length) return;
-  store.set(caminhoKey(), { temporada: o.temporada, label: o.label, at: Date.now() }); clar("escolheu_caminho", { serie: SERIE.slug, caminho: o.label });
+  store.set(caminhoKey(), { temporada: o.temporada, label: o.label, at: Date.now() }); window.clar?.("escolheu_caminho", { serie: SERIE.slug, caminho: o.label });
   fecharEscolha(); loadEp(si, 0, { from: 0 });
   const t = $("toast"); t.className = "toast"; delete t.dataset.act; t.innerHTML = `<b>VOCÊ ESCOLHEU →</b>${esc(o.label)}`; t.hidden = false; clearTimeout(state.toastTimer); state.toastTimer = setTimeout(() => { t.hidden = true; }, 3500);
 }
@@ -825,9 +820,9 @@ document.addEventListener("click", (ev) => {
   else if (a === "psel-pick") { state.periodo[el.dataset.key] = +el.dataset.i; state.pselOpen = null; if (state.checkout !== null) openCheckout(state.checkout); }
   else if (a === "ext") goExternal(el.dataset.url, +el.dataset.k);
   else if (a === "copiar-prompt") copiarPrompt(+el.dataset.k);
-  else if (a === "passo-feito") { const e = curEp(); markDoneStore(e.uid, +el.dataset.k); paintMarks(); clar("passo_feito", { serie: SERIE.slug }); closeCheckout(); video.play().catch(() => {}); }
+  else if (a === "passo-feito") { const e = curEp(); markDoneStore(e.uid, +el.dataset.k); paintMarks(); window.clar?.("passo_feito", { serie: SERIE.slug }); closeCheckout(); video.play().catch(() => {}); }
   else if (a === "checkout-skip") { closeCheckout(); video.play().catch(() => {}); }
-  else if (a === "checkout-continuar") { clar("continuar_clicado", { serie: SERIE.slug }); closeCheckout(); video.play().catch(() => {}); }
+  else if (a === "checkout-continuar") { window.clar?.("continuar_clicado", { serie: SERIE.slug }); closeCheckout(); video.play().catch(() => {}); }
   else if (a === "buy") { if (!$("preplay").hidden) return; const k = el.dataset.k !== undefined ? +el.dataset.k : buyIdx(curEp()); if (k >= 0) { if (state.checkout !== null) { closeCheckout(); video.play().catch(() => {}); } else openCheckout(k); } }
   else if (a === "mark") { ev.stopPropagation(); const k = +el.dataset.k; const c = chapters(curEp())[k]; video.currentTime = c.t; state.lastChapter = k; paint(); if (c.acao && c.acao.parar) { state.stopped[doneKey(curEp().uid, k)] = true; openCheckout(k); } }
   else if (a === "close-player") { clearInterval(state.ppTimer); show("title"); }
@@ -896,9 +891,9 @@ fetch("series.json", { cache: "no-store" }).then((r) => r.json()).then((j) => {
   <div class="acts"><button class="ok" data-consent="granted">Aceitar</button><button class="no" data-consent="denied">Agora não</button></div>
 </div>
 <script>
-(function () { const bar = document.getElementById("consent"); let c = null; try { c = localStorage.getItem(window.CONSENT_KEY); } catch (e) {}
+(function () { const consentKey = "agentflix-consent", bar = document.getElementById("consent"); let c = null; try { c = localStorage.getItem(consentKey); } catch (e) {}
   if (!c) bar.hidden = false;
-  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-consent]"); if (!b) return; const v = b.dataset.consent; try { localStorage.setItem(window.CONSENT_KEY, v); } catch (err) {} bar.hidden = true; window.clarity("consentv2", { ad_Storage: "denied", analytics_Storage: v === "granted" ? "granted" : "denied" }); });
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-consent]"); if (!b) return; const v = b.dataset.consent; try { localStorage.setItem(consentKey, v); } catch (err) {} bar.hidden = true; window.clarity?.("consentv2", { ad_Storage: "denied", analytics_Storage: v === "granted" ? "granted" : "denied" }); });
 })();
 </script>
 </body>

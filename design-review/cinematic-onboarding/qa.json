@@ -1,0 +1,32 @@
+{
+  "report": [
+    {
+      "width": 1440,
+      "equalHeights": true,
+      "keyboard": true,
+      "explicitContinue": true,
+      "restoration": true,
+      "menuGated": true,
+      "noErrors": true
+    },
+    {
+      "width": 768,
+      "equalHeights": true,
+      "keyboard": true,
+      "explicitContinue": true,
+      "restoration": true,
+      "menuGated": true,
+      "noErrors": true
+    },
+    {
+      "width": 390,
+      "equalHeights": true,
+      "keyboard": true,
+      "explicitContinue": true,
+      "restoration": true,
+      "menuGated": true,
+      "noErrors": true
+    }
+  ],
+  "paths": 84
+}
