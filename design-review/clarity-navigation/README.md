@@ -1,10 +1,10 @@
 # Navegação e medição após a revisão do Clarity
 
-Pedido do Zé em 08/09/2026: corrigir os problemas identificados nas gravações. Base: main, b7576d0. Trabalho isolado da integração Para o humano.
+Pedido do Zé em 08/09/2026: corrigir os problemas identificados nas gravações. Base das capturas antes: main, eda08c9 (PR #48). Menu Ler e leitor Hormozi preservados.
 
 ## Comportamento para revisar
 
-- Início, marca e Meu caminho voltam à recomendação ou à pergunta atual sem apagar escolhas.
+- Início, marca e Meu caminho voltam à recomendação ou à pergunta atual sem apagar escolhas, inclusive depois de acessar Ler. A conclusão de uma primeira visita abre o Início mesmo quando a entrada veio de um link de leitura ou skill.
 - Refazer minhas escolhas é a ação explícita de reinício. O catálogo fica bloqueado até concluir novamente.
 - Respostas e conclusão permanecem no sessionStorage da aba. Recarregar ou ir ao player e voltar restaura o percurso; uma aba sem estado começa pelo onboarding.
 - Estado salvo é validado contra as perguntas atuais. Instalação manual e dependências permanecem independentes.

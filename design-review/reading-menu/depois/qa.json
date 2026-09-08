@@ -1,0 +1,35 @@
+{
+  "report": [
+    {
+      "width": 1440,
+      "onlyHormozi": true,
+      "searchScoped": true,
+      "onboarding": true,
+      "cardReturn": true,
+      "history": true,
+      "filtersIndependent": true
+    },
+    {
+      "width": 768,
+      "onlyHormozi": true,
+      "searchScoped": true,
+      "onboarding": true,
+      "cardReturn": true,
+      "history": true,
+      "filtersIndependent": true
+    },
+    {
+      "width": 390,
+      "onlyHormozi": true,
+      "searchScoped": true,
+      "onboarding": true,
+      "cardReturn": true,
+      "history": true,
+      "filtersIndependent": true
+    }
+  ],
+  "futureReaderRegistration": true,
+  "prerequisites": true,
+  "hover": true,
+  "touch": true
+}
