@@ -34,7 +34,7 @@ def main() -> int:
             else:
                 print(f"ok   {f} <script> #{i} ({len(js):,} chars)")
     if node:
-        for f in sorted([*(ROOT / "site" / "api").rglob("*.js"), *(ROOT / "site").glob("*.js")]):
+        for f in sorted([*(ROOT / "site" / "api").rglob("*.js"), *(ROOT / "site").glob("*.js"), *(ROOT / "site/assistir").glob("*.js")]):
             r = subprocess.run([node, "--check", str(f)], capture_output=True, text=True)
             if r.returncode:
                 print(f"ERRO {f.relative_to(ROOT)}: {r.stderr.strip()[:400]}"); erros += 1
