@@ -35,11 +35,11 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 
 ## Onboarding obrigatório
 
-1. Cada carregamento da vitrine começa pelas três escolhas. A marcação de instalação persiste; a conclusão do onboarding não é salva para pular a entrada.
+1. A primeira visita na aba começa pelas três escolhas. A pedido do Zé após a revisão do Clarity em 08/09/2026, respostas e conclusão ficam no sessionStorage dessa aba: recarregar ou voltar do player restaura o caminho. Uma aba sem estado começa pelo guia. Não guardar a conclusão no localStorage nem compartilhar a seleção entre dispositivos. Estado inválido ou incompatível com a curadoria atual volta à entrada.
 2. Não renderizar a lista completa nem liberar busca, Minha lista ou fichas antes de terminar as perguntas e clicar em `Abrir minha seleção`. Link direto de skill aguarda esse passo.
 3. Quantidade disponível não é progresso. Cada ponto representa uma skill. O total e os grupos vêm de `vitrine.json`, nunca de porcentagens fixas. Coleções mostram nomes e contagens individuais. As perguntas mostram seu número, sem barra de progresso inventada.
 4. A resposta final define o objetivo. A peça recomendada é a primeira etapa ainda necessária para esse objetivo, respeitando os pré-requisitos e as instalações marcadas.
-5. Depois de entrar, manter a recomendação no topo, com motivo e ação. Permitir refazer as escolhas. Filtros e busca não apagam o objetivo escolhido.
+5. Depois de entrar, manter a recomendação no topo, com motivo e ação. Início, marca e Meu caminho retornam à recomendação; durante as perguntas, Início e Como escolher retornam à pergunta atual. Navegação, filtros e busca não apagam respostas nem o objetivo. Somente Refazer minhas escolhas ou Trocar de caminho reinicia o guia e bloqueia novamente o catálogo até concluir a nova escolha.
 6. Curadoria ausente ou inválida mostra erro com nova tentativa. Não abrir o catálogo antigo como atalho que ignora as dependências.
 
 ## Instalado e pré-requisitos
@@ -55,6 +55,8 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 - O bloqueio é orientação de uso do catálogo público, não autorização de acesso ou proteção do download público.
 
 ## Conteúdo e verificação
+
+Medição: Clarity carrega somente nos domínios públicos de produção; localhost e previews não coletam. `?qa=1` desativa a coleta neste navegador, inclusive no player, até `?qa=0`. Ambiente e versão identificam a coleta nova. Eventos distinguem entrada/respostas/conclusão do guia, restauração/consulta do caminho, recomendação, bloqueio, encaminhamento, ficha liberada, tentativa/sucesso/falha de cópia e instalação manual. Não enviar conteúdo digitado ou comandos nos eventos. Copiar só mostra sucesso quando o navegador confirma; falha não marca instalação nem continua o vídeo. O evento automático Fazer logon não representa o botão Entrar da abertura.
 
 Comandos das oito plataformas permanecem idênticos. Texto de uso de uma régua é separado do comando de instalação. Marca pública: AgentFlix. Links de indicação não mudam. Exemplos de conversa continuam identificados como fictícios.
 

@@ -13,6 +13,12 @@
       if (Object.values(by).some(s=>s.cat!=='lendas'&&!data.skills[s.slug]) || available.some(slug=>!Array.isArray(data.skills[slug].antes))) throw Error('Curadoria incompleta');
       const journey = window.AgentFlixJourney(data, Object.keys(by), {getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)});
       let door = null, trail = ['inicio'], result = null, completeOnboarding = false;
+      let kind = null, answers = [];
+      const visit = window.AgentFlixVisit(data, {getItem:key=>sessionStorage.getItem(key),setItem:(key,value)=>sessionStorage.setItem(key,value),removeItem:key=>sessionStorage.removeItem(key)});
+      const restored = visit.load();
+      if (restored) ({door,trail,result,kind,answers,completed:completeOnboarding} = restored);
+      const event = (name, tags) => window.clar?.(name,{porta:kind,objetivo:result?.skill,...tags});
+      const saveVisit = () => visit.save(kind,answers,completeOnboarding);
       let lens = null, current = null, run = 0, timeout = null, release = null, target = null;
       const meta = s => data.skills[s.slug];
       const name = slug => by[slug]?.name || slug;
@@ -32,16 +38,22 @@
           <section id="guide" class="guide" aria-label="Guia para escolher uma skill" hidden></section><p id="discovery-status" class="sr-only" role="status"></p>`;
         $('doors').querySelectorAll('[data-door]').forEach(b=>b.addEventListener('click',()=>start(b.dataset.door)));
       }
-      function start(kind) {
-        door=kind==='guia'?null:kind; completeOnboarding=false; result=null; target=null;
-        trail=[kind==='avulsa'?'o_que_agora':'inicio'];
+      function start(choice) {
+        kind=choice;answers=[];door=kind==='guia'?null:kind; completeOnboarding=false; result=null; target=null;
+        trail=[kind==='avulsa'?'o_que_agora':'inicio'];saveVisit();event('onboarding_iniciado');
         $('discovery').hidden=false; $('doors').hidden=true; $('guide').hidden=false;
         hooks.filter(); paintGuide(); scroll($('discovery')); titleFocus($('guide'));
       }
       function toggleGuide() {
+        event('onboarding_reiniciado');visit.clear();kind=null;answers=[];trail=['inicio'];
         completeOnboarding=false;result=null;target=null;door=null;
         $('discovery').hidden=false;$('doors').hidden=false;$('guide').hidden=true;
         hooks.filter();scroll($('discovery'));titleFocus($('discovery'));
+      }
+      function resume() {
+        // Navegar não reinicia perguntas nem apaga o filtro e o objetivo.
+        const destination=completeOnboarding?$('recommendation'):kind?$('guide'):$('discovery');
+        event('caminho_consultado');scroll(destination);titleFocus(destination);
       }
       function recommendation() {
         const r=result&&journey.recommend(result.skill);if(!r)return '';
@@ -50,18 +62,18 @@
         return `<article class="recommended-piece" data-recommended="${esc(s.slug)}"><img alt="" src="${cover(s.slug)}"><div><p class="eyebrow">${r.done?'Seu caminho está em dia':'Recomendado para você'}</p><h2>${esc(s.name)}</h2><p>${esc(s.sub)}</p><p class="recommend-reason">${esc(reason)}</p>${completeOnboarding?`<button class="guide-primary" data-act="open" data-slug="${esc(s.slug)}">${journey.has(s.slug)?'Rever a skill':'Começar por aqui'}</button>`:''}</div></article>`;
       }
       function renderRecommendation() {
-        $('recommendation').innerHTML = completeOnboarding ? `<div class="selection-heading"><div><p class="eyebrow">Seu caminho</p><p>Objetivo: ${esc(name(result.skill))}</p></div><button data-discover-guide>Refazer minhas escolhas</button></div>${recommendation()}` : '';
+        $('recommendation').innerHTML = completeOnboarding ? `<div class="selection-heading"><div><p class="eyebrow">Seu caminho</p><p>Objetivo: ${esc(name(result.skill))}</p></div><button data-discover-reset>Refazer minhas escolhas</button></div>${recommendation()}` : '';
       }
       function paintGuide() {
         const node=data.guia[trail.at(-1)];
         const content=result ? recommendation()+`<button class="guide-primary enter-selection" data-enter-selection>Abrir minha seleção <span aria-hidden="true">→</span></button>` : `<p class="eyebrow">Pergunta ${trail.length}</p><h2>${esc(node.p)}</h2>${node.ajuda?`<p>${esc(node.ajuda)}</p>`:''}<div class="guide-options">${node.o.map((o,i)=>`<button data-option="${i}">${esc(o.t)}<span aria-hidden="true">›</span></button>`).join('')}</div>`;
         $('guide').classList.toggle('has-result',!!result);
         $('guide').innerHTML=content+`<div class="guide-nav">${trail.length>1||result?'<button data-guide-back>← Voltar</button>':''}<button data-guide-reset>Trocar de caminho</button></div>`;
-        $('guide').querySelectorAll('[data-option]').forEach(b=>b.addEventListener('click',()=>{const o=node.o[Number(b.dataset.option)];if(o.vai)trail.push(o.vai);else result=o;paintGuide();titleFocus($('guide'));}));
-        $('guide').querySelector('[data-guide-back]')?.addEventListener('click',()=>{if(result)result=null;else trail.pop();paintGuide();titleFocus($('guide'));});
+        $('guide').querySelectorAll('[data-option]').forEach(b=>b.addEventListener('click',()=>{const index=Number(b.dataset.option),o=node.o[index];event('onboarding_resposta',{pergunta:trail.at(-1),opcao:index});answers.push(index);if(o.vai)trail.push(o.vai);else result=o;saveVisit();if(result)event('recomendacao_exibida');paintGuide();titleFocus($('guide'));}));
+        $('guide').querySelector('[data-guide-back]')?.addEventListener('click',()=>{answers.pop();if(result)result=null;else trail.pop();saveVisit();paintGuide();titleFocus($('guide'));});
         $('guide').querySelector('[data-guide-reset]').addEventListener('click',toggleGuide);
         $('guide').querySelector('[data-enter-selection]')?.addEventListener('click',()=>{
-          completeOnboarding=true;$('discovery').hidden=true;hooks.filter();renderRecommendation();scroll($('recommendation'));titleFocus($('recommendation'));hooks.enter();
+          completeOnboarding=true;saveVisit();event('onboarding_concluido');$('discovery').hidden=true;hooks.filter();renderRecommendation();scroll($('recommendation'));titleFocus($('recommendation'));hooks.enter();
         });
       }
       function status(s) {
@@ -76,7 +88,7 @@
       }
       function gate(s) {
         target=s.slug;const next=journey.firstNeeded(s.slug);
-        return `<div class="prerequisite-gate"><p class="eyebrow">Uma etapa antes</p><h2>${esc(s.name)}</h2><p>Para liberar esta skill, marque os pré-requisitos como instalados.</p><ul>${journey.missing(s.slug).map(dep=>`<li>${esc(name(dep))}</li>`).join('')}</ul><p>Comece por <strong>${esc(name(next))}</strong>. Depois de instalar, confirme na ficha.</p><button class="guide-primary" data-act="open" data-slug="${esc(next)}">Ir para ${esc(name(next))} <span aria-hidden="true">→</span></button></div>`;
+        return `<div class="prerequisite-gate"><p class="eyebrow">Uma etapa antes</p><h2>${esc(s.name)}</h2><p>Para liberar esta skill, marque os pré-requisitos como instalados.</p><ul>${journey.missing(s.slug).map(dep=>`<li>${esc(name(dep))}</li>`).join('')}</ul><p>Comece por <strong>${esc(name(next))}</strong>. Depois de instalar, confirme na ficha.</p><button class="guide-primary" data-act="open" data-prerequisite="${esc(s.slug)}" data-slug="${esc(next)}">Ir para ${esc(name(next))} <span aria-hidden="true">→</span></button></div>`;
       }
       function installationButton(s) {
         return `<button class="installed-control" data-installed="${esc(s.slug)}" aria-pressed="${journey.has(s.slug)}" aria-describedby="installation-help">${journey.has(s.slug)?'✓ Instalado':'Marcar como instalado'}</button>`;
@@ -143,6 +155,7 @@
         panel.querySelectorAll('[data-installed]').forEach(button=>button.addEventListener('click',e=>{
           const outcome=journey.setInstalled(s.slug,!journey.has(s.slug));
           if(!outcome.ok)return;
+          event(journey.has(s.slug)?'instalacao_marcada':'instalacao_desmarcada',{skill:s.slug,salvo:outcome.saved});
           panel.querySelectorAll('[data-installed]').forEach(control=>{
             control.setAttribute('aria-pressed',String(journey.has(s.slug)));
             control.textContent=journey.has(s.slug)?'✓ Instalado':'Marcar como instalado';
@@ -165,8 +178,13 @@
         if(data.amostras[s.slug]){complete();$('sample-play').addEventListener('click',play);$('sample-all').addEventListener('click',()=>{complete();$('sample-play').dataset.playing='false';});}
       }
       home();
+      if (kind) {
+        $('doors').hidden=true;$('guide').hidden=completeOnboarding;$('discovery').hidden=completeOnboarding;
+        if(completeOnboarding)renderRecommendation();else paintGuide();
+        event('caminho_restaurado');
+      } else event('onboarding_exibido');
       window.addEventListener('storage',e=>{if(e.key===journey.key||e.key===null){journey.reload();hooks.changed(true);renderRecommendation();}});
-      return {matches,card,context,extras,bind,cancel,setDoor,toggleGuide,installation,installationButton,gate,status,
+      return {matches,card,context,extras,bind,cancel,setDoor,toggleGuide,resume,installation,installationButton,gate,status,
         locked:journey.locked, renderRecommendation, endVisit(){target=null;},
         get completed(){return completeOnboarding;},
         rows:data.fileiras.map(f=>({id:f.id,title:()=>f.titulo,note:f.sub,ids:available.filter(slug=>data.skills[slug].fileira===f.id),journey:true})),
