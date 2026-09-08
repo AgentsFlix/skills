@@ -114,8 +114,8 @@
             <p class="watch-meta">Série <span>·</span> ${esc(series.gen?.[0] || "Passo a passo")} <span>·</span> ${metadata(series)}</p>
             <p class="watch-hero-description">${esc(series.sub || series.syn)}</p>
             <div class="watch-actions"><a class="watch-button primary" href="${esc(url(series, { ...r, number: series.seasons[r.season].n }))}" data-series="${esc(series.slug)}" data-play>${icon("play")}${started && !r.finished ? `Continuar T${series.seasons[r.season].n}:E${r.ep + 1}` : "Assistir"}</a><a class="watch-button secondary" href="${esc(url(series))}" data-series="${esc(series.slug)}">${icon("info")}Mais informações</a></div>
-            <div class="watch-hero-note">${esc((series.traits || []).slice(0, 2).join(" · "))}</div>
           </div>
+          <div class="watch-hero-note">${esc((series.traits || []).slice(0, 2).join(" · "))}</div>
         </section>`;
       }
 

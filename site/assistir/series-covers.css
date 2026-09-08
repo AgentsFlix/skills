@@ -1,97 +1,109 @@
-/* Capas editoriais: 3:2 no desktop/tablet, 2:3 até 600px.
-   cover_mobile ativa este formato; séries antigas mantêm seu enquadramento. */
+/* Arte horizontal de fundo no desktop/tablet; vertical só até 600px.
+   A troca de arte vem de cover_mobile. Texto e ações permanecem na interface. */
 .series-cover {
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 2;
+  height: 100%;
 }
 .series-cover img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-}
-.has-responsive-cover .watch-art {
-  aspect-ratio: 3 / 2;
-}
-.has-responsive-cover .watch-art img {
-  object-fit: contain;
-  transform: none;
-}
-.watch-hero.has-responsive-cover {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr);
-  align-items: center;
-  min-height: 0;
-  height: auto;
-  background: var(--panel);
+  object-fit: cover;
+  object-position: center;
 }
 .has-responsive-cover .watch-hero-art {
-  position: static;
-  grid-column: 2;
-  grid-row: 1;
-  z-index: auto;
+  inset: 0;
 }
 .has-responsive-cover .watch-hero-shade {
-  display: none;
+  background:
+    linear-gradient(
+      90deg,
+      #090b0fe8 0%,
+      #090b0fb3 28%,
+      #090b0f52 56%,
+      transparent 80%
+    ),
+    linear-gradient(0deg, #090b0fd9 0%, #090b0f33 45%, transparent 70%);
 }
 .has-responsive-cover .watch-hero-copy {
-  grid-column: 1;
-  grid-row: 1;
-  height: auto;
-  min-height: 0;
-  max-width: none;
-  padding: clamp(24px, 3vw, 48px);
+  max-width: 650px;
 }
-.has-responsive-cover .watch-hero-copy h1 {
-  font-size: clamp(30px, 3vw, 46px);
+.has-responsive-cover .tp-hero .series-cover {
+  position: absolute;
+  inset: 0;
 }
-.has-responsive-cover .watch-hero-note {
-  display: block;
-  position: static;
-  padding: 0;
-  margin-top: 24px;
-  background: none;
-  color: var(--muted);
-}
-.tp-panel.has-responsive-cover .title-back {
-  position: static;
-  width: fit-content;
-  margin: 8px 16px;
-}
-.has-responsive-cover .tp-hero {
-  aspect-ratio: auto;
-  background: var(--panel);
-}
-.has-responsive-cover .tp-shade,
 .has-responsive-cover .tp-hero::before {
   display: none;
 }
-.has-responsive-cover .tp-hero-text {
-  position: static;
-  margin: 0;
-  padding: 28px 44px;
+.has-responsive-cover .tp-hero {
+  aspect-ratio: 16 / 9;
 }
-@media (max-width: 900px) {
-  .watch-hero.has-responsive-cover {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
+.has-responsive-cover .tp-hero-text {
+  position: absolute;
+  left: 44px;
+  right: 44px;
+  bottom: 26px;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 601px) and (max-width: 860px) {
   .has-responsive-cover .watch-hero-copy {
-    padding: 28px;
+    max-width: 560px;
   }
-  .has-responsive-cover .watch-hero-copy h1 {
-    max-width: none;
+  .has-responsive-cover .tp-hero-text {
+    left: 24px;
+    right: 24px;
   }
 }
 @media (max-width: 600px) {
-  .series-cover,
   .has-responsive-cover .watch-art {
     aspect-ratio: 2 / 3;
   }
-  .has-responsive-cover .watch-hero-copy,
+  .watch-hero.has-responsive-cover {
+    height: auto;
+    min-height: 0;
+  }
+  .has-responsive-cover .watch-hero-art,
+  .has-responsive-cover .tp-hero .series-cover {
+    inset: 0 0 auto;
+    height: auto;
+    aspect-ratio: 2 / 3;
+  }
+  .has-responsive-cover .watch-hero-art img {
+    object-position: center;
+  }
+  .has-responsive-cover .watch-hero-shade {
+    background: linear-gradient(
+      0deg,
+      #111 0%,
+      #111 18%,
+      #111111e8 38%,
+      #11111133 58%,
+      transparent 76%
+    );
+  }
+  .has-responsive-cover .watch-hero-copy {
+    height: auto;
+    min-height: 0;
+    max-width: none;
+    padding: calc((100vw - 2 * var(--watch-gutter)) * 1.07) 22px 28px;
+  }
+  .has-responsive-cover .tp-hero {
+    aspect-ratio: auto;
+  }
+  .has-responsive-cover .tp-shade {
+    background: linear-gradient(
+      0deg,
+      var(--panel) 0%,
+      #181818f2 25%,
+      #18181833 55%,
+      transparent 75%
+    );
+  }
   .has-responsive-cover .tp-hero-text {
-    padding: 24px 22px;
+    position: relative;
+    inset: auto;
+    padding: 112% 18px 20px;
   }
 }
