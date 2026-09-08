@@ -8,7 +8,15 @@
 > de ativação abaixo. Claude: envie como conhecimento do Project, ou cole tudo no chat. Qualquer chat: cole tudo.
 > Versão 0.4.3. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
 >
-> **Texto de ativação (cole nas instruções):** Você tem no arquivo `habitos-que-cabem.md` uma skill chamada habitos-que-cabem. Quando eu pedir algo como "isso", siga o `## Procedure` desse arquivo à risca, use as seções `Referência:` dele no lugar dos arquivos que ele cita, e termine pela `## Verification`. Se faltar informação, pergunte antes de escrever.
+> **Texto de ativação (cole nas instruções):** Acesse https://raw.githubusercontent.com/AgentsFlix/skills/codex/habitos-que-cabem/skills/habitos-que-cabem/SKILL.md e leia a skill Hábitos que Cabem na Vida e as referências necessárias. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se essa skill já está instalada no seu ambiente; se não estiver e houver suporte, inspecione o pacote e instale pelo mecanismo disponível. Se não houver instalação de skills, aplique o procedimento nesta conversa e informe essa limitação.
+>
+> Antes de me fazer perguntas, consulte nossa conversa, sua memória local acessível e qualquer cartão de hábito já existente. Identifique quais inputs a skill exige, quais você já tem e quais ainda faltam. Separe fatos confirmados, informações antigas ou conflitantes e inferências. Não invente lembranças e não me peça novamente o que já está disponível e atual.
+>
+> Mostre uma síntese curta do contexto relevante e conduza a próxima etapa a partir dele. Se eu ainda não tiver escolhido um hábito, ajude-me a escolher sem decidir por mim. Faça apenas as perguntas necessárias. Toda pergunta aberta deve vir acompanhada de um exemplo de resposta baseado no que você recuperou da minha memória, deixando claro que é uma possibilidade. Sem memória relevante, informe isso e use exemplo explicitamente hipotético. Aproveite cada resposta para contextualizar as próximas perguntas.
+>
+> Siga o procedimento da skill para criar, registrar, ajustar ou retomar o hábito, conforme meu pedido e nosso contexto. Verifique a entrega pelos critérios da skill. Registre o uso e a revisão em armazenamento privado quando disponível, distinguindo execução da skill, entrega concluída e prática relatada por mim. Se não puder observar ou persistir uso, informe a limitação sem afirmar que não usei.
+>
+> Avalie se vale transformar o acompanhamento em rotina. Se valer, proponha frequência, horário, fuso, dados usados e política de alertas a partir do meu contexto. Explique como pausar. Ative apenas quando houver minha autorização e um agendador disponível; instalar esta skill não autoriza agendamento. Comece pelo bootstrap da memória e avance até a próxima informação ou decisão que realmente dependa de mim.
 
 ---
 
@@ -16,6 +24,9 @@
 
 Transforme uma intenção em uma ação que cabe na rotina. Use o contexto já conhecido pela pessoa e pelo agente,
 pergunte pelas lacunas e entregue um cartão do hábito. A revisão usa relatos reais; o resultado humano não é garantido.
+
+O prompt conversacional de entrada está em `references/ativacao.md`. Ele cobre acesso/instalação, bootstrap,
+elicitação e verificação; estas obrigações continuam válidas quando a skill é ativada por uma frase curta.
 
 ## When to Use
 
@@ -91,6 +102,7 @@ A operação está concluída somente quando seu aceite específico e os itens c
 
 ## Arquivos desta skill (incluídos abaixo)
 
+- `references/ativacao.md`
 - `references/conhecimento.okf.md`
 - `references/memoria-e-elicitacao.md`
 - `references/metodo-habitos.md`
@@ -102,6 +114,21 @@ A operação está concluída somente quando seu aceite específico e os itens c
 - `templates/estado-da-skill.md`
 - `templates/evento-de-uso.json`
 - `scripts/auditar.py`
+
+
+---
+
+## Referência: references/ativacao.md
+
+Acesse https://raw.githubusercontent.com/AgentsFlix/skills/codex/habitos-que-cabem/skills/habitos-que-cabem/SKILL.md e leia a skill Hábitos que Cabem na Vida e as referências necessárias. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se essa skill já está instalada no seu ambiente; se não estiver e houver suporte, inspecione o pacote e instale pelo mecanismo disponível. Se não houver instalação de skills, aplique o procedimento nesta conversa e informe essa limitação.
+
+Antes de me fazer perguntas, consulte nossa conversa, sua memória local acessível e qualquer cartão de hábito já existente. Identifique quais inputs a skill exige, quais você já tem e quais ainda faltam. Separe fatos confirmados, informações antigas ou conflitantes e inferências. Não invente lembranças e não me peça novamente o que já está disponível e atual.
+
+Mostre uma síntese curta do contexto relevante e conduza a próxima etapa a partir dele. Se eu ainda não tiver escolhido um hábito, ajude-me a escolher sem decidir por mim. Faça apenas as perguntas necessárias. Toda pergunta aberta deve vir acompanhada de um exemplo de resposta baseado no que você recuperou da minha memória, deixando claro que é uma possibilidade. Sem memória relevante, informe isso e use exemplo explicitamente hipotético. Aproveite cada resposta para contextualizar as próximas perguntas.
+
+Siga o procedimento da skill para criar, registrar, ajustar ou retomar o hábito, conforme meu pedido e nosso contexto. Verifique a entrega pelos critérios da skill. Registre o uso e a revisão em armazenamento privado quando disponível, distinguindo execução da skill, entrega concluída e prática relatada por mim. Se não puder observar ou persistir uso, informe a limitação sem afirmar que não usei.
+
+Avalie se vale transformar o acompanhamento em rotina. Se valer, proponha frequência, horário, fuso, dados usados e política de alertas a partir do meu contexto. Explique como pausar. Ative apenas quando houver minha autorização e um agendador disponível; instalar esta skill não autoriza agendamento. Comece pelo bootstrap da memória e avance até a próxima informação ou decisão que realmente dependa de mim.
 
 
 ---

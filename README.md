@@ -34,6 +34,8 @@ acessível do agente. Toda pergunta aberta traz exemplo contextualizado. Inclui 
 script opcional de auditoria local (Python 3.10+ e PyYAML). Funciona na conversa sem o script; auditoria persistente
 requer armazenamento e alertas recorrentes dependem de agendador autorizado. Nenhuma rotina é ativada na instalação.
 
+Para instalar e começar por conversa, copie o [prompt de ativação](skills/habitos-que-cabem/references/ativacao.md) e envie ao seu agente. Ele orienta o acesso à skill, o bootstrap da memória e a elicitação das lacunas.
+
 O pacote é gerado das fontes autorais do repositório privado por `build_hub.py --package habitos-que-cabem`.
 Está disponível nesta branch e nas distribuições geradas; a inclusão de card/capa na vitrine e uma nova release
 são etapas de publicação separadas. Os registros pessoais nunca vão para este repositório.

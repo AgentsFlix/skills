@@ -14,6 +14,9 @@ metadata:
 Transforme uma intenção em uma ação que cabe na rotina. Use o contexto já conhecido pela pessoa e pelo agente,
 pergunte pelas lacunas e entregue um cartão do hábito. A revisão usa relatos reais; o resultado humano não é garantido.
 
+O prompt conversacional de entrada está em `references/ativacao.md`. Ele cobre acesso/instalação, bootstrap,
+elicitação e verificação; estas obrigações continuam válidas quando a skill é ativada por uma frase curta.
+
 ## When to Use
 
 - “Quero encaixar a leitura na minha rotina”: criar.
@@ -88,6 +91,7 @@ A operação está concluída somente quando seu aceite específico e os itens c
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
 - `references/conhecimento.okf.md`
 - `references/memoria-e-elicitacao.md`
 - `references/metodo-habitos.md`

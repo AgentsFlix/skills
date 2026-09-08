@@ -419,6 +419,7 @@
       "description": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
         "references/avaliacao-de-rotina.md",
         "references/ciclo-de-vida.md",
         "references/conhecimento.okf.md",

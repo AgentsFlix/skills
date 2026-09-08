@@ -84,9 +84,12 @@ def referenced_files(body: str) -> list[str]:
     return re.findall(r"- `([^`]+)`", m.group(1)) if m else []
 
 def build_prompt(slug: str, fm: dict, body: str, files: list[str], version: str, act: str = "") -> tuple[str, str, list[str]]:
+    if "references/ativacao.md" in files:
+        act = (SKILLS / slug / "references/ativacao.md").read_text(encoding="utf-8").strip()
     if not act:
         desc = fm["description"]; trig = desc.split("Use quando")[-1].strip(": .…") if "Use quando" in desc else "isso"
         act = activation_text(slug, trig)
+    act_display = "\n".join(line.rstrip() for line in act.replace("\n", "\n> ").split("\n"))
     head = f"""# {fm['name']} · versão para colar
 
 > Esta é a mesma skill de {HUB_URL}, num arquivo só, para quem não instala skill:
@@ -97,7 +100,7 @@ def build_prompt(slug: str, fm: dict, body: str, files: list[str], version: str,
 > de ativação abaixo. Claude: envie como conhecimento do Project, ou cole tudo no chat. Qualquer chat: cole tudo.
 > Versão {version}. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
 >
-> **Texto de ativação (cole nas instruções):** {act}
+> **Texto de ativação (cole nas instruções):** {act_display}
 
 ---
 """

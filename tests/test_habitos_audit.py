@@ -154,6 +154,13 @@ Test knowledge
         self.assertEqual(report['knowledge_verified'][0]['by'], 'human:reviewer')
         self.assertEqual(len(report['knowledge_sha256']), 64)
 
+    def test_conversational_activation_survives_distribution(self):
+        prompt = (PACKAGE / 'references/ativacao.md').read_text().strip()
+        portable = ROOT / 'docs/.well-known/skills/habitos-que-cabem/references/ativacao.md'
+        self.assertEqual(portable.read_text().strip(), prompt)
+        combined = (ROOT / 'docs/prompt/habitos-que-cabem.md').read_text()
+        self.assertIn('**Texto de ativação (cole nas instruções):** ' + '\n'.join(line.rstrip() for line in prompt.replace('\n', '\n> ').split('\n')), combined)
+
     def test_mutation_lock_prevents_concurrent_transition(self):
         (self.root / '.mutation-lock').mkdir()
         with self.assertRaises(ValueError):
