@@ -1,0 +1,45 @@
+{
+  "report": [
+    {
+      "width": 1440,
+      "themes": 2,
+      "sizes": 5,
+      "chapters": 6,
+      "commands": 8,
+      "images": 2,
+      "stickyMenu": true,
+      "keyboard": true,
+      "onboarding": true,
+      "scope": true,
+      "persistence": true
+    },
+    {
+      "width": 768,
+      "themes": 2,
+      "sizes": 5,
+      "chapters": 6,
+      "commands": 8,
+      "images": 2,
+      "stickyMenu": true,
+      "keyboard": true,
+      "onboarding": true,
+      "scope": true,
+      "persistence": true
+    },
+    {
+      "width": 390,
+      "themes": 2,
+      "sizes": 5,
+      "chapters": 6,
+      "commands": 8,
+      "images": 2,
+      "stickyMenu": true,
+      "keyboard": true,
+      "onboarding": true,
+      "scope": true,
+      "persistence": true
+    }
+  ],
+  "onlyHormozi": true,
+  "loadRetry": true
+}

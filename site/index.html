@@ -410,6 +410,7 @@
 @media (max-width: 600px) { .consent { left: 8px; right: 8px; bottom: 8px; padding: 12px; } }
 </style>
 <link rel="stylesheet" href="vitrine.css">
+<link rel="stylesheet" href="human-reader.css">
 <script>
 // Microsoft Clarity (projeto yenn89e53y): mapas de calor e gravações de sessão para entender o uso. Texto digitado é mascarado.
 // Sem cookie até a pessoa aceitar (barra de consentimento, LGPD): antes disso o Clarity roda no modo sem cookie.
@@ -472,6 +473,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
 
 <script src="vitrine-state.js"></script>
 <script src="vitrine.js"></script>
+<script src="human-reader.js"></script>
 <script>
 (() => {
   "use strict";
@@ -808,6 +810,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   }
 
   function renderModal() {
+    window.AgentFlixReader?.unmount();
     const s = state.open ? BY[state.open] : null;
     const m = $("modal");
     if (!s) { DISCOVERY?.cancel(); m.hidden = true; m.innerHTML = ""; document.body.style.overflow = ""; return; }
@@ -818,7 +821,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     }
     m.innerHTML = `
       <div class="overlay" data-act="close">
-        <div class="panel" data-act="stop" role="dialog" aria-modal="true" aria-label="${esc(s.name)}">
+        <div class="panel ${window.AgentFlixReader?.supports(s.slug) ? 'has-human-reader' : ''}" data-act="stop" role="dialog" aria-modal="true" aria-label="${esc(s.name)}">
           <div class="top has-cover" data-cover-host>
             <div class="tint" style="background:radial-gradient(100% 130% at 80% 0%, ${s.tint} 0%, rgba(0,0,0,0) 70%)"></div>
             <div class="lines"></div>
@@ -869,6 +872,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       </div>`;
     m.hidden = false;
     DISCOVERY?.bind(s);
+    window.AgentFlixReader?.mount(m.querySelector('.panel'), s.slug);
     requestAnimationFrame(measureSynopsis);
     document.body.style.overflow = "hidden";
   }
@@ -970,7 +974,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     else if (act === "target") setTarget(el.dataset.target);
     else if (act === "search") toggleSearch();
     else if (act === "synopsis") { const expanded = el.parentElement.classList.toggle("expanded"); el.setAttribute("aria-expanded", String(expanded)); el.textContent = expanded ? "Recolher sinopse" : "Ler sinopse completa"; }
-    else if (act === "install-focus") { $("install-target").scrollIntoView({ block: "center", behavior: "smooth" }); $("install-target").focus({ preventScroll: true }); }
+    else if (act === "install-focus") { window.AgentFlixReader?.showSkill(); $("install-target").scrollIntoView({ block: "center", behavior: "smooth" }); $("install-target").focus({ preventScroll: true }); }
     else if (act === "copy") { e.preventDefault(); copyText(el); }
     else if (act === "chip") { hidePreview(); if (DISCOVERY && ["Tudo", "Minha lista"].includes(el.dataset.filter)) DISCOVERY.setDoor(null); state.filter = el.dataset.filter; renderChips(); renderCatalog(); window.scrollTo({ top: $("chips").offsetTop - 80, behavior: "smooth" }); }
     else if (act === "prev") scrollRow(el.dataset.row, -1);
@@ -986,6 +990,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     else if (act === "play") play(el.dataset.video);
   });
   document.addEventListener("keydown", (e) => {
+    if (e.defaultPrevented) return;
     if (e.key === "Escape") { hidePreview(); if (!state.open && !$("q").hidden && !state.q) toggleSearch(false); if (introPhase !== "gate") stopIntro(true); closeAuth(); closeModal(); return; }
     if ((e.key === "Enter" || e.key === " ") && introPhase === "gate") { e.preventDefault(); playIntro(true); return; }
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement || {}).tagName || "");

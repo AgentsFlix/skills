@@ -1,0 +1,579 @@
+{
+  "schemaVersion": "1.0",
+  "slug": "copy-metodo-hormozi",
+  "title": "Uma oferta que faz sentido antes do desconto.",
+  "subtitle": "Entenda como resultado, confiança, tempo e esforço mudam a maneira de apresentar o que você vende.",
+  "method": "$100M Offers",
+  "author": "Alex Hormozi",
+  "disclaimer": "Skill independente: reúne o método publicado em livros, cursos e entrevistas do autor. Sem afiliação nem endosso dele.",
+  "chapters": [
+    {
+      "id": "visao",
+      "label": "Visão geral",
+      "title": "Se existe alguém que paga 87 mil reais numa escultura invisível, por que você não consegue vender por um valor que acredita ser justo?",
+      "intro": "E isso não é uma pergunta retórica, o caso da escultura invisível é real.",
+      "blocks": [
+        {
+          "type": "case_study",
+          "title": "Uma escultura que você não consegue ver.",
+          "eyebrow": "O CASO DA ESCULTURA INVISÍVEL",
+          "visual": "image",
+          "stat": "R$ 87 mil",
+          "statLabel": "Valor em reais citado na cobertura de 2025",
+          "paragraphs": [
+            "Em maio de 2021, o artista italiano Salvatore Garau levou a obra Io sono, “Eu sou”, a um leilão da Art-Rite. A escultura era imaterial: não havia um objeto físico para levar para casa.",
+            "O comprador recebeu um certificado de autenticidade e instruções para reservar um espaço vazio. A venda foi noticiada por cerca de 15 mil euros. Em 2025, a história voltou a circular no Brasil com o valor de R$ 87 mil."
+          ],
+          "sourceIds": [
+            "sculpture2021",
+            "sculpture2025"
+          ],
+          "note": "A venda aconteceu em 2021. R$ 87 mil é a referência em reais da cobertura de 2025, não uma cotação atual.",
+          "image": {
+            "src": "assets/salvatore-garau-escultura-invisivel.png",
+            "alt": "Montagem fornecida: retrato de Salvatore Garau à direita e pessoas gesticulando ao redor de pedestais vazios à esquerda.",
+            "caption": "O artista italiano Salvatore Garau e sua escultura invisível. Foto: Reproduções.",
+            "width": 1290,
+            "height": 1254
+          }
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Você deve achar isso estranho, eu sei, eu também acho, mas se você acredita no que vende, você vai conseguir cobrar o valor que achar justo, independentemente do preço."
+          ]
+        },
+        {
+          "type": "narrative",
+          "title": "Você acha que um bilionário pode comprar tudo?",
+          "paragraphs": [
+            "Não, também existe um mercado onde os bilionários têm itens de desejo. Quer uma prova?"
+          ]
+        },
+        {
+          "type": "case_study",
+          "title": "Um palácio flutuante também tem seu público.",
+          "eyebrow": "O CASO DO SUPERIATE AMADEA",
+          "visual": "image",
+          "image": {
+            "src": "assets/amadea.png",
+            "alt": "Superiate Amadea navegando no mar, com vários conveses e heliponto na proa.",
+            "caption": "Superiate russo apreendido pelas autoridades a pedido dos EUA. Foto: Divulgação/Lürssen. Imagem fornecida pelo Zé."
+          },
+          "stat": "R$ 1,1 bilhão",
+          "statLabel": "Avaliação noticiada em março de 2024",
+          "paragraphs": [
+            "O Amadea foi apreendido em Fiji em 2022, a pedido dos Estados Unidos, em uma ação ligada às sanções contra um oligarca russo. Em março de 2024, uma avaliação citada pela CNN Brasil colocou o superiate em US$ 230 milhões, apresentados na reportagem como R$ 1,1 bilhão.",
+            "A embarcação tem 106 metros. E a conta continua depois da compra: tripulação, seguro e manutenção também precisam caber no orçamento."
+          ],
+          "sourceIds": [
+            "amadea-doj",
+            "amadea-cnn"
+          ],
+          "note": "Valor histórico da avaliação noticiada em 2024; não é um preço atual de venda."
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Um bilionário que tem 1 bilhão de reais não tem patrimônio suficiente para comprar sozinho um iate avaliado em R$ 1,1 bilhão. Para quem tem 2 bilhões, a questão muda: patrimônio não é necessariamente dinheiro disponível, e manter o iate também custa.",
+            "Ou seja, existe objeto de desejo para todos os públicos e condições financeiras."
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "Cabe a você saber como transformar o valor desejado no valor notado.",
+          "text": "O que a pessoa quer precisa aparecer naquilo que você apresenta."
+        },
+        {
+          "type": "comparison",
+          "title": "Preço, desejo e valor não são a mesma coisa.",
+          "beforeLabel": "O que você vê",
+          "afterLabel": "O que precisa compreender",
+          "rows": [
+            [
+              "Preço",
+              "Quanto custa comprar."
+            ],
+            [
+              "Desejo",
+              "Por que alguém quer aquilo."
+            ],
+            [
+              "Valor notado",
+              "O que essa pessoa reconhece como importante na oferta."
+            ],
+            [
+              "Condição de compra",
+              "Se ela pode e quer destinar recursos para ter aquilo."
+            ]
+          ],
+          "caption": "Uma leitura dos dois casos. Eles provocam a discussão sobre valor; não demonstram que qualquer oferta venderá por qualquer preço."
+        },
+        {
+          "type": "narrative",
+          "title": "E onde você entra nessa história?",
+          "paragraphs": [
+            "Se você não acredita no que vende, você vai cobrar barato, porque no fundo não tem provas do resultado que consegue gerar.",
+            "Você pode ser muito inteligente, um gênio, incrivelmente elogiado, a pessoa mais brilhante ao se comunicar, mas no fundo, nada disso importa se você nunca gerou resultado no mundo real."
+          ]
+        },
+        {
+          "type": "narrative",
+          "eyebrow": "A FILOSOFIA DO ZÉ",
+          "title": "Minha filosofia é o pragmatismo.",
+          "paragraphs": [
+            "Minha filosofia é o pragmatismo, mesmo gostando do estoicismo e sendo cristão.",
+            "No mundo industrial e capitalista, se o que você vende ou faz não tem uma ação prática nem gera resultado, você tem uma teoria.",
+            "Você pode ser um excelente escritor, palestrante ou professor, mas pra cobrar aquilo que acredita que vale, precisa entender quanto de resultado real você gera no mundo real."
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "Resultado nem sempre é dinheiro.",
+          "text": "E entenda resultado como a forma final de uma equação, nem sempre estamos falando de dinheiro."
+        },
+        {
+          "type": "comparison",
+          "title": "Como um resultado aparece no mundo real",
+          "beforeLabel": "Resultado que alguém deseja",
+          "afterLabel": "Uma mudança que dá para observar",
+          "rows": [
+            [
+              "Clareza",
+              "Sair de uma dúvida com uma decisão fundamentada."
+            ],
+            [
+              "Autonomia",
+              "Conseguir executar uma tarefa sem depender de ajuda."
+            ],
+            [
+              "Tempo",
+              "Terminar uma atividade com menos trabalho repetido."
+            ],
+            [
+              "Experiência",
+              "Viver algo que considera belo, marcante ou significativo."
+            ]
+          ],
+          "caption": "Exemplos didáticos. A prova adequada depende do resultado e do contexto; nem tudo cabe na mesma medida."
+        },
+        {
+          "type": "equation_bridge",
+          "title": "A + B = C",
+          "text": "E é isso que este método ensina, como montar uma estrutura em formato de equação, onde A + B = C para que o que você cobra pareça BARATO.",
+          "items": [
+            {
+              "symbol": "A",
+              "title": "Resultado real",
+              "text": "A mudança que você consegue gerar."
+            },
+            {
+              "symbol": "B",
+              "title": "Valor notado",
+              "text": "A pessoa entende por que essa mudança importa."
+            },
+            {
+              "symbol": "C",
+              "title": "Preço que faz sentido",
+              "text": "O que ela recebe justifica o que paga."
+            }
+          ],
+          "note": "Esta é a síntese visual da abertura. No próximo capítulo, você conhece a equação de valor de Hormozi, com suas quatro variáveis."
+        },
+        {
+          "type": "cards",
+          "title": "Leve estas perguntas para a equação",
+          "items": [
+            {
+              "title": "O que você transforma?",
+              "text": "Descreva a mudança final, além da lista do que entrega."
+            },
+            {
+              "title": "Como isso fica visível?",
+              "text": "Mostre a prova que você tem e explique o que ela demonstra."
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "sculpture2021",
+        "sculpture2025",
+        "amadea-doj",
+        "amadea-cnn"
+      ],
+      "tone": "editorial"
+    },
+    {
+      "id": "equacao",
+      "label": "Equação de valor",
+      "title": "Quatro perguntas por trás do valor.",
+      "intro": "A equação organiza uma decisão: tornar o resultado mais desejável e crível, com menos espera e dificuldade.",
+      "blocks": [
+        {
+          "type": "model",
+          "title": "A equação de valor",
+          "numerator": [
+            "Resultado desejado",
+            "Confiança no resultado"
+          ],
+          "denominator": [
+            "Tempo até o resultado",
+            "Esforço e sacrifício"
+          ],
+          "result": "Valor percebido",
+          "note": "Modelo conceitual do método. Não calcula receita, conversão ou probabilidade real.",
+          "items": [
+            {
+              "title": "Resultado desejado",
+              "direction": "Aumentar ↑",
+              "question": "O que muda para essa pessoa?",
+              "text": "Defina um destino reconhecível. “Organizar as finanças” ainda deixa espaço demais para imaginação.",
+              "example": "No exemplo: separar o dinheiro da empresa e o dinheiro de casa.",
+              "avoid": "Trocar uma promessa vaga por uma promessa maior, sem entrega."
+            },
+            {
+              "title": "Confiança no resultado",
+              "direction": "Aumentar ↑",
+              "question": "Por que ela acreditaria que consegue?",
+              "text": "Use demonstrações e provas que você realmente possui. A pessoa precisa reconhecer o próprio caso.",
+              "example": "No exemplo: mostrar como funciona a organização, com dados fictícios identificados.",
+              "avoid": "Inventar depoimentos ou apresentar uma demonstração como resultado de cliente."
+            },
+            {
+              "title": "Tempo até o resultado",
+              "direction": "Reduzir ↓",
+              "question": "Quando ela percebe o primeiro avanço?",
+              "text": "Separe o primeiro passo útil da transformação completa. Diga o que acontece primeiro.",
+              "example": "No exemplo: começar pela separação das contas antes de montar o planejamento.",
+              "avoid": "Prometer um prazo que a operação não consegue cumprir."
+            },
+            {
+              "title": "Esforço e sacrifício",
+              "direction": "Reduzir ↓",
+              "question": "O que ela ainda terá de fazer?",
+              "text": "Encontre a parte que trava a execução. Um modelo preenchido ou acompanhamento pode reduzir essa dificuldade.",
+              "example": "No exemplo: organizar os dados junto com a pessoa, usando uma estrutura pronta.",
+              "avoid": "Dizer “sem esforço” quando o cliente ainda precisa participar."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "Mexa na variável que está travando a decisão.",
+          "text": "Se a pessoa quer o resultado, mas não acredita que consegue, aumentar a promessa pode piorar a dúvida. Examine a confiança primeiro."
+        }
+      ],
+      "sources": [
+        "value",
+        "reference"
+      ]
+    },
+    {
+      "id": "arquitetura",
+      "label": "Mapa do método",
+      "title": "Como as peças viram uma oferta.",
+      "intro": "O mapa separa elementos, combinações e entrega final. Selecione uma etapa para entender a função dela.",
+      "blocks": [
+        {
+          "type": "flow",
+          "title": "Do problema à oferta",
+          "items": [
+            {
+              "title": "Pessoa e problema",
+              "tag": "Ponto de partida",
+              "text": "Defina para quem é a oferta, qual mudança essa pessoa busca e o que impede o avanço.",
+              "example": "Consultoria para quem mistura as contas pessoais com as do negócio."
+            },
+            {
+              "title": "Equação de valor",
+              "tag": "Elementos",
+              "text": "Olhe resultado, confiança, tempo e esforço juntos. Eles mostram onde a oferta parece difícil ou pouco crível.",
+              "example": "A pessoa quer organizar o dinheiro, mas acredita que vai precisar dominar uma planilha complexa."
+            },
+            {
+              "title": "Soluções e entrega",
+              "tag": "Combinação",
+              "text": "Liste obstáculos e formas de removê-los. Compare utilidade para o cliente com esforço de entrega antes de compor o pacote.",
+              "example": "Modelo preenchido e organização acompanhada respondem à dificuldade de começar."
+            },
+            {
+              "title": "Condições da oferta",
+              "tag": "Combinação",
+              "text": "Bônus, garantia, prazo e capacidade precisam ter função e condições claras. A urgência deve corresponder a um limite verdadeiro.",
+              "example": "Uma sessão adicional só entra se remover uma dificuldade concreta e couber na operação."
+            },
+            {
+              "title": "Oferta e peça",
+              "tag": "Resultado",
+              "text": "Apresente o conjunto de forma compreensível. A skill escreve a peça e explica, separadamente, onde aplicou o método.",
+              "example": "Você recebe o texto no formato pedido e consegue revisar a lógica usada."
+            }
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "O papel de cada complemento",
+          "items": [
+            {
+              "title": "Bônus",
+              "text": "Resolve um obstáculo específico. Quantidade de extras não substitui utilidade."
+            },
+            {
+              "title": "Garantia",
+              "text": "Explicita o compromisso e as condições. Só use o que o negócio pode cumprir."
+            },
+            {
+              "title": "Escassez",
+              "text": "Comunica uma limitação real de capacidade ou disponibilidade."
+            },
+            {
+              "title": "Urgência",
+              "text": "Explica o motivo verdadeiro para uma condição ter prazo."
+            }
+          ]
+        }
+      ],
+      "sources": [
+        "creation",
+        "reference"
+      ]
+    },
+    {
+      "id": "pratica",
+      "label": "Exemplo aplicado",
+      "title": "Veja uma oferta ganhar forma.",
+      "intro": "A gente vai manter o mesmo serviço e examinar o que estava escondido na descrição.",
+      "blocks": [
+        {
+          "type": "comparison",
+          "title": "Consultoria para organizar as contas",
+          "beforeLabel": "Descrição inicial",
+          "afterLabel": "Hipótese de oferta",
+          "rows": [
+            [
+              "“Consultoria com encontros e planilha.”",
+              "“Organize as contas da empresa e da casa com acompanhamento na montagem.”"
+            ],
+            [
+              "O cliente não sabe por onde começa.",
+              "A primeira etapa é separar as contas e localizar os compromissos."
+            ],
+            [
+              "A planilha parece mais uma tarefa.",
+              "Um modelo orienta o preenchimento, e as dúvidas entram no acompanhamento."
+            ],
+            [
+              "Não há prova disponível.",
+              "[PROVA A FORNECER]. A falta fica visível para você completar."
+            ]
+          ],
+          "caption": "Exemplo fictício de raciocínio, sem promessa de desempenho. Prazo, preço e condições ainda dependem do negócio."
+        },
+        {
+          "type": "steps",
+          "title": "O raciocínio que produziu a mudança",
+          "items": [
+            {
+              "title": "Nomear o destino",
+              "text": "Sair de “receber uma planilha” para “separar as contas”. O resultado precisa ser reconhecível."
+            },
+            {
+              "title": "Diminuir a dificuldade",
+              "text": "Acompanhamento e modelo só entram se fizerem parte da entrega real."
+            },
+            {
+              "title": "Tornar o início visível",
+              "text": "Explicar a primeira etapa ajuda a pessoa a entender como vai começar."
+            },
+            {
+              "title": "Expor a lacuna",
+              "text": "Sem prova fornecida, o texto fica com um campo aberto. A skill não preenche com invenção."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "Uma boa revisão muda a entrega quando necessário.",
+          "text": "Se a única maneira de sustentar o texto é adicionar um serviço, essa inclusão precisa da sua decisão. Escrever uma promessa não cria capacidade operacional."
+        }
+      ],
+      "sources": [
+        "skill",
+        "reference"
+      ]
+    },
+    {
+      "id": "agente",
+      "label": "Do método à skill",
+      "title": "Você decide. O agente estrutura e escreve.",
+      "intro": "MaaS, ou Methodology as a Service, é colocar um método em uma execução orientada. Nesta skill, isso vira um processo de escrita com checagem.",
+      "blocks": [
+        {
+          "type": "steps",
+          "title": "O caminho da execução",
+          "items": [
+            {
+              "title": "Receber o seu contexto",
+              "text": "Produto, pessoa específica, formato e tamanho, provas disponíveis e objetivo. O agente pergunta o que faltar."
+            },
+            {
+              "title": "Ler a referência",
+              "text": "O agente consulta o método e usa as estruturas na ordem apresentada no arquivo da skill."
+            },
+            {
+              "title": "Escrever e revisar",
+              "text": "Produz a peça em português, checa a qualidade e corrige os itens que falharam."
+            },
+            {
+              "title": "Entregar com rastreio",
+              "text": "A peça vem acompanhada de “Método aplicado” e dos [COLCHETES] que você precisa preencher."
+            }
+          ]
+        },
+        {
+          "type": "comparison",
+          "title": "Quem cuida de quê",
+          "beforeLabel": "Você fornece e decide",
+          "afterLabel": "O agente executa",
+          "rows": [
+            [
+              "Produto, público e objetivo",
+              "Pergunta pelos dados que faltam"
+            ],
+            [
+              "Provas e condições verdadeiras",
+              "Usa somente o que recebeu"
+            ],
+            [
+              "Preço, oferta e garantia aprovados",
+              "Organiza a proposta na peça"
+            ],
+            [
+              "Validação do negócio",
+              "Explica onde cada estrutura entrou"
+            ]
+          ]
+        },
+        {
+          "type": "prompt",
+          "title": "Um primeiro pedido com contexto",
+          "text": "Escreve como Hormozi: uma apresentação curta da minha consultoria de organização financeira para quem mistura as contas da empresa e de casa. Produto e preço: [DADOS REAIS]. Provas: [O QUE POSSO COMPROVAR]. Objetivo: agendar uma conversa. Pergunte o que faltar antes de escrever.",
+          "note": "Depois de instalar, copie para a conversa com o agente. Ele pode precisar perguntar antes de entregar a peça."
+        }
+      ],
+      "sources": [
+        "skill"
+      ]
+    },
+    {
+      "id": "criterio",
+      "label": "Critério e fontes",
+      "title": "Como saber se a entrega está pronta.",
+      "intro": "Confira o que está no texto e o que continua dependendo de você. Esta checagem vale para a peça, sem prometer que ela vai vender.",
+      "blocks": [
+        {
+          "type": "checklist",
+          "title": "Passe a peça por estes critérios",
+          "items": [
+            "Está no formato e no tamanho que eu pedi.",
+            "As provas, nomes e números vieram de dados que eu forneci.",
+            "“Método aplicado” aponta as estruturas usadas e onde aparecem.",
+            "Os campos pendentes estão marcados com [COLCHETES].",
+            "A checagem da referência não deixou item falho na entrega.",
+            "Eu consigo cumprir a oferta e as condições descritas."
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Onde a skill para",
+          "items": [
+            {
+              "title": "Escolher o método",
+              "text": "Esta skill aplica Hormozi. Escolher entre métodos é tarefa da copy-pipeline."
+            },
+            {
+              "title": "Auditar texto alheio",
+              "text": "A auditoria de copy tem uma skill própria, copy-auditoria."
+            },
+            {
+              "title": "Comprovar resultado",
+              "text": "A skill não cria depoimentos nem valida a eficácia comercial da oferta."
+            },
+            {
+              "title": "Decidir pelo negócio",
+              "text": "Preço, garantia e mudanças na entrega continuam sendo decisões suas."
+            }
+          ]
+        },
+        {
+          "type": "sources",
+          "title": "Fontes e origem desta leitura",
+          "text": "A leitura distingue o método publicado, a implementação da skill e o exemplo fictício. A referência MaaS orienta a organização visual; recursos de clone, integrações e métricas da referência não são capacidades desta skill."
+        }
+      ],
+      "sources": [
+        "value",
+        "creation",
+        "skill",
+        "reference",
+        "maas"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "value",
+      "label": "Acquisition.com · Equação de valor",
+      "url": "https://www.acquisition.com/hubfs/Offer%20Checklists%20-%20PDF%20Downloads/Pricing-Value-Checklist.pdf?hsLang=en",
+      "note": "Fonte primária para as variáveis e a direção de melhoria. Não é estudo de conversão."
+    },
+    {
+      "id": "creation",
+      "label": "Acquisition.com · Criação da oferta",
+      "url": "https://www.acquisition.com/hubfs/Offer%20Checklists%20-%20PDF%20Downloads/Offer%2BCreation%2BChecklist.pdf",
+      "note": "Fonte primária para obstáculos, soluções e composição da entrega."
+    },
+    {
+      "id": "skill",
+      "label": "AgentFlix · Contrato da skill",
+      "url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-hormozi/SKILL.md",
+      "note": "Procedure, Pitfalls e Verification da versão 0.4.3, conferidos no clone local."
+    },
+    {
+      "id": "reference",
+      "label": "AgentFlix · Referência de Hormozi",
+      "url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-hormozi/references/metodo-hormozi.md",
+      "note": "Base de conhecimento da implementação. Não tratada como prova empírica das promessas nela presentes."
+    },
+    {
+      "id": "maas",
+      "label": "MaaS · Mapeamento de $100M Offers",
+      "url": "https://maas-hub.vercel.app/reader?doc=biblioteca-maas%2F100m-offers-hormozi.md",
+      "note": "Referência de arquitetura editorial fornecida pelo Zé."
+    },
+    {
+      "id": "sculpture2021",
+      "label": "Artnet · A venda de Io sono (2021)",
+      "url": "https://news.artnet.com/art-world/italian-artist-auctioned-off-invisible-sculpture-18300-literally-made-nothing-1976181",
+      "note": "Cobertura contemporânea do leilão: obra imaterial, Art-Rite, certificado e valor noticiado de cerca de 15 mil euros."
+    },
+    {
+      "id": "sculpture2025",
+      "label": "TNOnline · R$ 87 mil na cobertura de 2025",
+      "url": "https://tnonline.uol.com.br/noticias/revista-uau/artista-vende-escultura-invisivel-por-r-87-mil-de-ar-e-espirito-1033800",
+      "note": "Confirma o valor em reais usado na provocação e distingue a repercussão de 2025 da venda em 2021."
+    },
+    {
+      "id": "amadea-doj",
+      "label": "Departamento de Justiça dos EUA · Apreensão (2022)",
+      "url": "https://www.justice.gov/archives/opa/pr/300-million-yacht-sanctioned-russian-oligarch-suleiman-kerimov-seized-fiji-request-united",
+      "note": "Fonte primária da apreensão em Fiji a pedido dos EUA, em maio de 2022."
+    },
+    {
+      "id": "amadea-cnn",
+      "label": "CNN Brasil · Avaliação do Amadea (2024)",
+      "url": "https://www.cnnbrasil.com.br/internacional/superiate-russo-de-r-11-bilhao-confiscado-vira-problema-para-os-eua-entenda/",
+      "note": "Notícia de 08/03/2024: avaliação de US$ 230 milhões (R$ 1,1 bilhão), 106 metros e despesas de manutenção."
+    }
+  ]
+}

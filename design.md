@@ -61,3 +61,13 @@ Comandos das oito plataformas permanecem idênticos. Texto de uso de uma régua 
 Antes de concluir uma mudança: `python3 -m unittest discover -s tests`, `python3 scripts/check_site.py` e QA em Chrome real. Verificar estado inicial, três caminhos de entrada, recomendação, bloqueio, instalação, recarga, remoção, dependências múltiplas, link direto, teclado e movimento reduzido. Registrar antes/depois em 1440, 768 e 390 px. Revisão visual do Zé antes do merge; merge na main publica produção.
 
 Implementação: `site/index.html`, `site/vitrine.css`, `site/vitrine.js` e `site/vitrine-state.js`. Evidências desta revisão: `design-review/installed/`. O protótipo standalone é referência histórica; este arquivo rege novas alterações na interface real.
+
+## Leitura humana: exemplar Hormozi
+
+A ficha de `copy-metodo-hormozi` abre em **Para o humano**, com **Usar a skill** ao lado. É a única skill com leitura humana nesta etapa. A capa, a identificação e as ações continuam pertencendo à ficha da vitrine; o botão Instalar em… leva ao instalador existente, na segunda aba. As demais fichas mantêm sua composição.
+
+O painel do exemplar comporta até 1120 px. As abas acompanham a rolagem, seguidas da barra Aa · Leitura. Título do guia, capítulos e orientação formam um conjunto fixo; em janelas baixas esse conjunto pode rolar por dentro. No celular, os capítulos ficam em uma faixa horizontal. Voltar da aba de instalação recupera a posição da leitura.
+
+Escuro usa a base da marca. Papel é uma exceção aprovada para conforto: fundo creme e texto escuro apenas na leitura. Os cinco tamanhos e a aparência ficam em `agentflix-reading-v1`, por navegador e origem. Capa, ações e instalação não mudam de tema nem de tamanho. Escape fecha primeiro os ajustes abertos; depois, a ficha.
+
+O conteúdo aprovado é servido em `site/leitura/`, com as imagens e os créditos. O componente só é montado após o onboarding e a verificação de pré-requisitos da ficha. Não há página de leitura paralela que pule essa experiência. Falha no carregamento oferece nova tentativa e mantém o acesso à aba de instalação.
