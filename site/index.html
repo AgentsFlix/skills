@@ -301,10 +301,22 @@
   .pv-play { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #fff; color: #000; border: 0; font-size: 15px; cursor: pointer; }
   .pv-play svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; }
   .pv-play:hover { background: #e6e6e6; }
-  .pv-round { width: 44px; height: 44px; border-radius: 50%; background: rgba(42,42,42,0.6); border: 2px solid rgba(255,255,255,0.5); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; }
+  .pv-round { display: inline-flex; align-items: center; justify-content: center; padding: 0; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: rgba(42,42,42,0.6); border: 2px solid rgba(255,255,255,0.5); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; }
   .pv-round:hover { border-color: #fff; }
   .pv-round.on { border-color: var(--accent); color: var(--accent); }
-  .pv-more { margin-left: auto; font-size: 24px; }
+  .pv-more { margin-left: auto; }
+  .pv-round svg { display: block; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: square; stroke-linejoin: round; }
+  /* Círculos proporcionais à referência, mantendo área clicável de 44 px. */
+  #preview .pv-actions { gap: 0; }
+  #preview .pv-round, #preview .pv-play { position: relative; isolation: isolate; flex: 0 0 44px; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; }
+  #preview .pv-round::before, #preview .pv-play::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; z-index: -1; }
+  #preview .pv-round::before { background: rgba(42,42,42,.6); border: 1.5px solid rgba(255,255,255,.5); }
+  #preview .pv-round:hover::before { border-color: #fff; }
+  #preview .pv-round.on::before { border-color: var(--accent); }
+  #preview .pv-play::before { inset: 8px; background: #fff; }
+  #preview .pv-play:hover::before { background: #e6e6e6; }
+  #preview .pv-round svg { width: 20px; height: 20px; }
+  #preview .pv-play svg { width: 16px; height: 16px; }
   .pv-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; color: #bcbcbc; margin-bottom: 8px; }
   .pv-badge { padding: 2px 6px; border: 1px solid #808080; border-radius: 2px; font-size: 10px; letter-spacing: normal; color: #fff; }
   .pv-name { font-size: 14px; font-weight: 800; margin-bottom: 6px; }
@@ -782,7 +794,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
               <h3>${esc(s.title)}</h3>
               <p class="name">${esc(s.name)}</p>
               <p class="sub">${esc(s.sub)}</p>
-              <div class="modal-actions"><button class="btn-install" data-act="install-focus">Instalar em…</button><button class="pv-round pv-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" aria-label="${s.inList ? 'Remover da minha lista' : 'Adicionar à minha lista'}" aria-pressed="${s.inList}">${s.inList ? "✓" : "+"}</button></div>
+              <div class="modal-actions"><button class="btn-install" data-act="install-focus">Instalar em…</button><button class="pv-round pv-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" aria-label="${s.inList ? 'Remover da minha lista' : 'Adicionar à minha lista'}" aria-pressed="${s.inList}">${listIcon(s.inList)}</button></div>
             </div>
           </div>
           <div class="body">
@@ -871,7 +883,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       if (s.inList && !dot) art.insertAdjacentHTML("beforeend", '<div class="ldot"></div>');
       if (!s.inList && dot) dot.remove();
     });
-    document.querySelectorAll(`[data-act="toggle"][data-slug="${sel}"]`).forEach((b) => { b.classList.toggle("on", s.inList); b.setAttribute("aria-pressed", String(s.inList)); if (b.classList.contains("pv-list")) b.setAttribute("aria-label", s.inList ? "Remover da minha lista" : "Adicionar à minha lista"); b.textContent = b.classList.contains("pv-list") ? (s.inList ? "✓" : "+") : listLabel(s); });
+    document.querySelectorAll(`[data-act="toggle"][data-slug="${sel}"]`).forEach((b) => { b.classList.toggle("on", s.inList); b.setAttribute("aria-pressed", String(s.inList)); if (b.classList.contains("pv-list")) b.setAttribute("aria-label", s.inList ? "Remover da minha lista" : "Adicionar à minha lista"); if (b.classList.contains("pv-list")) b.innerHTML = listIcon(s.inList); else b.textContent = listLabel(s); });
     const est = document.querySelector('#modal [data-fact="estado"] b');
     if (est && state.open === slug) est.textContent = s.inList ? "na lista" : "disponível";
     if ($("results").hidden) { if (pvCard) pendingListRefresh = true; else refreshRow("lista"); } else if (state.filter === "Minha lista") renderCatalog();
@@ -948,6 +960,10 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   $("q").addEventListener("input", (e) => { hidePreview(); state.q = e.target.value; clearTimeout(qTimer); qTimer = setTimeout(renderCatalog, 80); });
   window.addEventListener("hashchange", () => { const h = hashSlug(); if (h && BY[h]) openModal(h); else if (!h) closeModal(); });
 
+  function listIcon(selected) {
+    return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${selected ? 'M5 12l4 4L19 6' : 'M12 4v16M4 12h16'}"/></svg>`;
+  }
+
   // ---------- preview no hover (desktop) ----------
   // Parar o mouse ~300 ms num card abre um cartão flutuante ancorado nele, com a arte maior, ações e a ficha mínima.
   const PREVIEW_OK = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 861px)");
@@ -957,8 +973,8 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       <div class="pv-body">
         <div class="pv-actions">
           <button class="pv-play" data-act="open" data-slug="${esc(s.slug)}" title="Ver detalhes" aria-label="Ver detalhes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l4 4v14H4V3zM8 11h8M8 15h8"/></svg></button>
-          <button class="pv-round pv-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" title="Minha lista" aria-label="${s.inList ? "Remover da minha lista" : "Adicionar à minha lista"}" aria-pressed="${s.inList}">${s.inList ? "✓" : "+"}</button>
-          <button class="pv-round pv-more" data-act="open" data-slug="${esc(s.slug)}" title="Mais informações" aria-label="Mais informações">⌄</button>
+          <button class="pv-round pv-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" title="Minha lista" aria-label="${s.inList ? "Remover da minha lista" : "Adicionar à minha lista"}" aria-pressed="${s.inList}">${listIcon(s.inList)}</button>
+          <button class="pv-round pv-more" data-act="open" data-slug="${esc(s.slug)}" title="Mais informações" aria-label="Mais informações"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         </div>
         <div class="pv-meta"><span class="pv-badge">${esc(s.badge.split(" · ")[0])}</span><span>${esc(s.proc || "")}</span>${s.req !== "nenhuma" ? `<span>Requer: ${esc(s.req)}</span>` : ""}</div>
         <div class="pv-name">${esc(s.name)}</div><p class="pv-sub">${esc(s.sub)}</p>
