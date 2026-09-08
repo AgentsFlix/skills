@@ -1,5 +1,12 @@
 # AgentsFlix/skills: contrato para agentes
 
+## Desenvolvimento deste repositório
+
+Para corrigir código ou conteúdo do projeto, siga [CONTRIBUTING.md](CONTRIBUTING.md).
+Cada tarefa usa branch e worktree próprias, PR, testes e merge automático com squash.
+Não fazer push direto na main nem usar bypass administrativo. Ler e usar o produto instalado
+não exige criar branch: este fluxo vale para alterações no repositório.
+
 Este repositório é a distribuição do AgentFlix: o que o público baixa e vê. A fonte de quase tudo aqui está no
 repositório privado `AgentsFlix/agentsflix` (gerador, capas, base de conhecimento, stories, produção das séries). Se a
 tarefa envolve conteúdo de skill, capa ou catálogo, o trabalho começa lá.
@@ -19,7 +26,7 @@ tarefa envolve conteúdo de skill, capa ou catálogo, o trabalho começa lá.
 1. Branch a partir de `main`, commit, push, PR. A `main` é protegida: sem push direto.
 2. O check `validate` precisa passar: `python3 -m unittest`, `python3 scripts/check_site.py`, validação das skills, scanner e diff do `build_docs`. A Vercel gera um preview por PR.
 3. Merge com squash. **O merge na `main` é o deploy em produção** (agentsflix.ai, Vercel, Root Directory `site`).
-4. Mudança de design: capturas de antes e depois em 1440, 768 e 390 px no PR; o Zé aprova antes do merge.
+4. Mudança de design: capturas antes e depois em 1440, 768 e 390 px no PR. Ajustes técnicos seguem o merge automático descrito em CONTRIBUTING.md.
 
 ## Regras
 
