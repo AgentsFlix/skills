@@ -1564,9 +1564,9 @@
   <div class="acts"><button class="ok" data-consent="granted">Aceitar</button><button class="no" data-consent="denied">Agora não</button></div>
 </div>
 <script>
-(function () { const bar = document.getElementById("consent"); let c = null; try { c = localStorage.getItem(window.CONSENT_KEY); } catch (e) {}
+(function () { const consentKey = "agentflix-consent", bar = document.getElementById("consent"); let c = null; try { c = localStorage.getItem(consentKey); } catch (e) {}
   if (!c) bar.hidden = false;
-  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-consent]"); if (!b) return; const v = b.dataset.consent; try { localStorage.setItem(window.CONSENT_KEY, v); } catch (err) {} bar.hidden = true; window.clarity?.("consentv2", { ad_Storage: "denied", analytics_Storage: v === "granted" ? "granted" : "denied" }); });
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-consent]"); if (!b) return; const v = b.dataset.consent; try { localStorage.setItem(consentKey, v); } catch (err) {} bar.hidden = true; window.clarity?.("consentv2", { ad_Storage: "denied", analytics_Storage: v === "granted" ? "granted" : "denied" }); });
 })();
 </script>
 </body>
