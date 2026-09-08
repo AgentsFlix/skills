@@ -565,7 +565,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     target: TARGET_IDS.includes(store.get("agentflix-target", "")) ? store.get("agentflix-target", "") : "Hermes CLI",
     list: store.get("agentflix-list", [])
   };
-  let DISCOVERY = null, DISCOVERY_DATA = null, pendingSkill = null;
+  let DISCOVERY = null, DISCOVERY_DATA = null;
   let CAT = null;                    // catálogo cru
   let ALL = [];                      // obras decoradas, na ordem das linhas
   let BY = Object.create(null);      // slug -> obra (sem protótipo: "constructor" não é uma skill)
@@ -628,7 +628,14 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     if (!DISCOVERY_DATA || !window.AgentFlixDiscovery || !window.AgentFlixJourney) throw Error("orientação indisponível");
     DISCOVERY = window.AgentFlixDiscovery.create(DISCOVERY_DATA, BY, {
       filter() { hidePreview(); state.filter = "Tudo"; state.q = ""; $("q").value = ""; renderChips(); renderCatalog(); },
-      enter() { if(pendingSkill){const slug=pendingSkill;pendingSkill=null;openModal(slug);} else if(state.view === "reading") focusCatalogView(); },
+      enter() {
+        setCatalogView("catalog", {scroll:false, updateUrl:false});
+        history.replaceState(null, "", location.pathname + location.search + "#inicio");
+        $("nav").scrollLeft = 0;
+        const title = $("recommendation").querySelector("h2");
+        if(title) { title.tabIndex = -1; title.focus({preventScroll:true}); }
+        window.scrollTo({top:0, behavior:"instant"});
+      },
       changed(external) { hidePreview(); renderCatalog(); if(external && state.open){renderModal();const panel=document.querySelector('#modal .panel');if(panel){panel.tabIndex=-1;panel.focus({preventScroll:true});}} }
     });
     document.body.classList.add("discovery-enabled");
@@ -820,7 +827,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     } else target.scrollIntoView({block:"start", behavior:"instant"});
   }
   function setCatalogView(view, {scroll = true, updateUrl = true} = {}) {
-    hidePreview(); closeModal(true); pendingSkill = null;
+    hidePreview(); closeModal(true);
     state.view = view; state.q = ""; $("q").value = ""; clearTimeout(qTimer);
     if(updateUrl) {
       const hash = view === "reading" ? "#ler" : "#chips";
@@ -942,7 +949,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   function updateInert() { try { $("page").inert = introPhase !== "off" || !!state.open; } catch (e) {} }
   function openModal(slug) {
     if(!BY[slug])return;
-    if(!DISCOVERY?.completed){pendingSkill=slug;return;}
+    if(!DISCOVERY?.completed)return;
     const opener = pvCard || document.activeElement;
     hidePreview();
     if (!state.open) lastFocus = opener;

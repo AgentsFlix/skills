@@ -36,7 +36,7 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 ## Onboarding obrigatório
 
 1. Cada carregamento da vitrine começa pelas três escolhas. A marcação de instalação persiste; a conclusão do onboarding não é salva para pular a entrada.
-2. Não renderizar a lista completa nem liberar busca, Minha lista ou fichas antes de terminar as perguntas e clicar em `Abrir minha seleção`. Link direto de skill aguarda esse passo.
+2. Não renderizar a lista completa nem liberar busca, Minha lista ou fichas antes de terminar as perguntas e clicar em `Abrir minha seleção`. A conclusão sempre abre o Início, com a recomendação e a seleção escolhidas, inclusive se a entrada veio de um link de leitura ou de skill. A pessoa acessa Ler ou abre uma ficha depois desse passo.
 3. Quantidade disponível não é progresso. Cada ponto representa uma skill. O total e os grupos vêm de `vitrine.json`, nunca de porcentagens fixas. Coleções mostram nomes e contagens individuais. As perguntas mostram seu número, sem barra de progresso inventada.
 4. A resposta final define o objetivo. A peça recomendada é a primeira etapa ainda necessária para esse objetivo, respeitando os pré-requisitos e as instalações marcadas.
 5. Depois de entrar, manter a recomendação no topo, com motivo e ação. Permitir refazer as escolhas. Filtros e busca não apagam o objetivo escolhido.
@@ -78,4 +78,4 @@ O conteúdo aprovado é servido em `site/leitura/`, com as imagens e os crédito
 
 A grade conserva capas 16:9, proporções, tipografia e fundo escuro da vitrine. Um livro de traço discreto acompanha “Leitura disponível”. O card abre a ficha na aba humana; fechar retorna ao acervo e ao card acionado. O hover oferece “Ler método”. A busca da barra passa a buscar apenas nas leituras, com limpeza de busca quando não houver resultado.
 
-No celular, Ler acompanha a navegação horizontal. O tema Papel continua restrito ao conteúdo dentro da ficha. Abrir `#ler` ou acionar Ler antes do fim do onboarding conserva o destino pretendido e exibe o guia obrigatório; não carrega a leitura antecipadamente. As regras de pré-requisitos continuam sendo conferidas ao abrir cada ficha. Voltar ao Catálogo recupera a seleção anterior.
+No celular, Ler acompanha a navegação horizontal. O tema Papel continua restrito ao conteúdo dentro da ficha. Abrir `#ler` ou acionar Ler antes do fim do onboarding exibe o guia obrigatório; a conclusão abre o Início, sem carregar a leitura antecipadamente. Depois do onboarding, Ler abre o acervo normalmente. As regras de pré-requisitos continuam sendo conferidas ao abrir cada ficha. Voltar ao Catálogo recupera a seleção anterior.

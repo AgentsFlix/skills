@@ -1,0 +1,35 @@
+{
+  "base": "http://127.0.0.1:8790",
+  "report": [
+    {
+      "width": 1440,
+      "entryRoutes": 4,
+      "onboardingToHome": true,
+      "recommendationPreserved": true,
+      "readingExplicit": true,
+      "reload": true,
+      "keyboard": true,
+      "prerequisites": true
+    },
+    {
+      "width": 768,
+      "entryRoutes": 4,
+      "onboardingToHome": true,
+      "recommendationPreserved": true,
+      "readingExplicit": true,
+      "reload": true,
+      "keyboard": true,
+      "prerequisites": true
+    },
+    {
+      "width": 390,
+      "entryRoutes": 4,
+      "onboardingToHome": true,
+      "recommendationPreserved": true,
+      "readingExplicit": true,
+      "reload": true,
+      "keyboard": true,
+      "prerequisites": true
+    }
+  ]
+}
