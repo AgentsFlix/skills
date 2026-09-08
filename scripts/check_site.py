@@ -40,7 +40,7 @@ def main() -> int:
                 print(f"ERRO {f.relative_to(ROOT)}: {r.stderr.strip()[:400]}"); erros += 1
             else:
                 print(f"ok   {f.relative_to(ROOT)}")
-    for f in JSON_FILES:
+    for f in JSON_FILES + [str(p.relative_to(ROOT)) for p in sorted((ROOT / "site/leitura").glob("*.json"))]:
         p = ROOT / f
         if not p.exists():
             print(f"aviso {f}: não existe aqui (gerado ou symlink ignorado)"); continue

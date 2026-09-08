@@ -36,7 +36,7 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 ## Onboarding obrigatório
 
 1. Cada carregamento da vitrine começa pelas três escolhas. A marcação de instalação persiste; a conclusão do onboarding não é salva para pular a entrada.
-2. Não renderizar a lista completa nem liberar busca, Minha lista ou fichas antes de terminar as perguntas e clicar em `Abrir minha seleção`. Link direto de skill aguarda esse passo.
+2. Não renderizar a lista completa nem liberar busca, Minha lista ou fichas antes de terminar as perguntas e clicar em `Abrir minha seleção`. A conclusão sempre abre o Início, com a recomendação e a seleção escolhidas, inclusive se a entrada veio de um link de leitura ou de skill. A pessoa acessa Ler ou abre uma ficha depois desse passo.
 3. Quantidade disponível não é progresso. Cada ponto representa uma skill. O total e os grupos vêm de `vitrine.json`, nunca de porcentagens fixas. Coleções mostram nomes e contagens individuais. As perguntas mostram seu número, sem barra de progresso inventada.
 4. A resposta final define o objetivo. A peça recomendada é a primeira etapa ainda necessária para esse objetivo, respeitando os pré-requisitos e as instalações marcadas.
 5. Depois de entrar, manter a recomendação no topo, com motivo e ação. Permitir refazer as escolhas. Filtros e busca não apagam o objetivo escolhido.
@@ -61,3 +61,21 @@ Comandos das oito plataformas permanecem idênticos. Texto de uso de uma régua 
 Antes de concluir uma mudança: `python3 -m unittest discover -s tests`, `python3 scripts/check_site.py` e QA em Chrome real. Verificar estado inicial, três caminhos de entrada, recomendação, bloqueio, instalação, recarga, remoção, dependências múltiplas, link direto, teclado e movimento reduzido. Registrar antes/depois em 1440, 768 e 390 px. Revisão visual do Zé antes do merge; merge na main publica produção.
 
 Implementação: `site/index.html`, `site/vitrine.css`, `site/vitrine.js` e `site/vitrine-state.js`. Evidências desta revisão: `design-review/installed/`. O protótipo standalone é referência histórica; este arquivo rege novas alterações na interface real.
+
+## Leitura humana: exemplar Hormozi
+
+A ficha de `copy-metodo-hormozi` abre em **Para o humano**, com **Usar a skill** ao lado. É a única skill com leitura humana nesta etapa. A capa, a identificação e as ações continuam pertencendo à ficha da vitrine; o botão Instalar em… leva ao instalador existente, na segunda aba. As demais fichas mantêm sua composição.
+
+O painel do exemplar comporta até 1120 px. As abas acompanham a rolagem, seguidas da barra Aa · Leitura. Título do guia, capítulos e orientação formam um conjunto fixo; em janelas baixas esse conjunto pode rolar por dentro. No celular, os capítulos ficam em uma faixa horizontal. Voltar da aba de instalação recupera a posição da leitura.
+
+Escuro usa a base da marca. Papel é uma exceção aprovada para conforto: fundo creme e texto escuro apenas na leitura. Os cinco tamanhos e a aparência ficam em `agentflix-reading-v1`, por navegador e origem. Capa, ações e instalação não mudam de tema nem de tamanho. Escape fecha primeiro os ajustes abertos; depois, a ficha.
+
+O conteúdo aprovado é servido em `site/leitura/`, com as imagens e os créditos. O componente só é montado após o onboarding e a verificação de pré-requisitos da ficha. Não há página de leitura paralela que pule essa experiência. Falha no carregamento oferece nova tentativa e mantém o acesso à aba de instalação.
+
+### Acervo de leitura
+
+**Ler** fica no menu principal, após **Assistir**, e abre a seleção **Para o humano** em `#ler`. A seleção lista todas as skills que têm leitura registrada no mesmo componente que libera a aba humana. Atualmente, apenas Hormozi. O filtro anterior de avulsas, coleções ou Minha lista não limita esse acervo.
+
+A grade conserva capas 16:9, proporções, tipografia e fundo escuro da vitrine. Um livro de traço discreto acompanha “Leitura disponível”. O card abre a ficha na aba humana; fechar retorna ao acervo e ao card acionado. O hover oferece “Ler método”. A busca da barra passa a buscar apenas nas leituras, com limpeza de busca quando não houver resultado.
+
+No celular, Ler acompanha a navegação horizontal. O tema Papel continua restrito ao conteúdo dentro da ficha. Abrir `#ler` ou acionar Ler antes do fim do onboarding exibe o guia obrigatório; a conclusão abre o Início, sem carregar a leitura antecipadamente. Depois do onboarding, Ler abre o acervo normalmente. As regras de pré-requisitos continuam sendo conferidas ao abrir cada ficha. Voltar ao Catálogo recupera a seleção anterior.
