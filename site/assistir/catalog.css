@@ -1,0 +1,607 @@
+/* Entrada Assistir. Tokens visuais da vitrine; controles do vídeo em player.css. */
+:root {
+  --watch-gutter: clamp(20px, 3.2vw, 64px);
+}
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+header.top {
+  height: 84px;
+  padding: 0 var(--watch-gutter);
+  gap: 34px;
+  background: linear-gradient(#141414 65%, rgba(20, 20, 20, 0.92));
+  backdrop-filter: blur(12px);
+  z-index: 20;
+}
+header.top img {
+  height: 25px;
+}
+header.top nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+header.top nav a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 14px;
+}
+header.top nav [aria-current] {
+  background: #333;
+  border-radius: 28px;
+  font-weight: 700;
+  color: #fff;
+}
+.watch-tools {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.watch-list {
+  min-height: 44px;
+  font-size: 14px;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.watch-list[aria-pressed="true"] {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+}
+.watch-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 50%;
+}
+.watch-icon svg,
+.watch-button svg,
+.watch-card-play svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.watch-icon:hover {
+  background: #333;
+}
+.watch-icon:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.watch-search {
+  display: flex;
+  align-items: center;
+  border: 1px solid #999;
+  border-radius: 6px;
+  height: 44px;
+}
+.watch-search input {
+  width: 180px;
+  min-width: 0;
+  font: inherit;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  padding: 10px;
+  outline-offset: -3px;
+}
+.watch-search button {
+  width: 36px;
+  height: 42px;
+}
+.watch-hero {
+  position: relative;
+  isolation: isolate;
+  margin: 12px var(--watch-gutter) 44px;
+  min-height: 580px;
+  height: min(45vw, 760px);
+  border-radius: 24px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 12px 32px #0005;
+}
+.watch-hero-art,
+.watch-hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.watch-hero-art {
+  left: 36%;
+}
+.watch-hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right 38%;
+}
+.watch-hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      #090b0f 1%,
+      rgba(9, 11, 15, 0.98) 40%,
+      rgba(9, 11, 15, 0.85) 49%,
+      rgba(9, 11, 15, 0.15) 73%
+    ),
+    linear-gradient(0deg, #090b0fcc, transparent 45%);
+}
+.watch-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 100%;
+  padding: clamp(30px, 4vw, 64px);
+  max-width: 680px;
+}
+.watch-kicker {
+  color: var(--accent-text);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin: 0 0 18px;
+}
+.watch-hero h1 {
+  font-size: clamp(40px, 4.2vw, 68px);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  margin: 0 0 25px;
+  font-weight: 800;
+  text-wrap: balance;
+}
+.watch-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+.watch-meta span {
+  color: #aaa;
+}
+.watch-hero-description {
+  color: #e0e0e0;
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 460px;
+  margin: 0 0 26px;
+}
+.watch-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.watch-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 22px;
+  min-height: 48px;
+  border-radius: 28px;
+  font: 700 16px var(--sans);
+}
+.watch-button.primary {
+  background: #fff;
+  color: #141414;
+}
+.watch-button.secondary {
+  background: rgba(100, 100, 100, 0.55);
+  color: #fff;
+}
+.watch-button:hover {
+  filter: brightness(0.88);
+}
+.watch-hero-note {
+  position: absolute;
+  bottom: 36px;
+  right: 32px;
+  padding: 10px 14px;
+  background: #0009;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #ddd;
+}
+.watch-shelf {
+  margin: 0 0 36px;
+}
+.watch-shelf-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  margin: 0 var(--watch-gutter) 12px;
+  gap: 20px;
+}
+.watch-shelf h2 {
+  font-size: clamp(20px, 1.8vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.watch-arrows {
+  display: flex;
+}
+.watch-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 40px) / 5);
+  gap: 10px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  padding: 6px 0 14px;
+  margin: 0 var(--watch-gutter);
+}
+.watch-rail::-webkit-scrollbar {
+  display: none;
+}
+.watch-card {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.watch-art {
+  aspect-ratio: 16/9;
+  position: relative;
+  background: #24272b;
+  border-radius: 12px;
+}
+.watch-art > a {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  display: block;
+}
+.watch-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s;
+  position: relative;
+  z-index: 1;
+}
+.watch-cover-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-size: 19px;
+  font-weight: 700;
+  background: linear-gradient(130deg, #20323b, #141414);
+}
+.image-ready .watch-cover-fallback {
+  display: none;
+}
+.watch-card h3 {
+  font-size: 15px;
+  line-height: 1.4;
+  margin: 10px 0 5px;
+  font-weight: 600;
+}
+.watch-card p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.watch-bookmark {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  background: #141414d9;
+  border: 1px solid #ffffff70;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.watch-bookmark svg {
+  width: 20px;
+  height: 20px;
+}
+.watch-card-play {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: #141414aa;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.watch-card:hover .watch-bookmark,
+.watch-card:focus-within .watch-bookmark,
+.watch-bookmark[aria-pressed="true"],
+.watch-card:hover .watch-card-play,
+.watch-card:focus-within .watch-card-play {
+  opacity: 1;
+}
+.watch-card:hover .watch-art img {
+  transform: scale(1.04);
+}
+.watch-progress {
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 4px;
+  background: #777;
+  z-index: 4;
+}
+.watch-progress i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.watch-duration {
+  position: absolute;
+  z-index: 3;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 4px;
+  background: #000b;
+  padding: 3px 6px;
+  font-size: 12px;
+}
+.watch-card .watch-episode-number {
+  margin-top: 10px;
+  font-size: 11px;
+}
+.watch-episode h3 {
+  margin-top: 4px;
+}
+.watch-footer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 45px var(--watch-gutter) 0;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.watch-footer span {
+  font-weight: 700;
+}
+.watch-footer p {
+  flex: 1;
+}
+.watch-state,
+.watch-results {
+  margin: 40px var(--watch-gutter);
+  min-height: 65vh;
+}
+.watch-state p,
+.watch-result-count,
+.watch-empty {
+  color: var(--muted);
+  line-height: 1.6;
+}
+.watch-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px 10px;
+}
+.watch-empty {
+  margin-top: 40px;
+}
+.title-back {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 4;
+  min-height: 44px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 24px;
+  background: #141414dd;
+  font-size: 13px;
+}
+@media (max-width: 1150px) {
+  header.top {
+    gap: 14px;
+  }
+  header.top nav a {
+    padding: 0 10px;
+  }
+  .watch-tools {
+    gap: 8px;
+  }
+  .watch-hero-copy {
+    max-width: 590px;
+  }
+  .watch-hero-note {
+    display: none;
+  }
+  .watch-rail {
+    grid-auto-columns: calc((100% - 20px) / 3);
+  }
+  .watch-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .watch-search {
+    position: absolute;
+    right: var(--watch-gutter);
+    top: 72px;
+    background: #181818;
+  }
+}
+@media (max-width: 860px) {
+  header.top {
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 16px;
+    padding-bottom: 10px;
+    gap: 8px 14px;
+  }
+  header.top img {
+    height: 22px;
+  }
+  header.top nav {
+    display: flex;
+    width: 100%;
+    order: 4;
+    overflow-x: auto;
+    font-size: 13px;
+  }
+  header.top nav a {
+    padding: 0 14px;
+  }
+  .watch-hero {
+    margin-top: 8px;
+    min-height: 560px;
+    height: auto;
+  }
+  .watch-hero-copy {
+    min-height: 560px;
+    padding: 36px;
+    max-width: 560px;
+  }
+  .watch-hero-art {
+    left: 10%;
+  }
+  .watch-hero h1 {
+    font-size: 46px;
+    max-width: 440px;
+  }
+  .watch-hero-description {
+    font-size: 15px;
+    max-width: 390px;
+  }
+  .watch-rail {
+    grid-auto-columns: 43%;
+  }
+  .watch-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .watch-bookmark {
+    opacity: 1;
+    width: 44px;
+    height: 44px;
+    right: 4px;
+    top: 4px;
+  }
+  .watch-search {
+    top: 60px;
+  }
+}
+@media (max-width: 520px) {
+  .watch-list {
+    font-size: 12px;
+  }
+  .watch-hero {
+    min-height: 650px;
+    margin-bottom: 28px;
+    border-radius: 18px;
+  }
+  .watch-hero-art {
+    left: 0;
+    bottom: 240px;
+  }
+  .watch-hero-art img {
+    object-position: 78% top;
+  }
+  .watch-hero-shade {
+    background: linear-gradient(
+      0deg,
+      #090b0f 30%,
+      #090b0fee 45%,
+      #090b0f44 65%,
+      transparent 90%
+    );
+  }
+  .watch-hero-copy {
+    min-height: 650px;
+    padding: 28px 22px;
+    padding-top: 260px;
+  }
+  .watch-kicker {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+  .watch-hero h1 {
+    font-size: 35px;
+    margin-bottom: 16px;
+  }
+  .watch-meta {
+    font-size: 12px;
+    gap: 6px;
+  }
+  .watch-hero-description {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .watch-actions {
+    width: 100%;
+    gap: 8px;
+  }
+  .watch-button {
+    font-size: 14px;
+    padding: 0 16px;
+  }
+  .watch-actions .watch-button {
+    width: 100%;
+  }
+  .watch-rail {
+    grid-auto-columns: 76%;
+  }
+  .watch-shelf-head {
+    gap: 10px;
+  }
+  .watch-shelf h2 {
+    font-size: 20px;
+  }
+  .watch-grid {
+    grid-template-columns: 1fr;
+  }
+  .watch-footer {
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+  .watch-footer p {
+    flex-basis: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .watch-art img,
+  .watch-bookmark,
+  .watch-card-play {
+    transition: none;
+  }
+  .watch-card:hover .watch-art img {
+    transform: none;
+  }
+}

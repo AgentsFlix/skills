@@ -84,3 +84,13 @@ O conteúdo aprovado é servido em `site/leitura/`, com as imagens e os crédito
 A grade conserva capas 16:9, proporções, tipografia e fundo escuro da vitrine. Um livro de traço discreto acompanha “Leitura disponível”. O card abre a ficha na aba humana; fechar retorna ao acervo e ao card acionado. O hover oferece “Ler método”. A busca da barra passa a buscar apenas nas leituras, com limpeza de busca quando não houver resultado.
 
 No celular, Ler acompanha a navegação horizontal. O tema Papel continua restrito ao conteúdo dentro da ficha. Abrir `#ler` ou acionar Ler antes do fim do onboarding exibe o guia obrigatório; a conclusão abre o Início, sem carregar a leitura antecipadamente. Depois do onboarding, Ler abre o acervo normalmente. As regras de pré-requisitos continuam sendo conferidas ao abrir cada ficha. Voltar ao Catálogo recupera a seleção anterior.
+
+## Acervo Assistir
+
+`/assistir/` abre o acervo de séries. A entrada usa destaque amplo com capa, título, metadados reais e ações Assistir/Continuar e Mais informações. O destaque e a ficha usam imagem como fundo, com gradiente para título, informações e ações sobrepostas, conforme a referência Netflix escolhida pelo Zé. Desktop e tablet usam a arte horizontal; a vertical 2:3 é exclusiva do celular, até 600 px. Cards de séries são 16:9 acima de 600 px e 2:3 no celular. Miniaturas de episódios continuam em 16:9. Fileiras mantêm raio 12 px, tipografia Archivo e intervalos de 10 px; o destaque tem raio 24 px. Navegação, busca e Minha lista de séries seguem o fundo escuro da marca. Botão principal branco, secundário neutro; sem vermelho de marca externa.
+
+O catálogo vem de `site/assistir/series.json`. Somente a série atual é exibida nesta etapa. Novas séries entram pelo cadastro; a configuração editorial pode definir destaque e fileiras por gênero. Não duplicar séries ou inventar conteúdo para preencher fileiras. Episódios pertencem à série em destaque; Continuar assistindo só aparece com progresso real. A lista de séries é independente da lista de skills.
+
+Mais informações abre a ficha com temporadas e episódios. Assistir e os cards de episódios abrem o player existente. Links antigos e números reais de temporada continuam válidos. A retomada é compartilhada entre acervo e player. As paradas, o pré-play, os comandos, os links e a escolha de caminhos preservam o contrato do player. Catálogo não inicia vídeo automaticamente.
+
+Celular mantém a navegação visível, o destaque com arte vertical e texto sobre o gradiente inferior e fileiras por gesto. Teclado acessa cards, busca, lista e ações; movimento reduzido desativa transições. Falhas de catálogo oferecem nova tentativa, e falhas de imagem preservam o nome. Estrutura e manutenção documentadas em `site/assistir/README.md`.

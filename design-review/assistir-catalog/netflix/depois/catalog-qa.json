@@ -1,0 +1,44 @@
+{
+  "report": [
+    {
+      "width": 1440,
+      "series": 1,
+      "episodes": 4,
+      "search": true,
+      "list": true,
+      "resume": true,
+      "history": true,
+      "keyboard": true,
+      "noOverflow": true
+    },
+    {
+      "width": 768,
+      "series": 1,
+      "episodes": 4,
+      "search": true,
+      "list": true,
+      "resume": true,
+      "history": true,
+      "keyboard": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "series": 1,
+      "episodes": 4,
+      "search": true,
+      "list": true,
+      "resume": true,
+      "history": true,
+      "keyboard": true,
+      "noOverflow": true
+    }
+  ],
+  "multipleSeries": true,
+  "retry": true,
+  "empty": true,
+  "unknownRoute": true,
+  "legacyLink": true,
+  "touch": true,
+  "storageDenied": true
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "width": 1440,
+    "selector": ".watch-hero-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-cinema-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      1348,
+      648
+    ],
+    "fit": "cover"
+  },
+  {
+    "width": 1440,
+    "selector": "[data-series-card] .watch-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-cinema-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      262,
+      147
+    ],
+    "fit": "cover"
+  },
+  {
+    "width": 1440,
+    "selector": "#tp-cover img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-cinema-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      920,
+      518
+    ],
+    "fit": "cover"
+  },
+  {
+    "width": 768,
+    "selector": ".watch-hero-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-cinema-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      719,
+      560
+    ],
+    "fit": "cover"
+  },
+  {
+    "width": 768,
+    "selector": "[data-series-card] .watch-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-cinema-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      309,
+      174
+    ],
+    "fit": "cover"
+  },
+  {
+    "width": 768,
+    "selector": "#tp-cover img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-cinema-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      752,
+      423
+    ],
+    "fit": "cover"
+  },
+  {
+    "width": 390,
+    "selector": ".watch-hero-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-cinema-mobile.png",
+    "natural": [
+      1024,
+      1536
+    ],
+    "size": [
+      350,
+      525
+    ],
+    "fit": "cover"
+  },
+  {
+    "width": 390,
+    "selector": "[data-series-card] .watch-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-cinema-mobile.png",
+    "natural": [
+      1024,
+      1536
+    ],
+    "size": [
+      266,
+      399
+    ],
+    "fit": "cover"
+  },
+  {
+    "width": 390,
+    "selector": "#tp-cover img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-cinema-mobile.png",
+    "natural": [
+      1024,
+      1536
+    ],
+    "size": [
+      374,
+      561
+    ],
+    "fit": "cover"
+  }
+]

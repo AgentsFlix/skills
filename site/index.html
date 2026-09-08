@@ -636,7 +636,7 @@
     });
     document.body.classList.add("discovery-enabled");
     CHIPS = ["Tudo", "Minha lista"];
-    $("nav").innerHTML = '<a href="#inicio" data-discover-home>Início</a><a href="#guide" data-discover-guide>Como escolher</a><a href="#chips" data-discover-catalog>Catálogo</a><a href="/assistir/?s=hermes-agent">Assistir</a><a href="#ler" data-discover-reading>Ler</a>';
+    $("nav").innerHTML = '<a href="#inicio" data-discover-home>Início</a><a href="#guide" data-discover-guide>Como escolher</a><a href="#chips" data-discover-catalog>Catálogo</a><a href="/assistir/">Assistir</a><a href="#ler" data-discover-reading>Ler</a>';
     ROW_DEFS = DISCOVERY ? [...TOP_ROWS, ...DISCOVERY.rows] : buildRows(cat);
     heroSlug = (pinnedHero() || nextHero() || ALL[0] || {}).slug || null;
     if (!DISCOVERY) startHeroRotation();
