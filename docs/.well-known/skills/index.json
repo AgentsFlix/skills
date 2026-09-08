@@ -415,6 +415,24 @@
       ]
     },
     {
+      "name": "habitos-que-cabem",
+      "description": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.",
+      "files": [
+        "SKILL.md",
+        "references/avaliacao-de-rotina.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/memoria-e-elicitacao.md",
+        "references/metodo-habitos.md",
+        "references/revisao-e-retomada.md",
+        "scripts/auditar.py",
+        "templates/cartao-do-habito.md",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json",
+        "templates/registro-de-pratica.md"
+      ]
+    },
+    {
       "name": "hybrid-cultura",
       "description": "Cultura é o que a empresa faz quando o dono não está olhando. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"documenta a cultura de [empresa]\".",
       "files": [
