@@ -414,13 +414,13 @@
 <script src="/analytics.js"></script>
 <script src="/clipboard.js"></script>
 </head>
-<body>
+<body class="choosing">
 
 <div id="intro" role="dialog" aria-modal="true" aria-label="Abertura AgentFlix" hidden></div>
 
 <div class="page" id="page">
   <header class="top">
-    <a class="brand" href="#" data-act="home" aria-label="AgentFlix">
+    <a class="brand" data-act="home" aria-label="AgentFlix" aria-disabled="true" tabindex="-1">
       <img class="logo" src="brand/horizontal-transparente-dark.svg" alt="AgentFlix">
     </a>
     <nav class="main" id="nav">
@@ -431,6 +431,7 @@
       <a href="#ads">Tráfego</a>
       <a href="#lenda">Lendas</a>
     </nav>
+    <span class="onboarding-header-note">Sua próxima descoberta começa aqui</span>
     <div class="spacer"></div>
     <div class="search" id="search">
       <button class="search-toggle" data-act="search" aria-label="Buscar" aria-expanded="false" aria-controls="q"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg></button>
@@ -784,6 +785,9 @@
     else readerLink?.removeAttribute('aria-current');
     $("catalog-stage").hidden = !ready;
     document.body.classList.toggle("choosing", !ready);
+    const brand = document.querySelector('.top .brand');
+    if (ready) { brand.setAttribute('href','#inicio'); brand.removeAttribute('aria-disabled'); brand.removeAttribute('tabindex'); }
+    else { brand.removeAttribute('href'); brand.setAttribute('aria-disabled','true'); brand.setAttribute('tabindex','-1'); }
     if (!ready) { $("rows").innerHTML = ""; $("results").innerHTML = ""; $("recommendation").innerHTML = ""; return; }
     $("results").classList.toggle("reading-catalog", reading);
     $("recommendation").hidden = reading;
@@ -1051,7 +1055,7 @@
     else if (act === "next") scrollRow(el.dataset.row, 1);
     else if (act === "replay" || act === "enter") { window.clar?.('abertura_iniciada',{origem:act});playIntro(true); }
     else if (act === "skip") stopIntro(true);
-    else if (act === "home") { e.preventDefault(); resumeDiscovery(); }
+    else if (act === "home") { e.preventDefault(); if (DISCOVERY?.completed) resumeDiscovery(); }
     else if (act === "account") { if (shop.on) openAuth(); }
     else if (act === "auth-close") closeAuth();
     else if (act === "logout") logout();

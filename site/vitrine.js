@@ -28,26 +28,46 @@
       const counts = {avulsa:available.filter(s=>!data.skills[s].colecao).length,colecao:available.filter(s=>data.skills[s].colecao).length};
       const dots = n => `<span class="skill-dots" aria-hidden="true">${Array.from({length:n},()=>'<i></i>').join('')}</span>`;
       function setDoor(value) { door=value; hooks.filter(); }
+      const entryChoices = [
+        {id:'avulsa',art:'copy-headlines',title:'Quero resolver uma coisa hoje',description:'Pega, usa, pronto. Não guarda nada, não pede pasta, não faz entrevista.',label:'Uma tarefa por vez'},
+        {id:'colecao',art:'hybrid-perfil',title:'Quero montar o cérebro do negócio',description:'Abre uma pasta, entrevista você, acumula. Depois todas as outras leem dela.',label:'Construir minha base'},
+        {id:'guia',art:'hybrid-proxima-acao',title:'Não sei o que pegar',description:'Três perguntas. No fim, uma skill só e o comando pronto para colar.',label:'Descobrir meu caminho'}
+      ];
+      const scene = (slug, cls='') => `<span class="choice-scene ${cls}" aria-hidden="true"><img src="${cover(slug)}" alt="" decoding="async" onerror="this.hidden=true"><span class="scene-fallback">A</span></span>`;
+      function availability(choice) {
+        if(choice==='avulsa')return `<div><p>${counts.avulsa} skills para tarefas pontuais</p>${dots(counts.avulsa)}<small>Cada ponto representa uma skill disponível.</small></div>`;
+        if(choice==='colecao')return `<div class="collection-dots">${Object.entries(data.colecoes).map(([id,c])=>{const n=available.filter(slug=>data.skills[slug].colecao===id).length;return `<div class="dot-group"><p>${esc(c.nome)} <b>${n} skills</b></p>${dots(n)}</div>`}).join('')}<small>Cada ponto é uma skill. Cada grupo compartilha arquivos.</small></div>`;
+        return '<p>Responda até três perguntas. A indicação considera o que você já tem e o que quer fazer.</p>';
+      }
       function home() {
         $('discovery').hidden=false;
-        $('discovery').innerHTML=`<div class="discovery-intro"><div><p class="eyebrow">Seu ponto de partida</p><h1>O que você quer fazer agora?</h1><p>Escolha um caminho. A gente indica por onde começar.</p></div><a class="learn-link" href="/assistir/?s=hermes-agent">Como instalar o Hermes <span aria-hidden="true">↗</span></a></div>
-          <div class="doors" id="doors">
-          <button class="door" data-door="avulsa"><span class="door-icon" aria-hidden="true">↗</span><h2>Quero resolver uma coisa hoje</h2><p>Pega, usa, pronto. Não guarda nada, não pede pasta, não faz entrevista.</p><span class="door-visual"><span>${counts.avulsa} skills para tarefas pontuais</span>${dots(counts.avulsa)}<small>Cada ponto representa uma skill disponível.</small></span><b class="door-cta">Escolher minha tarefa <span aria-hidden="true">→</span></b></button>
-          <button class="door" data-door="colecao"><span class="door-icon" aria-hidden="true">▤</span><h2>Quero montar o cérebro do negócio</h2><p>Abre uma pasta, entrevista você, acumula. Depois todas as outras leem de lá.</p><span class="door-visual collection-dots">${Object.entries(data.colecoes).map(([id,c])=>{const n=available.filter(slug=>data.skills[slug].colecao===id).length;return `<span class="dot-group"><span>${esc(c.nome)} <b>${n}</b></span>${dots(n)}</span>`}).join('')}<small>Cada ponto é uma skill. Cada grupo compartilha arquivos.</small></span><b class="door-cta">Montar meu caminho <span aria-hidden="true">→</span></b></button>
-          <button class="door" id="guide-open" data-door="guia"><span class="door-icon" aria-hidden="true">?</span><h2>Não sei o que pegar</h2><p>Três perguntas. No fim, uma skill só e o comando pronto para colar.</p><span class="door-visual"><span class="question-dots" aria-hidden="true"><i>1</i><i>2</i><i>3</i></span><span>Responda até três perguntas.</span><small>A indicação considera o que você já tem e o que quer fazer.</small></span><b class="door-cta">Me ajude a escolher <span aria-hidden="true">→</span></b></button></div>
+        $('discovery').innerHTML=`<div id="entry-stage"><div class="discovery-intro"><p class="eyebrow">Seu ponto de partida</p><h1 id="entry-title">O que você quer fazer agora?</h1><p>Escolha um caminho. A gente indica por onde começar.</p></div>
+          <fieldset class="doors" id="doors" aria-labelledby="entry-title">
+          ${entryChoices.map(c=>`<label class="door" data-door="${c.id}" ${c.id==='guia'?'id="guide-open"':''}>
+            <input class="sr-only" type="radio" name="entry-choice" value="${c.id}" aria-labelledby="door-title-${c.id}">
+            ${scene(c.art)}<span class="choice-check" aria-hidden="true">✓</span>
+            <span class="door-body"><span class="door-label">${c.label}</span><strong id="door-title-${c.id}" class="door-title">${c.title}</strong><span class="door-description">${c.description}</span></span>
+          </label>`).join('')}</fieldset>
+          <div class="choice-continue"><p id="entry-hint" role="status">Escolha a opção que mais combina com seu momento.</p><button class="guide-primary" data-door-continue disabled>Continuar <span aria-hidden="true">→</span></button></div>
+          <details class="choice-availability" id="choice-availability" hidden><summary>O que tem nesse caminho</summary><div id="availability-detail"></div></details></div>
           <section id="guide" class="guide" aria-label="Guia para escolher uma skill" hidden></section><p id="discovery-status" class="sr-only" role="status"></p>`;
-        $('doors').querySelectorAll('[data-door]').forEach(b=>b.addEventListener('click',()=>start(b.dataset.door)));
+        $('doors').addEventListener('change',e=>{
+          const choice=entryChoices.find(c=>c.id===e.target.value);if(!choice)return;
+          $('entry-hint').textContent=choice.label;$('discovery').querySelector('[data-door-continue]').disabled=false;
+          $('choice-availability').hidden=false;$('choice-availability').open=false;$('availability-detail').innerHTML=availability(choice.id);
+        });
+        $('discovery').querySelector('[data-door-continue]').addEventListener('click',()=>{const choice=$('doors').querySelector('input:checked');if(choice)start(choice.value);});
       }
       function start(choice) {
         kind=choice;answers=[];door=kind==='guia'?null:kind; completeOnboarding=false; result=null; target=null;
         trail=[kind==='avulsa'?'o_que_agora':'inicio'];saveVisit();event('onboarding_iniciado');
-        $('discovery').hidden=false; $('doors').hidden=true; $('guide').hidden=false;
+        $('discovery').hidden=false; $('entry-stage').hidden=true; $('guide').hidden=false;
         hooks.filter(); paintGuide(); scroll($('discovery')); titleFocus($('guide'));
       }
       function toggleGuide() {
         event('onboarding_reiniciado');visit.clear();kind=null;answers=[];trail=['inicio'];
         completeOnboarding=false;result=null;target=null;door=null;
-        $('discovery').hidden=false;$('doors').hidden=false;$('guide').hidden=true;
+        home();
         hooks.filter();scroll($('discovery'));titleFocus($('discovery'));
       }
       function resume() {
@@ -64,13 +84,28 @@
       function renderRecommendation() {
         $('recommendation').innerHTML = completeOnboarding ? `<div class="selection-heading"><div><p class="eyebrow">Seu caminho</p><p>Objetivo: ${esc(name(result.skill))}</p></div><button data-discover-reset>Refazer minhas escolhas</button></div>${recommendation()}` : '';
       }
-      function paintGuide() {
-        const node=data.guia[trail.at(-1)];
-        const content=result ? recommendation()+`<button class="guide-primary enter-selection" data-enter-selection>Abrir minha seleção <span aria-hidden="true">→</span></button>` : `<p class="eyebrow">Pergunta ${trail.length}</p><h2>${esc(node.p)}</h2>${node.ajuda?`<p>${esc(node.ajuda)}</p>`:''}<div class="guide-options">${node.o.map((o,i)=>`<button data-option="${i}">${esc(o.t)}<span aria-hidden="true">›</span></button>`).join('')}</div>`;
+      function optionArt(nodeId,option,index) {
+        if(option.skill)return option.skill;
+        const scenes={inicio:['hybrid-perfil','hybrid-tech','hybrid-diagnostico'],o_que_agora:['copy-headlines','copy-auditoria','hybrid-proxima-acao','ads-plano','sop-extrair']};
+        return scenes[nodeId]?.[index] || entryChoices.find(c=>c.id===kind)?.art || 'hybrid-perfil';
+      }
+      function paintGuide(selected = null) {
+        const nodeId=trail.at(-1),node=data.guia[nodeId];
+        const progress=`<div class="guide-progress"><span>${esc(entryChoices.find(c=>c.id===kind)?.label || 'Seu caminho')}</span><span>${result?'Sua seleção':`Pergunta ${trail.length}`}</span></div>`;
+        const content=result ? `<div class="result-intro"><p class="eyebrow">Escolhida para o seu momento</p><h2 id="guide-title">Sua próxima descoberta</h2><p>A gente indica esta primeira etapa com base nas suas escolhas.</p></div>${recommendation()}<div class="result-action"><button class="guide-primary enter-selection" data-enter-selection>Abrir minha seleção <span aria-hidden="true">→</span></button></div>` : `<div class="question-heading"><h2 id="guide-title">${esc(node.p)}</h2>${node.ajuda?`<p>${esc(node.ajuda)}</p>`:''}</div><fieldset class="guide-options ${node.o.length>3?'compact-options':''}" aria-labelledby="guide-title">${node.o.map((o,i)=>`<label class="guide-option" data-option="${i}"><input type="radio" class="sr-only" name="guide-answer" value="${i}" aria-labelledby="option-title-${i}" ${selected===i?'checked':''}>${scene(optionArt(nodeId,o,i))}<span class="choice-check" aria-hidden="true">✓</span><strong id="option-title-${i}">${esc(o.t)}</strong></label>`).join('')}</fieldset><div class="choice-continue"><p id="answer-hint" role="status">${selected===null?'Selecione uma opção para continuar.':'Você pode mudar sua escolha antes de continuar.'}</p><button class="guide-primary" data-answer-continue ${selected===null?'disabled':''}>Continuar <span aria-hidden="true">→</span></button></div>`;
         $('guide').classList.toggle('has-result',!!result);
-        $('guide').innerHTML=content+`<div class="guide-nav">${trail.length>1||result?'<button data-guide-back>← Voltar</button>':''}<button data-guide-reset>Trocar de caminho</button></div>`;
-        $('guide').querySelectorAll('[data-option]').forEach(b=>b.addEventListener('click',()=>{const index=Number(b.dataset.option),o=node.o[index];event('onboarding_resposta',{pergunta:trail.at(-1),opcao:index});answers.push(index);if(o.vai)trail.push(o.vai);else result=o;saveVisit();if(result)event('recomendacao_exibida');paintGuide();titleFocus($('guide'));}));
-        $('guide').querySelector('[data-guide-back]')?.addEventListener('click',()=>{answers.pop();if(result)result=null;else trail.pop();saveVisit();paintGuide();titleFocus($('guide'));});
+        $('guide').innerHTML=progress+content+`<div class="guide-nav">${trail.length>1||result?'<button data-guide-back>← Voltar</button>':''}<button data-guide-reset>Trocar de caminho</button></div>`;
+        $('guide').querySelector('.guide-options')?.addEventListener('change',()=>{
+          $('guide').querySelector('[data-answer-continue]').disabled=false;$('answer-hint').textContent='Você pode mudar sua escolha antes de continuar.';
+        });
+        $('guide').querySelector('[data-answer-continue]')?.addEventListener('click',()=>{
+          const input=$('guide').querySelector('input:checked');if(!input)return;
+          const index=Number(input.value),o=node.o[index];event('onboarding_resposta',{pergunta:nodeId,opcao:index});answers.push(index);
+          if(o.vai)trail.push(o.vai);else result=o;saveVisit();if(result)event('recomendacao_exibida');paintGuide();scroll($('guide'));titleFocus($('guide'));
+        });
+        $('guide').querySelector('[data-guide-back]')?.addEventListener('click',()=>{
+          const previous=answers.pop();if(result)result=null;else trail.pop();saveVisit();paintGuide(previous);scroll($('guide'));titleFocus($('guide'));
+        });
         $('guide').querySelector('[data-guide-reset]').addEventListener('click',toggleGuide);
         $('guide').querySelector('[data-enter-selection]')?.addEventListener('click',()=>{
           completeOnboarding=true;saveVisit();event('onboarding_concluido');$('discovery').hidden=true;hooks.filter();renderRecommendation();scroll($('recommendation'));titleFocus($('recommendation'));hooks.enter();
@@ -179,7 +214,7 @@
       }
       home();
       if (kind) {
-        $('doors').hidden=true;$('guide').hidden=completeOnboarding;$('discovery').hidden=completeOnboarding;
+        $('entry-stage').hidden=true;$('guide').hidden=completeOnboarding;$('discovery').hidden=completeOnboarding;
         if(completeOnboarding)renderRecommendation();else paintGuide();
         event('caminho_restaurado');
       } else event('onboarding_exibido');

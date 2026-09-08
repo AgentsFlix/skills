@@ -2,6 +2,8 @@
 
 Pedido do Zé em 08/09/2026: corrigir os problemas identificados nas gravações. Base das capturas antes: main, eda08c9 (PR #48). Menu Ler e leitor Hormozi preservados.
 
+A etapa visual do onboarding foi revisada depois destas capturas: ver [onboarding dedicado](../cinematic-onboarding/README.md) para a versão atual. Durante as perguntas, os atalhos do catálogo ficam ocultos.
+
 ## Comportamento para revisar
 
 - Início, marca e Meu caminho voltam à recomendação ou à pergunta atual sem apagar escolhas, inclusive depois de acessar Ler. A conclusão de uma primeira visita abre o Início mesmo quando a entrada veio de um link de leitura ou skill.
