@@ -21,9 +21,8 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## When to Use
 
-- Diga: "monta o offerbook de [produto]" ou "diagnostica a oferta de [produto]".
-- O negócio já tem os YAMLs do perfil preenchidos e você quer medir, não preencher.
-- NÃO use para preencher os arquivos: para isso são as skills `hybrid-perfil`, `hybrid-icp`, `hybrid-oferta`…
+- Use para criar/atualizar o offerbook, documentar a estratégia de preço ou diagnosticar uma oferta existente. Resolva o modo pelo pedido; se ambíguo, pergunte só pelo modo com exemplo baseado no produto conhecido, ou hipotético se não houver memória.
+- Perfil e ICP existentes são contexto reutilizável. Preço, oferta, provas e parceria são decisões humanas, nunca preenchimento automático.
 
 ## Quick Reference
 
@@ -37,30 +36,26 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Procedure
 
-1. Resolva a pasta: `hybrid.pasta`. Se não existir, crie. Confirme que os YAMLs que o diagnóstico lê existem (tabela de contexto); arquivo ausente conta como vazio e zera a variável, e isso deve aparecer no relatório.
-2. Abra a referência do procedimento e siga as fases na ordem. Onde ela escrever `{pasta}/…`, leia a pasta configurada. Onde ela citar um comando `*algo` ou um script `.cjs`/`.sh`, trate como nome da etapa, não como algo a executar.
-3. Leia cada arquivo da tabela de contexto e extraia os campos; pontue as categorias exatamente com os pesos da referência; não invente nota para campo ausente.
-4. Escreva o relatório em `{pasta}/diagnosticos/AAAA-MM-DD-<nome>.md` no formato de saída da referência: resumo executivo, tabela por dimensão, gaps, e as alavancas em ordem.
-5. Termine com a alavanca número 1 em uma frase e o comando que a destrava.
+1. Identifique negócio, produto e modo. Reuse conversa, memória acessível e arquivos do negócio com origem/data. Pergunte só lacunas; toda pergunta aberta, inclusive dos templates e referências, leva exemplo baseado nesse contexto, rotulado como sugestão. Sem memória, declare e use exemplo hipotético.
+2. Para **criar/atualizar offerbook**: leia `templates/company-offerbook.yaml` e o arquivo existente em `{pasta}/company/offerbook.yaml`. Preencha suas seções a partir das evidências disponíveis e das respostas restantes, sem sobrescrever dados confirmados. Campos sem resposta ficam null e listados; preserve a estrutura. Registre fonte por campo e calcule completude sobre os campos de conteúdo exigidos, excluindo metadados e contadores. Não promova FILL_THIS ou exemplos a fatos.
+3. Para **pricing**: siga `references/elicit-pricing-strategy.md` com `templates/operations-pricing-strategy.yaml`. Grave `{pasta}/operations/pricing-strategy.yaml`; pule perguntas já resolvidas e personalize os exemplos de cada lacuna. Preços sugeridos ficam hipóteses até a pessoa decidir.
+4. Para **diagnosticar**: exija offerbook de produto em `{pasta}/products/{product}/offerbook.yaml`; leia `references/contexto-diagnose-offer.md` e `references/diagnose-offer.md`. O template company tem campos diferentes do esquema products usado pelo diagnóstico. Não renomeie nem mova automaticamente; se só houver o company, registre a incompatibilidade e solicite o arquivo compatível ou uma adaptação de campos com evidência. Com pré-requisito atendido, pontue conforme rubrica, listando fontes, campos e arquivos ausentes. Entregue `{pasta}/diagnosticos/AAAA-MM-DD-<produto>-offer-diagnostic.md`.
+5. Verifique o modo executado. Escrita local indisponível: entregue o conteúdo e o destino pretendido sem afirmar que salvou. Avalie rotina: criação é pontual; revisão pode valer quando preço, produto ou evidências mudam. Proponha frequência/fuso/inputs/canal/silêncio/pausa só se útil; ative apenas com autorização e agendador real.
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pontuar sem a tabela de pesos. A nota só vale se seguir a referência.
+- Confundir criar o offerbook com diagnosticar. São modos com pré-requisitos e artefatos diferentes.
+- Usar os nomes de campos de company como se fossem o esquema products. Incompatibilidade precisa de adaptação explícita.
+- Tratar perguntas da referência como formulário obrigatório completo ou completar preço/prova por suposição.
+- Usar comandos do runtime de origem como se estivessem instalados. São nomes de etapas.
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O relatório existe em `{pasta}/diagnosticos/` com a data de hoje.
-2. Toda dimensão da referência aparece com nota e peso, e a soma segue os pesos declarados.
-3. Todo arquivo ausente da tabela de contexto está listado como ausente no relatório.
-4. Há uma lista de alavancas em ordem e a primeira vem com o comando que a destrava.
-5. Nenhum dado foi enviado para fora da pasta do negócio.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+1. O resultado identifica o modo e o produto e entrega o respectivo artefato, ou nomeia o pré-requisito que o deixou aguardando.
+2. Offerbook/pricing preservam o template, parseiam como YAML e listam campos não resolvidos. Completude mostra numerador, denominador e critério; não conta metadados nem placeholders. Abaixo do gate da referência, não declarar pronto.
+3. Diagnóstico usa o esquema correto, cita evidências e segue as categorias e pesos da referência, com ausências explícitas. Uma nota baixa é resultado válido.
+4. Preço, oferta e prova não foram inventados nem confirmados por ausência de resposta. Toda pergunta aberta teve exemplo contextual ou fallback identificado.
+5. A avaliação de rotina tem motivo; nenhum agendamento ou envio foi alegado sem execução autorizada.
 
 ## Arquivos desta skill
 

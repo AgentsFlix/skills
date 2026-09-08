@@ -1,0 +1,7 @@
+[
+  {
+    "key": "hybrid.pasta",
+    "description": "Pasta do negócio no seu computador: é onde os YAML do Hybrid Workspace vivem (perfil, ICP, marca, oferta, diagnósticos). Um negócio por pasta.",
+    "default": "~/hybrid/meu-negocio"
+  }
+]

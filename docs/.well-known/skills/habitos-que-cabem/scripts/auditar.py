@@ -14,7 +14,13 @@ import re
 import sys
 import uuid
 
-SKILL_ID = 'habitos-que-cabem'
+# Identidade vem do pacote; o mesmo runtime atende skills diferentes sem editar código.
+IDENTITY = json.loads((Path(__file__).resolve().parents[1] / 'references/identidade.json').read_text(encoding='utf-8'))
+if IDENTITY.get('schema_version') != 1 or IDENTITY.get('contract_version') != '1.0.0':
+    raise ValueError('Contrato de identidade incompatível')
+SKILL_ID = IDENTITY.get('skill_id')
+if not isinstance(SKILL_ID, str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', SKILL_ID):
+    raise ValueError('Identidade de skill inválida')
 OPERATIONS = {'create', 'record', 'adjust', 'resume', 'review', 'audit'}
 RESULTS = {'started', 'waiting', 'completed', 'cancelled', 'error'}
 TERMINAL = {'completed', 'cancelled', 'error'}
@@ -245,7 +251,7 @@ def audit(root, document, now=None, available_version=None):
     if policy['inactive_days'] is not None and c['observation'] == 'continuous':
         anchor = last or c['observed_since']
         if now >= instant(anchor) + timedelta(days=policy['inactive_days']):
-            signal('inactive', anchor, 'Sem nova execução humana registrada no intervalo combinado; não inferir prática do hábito.')
+            signal('inactive', anchor, 'Sem nova execução humana registrada no intervalo combinado; não inferir resultado na vida da pessoa.')
     if fm['verified'] and max(instant(v['at']) for v in fm['verified']) < instant(fm['generated']['at']):
         signal('verification_predates_content', fm['generated']['at'], 'As verificações precedem a alteração do conteúdo; revisar novamente.')
     if fm.get('stale_after') and now >= instant(fm['stale_after']):

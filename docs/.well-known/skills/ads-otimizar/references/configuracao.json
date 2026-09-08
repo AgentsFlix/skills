@@ -1,0 +1,12 @@
+[
+  {
+    "key": "ads.briefing",
+    "description": "Caminho do briefing.yaml do produto (modelo em templates/briefing.yaml, preenchido pelo ads-plano)",
+    "default": "~/ads/briefing.yaml"
+  },
+  {
+    "key": "ads.estado",
+    "description": "Pasta onde o motor grava o snapshot diário e o CSV de decisões",
+    "default": "~/ads/estado"
+  }
+]

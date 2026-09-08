@@ -1,12 +1,17 @@
 ---
 name: habitos-que-cabem
-description: "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento."
+description: Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.
 version: 0.4.3
 author: José Carlos Amorim
 license: MIT
 metadata:
   hermes:
-    tags: [habitos, rotina, memoria, revisao, okf]
+    tags:
+    - habitos
+    - rotina
+    - memoria
+    - revisao
+    - okf
 ---
 
 # Hábitos que Cabem na Vida
@@ -44,6 +49,8 @@ Auditoria persistente usa armazenamento privado; o script opcional exige Python 
 Sem armazenamento, declarar “uso não observável entre sessões” e entregar resumo reutilizável.
 
 ## Procedure
+
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
 1. Identifique a operação pedida. Leia `references/conhecimento.okf.md` para versão e validade,
    e `references/ciclo-de-vida.md` para o registro operacional. Inicie o evento started no armazenamento disponível
@@ -92,14 +99,16 @@ A operação está concluída somente quando seu aceite específico e os itens c
 ## Arquivos desta skill
 
 - `references/ativacao.md`
+- `references/avaliacao-de-rotina.md`
+- `references/ciclo-de-vida.md`
 - `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
+- `references/identidade.json`
 - `references/memoria-e-elicitacao.md`
 - `references/metodo-habitos.md`
 - `references/revisao-e-retomada.md`
-- `references/avaliacao-de-rotina.md`
-- `references/ciclo-de-vida.md`
+- `scripts/auditar.py`
 - `templates/cartao-do-habito.md`
-- `templates/registro-de-pratica.md`
 - `templates/estado-da-skill.md`
 - `templates/evento-de-uso.json`
-- `scripts/auditar.py`
+- `templates/registro-de-pratica.md`

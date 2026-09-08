@@ -142,7 +142,7 @@ Test knowledge
 
     def test_reference_package_preserves_okf(self):
         fm = audit.knowledge(PACKAGE / 'references/conhecimento.okf.md')
-        self.assertEqual(fm['agentflix']['content_revision'], '1.0.0')
+        self.assertEqual(fm['agentflix']['content_revision'], audit.IDENTITY['content_revision'])
         self.assertIn('sources', fm)
         self.assertEqual(fm['verified'], [])  # Ainda não afirma revisão humana/editorial.
 

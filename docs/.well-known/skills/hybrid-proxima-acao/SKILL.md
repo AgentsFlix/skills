@@ -35,30 +35,26 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Procedure
 
-1. Resolva a pasta: `hybrid.pasta`. Se não existir, crie. Confirme que os YAMLs que o diagnóstico lê existem (tabela de contexto); arquivo ausente conta como vazio e zera a variável, e isso deve aparecer no relatório.
-2. Abra a referência do procedimento e siga as fases na ordem. Onde ela escrever `{pasta}/…`, leia a pasta configurada. Onde ela citar um comando `*algo` ou um script `.cjs`/`.sh`, trate como nome da etapa, não como algo a executar.
-3. Leia cada arquivo da tabela de contexto e extraia os campos; pontue as categorias exatamente com os pesos da referência; não invente nota para campo ausente.
-4. Escreva o relatório em `{pasta}/diagnosticos/AAAA-MM-DD-<nome>.md` no formato de saída da referência: resumo executivo, tabela por dimensão, gaps, e as alavancas em ordem.
-5. Termine com a alavanca número 1 em uma frase e o comando que a destrava.
+1. Localize na pasta do negócio o diagnóstico atual (`diagnose-business`) ou a lista de alavancas (`growth-levers`) já produzida. Confira negócio, fonte, data e mudanças posteriores. Reuse o contexto e a ação anterior registrada. Esta skill não calcula um novo diagnóstico nem depende de uma tabela de contexto própria.
+2. Sem diagnóstico utilizável, declare a lacuna e aguarde essa entrada. Se perguntar onde está, leve exemplo baseado nos arquivos do negócio já encontrados, ou hipotético se não houver memória. Recomende obter o diagnóstico com `hybrid-diagnostico`; não presuma que ela esteja instalada.
+3. Abra `references/next-best-action.md`, selecione a alavanca #1 da entrada e traduza em UMA ação concreta. Use a tabela de resolução sem inventar scores, pesos, squads ou prioridade. Se a ação anterior já foi concluída e o diagnóstico não foi renovado, peça renovação antes de repetir a indicação.
+4. Entregue o formato curto da referência: score de origem, gargalo, ação e efeito esperado com evidência. Comando citado vira orientação em linguagem comum se o runtime não estiver disponível; não o declare executável sem conferir. Se todas as dimensões forem adequadas pela referência, devolva nenhuma ação urgente, com justificativa.
+5. Avalie rotina: depende de diagnósticos novos e do interesse em revisão; sem mudanças, não vale repetir a mesma ação. Qualquer proposta inclui horário/fuso, fontes, destino, silêncio e pausa; autorização e agendador real são necessários para ativar.
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pontuar sem a tabela de pesos. A nota só vale se seguir a referência.
+- Diagnosticar novamente para responder a um pedido de próxima ação.
+- Selecionar alavanca a partir de scores inexistentes ou de relatório de outro negócio.
+- Confundir comando ilustrativo de um squad com ferramenta disponível.
+- Entregar uma lista inteira quando o pedido é uma única prioridade.
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O relatório existe em `{pasta}/diagnosticos/` com a data de hoje.
-2. Toda dimensão da referência aparece com nota e peso, e a soma segue os pesos declarados.
-3. Todo arquivo ausente da tabela de contexto está listado como ausente no relatório.
-4. Há uma lista de alavancas em ordem e a primeira vem com o comando que a destrava.
-5. Nenhum dado foi enviado para fora da pasta do negócio.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+1. Existe UMA ação prioritária justificada pelos dados do diagnóstico, ou a conclusão fundamentada de nenhuma ação urgente; sem diagnóstico utilizável, o resultado é aguardando entrada.
+2. A resposta cita arquivo, data e negócio da entrada. Não fabrica scores, pesos ou quantidade de squads.
+3. A ação é praticável no ambiente ou apresentada como orientação, nunca como comando cuja existência não foi conferida.
+4. Não há relatório multidimensional novo nem ação antiga repetida como nova sem revisar sua situação.
+5. Perguntas abertas têm exemplo contextual ou fallback hipotético; avaliação de rotina inclui motivo e não ativa nada na instalação.
 
 ## Arquivos desta skill
 

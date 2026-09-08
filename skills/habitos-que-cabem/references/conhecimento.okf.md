@@ -6,7 +6,7 @@ status: draft
 tags: [habitos, memoria, ciclo-de-vida]
 generated:
   by: process:agentflix-skill-authoring
-  at: 2026-09-08T18:38:31.169501+00:00
+  at: 2026-09-08T21:27:21.533436+00:00
 stale_after: 2026-12-08T00:00:00Z
 sources:
   - id: maas
@@ -26,7 +26,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: habitos-que-cabem
-  content_revision: 1.0.0
+  content_revision: 1.1.0
   verification_evidence: []
 ---
 

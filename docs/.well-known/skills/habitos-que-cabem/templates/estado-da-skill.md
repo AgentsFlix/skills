@@ -20,7 +20,7 @@ Os campos `agentflix` são extensão AgentFlix. Nunca gravar este arquivo preenc
 - Última execução humana registrada (ID e instante):
 - Última entrega concluída (ID e instante):
 - Contagens derivadas dos eventos, separando humano e rotina:
-- Cartão atual e revisão pessoal prevista:
+- Artefato atual e revisão pessoal prevista:
 - Avaliação de rotina e motivo:
 - Autorização, ID do agendamento, frequência, horário, fuso e canal:
 - Intervalo de inatividade combinado e política de silêncio:

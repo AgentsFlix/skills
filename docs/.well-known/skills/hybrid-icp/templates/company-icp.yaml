@@ -1,11 +1,11 @@
-# COMPANY ICP — Ideal Customer Profile (47 FIELDS)
+# COMPANY ICP — Ideal Customer Profile (95 FIELDS)
 #
 # MANDATORY: Complete diagnosis.yaml FIRST
 # This template depends on diagnosed awareness level
 #
 # Author: @your-handle (discovered pattern from YOUR_PRODUCT)
 # Template Version: 1.0
-# Field Count: 47 required fields (all mandatory)
+# Field Count: 95 required fields (all mandatory)
 
 metadata:
   name: "Company Ideal Customer Profile"
@@ -18,7 +18,7 @@ metadata:
   # DIAGNOSIS GATE
   depends_on_diagnosis: true
   diagnosis_awareness_level: null # Will be pulled from diagnosis.yaml
-  required_fields_total: 47
+  required_fields_total: 95
   completed_fields: 0
   completeness_percentage: 0
   last_updated: FILL_THIS
@@ -99,10 +99,10 @@ psychographics_consumption:
   status: "INCOMPLETE"
 # Psychographics: Community Needs (4 booleans)
 psychographics_community:
-  seeks_validation: false
-  seeks_accountability: false
-  seeks_belonging: false
-  seeks_permission: false
+  seeks_validation: null
+  seeks_accountability: null
+  seeks_belonging: null
+  seeks_permission: null
   status: "INCOMPLETE"
 # Pain Stack: Latent Pains (4 fields)
 pain_stack_latent:
@@ -186,7 +186,7 @@ green_flags:
   status: "INCOMPLETE"
 # Final Validation
 validation:
-  field_count: 47
+  field_count: 95
   completed: 0
   completeness: 0
   status: "INCOMPLETE"

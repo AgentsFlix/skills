@@ -40,6 +40,8 @@ O pacote é gerado das fontes autorais do repositório privado por `build_hub.py
 Está disponível nesta branch e nas distribuições geradas; a inclusão de card/capa na vitrine e uma nova release
 são etapas de publicação separadas. Os registros pessoais nunca vão para este repositório.
 
+Para testar a migração em outros domínios, veja os [quatro pilotos de memória e OKF](reviews/skills-p0p1.md), seus prompts e os limites desta edição.
+
 ## O que tem aqui
 
 | linha | skills | o que instala |

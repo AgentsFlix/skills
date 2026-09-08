@@ -47,11 +47,12 @@ Um SOP pode existir e não servir. Esta skill pontua em dez dimensões, audita e
 
 ## Procedure
 
-1. Identifique o procedimento pela tabela. Abra a referência e leia `Inputs` e `Prerequisites`; colete do usuário o que for `required` e pergunte o que faltar.
-2. Siga as fases da referência na ordem. Onde ela citar um arquivo de apoio desta skill (listados no fim), abra-o; onde citar script `.cjs`/`.py` do runtime de origem, faça a etapa manualmente e diga que fez.
-3. Pontue com a rubrica de `references/data-sop-scoring-rubric.yaml` e aplique os limiares de `references/data-verdict-thresholds.yaml`; não arredonde para cima.
-4. Rode o checklist correspondente (arquivos de apoio que começam com checklist-) sobre o resultado. Corrija o que falhou.
-5. Entregue no formato do template de saída, com o checklist marcado item a item.
+1. Identifique o procedimento de auditoria pela tabela e leia Inputs e Prerequisites. Reuse o SOP e contexto já fornecidos; solicite só o que faltar. Cada pergunta aberta deve trazer exemplo baseado nesse contexto, ou hipotético identificado se não houver memória relevante.
+2. Siga as fases da referência. Abra os arquivos de apoio listados; comandos/scripts do runtime de origem são etapas a executar manualmente, com limite declarado.
+3. Pontue o SOP com `references/data-sop-scoring-rubric.yaml` e aplique `references/data-verdict-thresholds.yaml`, sem arredondar para aprovação.
+4. Separe qualidade do relatório de auditoria das não conformidades do SOP auditado. Corrija erros do relatório; preserve falhas encontradas no SOP, evidências e gates abertos. Não modificar o SOP só para fazer o checklist passar.
+5. Entregue relatório no template, checklist marcado item a item, veredito e plano de correção. Um SOP reprovado pode gerar uma auditoria completa e válida.
+6. Avalie rotina: auditoria pontual não justifica CRON; revisão recorrente pode valer se houver mudança do processo ou obrigação definida. Se propuser, inclua agenda/fuso, dados, destino, silêncio e pausa. Ative só com autorização e agendador real.
 
 ## Pitfalls
 
@@ -61,15 +62,11 @@ Um SOP pode existir e não servir. Esta skill pontua em dez dimensões, audita e
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O artefato final segue o template de saída desta skill, seção por seção.
-2. Cada dimensão da rubrica tem nota e evidência citada do SOP auditado.
-3. O checklist correspondente aparece na entrega com cada item marcado, sem item falho.
-4. O veredito segue os limiares declarados e está escrito em uma linha.
-5. A resposta nomeia a referência usada.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+1. O relatório segue o template de auditoria, seção por seção.
+2. Cada dimensão tem nota e evidência do SOP auditado, ou limitação explicitamente declarada.
+3. Cada item do checklist foi avaliado. Falhas do SOP permanecem visíveis e não impedem concluir o relatório; lacunas que impedem o julgamento tornam esse julgamento não verificado.
+4. O veredito segue os limiares e gates da referência. Reprovação é resultado válido; certificação só com todos os gates pertinentes aprovados.
+5. A resposta nomeia referência, evidências, correções propostas e avaliação de rotina. Não altera o SOP auditado para obter aprovação.
 
 ## Arquivos desta skill
 
