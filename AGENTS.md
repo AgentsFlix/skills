@@ -23,6 +23,8 @@ tarefa envolve conteúdo de skill, capa ou catálogo, o trabalho começa lá.
 
 ## Regras
 
+- **Design:** leia [design.md](design.md) antes de mudar a interface. Ele rege cores, proporções, onboarding obrigatório e pré-requisitos.
+
 - **Nenhum segredo neste repositório** (push protection ligada). Credenciais moram fora, e o repo privado diz onde.
 - **A marca se escreve AgentFlix**, sem S. `agentsflix.ai` e a organização `AgentsFlix` levam S só pelo domínio.
 - **Texto aprovado se copia**: taglines, sinopses, gatilhos e descrições de seção não se reescrevem.
