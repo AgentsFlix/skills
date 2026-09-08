@@ -1022,7 +1022,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   document.addEventListener("keydown", e => {
     if (e.key !== "Tab" || !state.open) return;
     const panel = document.querySelector("#modal .panel");
-    const focusable = [...panel.querySelectorAll('button, a[href], select, input, [tabindex="0"]')].filter(el => el.getClientRects().length);
+    const focusable = [...panel.querySelectorAll('button, a[href], select, input, [tabindex="0"]')].filter(el => !el.disabled && el.tabIndex >= 0 && el.getClientRects().length);
     const first = focusable[0], last = focusable.at(-1);
     if (e.shiftKey && (document.activeElement === first || document.activeElement === panel)) { e.preventDefault(); last?.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
