@@ -15,3 +15,15 @@ A implementação separa conteúdo, regras compartilhadas, apresentação do cat
 QA: [resultados](depois/qa.json) em Chrome real nas três larguras, busca, lista persistente, retomada T3:E2, histórico, teclado, toque, rolagem, falha de armazenamento, catálogo vazio, nova tentativa e links antigos. Regressão do player com vídeo real: prompt e indicação íntegros, copiar/abrir sem retomar, continuar terracota explícito, rearme ao recarregar e escolha da raiz sem relógio. Temporadas, episódios, textos, links e tempos das paradas não foram alterados.
 
 Preview local: `http://127.0.0.1:8794/assistir/?qa=1`. Revisão visual antes do merge conforme AGENTS.md.
+
+## Revisão das capas (08/09/2026)
+
+Artes originais fornecidas pelo Zé: horizontal 3:2 no desktop/tablet e vertical 2:3 até 600 px. Aplicadas no destaque, card e ficha, sem recorte; texto e ações ficam fora da arte. Episódios conservam 16:9. Os arquivos PNG são cópias exatas dos anexos.
+
+| Largura | Antes | Capa no acervo | Capa na ficha |
+| --- | --- | --- | --- |
+| 1440 px | [Antes](capas/antes/1440-acervo.png) | [Acervo](capas/depois/1440-acervo.png) | [Ficha](capas/depois/1440-serie.png) |
+| 768 px | [Antes](capas/antes/768-acervo.png) | [Acervo](capas/depois/768-acervo.png) | [Ficha](capas/depois/768-serie.png) |
+| 390 px | [Antes](capas/antes/390-acervo.png) | [Acervo](capas/depois/390-acervo.png) | [Ficha](capas/depois/390-serie.png) |
+
+Validação: 23 testes, check_site, [nove conferências de origem/proporção da imagem](capas/depois/qa.json) e [regressão do acervo](capas/depois/catalog-qa.json) em Chrome. Sem overflow horizontal; capa da ficha separada dos controles.

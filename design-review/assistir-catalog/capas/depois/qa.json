@@ -1,0 +1,128 @@
+[
+  {
+    "width": 1440,
+    "selector": ".watch-hero-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-serie-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      809,
+      539
+    ],
+    "fit": "contain"
+  },
+  {
+    "width": 1440,
+    "selector": "[data-series-card] .watch-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-serie-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      262,
+      174
+    ],
+    "fit": "contain"
+  },
+  {
+    "width": 1440,
+    "selector": "#tp-cover img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-serie-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      920,
+      613
+    ],
+    "fit": "contain"
+  },
+  {
+    "width": 768,
+    "selector": ".watch-hero-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-serie-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      719,
+      479
+    ],
+    "fit": "contain"
+  },
+  {
+    "width": 768,
+    "selector": "[data-series-card] .watch-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-serie-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      309,
+      206
+    ],
+    "fit": "contain"
+  },
+  {
+    "width": 768,
+    "selector": "#tp-cover img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-serie-desktop.png",
+    "natural": [
+      1536,
+      1024
+    ],
+    "size": [
+      752,
+      501
+    ],
+    "fit": "contain"
+  },
+  {
+    "width": 390,
+    "selector": ".watch-hero-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-serie-mobile.png",
+    "natural": [
+      1024,
+      1536
+    ],
+    "size": [
+      350,
+      525
+    ],
+    "fit": "contain"
+  },
+  {
+    "width": 390,
+    "selector": "[data-series-card] .watch-art img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-serie-mobile.png",
+    "natural": [
+      1024,
+      1536
+    ],
+    "size": [
+      266,
+      399
+    ],
+    "fit": "contain"
+  },
+  {
+    "width": 390,
+    "selector": "#tp-cover img",
+    "src": "http://127.0.0.1:8794/assistir/img/hermes-agent-serie-mobile.png",
+    "natural": [
+      1024,
+      1536
+    ],
+    "size": [
+      374,
+      561
+    ],
+    "fit": "contain"
+  }
+]

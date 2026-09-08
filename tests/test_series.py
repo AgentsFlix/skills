@@ -30,7 +30,7 @@ class Series(unittest.TestCase):
                 self.assertIn(k, s, f"{s.get('slug')}: falta {k}")
             self.assertRegex(s["slug"], r"^[a-z0-9-]+$")
             self.assertRegex(s["customer"], CUSTOMER)
-            for c in (s["cover"], s["cover_wide"]):
+            for c in [s["cover"], s["cover_wide"]] + ([s["cover_mobile"]] if s.get("cover_mobile") else []):
                 self.assertTrue((ASSISTIR / c).is_file(), f"{s['slug']}: capa não existe: {c}")
 
     def test_temporadas_e_episodios(self):

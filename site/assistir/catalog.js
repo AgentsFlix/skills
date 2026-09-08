@@ -58,8 +58,12 @@
         `<button class="watch-bookmark watch-icon" data-save="${esc(series.slug)}" aria-label="${saved.includes(series.slug) ? "Remover" : "Adicionar"} ${esc(series.name)} ${saved.includes(series.slug) ? "da" : "à"} minha lista" aria-pressed="${saved.includes(series.slug)}">${icon(saved.includes(series.slug) ? "check" : "plus")}</button>`;
       const metadata = (series) =>
         `${series.ano ? esc(series.ano) + " · " : ""}${model.episodes(series).length} episódios`;
-      const cover = (series, large = false) =>
-        `<img src="${esc(large ? series.cover : series.cover_wide)}" alt="" ${large ? 'fetchpriority="high"' : 'loading="lazy"'}>`;
+      const cover = (series, large = false) => {
+        const image = `<img src="${esc(large ? series.cover : series.cover_wide)}" alt="" ${series.cover_mobile ? 'width="1536" height="1024"' : ""} ${large ? 'fetchpriority="high"' : 'loading="lazy"'}>`;
+        return series.cover_mobile
+          ? `<picture class="series-cover"><source media="(max-width: 600px)" srcset="${esc(series.cover_mobile)}" width="1024" height="1536">${image}</picture>`
+          : image;
+      };
 
       function seriesCard(series, continuing) {
         const resume = continuing?.resume;
@@ -71,7 +75,7 @@
         const label = episode
           ? `Continuar ${series.name}`
           : `Mais informações sobre ${series.name}`;
-        return `<article class="watch-card" data-series-card="${esc(series.slug)}">
+        return `<article class="watch-card${series.cover_mobile ? " has-responsive-cover" : ""}" data-series-card="${esc(series.slug)}">
           <div class="watch-art">
             <a href="${esc(url(series, episode ? { ...resume, number: series.seasons[resume.season].n } : null))}" data-series="${esc(series.slug)}" ${episode ? "data-play" : ""} aria-label="${esc(label)}">${cover(series)}<span class="watch-cover-fallback">${esc(series.name)}</span><span class="watch-card-play">${icon(episode ? "play" : "info")}</span></a>
             ${bookmark(series)}
@@ -103,21 +107,26 @@
         const started = model
           .episodes(series)
           .some((item) => model.progress(item.episode, hooks.read));
-        return `<section class="watch-hero" aria-labelledby="watch-featured-name">
+        return `<section class="watch-hero${series.cover_mobile ? " has-responsive-cover" : ""}" aria-labelledby="watch-featured-name">
           <div class="watch-hero-art">${cover(series, true)}</div><div class="watch-hero-shade"></div>
           <div class="watch-hero-copy"><p class="watch-kicker">${esc(series.badge || "AgentFlix")}</p>
             <h1 id="watch-featured-name">${esc(series.name)}</h1>
             <p class="watch-meta">Série <span>·</span> ${esc(series.gen?.[0] || "Passo a passo")} <span>·</span> ${metadata(series)}</p>
             <p class="watch-hero-description">${esc(series.sub || series.syn)}</p>
             <div class="watch-actions"><a class="watch-button primary" href="${esc(url(series, { ...r, number: series.seasons[r.season].n }))}" data-series="${esc(series.slug)}" data-play>${icon("play")}${started && !r.finished ? `Continuar T${series.seasons[r.season].n}:E${r.ep + 1}` : "Assistir"}</a><a class="watch-button secondary" href="${esc(url(series))}" data-series="${esc(series.slug)}">${icon("info")}Mais informações</a></div>
+            <div class="watch-hero-note">${esc((series.traits || []).slice(0, 2).join(" · "))}</div>
           </div>
-          <div class="watch-hero-note">${esc((series.traits || []).slice(0, 2).join(" · "))}</div>
         </section>`;
       }
 
       function bindImages() {
         root.querySelectorAll("img").forEach((img) => {
-          const loaded = () => img.parentElement.classList.add("image-ready");
+          const loaded = () => {
+            img.hidden = false;
+            (img.closest("a") || img.parentElement).classList.add(
+              "image-ready",
+            );
+          };
           const failed = () => (img.hidden = true);
           if (img.complete && img.naturalWidth) loaded();
           else {
@@ -192,14 +201,12 @@
             '<footer class="watch-footer"><span>AgentFlix</span><p>O progresso e a sua lista ficam neste navegador.</p><a href="/privacidade.html">Privacidade</a></footer>';
         }
         bindImages();
-        root
-          .querySelectorAll(".watch-rail")
-          .forEach((rail) =>
-            rail.addEventListener("scroll", updateRails, {
-              passive: true,
-              signal,
-            }),
-          );
+        root.querySelectorAll(".watch-rail").forEach((rail) =>
+          rail.addEventListener("scroll", updateRails, {
+            passive: true,
+            signal,
+          }),
+        );
         requestAnimationFrame(updateRails);
       }
 

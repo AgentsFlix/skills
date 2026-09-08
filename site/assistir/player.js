@@ -156,7 +156,17 @@
     const p = r.fresh ? 0 : prog(re);
     const nEps = SERIE.seasons.reduce((a, s) => a + s.eps.length, 0);
     document.title = `${SERIE.name} · AgentFlix`;
-    $("tp-hero").style.backgroundImage = `url(${SERIE.cover})`;
+    const responsiveCover = Boolean(SERIE.cover_mobile);
+    $("tp-hero")
+      .closest(".tp-panel")
+      .classList.toggle("has-responsive-cover", responsiveCover);
+    $("tp-hero").style.backgroundImage = responsiveCover
+      ? "none"
+      : `url(${SERIE.cover})`;
+    $("tp-cover").hidden = !responsiveCover;
+    $("tp-cover").innerHTML = responsiveCover
+      ? `<source media="(max-width: 600px)" srcset="${esc(SERIE.cover_mobile)}" width="1024" height="1536"><img src="${esc(SERIE.cover)}" alt="" width="1536" height="1024" fetchpriority="high">`
+      : "";
     $("tp-kick").textContent =
       `${SERIE.badge} · ${SERIE.ano} · ${SERIE.seasons.length} temporadas disponíveis · ${nEps} episódios · HD`;
     $("tp-name").innerHTML =

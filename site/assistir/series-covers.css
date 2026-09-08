@@ -1,0 +1,97 @@
+/* Capas editoriais: 3:2 no desktop/tablet, 2:3 até 600px.
+   cover_mobile ativa este formato; séries antigas mantêm seu enquadramento. */
+.series-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+}
+.series-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.has-responsive-cover .watch-art {
+  aspect-ratio: 3 / 2;
+}
+.has-responsive-cover .watch-art img {
+  object-fit: contain;
+  transform: none;
+}
+.watch-hero.has-responsive-cover {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr);
+  align-items: center;
+  min-height: 0;
+  height: auto;
+  background: var(--panel);
+}
+.has-responsive-cover .watch-hero-art {
+  position: static;
+  grid-column: 2;
+  grid-row: 1;
+  z-index: auto;
+}
+.has-responsive-cover .watch-hero-shade {
+  display: none;
+}
+.has-responsive-cover .watch-hero-copy {
+  grid-column: 1;
+  grid-row: 1;
+  height: auto;
+  min-height: 0;
+  max-width: none;
+  padding: clamp(24px, 3vw, 48px);
+}
+.has-responsive-cover .watch-hero-copy h1 {
+  font-size: clamp(30px, 3vw, 46px);
+}
+.has-responsive-cover .watch-hero-note {
+  display: block;
+  position: static;
+  padding: 0;
+  margin-top: 24px;
+  background: none;
+  color: var(--muted);
+}
+.tp-panel.has-responsive-cover .title-back {
+  position: static;
+  width: fit-content;
+  margin: 8px 16px;
+}
+.has-responsive-cover .tp-hero {
+  aspect-ratio: auto;
+  background: var(--panel);
+}
+.has-responsive-cover .tp-shade,
+.has-responsive-cover .tp-hero::before {
+  display: none;
+}
+.has-responsive-cover .tp-hero-text {
+  position: static;
+  margin: 0;
+  padding: 28px 44px;
+}
+@media (max-width: 900px) {
+  .watch-hero.has-responsive-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .has-responsive-cover .watch-hero-copy {
+    padding: 28px;
+  }
+  .has-responsive-cover .watch-hero-copy h1 {
+    max-width: none;
+  }
+}
+@media (max-width: 600px) {
+  .series-cover,
+  .has-responsive-cover .watch-art {
+    aspect-ratio: 2 / 3;
+  }
+  .has-responsive-cover .watch-hero-copy,
+  .has-responsive-cover .tp-hero-text {
+    padding: 24px 22px;
+  }
+}

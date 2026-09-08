@@ -10,6 +10,7 @@ A entrada `/assistir/` é o acervo. `?s=slug` abre a ficha de uma série; `?s=sl
 | `catalog-model.js` | Disponibilidade, fileiras e retomada. Compartilhado pelo acervo e player. Sem DOM nem escrita de progresso. |
 | `catalog.js` | Destaque, capas, episódios, busca, Minha lista e fileiras. |
 | `catalog.css` | Aparência e responsividade do acervo. |
+| `series-covers.css` | Capas responsivas compartilhadas pelo destaque, cards e ficha. |
 | `player.js` | Ficha, reprodução, navegação, pré-play, caminhos e paradas interativas. |
 | `player.css` | Ficha e controles do vídeo. Ciano é ação; terracota é continuar. |
 | `index.html` | Estrutura das telas e carregamento dos módulos. |
@@ -19,7 +20,7 @@ Os arquivos de interface são formatados com Prettier. Não é necessário insta
 ## Colocar uma nova série no acervo
 
 1. Acrescente um objeto em `series.json`, dentro de `series`, com slug único, nome, subtítulo, sinopse, ano, `badge`, `gen`, `cast`, `traits`, `customer`, `cover`, `cover_wide` e temporadas. Use a estrutura existente como referência.
-2. Coloque as capas em `img/`. `cover` serve ao destaque e à ficha; `cover_wide` serve aos cards. Preserve texto, enquadramento e créditos aprovados.
+2. Coloque as capas em `img/`. `cover` serve ao destaque e à ficha; `cover_wide` serve aos cards. Para o formato responsivo, use uma arte **3:2** nos dois campos e cadastre `cover_mobile` com a versão **2:3**. O navegador escolhe a vertical até 600 px e a horizontal acima disso, sem recortar ou sobrepor texto à arte. Episódios continuam em 16:9. Sem `cover_mobile`, o enquadramento anterior é preservado. Os PNGs da série Hermes são os arquivos originais fornecidos pelo Zé, sem edição.
 3. Cadastre episódios com `t`, `d` em segundos, `uid` do Stream e `desc`. O uploader do repositório privado continua escrevendo neste mesmo arquivo. Cada série mantém seu `customer`.
 4. Rode as validações abaixo. A série entra automaticamente na fileira padrão, na busca e em Minha lista. Não é preciso editar HTML, adicionar uma rota ou registrar o slug em outro arquivo.
 

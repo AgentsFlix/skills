@@ -87,7 +87,7 @@ No celular, Ler acompanha a navegação horizontal. O tema Papel continua restri
 
 ## Acervo Assistir
 
-`/assistir/` abre o acervo de séries. A entrada usa destaque amplo com capa, título, metadados reais e ações Assistir/Continuar e Mais informações. Fileiras mantêm capas 16:9, raio 12 px, tipografia Archivo e intervalos de 10 px; o destaque tem raio 24 px. Navegação, busca e Minha lista de séries seguem o fundo escuro da marca. Botão principal branco, secundário neutro; sem vermelho de marca externa.
+`/assistir/` abre o acervo de séries. A entrada usa destaque amplo com capa, título, metadados reais e ações Assistir/Continuar e Mais informações. Capas de séries com versão responsiva usam 3:2 no desktop/tablet e 2:3 até 600 px, conforme as artes fornecidas pelo Zé. Destaque, cards e ficha preservam a imagem inteira; informações e botões do destaque e da ficha ficam fora da arte. Miniaturas de episódios continuam em 16:9. Fileiras mantêm raio 12 px, tipografia Archivo e intervalos de 10 px; o destaque tem raio 24 px. Navegação, busca e Minha lista de séries seguem o fundo escuro da marca. Botão principal branco, secundário neutro; sem vermelho de marca externa.
 
 O catálogo vem de `site/assistir/series.json`. Somente a série atual é exibida nesta etapa. Novas séries entram pelo cadastro; a configuração editorial pode definir destaque e fileiras por gênero. Não duplicar séries ou inventar conteúdo para preencher fileiras. Episódios pertencem à série em destaque; Continuar assistindo só aparece com progresso real. A lista de séries é independente da lista de skills.
 
