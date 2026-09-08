@@ -78,8 +78,11 @@
         target=s.slug;const next=journey.firstNeeded(s.slug);
         return `<div class="prerequisite-gate"><p class="eyebrow">Uma etapa antes</p><h2>${esc(s.name)}</h2><p>Para liberar esta skill, marque os pré-requisitos como instalados.</p><ul>${journey.missing(s.slug).map(dep=>`<li>${esc(name(dep))}</li>`).join('')}</ul><p>Comece por <strong>${esc(name(next))}</strong>. Depois de instalar, confirme na ficha.</p><button class="guide-primary" data-act="open" data-slug="${esc(next)}">Ir para ${esc(name(next))} <span aria-hidden="true">→</span></button></div>`;
       }
+      function installationButton(s) {
+        return `<button class="installed-control" data-installed="${esc(s.slug)}" aria-pressed="${journey.has(s.slug)}" aria-describedby="installation-help">${journey.has(s.slug)?'✓ Instalado':'Marcar como instalado'}</button>`;
+      }
       function installation(s) {
-        return `<section class="installation-state"><button data-installed="${esc(s.slug)}" aria-pressed="${journey.has(s.slug)}">${journey.has(s.slug)?'✓ Instalado':'Marcar como instalado'}</button><p>Marque depois de instalar no seu agente. A confirmação fica salva neste navegador.</p><p class="installation-feedback" role="status"></p><div class="installation-next">${nextLink(s)}</div></section>`;
+        return `<section class="installation-state" data-install-area>${installationButton(s)}<p id="installation-help">Marque depois de instalar no seu agente. A confirmação fica salva neste navegador.</p><p class="installation-feedback" role="status"></p><div class="installation-next">${nextLink(s)}</div></section>`;
       }
       function nextLink(s) {
         if(!journey.has(s.slug))return '';
@@ -137,15 +140,19 @@
       function bind(s) {
         cancel();current=s.slug;lens=null;
         const panel=$('modal');
-        panel.querySelector('[data-installed]')?.addEventListener('click',e=>{
+        panel.querySelectorAll('[data-installed]').forEach(button=>button.addEventListener('click',e=>{
           const outcome=journey.setInstalled(s.slug,!journey.has(s.slug));
           if(!outcome.ok)return;
-          e.currentTarget.setAttribute('aria-pressed',String(journey.has(s.slug)));
-          e.currentTarget.textContent=journey.has(s.slug)?'✓ Instalado':'Marcar como instalado';
-          panel.querySelector('.installation-feedback').textContent=outcome.saved?(journey.has(s.slug)?'Instalação marcada. Seu caminho foi atualizado.':'Marcação removida. As skills que dependem desta ficam bloqueadas.'): 'A marcação vale nesta visita. Não foi possível salvar neste navegador.';
+          panel.querySelectorAll('[data-installed]').forEach(control=>{
+            control.setAttribute('aria-pressed',String(journey.has(s.slug)));
+            control.textContent=journey.has(s.slug)?'✓ Instalado':'Marcar como instalado';
+          });
+          // Só a posição acionada anuncia a mudança, sem duplicar a leitura de status.
+          panel.querySelectorAll('.installation-feedback').forEach(message=>message.textContent='');
+          e.currentTarget.closest('[data-install-area]').querySelector('.installation-feedback').textContent=outcome.saved?(journey.has(s.slug)?'Instalação marcada. Seu caminho foi atualizado.':'Marcação removida. As skills que dependem desta ficam bloqueadas.'): 'A marcação vale nesta visita. Não foi possível salvar neste navegador.';
           panel.querySelector('.installation-next').innerHTML=nextLink(s);
           hooks.changed();renderRecommendation();
-        });
+        }));
         panel.querySelectorAll('[data-lens]').forEach(b=>b.addEventListener('click',()=>{
           lens=lens===b.dataset.lens?null:b.dataset.lens;
           panel.querySelectorAll('[data-lens]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.lens===lens)));
@@ -159,7 +166,7 @@
       }
       home();
       window.addEventListener('storage',e=>{if(e.key===journey.key||e.key===null){journey.reload();hooks.changed(true);renderRecommendation();}});
-      return {matches,card,context,extras,bind,cancel,setDoor,toggleGuide,installation,gate,status,
+      return {matches,card,context,extras,bind,cancel,setDoor,toggleGuide,installation,installationButton,gate,status,
         locked:journey.locked, renderRecommendation, endVisit(){target=null;},
         get completed(){return completeOnboarding;},
         rows:data.fileiras.map(f=>({id:f.id,title:()=>f.titulo,note:f.sub,ids:available.filter(slug=>data.skills[slug].fileira===f.id),journey:true})),

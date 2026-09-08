@@ -826,7 +826,14 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
               <h3>${esc(s.title)}</h3>
               <p class="name">${esc(s.name)}</p>
               <p class="sub">${esc(s.sub)}</p>
-              <div class="modal-actions"><button class="btn-install" data-act="install-focus">Instalar em…</button><button class="pv-round pv-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" aria-label="${s.inList ? 'Remover da minha lista' : 'Adicionar à minha lista'}" aria-pressed="${s.inList}">${listIcon(s.inList)}</button></div>
+              <div class="modal-installation" data-install-area>
+                <div class="modal-actions">
+                  <button class="btn-install" data-act="install-focus">Instalar em…</button>
+                  ${DISCOVERY ? DISCOVERY.installationButton(s) : ''}
+                  <button class="modal-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" aria-label="${s.inList ? 'Remover da minha lista' : 'Adicionar à minha lista'}" aria-pressed="${s.inList}">${listLabel(s)}</button>
+                </div>
+                <p class="installation-feedback" role="status"></p>
+              </div>
             </div>
           </div>
           <div class="body">
@@ -923,7 +930,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       if (s.inList && !dot) art.insertAdjacentHTML("beforeend", '<div class="ldot"></div>');
       if (!s.inList && dot) dot.remove();
     });
-    document.querySelectorAll(`[data-act="toggle"][data-slug="${sel}"]`).forEach((b) => { b.classList.toggle("on", s.inList); b.setAttribute("aria-pressed", String(s.inList)); if (b.classList.contains("pv-list")) b.setAttribute("aria-label", s.inList ? "Remover da minha lista" : "Adicionar à minha lista"); if (b.classList.contains("pv-list")) b.innerHTML = listIcon(s.inList); else b.textContent = listLabel(s); });
+    document.querySelectorAll(`[data-act="toggle"][data-slug="${sel}"]`).forEach((b) => { b.classList.toggle("on", s.inList); b.setAttribute("aria-pressed", String(s.inList)); if (b.matches(".pv-list,.modal-list")) b.setAttribute("aria-label", s.inList ? "Remover da minha lista" : "Adicionar à minha lista"); if (b.classList.contains("pv-list")) b.innerHTML = listIcon(s.inList); else b.textContent = listLabel(s); });
     const est = document.querySelector('#modal [data-fact="estado"] b');
     if (est && state.open === slug) est.textContent = s.inList ? "na lista" : "disponível";
     if ($("results").hidden) { if (pvCard) pendingListRefresh = true; else refreshRow("lista"); } else if (state.filter === "Minha lista") renderCatalog();
