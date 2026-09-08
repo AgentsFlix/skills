@@ -24,7 +24,7 @@ tarefa envolve conteúdo de skill, capa ou catálogo, o trabalho começa lá.
 ## Como publicar
 
 1. Branch a partir de `main`, commit, push, PR. A `main` é protegida: sem push direto.
-2. O check `validate` precisa passar: `python3 -m unittest`, `python3 scripts/check_site.py`, validação das skills, scanner e diff do `build_docs`. A Vercel gera um preview por PR.
+2. O check `validate` precisa passar: `python3 -m unittest discover -s tests`, `python3 scripts/check_site.py`, validação das skills, scanner e diff do `build_docs`. A Vercel gera um preview por PR.
 3. Merge com squash. **O merge na `main` é o deploy em produção** (agentsflix.ai, Vercel, Root Directory `site`).
 4. Mudança de design: capturas antes e depois em 1440, 768 e 390 px no PR. Ajustes técnicos seguem o merge automático descrito em CONTRIBUTING.md.
 
@@ -42,6 +42,6 @@ tarefa envolve conteúdo de skill, capa ou catálogo, o trabalho começa lá.
 ## Rodar local
 
 ```
-python3 -m unittest && python3 scripts/check_site.py
+python3 -m unittest discover -s tests && python3 scripts/check_site.py
 (cd site && python3 -m http.server 8772)   # http://127.0.0.1:8772/ e /assistir/?s=hermes-agent
 ```
