@@ -71,3 +71,11 @@ O painel do exemplar comporta até 1120 px. As abas acompanham a rolagem, seguid
 Escuro usa a base da marca. Papel é uma exceção aprovada para conforto: fundo creme e texto escuro apenas na leitura. Os cinco tamanhos e a aparência ficam em `agentflix-reading-v1`, por navegador e origem. Capa, ações e instalação não mudam de tema nem de tamanho. Escape fecha primeiro os ajustes abertos; depois, a ficha.
 
 O conteúdo aprovado é servido em `site/leitura/`, com as imagens e os créditos. O componente só é montado após o onboarding e a verificação de pré-requisitos da ficha. Não há página de leitura paralela que pule essa experiência. Falha no carregamento oferece nova tentativa e mantém o acesso à aba de instalação.
+
+### Acervo de leitura
+
+**Ler** fica no menu principal, após **Assistir**, e abre a seleção **Para o humano** em `#ler`. A seleção lista todas as skills que têm leitura registrada no mesmo componente que libera a aba humana. Atualmente, apenas Hormozi. O filtro anterior de avulsas, coleções ou Minha lista não limita esse acervo.
+
+A grade conserva capas 16:9, proporções, tipografia e fundo escuro da vitrine. Um livro de traço discreto acompanha “Leitura disponível”. O card abre a ficha na aba humana; fechar retorna ao acervo e ao card acionado. O hover oferece “Ler método”. A busca da barra passa a buscar apenas nas leituras, com limpeza de busca quando não houver resultado.
+
+No celular, Ler acompanha a navegação horizontal. O tema Papel continua restrito ao conteúdo dentro da ficha. Abrir `#ler` ou acionar Ler antes do fim do onboarding conserva o destino pretendido e exibe o guia obrigatório; não carrega a leitura antecipadamente. As regras de pré-requisitos continuam sendo conferidas ao abrir cada ficha. Voltar ao Catálogo recupera a seleção anterior.

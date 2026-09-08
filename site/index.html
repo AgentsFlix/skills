@@ -561,7 +561,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   };
   const state = {
-    q: "", filter: "Tudo", open: null,
+    q: "", filter: "Tudo", open: null, view: "catalog",
     target: TARGET_IDS.includes(store.get("agentflix-target", "")) ? store.get("agentflix-target", "") : "Hermes CLI",
     list: store.get("agentflix-list", [])
   };
@@ -628,12 +628,12 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     if (!DISCOVERY_DATA || !window.AgentFlixDiscovery || !window.AgentFlixJourney) throw Error("orientação indisponível");
     DISCOVERY = window.AgentFlixDiscovery.create(DISCOVERY_DATA, BY, {
       filter() { hidePreview(); state.filter = "Tudo"; state.q = ""; $("q").value = ""; renderChips(); renderCatalog(); },
-      enter() { if(pendingSkill){const slug=pendingSkill;pendingSkill=null;openModal(slug);} },
+      enter() { if(pendingSkill){const slug=pendingSkill;pendingSkill=null;openModal(slug);} else if(state.view === "reading") focusCatalogView(); },
       changed(external) { hidePreview(); renderCatalog(); if(external && state.open){renderModal();const panel=document.querySelector('#modal .panel');if(panel){panel.tabIndex=-1;panel.focus({preventScroll:true});}} }
     });
     document.body.classList.add("discovery-enabled");
     CHIPS = ["Tudo", "Minha lista"];
-    $("nav").innerHTML = '<a href="#inicio" data-discover-home>Início</a><a href="#guide" data-discover-guide>Como escolher</a><a href="#chips" data-discover-catalog>Catálogo</a><a href="/assistir/?s=hermes-agent">Assistir</a>';
+    $("nav").innerHTML = '<a href="#inicio" data-discover-home>Início</a><a href="#guide" data-discover-guide>Como escolher</a><a href="#chips" data-discover-catalog>Catálogo</a><a href="/assistir/?s=hermes-agent">Assistir</a><a href="#ler" data-discover-reading>Ler</a>';
     ROW_DEFS = DISCOVERY ? [...TOP_ROWS, ...DISCOVERY.rows] : buildRows(cat);
     heroSlug = (pinnedHero() || nextHero() || ALL[0] || {}).slug || null;
     if (!DISCOVERY) startHeroRotation();
@@ -642,7 +642,8 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     $("tapText").textContent = tap; $("tapBtn").dataset.text = tap;
     render(true);
     const h = hashSlug();
-    if (h && BY[h]) openModal(h);
+    if (h === "ler") setCatalogView("reading", { scroll: false, updateUrl: false });
+    else if (h && BY[h]) openModal(h);
   }
 
   // ---------- pedaços de HTML ----------
@@ -669,8 +670,10 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
         </div>
         ${s.inList ? '<div class="ldot"></div>' : ""}
       </div>`;
+  const readingMark = () => `<span class="reading-available"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v15M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Z"/></svg><span>Leitura disponível</span></span>`;
+  const readingCardInfo = s => `<div class="journey-info reading-card-info">${readingMark()}<h3>${esc(s.name)}</h3><p>${esc(s.sub)}</p>${DISCOVERY?.locked(s.slug) ? `<small>${esc(DISCOVERY.status(s))}</small>` : ''}</div>`;
   const cardHtml = (s) => `
-    <div class="card ${DISCOVERY ? 'journey-card' : ''}" data-act="open" data-slug="${esc(s.slug)}" role="button" tabindex="0" aria-label="${esc(s.name)}">${artHtml(s, cardCover(s))}${DISCOVERY ? DISCOVERY.card(s) : ''}
+    <div class="card ${DISCOVERY ? 'journey-card' : ''}" data-act="open" data-slug="${esc(s.slug)}" role="button" tabindex="0" aria-label="${state.view === 'reading' ? 'Ler ' : ''}${esc(s.name)}">${artHtml(s, cardCover(s))}${state.view === 'reading' ? readingCardInfo(s) : DISCOVERY ? DISCOVERY.card(s) : ''}
     </div>`;
 
   // ---------- banner rotativo: sorteia uma obra por carga e troca a cada HERO_MS, sem repetir até fechar a volta ----------
@@ -695,7 +698,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     heroTimer = setInterval(swapHero, HERO_MS);
   }
   function renderHero() {
-    if (DISCOVERY && !pinnedHero()) { $("hero").hidden = true; return; }
+    if (state.view === "reading" || (DISCOVERY && !pinnedHero())) { $("hero").hidden = true; return; }
     $("hero").hidden = false;
     const s = heroFor(); if (!s) return;
     const { value } = targetInfo(s, state.target);
@@ -727,10 +730,14 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   function filtered() {
     const q = state.q.trim().toLowerCase();
     let r = ALL;
-    const cat = CHIP_TO_CAT[state.filter];
-    if (cat) r = r.filter((s) => s.cat === cat);
-    if (state.filter === "Minha lista") r = r.filter((s) => s.inList);
-    if (DISCOVERY) r = r.filter(DISCOVERY.matches);
+    if (state.view === "reading") {
+      r = r.filter(s => window.AgentFlixReader?.supports(s.slug));
+    } else {
+      const cat = CHIP_TO_CAT[state.filter];
+      if (cat) r = r.filter((s) => s.cat === cat);
+      if (state.filter === "Minha lista") r = r.filter((s) => s.inList);
+      if (DISCOVERY) r = r.filter(DISCOVERY.matches);
+    }
     if (q) r = r.filter((s) => s.hay.includes(q));
     return r;
   }
@@ -767,9 +774,25 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
 
   function renderCatalog() {
     const ready = !!DISCOVERY?.completed;
+    const reading = state.view === "reading";
+    const readerLink = $("nav").querySelector('[data-discover-reading]');
+    if (ready && reading) readerLink?.setAttribute('aria-current', 'page');
+    else readerLink?.removeAttribute('aria-current');
     $("catalog-stage").hidden = !ready;
     document.body.classList.toggle("choosing", !ready);
     if (!ready) { $("rows").innerHTML = ""; $("results").innerHTML = ""; $("recommendation").innerHTML = ""; return; }
+    $("results").classList.toggle("reading-catalog", reading);
+    $("recommendation").hidden = reading;
+    $("chips").hidden = reading;
+    $("q").placeholder = reading ? "Buscar nas leituras" : "Buscar skill, lenda ou gênero";
+    $("q").setAttribute('aria-label', $("q").placeholder);
+    if (reading) {
+      const readings = filtered();
+      $("results").hidden = false; $("rows").hidden = true;
+      $("results").innerHTML = `<div class="head"><h2 id="reading-heading" tabindex="-1">Para o humano</h2><span class="n" role="status">${readings.length} ${readings.length === 1 ? 'leitura' : 'leituras'}</span></div>
+        ${readings.length ? '<div class="grid">' + readings.map(cardHtml).join('') + '</div>' : `<div class="empty"><p>${state.q.trim() ? 'Não encontramos uma leitura para essa busca.' : 'Nenhuma leitura disponível por enquanto.'}</p>${state.q.trim() ? '<button class="clear-reading-search" data-clear-reading-search>Limpar busca</button>' : ''}</div>`}`;
+      return;
+    }
     DISCOVERY.renderRecommendation();
     const q = state.q.trim();
     const searching = q.length > 0 || state.filter !== "Tudo";
@@ -785,6 +808,29 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       return;
     }
     renderRows();
+  }
+
+  function focusCatalogView() {
+    const target = state.view === "reading" ? $("reading-heading") : $("chips");
+    if(!target || !DISCOVERY?.completed) return;
+    if(state.view === "reading") {
+      window.scrollTo({top:0, behavior:"instant"});
+      $("nav").scrollLeft = $("nav").scrollWidth;
+      target.focus({preventScroll:true});
+    } else target.scrollIntoView({block:"start", behavior:"instant"});
+  }
+  function setCatalogView(view, {scroll = true, updateUrl = true} = {}) {
+    hidePreview(); closeModal(true); pendingSkill = null;
+    state.view = view; state.q = ""; $("q").value = ""; clearTimeout(qTimer);
+    if(updateUrl) {
+      const hash = view === "reading" ? "#ler" : "#chips";
+      if(location.hash !== hash) history.pushState(null, "", hash);
+    }
+    renderHero(); renderCatalog();
+    if(scroll) {
+      if(DISCOVERY?.completed) focusCatalogView();
+      else $("discovery").scrollIntoView({block:"start"});
+    }
   }
 
   // bloco "instalar em": o único pedaço do modal que muda quando o alvo muda
@@ -908,10 +954,10 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const panel = document.querySelector("#modal .panel");
     if (panel) { panel.tabIndex = -1; panel.focus({ preventScroll: true }); }
   }
-  function closeModal() {
+  function closeModal(preserveUrl = false) {
     if (!state.open) return;
     state.open = null;
-    history.replaceState(null, "", location.pathname + location.search);
+    if (!preserveUrl) history.replaceState(null, "", location.pathname + location.search + (state.view === "reading" ? "#ler" : ""));
     renderModal();
     updateInert();
     const returnFocus = lastFocus && document.contains(lastFocus) ? lastFocus : lastFocus?.dataset.slug ? document.querySelector(`.card[data-slug="${CSS.escape(lastFocus.dataset.slug)}"]`) : null;
@@ -976,12 +1022,12 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     else if (act === "synopsis") { const expanded = el.parentElement.classList.toggle("expanded"); el.setAttribute("aria-expanded", String(expanded)); el.textContent = expanded ? "Recolher sinopse" : "Ler sinopse completa"; }
     else if (act === "install-focus") { window.AgentFlixReader?.showSkill(); $("install-target").scrollIntoView({ block: "center", behavior: "smooth" }); $("install-target").focus({ preventScroll: true }); }
     else if (act === "copy") { e.preventDefault(); copyText(el); }
-    else if (act === "chip") { hidePreview(); if (DISCOVERY && ["Tudo", "Minha lista"].includes(el.dataset.filter)) DISCOVERY.setDoor(null); state.filter = el.dataset.filter; renderChips(); renderCatalog(); window.scrollTo({ top: $("chips").offsetTop - 80, behavior: "smooth" }); }
+    else if (act === "chip") { if(state.view === "reading") setCatalogView("catalog", {scroll:false}); hidePreview(); if (DISCOVERY && ["Tudo", "Minha lista"].includes(el.dataset.filter)) DISCOVERY.setDoor(null); state.filter = el.dataset.filter; renderChips(); renderCatalog(); window.scrollTo({ top: $("chips").offsetTop - 80, behavior: "smooth" }); }
     else if (act === "prev") scrollRow(el.dataset.row, -1);
     else if (act === "next") scrollRow(el.dataset.row, 1);
     else if (act === "replay" || act === "enter") playIntro(true);
     else if (act === "skip") stopIntro(true);
-    else if (act === "home") { e.preventDefault(); DISCOVERY?.setDoor(null); state.q = ""; state.filter = "Tudo"; $("q").value = ""; closeModal(); renderChips(); renderCatalog(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    else if (act === "home") { e.preventDefault(); if(state.view === "reading") setCatalogView("catalog", {scroll:false}); DISCOVERY?.setDoor(null); state.q = ""; state.filter = "Tudo"; $("q").value = ""; closeModal(); renderChips(); renderCatalog(); window.scrollTo({ top: 0, behavior: "smooth" }); }
     else if (act === "account") { if (shop.on) openAuth(); }
     else if (act === "auth-close") closeAuth();
     else if (act === "logout") logout();
@@ -1015,9 +1061,11 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   document.addEventListener("click", e => {
     if (!DISCOVERY) return;
     if (e.target.closest('[data-clear-door]')) { DISCOVERY.setDoor(null); $("chips").querySelector('button')?.focus(); }
-    if (e.target.closest('[data-discover-guide]')) { e.preventDefault(); closeModal(); DISCOVERY.toggleGuide(true); }
-    if (e.target.closest('[data-discover-home]')) { e.preventDefault(); DISCOVERY.setDoor(null); window.scrollTo({top:0,behavior:'smooth'}); }
-    if (e.target.closest('[data-discover-catalog]')) { e.preventDefault(); if(!DISCOVERY.completed)return; $("chips").scrollIntoView({block:'start',behavior:'smooth'}); }
+    if (e.target.closest('[data-discover-guide]')) { e.preventDefault(); setCatalogView('catalog', {scroll:false}); history.replaceState(null, '', '#guide'); DISCOVERY.toggleGuide(true); }
+    if (e.target.closest('[data-discover-home]')) { e.preventDefault(); setCatalogView('catalog', {scroll:false}); history.replaceState(null, '', '#inicio'); DISCOVERY.setDoor(null); window.scrollTo({top:0,behavior:'smooth'}); }
+    if (e.target.closest('[data-discover-catalog]')) { e.preventDefault(); setCatalogView('catalog'); }
+    if (e.target.closest('[data-discover-reading]')) { e.preventDefault(); setCatalogView('reading'); }
+    if (e.target.closest('[data-clear-reading-search]')) { state.q = ''; $('q').value = ''; renderCatalog(); $('q').focus(); }
   });
   document.addEventListener("keydown", e => {
     if (e.key !== "Tab" || !state.open) return;
@@ -1029,7 +1077,13 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   });
   let qTimer = null;
   $("q").addEventListener("input", (e) => { hidePreview(); state.q = e.target.value; clearTimeout(qTimer); qTimer = setTimeout(renderCatalog, 80); });
-  window.addEventListener("hashchange", () => { const h = hashSlug(); if (h && BY[h]) openModal(h); else if (!h) { pendingSkill=null; closeModal(); } });
+  window.addEventListener("hashchange", () => {
+    const h = hashSlug();
+    if(h === "ler") setCatalogView("reading", {updateUrl:false});
+    else if(h && BY[h]) openModal(h);
+    else if(h === "guide") { setCatalogView("catalog", {updateUrl:false, scroll:false}); DISCOVERY?.toggleGuide(true); }
+    else if(!h || h === "chips" || h === "inicio") setCatalogView("catalog", {updateUrl:false, scroll:h === "chips"});
+  });
 
   function listIcon(selected) {
     return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${selected ? 'M5 12l4 4L19 6' : 'M12 4v16M4 12h16'}"/></svg>`;
@@ -1044,7 +1098,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     return `${artHtml(s, coverImg(s, "cover", "wide", { eager: true }))}
       <div class="pv-body">
         <div class="pv-actions">
-          <button class="pv-play" data-act="open" data-slug="${esc(s.slug)}" title="Ver detalhes" aria-label="Ver detalhes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l4 4v14H4V3zM8 11h8M8 15h8"/></svg></button>
+          <button class="pv-play" data-act="open" data-slug="${esc(s.slug)}" title="${state.view === 'reading' ? 'Ler método' : 'Ver detalhes'}" aria-label="${state.view === 'reading' ? 'Ler método' : 'Ver detalhes'}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l4 4v14H4V3zM8 11h8M8 15h8"/></svg></button>
           <button class="pv-round pv-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" title="Minha lista" aria-label="${s.inList ? "Remover da minha lista" : "Adicionar à minha lista"}" aria-pressed="${s.inList}">${listIcon(s.inList)}</button>
           <button class="pv-round pv-more" data-act="open" data-slug="${esc(s.slug)}" title="Mais informações" aria-label="Mais informações"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         </div>
