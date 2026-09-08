@@ -114,7 +114,11 @@ class Series(unittest.TestCase):
                         if o.get("em_breve"):
                             continue
                         self.assertIn(int(o["temporada"]), ns, f"{e['t']}: opção aponta para temporada inexistente")
-                        self.assertNotEqual(int(o["temporada"]), int(se["n"]), f"{e['t']}: opção aponta para a própria temporada")
+                        target = next(t for t in s["seasons"] if int(t["n"]) == int(o["temporada"]))
+                        number = o.get("episodio", 1)
+                        self.assertIs(type(number), int, f"{e['t']}: episodio deve ser inteiro")
+                        self.assertTrue(1 <= number <= len(target["eps"]), f"{e['t']}: opção aponta para episódio inexistente")
+                        self.assertNotEqual(target["eps"][number - 1]["uid"], e["uid"], f"{e['t']}: opção aponta para o próprio episódio")
                     if "t" in ch:
                         self.assertLess(ch["t"], e["d"], f"{e['t']}: escolha.t depois do fim do episódio")
                     if "tempo" in ch:

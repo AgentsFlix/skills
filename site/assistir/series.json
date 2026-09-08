@@ -241,7 +241,8 @@
                   {
                     "label": "Fácil: uma empresa instala para você",
                     "desc": "Sempre disponível, segurança feita por eles. Você paga pela paz.",
-                    "em_breve": true
+                    "temporada": 1,
+                    "episodio": 2
                   },
                   {
                     "label": "Intermediário: no seu computador",
@@ -255,6 +256,155 @@
                   }
                 ]
               }
+            },
+            {
+              "t": "Modo fácil na Hostinger",
+              "d": 687.73,
+              "desc": "Contrate um mês do Hermes na Hostinger, conecte sua assinatura do ChatGPT e coloque o bot para responder no Telegram.",
+              "faz": [
+                "Contratar o Hermes Agent por um mês",
+                "Conectar sua assinatura do ChatGPT",
+                "Criar o bot e conectar o seu Telegram",
+                "Escolher o modelo e reiniciar a aplicação se o bot não responder"
+              ],
+              "preplay": {
+                "req": [
+                  {
+                    "t": "Sua conta do ChatGPT com um plano pago, como mostrado na aula",
+                    "need": true
+                  },
+                  {
+                    "t": "Telegram instalado no celular",
+                    "need": true
+                  },
+                  {
+                    "t": "Um meio de pagamento para contratar o Hermes por um mês"
+                  }
+                ]
+              },
+              "ch": [
+                {
+                  "t": 0,
+                  "n": "O modo fácil"
+                },
+                {
+                  "t": 19.5,
+                  "n": "Contratar um mês do Hermes",
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "pausar_em": 147.8,
+                    "label": "Contratar o Hermes na Hostinger",
+                    "titulo": "Comece com um mês",
+                    "cta": "Contratar Hermes por 1 mês",
+                    "nota": "Assista à explicação primeiro. O vídeo vai pausar para você fazer a compra. Nesta aula, a recomendação é contratar só um mês. Este link não gera comissão para o AgentFlix.",
+                    "depois": [
+                      "No carrinho, selecione o período de 1 mês.",
+                      "Em aplicação, escolha Hermes Agent.",
+                      "Desmarque IA pronta para uso. A aula usa sua assinatura do ChatGPT.",
+                      "A busca na internet aparece grátis na gravação. Confira o carrinho antes de pagar.",
+                      "Conclua o pagamento. Depois, volte aqui e continue o vídeo."
+                    ],
+                    "opcoes": [
+                      {
+                        "label": "1 mês",
+                        "url": "https://cart.hostinger.com/pay/372b8772-33cd-44db-80db-f56d2a107ab7",
+                        "padrao": true
+                      }
+                    ],
+                    "indicacao": false,
+                    "humano": true,
+                    "feito": "Já contratei",
+                    "pular": "Já tenho o plano, continuar o vídeo",
+                    "depois_lbl": "CONFIRA NO CARRINHO"
+                  }
+                },
+                {
+                  "t": 182.4,
+                  "n": "Usar a assinatura do ChatGPT"
+                },
+                {
+                  "t": 197.1,
+                  "n": "Ativar a autorização por código"
+                },
+                {
+                  "t": 264.8,
+                  "n": "Autorizar a conexão com o ChatGPT"
+                },
+                {
+                  "t": 372.1,
+                  "n": "Criar o bot no Telegram",
+                  "acao": {
+                    "tipo": "videos",
+                    "parar": true,
+                    "label": "Ver como criar o bot",
+                    "titulo": "No celular: crie o seu bot",
+                    "nota": "Os dois vídeos mostram como encontrar o BotFather e criar o bot. Ao terminar, copie o token, que é a chave de acesso do bot, e cole no campo da Hostinger.",
+                    "videos": [
+                      {
+                        "uid": "905ae88f2aaac65ea55a040b27559094",
+                        "label": "Achar o @BotFather"
+                      },
+                      {
+                        "uid": "2784fd35dc7781b07b4d6b22231633bd",
+                        "label": "Criar o bot e copiar o token"
+                      }
+                    ],
+                    "depois": [
+                      "No Telegram, procure o @BotFather.",
+                      "Crie o bot e escolha o nome e o nome de usuário.",
+                      "Copie o token do seu bot e cole no campo Token do bot, na Hostinger."
+                    ],
+                    "cta": "Token colado, continuar o vídeo",
+                    "pular": "Já tenho o token, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 396.2,
+                  "n": "Pegar o seu ID do Telegram",
+                  "acao": {
+                    "tipo": "videos",
+                    "parar": true,
+                    "label": "Ver como pegar o meu ID",
+                    "titulo": "Agora, pegue o seu ID",
+                    "nota": "O ID é o número que identifica sua conta no Telegram. O vídeo mostra onde encontrar o seu.",
+                    "videos": [
+                      {
+                        "uid": "ccb7ed8af219992317a010b485d36bf0",
+                        "label": "Pegar o seu ID no @userinfobot"
+                      }
+                    ],
+                    "depois": [
+                      "No Telegram, procure o @userinfobot.",
+                      "Inicie a conversa e copie o número que aparece em Id.",
+                      "Cole no campo ID de usuário do Telegram, na Hostinger."
+                    ],
+                    "cta": "ID colado, continuar o vídeo",
+                    "pular": "Já tenho meu ID, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 428.6,
+                  "n": "Escolher o modelo"
+                },
+                {
+                  "t": 477.1,
+                  "n": "Abrir o bot no Telegram"
+                },
+                {
+                  "t": 570.7,
+                  "n": "Se o bot não responder: reiniciar"
+                },
+                {
+                  "t": 633.1,
+                  "n": "Iniciar uma nova conversa"
+                },
+                {
+                  "t": 669.4,
+                  "n": "Hermes respondendo e próxima aula"
+                }
+              ],
+              "uid": "1cc8f984ce6982d94193b85155ab4999"
             }
           ]
         },

@@ -33,11 +33,28 @@ save(first, 60, 1);
 assert.equal(resume(series, read).fresh, false);
 assert.equal(model.continuing(data, read)[0].series.slug, series.slug);
 save(first, first.d, 2);
+assert.equal(resume(series, read).ep, 0, "a escolha precede o episódio seguinte da mesma temporada");
 assert.equal(
   resume(series, read).season,
   0,
   "raiz sem escolha não pula para um caminho",
 );
+memory[`agentflix-caminho-${series.slug}`] = { temporada: 1, episodio: 2 };
+assert.deepEqual(resume(series, read), { season: 0, ep: 1, fresh: true });
+assert.deepEqual(JSON.parse(JSON.stringify(model.choiceTarget(series, first.escolha.opcoes[0]))), { season: 0, ep: 1 });
+for (const choice of [{ temporada: 1 }, { temporada: 1, episodio: 99 }, { temporada: 2 }, { temporada: 3, episodio: 2 }]) {
+  memory[`agentflix-caminho-${series.slug}`] = choice;
+  assert.deepEqual(resume(series, read), { season: 0, ep: 0, fresh: true }, "escolha inválida ou não oferecida volta à raiz");
+}
+assert.equal(model.choiceTarget(series, { temporada: 1, episodio: 0 }), null);
+assert.equal(model.choiceTarget(series, { temporada: 1, episodio: 1.5 }), null);
+assert.equal(model.choiceTarget(series, { temporada: 1, episodio: 99 }), null);
+assert.equal(model.choiceTarget(series, { temporada: 1, episodio: 2, em_breve: true }), null);
+const easy = series.seasons[0].eps[1];
+save(easy, easy.d, 3);
+assert.equal(resume(series, read).finished, true, "fim de T1E2 não inicia o caminho Difícil");
+assert.deepEqual(continuing(data, read), []);
+delete memory[`agentflix-prog-${easy.uid}`];
 memory[`agentflix-caminho-${series.slug}`] = { temporada: 3 };
 assert.deepEqual(resume(series, read), { season: 1, ep: 0, fresh: true });
 save(branch.eps[0], branch.eps[0].d, 3);
