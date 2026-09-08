@@ -12,6 +12,8 @@ ASSISTIR = ROOT / "site" / "assistir"
 UID = re.compile(r"^[0-9a-f]{32}$")
 URL = re.compile(r"^https://[^\s\"'<>]+$")
 CUSTOMER = re.compile(r"^customer-[a-z0-9]+$")
+# Checkout mensal autorizado pelo Zé para a aula do modo fácil, sem indicação.
+HERMES_MENSAL = "https://cart.hostinger.com/pay/372b8772-33cd-44db-80db-f56d2a107ab7"
 
 
 class Series(unittest.TestCase):
@@ -83,7 +85,9 @@ class Series(unittest.TestCase):
                             self.assertTrue(a.get("opcoes"), f"{e['t']}: parada de compra sem opções")
                         for o in a.get("opcoes", []):
                             self.assertRegex(o["url"], URL, f"{e['t']}: url inválida")
-                            if "hostinger" in o["url"]:
+                            if o["url"] == HERMES_MENSAL:
+                                self.assertIs(a.get("indicacao"), False, f"{e['t']}: checkout mensal não é link de indicação")
+                            elif "hostinger" in o["url"]:
                                 self.assertIn("REFERRALCODE=JOSEAMORIM20", o["url"], f"{e['t']}: link da Hostinger sem o código de indicação")
                                 self.assertIn("referral_id=", o["url"], f"{e['t']}: link da Hostinger sem referral_id")
 

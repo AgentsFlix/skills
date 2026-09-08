@@ -434,7 +434,7 @@
       `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · ${a.indicacao ? "COMPRA" : "LINK"}</div><h3>${esc(a.titulo || (a.indicacao ? "Escolha o seu plano" : "Abra o link"))}</h3><p>${esc(a.nota || "")}</p>
     ${a.opcoes && a.opcoes.length > 1 ? periodSel(a, e.uid, k) : `<div class="psel-row"><button class="btn primary" data-act="ext" data-url="${esc(optDefault(a).url)}" data-k="${k}">${esc(a.cta || a.label)} ↗</button></div>`}
     ${a.indicacao ? `<div class="selo">${SELO}<br>Abre em nova aba. O vídeo fica pausado esperando você voltar.</div>` : ""}
-    ${a.depois ? `<div class="steps"><div class="lbl">NA HOSTINGER, DEPOIS DO CARRINHO</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
+    ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "NA HOSTINGER, DEPOIS DO CARRINHO")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
     <div class="cont-row">${isDone(e.uid, k) ? continuarHtml(k) : ""}</div>
     ${isDone(e.uid, k) ? "" : `<button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Já tenho, continuar o vídeo")} ▶</button>`}`;
     $("checkout").hidden = false;
