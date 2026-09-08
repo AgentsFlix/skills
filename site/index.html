@@ -405,6 +405,7 @@
 .consent .no { background: rgba(109,109,110,.6); color: #fff; }
 @media (max-width: 600px) { .consent { left: 8px; right: 8px; bottom: 8px; padding: 12px; } }
 </style>
+<link rel="stylesheet" href="vitrine.css">
 <script>
 // Microsoft Clarity (projeto yenn89e53y): mapas de calor e gravações de sessão para entender o uso. Texto digitado é mascarado.
 // Sem cookie até a pessoa aceitar (barra de consentimento, LGPD): antes disso o Clarity roda no modo sem cookie.
@@ -423,7 +424,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     <a class="brand" href="#" data-act="home" aria-label="AgentFlix">
       <img class="logo" src="brand/horizontal-transparente-dark.svg" alt="AgentFlix">
     </a>
-    <nav class="main">
+    <nav class="main" id="nav">
       <a href="#copy">Copy</a>
       <a href="#negocios">Negócios</a>
       <a href="#sop">Processos</a>
@@ -440,6 +441,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     <button class="acct" data-act="account" id="acctBtn" hidden>ENTRAR</button>
   </header>
 
+  <section id="discovery" hidden aria-label="Encontre uma skill"></section>
   <section class="hero" id="hero" data-cover-host><div class="loading">Carregando o catálogo…</div></section>
   <div class="chips" id="chips"></div>
   <section class="results" id="results" hidden></section>
@@ -461,6 +463,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
 <div id="auth" hidden></div>
 <div id="toast"  role="status" hidden></div>
 
+<script src="vitrine.js"></script>
 <script>
 (() => {
   "use strict";
@@ -509,7 +512,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     base:     { id: "base",     chip: "Base",      badge: "BASE",         title: "Base", desc: "Infraestrutura do hub.", tints: ["#2b2f3a", "#33323a"] }
   };
   const CHIP_TO_CAT = Object.fromEntries(Object.entries(CATS).filter(([k]) => k !== "base").map(([k, v]) => [v.chip, k]));
-  const CHIPS = ["Tudo", ...Object.values(CATS).filter((v) => v.id !== "base").map((v) => v.chip), "Minha lista"];
+  let CHIPS = ["Tudo", ...Object.values(CATS).filter((v) => v.id !== "base").map((v) => v.chip), "Minha lista"];
   const CHIP_DESC = { "Tudo": () => `Todas as ${ALL.length} skills do hub, por seção.`, "Minha lista": () => "As skills que você guardou neste navegador." };
 
   // fileiras: as duas do topo são fixas, a curadoria vem do catálogo (manifest → catalog.curated/featured), o resto segue as linhas
@@ -552,6 +555,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     target: TARGET_IDS.includes(store.get("agentflix-target", "")) ? store.get("agentflix-target", "") : "Hermes CLI",
     list: store.get("agentflix-list", [])
   };
+  let DISCOVERY = null, DISCOVERY_DATA = null;
   let CAT = null;                    // catálogo cru
   let ALL = [];                      // obras decoradas, na ordem das linhas
   let BY = Object.create(null);      // slug -> obra (sem protótipo: "constructor" não é uma skill)
@@ -611,9 +615,17 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const sorted = (cat.skills || []).map((s, i) => ({ s, i })).sort((a, b) => idx(a.s.row) - idx(b.s.row) || a.i - b.i);
     ALL = sorted.map(({ s }, i) => decorate(s, i));
     BY = Object.create(null); ALL.forEach((s) => { BY[s.slug] = s; });
-    ROW_DEFS = buildRows(cat);
+    if (DISCOVERY_DATA && window.AgentFlixDiscovery) {
+      try {
+        DISCOVERY = window.AgentFlixDiscovery.create(DISCOVERY_DATA, BY, { filter() { hidePreview(); state.filter = "Tudo"; state.q = ""; $("q").value = ""; renderChips(); renderCatalog(); } });
+        document.body.classList.add("discovery-enabled");
+        CHIPS = ["Tudo", "Minha lista"];
+        $("nav").innerHTML = '<a href="#inicio" data-discover-home>Início</a><a href="#guide" data-discover-guide>Como escolher</a><a href="#chips" data-discover-catalog>Catálogo</a><a href="/assistir/?s=hermes-agent">Assistir</a>';
+      } catch (e) { DISCOVERY = null; $("discovery").hidden = true; console.warn("Curadoria indisponível; exibindo catálogo completo."); }
+    }
+    ROW_DEFS = DISCOVERY ? [...TOP_ROWS, ...DISCOVERY.rows] : buildRows(cat);
     heroSlug = (pinnedHero() || nextHero() || ALL[0] || {}).slug || null;
-    startHeroRotation();
+    if (!DISCOVERY) startHeroRotation();
     $("footTotal").textContent = ALL.length + " obras · v" + (cat.version || "");
     const tap = cat.tap || "hermes skills tap add AgentsFlix/skills";
     $("tapText").textContent = tap; $("tapBtn").dataset.text = tap;
@@ -647,7 +659,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
         ${s.inList ? '<div class="ldot"></div>' : ""}
       </div>`;
   const cardHtml = (s) => `
-    <div class="card" data-act="open" data-slug="${esc(s.slug)}" role="button" tabindex="0" aria-label="${esc(s.name)}">${artHtml(s, cardCover(s))}
+    <div class="card ${DISCOVERY ? 'journey-card' : ''}" data-act="open" data-slug="${esc(s.slug)}" role="button" tabindex="0" aria-label="${esc(s.name)}">${artHtml(s, cardCover(s))}${DISCOVERY ? DISCOVERY.card(s) : ''}
     </div>`;
 
   // ---------- banner rotativo: sorteia uma obra por carga e troca a cada HERO_MS, sem repetir até fechar a volta ----------
@@ -672,6 +684,8 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     heroTimer = setInterval(swapHero, HERO_MS);
   }
   function renderHero() {
+    if (DISCOVERY && !pinnedHero()) { $("hero").hidden = true; return; }
+    $("hero").hidden = false;
     const s = heroFor(); if (!s) return;
     const { value } = targetInfo(s, state.target);
     const el = $("hero");
@@ -695,6 +709,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
 
   function renderChips() {
     $("chips").innerHTML = CHIPS.map((c) => `<button class="chip ${state.filter === c ? "on" : ""}" data-act="chip" data-filter="${esc(c)}" aria-pressed="${state.filter === c}" title="${esc(chipDesc(c))}">${esc(c)}</button>`).join("");
+    if (DISCOVERY) $("chips").insertAdjacentHTML("beforeend", `<label class="jump-label" for="jump-row">Ir para</label><select id="jump-row" class="jump-row"><option value="">Escolha uma necessidade</option>${DISCOVERY.rows.map(r=>`<option value="${esc(r.id)}">${esc(r.title())}</option>`).join('')}</select>${DISCOVERY.door ? '<button class="clear-door" data-clear-door>Limpar filtro</button>' : ''}`);
   }
 
   function chipDesc(c) { const cat = CHIP_TO_CAT[c]; return cat ? CATS[cat].desc : (CHIP_DESC[c] ? CHIP_DESC[c]() : ""); }
@@ -704,22 +719,24 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const cat = CHIP_TO_CAT[state.filter];
     if (cat) r = r.filter((s) => s.cat === cat);
     if (state.filter === "Minha lista") r = r.filter((s) => s.inList);
+    if (DISCOVERY) r = r.filter(DISCOVERY.matches);
     if (q) r = r.filter((s) => s.hay.includes(q));
     return r;
   }
 
   function rowItems(r) {
-    if (r.ids) return r.ids.map((i) => BY[i]).filter(Boolean);
+    if (r.ids) return r.ids.map((i) => BY[i]).filter(s => s && (!DISCOVERY || DISCOVERY.matches(s)));
     if (r.cat) return ALL.filter((s) => s.cat === r.cat);
-    return ALL.filter(r.pick);
+    return ALL.filter(r.pick).filter(s => !DISCOVERY || DISCOVERY.matches(s));
   }
   function rowHtml(r, items) {
     return `
         <section class="rowsec" id="${esc(r.id)}">
           <div class="head">
-            <div><h2>${esc(r.title())}</h2>${r.note ? `<details class="row-context"><summary aria-label="Sobre ${esc(r.title())}">ⓘ</summary><p class="row-desc">${esc(r.note)}</p></details>` : ""}</div>
+            <div><h2>${esc(r.title())}</h2>${r.note && !r.journey ? `<details class="row-context"><summary aria-label="Sobre ${esc(r.title())}">ⓘ</summary><p class="row-desc">${esc(r.note)}</p></details>` : ""}</div>
             <div class="arrows"><button class="arrow" data-act="prev" data-row="${esc(r.id)}" aria-label="anterior">‹</button><button class="arrow" data-act="next" data-row="${esc(r.id)}" aria-label="próximo">›</button></div>
           </div>
+          ${r.journey ? `<p class="row-desc journey-desc">${esc(r.note)}</p>` : ''}
           <div class="row-scroll" data-row="${esc(r.id)}">${items.map(cardHtml).join("")}</div>
         </section>`;
   }
@@ -779,7 +796,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   function renderModal() {
     const s = state.open ? BY[state.open] : null;
     const m = $("modal");
-    if (!s) { m.hidden = true; m.innerHTML = ""; document.body.style.overflow = ""; return; }
+    if (!s) { DISCOVERY?.cancel(); m.hidden = true; m.innerHTML = ""; document.body.style.overflow = ""; return; }
     m.innerHTML = `
       <div class="overlay" data-act="close">
         <div class="panel" data-act="stop" role="dialog" aria-modal="true" aria-label="${esc(s.name)}">
@@ -802,8 +819,10 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
               <div class="synopsis"><p class="syn" id="skill-syn">${esc(s.syn)}</p><button class="syn-toggle" data-act="synopsis" aria-expanded="false" aria-controls="skill-syn" hidden>Ler sinopse completa</button></div>
               ${s.badge === "LENDA" ? `<p class="legal">Skill independente: reúne o método publicado em livros, cursos e entrevistas do autor. Sem afiliação nem endosso dele.</p>` : ""}
               ${exclusiveHtml(s)}
+              ${DISCOVERY ? DISCOVERY.context(s) : ''}
               <div class="lbl">Como usar</div>
               <p class="how">${esc(s.how)}</p>
+              ${DISCOVERY ? DISCOVERY.extras(s) : ''}
               <div class="install">${installHtml(s)}</div>
               ${s.cast.length ? `<div class="lbl mb10">Elenco</div><div class="tags">${s.cast.map((c) => `<span class="cast">${esc(c)}</span>`).join("")}</div>` : ""}
               ${s.gen.length ? `<div class="lbl mb10">Gêneros</div><div class="tags last">${s.gen.map((g) => `<span class="gen">${esc(g)}</span>`).join("")}</div>` : ""}
@@ -822,6 +841,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
         </div>
       </div>`;
     m.hidden = false;
+    DISCOVERY?.bind(s);
     requestAnimationFrame(measureSynopsis);
     document.body.style.overflow = "hidden";
   }
@@ -920,12 +940,12 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     else if (act === "synopsis") { const expanded = el.parentElement.classList.toggle("expanded"); el.setAttribute("aria-expanded", String(expanded)); el.textContent = expanded ? "Recolher sinopse" : "Ler sinopse completa"; }
     else if (act === "install-focus") { $("install-target").scrollIntoView({ block: "center", behavior: "smooth" }); $("install-target").focus({ preventScroll: true }); }
     else if (act === "copy") { e.preventDefault(); copyText(el); }
-    else if (act === "chip") { hidePreview(); state.filter = el.dataset.filter; renderChips(); renderCatalog(); window.scrollTo({ top: $("chips").offsetTop - 80, behavior: "smooth" }); }
+    else if (act === "chip") { hidePreview(); if (DISCOVERY && ["Tudo", "Minha lista"].includes(el.dataset.filter)) DISCOVERY.setDoor(null); state.filter = el.dataset.filter; renderChips(); renderCatalog(); window.scrollTo({ top: $("chips").offsetTop - 80, behavior: "smooth" }); }
     else if (act === "prev") scrollRow(el.dataset.row, -1);
     else if (act === "next") scrollRow(el.dataset.row, 1);
     else if (act === "replay" || act === "enter") playIntro(true);
     else if (act === "skip") stopIntro(true);
-    else if (act === "home") { e.preventDefault(); state.q = ""; state.filter = "Tudo"; $("q").value = ""; closeModal(); renderChips(); renderCatalog(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    else if (act === "home") { e.preventDefault(); DISCOVERY?.setDoor(null); state.q = ""; state.filter = "Tudo"; $("q").value = ""; closeModal(); renderChips(); renderCatalog(); window.scrollTo({ top: 0, behavior: "smooth" }); }
     else if (act === "account") { if (shop.on) openAuth(); }
     else if (act === "auth-close") closeAuth();
     else if (act === "logout") logout();
@@ -947,7 +967,20 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const button = $("search").querySelector("button"); button.setAttribute("aria-expanded", String(open));
     if (open) $("q").focus(); else button.focus();
   }
-  document.addEventListener("change", e => { if (e.target.id === "install-target") setTarget(e.target.value); });
+  document.addEventListener("change", e => {
+    if (e.target.id === "install-target") setTarget(e.target.value);
+    if (e.target.id === "jump-row" && e.target.value) {
+      const id = e.target.value; DISCOVERY?.setDoor(null);
+      const row = $(id); if(row){row.scrollIntoView({behavior:"smooth",block:"start"});const h=row.querySelector('h2');h.tabIndex=-1;h.focus({preventScroll:true});}
+    }
+  });
+  document.addEventListener("click", e => {
+    if (!DISCOVERY) return;
+    if (e.target.closest('[data-clear-door]')) { DISCOVERY.setDoor(null); $("chips").querySelector('button')?.focus(); }
+    if (e.target.closest('[data-discover-guide]')) { e.preventDefault(); DISCOVERY.toggleGuide(true); }
+    if (e.target.closest('[data-discover-home]')) { e.preventDefault(); DISCOVERY.setDoor(null); window.scrollTo({top:0,behavior:'smooth'}); }
+    if (e.target.closest('[data-discover-catalog]')) { e.preventDefault(); $("chips").scrollIntoView({block:'start',behavior:'smooth'}); }
+  });
   document.addEventListener("keydown", e => {
     if (e.key !== "Tab" || !state.open) return;
     const panel = document.querySelector("#modal .panel");
@@ -1397,6 +1430,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       catch (e) { lastErr = e; }
     }
     if (!cat) { showLoadError(lastErr && lastErr.message || "sem rede"); return; }
+    try { const r = await fetch('vitrine.json', { cache: 'no-cache' }); if(r.ok) DISCOVERY_DATA = await r.json(); } catch(e) { /* catálogo tradicional continua disponível */ }
     try { loadCatalog(cat); }
     catch (e) { console.error(e); showLoadError("catálogo inválido: " + (e && e.message || e)); return; }
     initShop();   // só muda algo se a loja estiver ligada em /api/config

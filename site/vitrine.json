@@ -1,0 +1,868 @@
+{
+  "schema_version": 1,
+  "fileiras": [
+    {
+      "id": "comece",
+      "titulo": "Ainda não montei nada",
+      "sub": "O cérebro do negócio. Roda uma vez, e todas as outras passam a ler daqui."
+    },
+    {
+      "id": "escrever",
+      "titulo": "Preciso escrever uma peça",
+      "sub": "Pega, usa, entrega. Ficam melhores se a fileira de cima já rodou."
+    },
+    {
+      "id": "gastar",
+      "titulo": "Vou gastar dinheiro em tráfego",
+      "sub": "Antes do primeiro real, a conta precisa fechar."
+    },
+    {
+      "id": "semana",
+      "titulo": "Isso eu faço toda semana",
+      "sub": "Tem cadência própria: diária ou semanal."
+    },
+    {
+      "id": "presta",
+      "titulo": "Já existe. Presta?",
+      "sub": "Não produz nada novo. Olha o que existe e dá veredito."
+    },
+    {
+      "id": "processo",
+      "titulo": "Isso que eu faço na mão vira processo",
+      "sub": "Transforma o que só está na sua cabeça em SOP."
+    }
+  ],
+  "skills": {
+    "hybrid-etl": {
+      "fileira": "comece",
+      "colecao": "hybrid",
+      "passo": 0,
+      "antes": [],
+      "nota": "Atalho: extrai do site e dos PDFs antes de te perguntar."
+    },
+    "hybrid-perfil": {
+      "fileira": "comece",
+      "colecao": "hybrid",
+      "passo": 1,
+      "antes": [],
+      "nota": "Abre a pasta. É a base que todas as outras leem."
+    },
+    "hybrid-fundador": {
+      "fileira": "comece",
+      "colecao": "hybrid",
+      "passo": 2,
+      "antes": [
+        "hybrid-perfil"
+      ],
+      "nota": "A copy, a marca e a cultura consultam este arquivo."
+    },
+    "hybrid-icp": {
+      "fileira": "comece",
+      "colecao": "hybrid",
+      "passo": 3,
+      "antes": [
+        "hybrid-perfil"
+      ],
+      "nota": "Alimenta toda a fileira de escrever."
+    },
+    "hybrid-marca": {
+      "fileira": "comece",
+      "colecao": "hybrid",
+      "passo": 4,
+      "antes": [
+        "hybrid-perfil",
+        "hybrid-fundador"
+      ],
+      "nota": "As skills de copy passam a respeitar este arquivo."
+    },
+    "hybrid-oferta": {
+      "fileira": "comece",
+      "colecao": "hybrid",
+      "passo": 5,
+      "antes": [
+        "hybrid-perfil",
+        "hybrid-icp"
+      ],
+      "nota": "Antes da copy. Documenta a oferta e pontua onde ela é fraca."
+    },
+    "copy-voz": {
+      "fileira": "comece",
+      "colecao": null,
+      "passo": 6,
+      "antes": [],
+      "nota": "Não grava na pasta, mas qualquer skill passa a respeitar o guia."
+    },
+    "hybrid-time": {
+      "fileira": "comece",
+      "colecao": "hybrid",
+      "passo": 7,
+      "antes": [
+        "hybrid-perfil"
+      ],
+      "nota": "É daqui que a fileira da semana sabe quem existe."
+    },
+    "hybrid-cultura": {
+      "fileira": "comece",
+      "colecao": "hybrid",
+      "passo": 8,
+      "antes": [
+        "hybrid-perfil",
+        "hybrid-fundador"
+      ],
+      "nota": "Para quem entra no time."
+    },
+    "hybrid-tech": {
+      "fileira": "comece",
+      "colecao": "hybrid",
+      "passo": 9,
+      "antes": [
+        "hybrid-perfil"
+      ],
+      "nota": "Stack e estratégia de IA, sem hype."
+    },
+    "copy-pesquisa-avatar": {
+      "fileira": "comece",
+      "colecao": null,
+      "passo": 10,
+      "antes": [],
+      "nota": "Não grava na pasta. Pesquisa a web e devolve o retrato."
+    },
+    "copy-headlines": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp",
+        "copy-voz"
+      ],
+      "nota": ""
+    },
+    "copy-big-idea-lead-magnet": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp"
+      ],
+      "nota": ""
+    },
+    "copy-oferta": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-oferta"
+      ],
+      "nota": "Escreve a oferta. Quem documenta é hybrid-oferta."
+    },
+    "copy-sales-page": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp",
+        "copy-voz",
+        "hybrid-oferta"
+      ],
+      "nota": ""
+    },
+    "copy-email": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp",
+        "copy-voz"
+      ],
+      "nota": ""
+    },
+    "copy-anuncios": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp"
+      ],
+      "nota": ""
+    },
+    "copy-vsl-webinar": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp",
+        "hybrid-oferta"
+      ],
+      "nota": ""
+    },
+    "copy-vendas-por-chamada": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp",
+        "hybrid-oferta"
+      ],
+      "nota": ""
+    },
+    "copy-pipeline": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp",
+        "copy-voz",
+        "hybrid-oferta"
+      ],
+      "nota": "Orquestra várias das outras numa campanha só."
+    },
+    "copy-lancamento": {
+      "fileira": "escrever",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp",
+        "hybrid-oferta"
+      ],
+      "nota": "A maior do catálogo: 18 procedimentos."
+    },
+    "ads-plano": {
+      "fileira": "gastar",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-oferta"
+      ],
+      "nota": "Não guarda estado, mas produz o briefing que a leitura diária lê."
+    },
+    "ads-pesquisa": {
+      "fileira": "gastar",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "hybrid-icp"
+      ],
+      "nota": "11 modelos por setor."
+    },
+    "hybrid-proxima-acao": {
+      "fileira": "semana",
+      "colecao": "hybrid",
+      "passo": null,
+      "antes": [
+        "hybrid-diagnostico"
+      ],
+      "nota": "Uma ação por semana. Anti-paralisia."
+    },
+    "ops-revisao-semanal": {
+      "fileira": "semana",
+      "colecao": "ops",
+      "passo": null,
+      "antes": [
+        "hybrid-time"
+      ],
+      "nota": ""
+    },
+    "ops-rotear-tarefa": {
+      "fileira": "semana",
+      "colecao": "ops",
+      "passo": null,
+      "antes": [
+        "hybrid-time"
+      ],
+      "nota": ""
+    },
+    "ops-briefing": {
+      "fileira": "semana",
+      "colecao": "ops",
+      "passo": null,
+      "antes": [
+        "hybrid-time"
+      ],
+      "nota": ""
+    },
+    "ops-avaliar-fit": {
+      "fileira": "semana",
+      "colecao": "ops",
+      "passo": null,
+      "antes": [
+        "hybrid-time"
+      ],
+      "nota": "Binária: cabe ou não cabe."
+    },
+    "ads-otimizar": {
+      "fileira": "semana",
+      "colecao": "ads",
+      "passo": null,
+      "antes": [
+        "ads-plano"
+      ],
+      "nota": "Leitura das 8h. Só Hermes, Claude Code e Codex."
+    },
+    "hybrid-diagnostico": {
+      "fileira": "presta",
+      "colecao": "hybrid",
+      "passo": null,
+      "antes": [
+        "hybrid-perfil"
+      ],
+      "nota": "Lê a pasta e pontua 10 dimensões. Arquivo ausente zera a nota."
+    },
+    "copy-auditoria": {
+      "fileira": "presta",
+      "colecao": null,
+      "passo": null,
+      "antes": [],
+      "nota": "Sobre peça que já existe."
+    },
+    "sop-auditar": {
+      "fileira": "presta",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "sop-criar"
+      ],
+      "nota": ""
+    },
+    "ads-tracking": {
+      "fileira": "presta",
+      "colecao": null,
+      "passo": null,
+      "antes": [],
+      "nota": "Antes de escalar."
+    },
+    "ads-gate-compliance": {
+      "fileira": "presta",
+      "colecao": null,
+      "passo": null,
+      "antes": [],
+      "nota": "Antes de subir. Binária."
+    },
+    "ads-criativos": {
+      "fileira": "presta",
+      "colecao": null,
+      "passo": null,
+      "antes": [],
+      "nota": "Com os seus dados."
+    },
+    "sop-extrair": {
+      "fileira": "processo",
+      "colecao": null,
+      "passo": null,
+      "antes": [],
+      "nota": "Primeiro passo: vira rascunho."
+    },
+    "sop-criar": {
+      "fileira": "processo",
+      "colecao": null,
+      "passo": null,
+      "antes": [
+        "sop-extrair"
+      ],
+      "nota": "SOP para humano e SOP para agente."
+    }
+  },
+  "colecoes": {
+    "hybrid": {
+      "nome": "Workspace do negócio",
+      "chave": "hybrid.pasta",
+      "pasta": "~/hybrid/meu-negocio",
+      "explica": "Uma pasta por negócio. Todas as skills desta coleção escrevem e leem YAML lá dentro. É o cérebro que as outras consultam."
+    },
+    "ops": {
+      "nome": "Perfis do time",
+      "chave": "ops.perfis_do_time",
+      "pasta": "arquivo de perfis",
+      "explica": "Os perfis Kolbe e Genius Zone de quem trabalha com você. Sem eles, rotear tarefa é chute."
+    },
+    "ads": {
+      "nome": "Motor de tráfego",
+      "chave": "ads.briefing + ads.estado",
+      "pasta": "briefing da campanha",
+      "explica": "O briefing e o estado da conta. A leitura diária lê daqui para dizer o que pausar e o que escalar."
+    }
+  },
+  "guia": {
+    "inicio": {
+      "p": "Você já tem uma pasta com os arquivos do seu negócio?",
+      "ajuda": "Perfil, cliente ideal e oferta escritos em YAML, num lugar só.",
+      "o": [
+        {
+          "t": "Não, ainda não tenho nada",
+          "vai": "tem_material"
+        },
+        {
+          "t": "Tenho, está preenchida",
+          "vai": "o_que_agora"
+        },
+        {
+          "t": "Comecei mas está pela metade",
+          "skill": "hybrid-diagnostico",
+          "nota": "Roda o diagnóstico primeiro: ele diz qual arquivo está furado antes de você preencher no escuro."
+        }
+      ]
+    },
+    "tem_material": {
+      "p": "A empresa já escreveu sobre si mesma em algum lugar?",
+      "ajuda": "Site no ar, PDF de apresentação, posts, proposta comercial.",
+      "o": [
+        {
+          "t": "Sim, tem site e material",
+          "skill": "hybrid-etl",
+          "nota": "Ela lê o que existe antes de te perguntar. Você só responde o que ela não achou."
+        },
+        {
+          "t": "Não, está tudo na minha cabeça",
+          "skill": "hybrid-perfil",
+          "nota": "Entrevista em seis fases, com gate de 85%. Aceita 'não sei ainda' e deixa em branco."
+        }
+      ]
+    },
+    "o_que_agora": {
+      "p": "O que você precisa agora?",
+      "o": [
+        {
+          "t": "Escrever uma peça",
+          "vai": "que_peca"
+        },
+        {
+          "t": "Saber se algo que já existe presta",
+          "vai": "que_existe"
+        },
+        {
+          "t": "Tocar a semana",
+          "vai": "que_rotina"
+        },
+        {
+          "t": "Colocar dinheiro em tráfego",
+          "vai": "que_trafego"
+        },
+        {
+          "t": "Virar processo o que eu faço na mão",
+          "skill": "sop-extrair",
+          "nota": "Ela extrai o rascunho. Depois sop-criar escreve a versão final."
+        }
+      ]
+    },
+    "que_peca": {
+      "p": "Que peça?",
+      "o": [
+        {
+          "t": "Título, gancho, bullet",
+          "skill": "copy-headlines"
+        },
+        {
+          "t": "Página de vendas",
+          "skill": "copy-sales-page"
+        },
+        {
+          "t": "Sequência de e-mail",
+          "skill": "copy-email"
+        },
+        {
+          "t": "Anúncio",
+          "skill": "copy-anuncios"
+        },
+        {
+          "t": "Roteiro de vídeo ou webinar",
+          "skill": "copy-vsl-webinar"
+        },
+        {
+          "t": "Script de ligação",
+          "skill": "copy-vendas-por-chamada"
+        },
+        {
+          "t": "A oferta em si",
+          "skill": "copy-oferta"
+        },
+        {
+          "t": "A ideia central da campanha",
+          "skill": "copy-big-idea-lead-magnet"
+        },
+        {
+          "t": "A campanha inteira",
+          "skill": "copy-pipeline"
+        },
+        {
+          "t": "Um lançamento com carrinho e prazo",
+          "skill": "copy-lancamento"
+        }
+      ]
+    },
+    "que_existe": {
+      "p": "O que você quer avaliar?",
+      "o": [
+        {
+          "t": "O negócio inteiro",
+          "skill": "hybrid-diagnostico"
+        },
+        {
+          "t": "Uma copy que já está no ar",
+          "skill": "copy-auditoria"
+        },
+        {
+          "t": "Um processo escrito",
+          "skill": "sop-auditar"
+        },
+        {
+          "t": "O rastreamento do site",
+          "skill": "ads-tracking"
+        },
+        {
+          "t": "Um criativo antes de subir",
+          "skill": "ads-gate-compliance"
+        },
+        {
+          "t": "Criativos que já rodaram",
+          "skill": "ads-criativos"
+        }
+      ]
+    },
+    "que_rotina": {
+      "p": "O que a semana pede?",
+      "o": [
+        {
+          "t": "Não sei por onde começar a semana",
+          "skill": "hybrid-proxima-acao"
+        },
+        {
+          "t": "Fechar a semana do time",
+          "skill": "ops-revisao-semanal"
+        },
+        {
+          "t": "Distribuir uma tarefa",
+          "skill": "ops-rotear-tarefa"
+        },
+        {
+          "t": "Passar um briefing para alguém",
+          "skill": "ops-briefing"
+        },
+        {
+          "t": "Aceitar ou recusar um projeto",
+          "skill": "ops-avaliar-fit"
+        },
+        {
+          "t": "Ler os números de tráfego de hoje",
+          "skill": "ads-otimizar"
+        }
+      ]
+    },
+    "que_trafego": {
+      "p": "Em que ponto você está?",
+      "o": [
+        {
+          "t": "Ainda não sei se a conta fecha",
+          "skill": "ads-plano"
+        },
+        {
+          "t": "A conta fecha, falta o brief da campanha",
+          "skill": "ads-pesquisa"
+        },
+        {
+          "t": "Já está rodando, quero otimizar",
+          "skill": "ads-otimizar"
+        }
+      ]
+    }
+  },
+  "lentes_em": [
+    "copy-headlines",
+    "copy-sales-page",
+    "copy-email",
+    "copy-anuncios",
+    "copy-oferta",
+    "copy-vsl-webinar",
+    "copy-big-idea-lead-magnet",
+    "copy-vendas-por-chamada",
+    "copy-pipeline",
+    "copy-lancamento"
+  ],
+  "amostras": {
+    "hybrid-perfil": {
+      "legenda": "A elicitação em seis fases. O gate de 85% é o que impede o arquivo de nascer mentindo.",
+      "roteiro": [
+        {
+          "de": "eu",
+          "t": "monta o perfil do negócio Camila Nutri"
+        },
+        {
+          "de": "bot",
+          "typing": 900,
+          "t": "Criei a pasta `~/hybrid/camila-nutri` e copiei os templates.\n\n*Fase 1 de 6 · Identidade*"
+        },
+        {
+          "de": "bot",
+          "typing": 700,
+          "t": "Em uma frase: o que o negócio promete, e para quem?"
+        },
+        {
+          "de": "eu",
+          "t": "Acompanhamento nutricional para mulher que já tentou de tudo e não sustenta."
+        },
+        {
+          "de": "bot",
+          "typing": 800,
+          "t": "Gravado.\n\nQue credencial sustenta essa promessa? Número, título ou caso."
+        },
+        {
+          "de": "eu",
+          "t": "não sei ainda"
+        },
+        {
+          "de": "bot",
+          "typing": 900,
+          "t": "Fica em branco então. Ninguém inventa credencial aqui."
+        },
+        {
+          "de": "bot",
+          "typing": 1100,
+          "doc": {
+            "nome": "company-profile.yaml",
+            "meta": "2,4 KB · 12 de 35 campos"
+          }
+        },
+        {
+          "de": "bot",
+          "typing": 600,
+          "t": "*Completude 34%.* Abaixo de 85%, então eu não declaro pronto.\n\nFaltam: credenciais, história de origem, portfólio.\nNa próxima sessão eu começo por aí."
+        }
+      ]
+    },
+    "copy-headlines": {
+      "legenda": "Dez no total. Três na simulação, cada uma com a fórmula que a gerou.",
+      "roteiro": [
+        {
+          "de": "eu",
+          "t": "gera headlines para acompanhamento nutricional, benefício \"para de recomeçar toda segunda\", público mulher 35+"
+        },
+        {
+          "de": "bot",
+          "typing": 1000,
+          "t": "Li o `icp.yaml` e o guia de voz. Dez headlines ranqueadas.\n\nAs três primeiras:"
+        },
+        {
+          "de": "bot",
+          "typing": 1200,
+          "chave": "peca"
+        },
+        {
+          "de": "bot",
+          "typing": 700,
+          "t": "Quer com a régua de um copywriter específico? Diga o nome, e as dez mudam de tom sem mudar a oferta."
+        }
+      ],
+      "peca": [
+        {
+          "t": "Para a mulher que quer emagrecer mas já desistiu três vezes este ano",
+          "n": "Schwartz · fala com quem já tentou, não com quem está começando"
+        },
+        {
+          "t": "O erro de segunda-feira que faz você recomeçar em março",
+          "n": "Bencivenga · nomeia o erro antes de vender a solução"
+        },
+        {
+          "t": "Quem mais está cansada de dieta que funciona por 11 dias?",
+          "n": "Halbert · pergunta que só quem viveu responde"
+        }
+      ],
+      "variantes": {
+        "copy-metodo-ogilvy": [
+          {
+            "t": "7 maneiras de sustentar a dieta depois do terceiro mês, e como fazer cada uma",
+            "n": "Ogilvy · \"[NÚMERO] maneiras de [BENEFÍCIO], e como fazer cada uma\""
+          },
+          {
+            "t": "O que nutricionistas sabem sobre recomeço e não contam na consulta",
+            "n": "Ogilvy · \"O que [EXPERTS] sabem sobre [TÓPICO] que você não sabe\""
+          },
+          {
+            "t": "Por que acompanhamento é diferente de plano alimentar",
+            "n": "Ogilvy · \"Por que [MARCA] é diferente de [ALTERNATIVA]\""
+          }
+        ],
+        "copy-metodo-kennedy": [
+          {
+            "t": "AVISO: não comece outra dieta na segunda até ler isto",
+            "n": "Kennedy · \"AVISO: Não [AÇÃO] até ler isso\""
+          },
+          {
+            "t": "Para mulheres sérias sobre parar de recomeçar",
+            "n": "Kennedy · \"Para [AVATAR] sérios sobre [RESULTADO]\""
+          },
+          {
+            "t": "Última chamada: as 8 vagas de setembro fecham sexta",
+            "n": "Kennedy · \"Última chance: [OFERTA] termina [DATA]\""
+          }
+        ],
+        "copy-metodo-sugarman": [
+          {
+            "t": "Era uma terça de março. Ela chorou na balança pela quarta vez no ano.",
+            "n": "Sugarman · \"Era [DATA]. Eu estava [SITUAÇÃO]...\""
+          },
+          {
+            "t": "A verdade sobre dieta restritiva que a indústria não conta",
+            "n": "Sugarman · \"A verdade sobre [PRODUTO] que ninguém conta\""
+          },
+          {
+            "t": "Por que comer mais fez ela finalmente parar de recomeçar",
+            "n": "Sugarman · \"Por que [RESULTADO SURPREENDENTE]\""
+          }
+        ]
+      }
+    },
+    "ads-plano": {
+      "legenda": "Ela pede o que falta antes de calcular, e termina no número que manda parar.",
+      "roteiro": [
+        {
+          "de": "eu",
+          "t": "plano de tráfego para acompanhamento a R$ 397/mês, margem 70%"
+        },
+        {
+          "de": "bot",
+          "typing": 900,
+          "t": "Faltam dois números para a conta fechar:\n\n1. permanência média em meses\n2. taxa de fechamento da call"
+        },
+        {
+          "de": "eu",
+          "t": "6 meses e 25%"
+        },
+        {
+          "de": "bot",
+          "typing": 1300,
+          "t": "Em reais, por cliente:\n```\nMargem    1.667  ▓▓▓▓▓▓▓▓▓▓\nCAC-teto    834  ▓▓▓▓▓░░░░░\nCAC-alvo    556  ▓▓▓░░░░░░░\nCPL-alvo    139  ▓░░░░░░░░░\n```"
+        },
+        {
+          "de": "bot",
+          "typing": 700,
+          "t": "A conta: margem é `397 x 6 x 0,70`. O teto é metade dela, o alvo é um terço, e o CPL é o alvo vezes os 25% de fechamento."
+        },
+        {
+          "de": "bot",
+          "typing": 800,
+          "t": "*Gatilho de parada: 20 leads sem venda.*\n\nOrçamento de teste: R$ 2.502, que é 3 vezes o CAC-teto.\nSe estourar sem venda, o problema é oferta, não criativo."
+        },
+        {
+          "de": "bot",
+          "typing": 700,
+          "doc": {
+            "nome": "briefing.yaml",
+            "meta": "1,1 KB · a leitura diária lê deste arquivo"
+          }
+        }
+      ]
+    },
+    "hybrid-proxima-acao": {
+      "legenda": "Lê o diagnóstico e devolve UMA. A segunda melhor não aparece de propósito.",
+      "roteiro": [
+        {
+          "de": "eu",
+          "t": "qual a próxima ação para Camila Nutri"
+        },
+        {
+          "de": "bot",
+          "typing": 1400,
+          "t": "Li o diagnóstico de hoje.\n\nSua alavanca é *Cliente*, em 28 de 100."
+        },
+        {
+          "de": "bot",
+          "typing": 900,
+          "t": "Sem ICP, toda copy sai genérica e todo anúncio compra o público errado. As outras nove dimensões esperam."
+        },
+        {
+          "de": "bot",
+          "typing": 700,
+          "t": "Faça isto:\n\n`monta o ICP de acompanhamento nutricional`"
+        },
+        {
+          "de": "bot",
+          "typing": 600,
+          "t": "Uma ação por semana, e a semana anda."
+        }
+      ]
+    },
+    "hybrid-diagnostico": {
+      "legenda": "Arquivo que não existe conta zero e aparece no relatório. É assim que o furo fica visível.",
+      "roteiro": [
+        {
+          "de": "eu",
+          "t": "diagnostica o negócio Camila Nutri"
+        },
+        {
+          "de": "bot",
+          "typing": 1200,
+          "t": "Li 7 arquivos da pasta. Três não existem e contam zero:\n`icp.yaml`, `pricing-strategy.yaml`, `traffic.yaml`"
+        },
+        {
+          "de": "bot",
+          "typing": 1400,
+          "t": "```\nCliente     28  ▓▓▓░░░░░░░\nOferta      45  ▓▓▓▓▓░░░░░\nMarca       52  ▓▓▓▓▓░░░░░\nNarrativa   71  ▓▓▓▓▓▓▓░░░\nTrafego      0  ░░░░░░░░░░\n\n+ 5 no relatorio\n```"
+        },
+        {
+          "de": "bot",
+          "typing": 700,
+          "t": "Cliente está em 28 porque o `icp.yaml` não existe. Marca tem voz escrita e valores não. Tráfego é zero porque nada está rodando."
+        },
+        {
+          "de": "bot",
+          "typing": 900,
+          "t": "*Score geral 39 de 100 · estado FRÁGIL.*\n\nNão é nota de escola: a dimensão mais baixa que trava as outras vira a alavanca número 1."
+        },
+        {
+          "de": "bot",
+          "typing": 800,
+          "doc": {
+            "nome": "2026-09-07-camila-nutri.md",
+            "meta": "18 KB · 10 dimensões, gaps e alavancas"
+          }
+        },
+        {
+          "de": "bot",
+          "typing": 600,
+          "t": "Para a ação, diga: `qual a próxima ação para Camila Nutri`"
+        }
+      ]
+    },
+    "sop-criar": {
+      "legenda": "O mesmo processo escrito duas vezes, de propósito. É o que \"Dupla\" quer dizer.",
+      "roteiro": [
+        {
+          "de": "eu",
+          "t": "escreve o SOP de responder o lead que chegou pelo Instagram"
+        },
+        {
+          "de": "bot",
+          "typing": 900,
+          "t": "Vou escrever nos dois formatos. Primeiro o de *humano*, no padrão FDA/GMP:"
+        },
+        {
+          "de": "bot",
+          "typing": 1200,
+          "t": "```\n3. Responder em ate 4h.\n\n4. Perguntar ha quanto\n   tempo ela tenta e o\n   que ja testou.\n\n5. Se ja fez low carb,\n   NAO oferecer plano.\n```"
+        },
+        {
+          "de": "bot",
+          "typing": 800,
+          "t": "Agora o de *agente*, que roda:"
+        },
+        {
+          "de": "bot",
+          "typing": 1200,
+          "t": "```\ngatilho: dm_nova\n  com: palavra_de_intencao\n\npasso_3:\n  prazo_h: 4\n  em_dias: uteis\n\npasso_5:\n  se: tem('low carb')\n  entao: pular_oferta\n```"
+        },
+        {
+          "de": "bot",
+          "typing": 700,
+          "doc": {
+            "nome": "responder-lead-instagram.md",
+            "meta": "+ versão .yaml para agente"
+          }
+        },
+        {
+          "de": "bot",
+          "typing": 600,
+          "t": "O de humano é para treinar gente. O de agente é para rodar. Um documento só gera os dois."
+        }
+      ]
+    }
+  },
+  "caso": "Camila, nutricionista. Acompanhamento online para mulheres de 35 a 50 anos que já tentaram várias dietas. R$ 397 por mês."
+}
