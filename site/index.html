@@ -411,22 +411,16 @@
 </style>
 <link rel="stylesheet" href="vitrine.css">
 <link rel="stylesheet" href="human-reader.css">
-<script>
-// Microsoft Clarity (projeto yenn89e53y): mapas de calor e gravações de sessão para entender o uso. Texto digitado é mascarado.
-// Sem cookie até a pessoa aceitar (barra de consentimento, LGPD): antes disso o Clarity roda no modo sem cookie.
-(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yenn89e53y");
-window.CONSENT_KEY = "agentflix-consent";
-(function () { let c = null; try { c = localStorage.getItem(window.CONSENT_KEY); } catch (e) {} window.clarity("consentv2", { ad_Storage: "denied", analytics_Storage: c === "granted" ? "granted" : "denied" }); })();
-window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((k) => window.clarity("set", k, String(tags[k]))); if (evt) window.clarity("event", evt); } catch (e) {} };
-</script>
+<script src="/analytics.js"></script>
+<script src="/clipboard.js"></script>
 </head>
-<body>
+<body class="choosing">
 
 <div id="intro" role="dialog" aria-modal="true" aria-label="Abertura AgentFlix" hidden></div>
 
 <div class="page" id="page">
   <header class="top">
-    <a class="brand" href="#" data-act="home" aria-label="AgentFlix">
+    <a class="brand" data-act="home" aria-label="AgentFlix" aria-disabled="true" tabindex="-1">
       <img class="logo" src="brand/horizontal-transparente-dark.svg" alt="AgentFlix">
     </a>
     <nav class="main" id="nav">
@@ -437,6 +431,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       <a href="#ads">Tráfego</a>
       <a href="#lenda">Lendas</a>
     </nav>
+    <span class="onboarding-header-note">Sua próxima descoberta começa aqui</span>
     <div class="spacer"></div>
     <div class="search" id="search">
       <button class="search-toggle" data-act="search" aria-label="Buscar" aria-expanded="false" aria-controls="q"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg></button>
@@ -472,6 +467,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
 <div id="toast"  role="status" hidden></div>
 
 <script src="vitrine-state.js"></script>
+<script src="vitrine-visit.js"></script>
 <script src="vitrine.js"></script>
 <script src="human-reader.js"></script>
 <script>
@@ -781,12 +777,17 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
 
   function renderCatalog() {
     const ready = !!DISCOVERY?.completed;
+    const guideLink = document.querySelector('#nav [data-discover-guide]');
+    if (guideLink) guideLink.textContent = ready ? 'Meu caminho' : 'Como escolher';
     const reading = state.view === "reading";
     const readerLink = $("nav").querySelector('[data-discover-reading]');
     if (ready && reading) readerLink?.setAttribute('aria-current', 'page');
     else readerLink?.removeAttribute('aria-current');
     $("catalog-stage").hidden = !ready;
     document.body.classList.toggle("choosing", !ready);
+    const brand = document.querySelector('.top .brand');
+    if (ready) { brand.setAttribute('href','#inicio'); brand.removeAttribute('aria-disabled'); brand.removeAttribute('tabindex'); }
+    else { brand.removeAttribute('href'); brand.setAttribute('aria-disabled','true'); brand.setAttribute('tabindex','-1'); }
     if (!ready) { $("rows").innerHTML = ""; $("results").innerHTML = ""; $("recommendation").innerHTML = ""; return; }
     $("results").classList.toggle("reading-catalog", reading);
     $("recommendation").hidden = reading;
@@ -825,6 +826,12 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       $("nav").scrollLeft = $("nav").scrollWidth;
       target.focus({preventScroll:true});
     } else target.scrollIntoView({block:"start", behavior:"instant"});
+  }
+  function resumeDiscovery() {
+    closeModal();
+    if(state.view === "reading") setCatalogView("catalog", {scroll:false, updateUrl:false});
+    history.replaceState(null, "", location.pathname + location.search + (DISCOVERY?.completed ? "#inicio" : "#guide"));
+    DISCOVERY?.resume();
   }
   function setCatalogView(view, {scroll = true, updateUrl = true} = {}) {
     hidePreview(); closeModal(true);
@@ -953,7 +960,10 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const opener = pvCard || document.activeElement;
     hidePreview();
     if (!state.open) lastFocus = opener;
-    if (state.open !== slug) { track("card_open", slug); clar("abriu_card", { skill: slug, alvo: state.target }); }
+    if (state.open !== slug) {
+      track("card_open", slug); window.clar?.("abriu_card", { skill: slug, alvo: state.target });
+      window.clar?.(DISCOVERY.locked(slug) ? 'pre_requisito_bloqueado' : 'ficha_liberada', {skill:slug});
+    }
     state.open = slug;
     if (location.hash !== "#" + slug) history.replaceState(null, "", "#" + slug);
     renderModal();
@@ -997,9 +1007,16 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     if ($("results").hidden) { if (pvCard) pendingListRefresh = true; else refreshRow("lista"); } else if (state.filter === "Minha lista") renderCatalog();
   }
   document.addEventListener("keydown", (e) => { const a = document.activeElement; if ((e.key === "Enter" || e.key === " ") && a && a.matches && a.matches('.cmdbox[data-act="copy"]')) { e.preventDefault(); copyText(a); } });
-  function copyText(el) {
-    clar("copiou_comando", { alvo: state.target, chave: el.dataset.key || "" });
+  async function copyText(el) {
     const text = el.dataset.text || "", key = el.dataset.key || "";
+    const command = el.classList.contains('cmdbox') || key === 'tap';
+    const tags = {alvo:state.target,chave:key,skill:state.open,tipo:command?'instalacao':'link_ou_texto'};
+    window.clar?.('copia_tentada', tags);
+    if (!await window.agentflixCopy?.(text)) {
+      el.classList.remove('copied');window.clar?.('copia_falhou',tags);
+      toast('Não foi possível copiar. Selecione o texto e copie manualmente.',6000);return;
+    }
+    window.clar?.(command?'copiou_comando':'copiou_texto',tags);
     const done = () => {
       document.querySelectorAll(`[data-act="copy"][data-key="${CSS.escape(key)}"]`).forEach((c) => {
         const lbl = c.querySelector(".cta-lbl") || c;
@@ -1007,8 +1024,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
         clearTimeout(c._t); c._t = setTimeout(() => { lbl.textContent = c.dataset.idle || "COPIAR"; }, 2200);
       });
     };
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
-    else { const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} ta.remove(); done(); }
+    done();
   }
   function scrollRow(id, dir) {
     const el = document.querySelector('.row-scroll[data-row="' + CSS.escape(String(id)) + '"]');
@@ -1021,7 +1037,12 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const act = el.dataset.act;
     if (!DISCOVERY?.completed && ['chip','toggle','target','install-focus'].includes(act)) { e.preventDefault(); return; }
     if (act === "stop") return;   // clique dentro do painel: o closest para aqui e o overlay não recebe "close"
-    if (act === "open") { e.preventDefault(); openModal(el.dataset.slug); }
+    if (act === "open") {
+      e.preventDefault();
+      if(el.closest('#recommendation'))window.clar?.('recomendacao_aberta',{skill:el.dataset.slug});
+      if(el.dataset.prerequisite)window.clar?.('pre_requisito_encaminhado',{skill:el.dataset.prerequisite,pre_requisito:el.dataset.slug});
+      openModal(el.dataset.slug);
+    }
     else if (act === "close") closeModal();
     else if (act === "toggle") toggleList(el.dataset.slug);
     else if (act === "target") setTarget(el.dataset.target);
@@ -1032,9 +1053,9 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     else if (act === "chip") { if(state.view === "reading") setCatalogView("catalog", {scroll:false}); hidePreview(); if (DISCOVERY && ["Tudo", "Minha lista"].includes(el.dataset.filter)) DISCOVERY.setDoor(null); state.filter = el.dataset.filter; renderChips(); renderCatalog(); window.scrollTo({ top: $("chips").offsetTop - 80, behavior: "smooth" }); }
     else if (act === "prev") scrollRow(el.dataset.row, -1);
     else if (act === "next") scrollRow(el.dataset.row, 1);
-    else if (act === "replay" || act === "enter") playIntro(true);
+    else if (act === "replay" || act === "enter") { window.clar?.('abertura_iniciada',{origem:act});playIntro(true); }
     else if (act === "skip") stopIntro(true);
-    else if (act === "home") { e.preventDefault(); if(state.view === "reading") setCatalogView("catalog", {scroll:false}); DISCOVERY?.setDoor(null); state.q = ""; state.filter = "Tudo"; $("q").value = ""; closeModal(); renderChips(); renderCatalog(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    else if (act === "home") { e.preventDefault(); if (DISCOVERY?.completed) resumeDiscovery(); }
     else if (act === "account") { if (shop.on) openAuth(); }
     else if (act === "auth-close") closeAuth();
     else if (act === "logout") logout();
@@ -1068,8 +1089,8 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   document.addEventListener("click", e => {
     if (!DISCOVERY) return;
     if (e.target.closest('[data-clear-door]')) { DISCOVERY.setDoor(null); $("chips").querySelector('button')?.focus(); }
-    if (e.target.closest('[data-discover-guide]')) { e.preventDefault(); setCatalogView('catalog', {scroll:false}); history.replaceState(null, '', '#guide'); DISCOVERY.toggleGuide(true); }
-    if (e.target.closest('[data-discover-home]')) { e.preventDefault(); setCatalogView('catalog', {scroll:false}); history.replaceState(null, '', '#inicio'); DISCOVERY.setDoor(null); window.scrollTo({top:0,behavior:'smooth'}); }
+    if (e.target.closest('[data-discover-reset]')) { e.preventDefault(); setCatalogView('catalog', {scroll:false, updateUrl:false}); history.replaceState(null, '', '#guide'); DISCOVERY.toggleGuide(); }
+    if (e.target.closest('[data-discover-guide],[data-discover-home]')) { e.preventDefault(); resumeDiscovery(); }
     if (e.target.closest('[data-discover-catalog]')) { e.preventDefault(); setCatalogView('catalog'); }
     if (e.target.closest('[data-discover-reading]')) { e.preventDefault(); setCatalogView('reading'); }
     if (e.target.closest('[data-clear-reading-search]')) { state.q = ''; $('q').value = ''; renderCatalog(); $('q').focus(); }
@@ -1088,7 +1109,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const h = hashSlug();
     if(h === "ler") setCatalogView("reading", {updateUrl:false});
     else if(h && BY[h]) openModal(h);
-    else if(h === "guide") { setCatalogView("catalog", {updateUrl:false, scroll:false}); DISCOVERY?.toggleGuide(true); }
+    else if(h === "guide") resumeDiscovery();
     else if(!h || h === "chips" || h === "inicio") setCatalogView("catalog", {updateUrl:false, scroll:h === "chips"});
   });
 
@@ -1547,9 +1568,9 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   <div class="acts"><button class="ok" data-consent="granted">Aceitar</button><button class="no" data-consent="denied">Agora não</button></div>
 </div>
 <script>
-(function () { const bar = document.getElementById("consent"); let c = null; try { c = localStorage.getItem(window.CONSENT_KEY); } catch (e) {}
+(function () { const consentKey = "agentflix-consent", bar = document.getElementById("consent"); let c = null; try { c = localStorage.getItem(consentKey); } catch (e) {}
   if (!c) bar.hidden = false;
-  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-consent]"); if (!b) return; const v = b.dataset.consent; try { localStorage.setItem(window.CONSENT_KEY, v); } catch (err) {} bar.hidden = true; window.clarity("consentv2", { ad_Storage: "denied", analytics_Storage: v === "granted" ? "granted" : "denied" }); });
+  bar.addEventListener("click", (e) => { const b = e.target.closest("button[data-consent]"); if (!b) return; const v = b.dataset.consent; try { localStorage.setItem(consentKey, v); } catch (err) {} bar.hidden = true; window.clarity?.("consentv2", { ad_Storage: "denied", analytics_Storage: v === "granted" ? "granted" : "denied" }); });
 })();
 </script>
 </body>
