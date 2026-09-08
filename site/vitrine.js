@@ -29,9 +29,9 @@
       const dots = n => `<span class="skill-dots" aria-hidden="true">${Array.from({length:n},()=>'<i></i>').join('')}</span>`;
       function setDoor(value) { door=value; hooks.filter(); }
       const entryChoices = [
-        {id:'avulsa',art:'copy-headlines',title:'Quero resolver uma coisa hoje',description:'Pega, usa, pronto. Não guarda nada, não pede pasta, não faz entrevista.',label:'Uma tarefa por vez'},
-        {id:'colecao',art:'hybrid-perfil',title:'Quero montar o cérebro do negócio',description:'Abre uma pasta, entrevista você, acumula. Depois todas as outras leem dela.',label:'Construir minha base'},
-        {id:'guia',art:'hybrid-proxima-acao',title:'Não sei o que pegar',description:'Três perguntas. No fim, uma skill só e o comando pronto para colar.',label:'Descobrir meu caminho'}
+        {id:'avulsa',art:'copy-headlines',illustration:'resolver',title:'Quero resolver uma coisa hoje',description:'Pega, usa, pronto. Não guarda nada, não pede pasta, não faz entrevista.',label:'Uma tarefa por vez'},
+        {id:'colecao',art:'hybrid-perfil',illustration:'base',title:'Quero montar o cérebro do negócio',description:'Abre uma pasta, entrevista você, acumula. Depois todas as outras leem dela.',label:'Construir minha base'},
+        {id:'guia',art:'hybrid-proxima-acao',illustration:'caminho',title:'Não sei o que pegar',description:'Três perguntas. No fim, uma skill só e o comando pronto para colar.',label:'Descobrir meu caminho'}
       ];
       const scene = (slug, cls='') => `<span class="choice-scene ${cls}" aria-hidden="true"><img src="${cover(slug)}" alt="" decoding="async" onerror="this.hidden=true"><span class="scene-fallback">A</span></span>`;
       function availability(choice) {
@@ -45,7 +45,7 @@
           <fieldset class="doors" id="doors" aria-labelledby="entry-title">
           ${entryChoices.map(c=>`<label class="door" data-door="${c.id}" ${c.id==='guia'?'id="guide-open"':''}>
             <input class="sr-only" type="radio" name="entry-choice" value="${c.id}" aria-labelledby="door-title-${c.id}">
-            ${scene(c.art)}<span class="choice-check" aria-hidden="true">✓</span>
+            <span class="choice-scene entry-illustration" aria-hidden="true"><img src="onboarding/${c.illustration}-v1.webp" alt="" width="960" height="640" decoding="async" onerror="this.hidden=true"><span class="scene-fallback">A</span></span><span class="choice-check" aria-hidden="true">✓</span>
             <span class="door-body"><span class="door-label">${c.label}</span><strong id="door-title-${c.id}" class="door-title">${c.title}</strong><span class="door-description">${c.description}</span></span>
           </label>`).join('')}</fieldset>
           <div class="choice-continue"><p id="entry-hint" role="status">Escolha a opção que mais combina com seu momento.</p><button class="guide-primary" data-door-continue disabled>Continuar <span aria-hidden="true">→</span></button></div>

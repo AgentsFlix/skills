@@ -1,5 +1,7 @@
 # Onboarding dedicado e visual
 
+Registro da primeira versão. A entrada atual usa [ilustrações exclusivas](../illustrated-onboarding/README.md), conforme a escolha posterior do Zé.
+
 Revisão solicitada pelo Zé em 08/09/2026 a partir das referências anexadas à tarefa. A composição usa as capas existentes do AgentFlix; nenhuma ilustração nova foi gerada. Base das capturas antes: b07623c, no mesmo PR #49.
 
 ## O que mudou
