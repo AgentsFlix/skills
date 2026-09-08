@@ -183,7 +183,8 @@
             }
           ]
         }
-      ]
+      ],
+      "catalogo": false
     },
     {
       "slug": "hermes-agent",
@@ -625,5 +626,8 @@
         }
       ]
     }
-  ]
+  ],
+  "vitrine": {
+    "destaque": "hermes-agent"
+  }
 }
