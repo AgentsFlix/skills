@@ -78,6 +78,14 @@ class WorkTests(unittest.TestCase):
         self.assertFalse(dest.exists())
         self.assertEqual(w.git(self.root,'rev-parse','refs/archive/agent-work/codex/task'),head)
 
+    def test_scope_can_expand_but_cannot_take_another_task(self):
+        dest = self.start(); self.start('other', 'b.txt')
+        with self.assertRaises(ValueError):
+            w.scope(dest, argparse.Namespace(scope=['a.txt', 'b.txt']))
+        w.scope(dest, argparse.Namespace(scope=['a.txt', 'c.txt']))
+        with w.registry(self.root) as tasks:
+            self.assertEqual(tasks['codex/task']['scopes'], ['a.txt', 'c.txt'])
+
     def test_scope_rejects_escape(self):
         for p in ['/tmp', '../a', 'a/../../b', '.git/config', 'site/*']:
             with self.assertRaises(ValueError): w.scope_path(p)

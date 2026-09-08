@@ -28,7 +28,7 @@ Trabalhos antigos sem registro continuam visíveis em `git worktree list`; o hel
 
 ## Durante o trabalho
 
-- Edite só os caminhos combinados. Se o escopo mudar, registre a mudança no PR e coordene com a tarefa que já ocupa a área.
+- Edite só os caminhos combinados. Se o escopo mudar, coordene a área e use `python3 scripts/agent_work.py scope --scope caminho --scope outro-caminho` na pasta da tarefa. O comando substitui a lista completa e recusa caminhos reservados por outra tarefa. Registre a mudança também no PR.
 - Depois do primeiro commit, faça push da branch e abra PR rascunho. O PR registra objetivo, área, arquivos compartilhados, dependências e testes.
 - Faça commits pequenos, com motivo claro. Use `git add` com caminhos explícitos e confira `git diff --cached` antes do commit. Não use `git add .` em uma pasta compartilhada.
 - Nunca inclua credenciais, `.env`, chaves, backups, dados de cliente ou arquivos de outra tarefa. Arquivo ignorado não é backup.

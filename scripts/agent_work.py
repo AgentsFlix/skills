@@ -82,6 +82,20 @@ def start(root, args):
     print('Próximo: entre nessa pasta, leia AGENTS.md e abra um PR rascunho após o primeiro commit.')
 
 
+def scope(root, args):
+    branch = git(root, 'branch', '--show-current')
+    scopes = [scope_path(s) for s in args.scope]
+    with registry(root) as tasks:
+        task = tasks.get(branch)
+        if not task or task['state'] != 'active' or Path(task['directory']).resolve() != root:
+            raise ValueError('Execute scope na pasta de uma tarefa registrada e ativa.')
+        for name, other in tasks.items():
+            if name != branch and other['state'] == 'active' and any(overlaps(a, b) for a in scopes for b in other['scopes']):
+                raise ValueError(f'Escopo reservado por {name}. Coordene antes de alterar.')
+        task['scopes'] = scopes
+    print('Escopo atualizado. Registre a alteração também no PR.')
+
+
 def changed(root):
     commands = [('diff', '--name-only', '-z', 'origin/main...HEAD'),
                 ('diff', '--name-only', '-z', 'HEAD'),
@@ -150,6 +164,7 @@ def main():
     p.add_argument('--dir', dest='directory', required=True)
     p.add_argument('--scope', action='append', required=True, help='Arquivo ou pasta relativa; repetir para outros caminhos.')
     sub.add_parser('status'); sub.add_parser('check')
+    p = sub.add_parser('scope'); p.add_argument('--scope', action='append', required=True)
     p = sub.add_parser('finish'); p.add_argument('branch'); p.add_argument('--pr', type=int, required=True)
     args = parser.parse_args()
     try:
