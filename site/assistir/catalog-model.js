@@ -27,6 +27,16 @@
       : null;
   }
 
+  // Os números do conteúdo são de base 1; os índices da interface são de base 0.
+  function choiceTarget(series, option) {
+    if (!option || option.em_breve) return null;
+    const season = series.seasons.findIndex((s) => +s.n === +option.temporada);
+    const number = option.episodio ?? 1;
+    if (season < 0 || !Number.isInteger(number) || number < 1) return null;
+    const ep = number - 1;
+    return series.seasons[season].eps[ep] ? { season, ep } : null;
+  }
+
   function resume(series, read) {
     const all = episodes(series);
     const last = all
@@ -41,17 +51,22 @@
     const done = last.saved.t / last.episode.d >= 0.95;
     if (!done) return { season: last.season, ep: last.ep, fresh: false };
     const season = series.seasons[last.season];
-    if (last.ep + 1 < season.eps.length)
-      return { season: last.season, ep: last.ep + 1, fresh: true };
     if (last.episode.escolha) {
       const chosen = read(`agentflix-caminho-${series.slug}`, null);
-      const next = chosen
-        ? series.seasons.findIndex((s) => +s.n === +chosen.temporada)
-        : -1;
-      if (next >= 0 && series.seasons[next].eps.length)
-        return { season: next, ep: 0, fresh: true };
+      const option =
+        chosen &&
+        last.episode.escolha.opcoes.find(
+          (o) =>
+            +o.temporada === +chosen.temporada &&
+            (o.episodio ?? 1) === (chosen.episodio ?? 1),
+        );
+      const next = choiceTarget(series, option);
+      if (next && (next.season !== last.season || next.ep !== last.ep))
+        return { ...next, fresh: true };
       return { season: last.season, ep: last.ep, fresh: true };
     }
+    if (last.ep + 1 < season.eps.length)
+      return { season: last.season, ep: last.ep + 1, fresh: true };
     const next = season.caminho
       ? series.seasons.findIndex(
           (s) => season.depois !== undefined && +s.n === +season.depois,
@@ -104,6 +119,7 @@
   return Object.freeze({
     episodes,
     progress,
+    choiceTarget,
     resume,
     available,
     continuing,

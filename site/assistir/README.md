@@ -59,6 +59,12 @@ Fileiras vazias ficam ocultas. As setas aparecem quando o conteúdo ultrapassa a
 - Minha lista de séries fica em `agentflix-watch-list-v1`, independente da lista de skills. Sem login ou sincronização entre dispositivos. Falha de armazenamento informa que a lista vale só na visita.
 - Nenhum vídeo é iniciado pela abertura do acervo. Assistir, Continuar e os episódios exigem ação explícita. Fotos sem carregamento deixam o nome legível.
 
+## Escolha de caminho por episódio
+
+Uma opção de `escolha` pode informar `temporada` e `episodio`, ambos com a numeração exibida ao aluno. Sem `episodio`, o destino continua sendo o primeiro da temporada, preservando as escolhas antigas. O destino precisa existir e não pode ser o próprio episódio de origem.
+
+Na série Hermes, Fácil aponta para `{ "temporada": 1, "episodio": 2 }` e Difícil continua apontando para a temporada 3. O fim da introdução espera a escolha mesmo com T1E2 disponível. A retomada respeita o destino salvo e valida se ele ainda é uma opção disponível. Ao terminar T1E2, o player não passa automaticamente para o caminho Difícil.
+
 ## Conferir uma mudança
 
 ```sh
@@ -67,6 +73,8 @@ python3 scripts/check_site.py
 ```
 
 Os testes cobrem múltiplas séries, configuração editorial, retomada, escolha de caminhos, fim de série e comandos existentes. O gate de sintaxe inclui todos os módulos de Assistir.
+
+Nas paradas de link, `depois_lbl` permite nomear a lista de instruções, assim como nas paradas de vídeos e passos. Sem esse campo, o título já usado continua igual. O checkout mensal do Hermes autorizado para o modo fácil é uma exceção explícita à regra de indicação da Hostinger: usa o endereço integral e `indicacao: false`; os demais links continuam exigindo os parâmetros de indicação.
 
 QA em Chrome real no repositório privado:
 

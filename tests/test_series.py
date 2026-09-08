@@ -12,6 +12,8 @@ ASSISTIR = ROOT / "site" / "assistir"
 UID = re.compile(r"^[0-9a-f]{32}$")
 URL = re.compile(r"^https://[^\s\"'<>]+$")
 CUSTOMER = re.compile(r"^customer-[a-z0-9]+$")
+# Checkout mensal autorizado pelo Zé para a aula do modo fácil, sem indicação.
+HERMES_MENSAL = "https://cart.hostinger.com/pay/372b8772-33cd-44db-80db-f56d2a107ab7"
 
 
 class Series(unittest.TestCase):
@@ -83,7 +85,9 @@ class Series(unittest.TestCase):
                             self.assertTrue(a.get("opcoes"), f"{e['t']}: parada de compra sem opções")
                         for o in a.get("opcoes", []):
                             self.assertRegex(o["url"], URL, f"{e['t']}: url inválida")
-                            if "hostinger" in o["url"]:
+                            if o["url"] == HERMES_MENSAL:
+                                self.assertIs(a.get("indicacao"), False, f"{e['t']}: checkout mensal não é link de indicação")
+                            elif "hostinger" in o["url"]:
                                 self.assertIn("REFERRALCODE=JOSEAMORIM20", o["url"], f"{e['t']}: link da Hostinger sem o código de indicação")
                                 self.assertIn("referral_id=", o["url"], f"{e['t']}: link da Hostinger sem referral_id")
 
@@ -110,7 +114,11 @@ class Series(unittest.TestCase):
                         if o.get("em_breve"):
                             continue
                         self.assertIn(int(o["temporada"]), ns, f"{e['t']}: opção aponta para temporada inexistente")
-                        self.assertNotEqual(int(o["temporada"]), int(se["n"]), f"{e['t']}: opção aponta para a própria temporada")
+                        target = next(t for t in s["seasons"] if int(t["n"]) == int(o["temporada"]))
+                        number = o.get("episodio", 1)
+                        self.assertIs(type(number), int, f"{e['t']}: episodio deve ser inteiro")
+                        self.assertTrue(1 <= number <= len(target["eps"]), f"{e['t']}: opção aponta para episódio inexistente")
+                        self.assertNotEqual(target["eps"][number - 1]["uid"], e["uid"], f"{e['t']}: opção aponta para o próprio episódio")
                     if "t" in ch:
                         self.assertLess(ch["t"], e["d"], f"{e['t']}: escolha.t depois do fim do episódio")
                     if "tempo" in ch:

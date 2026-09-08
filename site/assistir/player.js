@@ -103,6 +103,7 @@
     return di >= 0 && SERIE.seasons[di].eps.length ? di : -1;
   };
   const nextEp = () => {
+    if (curEp().escolha) return null;
     const s = SERIE.seasons[state.season];
     if (state.ep + 1 < s.eps.length)
       return { season: state.season, ep: state.ep + 1 };
@@ -434,7 +435,7 @@
       `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · ${a.indicacao ? "COMPRA" : "LINK"}</div><h3>${esc(a.titulo || (a.indicacao ? "Escolha o seu plano" : "Abra o link"))}</h3><p>${esc(a.nota || "")}</p>
     ${a.opcoes && a.opcoes.length > 1 ? periodSel(a, e.uid, k) : `<div class="psel-row"><button class="btn primary" data-act="ext" data-url="${esc(optDefault(a).url)}" data-k="${k}">${esc(a.cta || a.label)} ↗</button></div>`}
     ${a.indicacao ? `<div class="selo">${SELO}<br>Abre em nova aba. O vídeo fica pausado esperando você voltar.</div>` : ""}
-    ${a.depois ? `<div class="steps"><div class="lbl">NA HOSTINGER, DEPOIS DO CARRINHO</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
+    ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "NA HOSTINGER, DEPOIS DO CARRINHO")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
     <div class="cont-row">${isDone(e.uid, k) ? continuarHtml(k) : ""}</div>
     ${isDone(e.uid, k) ? "" : `<button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Já tenho, continuar o vídeo")} ▶</button>`}`;
     $("checkout").hidden = false;
@@ -711,8 +712,8 @@
       .map((o, i) => {
         if (o.em_breve)
           return `<button class="op breve" disabled aria-disabled="true"><span class="k">${i + 1}</span><span class="badge">EM BREVE</span><span class="semcapa"></span><span class="t"><b>${esc(o.label)}</b><span>${esc(o.desc || "")}</span></span></button>`;
-        const si = seasonIdxByN(o.temporada);
-        const f = si >= 0 && SERIE.seasons[si].eps[0];
+        const target = AgentFlixWatchModel.choiceTarget(SERIE, o);
+        const f = target && SERIE.seasons[target.season].eps[target.ep];
         return `<button class="op" data-act="escolher" data-i="${i}"><span class="k">${i + 1}</span><img src="${f ? thumb(f.uid, 300) : SERIE.cover_wide}" alt=""><span class="t"><b>${esc(o.label)}</b><span>${esc(o.desc || "")}</span></span></button>`;
       })
       .join("");
@@ -723,11 +724,11 @@
       `<div class="pergunta">${esc(ch.pergunta)}<small>${dica}</small></div><div class="opcoes">${ops}</div>${ch.tempo ? `<div class="relogio"><span  id="esc-n">${ch.tempo}s</span><div class="bar"><i id="esc-bar"></i></div><span>caminho padrão em</span></div>` : ""}`;
     $("escolha").hidden = false;
     showUI(true);
-    // aquece os caminhos: baixa o manifesto do primeiro episódio de cada opção enquanto a pessoa lê
+    // Aquece o episódio de destino de cada opção enquanto a pessoa lê.
     ch.opcoes.forEach((o) => {
       if (o.em_breve) return;
-      const si = seasonIdxByN(o.temporada);
-      const f = si >= 0 && SERIE.seasons[si].eps[0];
+      const target = AgentFlixWatchModel.choiceTarget(SERIE, o);
+      const f = target && SERIE.seasons[target.season].eps[target.ep];
       if (f)
         fetch(`${base(f.uid)}/manifest/video.m3u8`, { mode: "cors" }).catch(
           () => {},
@@ -764,16 +765,17 @@
     if (!ch || !state.escolha) return;
     const o = ch.opcoes[i];
     if (!o || o.em_breve) return;
-    const si = seasonIdxByN(o.temporada);
-    if (si < 0 || !SERIE.seasons[si].eps.length) return;
+    const target = AgentFlixWatchModel.choiceTarget(SERIE, o);
+    if (!target) return;
     store.set(caminhoKey(), {
       temporada: o.temporada,
+      episodio: o.episodio ?? 1,
       label: o.label,
       at: Date.now(),
     });
     window.clar?.("escolheu_caminho", { serie: SERIE.slug, caminho: o.label });
     fecharEscolha();
-    loadEp(si, 0, { from: 0 });
+    loadEp(target.season, target.ep, { from: 0 });
     const t = $("toast");
     t.className = "toast";
     delete t.dataset.act;
