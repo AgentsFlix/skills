@@ -33,7 +33,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
 <style>
   /* cor da marca: o ciano da Orquestração Híbrida no lugar do vermelho; texto escuro sobre botões ciano (contraste) */
-  :root { --accent: #30B0C7; --accent-rgb: 48,176,199; --accent-text: #5FC9DC; --agent: #30B0C7; --agent-rgb: 48,176,199; --on-accent: #14161A; --bg: #141414; --panel: #181818; --ink: #141414; --line: rgba(255,255,255,.16); --active: #333333; --text: #F5F5F1; --muted: #B3B3B3; --radius-card: 12px; --radius-modal: 14px; --radius-hero: 24px; --gap: 10px; --sans: Archivo, Helvetica, Arial, sans-serif;
+  :root { --accent: #30B0C7; --accent-rgb: 48,176,199; --accent-text: #5FC9DC; --agent: #30B0C7; --agent-rgb: 48,176,199; --on-accent: #14161A; --bg: #141414; --panel: #181818; --ink: #141414; --line: rgba(255,255,255,.16); --active: #333333; --text: #F5F5F1; --muted: #B3B3B3; --radius-card: 12px; --radius-modal: 14px; --radius-hero: 24px; --radius-choice: 16px; --radius-action: 999px; --gap: 10px; --sans: Archivo, Helvetica, Arial, sans-serif;
           --ease: cubic-bezier(0.4,0,0.68,0.06); --gutter: clamp(20px, 3vw, 64px); --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
   /* ---------- base (fiel ao design "Hermes Skills.dc.html") ---------- */
   * { box-sizing: border-box; }
@@ -442,10 +442,13 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   </header>
 
   <section id="discovery" hidden aria-label="Encontre uma skill"></section>
+  <div id="catalog-stage" hidden>
+  <section id="recommendation" aria-label="Seu próximo passo"></section>
   <section class="hero" id="hero" data-cover-host><div class="loading">Carregando o catálogo…</div></section>
   <div class="chips" id="chips"></div>
   <section class="results" id="results" hidden></section>
   <div id="rows"></div>
+  </div>
 
   <footer class="foot">
     <span>AGENTFLIX · SKILLS PARA AGENTES</span>
@@ -463,6 +466,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
 <div id="auth" hidden></div>
 <div id="toast"  role="status" hidden></div>
 
+<script src="vitrine-state.js"></script>
 <script src="vitrine.js"></script>
 <script>
 (() => {
@@ -555,7 +559,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     target: TARGET_IDS.includes(store.get("agentflix-target", "")) ? store.get("agentflix-target", "") : "Hermes CLI",
     list: store.get("agentflix-list", [])
   };
-  let DISCOVERY = null, DISCOVERY_DATA = null;
+  let DISCOVERY = null, DISCOVERY_DATA = null, pendingSkill = null;
   let CAT = null;                    // catálogo cru
   let ALL = [];                      // obras decoradas, na ordem das linhas
   let BY = Object.create(null);      // slug -> obra (sem protótipo: "constructor" não é uma skill)
@@ -615,14 +619,15 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const sorted = (cat.skills || []).map((s, i) => ({ s, i })).sort((a, b) => idx(a.s.row) - idx(b.s.row) || a.i - b.i);
     ALL = sorted.map(({ s }, i) => decorate(s, i));
     BY = Object.create(null); ALL.forEach((s) => { BY[s.slug] = s; });
-    if (DISCOVERY_DATA && window.AgentFlixDiscovery) {
-      try {
-        DISCOVERY = window.AgentFlixDiscovery.create(DISCOVERY_DATA, BY, { filter() { hidePreview(); state.filter = "Tudo"; state.q = ""; $("q").value = ""; renderChips(); renderCatalog(); } });
-        document.body.classList.add("discovery-enabled");
-        CHIPS = ["Tudo", "Minha lista"];
-        $("nav").innerHTML = '<a href="#inicio" data-discover-home>Início</a><a href="#guide" data-discover-guide>Como escolher</a><a href="#chips" data-discover-catalog>Catálogo</a><a href="/assistir/?s=hermes-agent">Assistir</a>';
-      } catch (e) { DISCOVERY = null; $("discovery").hidden = true; console.warn("Curadoria indisponível; exibindo catálogo completo."); }
-    }
+    if (!DISCOVERY_DATA || !window.AgentFlixDiscovery || !window.AgentFlixJourney) throw Error("orientação indisponível");
+    DISCOVERY = window.AgentFlixDiscovery.create(DISCOVERY_DATA, BY, {
+      filter() { hidePreview(); state.filter = "Tudo"; state.q = ""; $("q").value = ""; renderChips(); renderCatalog(); },
+      enter() { if(pendingSkill){const slug=pendingSkill;pendingSkill=null;openModal(slug);} },
+      changed(external) { hidePreview(); renderCatalog(); if(external && state.open){renderModal();const panel=document.querySelector('#modal .panel');if(panel){panel.tabIndex=-1;panel.focus({preventScroll:true});}} }
+    });
+    document.body.classList.add("discovery-enabled");
+    CHIPS = ["Tudo", "Minha lista"];
+    $("nav").innerHTML = '<a href="#inicio" data-discover-home>Início</a><a href="#guide" data-discover-guide>Como escolher</a><a href="#chips" data-discover-catalog>Catálogo</a><a href="/assistir/?s=hermes-agent">Assistir</a>';
     ROW_DEFS = DISCOVERY ? [...TOP_ROWS, ...DISCOVERY.rows] : buildRows(cat);
     heroSlug = (pinnedHero() || nextHero() || ALL[0] || {}).slug || null;
     if (!DISCOVERY) startHeroRotation();
@@ -755,6 +760,11 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   }
 
   function renderCatalog() {
+    const ready = !!DISCOVERY?.completed;
+    $("catalog-stage").hidden = !ready;
+    document.body.classList.toggle("choosing", !ready);
+    if (!ready) { $("rows").innerHTML = ""; $("results").innerHTML = ""; $("recommendation").innerHTML = ""; return; }
+    DISCOVERY.renderRecommendation();
     const q = state.q.trim();
     const searching = q.length > 0 || state.filter !== "Tudo";
     $("results").hidden = !searching;
@@ -797,6 +807,11 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const s = state.open ? BY[state.open] : null;
     const m = $("modal");
     if (!s) { DISCOVERY?.cancel(); m.hidden = true; m.innerHTML = ""; document.body.style.overflow = ""; return; }
+    if (DISCOVERY?.locked(s.slug)) {
+      DISCOVERY.cancel();
+      m.innerHTML = `<div class="overlay" data-act="close"><div class="panel locked-panel" data-act="stop" role="dialog" aria-modal="true" aria-label="${esc(s.name)}"><button class="close" data-act="close" aria-label="fechar">✕</button>${DISCOVERY.gate(s)}</div></div>`;
+      m.hidden=false;document.body.style.overflow="hidden";return;
+    }
     m.innerHTML = `
       <div class="overlay" data-act="close">
         <div class="panel" data-act="stop" role="dialog" aria-modal="true" aria-label="${esc(s.name)}">
@@ -824,6 +839,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
               <p class="how">${esc(s.how)}</p>
               ${DISCOVERY ? DISCOVERY.extras(s) : ''}
               <div class="install">${installHtml(s)}</div>
+              ${DISCOVERY ? DISCOVERY.installation(s) : ''}
               ${s.cast.length ? `<div class="lbl mb10">Elenco</div><div class="tags">${s.cast.map((c) => `<span class="cast">${esc(c)}</span>`).join("")}</div>` : ""}
               ${s.gen.length ? `<div class="lbl mb10">Gêneros</div><div class="tags last">${s.gen.map((g) => `<span class="gen">${esc(g)}</span>`).join("")}</div>` : ""}
             </div>
@@ -864,6 +880,8 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   let lastFocus = null;
   function updateInert() { try { $("page").inert = introPhase !== "off" || !!state.open; } catch (e) {} }
   function openModal(slug) {
+    if(!BY[slug])return;
+    if(!DISCOVERY?.completed){pendingSkill=slug;return;}
     const opener = pvCard || document.activeElement;
     hidePreview();
     if (!state.open) lastFocus = opener;
@@ -881,7 +899,9 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     history.replaceState(null, "", location.pathname + location.search);
     renderModal();
     updateInert();
-    if (lastFocus && document.contains(lastFocus)) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} }
+    const returnFocus = lastFocus && document.contains(lastFocus) ? lastFocus : lastFocus?.dataset.slug ? document.querySelector(`.card[data-slug="${CSS.escape(lastFocus.dataset.slug)}"]`) : null;
+    if (returnFocus) { try { returnFocus.focus({ preventScroll: true }); } catch (e) {} }
+    DISCOVERY?.endVisit();
     lastFocus = null;
   }
   function setTarget(id) {
@@ -931,6 +951,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     const el = e.target.closest("[data-act]");
     if (!el) return;
     const act = el.dataset.act;
+    if (!DISCOVERY?.completed && ['chip','toggle','target','install-focus'].includes(act)) { e.preventDefault(); return; }
     if (act === "stop") return;   // clique dentro do painel: o closest para aqui e o overlay não recebe "close"
     if (act === "open") { e.preventDefault(); openModal(el.dataset.slug); }
     else if (act === "close") closeModal();
@@ -961,6 +982,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
     if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches('.card[data-act="open"]')) { e.preventDefault(); openModal(e.target.dataset.slug); }
   });
   function toggleSearch(force) {
+    if(!DISCOVERY?.completed)return;
     const open = force === undefined ? $("q").hidden : force;
     if (!open && state.q) { $("q").focus(); return; }
     $("q").hidden = !open; $("search").classList.toggle("open", open);
@@ -977,9 +999,9 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   document.addEventListener("click", e => {
     if (!DISCOVERY) return;
     if (e.target.closest('[data-clear-door]')) { DISCOVERY.setDoor(null); $("chips").querySelector('button')?.focus(); }
-    if (e.target.closest('[data-discover-guide]')) { e.preventDefault(); DISCOVERY.toggleGuide(true); }
+    if (e.target.closest('[data-discover-guide]')) { e.preventDefault(); closeModal(); DISCOVERY.toggleGuide(true); }
     if (e.target.closest('[data-discover-home]')) { e.preventDefault(); DISCOVERY.setDoor(null); window.scrollTo({top:0,behavior:'smooth'}); }
-    if (e.target.closest('[data-discover-catalog]')) { e.preventDefault(); $("chips").scrollIntoView({block:'start',behavior:'smooth'}); }
+    if (e.target.closest('[data-discover-catalog]')) { e.preventDefault(); if(!DISCOVERY.completed)return; $("chips").scrollIntoView({block:'start',behavior:'smooth'}); }
   });
   document.addEventListener("keydown", e => {
     if (e.key !== "Tab" || !state.open) return;
@@ -991,7 +1013,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   });
   let qTimer = null;
   $("q").addEventListener("input", (e) => { hidePreview(); state.q = e.target.value; clearTimeout(qTimer); qTimer = setTimeout(renderCatalog, 80); });
-  window.addEventListener("hashchange", () => { const h = hashSlug(); if (h && BY[h]) openModal(h); else if (!h) closeModal(); });
+  window.addEventListener("hashchange", () => { const h = hashSlug(); if (h && BY[h]) openModal(h); else if (!h) { pendingSkill=null; closeModal(); } });
 
   function listIcon(selected) {
     return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${selected ? 'M5 12l4 4L19 6' : 'M12 4v16M4 12h16'}"/></svg>`;
@@ -1002,6 +1024,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   const PREVIEW_OK = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 861px)");
   let pvTimer = null, pvSlug = null;
   function previewHtml(s) {
+    if(DISCOVERY?.locked(s.slug)) return `${artHtml(s, coverImg(s, "cover", "wide", { eager: true }))}<div class="pv-body"><div class="pv-name">${esc(s.name)}</div><p class="pv-sub">${esc(DISCOVERY.status(s))}</p><button class="guide-primary" data-act="open" data-slug="${esc(s.slug)}">Ver pré-requisitos</button></div>`;
     return `${artHtml(s, coverImg(s, "cover", "wide", { eager: true }))}
       <div class="pv-body">
         <div class="pv-actions">
@@ -1017,7 +1040,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   let pvExit = null, pvClose = null, pvFrame = null, pvCard = null, pendingListRefresh = false;
   function clearPreviewTimers() { clearTimeout(pvTimer); clearTimeout(pvExit); clearTimeout(pvClose); cancelAnimationFrame(pvFrame); pvTimer = pvExit = pvClose = pvFrame = null; }
   function showPreview(card) {
-    if (!card.isConnected || state.open || !PREVIEW_OK.matches) return;
+    if (!DISCOVERY?.completed || !card.isConnected || state.open || !PREVIEW_OK.matches) return;
     const s = BY[card.dataset.slug]; if (!s) return;
     clearPreviewTimers();
     const r = card.getBoundingClientRect(), pv = $("preview");
@@ -1417,7 +1440,9 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
   // ---------- boot ----------
   function showLoadError(msg) {
     $("hero").className = "hero";
-    $("hero").innerHTML = `<div class="loading">Não consegui carregar o catálogo agora (${esc(msg)}). Tente recarregar em alguns instantes.</div>`;
+    $("catalog-stage").hidden = true;document.body.classList.add('choosing');
+    $("discovery").hidden=false;
+    $("discovery").innerHTML='<div class="discovery-error"><h1>Não consegui carregar seu ponto de partida.</h1><p>Tente de novo para escolher seu caminho.</p><button class="guide-primary" onclick="location.reload()">Tentar novamente</button></div>';
     $("footTotal").textContent = "catálogo indisponível";
   }
   (async () => {
@@ -1430,7 +1455,7 @@ window.clar = function (evt, tags) { try { if (tags) Object.keys(tags).forEach((
       catch (e) { lastErr = e; }
     }
     if (!cat) { showLoadError(lastErr && lastErr.message || "sem rede"); return; }
-    try { const r = await fetch('vitrine.json', { cache: 'no-cache' }); if(r.ok) DISCOVERY_DATA = await r.json(); } catch(e) { /* catálogo tradicional continua disponível */ }
+    try { const r = await fetch('vitrine.json', { cache: 'no-cache' }); if(r.ok) DISCOVERY_DATA = await r.json(); } catch(e) { /* Sem curadoria, a orientação deve ser recarregada. */ }
     try { loadCatalog(cat); }
     catch (e) { console.error(e); showLoadError("catálogo inválido: " + (e && e.message || e)); return; }
     initShop();   // só muda algo se a loja estiver ligada em /api/config
