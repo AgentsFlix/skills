@@ -63,7 +63,7 @@ Fileiras vazias ficam ocultas. As setas aparecem quando o conteúdo ultrapassa a
 
 Uma opção de `escolha` pode informar `temporada` e `episodio`, ambos com a numeração exibida ao aluno. Sem `episodio`, o destino continua sendo o primeiro da temporada, preservando as escolhas antigas. O destino precisa existir e não pode ser o próprio episódio de origem.
 
-Na série Hermes, Fácil aponta para `{ "temporada": 1, "episodio": 2 }` e Difícil continua apontando para a temporada 3. O fim da introdução espera a escolha mesmo com T1E2 disponível. A retomada respeita o destino salvo e valida se ele ainda é uma opção disponível. Ao terminar T1E2, o player não passa automaticamente para o caminho Difícil.
+Na série Hermes, Fácil aponta para `{ "temporada": 1, "episodio": 2 }` e Difícil continua apontando para a temporada 3. O fim da introdução espera a escolha mesmo com T1E2 disponível. A retomada respeita o destino salvo e valida se ele ainda é uma opção disponível. T1E2 segue para o onboarding em T1E3. Ao terminar T1E3, o player não passa automaticamente para o caminho Difícil.
 
 ## Conferir uma mudança
 

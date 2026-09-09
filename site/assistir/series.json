@@ -405,6 +405,158 @@
                 }
               ],
               "uid": "1cc8f984ce6982d94193b85155ab4999"
+            },
+            {
+              "t": "Onboarding Hermes",
+              "d": 753.2,
+              "desc": "Configure as chaves do Maton AI e Zernio no hPanel e personalize seu Hermes pelo Telegram.",
+              "faz": [
+                "Configurar MATON_API_KEY e ZERNIO_API_KEY no hPanel",
+                "Personalizar a identidade e as preferências do Hermes",
+                "Instalar as skills do Maton AI e Zernio pelo Telegram"
+              ],
+              "preplay": {
+                "req": [
+                  {
+                    "t": "Hermes instalado e respondendo no seu Telegram, como no episódio anterior",
+                    "need": true
+                  },
+                  {
+                    "t": "Acesso ao hPanel da Hostinger para configurar as variáveis de ambiente",
+                    "need": true
+                  }
+                ]
+              },
+              "ch": [
+                {
+                  "t": 0,
+                  "n": "Preparar seu Hermes"
+                },
+                {
+                  "t": 22.9,
+                  "n": "Acessar o hPanel da Hostinger"
+                },
+                {
+                  "t": 89.9,
+                  "n": "Gerenciar o Hermes Agent"
+                },
+                {
+                  "t": 107.5,
+                  "n": "Criar a conta no Maton AI",
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "pausar_em": 151.6,
+                    "label": "Abrir o Maton AI",
+                    "titulo": "Copie sua chave do Maton AI",
+                    "cta": "Abrir Maton AI",
+                    "nota": "Faça login no Maton AI e copie sua API Key. O vídeo pausa no fim da demonstração e espera você voltar.",
+                    "opcoes": [
+                      {
+                        "label": "Maton AI",
+                        "url": "https://www.maton.ai/"
+                      }
+                    ],
+                    "depois_lbl": "NO MATON AI",
+                    "depois": [
+                      "Clique em Get started e entre na sua conta.",
+                      "Copie a API Key. No próximo trecho, você vai adicioná-la ao hPanel."
+                    ],
+                    "pular": "Já copiei a chave, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 157.9,
+                  "n": "Adicionar a variável no hPanel"
+                },
+                {
+                  "t": 210.4,
+                  "n": "Salvar MATON_API_KEY",
+                  "acao": {
+                    "tipo": "passo",
+                    "parar": true,
+                    "label": "Configurar MATON_API_KEY",
+                    "titulo": "Adicione a chave do Maton no hPanel",
+                    "nota": "Use exatamente MATON_API_KEY como nome da variável, com letras maiúsculas. O valor é a chave que você copiou na sua conta.",
+                    "depois_lbl": "NA HOSTINGER",
+                    "depois": [
+                      "Abra Ambiente no gerenciamento do Hermes.",
+                      "Clique em Adicionar variável de ambiente.",
+                      "Em Chave, escreva MATON_API_KEY. Em Valor, cole sua API Key.",
+                      "Clique em Adicionar."
+                    ],
+                    "cta": "Chave adicionada, continuar o vídeo",
+                    "pular": "Já configurei, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 232.1,
+                  "n": "Configurar o Zernio",
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "pausar_em": 291.0,
+                    "label": "Abrir o Zernio",
+                    "titulo": "Adicione a chave do Zernio",
+                    "cta": "Abrir Zernio",
+                    "nota": "Entre no Zernio e copie sua API Key. Depois, volte ao hPanel para adicioná-la como ZERNIO_API_KEY.",
+                    "opcoes": [
+                      {
+                        "label": "Zernio",
+                        "url": "https://zernio.com/"
+                      }
+                    ],
+                    "depois_lbl": "DO ZERNIO PARA O HPANEL",
+                    "depois": [
+                      "Faça login no Zernio e copie sua API Key.",
+                      "No hPanel, abra Ambiente e Adicionar variável de ambiente.",
+                      "Em Chave, escreva ZERNIO_API_KEY. Em Valor, cole sua API Key.",
+                      "Clique em Adicionar."
+                    ],
+                    "pular": "Já configurei a chave, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 291.5,
+                  "n": "Aplicar mudanças no hPanel"
+                },
+                {
+                  "t": 330.5,
+                  "n": "Copiar o prompt de onboarding",
+                  "acao": {
+                    "tipo": "comando",
+                    "parar": true,
+                    "label": "Copiar prompt de onboarding",
+                    "titulo": "Configure o Hermes que você já instalou",
+                    "nota": "Abra a conversa do seu Hermes no Telegram e cole este prompt. Ele vai conhecer você, personalizar a identidade e instalar as skills de Maton AI e Zernio usando as chaves já configuradas no hPanel da Hostinger.",
+                    "texto": "Você é o meu Hermes Agent já instalado. Estou falando com você pelo Telegram,\nque é o canal de conversa do seu gateway, não o ambiente onde suas ferramentas rodam.\nFaça meu onboarding seguindo https://github.com/AgentsFlix/hermes-onboarding\nLeia o AGENTS.md inteiro e os documentos que ele indicar antes de executar.\nVocê é capaz de adicionar e gerenciar skills com suas ferramentas nativas.\nSe Maton ou Zernio não aparecem nas skills ativas, isso é motivo para instalá-las.\nSe o comando `hermes` não existe no terminal desta conversa, isso não prova que\nvocê não pode instalar: descubra suas ferramentas de skills e use a rota nativa,\ncomo skills_list, skill_view e skill_manage, conforme o schema disponível.\nNão dependa do CLI nem me mande trocar de canal só por estar no Telegram.\nPersonalize meu SOUL.md e minhas preferências, preservando o que já existe,\ne instale as skills completas de Maton AI e Zernio indicadas no repositório,\nincluindo os arquivos de apoio e respeitando as verificações de segurança.\nMATON_API_KEY e ZERNIO_API_KEY já estão configuradas no hPanel da Hostinger.\nUse as variáveis existentes: não peça, mostre, copie nem regrave essas chaves.\nFaça as perguntas básicas uma por vez e mostre a prévia antes de salvar.\nValide as integrações somente em leitura. Antes de declarar uma limitação,\nconfira as ferramentas realmente disponíveis e diga qual operação falhou.\nNão simule sucesso. Não reinstale o Hermes nem mude modelo, login, canais ou servidor.\n",
+                    "cta": "Copiar prompt",
+                    "depois": [
+                      "Cole o prompt no Telegram do seu Hermes, no celular ou no computador.",
+                      "Responda às perguntas uma por vez.",
+                      "Confira a prévia antes de autorizar o Hermes a salvar."
+                    ],
+                    "pular": "Já enviei o prompt, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 372.6,
+                  "n": "Responder às perguntas do Hermes"
+                },
+                {
+                  "t": 563.1,
+                  "n": "Conferir a prévia antes de salvar"
+                },
+                {
+                  "t": 640.6,
+                  "n": "Conferir a instalação das skills"
+                },
+                {
+                  "t": 715.6,
+                  "n": "Conferir o resultado do onboarding"
+                }
+              ],
+              "uid": "c583407f1c66ae404cd385b173084b34"
             }
           ]
         },
