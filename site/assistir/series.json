@@ -536,7 +536,8 @@
                       "Responda às perguntas uma por vez.",
                       "Confira a prévia antes de autorizar o Hermes a salvar."
                     ],
-                    "pular": "Já enviei o prompt, continuar o vídeo"
+                    "pular": "Já enviei o prompt, continuar o vídeo",
+                    "apos_copiar": "Cole no Telegram do seu Hermes e envie. Quando terminar, clique em Continuar o vídeo."
                   }
                 },
                 {
