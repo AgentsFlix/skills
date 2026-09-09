@@ -1,6 +1,23 @@
-/* Leitura humana: um único exemplar liberado, dentro da ficha da vitrine. */
+/* Toda leitura usa a mesma ficha, registrada em leitura/manifest.json. */
 (() => {
-  const READINGS = Object.freeze({ 'copy-metodo-hormozi': 'leitura/copy-metodo-hormozi.json' });
+  let READINGS = Object.create(null);
+  async function catalogSkills(skills) {
+    const response = await fetch('leitura/manifest.json', {cache:'no-cache'});
+    if(!response.ok) throw Error('Registro de leituras indisponível');
+    const manifest = await response.json();
+    if(manifest.schemaVersion !== 1 || !Array.isArray(manifest.readings)) throw Error('Registro de leituras inválido');
+    READINGS = Object.create(null);
+    const result = skills.map(s => ({...s}));
+    for(const entry of manifest.readings) {
+      if(!/^[a-z0-9-]+$/.test(entry.slug) || !/^leitura\/[a-z0-9-]+\.json$/.test(entry.reader) || READINGS[entry.slug]) throw Error('Leitura inválida ou duplicada');
+      READINGS[entry.slug] = entry.reader;
+      let skill = result.find(s => (s.name || s.slug) === entry.slug);
+      if(!skill && entry.fallback) { skill = {...entry.fallback}; result.push(skill); }
+      if(!skill) throw Error('Leitura sem skill: ' + entry.slug);
+      if(entry.cover) skill.reading_cover = entry.cover;
+    }
+    return result;
+  }
   const cache = new Map();
   let active = null;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[char]));
@@ -84,6 +101,9 @@ const sourceList=()=>`<div class="source-list">${data.sources.map(s=>`<div><a hr
 const sourceLinks=ids=>ids.map(id=>{const s=data.sources.find(s=>s.id===id);return `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`}).join('');
 function block(b,k){const title=b.title?`<h3>${esc(b.title)}</h3>`:'';let body='';const active=choices.get(index+'-'+k)||0;
 switch(b.type){
+case 'media':body=`<figure class="reader-media">${b.kind==='video'?`<video controls playsinline preload="none" poster="${esc(new URL(b.poster,contentURL).href)}" aria-label="${esc(b.alt)}"><source src="${esc(new URL(b.src,contentURL).href)}" type="video/mp4"></video>`:`<img src="${esc(new URL(b.src,contentURL).href)}" alt="${esc(b.alt)}" loading="lazy">`}<figcaption>${esc(b.caption)}</figcaption></figure>`;break;
+case 'gallery':body=`<figure class="reader-gallery"><div>${b.items.map(i=>`<figure><img src="${esc(new URL(i.src,contentURL).href)}" alt="${esc(i.alt)}" loading="lazy"><figcaption>${esc(i.caption)}</figcaption></figure>`).join('')}</div><figcaption>${esc(b.caption)}</figcaption></figure>`;break;
+case 'metaphor':body=`<div class="reader-metaphor" role="img" aria-label="${esc(b.alt)}"><div aria-hidden="true">▰━━▰　　▰━━▰</div><h4>${esc(b.title)}</h4><p>${esc(b.text)}</p><p class="caption">${esc(b.note)}</p></div>`;break;
 case 'narrative':body=b.paragraphs.map(p=>`<p>${esc(p)}</p>`).join('');break;
 case 'case_study':body=`${b.visual==='image'?`<figure class="case-image"><img src="${esc(new URL(b.image.src, contentURL).href)}" alt="${esc(b.image.alt)}" width="${b.image.width||888}" height="${b.image.height||561}" loading="lazy"><figcaption>${esc(b.image.caption)}</figcaption></figure>`:`<figure class="empty-art"><div class="empty-frame" role="img" aria-label="Representação editorial de um espaço vazio reservado para a escultura invisível"></div><figcaption><span>${esc(b.visualLabel)}</span>${esc(b.visualNote)}</figcaption></figure>`}<div class="case-stat"><strong>${esc(b.stat)}</strong><span>${esc(b.statLabel)}</span></div><div class="case-text">${b.paragraphs.map(p=>`<p>${esc(p)}</p>`).join('')}</div><p class="caption">${esc(b.note)}</p><div class="case-sources">${sourceLinks(b.sourceIds)}</div>`;break;
 case 'equation_bridge':body=`<p class="bridge-intro">${esc(b.text)}</p><div class="bridge-equation">${b.items.map((i,n)=>`${n?`<span class="bridge-op" aria-hidden="true">${n===1?'+':'='}</span>`:''}<div class="bridge-term"><span class="bridge-symbol">${esc(i.symbol)}</span><h4>${esc(i.title)}</h4><p>${esc(i.text)}</p></div>`).join('')}</div><p class="caption">${esc(b.note)}</p>`;break;
@@ -192,5 +212,5 @@ function bindPreferences(root, scroller, signal) {
   apply();
 }
 
-  window.AgentFlixReader = { supports: slug => Object.hasOwn(READINGS, slug), mount, unmount, showSkill: () => active?.select('skill', false) };
+  window.AgentFlixReader = { catalogSkills, supports: slug => Object.hasOwn(READINGS, slug), mount, unmount, showSkill: () => active?.select('skill', false) };
 })();

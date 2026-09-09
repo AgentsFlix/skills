@@ -479,7 +479,7 @@
   // o endereço absoluto do Pages fica de reserva.
   const CATALOG_URLS = ["catalog.json", "https://agentsflix.github.io/skills/catalog.json"];
   const COVERS = "https://imagedelivery.net/4Co9W7pMsYa-duNBi7UzxA/covers/"; // Cloudflare Images desde 06/09/2026; /covers/* na Vercel reescreve para o mesmo lugar
-  const coverUrl = (slug, kind) => `${COVERS}${esc(slug)}-${kind}.jpg/capa`;
+  const coverUrl = (slug, kind) => BY[slug]?.readingCover || `${COVERS}${esc(slug)}-${kind}.jpg/capa`;
   const FEATURED_DEFAULT = "copy-oferta";
 
   // Um alvo de instalação = uma linha: campo do catálogo, como mostrar, dica e aviso. Um 9º alvo é uma linha nova.
@@ -591,14 +591,15 @@
       title, name, sub, syn,
       proc: p.tamanho || "", req: p.requer || "nenhuma", ano: p.ano || "", since: s.since || "",
       how: p.como_usar || "", cast, gen, traits,
+      readingOnly: !!s.reading_only, readingCover: s.reading_cover || "", publicationStatus: s.publication_status || "",
       runtimeOnly: !!s.runtime_only, activation: s.activation_prompt || "",
       promptTruncated: Array.isArray(s.prompt_truncated) ? s.prompt_truncated : [],
       badge: c.badge,
       tint: c.tints[i % c.tints.length],
       meta: (p.tamanho || "").toUpperCase() + " · REQUER: " + (p.requer || "nenhuma").toUpperCase(),
-      cmdFor: Object.fromEntries(TARGETS.map((t) => [t.id, t.field === "zip_url" ? zipLocal(s.zip_url) : t.field === "prompt_url" ? promptLocal(slug) : (s[t.field] || "")])),
+      cmdFor: Object.fromEntries(TARGETS.map((t) => [t.id, t.field === "zip_url" ? zipLocal(s.zip_url) : t.field === "prompt_url" ? (s.reading_only ? safeUrl(s.prompt_url) : promptLocal(slug)) : (s[t.field] || "")])),
       cardUrl: location.origin + location.pathname + "#" + slug,
-      zipUrl: zipLocal(s.zip_url), promptUrl: promptLocal(slug),
+      zipUrl: zipLocal(s.zip_url), promptUrl: s.reading_only ? safeUrl(s.prompt_url) : promptLocal(slug),
       hay: [String(i + 1).padStart(2, "0"), slug, title, name, sub, syn, cast.join(" "), gen.join(" "), traits.join(" ")].join(" ").toLowerCase(),
       get inList() { return state.list.includes(slug); }
     };
@@ -606,7 +607,8 @@
 
   // o que mostrar para um alvo: valor (comando, arquivo ou link), aviso e dica
   function targetInfo(s, id) {
-    const t = TARGETS.find((x) => x.id === id) || TARGETS[0];
+    const targets = s.readingOnly ? TARGETS.filter(x => s.cmdFor[x.id]) : TARGETS;
+    const t = targets.find((x) => x.id === id) || targets[0];
     const value = s.cmdFor[t.id] || s.cmdFor["Hermes CLI"] || "";
     let note = s.runtimeOnly && t.runtimeNote ? t.runtimeNote : "";
     if (t.id === "ChatGPT Project" && s.promptTruncated.length) note = `Versão colável incompleta: ${s.promptTruncated.length} arquivo(s) ficaram só no zip (${s.promptTruncated.join(", ")}).`;
@@ -736,6 +738,7 @@
     if (state.view === "reading") {
       r = r.filter(s => window.AgentFlixReader?.supports(s.slug));
     } else {
+      if(state.filter !== "Minha lista") r = r.filter(s => !s.readingOnly);
       const cat = CHIP_TO_CAT[state.filter];
       if (cat) r = r.filter((s) => s.cat === cat);
       if (state.filter === "Minha lista") r = r.filter((s) => s.inList);
@@ -796,13 +799,8 @@
     $("q").setAttribute('aria-label', $("q").placeholder);
     if (reading) {
       const readings = filtered();
-      const dia22Query = state.q.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      const dia22Matches = 'dia 22 atomic habits habitos que cabem na vida leitura jose carlos amorim'.includes(dia22Query);
-      const readingCount = readings.length + Number(dia22Matches);
-      const dia22Card = dia22Matches ? `<a class="card journey-card" href="/leitura/dia-22/" aria-label="Ler Dia 22" style="text-decoration:none;color:inherit"><img src="/leitura/dia-22/assets/capa-dia-22.png" alt="Dia 22" loading="lazy" style="display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#141414"><div class="journey-info reading-card-info">${readingMark()}<h3>Dia 22</h3><p>Atomic Habits · Hábitos que Cabem na Vida</p></div></a>` : '';
-      $("results").hidden = false; $("rows").hidden = true;
-      $("results").innerHTML = `<div class="head"><h2 id="reading-heading" tabindex="-1">Para o humano</h2><span class="n" role="status">${readingCount} ${readingCount === 1 ? 'leitura' : 'leituras'}</span></div>
-        ${readingCount ? '<div class="grid">' + dia22Card + readings.map(cardHtml).join('') + '</div>' : `<div class="empty"><p>${state.q.trim() ? 'Não encontramos uma leitura para essa busca.' : 'Nenhuma leitura disponível por enquanto.'}</p>${state.q.trim() ? '<button class="clear-reading-search" data-clear-reading-search>Limpar busca</button>' : ''}</div>`}`;
+      $("results").innerHTML = `<div class="head"><h2 id="reading-heading" tabindex="-1">Para o humano</h2><span class="n" role="status">${readings.length} ${readings.length === 1 ? 'leitura' : 'leituras'}</span></div>
+        ${readings.length ? '<div class="grid">' + readings.map(cardHtml).join('') + '</div>' : `<div class="empty"><p>${state.q.trim() ? 'Não encontramos uma leitura para essa busca.' : 'Nenhuma leitura disponível por enquanto.'}</p>${state.q.trim() ? '<button class="clear-reading-search" data-clear-reading-search>Limpar busca</button>' : ''}</div>`}`;
       return;
     }
     DISCOVERY.renderRecommendation();
@@ -860,7 +858,7 @@
     return `
       <div>
         <label class="lbl mb9" for="install-target">Instalar em</label>
-        <select class="targets" id="install-target">${TARGETS.map((x) => `<option value="${esc(x.id)}" ${x.id === t.id ? "selected" : ""}>${esc(x.id)}</option>`).join("")}</select>
+        <select class="targets" id="install-target">${(s.readingOnly ? TARGETS.filter(x => s.cmdFor[x.id]) : TARGETS).map((x) => `<option value="${esc(x.id)}" ${x.id === t.id ? "selected" : ""}>${esc(x.id)}</option>`).join("")}</select>
         <div class="cmdhead"><span class="lbl tight">${kindLabel}</span></div>
         <div class="cmdbox" role="button" tabindex="0" aria-label="Copiar ${kindLabel.toLowerCase()}" data-act="copy" data-key="${esc(s.slug)}-cli" data-text="${esc(value)}" data-idle="Copiar" data-done="Copiado ✓"><span class="inner"><code class="cmd">${esc(value)}</code><span class="copybtn" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span class="cta-lbl">Copiar</span></span></span></div>
         ${note ? `<p class="warn">${esc(note)}</p>` : ""}
@@ -927,8 +925,8 @@
                 <div class="fact"><span>Procedimentos</span><b>${esc(s.proc)}</b></div>
                 <div class="fact"><span>Requer</span><b>${esc(s.req)}</b></div>
                 <div class="fact"><span>Ano</span><b>${esc(s.ano || "2026")}</b></div>
-                <div class="fact"><span>Desde</span><b>v${esc(s.since)}</b></div>
-                <div class="fact" data-fact="estado"><span>Estado</span><b>${s.inList ? "na lista" : "disponível"}</b></div>
+                ${s.since ? `<div class="fact"><span>Desde</span><b>v${esc(s.since)}</b></div>` : ""}
+                <div class="fact" data-fact="estado"><span>Estado</span><b>${esc(s.publicationStatus || (s.inList ? "na lista" : "disponível"))}</b></div>
               </div>
             </div>
           </div>
@@ -1561,7 +1559,7 @@
     }
     if (!cat) { showLoadError(lastErr && lastErr.message || "sem rede"); return; }
     try { const r = await fetch('vitrine.json', { cache: 'no-cache' }); if(r.ok) DISCOVERY_DATA = await r.json(); } catch(e) { /* Sem curadoria, a orientação deve ser recarregada. */ }
-    try { loadCatalog(cat); }
+    try { cat = {...cat, skills: await window.AgentFlixReader.catalogSkills(cat.skills)}; loadCatalog(cat); }
     catch (e) { console.error(e); showLoadError("catálogo inválido: " + (e && e.message || e)); return; }
     initShop();   // só muda algo se a loja estiver ligada em /api/config
   })();
