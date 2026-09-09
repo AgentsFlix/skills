@@ -1,0 +1,7 @@
+[
+  {
+    "key": "ops.perfis_do_time",
+    "description": "Caminho do YAML com o perfil do time (zona de genialidade, Kolbe, formato de briefing). Modelo em templates/perfil-do-time.yaml",
+    "default": "~/ops/perfil-do-time.yaml"
+  }
+]

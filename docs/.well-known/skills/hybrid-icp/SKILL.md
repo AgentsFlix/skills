@@ -7,10 +7,12 @@ metadata:
   author: José Carlos Amorim
   version: 0.4.3
   hub: https://agentsflix.ai
-  source: https://github.com/AgentsFlix/skills/tree/main/skills/hybrid-icp
+  source: https://github.com/AgentsFlix/skills/tree/codex/habitos-que-cabem/skills/hybrid-icp
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-perfil, hybrid-fundador
-  config: 'hybrid.pasta: Pasta do negócio no seu computador: é onde os YAML do Hybrid Workspace vivem (perfil, ICP, marca, oferta, diagnósticos). Um negócio por pasta.'
+  contract_version: 1.0.0
+  content_revision: 1.1.0
+  distribution_ref: codex/habitos-que-cabem
 ---
 
 # O CLIENTE IDEAL · ICP em 47 campos, com o nível de consciência do mercado antes
@@ -27,6 +29,12 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Quick Reference
 
+Obrigatórios: negócio/produto identificado, destino privado se houver escrita, diagnóstico de consciência/sofisticação e campos requeridos da referência escolhida. Opcionais: pesquisas, entrevistas e histórico do ICP. Reuse company/company-profile.yaml, company/icp.yaml e company/diagnosis.yaml do negócio conhecido. Não misture negócios.
+
+A contagem do template expandido está em `references/campos-icp.json`. Use seus caminhos e o total real para completude; o rótulo editorial de origem não é o denominador. Defaults vazios não são respostas.
+
+Leia `references/configuracao.json` apenas para resolver configuração ausente após o bootstrap. Defaults são exemplos; confirme o destino real antes de escrever.
+
 | procedimento | referência |
 |---|---|
 | elicit icp yaml | `references/elicit-icp-yaml.md` |
@@ -37,11 +45,17 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Procedure
 
-1. Resolva a pasta: `hybrid.pasta`. Se não existir, crie. Para cada template listado acima que ainda não exista na pasta, copie-o de `templates/` para a pasta com o nome original (ex.: `company-icp.yaml` → `icp.yaml`).
-2. Abra a referência do procedimento e siga as fases na ordem. Onde ela escrever `{pasta}/…`, leia a pasta configurada. Onde ela citar um comando `*algo` ou um script `.cjs`/`.sh`, trate como nome da etapa, não como algo a executar.
-3. Conduza a elicitação em blocos: apresente o resumo do que já está preenchido, pergunte só o que falta, aceite 'não sei ainda' e deixe `null`. Nunca preencha com suposição.
-4. Grave o YAML na pasta, preservando a estrutura do template. Calcule a completude: campos preenchidos ÷ campos obrigatórios; atualize `metadata.completeness_percentage` e `status`.
-5. Se a completude ficou abaixo de 85%, diga quais seções faltam e o que perguntar na próxima sessão. Não declare o arquivo pronto.
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Antes de configurar a pasta ou entrevistar, leia o contrato e os arquivos conhecidos do negócio. Resolva hybrid.pasta a partir de contexto atual, sem confundir exemplo de caminho com preferência da pessoa. Reuse `company/company-profile.yaml`, `company/icp.yaml` e `company/diagnosis.yaml` existentes. Se houver estrutura legada em outro caminho conhecido, reconheça-a antes de duplicar arquivos.
+2. Leia `references/elicit-icp-yaml.md` para estrutura e `references/elicit-icp.md` para o Diagnosis Gate. Os questionários são bancos de lacunas, não duas entrevistas cumulativas. Confirme só o que mudou; correção atual do humano vence memória antiga. Todo campo aberto perguntado, em qualquer referência, deve ter exemplo adjacente baseado nos fatos recuperados.
+3. Use `templates/company-diagnosis.yaml` e `templates/company-icp.yaml` apenas como base para arquivos ausentes, preservando os existentes. Escreva os destinos canônicos `company/diagnosis.yaml` e `company/icp.yaml`. Registre primeiro consciência/sofisticação com evidência; se faltar dado, deixe null e o gate pendente, sem inventar diagnóstico.
+4. Elicite lacunas em blocos pequenos. Aceite não saber; não conte sugestões ou inferências como campos confirmados. Preserve origem e data num registro privado de evidências por campo. Calcule completude pelos campos de conteúdo requeridos: informe quais entraram, preenchidos/total e status. Metadados, listas vazias e FILL_THIS não contam.
+5. Entregue YAML e resumo do que foi reaproveitado/alterado, pendências e gate. Com arquivos disponíveis, verifique parse e releia o resultado salvo. Sem ferramenta de arquivo, entregue o conteúdo e diga que não salvou. Abaixo do gate de 85% ou com diagnóstico obrigatório pendente, não declare pronto. Avalie rotina e registre o resultado observado.
+
+## Avaliação de rotina
+
+Não vale refazer a entrevista por calendário. Pode valer um convite de revisão quando houver novas entrevistas, mudança de público ou produto; sem novidades, ficar em silêncio.
 
 ## Pitfalls
 
@@ -52,19 +66,25 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O YAML existe na pasta configurada e parseia (`python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1]))' <arquivo>` sai 0).
-2. `metadata.completeness_percentage` foi recalculado e bate com a contagem de campos não-nulos.
-3. Nenhum campo obrigatório foi preenchido com valor que o usuário não deu; os pendentes estão em `null` e listados.
-4. Se abaixo de 85%, a resposta diz as seções faltantes e não declara pronto.
-5. Nenhum dado foi enviado para fora da pasta do negócio.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+1. YAML preserva a estrutura dos templates e parseia; a persistência foi conferida ou declarada indisponível.
+2. Diagnosis Gate tem evidência suficiente ou está explicitamente pendente. ICP não é declarado pronto com esse gate pendente.
+3. Completude identifica os campos requeridos e numerador/denominador, sem contar metadados, placeholders ou exemplos como respostas. Gate de 85% aplicado sem fabricar preenchimento.
+4. Nenhum negócio foi misturado; correções atuais prevalecem, lacunas são null e todas as perguntas abertas tiveram exemplos contextuais ou hipotéticos declarados.
+5. A avaliação de rotina está registrada; nenhuma revisão ou alerta foi presumido agendado.
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
+- `references/campos-icp.json`
+- `references/ciclo-de-vida.md`
+- `references/configuracao.json`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
 - `references/elicit-icp-yaml.md`
 - `references/elicit-icp.md`
+- `references/identidade.json`
+- `scripts/auditar.py`
 - `templates/company-diagnosis.yaml`
 - `templates/company-icp.yaml`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`

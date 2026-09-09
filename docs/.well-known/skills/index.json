@@ -25,9 +25,18 @@
       "description": "Lê 7 dias da Graph API, calcula o CAC real por campanha e classifica: escalar, duplicar, manter, matar. Só leitura; a mutação é sua. Use quando: otimizar campanhas, o que pausar, leitura diária, CAC…",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/configuracao.json",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
         "scripts/meta_api.py",
         "scripts/otimizar.py",
-        "templates/briefing.yaml"
+        "templates/briefing.yaml",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
@@ -143,10 +152,18 @@
       "description": "Você entrega o produto, o benefício principal e para quem é. Use quando o pedido envolver headline, título, gancho, hook, bullets, chamada de abertura.",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
         "references/create-bullets.md",
         "references/create-headlines.md",
         "references/create-video-hook.md",
-        "references/write-lampropoulos-bullets.md"
+        "references/identidade.json",
+        "references/write-lampropoulos-bullets.md",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
@@ -415,6 +432,27 @@
       ]
     },
     {
+      "name": "habitos-que-cabem",
+      "description": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/avaliacao-de-rotina.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "references/memoria-e-elicitacao.md",
+        "references/metodo-habitos.md",
+        "references/revisao-e-retomada.md",
+        "scripts/auditar.py",
+        "templates/cartao-do-habito.md",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json",
+        "templates/registro-de-pratica.md"
+      ]
+    },
+    {
       "name": "hybrid-cultura",
       "description": "Cultura é o que a empresa faz quando o dono não está olhando. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"documenta a cultura de [empresa]\".",
       "files": [
@@ -478,10 +516,20 @@
       "description": "Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o ICP de [produto]\".",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
+        "references/campos-icp.json",
+        "references/ciclo-de-vida.md",
+        "references/configuracao.json",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
         "references/elicit-icp-yaml.md",
         "references/elicit-icp.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
         "templates/company-diagnosis.yaml",
-        "templates/company-icp.yaml"
+        "templates/company-icp.yaml",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
@@ -577,7 +625,16 @@
       "description": "Toda sexta, quem operou na zona de genialidade e quem passou a semana fora dela. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"revisão da semana\" e cole ou aponte…",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/configuracao.json",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
         "references/metodo-revisao-semanal.md",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json",
         "templates/perfil-do-time.yaml"
       ]
     },

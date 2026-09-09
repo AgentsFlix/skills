@@ -1,19 +1,25 @@
 ---
 name: ops-revisao-semanal
-description: "Toda sexta, quem operou na zona de genialidade e quem passou a semana fora dela. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"revisão da semana\" e cole ou aponte…"
+description: 'Toda sexta, quem operou na zona de genialidade e quem passou a semana fora dela. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: "revisão da semana" e cole ou aponte…'
 version: 0.4.3
-author: "José Carlos Amorim"
+author: José Carlos Amorim
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [operacao, time, genius-zone, kolbe, gestao]
-    related_skills: [ops-rotear-tarefa, ops-briefing, ops-avaliar-fit]
-    config:
-      - key: ops.perfis_do_time
-        description: "Caminho do YAML com o perfil do time (zona de genialidade, Kolbe, formato de briefing). Modelo em templates/perfil-do-time.yaml"
-        default: "~/ops/perfil-do-time.yaml"
-        prompt: "Onde está o perfil do seu time? (copie templates/perfil-do-time.yaml para lá e preencha)"
+    tags:
+    - operacao
+    - time
+    - genius-zone
+    - kolbe
+    - gestao
+    related_skills:
+    - ops-rotear-tarefa
+    - ops-briefing
+    - ops-avaliar-fit
 ---
 
 # SEXTA-FEIRA · Quem operou na zona, quem saiu dela
@@ -30,6 +36,10 @@ O time é o seu: a skill lê um arquivo de perfil (modelo em `templates/perfil-d
 
 ## Quick Reference
 
+Obrigatórios: período, perfil das pessoas com zonas e ideal_semana e lista documentada de atividades/horas da semana. Reutilize arquivos, conversa e registros acessíveis com fonte/data; memória de uma tarefa planejada não prova sua execução. Opcionais: tensões relatadas, retrabalho, decisões anteriores e disponibilidade atual. Ausência de relato de tensão não equivale a nenhuma tensão.
+
+Leia `references/configuracao.json` apenas para resolver configuração ausente após o bootstrap. Defaults são exemplos; confirme o destino real antes de escrever.
+
 | entrada | de onde vem |
 |---|---|
 | perfil do time | `ops.perfis_do_time` (config injetada) → arquivo YAML no modelo de `templates/perfil-do-time.yaml` |
@@ -37,10 +47,17 @@ O time é o seu: a skill lê um arquivo de perfil (modelo em `templates/perfil-d
 
 ## Procedure
 
-1. Leia o perfil do time em `ops.perfis_do_time`. Sem arquivo, entregue `templates/perfil-do-time.yaml`, peça para preencher e pare.
-2. Colete as atividades da semana por pessoa, com horas estimadas, e qualquer tensão ou retrabalho relatado. Sem lista, pergunte; não reconstrua a semana de memória.
-3. Aplique `references/metodo-revisao-semanal.md`: classificar por zona → comparar com `ideal_semana` → marcar desvios e alertas → checar as cinco tensões → uma ação com dono por desvio.
-4. Entregue a tabela por pessoa, as tensões com resolução e a lista de ações da próxima semana.
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Faça bootstrap de período, perfil e registros disponíveis. Reuse `ops.perfis_do_time` quando conhecido e válido. Sem perfil suficiente, use `templates/perfil-do-time.yaml` como referência dos campos que faltam, sem pedir que a pessoa preencha tudo de novo. Cada pergunta aberta precisa de exemplo baseado no contexto recuperado.
+2. Reúna atividades e horas da semana com fonte/data. Separe planos de execuções relatadas. Não reconstrua fatos não registrados. Horas ausentes impedem calcular a distribuição correspondente; solicite a lacuna e mantenha essa comparação aguardando.
+3. Aplique `references/metodo-revisao-semanal.md` às atividades documentadas: zona, distribuição real vs ideal_semana, desvios, tensões e ações. Declare a cobertura parcial quando não representar a semana inteira. Percentual sobre amostra não é percentual da semana completa.
+4. Para cada desvio, mostre fato, hipótese de causa, ação proposta e responsável sugerido. Não confirme causa, disponibilidade nem aceitação do responsável sem evidência. Tensões não investigadas ficam não verificadas, não "nenhuma".
+5. Entregue tabela por pessoa, tensões com resolução proposta e ações da próxima semana, com pendências identificadas. Avalie um check-in recorrente pelo contrato; falta de resposta mantém aguardando e não confirma atividades.
+
+## Avaliação de rotina
+
+Vale sugerir check-in semanal se a pessoa quer revisar o time e há registros disponíveis. Pode preparar tabela e pedir só lacunas. Sem resposta humana, manter aguardando; não inventar a semana nem a disponibilidade do time.
 
 ## Pitfalls
 
@@ -50,17 +67,22 @@ O time é o seu: a skill lê um arquivo de perfil (modelo em `templates/perfil-d
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. Toda atividade informada está classificada em uma das quatro zonas.
-2. Há uma tabela por pessoa com ideal, real e status.
-3. Todo desvio tem fato, causa, ação e responsável.
-4. As cinco tensões foram checadas e o resultado está escrito, mesmo que "nenhuma".
-5. Há uma lista de ações para a próxima semana, cada uma com dono.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+1. Toda atividade documentada está classificada com pessoa, fonte e período; planos não foram tratados como execução.
+2. Comparações real/ideal têm horas e denominador verificáveis. Cobertura parcial e cálculos impossíveis estão declarados, sem zero inventado.
+3. Desvios têm fato, hipótese de causa e proposta de ação com responsável, sem simular concordância ou disponibilidade.
+4. As cinco tensões têm evidência ou status não verificado. Silêncio não virou "nenhuma tensão".
+5. A lista de ações e pendências está entregue, e a avaliação de rotina distingue proposta de ativação. Entrega parcial não foi registrada como revisão completa.
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
+- `references/ciclo-de-vida.md`
+- `references/configuracao.json`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
+- `references/identidade.json`
 - `references/metodo-revisao-semanal.md`
+- `scripts/auditar.py`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`
 - `templates/perfil-do-time.yaml`

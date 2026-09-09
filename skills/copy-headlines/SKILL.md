@@ -1,14 +1,23 @@
 ---
 name: copy-headlines
-description: "Você entrega o produto, o benefício principal e para quem é. Use quando o pedido envolver headline, título, gancho, hook, bullets, chamada de abertura."
+description: Você entrega o produto, o benefício principal e para quem é. Use quando o pedido envolver headline, título, gancho, hook, bullets, chamada de abertura.
 version: 0.4.3
-author: "José Carlos Amorim"
+author: José Carlos Amorim
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [copy, copywriting, copy, headlines]
-    related_skills: [copy-pipeline, copy-auditoria]
+    tags:
+    - copy
+    - copywriting
+    - copy
+    - headlines
+    related_skills:
+    - copy-pipeline
+    - copy-auditoria
 ---
 
 # A PRIMEIRA LINHA · Títulos, ganchos e bullets
@@ -23,6 +32,8 @@ Você entrega o produto, o benefício principal e para quem é. O agente devolve
 
 ## Quick Reference
 
+Obrigatórios: os campos required da subtarefa escolhida. Para headlines: contexto da peça, produto, benefício principal e público. Opcionais: voz, objeções, benefícios secundários, quantidade e estilo. Reutilize produto/público/voz da memória; oferta, preço, garantia e prova precisam de fonte atual quando aparecerem na peça.
+
 Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Quality Checklist` próprios.
 
 | sub-tarefa | referência |
@@ -34,12 +45,17 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 
 ## Procedure
 
-1. Identifique a sub-tarefa pela tabela acima. Se o pedido cobre mais de uma, ordene-as na sequência em que uma alimenta a outra e execute uma por vez.
-2. Abra a referência escolhida e leia o bloco `Inputs`. Colete do usuário todos os `required`; pergunte o que faltar antes de escrever. Registre os `optional` que ele deu.
-3. Siga a referência: fórmulas, categorias e passos, na ordem em que aparecem. Onde ela citar um template em `templates/`, abra e preencha o template; onde citar um checklist, use-o no passo 5.
-4. Escreva a entrega no formato do bloco `Output Format` da referência, em português. Deixe `[COLCHETES]` só onde falta um dado do usuário; nunca invente número, depoimento ou nome.
-5. Rode o `Quality Checklist` (ou `Evaluation Criteria`) da referência sobre o que escreveu. Corrija o que falhou. Liste na entrega o resultado item a item.
-6. Entregue: a peça no formato pedido, a lista de `[COLCHETES]` a preencher, e o checklist com o resultado.
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Escolha a subtarefa pela tabela e leia seus Inputs. Faça o bootstrap do contrato usando produto, público, voz e peças anteriores acessíveis; identifique o contexto da nova peça e quais informações continuam atuais.
+2. Reuse os required já conhecidos e pergunte só os ausentes ou conflitantes, cada um com exemplo baseado no contexto recuperado. Sem required suficiente, mantenha essa escrita aguardando e não invente benefício, oferta ou prova. Optional ausente não deve criar entrevista obrigatória.
+3. Siga fórmulas e categorias da referência escolhida. Fórmula que pede número, garantia, depoimento ou escassez só pode ser usada com evidência atual; escolha outra fórmula quando faltar essa prova.
+4. Entregue no Output Format da subtarefa em português. Rode seu Quality Checklist, corrija falhas e mostre resultado item a item. Nomeie a referência e qualquer limitação restante.
+5. Registre resultado observado e avaliação de rotina conforme o contrato. Aprovar uma headline não comprova conversão futura.
+
+## Avaliação de rotina
+
+Não vale para uma peça pontual. Pode valer revisão de testes se houver calendário editorial e resultados acessíveis; depender só de calendário não justifica gerar títulos repetidos.
 
 ## Pitfalls
 
@@ -50,19 +66,23 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. Toda entrega nomeada no `Output Format` da referência usada existe na resposta (ex.: variações, top 3, pares de teste).
-2. Todos os `required` do bloco `Inputs` foram obtidos do usuário antes da escrita, ou a resposta diz explicitamente qual faltou e parou ali.
-3. Nenhum número, depoimento ou nome aparece sem ter vindo do usuário; o que falta está em `[COLCHETES]` e listado no fim.
-4. O `Quality Checklist` da referência aparece na entrega com cada item marcado, e nenhum item está falho.
-5. A resposta nomeia qual referência foi usada (`references/<sub-tarefa>.md`).
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+1. As entregas do Output Format da subtarefa estão presentes, com quantidade/categorias e seleções que ela exigir.
+2. Cada required veio da conversa ou memória/evidência atual com origem identificada. Se faltar required, a escrita dependente fica aguardando, sem declarar a peça concluída.
+3. Números, promessas, prova, garantia e oferta têm suporte. Exemplos de respostas não entraram na peça como fatos.
+4. O checklist da subtarefa foi aplicado item a item e as falhas da peça foram corrigidas; limite não resolvido impede declarar esse item aprovado.
+5. A referência, avaliação de rotina e resultado de uso estão identificados; as perguntas feitas tinham exemplos contextuais ou fallback declarado.
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
+- `references/ciclo-de-vida.md`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
 - `references/create-bullets.md`
 - `references/create-headlines.md`
 - `references/create-video-hook.md`
+- `references/identidade.json`
 - `references/write-lampropoulos-bullets.md`
+- `scripts/auditar.py`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`

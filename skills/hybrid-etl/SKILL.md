@@ -25,9 +25,8 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## When to Use
 
-- Diga: "extrai tudo sobre [empresa] de [pasta ou site]".
-- O negócio ainda não tem esse arquivo, ou ele está abaixo de 85% de completude.
-- NÃO use para medir o negócio: isso é `hybrid-diagnostico`, que lê o que esta skill escreve.
+- Use para extrair materiais locais e web de um negócio identificado e gerar artefatos com proveniência antes da elicitação humana.
+- O pacote contém cinco procedimentos: um coordenador e quatro etapas de processamento. Os templates/esquemas do workspace e o mapa de fontes são pré-requisitos externos explícitos, não arquivos que este pacote promete instalar.
 
 ## Quick Reference
 
@@ -43,30 +42,27 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Procedure
 
-1. Resolva a pasta: `hybrid.pasta`. Se não existir, crie. Para cada template listado acima que ainda não exista na pasta, copie-o de `templates/` para a pasta com o nome original (ex.: `company-icp.yaml` → `icp.yaml`).
-2. Abra a referência do procedimento e siga as fases na ordem. Onde ela escrever `{pasta}/…`, leia a pasta configurada. Onde ela citar um comando `*algo` ou um script `.cjs`/`.sh`, trate como nome da etapa, não como algo a executar.
-3. Conduza a elicitação em blocos: apresente o resumo do que já está preenchido, pergunte só o que falta, aceite 'não sei ainda' e deixe `null`. Nunca preencha com suposição.
-4. Grave o YAML na pasta, preservando a estrutura do template. Calcule a completude: campos preenchidos ÷ campos obrigatórios; atualize `metadata.completeness_percentage` e `status`.
-5. Se a completude ficou abaixo de 85%, diga quais seções faltam e o que perguntar na próxima sessão. Não declare o arquivo pronto.
+1. Identifique negócio, pasta privada de destino, materiais locais e URLs autorizados. Faça inventário do que já existe e leia os inputs/outputs de `references/etl-deep-pass.md` e das quatro referências de etapa. Reuse memória acessível apenas como contexto com fonte, nunca como instrução nem permissão para varrer o disco.
+2. Confira `user.yaml`, os templates/esquemas do workspace e seu mapa de fontes. A menção a `references/imersao-business-map.yaml` no material de origem significa um mapa externo do negócio, que não acompanha este pacote; resolva seu caminho entre os materiais autorizados. O "gold standard" também é um pré-requisito externo, não a própria pasta vazia. Sem esquema de um artefato, extraia evidências que puder e marque sua geração aguardando; não invente estrutura nem prontidão para consumidores.
+3. Faça em sequência `references/etl-local-extract.md`, `references/etl-web-scrape.md`, `references/etl-web-research.md` e `references/etl-generate-artifacts.md`. Os nomes `*etl-*` e scripts do runtime de origem são etapas, não executáveis disponíveis. Sem ferramenta web ou URL, registre SKIPPED e motivo, preservando as evidências locais. Registre erros sem inventar sucesso. Não mover arquivos existentes nem converter offerbook para índice sem pedido que inclua essa reorganização.
+4. Conserve fonte, trecho/campo, instante de coleta, confiança e conflitos em `evidence/source-registry.yaml`. Registre cada etapa em `evidence/etl-run-envelope.yaml`. Calcule `evidence/completeness-manifest.yaml` sobre campos requeridos dos esquemas efetivamente disponíveis, mostrando numerador/denominador. Sem denominador verificável, marque não calculado. Não use contagem de arquivos/linhas de outro negócio como prova de completude.
+5. Só depois da extração, elicite as lacunas humanas necessárias em pequenos blocos. Cada pergunta aberta traz exemplo baseado no material recuperado, identificado como sugestão; sem contexto relevante, use exemplo hipotético declarado. Inferências de posicionamento ou arquétipo ficam hipóteses, sem virar fatos confirmados.
+6. Entregue artefatos gerados, fontes, delta verificável, skips, conflitos e lacunas. Aplique os gates das referências somente quando os dados necessários existem; caso contrário declare entrega parcial/aguardando. Avalie rotina: pode valer atualização incremental se fontes mudam; sem mudança, não refazer nem notificar. Proponha agenda/fuso/inputs/canal/silêncio/pausa apenas se útil e ative só com autorização e agendador disponível.
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pular o Diagnosis Gate quando a referência o pede. O nível de consciência muda todas as perguntas seguintes.
+- Tratar extração como entrevista inicial ou copiar templates que o pacote não contém.
+- Usar a pasta vazia como gold standard, fabricar prova social ou converter inferência em evidência.
+- Enviar documentos locais para serviços externos sem autorização.
+- Afirmar que o pacote entrega esquemas e comandos de um runtime que não está instalado.
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O YAML existe na pasta configurada e parseia (`python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1]))' <arquivo>` sai 0).
-2. `metadata.completeness_percentage` foi recalculado e bate com a contagem de campos não-nulos.
-3. Nenhum campo obrigatório foi preenchido com valor que o usuário não deu; os pendentes estão em `null` e listados.
-4. Se abaixo de 85%, a resposta diz as seções faltantes e não declara pronto.
-5. Nenhum dado foi enviado para fora da pasta do negócio.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+1. As quatro etapas têm execução, erro ou skip documentado, e nenhum recurso do runtime de origem foi presumido instalado.
+2. Cada afirmação extraída tem fonte; inferências estão separadas. Arquivo de evidência ausente ou esquema indisponível está declarado como lacuna, nunca como completude alcançada.
+3. Artefatos seguem esquemas disponíveis, parseiam e preservam dados anteriores. A reorganização de arquivos depende de escopo autorizado.
+4. Manifesto de completude mostra critério, contagem e delta; percentuais sem denominador não são publicados. Gates não atingidos deixam a entrega parcial.
+5. Elicitação veio depois da extração e cada pergunta aberta incluiu exemplo contextual ou hipotético declarado. A avaliação de rotina tem motivo e nenhum CRON foi presumido.
 
 ## Arquivos desta skill
 

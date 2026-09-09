@@ -103,7 +103,7 @@ def classificar(atual: dict, anterior: dict, regras: dict, tipo_conversao: str) 
 
     fadiga = freq >= regras["fadiga_freq"] and ctr_ant > 0 and ctr < ctr_ant
     if cac is not None and cac > regras["matar_cac_min"]:
-        return {"veredito": "MATAR", "motivo": f"CAC R${cac} acima do teto R${regras['matar_cac_min']} (aqui o problema é a OFERTA, não o anúncio)",
+        return {"veredito": "MATAR", "motivo": f"CAC R${cac} acima do teto R${regras['matar_cac_min']} (retorno insuficiente frente ao briefing; causa não determinada)",
                 "cac": cac, "conversoes": conversoes, "gasto": gasto}
     if cac is not None and cac <= regras["escalar_cac_max"]:
         if fadiga:
@@ -123,7 +123,7 @@ def registrar(produto: str, linhas: list, snapshot: dict) -> tuple:
         json.dump(snapshot, fh, ensure_ascii=False, indent=2)
 
     # log append-only: é o que calibra os thresholds ⚠️ com o tempo
-    caminho_log = os.path.join(ESTADO, f"{produto}-decisoes.csv")
+    caminho_log = os.path.join(ESTADO, f"{produto}-recomendacoes.csv")
     novo = not os.path.exists(caminho_log)
     with open(caminho_log, "a", newline="") as fh:
         w = csv.writer(fh)
