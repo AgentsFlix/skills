@@ -151,7 +151,7 @@ A elicitação limita o banco a três templates: Continuar fica indisponível co
 
 ### Som ambiente do episódio
 
-As sete páginas de T1:E2 carregam `ambient.js` e `ambient.css`. O MP3 `audio/back1.mp3` é uma cópia integral de Back1.mp3 fornecido pelo Zé, sem edição. Reprodução em loop, ganho de 12% e entrada suave de 800 ms usando Web Audio; fallback de volume no elemento de áudio. Começa na primeira interação permitida pelo navegador. O controle no cabeçalho permite ativar/silenciar, inclusive por teclado.
+As oito páginas de T1:E2 carregam `ambient.js` e `ambient.css`. O MP3 `audio/back1.mp3` é uma cópia integral de Back1.mp3 fornecido pelo Zé, sem edição. Reprodução em loop, ganho de 12% e entrada suave de 800 ms usando Web Audio; fallback de volume no elemento de áudio. Começa na primeira interação permitida pelo navegador. O controle no cabeçalho permite ativar/silenciar, inclusive por teclado.
 
 A preferência de silêncio fica no localStorage; a posição da música no sessionStorage da aba. Pausa ao ocultar/sair da página, retoma ao voltar se habilitado, e respeita silêncio após navegar. A navegação entre documentos pode interromper brevemente o áudio e requerer outra interação conforme a política do navegador. Erro no arquivo desativa o controle sem interferir na atividade.
 
@@ -169,10 +169,23 @@ Reutiliza as ilustrações aprovadas, as composições visuais e o som ambiente 
 
 ### Efeitos sonoros do episódio
 
-As sete páginas carregam `effects.js`. Os quatro MP3 fornecidos pelo Zé foram copiados integralmente para `audio/`: `button.mp3` (Clique botão), `selection.mp3` (Clique seleção), `drag.mp3` (arrastar card) e `complete.mp3` (Concluído). Clique acompanha botões, navegação e explicações; seleção acompanha opções, templates, clientes, peças, destinatários e encaixes válidos; arraste toca no início do movimento. Conclusão é emitida pela lógica após validar o fluxo, terminar a captura/preparo/material, entregar ao destinatário correto ou concluir um lote. Não toca sucesso em validações incorretas nem ao apenas revisitar uma tela concluída.
+As oito páginas carregam `effects.js`. Os quatro MP3 fornecidos pelo Zé foram copiados integralmente para `audio/`: `button.mp3` (Clique botão), `selection.mp3` (Clique seleção), `drag.mp3` (arrastar card) e `complete.mp3` (Concluído). Clique acompanha botões, navegação e explicações; seleção acompanha opções, templates, clientes, peças, destinatários e encaixes válidos; arraste toca no início do movimento. Conclusão é emitida pela lógica após validar o fluxo, terminar a captura/preparo/material, entregar ao destinatário correto ou concluir um lote. Não toca sucesso em validações incorretas nem ao apenas revisitar uma tela concluída.
 
 Web Audio usa ganhos de 0,45 (botão), 0,40 (seleção), 0,50 (arraste) e 0,28 (conclusão), ajustados aos arquivos fornecidos. Uma voz de efeitos por vez; a conclusão substitui o clique da mesma ação. Sem som de hover ou a cada movimento do mouse. Efeitos têm controle independente da música no cabeçalho, com preferência `agentflix-effects-enabled` no localStorage. Ocultar ou sair da página interrompe o efeito; falhas de áudio não bloqueiam a atividade. Os arquivos originais permanecem intactos, conferidos por SHA-256.
 
 QA: reprodução real dos buffers e seus ganhos em Chrome, sete páginas, teclado, arraste/encaixe, silêncio após recarga, botões desabilitados, respostas incorretas, conclusão sem clique duplicado e três clientes completos em 1440, 768 e 390 px. Capturas dos controles nos três tamanhos; testes do repositório e sintaxe do site. Alterações somente locais.
 
 Sons de cena ainda não fornecidos: mensagem recebida; mensagem/imagens enviadas; aviso suave de erro ou pré-requisito; pasta/documentação carregada; esteira iniciando, rodando em loop e parando; passagem de bilhete/prato entre responsáveis; campainha da mesa; água/preparo/mexida; prato servido; pagamento aprovado e emissão da nota. Essas ações já têm os cliques ou confirmações gerais quando aplicável. Mensagens e aviso de erro são a próxima prioridade; sons contínuos de cena devem ser discretos para não competir com a música.
+
+
+### Página 8: construa a base do negócio
+
+`hermes-em-operacao/t1e2/base-negocio.html` apresenta a elicitação completa do Café da Esquina, negócio fictício. Nove etapas com uma decisão por tela: oferta/objetivo/diferencial; público/fontes; posicionamento; voz editável; biblioteca com três materiais; três pilares; identidade visual; três templates editáveis; frequência/aprovação/horário de agendamento. A navegação e a conclusão respeitam os pré-requisitos. A prática anterior ganhou links para a nova página no rodapé e na conclusão.
+
+As decisões se conectam: oferta e público entram nas propostas de posicionamento; a voz aprovada aparece na comparação visual; pilares precisam de materiais disponíveis na biblioteca; templates precisam de pilares relacionados. A escolha de três templates permite variar título com prévia imediata. Frequência, modelos, pilares e horário alimentam um calendário de exemplo. Decisões de preço, promessas sem prova, dados ausentes e reclamações exigem intervenção humana na rotina simulada.
+
+A pasta lateral ganha `negocio.md`, `publico.md`, `posicionamento.md`, `voz.md`, `conhecimento/`, `pilares.md`, `design.md`, `templates/` e `operacao.md`. Cada item abre uma prévia acessível em diálogo, com conteúdo derivado das escolhas. Depois de concluir, é possível baixar um JSON com o conteúdo textual das nove partes. As prévias de templates são editáveis na própria página; não há integração com um editor externo nem arquivos de fontes ou logos reais. Pesquisa, relatos e resultados são explicitamente fictícios ou hipóteses a validar.
+
+Revisar uma escolha salva invalida as partes seguintes e limpa suas decisões para reconstruir a base coerentemente. Escolhas ficam em memória durante a visita; reiniciar ou recarregar apaga a simulação. Imagens aprovadas, música e efeitos sonoros são reutilizados; nenhum serviço externo é consultado e nada é publicado. A futura skill ainda será fornecida pelo Zé.
+
+QA Chrome em 1440, 768 e 390 px: nove etapas completas em três caminhos, dependências, seleções múltiplas, edição e escape de texto, prévias de todos os arquivos, download JSON, revisão que invalida etapas seguintes, reinício e ausência de erros ou transbordamento horizontal. Testes do repositório e sintaxe do site executados. Protótipo exclusivamente local.
