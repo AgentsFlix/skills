@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "1.0",
+  "slug": "habitos-que-cabem",
+  "title": "No dia 22, continuou horrível.",
+  "subtitle": "Uma experiência do Zé, uma lente de James Clear.",
+  "method": "Atomic Habits",
+  "author": "José Carlos Amorim",
+  "disclaimer": "Relato de José Carlos Amorim. Leitura aprovada pelo autor em 09/09/2026. Vídeos do acervo pessoal; fotografia com crédito preservado. A data de gravação dos vídeos não foi verificada independentemente. Leitura independente. Sem afiliação nem endosso de James Clear.",
+  "chapters": [
+    {
+      "id": "manaus",
+      "label": "Visão geral",
+      "title": "No dia 22, continuou horrível.",
+      "intro": "Eu acordei às 2h da manhã durante 21 dias para criar o hábito de ler. No dia 22, continuou horrível. Parei.",
+      "tone": "editorial",
+      "blocks": [
+        {
+          "type": "narrative",
+          "title": "A vida acontecia em casa depois do trabalho.",
+          "paragraphs": []
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Era 2020, na primeira onda da pandemia em Manaus. Estava tudo fechado. Eu trabalhava no Bom Dia Amazônia. Depois do trabalho, não queria assistir à TV nem ler noticiário. Aquilo já era meu trabalho e era angustiante."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "video",
+          "src": "dia-22/assets/telejornal.mp4",
+          "alt": "No Bom Dia Amazônia, durante a cobertura da pandemia.",
+          "caption": "No Bom Dia Amazônia, durante a cobertura da pandemia. Recorte visual sem áudio. Acervo pessoal, fornecido pelo Zé.",
+          "poster": "dia-22/assets/telejornal.jpg"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Eu queria criar hábitos mais saudáveis. Alguém recomendou a leitura como um hábito matinal, um \"hábito base\". Não sei dizer exatamente o que esperava que isso mudasse no restante da minha vida. Lembro de querer alguma coisa para fazer naquele contexto, porque a minha realidade era tão doentia, que eu queria uma realidade paralela."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "dia-22/assets/manaus-carolina-diniz.png",
+          "alt": "Sepultamento coletivo em Manaus: caixões em uma vala, trabalhadores, pessoas e uma retroescavadeira.",
+          "caption": "Caixões foram enterrados em valas comuns em cemitério público de Manaus na primeira onda da Covid-19. — Foto: Carolina Diniz/g1 AM"
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "madrugada",
+      "label": "A madrugada",
+      "title": "Para ler, eu tirei mais tempo do sono.",
+      "intro": "",
+      "tone": "editorial",
+      "blocks": [
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "O jornal começava às 5h. Eu precisava entrar às 3h e normalmente acordava às 2h30. Para encaixar a leitura e o banho, passei a acordar às 2h. Ia dormir frequentemente entre 22h e 23h."
+          ]
+        },
+        {
+          "type": "gallery",
+          "items": [
+            {
+              "src": "dia-22/assets/relogio-sono.svg",
+              "alt": "Sono, intervalo preenchido de 22h às 02h.",
+              "caption": "Sono · 22h às 02h"
+            },
+            {
+              "src": "dia-22/assets/relogio-leitura.svg",
+              "alt": "Leitura e banho, intervalo preenchido de 02h às 02h30.",
+              "caption": "Leitura e banho · 02h às 02h30"
+            },
+            {
+              "src": "dia-22/assets/relogio-preparacao.svg",
+              "alt": "Preparação para o jornal, intervalo preenchido de 03h às 04h50.",
+              "caption": "Preparação para o jornal · 03h às 04h50"
+            },
+            {
+              "src": "dia-22/assets/relogio-jornal.svg",
+              "alt": "Jornal ao vivo, intervalo preenchido de 05h às 07h30.",
+              "caption": "Jornal ao vivo · 05h às 07h30"
+            }
+          ],
+          "caption": "Cada área preenchida mostra o intervalo daquela atividade. O sono atravessa a meia-noite. Horários informados pelo Zé."
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "O livro era O poder do hábito. Eu já achava que livros enrolavam muito até chegar ao propósito. Lia me perguntando: \"Tá, mas na prática o que isso significa?\"."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "video",
+          "src": "dia-22/assets/retrato.mp4",
+          "alt": "Um registro pessoal do cansaço que relato nesta história.",
+          "caption": "Um registro pessoal do cansaço que relato nesta história. Recorte visual sem áudio. Acervo pessoal, fornecido pelo Zé.",
+          "poster": "dia-22/assets/retrato.jpg"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Eu acordava com muito sono. Às vezes, cochilava enquanto lia. Passava os olhos pelas páginas e não retinha nada de útil. Segui outra dica: anotar para melhorar a leitura. Então eu lia e escrevia. Mesmo assim, não percebia conhecimento ficando comigo."
+          ]
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "expectativa",
+      "label": "Os 21 dias",
+      "title": "Eu esperava que o sofrimento tivesse prazo.",
+      "intro": "",
+      "tone": "editorial",
+      "blocks": [
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Alguém tinha me dito que um hábito se formava em 21 dias. Imaginava que sofrer era normal no começo. Com a repetição, eu teria menos sono, gastaria menos energia e a leitura seria prazerosa."
+          ]
+        },
+        {
+          "type": "comparison",
+          "beforeLabel": "Minha expectativa",
+          "afterLabel": "Minha experiência",
+          "rows": [
+            [
+              "Acordar ficaria mais fácil.",
+              "Continuava acordando com muito sono."
+            ],
+            [
+              "Anotar ajudaria a aprender.",
+              "Lia e escrevia, sem perceber retenção útil."
+            ],
+            [
+              "No dia 22, seria prazeroso.",
+              "Continuou horrível. Parei."
+            ]
+          ],
+          "caption": "O que eu esperava e o que percebia"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Era como levantar peso na academia em gravidade zero, esperando tonificar os músculos. Eu fazia o movimento, mas o efeito que procurava não aparecia."
+          ]
+        },
+        {
+          "type": "metaphor",
+          "alt": "Metáfora do relato: ler e anotar, mas não perceber aprendizado. Dois pesos flutuam, sem apoio no chão.",
+          "title": "O movimento estava lá.",
+          "text": "Eu não percebia o efeito que buscava.",
+          "note": "Metáfora do Zé, não uma explicação física."
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "julgamento",
+      "label": "O julgamento",
+      "title": "“Eu sou preguiçoso.”",
+      "intro": "",
+      "tone": "editorial",
+      "blocks": [
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "O primeiro dia foi horrível, o segundo pior, o terceiro devastador, o quarto horripilante. Não teve um dia em que começou a melhorar. Mas eu consegui cumprir os 21 dias."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Quando desisti, a conclusão que tirei foi: \"Eu não sou esse tipo de pessoa que vai ter hábito de leitura, eu sou preguiçoso\"."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Hoje considero o contexto daquela tentativa. Foi o período em que mais adoeci mentalmente. Na época, ainda não sabia que tinha TDAH. Queria criar um hábito saudável enquanto dormia muito pouco e vivia um período de sofrimento."
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "A palavra \"preguiçoso\" tinha resumido tudo isso sem explicar quase nada.",
+          "text": "Uma tentativa em condições específicas tinha virado uma conclusão sobre quem eu era."
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "hoje",
+      "label": "A leitura hoje",
+      "title": "Hoje, eu começo por uma necessidade.",
+      "intro": "",
+      "tone": "editorial",
+      "blocks": [
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Estou lendo Sem esforço porque tenho criado coisas que acredito estarem exigindo mais esforço do que deveriam. Procuro repertório para pensar sobre essa questão e analisar se posso aplicar o que o autor acredita."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Quando fico sem ler, não me culpo. Se algo no livro já mudou minha forma de pensar e agir fora dele, considero como \"lido\", sem me cobrar chegar à última página."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Também passei a reconhecer descanso, repertório e conversa como motivos para ler. Minha experiência não resolve como outra pessoa deve ler. Um horário fixo pode fazer sentido para ela."
+          ]
+        },
+        {
+          "type": "comparison",
+          "beforeLabel": "Naquela tentativa",
+          "afterLabel": "Na forma como leio hoje",
+          "rows": [
+            [
+              "Chegar aos 21 dias.",
+              "Buscar repertório para uma necessidade."
+            ],
+            [
+              "Cumprir o ritual de madrugada.",
+              "Considerar o que aproveito fora do livro."
+            ]
+          ],
+          "caption": "O critério que uso para olhar minha leitura"
+        }
+      ],
+      "sources": []
+    },
+    {
+      "id": "metodo",
+      "label": "A lente do método",
+      "title": "O que Atomic Habits ajuda a examinar aqui?",
+      "intro": "",
+      "tone": "editorial",
+      "blocks": [
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "O livro que eu tentava ler era O poder do hábito. As ideias de James Clear entram agora, como uma lente para examinar aquela experiência."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Em Atomic Habits, Clear descreve um ciclo de sinal, desejo, resposta e recompensa. Suas quatro leis propõem tornar o hábito evidente, atraente, fácil e satisfatório. Leia a explicação do autor."
+          ]
+        },
+        {
+          "type": "cards",
+          "items": [
+            {
+              "title": "SINAL · Evidente",
+              "text": "Perceber a oportunidade."
+            },
+            {
+              "title": "DESEJO · Atraente",
+              "text": "Ter motivo para agir."
+            },
+            {
+              "title": "RESPOSTA · Fácil",
+              "text": "Reduzir o esforço exigido."
+            },
+            {
+              "title": "RECOMPENSA · Satisfatório",
+              "text": "Encontrar algo que favoreça repetir."
+            }
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Eu repetia a ação, mas passava pela leitura com sono e sem perceber o aprendizado que buscava. Esperava que a satisfação chegasse depois de cumprir o prazo. O próprio Clear contesta a promessa dos 21 dias."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Essa história não permite concluir que todo hábito precisa ser agradável desde o começo. Ela permite examinar o que a contagem dos dias estava deixando de fora."
+          ]
+        },
+        {
+          "type": "callout",
+          "title": "Antes de julgar sua capacidade, examine as condições da tentativa e o efeito que ela está produzindo.",
+          "text": "Naquelas madrugadas, eu contava dias, páginas e anotações. Também precisava considerar que cochilava sobre o livro e não percebia nada de útil ficando comigo."
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Tamo junto."
+          ]
+        }
+      ],
+      "sources": [
+        "ciclo",
+        "prazo"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "ciclo",
+      "url": "https://jamesclear.com/three-steps-habit-change",
+      "label": "Leia a explicação do autor.",
+      "note": "Ciclo e quatro leis."
+    },
+    {
+      "id": "prazo",
+      "url": "https://jamesclear.com/new-habit",
+      "label": "Contesta a promessa dos 21 dias",
+      "note": "James Clear sobre formação de hábitos."
+    }
+  ]
+}
