@@ -20,7 +20,7 @@ const upcoming = data.series.find(s => s.slug === "hermes-em-operacao");
 assert.ok(model.available(data).some(s => s === upcoming));
 assert.equal(model.episodes(upcoming).length, 0);
 assert.equal(model.continuing({series:[upcoming]}, () => null).length, 0);
-assert.equal(model.available({series:[{...upcoming, em_breve: false}]}).length, 0);
+assert.equal(model.available({series:[{...upcoming, em_breve: false, seasons: [{n:1, eps:[]}]}]}).length, 0);
 data.series = data.series.filter(s => s !== upcoming);
 const series = data.series.find((s) => s.slug === "hermes-agent");
 const memory = {};

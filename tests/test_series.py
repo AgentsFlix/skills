@@ -33,7 +33,7 @@ class Series(unittest.TestCase):
             self.assertRegex(s["slug"], r"^[a-z0-9-]+$")
             if "em_breve" in s:
                 self.assertIsInstance(s["em_breve"], bool)
-            if not s.get("em_breve") or any(se.get("eps") for se in s["seasons"]):
+            if any(se.get("eps") for se in s["seasons"]):
                 self.assertRegex(s["customer"], CUSTOMER)
             for c in [s["cover"], s["cover_wide"]] + ([s["cover_mobile"]] if s.get("cover_mobile") else []):
                 self.assertTrue((ASSISTIR / c).is_file(), f"{s['slug']}: capa não existe: {c}")
@@ -47,7 +47,12 @@ class Series(unittest.TestCase):
             for se in s["seasons"]:
                 self.assertIn("title", se, f"{s['slug']} T{se.get('n')}: sem título")
                 self.assertIsInstance(se.get("eps"), list)
-                self.assertTrue(s.get("em_breve") is True or se.get("eps"), f"{s['slug']} T{se['n']}: temporada sem episódio quebra a página do título")
+                self.assertTrue(s.get("em_breve") is True or se.get("eps") or se.get("atividades"), f"{s['slug']} T{se['n']}: temporada sem episódio quebra a página do título")
+                for activity in se.get("atividades", []):
+                    self.assertEqual(activity["tipo"], "simulacao")
+                    self.assertGreater(activity["n"], 0)
+                    self.assertTrue((ASSISTIR / activity["url"] / "index.html").is_file())
+                    self.assertNotIn("uid", activity)
                 for e in se["eps"]:
                     for k in ("t", "d", "uid", "desc"):
                         self.assertIn(k, e, f"{s['slug']} T{se['n']}: episódio sem {k}: {e.get('t')}")

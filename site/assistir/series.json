@@ -936,7 +936,7 @@
       "sub": "Automações e rotinas para empresas reais",
       "badge": "HERMES EM OPERAÇÃO",
       "ano": 2026,
-      "em_breve": true,
+      "em_breve": false,
       "cover": "img/hermes-operacao-wide.png",
       "cover_wide": "img/hermes-operacao-wide.png",
       "cover_mobile": "img/hermes-operacao-mobile.png",
@@ -950,7 +950,16 @@
         {
           "n": 1,
           "title": "Temporada 1",
-          "eps": []
+          "eps": [],
+          "atividades": [
+            {
+              "n": 2,
+              "t": "O restaurante de Miojo Premium",
+              "desc": "Você é o garçom e o chef. Simule o atendimento em seis etapas, da campainha à entrega na mesa.",
+              "url": "hermes-em-operacao/t1e2/",
+              "tipo": "simulacao"
+            }
+          ]
         }
       ],
       "cover_has_title": true

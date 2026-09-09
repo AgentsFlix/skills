@@ -170,7 +170,7 @@
       ? `<source media="(max-width: 600px)" srcset="${esc(SERIE.cover_mobile)}" width="1024" height="1536"><img src="${esc(SERIE.cover)}" alt="" width="1536" height="1024" fetchpriority="high">`
       : "";
     $("tp-kick").textContent =
-      SERIE.em_breve ? `${SERIE.ano} · Temporada 1 · Em breve` : `${SERIE.badge} · ${SERIE.ano} · ${SERIE.seasons.length} temporadas disponíveis · ${nEps} episódios · HD`;
+      SERIE.seasons.some(s => s.atividades?.length) ? `${SERIE.ano} · Temporada 1 · Episódio interativo` : SERIE.em_breve ? `${SERIE.ano} · Temporada 1 · Em breve` : `${SERIE.badge} · ${SERIE.ano} · ${SERIE.seasons.length} temporadas disponíveis · ${nEps} episódios · HD`;
     $("tp-name").innerHTML =
       `${esc(SERIE.name)} <span>${esc(SERIE.sub)}</span>`;
     $("tp-resume-label").textContent =
@@ -179,6 +179,11 @@
         : r.season || r.ep
           ? `Assistir T${sN(r.season)}:E${r.ep + 1}`
           : "Assistir";
+    const activity = SERIE.seasons.flatMap(s => s.atividades || [])[0];
+    $("tp-activity").hidden = !activity;
+    $("tp-activity").textContent = activity ? `Abrir episódio ${activity.n}` : "";
+    $("tp-activity").href = activity?.url || "#";
+    document.querySelector('[data-act="resume"]').hidden = Boolean(activity) && !nEps;
     document.querySelector('[data-act="resume"]').disabled = !nEps;
     document.querySelector('[data-act="restart"]').hidden = !nEps;
     $("tp-resume").hidden = !(p > 0);
@@ -202,7 +207,7 @@
     el.innerHTML =
       `<button data-act="season-menu" aria-haspopup="listbox" aria-expanded="${state.seasonMenu}">${state.allSeasons ? "Todos os episódios" : `Temporada ${s.n}`} <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>` +
       (state.seasonMenu
-        ? `<div class="menu" role="listbox">${SERIE.seasons.map((x, i) => `<button class="${!state.allSeasons && i === state.season ? "on" : ""}" data-act="season" data-i="${i}">Temporada ${x.n}${x.caminho ? ` · Caminho: ${esc(x.caminho)}` : ""} <span>(${x.eps.length} ${x.eps.length === 1 ? "episódio" : "episódios"})</span></button>`).join("")}<hr><button class="${state.allSeasons ? "on" : ""}" data-act="season-all">Ver todos os episódios</button></div>`
+        ? `<div class="menu" role="listbox">${SERIE.seasons.map((x, i) => `<button class="${!state.allSeasons && i === state.season ? "on" : ""}" data-act="season" data-i="${i}">Temporada ${x.n}${x.caminho ? ` · Caminho: ${esc(x.caminho)}` : ""} <span>(${x.eps.length + (x.atividades?.length || 0)} ${x.eps.length + (x.atividades?.length || 0) === 1 ? "episódio" : "episódios"})</span></button>`).join("")}<hr><button class="${state.allSeasons ? "on" : ""}" data-act="season-all">Ver todos os episódios</button></div>`
         : "");
     $("eps-title").textContent = state.allSeasons
       ? "Todos os episódios"
@@ -217,6 +222,11 @@
   </li>`;
   }
   function renderEps() {
+    const activities = SERIE.seasons.flatMap(s => (s.atividades || []).map(e => ({...e, season: s.n}))).filter(e => state.allSeasons || e.season === SERIE.seasons[state.season].n);
+    if (activities.length && !SERIE.seasons.some(s => s.eps.length)) {
+      $("eps").innerHTML = `<ol class="eps">${activities.map(e => `<li class="ep"><div class="n">${e.n}</div><a class="th activity-thumb" href="${esc(e.url)}" aria-label="Abrir episódio ${e.n}: ${esc(e.t)}"><span>6 ETAPAS</span><strong>MIOJO<br>PREMIUM</strong></a><div class="tx"><div class="tt"><a class="ep-title" href="${esc(e.url)}">${esc(e.t)}</a><span class="dur">Interativo</span></div><p class="ds">${esc(e.desc)}</p></div></li>`).join("")}</ol>`;
+      return;
+    }
     if (SERIE.em_breve && !SERIE.seasons.some(s => s.eps.length)) {
       $("eps").innerHTML = `<div class="upcoming-season"><p>Em breve</p><h3>${esc(SERIE.sub)}</h3><p>Os episódios da temporada 1 ainda não estão disponíveis.</p></div>`;
       return;
@@ -1282,6 +1292,8 @@
     state.seasonMenu = false;
     const m = /^#t(\d+)e(\d+)$/.exec(location.hash);
     const si = m ? seasonIdxByN(m[1]) : -1;
+    const activity = m && si >= 0 && SERIE.seasons[si].atividades?.find(e => e.n === +m[2]);
+    if (activity) { location.assign(activity.url); return; }
     if (m && si >= 0 && SERIE.seasons[si].eps[m[2] - 1])
       openPlayer(si, +m[2] - 1);
     else show("title");

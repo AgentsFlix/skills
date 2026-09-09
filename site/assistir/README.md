@@ -91,4 +91,8 @@ Capturas desta entrega: `design-review/assistir-catalog/`. Mudanças de interfac
 
 Branch `codex/hermes-operacao-local`. Apenas local, sem push, PR ou deploy por pedido do Zé. Abra `/assistir/?s=hermes-em-operacao`. As duas artes são os PNGs originais fornecidos em 09/09/2026.
 
-`em_breve: true` permite uma série com temporada vazia no acervo e na ficha; não requer customer do Stream nem inventa episódios. Reprodução fica desativada e a série não entra em Continuar assistindo. A temporada 1 aguarda os episódios, títulos e vídeos definidos pelo Zé. Antes de produção, confirmar o conteúdo e seguir o fluxo de PR e QA.
+`em_breve: true` permite uma série com temporada vazia no acervo e na ficha; não requer customer do Stream nem inventa episódios. Reprodução fica desativada e a série não entra em Continuar assistindo. A temporada 1 começou pelo episódio interativo 2; vídeos seguem pendentes. Antes de produção, confirmar o conteúdo e seguir o fluxo de PR e QA.
+
+### T1:E2: O restaurante de Miojo Premium
+
+Episódio interativo local em `hermes-em-operacao/t1e2/`, sem vídeo. Registrado em `seasons[].atividades` com número explícito 2, sem criar episódio 1 fictício ou UID. O link `?s=hermes-em-operacao#t1e2` também abre a atividade. Seis etapas: Gatilho, Agente, Ferramenta, Puxar, Construir e Entrega. Botões anterior/próxima e seleção direta; mesa e tempero permanecem ao voltar. A maquininha demonstra o pedido de conta e volta à caderneta antes do preparo. Não há temporizador real de três minutos.
