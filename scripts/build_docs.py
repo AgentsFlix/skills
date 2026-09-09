@@ -37,6 +37,14 @@ def strict_frontmatter(fm: dict, slug: str, version: str) -> dict:
     meta = {"author": str(fm.get("author", "")), "version": version, "hub": HUB_URL,
             "source": f"https://github.com/{REPO_SLUG}/tree/main/skills/{slug}",
             "tags": ", ".join(h.get("tags", [])), "related": ", ".join(h.get("related_skills", []))}
+    identity_path = SKILLS / slug / "references/identidade.json"
+    if identity_path.exists():
+        identity = json.loads(identity_path.read_text())
+        if identity["skill_id"] != slug or identity["distribution_version"] != version:
+            raise ValueError("Identidade/versão diverge da distribuição: " + slug)
+        meta.update({"source": f"https://github.com/{REPO_SLUG}/tree/{identity['distribution_ref']}/skills/{slug}",
+                     "contract_version": identity["contract_version"], "content_revision": identity["content_revision"],
+                     "distribution_ref": identity["distribution_ref"]})
     if h.get("config"):
         meta["config"] = "; ".join(f"{c['key']}: {c['description']}" for c in h["config"])
     return {"name": fm["name"], "description": desc, "license": fm.get("license", "MIT"),
@@ -84,9 +92,12 @@ def referenced_files(body: str) -> list[str]:
     return re.findall(r"- `([^`]+)`", m.group(1)) if m else []
 
 def build_prompt(slug: str, fm: dict, body: str, files: list[str], version: str, act: str = "") -> tuple[str, str, list[str]]:
+    if "references/ativacao.md" in files:
+        act = (SKILLS / slug / "references/ativacao.md").read_text(encoding="utf-8").strip()
     if not act:
         desc = fm["description"]; trig = desc.split("Use quando")[-1].strip(": .…") if "Use quando" in desc else "isso"
         act = activation_text(slug, trig)
+    act_display = "\n".join(line.rstrip() for line in act.replace("\n", "\n> ").split("\n"))
     head = f"""# {fm['name']} · versão para colar
 
 > Esta é a mesma skill de {HUB_URL}, num arquivo só, para quem não instala skill:
@@ -97,7 +108,7 @@ def build_prompt(slug: str, fm: dict, body: str, files: list[str], version: str,
 > de ativação abaixo. Claude: envie como conhecimento do Project, ou cole tudo no chat. Qualquer chat: cole tudo.
 > Versão {version}. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
 >
-> **Texto de ativação (cole nas instruções):** {act}
+> **Texto de ativação (cole nas instruções):** {act_display}
 
 ---
 """
@@ -119,7 +130,7 @@ def build_prompt(slug: str, fm: dict, body: str, files: list[str], version: str,
 # ───────────── principal ─────────────
 def main() -> None:
     cat = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8")); version = cat["version"]
-    for d in (DIST, WK, PROMPT):
+    for d in (DIST, WK, PROMPT, DOCS / "packages"):
         if d.exists(): shutil.rmtree(d)
         d.mkdir(parents=True)
     DOCS.mkdir(exist_ok=True); (DOCS / ".nojekyll").touch()
@@ -136,6 +147,8 @@ def main() -> None:
                 zi = zipfile.ZipInfo(f"{slug}/{f.relative_to(pd)}", date_time=(1980, 1, 1, 0, 0, 0))  # sem mtime: zip igual para fonte igual
                 zi.compress_type = zipfile.ZIP_DEFLATED; zi.external_attr = 0o644 << 16
                 z.writestr(zi, f.read_bytes())
+        if (d / "references/identidade.json").exists():
+            shutil.copyfile(DIST / f"{slug}.zip", DOCS / "packages" / f"{slug}.zip")
         # well-known serve a portable
         shutil.copytree(pd, WK / slug)
         index.append({"name": slug, "description": strict_frontmatter(fm, slug, version)["description"],
@@ -143,7 +156,11 @@ def main() -> None:
         # colável
         entry = next((s for s in cat["skills"] if s["name"] == slug), None)
         doc, act, truncated = build_prompt(slug, fm, body, files, version, act=(entry or {}).get("activation_prompt", ""))
-        if entry is not None: entry["prompt_truncated"] = truncated
+        if entry is not None:
+            entry["prompt_truncated"] = truncated
+            if "references/ativacao.md" in files:
+                entry["activation_prompt"] = act
+                entry["chat_cmd"] = act
         (PROMPT / f"{slug}.md").write_text(doc, encoding="utf-8")
         n += 1
     (WK / "index.json").write_text(json.dumps({"skills": index}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
