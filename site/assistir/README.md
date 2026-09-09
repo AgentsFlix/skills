@@ -116,3 +116,11 @@ Gatilho usa campainha; Agente, chef; Ferramenta, caderneta; Puxar, menu; Constru
 QA da revisão: capturas em 1440, 768 e 390 px; transparência em fundo claro e escuro; navegação pelas seis etapas, clique, teclado, arrastar/mover/substituir/devolver peças; três fluxos de 3 clientes e equipe de 15 atendimentos. Movimento reduzido conserva os estados textuais e desativa o trilho animado. Entrega exclusivamente local, sem publicação.
 
 A esteira da página 2 foi substituída por um componente SVG inline em `pratica.html`, com roletes e correia animados por CSS. A classe `running` existente controla o movimento, que pausa junto com o atendimento e respeita movimento reduzido. O PNG da esteira permanece como histórico sem uso na página. Demais ilustrações aprovadas preservadas.
+
+### Página 4: Eugência, uma pessoa cuida do post inteiro
+
+`hermes-em-operacao/t1e2/eugencia.html` apresenta três clientes fictícios: cafeteria, academia e loja de roupas. Cada atendimento percorre mensagem recebida, agente único, editor, consulta à pasta, construção progressiva de arte e legenda e envio simulado para aprovação. A publicação fica fora deste fluxo. Navegação por etapa e anterior/próxima; progresso separado por cliente durante a visita, mantido ao alternar entre eles. Recarregar a página reinicia a simulação. Reiniciar um cliente preserva os demais.
+
+A criação exige consultar os materiais; a entrega exige as quatro ações de construção e o destinatário correto. Nenhuma mensagem real é enviada. As nove ilustrações originais de `art/eugencia/` foram geradas com a skill `agentflix-desenho`, com alpha verificado; os prompts estão no mesmo diretório. HTML e CSS compõem o post, os cartões e os controles. A navegação da página 3 leva à Eugência.
+
+QA em Chrome a 1440, 768 e 390 px: três atendimentos completos, pré-requisitos, destinatário ausente/incorreto/correto, navegação, teclado, manutenção de progresso e reinício individual; imagens carregadas sem erros e sem transbordamento horizontal. Continuação exclusivamente local.
