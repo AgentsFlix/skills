@@ -10,7 +10,7 @@
     ['Agente','Quem executa','profissional','Atendimento, criação e entrega. Você.','Sua agência ainda é uma Eugência. A mesma pessoa entende o pedido, consulta os materiais, cria o post e conversa com o cliente.','Agente é quem executa. Nesta primeira versão, todos os papéis estão com você.'],
     ['Ferramenta','Com o que faz','editor','Abra seu espaço de criação.','Você vai usar um editor de conteúdo para montar a arte e escrever a legenda. Abrir a ferramenta prepara o trabalho, mas o post ainda não existe.','Ferramenta é o recurso que o agente usa para realizar a tarefa. Aqui, um editor de conteúdo.'],
     ['Puxar','O que já existe','pasta','Antes de criar, consulte.','Abra a pasta do cliente e consulte o pedido, a imagem e as informações da marca. Esses materiais já estavam prontos.','Puxar é buscar informação que já existe. A novidade, os fatos e o material visual vêm do cliente.'],
-    ['Construir','O passo a passo','criacao','Agora, transforme o material em post.','Crie uma chamada, monte a arte, escreva a legenda e revise os dados. Acompanhe o resultado aparecer no editor ao lado.','Construir é produzir algo novo a partir do que você puxou: a combinação de imagem, chamada e legenda.'],
+    ['Construir','O passo a passo','criacao','Agora, transforme o material em post.','Crie um título, monte a arte, escreva a legenda e revise os dados. Acompanhe o resultado aparecer no editor ao lado.','Construir é produzir algo novo a partir do que você puxou: a combinação de imagem, título e legenda.'],
     ['Entrega','Para onde vai','envio','O post pronto chega ao cliente certo.','Escolha quem vai receber a arte e a legenda para aprovação. A entrega precisa chegar ao cliente que fez o pedido.','Entrega define o destino e o formato do resultado. Este fluxo termina no envio para aprovação; a publicação seria outro fluxo.']
   ];
   const blank = () => ({received:false,editor:false,materials:false,built:0,recipient:'',sent:false});
@@ -22,7 +22,7 @@
   const client = () => clients.find(c => c.id===selected);
   const done = () => [state().received,state().received,state().editor,state().materials,state().built===4,state().sent];
   function post(c,s) {
-    return `<article class="work-card post" aria-label="Prévia do post"><div class="post-brand"><span class="brand-dot"></span>${c.brand}</div><div class="post-art"><h3>${s.built>=1?c.headline:'Sua chamada aparece aqui'}</h3>${s.built>=2?art(c.id):'<div class="placeholder">Espaço para a imagem</div>'}</div><p class="post-caption ${s.built<3?'empty':''}">${s.built>=3?c.caption:'A legenda aparece aqui.'}</p>${s.built===4?`<div class="review-stamp">✓ ${s.sent?'Enviado para aprovação':'Revisado · pronto para enviar'}</div>`:''}</article>`;
+    return `<article class="work-card post" aria-label="Prévia do post"><div class="post-brand"><span class="brand-dot"></span>${c.brand}</div><div class="post-art"><h3>${s.built>=1?c.headline:'Seu título aparece aqui'}</h3>${s.built>=2?art(c.id):'<div class="placeholder">Espaço para a imagem</div>'}</div><p class="post-caption ${s.built<3?'empty':''}">${s.built>=3?c.caption:'A legenda aparece aqui.'}</p>${s.built===4?`<div class="review-stamp">✓ ${s.sent?'Enviado para aprovação':'Revisado · pronto para enviar'}</div>`:''}</article>`;
   }
   function render() {
     const focus=document.activeElement?.id;
@@ -59,9 +59,9 @@
       if(!s.editor)interaction=action('go-editor','Abrir o editor primeiro');
       else if(!s.materials)interaction=action('materials','Consultar pasta');
     } else if(stage===4){
-      const labels=['Criar a chamada','Montar a arte','Escrever a legenda','Revisar o post'];
+      const labels=['Criar o título','Montar a arte','Escrever a legenda','Revisar o post'];
       title=s.built===4?'Post pronto.':labels[s.built]+'.';
-      description=['Transforme a novidade em uma chamada.','Junte a imagem à chamada.','Complete a mensagem do post.','Confira a novidade, os dados e o cliente.','Arte e legenda revisadas para aprovação.'][s.built];
+      description=['Transforme a novidade em um título.','Junte a imagem ao título.','Complete a mensagem do post.','Confira a novidade, os dados e o cliente.','Arte e legenda revisadas para aprovação.'][s.built];
       scene=post(c,s);
       interaction=`<div class="build-progress" aria-label="${s.built} de 4 ações concluídas">${labels.map((label,i)=>`<span class="${s.built>i?'complete':''}" title="${label}">${s.built>i?'✓':i+1}</span>`).join('')}</div>`;
       if(!s.materials)interaction+=action('go-materials','Consultar os materiais primeiro');
