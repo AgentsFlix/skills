@@ -1,0 +1,9 @@
+{
+  "name": "Hábitos que Cabem na Vida",
+  "slug": "habitos-que-cabem",
+  "sourceCommit": "d59529e738c38c9a4b176ab69f05acce333880c4",
+  "sourcePR": "https://github.com/AgentsFlix/skills/pull/57",
+  "status": "Publicação em revisão",
+  "description": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.",
+  "command": "Inspecione e use esta skill:\nhttps://raw.githubusercontent.com/AgentsFlix/skills/d59529e738c38c9a4b176ab69f05acce333880c4/skills/habitos-que-cabem/SKILL.md\n\nLeia a licença e as referências necessárias dessa mesma revisão. Se o pacote ZIP ou a versão colável estiver anexado, use esse material. Confira se a skill já está instalada; se não estiver, explique o que será feito e instale pelo mecanismo disponível. Sem suporte à instalação, aplique o procedimento nesta conversa e informe o limite.\n\nQuero encaixar a leitura na minha rotina. Reaproveite o contexto que já conhece sobre mim e pergunte apenas pelo que faltar."
+}

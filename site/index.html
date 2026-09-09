@@ -796,9 +796,13 @@
     $("q").setAttribute('aria-label', $("q").placeholder);
     if (reading) {
       const readings = filtered();
+      const dia22Query = state.q.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const dia22Matches = 'dia 22 atomic habits habitos que cabem na vida leitura jose carlos amorim'.includes(dia22Query);
+      const readingCount = readings.length + Number(dia22Matches);
+      const dia22Card = dia22Matches ? `<a class="card journey-card" href="/leitura/dia-22/" aria-label="Ler Dia 22" style="text-decoration:none;color:inherit"><img src="/leitura/dia-22/assets/capa-dia-22.png" alt="Dia 22" loading="lazy" style="display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#141414"><div class="journey-info reading-card-info">${readingMark()}<h3>Dia 22</h3><p>Atomic Habits · Hábitos que Cabem na Vida</p></div></a>` : '';
       $("results").hidden = false; $("rows").hidden = true;
-      $("results").innerHTML = `<div class="head"><h2 id="reading-heading" tabindex="-1">Para o humano</h2><span class="n" role="status">${readings.length} ${readings.length === 1 ? 'leitura' : 'leituras'}</span></div>
-        ${readings.length ? '<div class="grid">' + readings.map(cardHtml).join('') + '</div>' : `<div class="empty"><p>${state.q.trim() ? 'Não encontramos uma leitura para essa busca.' : 'Nenhuma leitura disponível por enquanto.'}</p>${state.q.trim() ? '<button class="clear-reading-search" data-clear-reading-search>Limpar busca</button>' : ''}</div>`}`;
+      $("results").innerHTML = `<div class="head"><h2 id="reading-heading" tabindex="-1">Para o humano</h2><span class="n" role="status">${readingCount} ${readingCount === 1 ? 'leitura' : 'leituras'}</span></div>
+        ${readingCount ? '<div class="grid">' + dia22Card + readings.map(cardHtml).join('') + '</div>' : `<div class="empty"><p>${state.q.trim() ? 'Não encontramos uma leitura para essa busca.' : 'Nenhuma leitura disponível por enquanto.'}</p>${state.q.trim() ? '<button class="clear-reading-search" data-clear-reading-search>Limpar busca</button>' : ''}</div>`}`;
       return;
     }
     DISCOVERY.renderRecommendation();
