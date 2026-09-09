@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Monte sua Eugência · T1:E2 · AgentFlix</title><link rel="stylesheet" href="episode.css"><link rel="stylesheet" href="eugencia-pratica.css"><script src="eugencia-pratica.js" defer></script></head>
+<body><header class="top"><a class="back" href="eugencia.html">← A Eugência</a><a class="brand" href="../../">AGENT<span>FLIX</span></a><span class="episode-label">TEMPORADA 1 · EPISÓDIO 2</span></header>
+<main><div class="intro"><h1>Agora, monte você.</h1></div>
+<section id="puzzle" class="puzzle" aria-labelledby="puzzle-title"><div class="section-head"><div><p id="round-label" class="eyebrow"></p><h2 id="puzzle-title" tabindex="-1"></h2></div><span id="placed-count" class="counter"></span></div><p id="selection" class="selection" role="status"></p><div id="slots" class="slots"></div><div id="tray" class="tray" aria-label="Mesa de peças"></div><div class="check-row"><p id="feedback" role="status" tabindex="-1"></p><button class="primary" id="check">Conferir e ativar →</button></div><details><summary>Como funciona?</summary><p>Monte as seis etapas para ativar uma pessoa. Ela faz o fluxo inteiro para três clientes. No quarto e no sétimo cliente, você monta outro fluxo para ativar mais uma pessoa.</p><p>Para trocar uma peça, coloque outra no lugar. Para devolver, use Retirar ou arraste de volta à mesa.</p></details></section>
+<section class="factory" hidden aria-labelledby="factory-title"><div class="section-head"><h2 id="factory-title"></h2><button class="secondary" id="pause" hidden>Pausar</button></div><div id="chefs" class="workers"></div><div class="belt-window"><svg class="belt-track" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <pattern id="conveyor-slats" width="40" height="40" patternUnits="userSpaceOnUse"><path class="belt-slats" d="M-40 0v40M0 0v40M40 0v40M80 0v40" fill="none" stroke="#8A9690" stroke-width="2"/></pattern>
+</defs>
+<rect x="12%" y="48" width="14" height="27" rx="4" fill="#8A9690"/>
+<rect x="86%" y="48" width="14" height="27" rx="4" fill="#8A9690"/>
+<rect x="1" y="4" width="99%" height="55" rx="27" fill="#303633" stroke="#8A9690" stroke-width="2"/>
+<rect x="27" y="12" width="92%" height="38" rx="19" fill="url(#conveyor-slats)"/>
+<line x1="31" y1="8" x2="97%" y2="8" stroke="#65AEB6" stroke-width="3"/>
+<svg class="belt-end" x="0" y="0" width="62" height="64" overflow="visible"><g transform="translate(31 31)"><circle r="21" fill="#8A9690" stroke="#303633" stroke-width="3"/><g class="belt-wheel"><path d="M-13 0h26M0-13v26" stroke="#303633" stroke-width="2"/><circle r="5" fill="#F0EEE6"/></g></g></svg>
+<svg class="belt-end" x="100%" y="0" width="62" height="64" overflow="visible"><g transform="translate(-31 31)"><circle r="21" fill="#8A9690" stroke="#303633" stroke-width="3"/><g class="belt-wheel"><path d="M-13 0h26M0-13v26" stroke="#303633" stroke-width="2"/><circle r="5" fill="#F0EEE6"/></g></g></svg>
+</svg><div class="customers" id="customers"></div></div><div class="factory-foot"><p id="factory-status" role="status"></p><span id="served-count"></span></div></section>
+<section id="gate" class="gate" hidden aria-labelledby="gate-title"><h2 id="gate-title"></h2><p id="gate-copy"></p><button id="new-flow" class="primary">Montar próximo fluxo →</button></section>
+<section id="complete" class="gate" hidden aria-labelledby="complete-title"><h2 id="complete-title">3 pessoas. 9 clientes.</h2><p>Cada pessoa fez o fluxo completo para três clientes.</p><button id="restart" class="primary">Montar de novo ↺</button></section>
+<footer><span>Simulação · limite de 3 clientes por pessoa</span><a href="eugencia.html">Rever o exemplo →</a></footer></main></body></html>

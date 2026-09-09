@@ -126,3 +126,11 @@ A criação exige consultar os materiais; a entrega exige as quatro ações de c
 QA em Chrome a 1440, 768 e 390 px: três atendimentos completos, pré-requisitos, destinatário ausente/incorreto/correto, navegação, teclado, manutenção de progresso e reinício individual; imagens carregadas sem erros e sem transbordamento horizontal. Continuação exclusivamente local.
 
 A revisão de simplicidade da Eugência reúne cena e ação em um painel: navegação compacta, uma instrução curta, um botão principal por vez e conceito sob “Entender esta etapa”. A criação revela uma ação de cada vez e Continuar aparece após a conclusão da etapa. Cliente é escolhido na abertura; Trocar cliente retorna à escolha preservando o progresso. Textos duplicados, resumo inferior e cartões de estado repetidos foram retirados. QA repetido nos três tamanhos, incluindo explicação por teclado, pré-requisitos e os três fluxos completos.
+
+### Página 5: monte o fluxo da Eugência
+
+`hermes-em-operacao/t1e2/eugencia-pratica.html` adapta a prática do restaurante para a agência. Seis espaços recebem oito peças por arraste, clique ou teclado; duas são distratoras. O fluxo cobre mensagem, pessoa, editor, materiais existentes, criação de título/arte/legenda e envio para aprovação. Cada montagem correta ativa uma pessoa para três clientes fictícios. O quarto e o sétimo cliente exigem outra montagem, até três pessoas e nove entregas. Limite pedagógico da simulação, sem envios reais.
+
+Montagem e atendimento aparecem separadamente. A operação mostra apenas o lote atual de três clientes, com esteira SVG, pausa/retomada e contagem total. Explicações ficam em Como funciona; pistas aparecem após uma tentativa incorreta. Reutiliza as ilustrações aprovadas da Eugência. A página 4 ganhou um link para esta prática.
+
+QA em Chrome em 1440, 768 e 390 px: três rodadas, validação de peças, arrastar/mover/substituir/devolver, teclado, pausa e reinício. Verificação de assets e transbordamento horizontal; capturas de montagem, pausa e conclusão. Mantido exclusivamente local.
