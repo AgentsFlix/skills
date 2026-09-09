@@ -957,7 +957,8 @@
               "t": "O restaurante de Miojo Premium",
               "desc": "Você é o garçom e o chef. Simule o atendimento em seis etapas, da campainha à entrega na mesa.",
               "url": "hermes-em-operacao/t1e2/",
-              "tipo": "simulacao"
+              "tipo": "simulacao",
+              "partes": 8
             }
           ]
         }

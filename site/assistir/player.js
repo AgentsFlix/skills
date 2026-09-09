@@ -224,7 +224,7 @@
   function renderEps() {
     const activities = SERIE.seasons.flatMap(s => (s.atividades || []).map(e => ({...e, season: s.n}))).filter(e => state.allSeasons || e.season === SERIE.seasons[state.season].n);
     if (activities.length && !SERIE.seasons.some(s => s.eps.length)) {
-      $("eps").innerHTML = `<ol class="eps">${activities.map(e => `<li class="ep"><div class="n">${e.n}</div><a class="th activity-thumb" href="${esc(e.url)}" aria-label="Abrir episódio ${e.n}: ${esc(e.t)}"><span>6 ETAPAS</span><strong>MIOJO<br>PREMIUM</strong></a><div class="tx"><div class="tt"><a class="ep-title" href="${esc(e.url)}">${esc(e.t)}</a><span class="dur">Interativo</span></div><p class="ds">${esc(e.desc)}</p></div></li>`).join("")}</ol>`;
+      $("eps").innerHTML = `<ol class="eps">${activities.map(e => `<li class="ep"><div class="n">${e.n}</div><a class="th activity-thumb" href="${esc(e.url)}" aria-label="Abrir episódio ${e.n}: ${esc(e.t)}"><span>${e.partes ? `${e.partes} PARTES` : "INTERATIVO"}</span><strong>${esc(e.t)}</strong></a><div class="tx"><div class="tt"><a class="ep-title" href="${esc(e.url)}">${esc(e.t)}</a><span class="dur">Interativo${e.partes ? ` · ${e.partes} partes` : ""}</span></div><p class="ds">${esc(e.desc)}</p></div></li>`).join("")}</ol>`;
       return;
     }
     if (SERIE.em_breve && !SERIE.seasons.some(s => s.eps.length)) {
