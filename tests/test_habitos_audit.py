@@ -66,6 +66,27 @@ Test knowledge
         with self.assertRaises(ValueError):
             audit.append(self.root, self.event('e4', seconds=4, result='waiting'))
 
+    def test_new_content_revision_preserves_history_and_does_not_renew_knowledge(self):
+        audit.append(self.root, self.event())
+        audit.append(self.root, self.event('e2', seconds=2, result='completed',
+                                         artifact_ref='private/card-r1.md', verification='passed'))
+        original = {p: p.read_bytes() for p in (self.root / 'events').glob('*.json')}
+        config = (self.root / 'config.json').read_bytes()
+        audit.append(self.root, self.event('e3', run_id='r2', seconds=3, content_revision='1.1.2'))
+        audit.append(self.root, self.event('e4', run_id='r2', seconds=4, content_revision='1.1.2', result='waiting'))
+        self.doc.write_text(self.doc.read_text().replace('content_revision: 1.0.0', 'content_revision: 1.1.2'))
+        report = self.report()
+        self.assertEqual(report['content_revision'], '1.1.2')
+        self.assertEqual(report['human_runs_observed'], 2)
+        self.assertEqual(report['completed_runs_observed'], 1)
+        self.assertEqual(report['observed_since'], self.config['observed_since'])
+        self.assertIn('knowledge_review_due', [s['kind'] for s in report['signals']])
+        self.assertNotIn('revision_mismatch', [s['kind'] for s in report['signals']])
+        self.assertFalse(report['knowledge_verified'])
+        self.assertEqual((self.root / 'config.json').read_bytes(), config)
+        for path, content in original.items():
+            self.assertEqual(path.read_bytes(), content)
+
     def test_completion_requires_evidence_and_start(self):
         with self.assertRaises(ValueError):
             audit.append(self.root, self.event(result='completed'))
