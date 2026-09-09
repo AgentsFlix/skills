@@ -475,7 +475,10 @@
       if (state.checkout === k)
         mostrarContinuar(
           k,
-          "Cole no Codex e dê Enter. Quando terminar, clique em Continuar o vídeo.",
+          esc(
+            a.apos_copiar ||
+              "Cole no Codex e dê Enter. Quando terminar, clique em Continuar o vídeo.",
+          ),
         );
     };
     window.clar?.("copia_tentada", {

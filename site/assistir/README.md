@@ -65,6 +65,8 @@ Uma opção de `escolha` pode informar `temporada` e `episodio`, ambos com a num
 
 Na série Hermes, Fácil aponta para `{ "temporada": 1, "episodio": 2 }` e Difícil continua apontando para a temporada 3. O fim da introdução espera a escolha mesmo com T1E2 disponível. A retomada respeita o destino salvo e valida se ele ainda é uma opção disponível. T1E2 segue para o onboarding em T1E3. Ao terminar T1E3, o player não passa automaticamente para o caminho Difícil.
 
+Em ações `comando`, o campo opcional `apos_copiar` define o aviso após a cópia bem-sucedida. T1E3 orienta colar no Telegram; ações anteriores preservam a orientação padrão para o Codex. O texto é escapado antes de renderizar e copiar nunca retoma o vídeo.
+
 ## Conferir uma mudança
 
 ```sh
