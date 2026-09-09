@@ -13,6 +13,8 @@ Exige Python 3.10+ (o guard usa `X | None`).
 """
 from __future__ import annotations
 
+import base64
+import json
 import hashlib
 import importlib.util
 import os
@@ -31,6 +33,22 @@ if sys.version_info < (3, 10):
     sys.exit("scan_skills.py exige Python 3.10+")
 
 
+def download_guard():
+    try:
+        with urllib.request.urlopen(GUARD_URL, timeout=30) as response:
+            return response.read()
+    except Exception:
+        # Blob de tools/skills_guard.py na árvore HERMES_SHA; SHA-256 conferido abaixo.
+        api_url = ("https://api.github.com/repos/NousResearch/hermes-agent/git/blobs/"
+                   "668c195e7d95517c169fe53e98f75affbbc395e6")
+        request = urllib.request.Request(api_url, headers={"Accept": "application/vnd.github+json"})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            payload = json.load(response)
+        if payload.get("encoding") != "base64":
+            raise ValueError("GitHub não retornou conteúdo em base64")
+        return base64.b64decode(payload["content"])
+
+
 def load_guard():
     path = os.environ.get("SKILLS_GUARD_PATH")
     if path:
@@ -40,8 +58,7 @@ def load_guard():
             print(f"aviso: {src} não é o skills_guard.py pinado ({HERMES_TAG}); o veredito pode divergir do CI")
     else:
         try:
-            with urllib.request.urlopen(GUARD_URL, timeout=30) as r:
-                data = r.read()
+            data = download_guard()
         except Exception as exc:  # rede fora: falha alta e explicada, não um traceback
             sys.exit(f"não consegui baixar o skills_guard.py pinado ({GUARD_URL}): {exc}\n"
                      f"offline: SKILLS_GUARD_PATH=/caminho/skills_guard.py python3 scripts/scan_skills.py")
