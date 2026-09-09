@@ -73,17 +73,17 @@
             {
               "src": "dia-22/assets/relogio-leitura.svg",
               "alt": "Leitura e banho, intervalo preenchido de 02h às 02h30.",
-              "caption": "Leitura e banho · 02h às 02h · 30"
+              "caption": "Leitura e banho · 02h às 02h30"
             },
             {
               "src": "dia-22/assets/relogio-preparacao.svg",
               "alt": "Preparação para o jornal, intervalo preenchido de 03h às 04h50.",
-              "caption": "Preparação para o jornal · 03h às 04h · 50"
+              "caption": "Preparação para o jornal · 03h às 04h50"
             },
             {
               "src": "dia-22/assets/relogio-jornal.svg",
               "alt": "Jornal ao vivo, intervalo preenchido de 05h às 07h30.",
-              "caption": "Jornal ao vivo · 05h às 07h · 30"
+              "caption": "Jornal ao vivo · 05h às 07h30"
             }
           ],
           "caption": "Cada área preenchida mostra o intervalo daquela atividade. O sono atravessa a meia-noite. Horários informados pelo Zé."
