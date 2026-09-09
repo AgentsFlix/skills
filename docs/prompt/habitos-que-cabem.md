@@ -18,7 +18,7 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use os fatos já apresentados pela memória sem reler todo o pacote. Se pedi um cartão para experimentar, entregue uma proposta utilizável com o que já sabemos; campos opcionais desconhecidos não exigem confirmação. Só aguarde quando faltar um dado que impede a próxima ação solicitada. Cada pergunta necessária, até no encerramento, deve ter seu próprio exemplo. Confira o conteúdo antes de salvar e preserve revisões anteriores dos artefatos. Não confunda plano de registro com prática realizada.
+> Use os fatos já apresentados pela memória sem reler todo o pacote. Se pedi um cartão para experimentar, entregue uma proposta utilizável com o que já sabemos; campos opcionais desconhecidos não exigem confirmação. Só aguarde quando faltar um dado que impede a próxima ação solicitada. Cada pergunta necessária, até no encerramento, deve ter seu próprio exemplo. Revise o rascunho antes de salvá-lo pelo hospedeiro. Depois do registro de integridade, não edite o arquivo, nem para corrigir uma palavra: salve uma nova revisão pelo hospedeiro e preserve a anterior. Deixe versões da skill, validade OKF e eventos no registro operacional, sem repeti-los no cartão. Não confunda plano de registro com prática realizada.
 
 ---
 
@@ -89,7 +89,9 @@ Um pedido de cartão para experimentar admite propostas identificadas nos campos
 
 Antes de responder, remova convites opcionais que não mudam o próximo passo. Toda coleta que permanecer, inclusive em parênteses ou no encerramento, tem exemplo adjacente baseado no contexto ou explicitamente hipotético. Marcar a prática no cartão é um plano de registro; não prova que a pessoa já praticou.
 
-Finalize e confira o conteúdo antes de pedir ao hospedeiro que o salve com metadados de integridade. Se precisar corrigir um artefato já registrado, crie outra revisão pelo mesmo mecanismo, preservando a anterior e sua evidência. Na conversa, entregue síntese, link do cartão quando houver arquivo e próxima ação; os mapas de origem ficam no artefato.
+Revise o texto enquanto ainda é rascunho, antes de pedir ao hospedeiro que o salve com metadados de integridade. Depois desse registro, o arquivo está fechado: não o altere por edição direta, nem para corrigir uma palavra. Se descobrir um erro em `cartao-r1.md`, crie `cartao-r2.md` pelo mesmo mecanismo do hospedeiro, preserve a revisão anterior e aponte a entrega para a nova. Não recalcule nem substitua os metadados da revisão anterior.
+
+O cartão contém o plano da pessoa. Os dados de versão da skill, validade OKF e eventos de uso ficam no registro operacional; não os repita no corpo do cartão. Quando o hospedeiro fornece data e integridade, use seus metadados sem reconstruí-los no texto. Na conversa, entregue síntese, link do cartão quando houver arquivo e próxima ação; os mapas de origem ficam no artefato.
 
 ## Pitfalls
 
@@ -146,7 +148,7 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use os fatos já apresentados pela memória sem reler todo o pacote. Se pedi um cartão para experimentar, entregue uma proposta utilizável com o que já sabemos; campos opcionais desconhecidos não exigem confirmação. Só aguarde quando faltar um dado que impede a próxima ação solicitada. Cada pergunta necessária, até no encerramento, deve ter seu próprio exemplo. Confira o conteúdo antes de salvar e preserve revisões anteriores dos artefatos. Não confunda plano de registro com prática realizada.
+Use os fatos já apresentados pela memória sem reler todo o pacote. Se pedi um cartão para experimentar, entregue uma proposta utilizável com o que já sabemos; campos opcionais desconhecidos não exigem confirmação. Só aguarde quando faltar um dado que impede a próxima ação solicitada. Cada pergunta necessária, até no encerramento, deve ter seu próprio exemplo. Revise o rascunho antes de salvá-lo pelo hospedeiro. Depois do registro de integridade, não edite o arquivo, nem para corrigir uma palavra: salve uma nova revisão pelo hospedeiro e preserve a anterior. Deixe versões da skill, validade OKF e eventos no registro operacional, sem repeti-los no cartão. Não confunda plano de registro com prática realizada.
 
 
 ---
@@ -237,7 +239,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" init --version 0.4.3 --revision 1.1.1
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" init --version 0.4.3 --revision 1.1.2
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" audit
@@ -328,7 +330,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: habitos-que-cabem
-  content_revision: 1.1.1
+  content_revision: 1.1.2
   verification_evidence: []
 ---
 
@@ -410,7 +412,7 @@ Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Ne
   "contract_version": "1.0.0",
   "skill_id": "habitos-que-cabem",
   "distribution_version": "0.4.3",
-  "content_revision": "1.1.1",
+  "content_revision": "1.1.2",
   "distribution_ref": "codex/habitos-que-cabem"
 }
 
@@ -510,7 +512,7 @@ Nenhuma execução automática pode inventar uma resposta ou aprovar a mudança 
 Preencha apenas a partir de fatos e escolhas da pessoa. Identifique propostas ainda não confirmadas.
 
 - Identificador e revisão do cartão:
-- Criado/revisado em (instante com fuso):
+- Criado/revisado em: usar os metadados do hospedeiro quando disponíveis; sem fonte de horário, declarar não disponível.
 - Hábito e motivo pessoal:
 - Gatilho na rotina:
 - Ação mínima:
@@ -578,7 +580,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.1.1",
+  "content_revision": "1.1.2",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }

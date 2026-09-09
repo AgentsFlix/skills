@@ -10,7 +10,7 @@ metadata:
   source: https://github.com/AgentsFlix/skills/tree/codex/habitos-que-cabem/skills/habitos-que-cabem
   tags: habitos, rotina, memoria, revisao, okf
   contract_version: 1.0.0
-  content_revision: 1.1.1
+  content_revision: 1.1.2
   distribution_ref: codex/habitos-que-cabem
 ---
 
@@ -81,7 +81,9 @@ Um pedido de cartão para experimentar admite propostas identificadas nos campos
 
 Antes de responder, remova convites opcionais que não mudam o próximo passo. Toda coleta que permanecer, inclusive em parênteses ou no encerramento, tem exemplo adjacente baseado no contexto ou explicitamente hipotético. Marcar a prática no cartão é um plano de registro; não prova que a pessoa já praticou.
 
-Finalize e confira o conteúdo antes de pedir ao hospedeiro que o salve com metadados de integridade. Se precisar corrigir um artefato já registrado, crie outra revisão pelo mesmo mecanismo, preservando a anterior e sua evidência. Na conversa, entregue síntese, link do cartão quando houver arquivo e próxima ação; os mapas de origem ficam no artefato.
+Revise o texto enquanto ainda é rascunho, antes de pedir ao hospedeiro que o salve com metadados de integridade. Depois desse registro, o arquivo está fechado: não o altere por edição direta, nem para corrigir uma palavra. Se descobrir um erro em `cartao-r1.md`, crie `cartao-r2.md` pelo mesmo mecanismo do hospedeiro, preserve a revisão anterior e aponte a entrega para a nova. Não recalcule nem substitua os metadados da revisão anterior.
+
+O cartão contém o plano da pessoa. Os dados de versão da skill, validade OKF e eventos de uso ficam no registro operacional; não os repita no corpo do cartão. Quando o hospedeiro fornece data e integridade, use seus metadados sem reconstruí-los no texto. Na conversa, entregue síntese, link do cartão quando houver arquivo e próxima ação; os mapas de origem ficam no artefato.
 
 ## Pitfalls
 

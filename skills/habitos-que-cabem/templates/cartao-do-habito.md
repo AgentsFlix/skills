@@ -3,7 +3,7 @@
 Preencha apenas a partir de fatos e escolhas da pessoa. Identifique propostas ainda não confirmadas.
 
 - Identificador e revisão do cartão:
-- Criado/revisado em (instante com fuso):
+- Criado/revisado em: usar os metadados do hospedeiro quando disponíveis; sem fonte de horário, declarar não disponível.
 - Hábito e motivo pessoal:
 - Gatilho na rotina:
 - Ação mínima:
