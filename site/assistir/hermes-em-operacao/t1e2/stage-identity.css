@@ -29,8 +29,8 @@
 .customer.served,.team-order.done{background:#181818;border-color:#888}
 .chef{align-items:center}.chef svg{width:55px;height:65px}.customer svg{width:50px;height:60px}.chef-icon{width:54px;height:64px}
 .chef.locked{opacity:.65}.chef.locked svg{filter:grayscale(1)}
-.belt-window{background:#141414}.belt-track{background:repeating-linear-gradient(90deg,#888 0 3px,#333 3px 36px);border-color:#888;opacity:.8}
-.running .belt-track{border-top-color:#65aeb6}
+.belt-window{background:#141414}
+
 .chef,.team-chef,.customer{position:relative;overflow:hidden}
 .customer{padding-top:16px}.customer:before{content:'';position:absolute;top:0;left:0;width:44%;height:6px;background:#888;border-bottom-right-radius:9px}
 .customer.current:before,.customer.served:before{background:#65aeb6}
@@ -59,9 +59,9 @@
 .customer-art .customer-dish{position:absolute;width:46px;height:34px;left:12px;top:40px}
 .customer{background:#191c1b;padding-top:12px}.customer:before{display:none}
 .belt-window{padding-bottom:90px;background:#191c1b}
-.belt-track{inset:auto 0 0;height:155px;border:0;background:transparent url('art/esteira-v1.png') center bottom / 600px 155px repeat-x;opacity:1}
-.running .belt-track{animation:drawn-belt 7s linear infinite}
-@keyframes drawn-belt{to{background-position:600px bottom}}
+
+
+
 .piece{background:#1d211f}.piece:before{display:none}
 .piece-art{width:76px;height:76px;margin:0 auto 12px}
 .drop .piece-art,.target .piece-art{width:64px;height:64px;margin:0 0 10px}
@@ -74,13 +74,4 @@
 #scene .table text{fill:#f0eee6;font-size:17px}
 #scene .table.selected .bell{fill:none;stroke:#65aeb6;stroke-width:2}
 @media(max-width:1050px){.chef .portrait,.lane-head .portrait{width:70px;height:108px}.chef{gap:8px}.customer-art{width:55px;height:88px}}
-@media(max-width:700px){.chef .portrait{width:66px;height:96px;margin:0 auto 8px}.lane-head .portrait{width:74px;height:108px}.stage-art{min-height:118px}.stage-symbol{width:104px;height:94px}.customer-art{width:58px;height:92px}.belt-window{padding-bottom:76px}.belt-track{height:130px;background-size:520px 130px}.piece-art{width:64px;height:64px}.order-art{width:42px;height:50px}.tool-art{width:90px;height:90px}}
-@media(prefers-reduced-motion:reduce){.running .belt-track{animation:none}}
-
-/* Uma esteira contínua; movimento fica na faixa de transporte. */
-.belt-track{background-size:100% 240px;background-repeat:no-repeat;background-position:center center}
-.running .belt-track{animation:none}
-.belt-track:after{content:'';position:absolute;left:8%;right:8%;top:48%;height:3px;background:repeating-linear-gradient(90deg,#65aeb6 0 12px,transparent 12px 28px);opacity:.5}
-.running .belt-track:after{animation:belt 1.2s linear infinite}
-@media(max-width:700px){.belt-track{background-size:100% 200px}}
-@media(prefers-reduced-motion:reduce){.running .belt-track:after{animation:none}}
+@media(max-width:700px){.chef .portrait{width:66px;height:96px;margin:0 auto 8px}.lane-head .portrait{width:74px;height:108px}.stage-art{min-height:118px}.stage-symbol{width:104px;height:94px}.customer-art{width:58px;height:92px}.belt-window{padding-bottom:76px}.piece-art{width:64px;height:64px}.order-art{width:42px;height:50px}.tool-art{width:90px;height:90px}}
