@@ -8,7 +8,7 @@
 > de ativação abaixo. Claude: envie como conhecimento do Project, ou cole tudo no chat. Qualquer chat: cole tudo.
 > Versão 0.4.3. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
 >
-> **Texto de ativação (cole nas instruções):** Acesse https://raw.githubusercontent.com/AgentsFlix/skills/codex/habitos-que-cabem/skills/habitos-que-cabem/SKILL.md e leia a skill Hábitos que Cabem na Vida e as referências necessárias. Esta edição usa a referência codex/habitos-que-cabem. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
+> **Texto de ativação (cole nas instruções):** Acesse https://raw.githubusercontent.com/AgentsFlix/skills/main/skills/habitos-que-cabem/SKILL.md e leia a skill Hábitos que Cabem na Vida e as referências necessárias. Esta edição usa a referência main. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
 >
 > Antes de me fazer perguntas, leia o contrato AgentFlix incluído e cheque nossa conversa, sua memória local acessível e os arquivos relevantes que você já conhece. Identifique os inputs exigidos, quais você já tem e quais faltam. Reaproveite fatos atuais, identifique origem, data, conflitos e inferências. Não invente lembranças nem me peça novamente o que já sabe.
 >
@@ -138,7 +138,7 @@ A operação está concluída somente quando seu aceite específico e os itens c
 
 ## Referência: references/ativacao.md
 
-Acesse https://raw.githubusercontent.com/AgentsFlix/skills/codex/habitos-que-cabem/skills/habitos-que-cabem/SKILL.md e leia a skill Hábitos que Cabem na Vida e as referências necessárias. Esta edição usa a referência codex/habitos-que-cabem. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
+Acesse https://raw.githubusercontent.com/AgentsFlix/skills/main/skills/habitos-que-cabem/SKILL.md e leia a skill Hábitos que Cabem na Vida e as referências necessárias. Esta edição usa a referência main. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
 
 Antes de me fazer perguntas, leia o contrato AgentFlix incluído e cheque nossa conversa, sua memória local acessível e os arquivos relevantes que você já conhece. Identifique os inputs exigidos, quais você já tem e quais faltam. Reaproveite fatos atuais, identifique origem, data, conflitos e inferências. Não invente lembranças nem me peça novamente o que já sabe.
 
@@ -310,7 +310,7 @@ status: draft
 tags: [habitos, memoria, ciclo-de-vida]
 generated:
   by: process:agentflix-skill-authoring
-  at: 2026-09-08T21:27:21.533436+00:00
+  at: 2026-09-09T16:11:07.121754+00:00
 stale_after: 2026-12-08T00:00:00Z
 sources:
   - id: maas
@@ -413,7 +413,7 @@ Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Ne
   "skill_id": "habitos-que-cabem",
   "distribution_version": "0.4.3",
   "content_revision": "1.1.2",
-  "distribution_ref": "codex/habitos-que-cabem"
+  "distribution_ref": "main"
 }
 
 

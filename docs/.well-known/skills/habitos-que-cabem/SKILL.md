@@ -7,11 +7,11 @@ metadata:
   author: José Carlos Amorim
   version: 0.4.3
   hub: https://agentsflix.ai
-  source: https://github.com/AgentsFlix/skills/tree/codex/habitos-que-cabem/skills/habitos-que-cabem
+  source: https://github.com/AgentsFlix/skills/tree/main/skills/habitos-que-cabem
   tags: habitos, rotina, memoria, revisao, okf
   contract_version: 1.0.0
   content_revision: 1.1.2
-  distribution_ref: codex/habitos-que-cabem
+  distribution_ref: main
 ---
 
 # Hábitos que Cabem na Vida
