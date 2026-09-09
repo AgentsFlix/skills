@@ -96,3 +96,7 @@ Branch `codex/hermes-operacao-local`. Apenas local, sem push, PR ou deploy por p
 ### T1:E2: O restaurante de Miojo Premium
 
 Episódio interativo local em `hermes-em-operacao/t1e2/`, sem vídeo. Registrado em `seasons[].atividades` com número explícito 2, sem criar episódio 1 fictício ou UID. O link `?s=hermes-em-operacao#t1e2` também abre a atividade. Seis etapas: Gatilho, Agente, Ferramenta, Puxar, Construir e Entrega. Botões anterior/próxima e seleção direta; mesa e tempero permanecem ao voltar. A maquininha demonstra o pedido de conta e volta à caderneta antes do preparo. Não há temporizador real de três minutos.
+
+### Página 2: monte o fluxo e ligue a esteira
+
+`hermes-em-operacao/t1e2/pratica.html` mantém o restaurante de Miojo Premium. Seis espaços recebem peças por clique ou teclado; quatro peças extras e pistas permitem revisar erros. Cada fluxo correto ativa um chef com capacidade de três clientes nesta simulação. A esteira atende automaticamente os clientes 1 a 3, para no 4 até montar o fluxo 2, e para no 7 até montar o fluxo 3. A atividade termina no cliente 9. Pausa e retomada disponíveis; movimento reduzido desativa a animação da esteira. Nenhum vídeo ou publicação. A página 1 aprovada recebeu apenas o link de navegação para a prática.

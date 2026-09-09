@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Monte o fluxo · T1:E2 · AgentFlix</title><link rel="stylesheet" href="episode.css"><link rel="stylesheet" href="pratica.css"><script src="pratica.js" defer></script></head>
+<body>
+<header class="top"><a href="./" class="back">← Página 1 · O restaurante</a><a class="brand" href="../../">AGENT<span>FLIX</span></a><span class="episode-label">TEMPORADA 1 · EPISÓDIO 2</span></header>
+<main>
+<div class="intro"><div><p class="eyebrow">PÁGINA 2 · AGORA É COM VOCÊ</p><h1>Monte o fluxo. Ligue a esteira.</h1><p>O restaurante continua vendendo miojo num prato elegante. Agora, os clientes estão chegando.<br>Nesta simulação, cada chef atende 3 clientes. Para atender mais, você precisa montar outro fluxo.</p></div><span class="format">Miojo Premium · Atividade prática</span></div>
+<section class="factory" aria-labelledby="factory-title">
+<div class="factory-head"><div><p class="eyebrow">RESTAURANTE EM OPERAÇÃO</p><h2 id="factory-title">A esteira espera o primeiro fluxo</h2></div><button class="secondary" id="pause" hidden>Pausar esteira</button></div>
+<div id="chefs" class="chefs"></div>
+<div class="belt-window"><div class="belt-track" aria-hidden="true"></div><div class="customers" id="customers"></div></div>
+<div class="factory-foot"><p id="factory-status" role="status"></p><span id="served-count">0 de 9 clientes atendidos</span></div>
+</section>
+<section class="puzzle" id="puzzle" aria-labelledby="puzzle-title">
+<div class="section-head"><div><p class="eyebrow" id="round-label">FLUXO 1 · CHEF 1</p><h2 id="puzzle-title">Organize o atendimento</h2><p>Clique em uma peça e depois no espaço onde ela entra. Há peças a mais na mesa.</p></div><span class="counter" id="placed-count">0 / 6 peças</span></div>
+<p id="selection" class="selection" role="status">Escolha uma peça na mesa abaixo.</p>
+<div id="slots" class="slots"></div>
+<div class="tray-head"><h3>Mesa de peças</h3><span>Use uma peça por etapa. Você pode trocar e retirar.</span></div>
+<div id="tray" class="tray"></div>
+<div class="check-row"><p id="feedback" role="status">Monte o fluxo para ativar o chef 1.</p><button class="primary" id="check">Conferir meu fluxo</button></div>
+</section>
+<section id="gate" class="gate" hidden aria-labelledby="gate-title"><p class="eyebrow">A ESTEIRA PAROU</p><h2 id="gate-title"></h2><p id="gate-copy"></p><button id="new-flow" class="primary">Montar próximo fluxo →</button></section>
+<section id="complete" class="gate" hidden aria-labelledby="complete-title"><p class="eyebrow">ATENDIMENTO CONCLUÍDO</p><h2 id="complete-title">3 fluxos. 3 chefs. 9 clientes atendidos.</h2><p>Cada fluxo ativou um chef para atender três clientes. O segundo entrou no cliente 4; o terceiro, no cliente 7.</p><button id="restart" class="primary">Montar tudo de novo ↺</button></section>
+<nav class="page-nav" aria-label="Páginas do episódio"><a href="./">← Página 1 · O restaurante de Miojo Premium</a><span>Página 2 · Monte o fluxo</span></nav>
+</main></body></html>
