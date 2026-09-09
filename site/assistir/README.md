@@ -148,3 +148,11 @@ A continuação usa uma cópia da documentação capturada: nicho, escrita, pale
 Revisar a base invalida a documentação carregada e os materiais anteriores. Trocar o template exige construir o novo material. Nenhuma consulta ou envio externo. QA da continuação nos três tamanhos: documentos, três perfis, três templates por perfil, configuração ativa, bloqueios, revisão, destinatário ausente/incorreto/correto, teclado e carregamento das imagens.
 
 A elicitação limita o banco a três templates: Continuar fica indisponível com menos de três, e novas opções ficam indisponíveis ao atingir o limite até retirar uma seleção. O contador orienta a troca. Construir mostra apenas os três salvos e permite um ativo por material. Checklist, enquete e frase usam composições próprias de lista, opções e tipografia; também geram título e legenda conforme a voz do cliente. QA em 1440, 768 e 390 px: seis opções, limite de três, remoção/reseleção, banco e documentação, escolha única, criação dos seis tipos e entrega.
+
+### Som ambiente do episódio
+
+As seis páginas de T1:E2 carregam `ambient.js` e `ambient.css`. O MP3 `audio/back1.mp3` é uma cópia integral de Back1.mp3 fornecido pelo Zé, sem edição. Reprodução em loop, ganho de 12% e entrada suave de 800 ms usando Web Audio; fallback de volume no elemento de áudio. Começa na primeira interação permitida pelo navegador. O controle no cabeçalho permite ativar/silenciar, inclusive por teclado.
+
+A preferência de silêncio fica no localStorage; a posição da música no sessionStorage da aba. Pausa ao ocultar/sair da página, retoma ao voltar se habilitado, e respeita silêncio após navegar. A navegação entre documentos pode interromper brevemente o áudio e requerer outra interação conforme a política do navegador. Erro no arquivo desativa o controle sem interferir na atividade.
+
+QA Chrome: loop real do MP3, ganho de 0,12, início por interação, teclado, silêncio persistente, restauração da posição, eventos de visibilidade e seis páginas em 1440, 768 e 390 px. Arquivo copiado validado por SHA-256 idêntico. Som e alterações permanecem locais.
