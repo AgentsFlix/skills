@@ -106,3 +106,7 @@ As peças também aceitam arrastar e soltar no navegador: mesa para etapa, entre
 ### Página 3: os mesmos chefs, outra organização
 
 `hermes-em-operacao/t1e2/equipe.html` divide responsabilidades entre Chef 1 (anotar e servir), Chef 2 (preparar) e Chef 3 (fechar a conta). O usuário distribui seis peças, com duas extras, por arraste, clique ou teclado e conecta três passagens: bilhete, prato pronto e pedido de pagamento. Um teste manual percorre um atendimento e pede explicitamente a conta antes de fechá-la. Depois, a animação atende 15 clientes em paralelo, com pausa, retomada, repetição e retorno à montagem. Os quatro contadores terminam em 15: pedidos, pratos preparados, pratos servidos e contas fechadas. A comparação 9 → 15 no mesmo período é a capacidade pedagógica aprovada pelo Zé, não uma medição de desempenho. Páginas 1 e 2 preservadas, acrescentando navegação para a página 3 na página 2.
+
+### Identidade das seis etapas
+
+`stage-identity.js` e `stage-identity.css` compartilham as ilustrações SVG e os cabeçalhos em aba nas três páginas. Paleta preto, branco/cinza e ciano: campainha (Gatilho), pessoa com crachá (Agente), caixa de ferramentas (Ferramenta), documento saindo da gaveta (Puxar), blocos em montagem (Construir), bandeja com destino (Entrega). Número e nome permanecem junto dos símbolos; as peças soltas não recebem símbolos que revelem o destino correto. As responsabilidades e passagens da equipe usam versões compactas.

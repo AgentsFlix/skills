@@ -64,7 +64,7 @@
     $('slots').innerHTML = stages.map((stage, i) => {
       const piece = getPiece(slots[i]);
       const correct = piece?.stage === i;
-      return `<div data-drop-slot="${i}" class="slot ${checked ? correct?'correct':'wrong' : ''}"><h3>${i+1} · ${stage}</h3><button class="drop ${piece?'':'empty'} ${piece?.id===selected?'selected':''}" data-slot="${i}" draggable="${Boolean(piece)}" ${piece ? `data-drag-piece="${piece.id}"` : ''} aria-label="${stage}: ${piece?piece.text:'espaço vazio'}">${piece?piece.text:'+ Colocar uma peça'}</button>${piece?`<button class="remove" data-remove="${i}" aria-label="Retirar peça de ${stage}">Retirar peça</button>`:''}${checked?`<p class="slot-hint">${correct?'✓ Correto':hints[i]}</p>`:''}</div>`;
+      return `<div data-drop-slot="${i}" class="slot ${checked ? correct?'correct':'wrong' : ''}"><h3 class="stage-heading">${StageIdentity.header(i)}</h3><button class="drop ${piece?'':'empty'} ${piece?.id===selected?'selected':''}" data-slot="${i}" draggable="${Boolean(piece)}" ${piece ? `data-drag-piece="${piece.id}"` : ''} aria-label="${stage}: ${piece?piece.text:'espaço vazio'}">${piece?piece.text:'+ Colocar uma peça'}</button>${piece?`<button class="remove" data-remove="${i}" aria-label="Retirar peça de ${stage}">Retirar peça</button>`:''}${checked?`<p class="slot-hint">${correct?'✓ Correto':hints[i]}</p>`:''}</div>`;
     }).join('');
     $('tray').innerHTML = order.filter(id => !slots.includes(id)).map(id => `<button class="piece" draggable="true" data-drag-piece="${id}" data-piece="${id}" aria-pressed="${id===selected}">${getPiece(id).text}</button>`).join('');
   }

@@ -1,0 +1,23 @@
+/* Uma paleta; seis símbolos. Número e nome nunca dependem da cor. */
+.stage-symbol{display:block;width:100px;height:90px;flex-shrink:0;pointer-events:none}
+.stage-art{display:flex;align-items:center;justify-content:center;background:#222;min-height:110px;padding:10px 12px 20px;border-radius:12px 12px 0 0;pointer-events:none}
+.stage-tab{position:relative;isolation:isolate;display:flex;align-items:center;gap:8px;width:max-content;max-width:100%;background:#181818;color:#f5f5f1;margin-top:-17px;padding:11px 13px 9px;border-radius:0 14px 0 0;font-size:12px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;pointer-events:none}
+.stage-tab:after{content:'';position:absolute;width:20px;height:17px;right:-19px;top:0;background:#181818;clip-path:polygon(0 0,100% 100%,0 100%)}
+.stage-number{color:#5fc9dc;font-size:13px;font-weight:700;line-height:1}
+#steps .step{padding:0;background:#181818;overflow:hidden;color:var(--muted)}
+#steps .step .stage-art{min-height:82px;padding:6px 12px 17px}
+#steps .step .stage-symbol{width:78px;height:70px}
+#steps .step small{margin:0;padding:0 13px 13px;font-size:11px}
+#steps .step[aria-current=step]{border-color:#5fc9dc;box-shadow:inset 0 -3px #5fc9dc}
+#steps .step[aria-current=step] .stage-tab{color:#5fc9dc}
+.slot{background:#181818}
+.slot h3.stage-heading{padding:0;margin:0;border-bottom:1px solid var(--line);font-size:inherit;letter-spacing:normal}
+.stage-badges{display:flex;flex-wrap:wrap;gap:5px 10px;padding:8px 12px}
+.stage-badge{display:inline-flex;gap:5px;align-items:center;color:#b3b3b3;font-size:10px;font-weight:400;text-transform:none;letter-spacing:0}
+.stage-badge .stage-symbol{width:28px;height:26px}
+.stage-badges .stage-symbol ellipse{fill:#303030}
+.responsibility .role{background:#222;color:#f5f5f1;padding:12px 12px 8px}
+.responsibility{background:#181818}
+.concept .stage-symbol{width:60px;height:54px;margin-bottom:10px}
+@media(max-width:1050px){.stage-tab{font-size:10px;padding:10px 10px 8px;gap:6px}.stage-number{font-size:11px}#steps .step small{font-size:10px;padding:0 10px 12px}}
+@media(max-width:700px){#steps .step .stage-symbol{width:62px;height:56px}#steps .step .stage-art{min-height:68px}.stage-art{min-height:98px}.stage-symbol{width:87px;height:78px}.stage-tab{font-size:11px}#steps .stage-tab{font-size:10px;letter-spacing:0;gap:5px}.stage-badges{gap:4px 8px}.stage-badge{font-size:9px}}
