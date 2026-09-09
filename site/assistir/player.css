@@ -2073,3 +2073,13 @@ a {
     padding: 12px;
   }
 }
+
+/* Temporada anunciada, ainda sem episódios. */
+.btn:disabled { opacity: .55; cursor: default; }
+.upcoming-season { padding: 32px 0 48px; border-top: 1px solid var(--line); }
+.upcoming-season p { color: var(--muted); line-height: 1.5; }
+.upcoming-season h3 { margin: 12px 0; font-size: 22px; }
+
+.activity-thumb { display: flex; flex-direction: column; justify-content: center; padding: 14px; background: #263c35; color: #ede6cd; text-decoration: none; }
+.activity-thumb span { font-size: 9px; letter-spacing: 2px; }
+.activity-thumb strong { line-height: 1.1; margin-top: 8px; font-size: 17px; }

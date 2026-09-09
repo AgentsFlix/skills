@@ -1,0 +1,77 @@
+/* Uma paleta; seis símbolos. Número e nome nunca dependem da cor. */
+.stage-symbol{display:block;width:100px;height:90px;flex-shrink:0;pointer-events:none}
+.stage-art{display:flex;align-items:center;justify-content:center;background:#222;min-height:110px;padding:10px 12px 20px;border-radius:12px 12px 0 0;pointer-events:none}
+.stage-tab{position:relative;isolation:isolate;display:flex;align-items:center;gap:8px;width:max-content;max-width:100%;background:#181818;color:#f0eee6;margin-top:-17px;padding:11px 13px 9px;border-radius:0 14px 0 0;font-size:12px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;pointer-events:none}
+.stage-tab:after{content:'';position:absolute;width:20px;height:17px;right:-19px;top:0;background:#181818;clip-path:polygon(0 0,100% 100%,0 100%)}
+.stage-number{color:#65aeb6;font-size:13px;font-weight:700;line-height:1}
+#steps .step{padding:0;background:#181818;overflow:hidden;color:var(--muted)}
+#steps .step .stage-art{min-height:82px;padding:6px 12px 17px}
+#steps .step .stage-symbol{width:78px;height:70px}
+#steps .step small{margin:0;padding:0 13px 13px;font-size:11px}
+#steps .step[aria-current=step]{border-color:#65aeb6;box-shadow:inset 0 -3px #65aeb6}
+#steps .step[aria-current=step] .stage-tab{color:#65aeb6}
+.slot{background:#181818}
+.slot h3.stage-heading{padding:0;margin:0;border-bottom:1px solid var(--line);font-size:inherit;letter-spacing:normal}
+.stage-badges{display:flex;flex-wrap:wrap;gap:5px 10px;padding:8px 12px}
+.stage-badge{display:inline-flex;gap:5px;align-items:center;color:#b3b3b3;font-size:10px;font-weight:400;text-transform:none;letter-spacing:0}
+.stage-badge .stage-symbol{width:28px;height:26px}
+.stage-badges .stage-symbol ellipse{fill:#303030}
+.responsibility .role{background:#222;color:#f0eee6;padding:12px 12px 8px}
+.responsibility{background:#181818}
+.concept .stage-symbol{width:60px;height:54px;margin-bottom:10px}
+@media(max-width:1050px){.stage-tab{font-size:10px;padding:10px 10px 8px;gap:6px}.stage-number{font-size:11px}#steps .step small{font-size:10px;padding:0 10px 12px}}
+@media(max-width:700px){#steps .step .stage-symbol{width:62px;height:56px}#steps .step .stage-art{min-height:68px}.stage-art{min-height:98px}.stage-symbol{width:87px;height:78px}.stage-tab{font-size:11px}#steps .stage-tab{font-size:10px;letter-spacing:0;gap:5px}.stage-badges{gap:4px 8px}.stage-badge{font-size:9px}}
+
+/* Personagens e superfícies da sequência: preto, branco, cinza e ciano. */
+.factory,.restaurant,.lane,.team-chef,.comparison{background:#181818;border-color:var(--line)}
+.chef,.customer,.team-order,.piece,.tool-card,.connection{background:#222;border-color:var(--line)}
+.chef.active,.customer.current,.team-chef.active,.team-order.working{border-color:#65aeb6;background:#222}
+.customer.served,.team-order.done{background:#181818;border-color:#888}
+.chef{align-items:center}.chef svg{width:55px;height:65px}.customer svg{width:50px;height:60px}.chef-icon{width:54px;height:64px}
+.chef.locked{opacity:.65}.chef.locked svg{filter:grayscale(1)}
+.belt-window{background:#141414}
+
+.chef,.team-chef,.customer{position:relative;overflow:hidden}
+.customer{padding-top:16px}.customer:before{content:'';position:absolute;top:0;left:0;width:44%;height:6px;background:#888;border-bottom-right-radius:9px}
+.customer.current:before,.customer.served:before{background:#65aeb6}
+.lane-head{background:#222}.lane-head h3,.chef strong{color:#f0eee6}
+.piece:before{color:#888}.piece[aria-pressed=true],.drop.selected,.target.selected{background:#333;border-color:#65aeb6}
+.slot.correct,.correct{border-color:#65aeb6}.slot.correct .slot-hint,.correct .hint{color:#65aeb6}
+.slot.wrong,.wrong{border-color:#b3b3b3}.slot-hint,.hint{color:#b3b3b3}
+.scene-top{color:#f0eee6}.scene-top span:last-child,.scene-caption p{color:#b3b3b3}
+.delivery,.gate,section.result,.handoff{background:#181818;border-color:#65aeb6}
+@media(max-width:700px){.chef svg{width:42px;height:50px}.customer svg{width:44px;height:52px}.chef-icon{width:46px;height:55px}}
+
+/* Assets raster sem fundo, com recortes preservados. */
+:root{--accent:#65aeb6;--text:#f0eee6}
+.drawn-art{display:block;object-fit:contain;pointer-events:none;user-select:none;width:100%;height:100%}
+.stage-art{background:#1d211f;min-height:128px;padding:6px 12px 18px}
+.stage-symbol{display:block;width:116px;height:106px}
+.stage-symbol .drawn-art{width:100%;height:100%}
+.stage-tab,.slot,.responsibility{background:#191c1b}
+.stage-tab:after{background:#191c1b}
+.stage-badge .stage-symbol{width:34px;height:32px}
+.chef .portrait,.lane-head .portrait{width:92px;height:132px;flex-shrink:0}
+.chef.locked .portrait{filter:grayscale(1)}
+.chef{gap:18px}.chef p{max-width:150px}
+.customer-art{display:block;position:relative;width:70px;height:100px;margin:auto}
+.customer-art .portrait{width:100%;height:100%}
+.customer-art .customer-dish{position:absolute;width:46px;height:34px;left:12px;top:40px}
+.customer{background:#191c1b;padding-top:12px}.customer:before{display:none}
+.belt-window{padding-bottom:90px;background:#191c1b}
+
+
+
+.piece{background:#1d211f}.piece:before{display:none}
+.piece-art{width:76px;height:76px;margin:0 auto 12px}
+.drop .piece-art,.target .piece-art{width:64px;height:64px;margin:0 0 10px}
+.tool-art{width:110px;height:100px;float:right;margin:0 0 12px 16px}
+.tool-card{display:flow-root;background:#1d211f}
+.tool-card .chef-icon{width:95px;height:130px;float:right;margin-left:16px}
+.delivery{display:flow-root}
+.order-art{width:48px;height:58px;margin:auto auto 8px}
+#scene{background:#191c1b}#scene #chef{filter:none}
+#scene .table text{fill:#f0eee6;font-size:17px}
+#scene .table.selected .bell{fill:none;stroke:#65aeb6;stroke-width:2}
+@media(max-width:1050px){.chef .portrait,.lane-head .portrait{width:70px;height:108px}.chef{gap:8px}.customer-art{width:55px;height:88px}}
+@media(max-width:700px){.chef .portrait{width:66px;height:96px;margin:0 auto 8px}.lane-head .portrait{width:74px;height:108px}.stage-art{min-height:118px}.stage-symbol{width:104px;height:94px}.customer-art{width:58px;height:92px}.belt-window{padding-bottom:76px}.piece-art{width:64px;height:64px}.order-art{width:42px;height:50px}.tool-art{width:90px;height:90px}}

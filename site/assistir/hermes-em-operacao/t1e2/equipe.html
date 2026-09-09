@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Uma equipe, quinze clientes · T1:E2 · AgentFlix</title><link rel="stylesheet" href="episode.css"><link rel="stylesheet" href="equipe.css"><link rel="stylesheet" href="stage-identity.css"><script src="stage-identity.js" defer></script><script src="equipe.js" defer></script><link rel="stylesheet" href="ambient.css"><script src="ambient.js" defer></script><script src="effects.js" defer></script><link rel="stylesheet" href="episode-navigation.css"><script src="episode-navigation.js" defer></script></head>
+<body>
+<header class="top"><a class="back" href="pratica.html">← Página 2 · Fluxos completos</a><a class="brand" href="../../">AGENT<span>FLIX</span></a><span class="episode-label">TEMPORADA 1 · EPISÓDIO 2</span></header>
+<main>
+<div class="intro"><div><p class="eyebrow">PÁGINA 3 · DIVIDIR PARA ATENDER MAIS</p><h1>Os mesmos chefs. Outra organização.</h1><p>O Chef 1 atende e serve. O Chef 2 prepara. O Chef 3 fecha a conta.<br>Monte as responsabilidades e as passagens para atender 15 clientes completos.</p></div></div>
+<section class="comparison" aria-label="Comparação de capacidade"><div><span>ANTES · CADA CHEF FAZ TUDO</span><strong>9 <small>clientes completos</small></strong></div><div class="after"><span>AGORA · TRABALHO DIVIDIDO</span><strong>15 <small>clientes completos</small></strong></div><p>Mesmo período, mesma equipe.<br>Capacidades definidas para esta simulação; a animação ilustra a organização.</p></section>
+<section id="assembly" aria-labelledby="assembly-title">
+<div class="section-title"><div><p class="eyebrow">1 · DISTRIBUA AS RESPONSABILIDADES</p><h2 id="assembly-title">Quem faz cada parte?</h2><p>Arraste as peças ou clique em uma peça e depois no espaço. Há duas peças extras.</p></div><span id="piece-count">0 / 6 peças</span></div>
+<p id="selection" role="status" class="selection">Escolha uma peça da mesa.</p>
+<div id="lanes" class="lanes"></div>
+<h3 class="tray-title">Mesa de responsabilidades</h3><div id="pieces" class="pieces"></div>
+<div class="section-title connections-title"><div><p class="eyebrow">2 · CONECTE AS PASSAGENS</p><h2>O que faz o próximo trabalho começar?</h2><p>Uma entrega pode virar o gatilho de outro fluxo.</p></div></div>
+<div class="connections" id="connections"></div>
+<div class="verify"><p id="feedback" role="status">Organize as peças e escolha as três passagens.</p><button class="primary" id="verify">Conferir minha equipe</button></div>
+</section>
+<section id="simulation" hidden aria-labelledby="simulation-title">
+<div class="section-title"><div><p class="eyebrow" id="mode-label">PRIMEIRO · ACOMPANHE UM PEDIDO</p><h2 id="simulation-title">Veja as passagens acontecerem</h2><p id="mode-description">Avance uma ação de cada vez. O pagamento começa quando o cliente pede a conta.</p></div><button class="secondary" id="edit">Reorganizar equipe</button></div>
+<div class="team" id="team"></div>
+<div class="handoff" role="status" id="handoff">Tudo pronto. O cliente ainda não chamou.</div>
+<div class="order-list" id="orders" aria-label="Situação dos pedidos"></div>
+<div class="simulation-controls"><button class="primary" id="step">Cliente toca a campainha →</button><button class="primary" id="bulk" hidden>Atender os 15 clientes →</button><button class="secondary" id="pause" hidden>Pausar atendimento</button><span id="count">0 atendimentos concluídos</span></div>
+<section class="result" id="result" hidden aria-labelledby="result-title"><p class="eyebrow">ATENDIMENTO CONCLUÍDO</p><h2 id="result-title">15 pedidos recebidos, preparados, servidos e fechados.</h2><p>Antes, cada chef fazia o fluxo inteiro: 9 clientes. Agora, cada um cuida de uma parte: 15 clientes completos no mesmo período da simulação.</p><p>Enquanto o Chef 2 prepara um prato, o Chef 1 recebe outro pedido e o Chef 3 fecha outra conta.</p><button class="primary" id="replay">Ver os 15 atendimentos de novo ↺</button></section>
+</section>
+<nav class="episode-pages" aria-label="Páginas do episódio"><a href="pratica.html">← Página 2 · Monte o fluxo</a><a href="eugencia.html">Página 4 · Sua Eugência →</a></nav>
+</main></body></html>

@@ -86,3 +86,54 @@ QA_BASE=http://127.0.0.1:8794 node ferramentas/qa-player/qa-player-contract.cjs
 ```
 
 Capturas desta entrega: `design-review/assistir-catalog/`. Mudanças de interface passam por revisão visual antes do merge; publicar um episódio continua exigindo a conferência de dados sensíveis nos quadros do vídeo.
+
+## HERMES EM OPERAÇÃO · Temporada 1, episódio 2
+
+Entrada: `/assistir/?s=hermes-em-operacao`. O episódio interativo abre em
+`/assistir/hermes-em-operacao/t1e2/`; o link `?s=hermes-em-operacao#t1e2` também é aceito.
+O cadastro usa `seasons[].atividades`, com número explícito 2, sem vídeo, UID ou episódio 1 fictício.
+
+### Sequência do episódio
+
+`episode-navigation.js` centraliza as oito partes, o índice expansível e os links anterior/próxima.
+Cada parte conserva os controles de suas etapas, as ilustrações aprovadas e a indicação de T1:E2.
+Links diretos continuam funcionando. A navegação entre páginas não marca tarefas como concluídas.
+As escolhas das práticas duram enquanto a página permanece aberta; recarregar inicia outra visita.
+
+| Parte | Página | Atividade |
+| --- | --- | --- |
+| 1 | `index.html` | Miojo Premium: Gatilho, Agente, Ferramenta, Puxar, Construir e Entrega. |
+| 2 | `pratica.html` | Montar três fluxos com peças extras; três chefs atendem nove clientes. |
+| 3 | `equipe.html` | Dividir responsabilidades e acompanhar as passagens até quinze atendimentos. |
+| 4 | `eugencia.html` | Uma pessoa cria arte e legenda para três tipos de cliente. |
+| 5 | `eugencia-pratica.html` | Montar fluxos da agência e ativar três lotes de atendimento. |
+| 6 | `novo-cliente.html` | Elicitar nicho, escrita, visual e três de seis templates; puxar a documentação, construir com um template e entregar. |
+| 7 | `cliente-pratica.html` | Conversar por celular com três clientes fictícios, registrar escolhas e entregar a cada um. |
+| 8 | `base-negocio.html` | Nove etapas da base: negócio, público, posicionamento, voz, conhecimento, pilares, visual, templates e operação. |
+
+Os limites de capacidade são hipóteses pedagógicas da simulação, não medições reais.
+Nenhuma página envia mensagens ou publica nas redes sociais. A base final permite revisar arquivos
+simulados e baixar um JSON de exemplo, sem acessar contas ou dados reais de clientes.
+
+### Arte e acessibilidade
+
+As ilustrações em `art/` seguem o desenho editorial AgentFlix: marfim, carvão, cinza e ciano suave,
+com transparência real. Prompts de referência ficam junto dos assets. Esteiras são componentes SVG;
+o PNG anterior da esteira permanece apenas como histórico. Nome e número identificam as etapas.
+As peças aceitam arraste, clique e teclado. As esteiras têm pausa e respeitam movimento reduzido.
+
+### Áudio
+
+`ambient.js` toca `audio/back1.mp3` em loop, com ganho 0,12 e entrada gradual.
+O som começa após interação. Posição entre páginas fica no sessionStorage; preferência de silêncio
+fica no localStorage. A troca de página pode interromper o som até a próxima interação, conforme
+as regras de reprodução do navegador. Abas ocultas pausam a reprodução.
+
+`effects.js` oferece `EpisodeSound.play(nome ou sequência)` e `EpisodeSound.loop(ativo)`.
+Os efeitos específicos substituem o clique genérico da mesma ação. Sequências respeitam a ordem;
+outra ação cancela o restante. Esteira usa canal separado e para junto da simulação.
+Som ambiente e efeitos têm controles independentes, disponíveis em todas as partes.
+
+Efeitos: botão, seleção, arraste, conclusão, campainha, água, fervura, mexer, prato servido,
+passagem de pedido, maquininha, nota, esteira rodando/parando, documento, erro e mensagens
+recebidas/enviadas. Os arquivos vieram dos áudios aprovados para o episódio.
