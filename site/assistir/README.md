@@ -175,7 +175,7 @@ Web Audio usa ganhos de 0,45 (botão), 0,40 (seleção), 0,50 (arraste) e 0,28 (
 
 QA: reprodução real dos buffers e seus ganhos em Chrome, sete páginas, teclado, arraste/encaixe, silêncio após recarga, botões desabilitados, respostas incorretas, conclusão sem clique duplicado e três clientes completos em 1440, 768 e 390 px. Capturas dos controles nos três tamanhos; testes do repositório e sintaxe do site. Alterações somente locais.
 
-Sons de cena ainda não fornecidos: mensagem recebida; mensagem/imagens enviadas; aviso suave de erro ou pré-requisito; pasta/documentação carregada; esteira iniciando, rodando em loop e parando; passagem de bilhete/prato entre responsáveis; campainha da mesa; água/preparo/mexida; prato servido; pagamento aprovado e emissão da nota. Essas ações já têm os cliques ou confirmações gerais quando aplicável. Mensagens e aviso de erro são a próxima prioridade; sons contínuos de cena devem ser discretos para não competir com a música.
+Os 14 sons de cena fornecidos posteriormente foram integrados conforme o mapa abaixo. A esteira usa o trecho de funcionamento em loop desde a ativação; não foi fornecido um arquivo separado de partida.
 
 
 ### Página 8: construa a base do negócio
@@ -189,3 +189,16 @@ A pasta lateral ganha `negocio.md`, `publico.md`, `posicionamento.md`, `voz.md`,
 Revisar uma escolha salva invalida as partes seguintes e limpa suas decisões para reconstruir a base coerentemente. Escolhas ficam em memória durante a visita; reiniciar ou recarregar apaga a simulação. Imagens aprovadas, música e efeitos sonoros são reutilizados; nenhum serviço externo é consultado e nada é publicado. A futura skill ainda será fornecida pelo Zé.
 
 QA Chrome em 1440, 768 e 390 px: nove etapas completas em três caminhos, dependências, seleções múltiplas, edição e escape de texto, prévias de todos os arquivos, download JSON, revisão que invalida etapas seguintes, reinício e ausência de erros ou transbordamento horizontal. Testes do repositório e sintaxe do site executados. Protótipo exclusivamente local.
+
+
+### Sons de cena: restaurante, agência e base
+
+Os 14 MP3 novos foram copiados integralmente para `audio/`, com SHA-256 idêntico aos originais. Mapeamento: `bell` (campainha), `water` (colocar água), `boil` (ferver), `stir` (mexer), `dish` (servir), `handoff` (passagem), `payment` (aprovação), `receipt` (nota), `belt` (esteira rodando), `belt-stop` (parar), `document` (documentação carregada), `error` (aviso), `message-send` e `message-receive` (mensagens).
+
+No restaurante, os cliques de preparo usam água, fervura e mexida; servir toca prato e conclusão. A demonstração da equipe usa campainha, passagem/preparo, passagem/prato e pagamento/nota/conclusão. Os lotes automáticos evitam um efeito por cliente simultâneo; a conclusão da equipe usa pagamento e nota. As duas esteiras das práticas têm um canal próprio em loop e em volume baixo, sincronizado com ativação, pausa, retomada, silêncio e fim do lote. Parada e conclusão tocam em sequência.
+
+Receber mensagem, perguntar e receber resposta, enviar material, carregar documentação e abrir os arquivos da base usam efeitos específicos. Erros de montagem, resposta e destinatário usam o aviso suave; botões desabilitados seguem silenciosos. Sons de cena substituem o clique genérico da mesma ação. Sequências deliberadas tocam em ordem, com 70 ms entre arquivos; uma nova ação cancela o restante da sequência anterior. Silenciar ou ocultar a página cancela sequências pendentes. O loop só retoma se o atendimento continuar ativo e os efeitos estiverem habilitados; sair da página limpa a intenção de reprodução.
+
+Ganhos específicos: aviso 0,12 e mensagem recebida 0,15 (originais mais fortes); loop da esteira 0,22; demais cenas entre 0,35 e 0,65 conforme o arquivo. O controle Efeitos continua independente da música. Nenhum áudio foi normalizado ou recortado.
+
+QA Chrome: arquivos e ganhos reais, preparo/entrega, arraste e interação preservados, sequências de passagem/pagamento/nota, loop com pausa/silêncio/retomada/fim, visibilidade, cancelamento de respostas pendentes, persistência do silêncio, erros e documentos. Regressão dos três clientes em 1440, 768 e 390 px e verificações do repositório. Integração exclusivamente local.

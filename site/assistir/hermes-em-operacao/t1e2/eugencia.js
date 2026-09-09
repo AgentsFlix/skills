@@ -94,16 +94,17 @@
     else if(button.id==='go-editor')stage=2;
     else if(button.id==='go-materials')stage=3;
     else if(button.id==='go-build')stage=4;
-    else if(button.id==='receive'){s.received=true;}
+    else if(button.id==='receive'){s.received=true;window.EpisodeSound?.play('message-receive');}
     else if(button.id==='editor'&&s.received){s.editor=true;}
-    else if(button.id==='materials'&&s.editor){s.materials=true;}
+    else if(button.id==='materials'&&s.editor){s.materials=true;window.EpisodeSound?.play('document');}
     else if(button.dataset.build!==undefined&&s.materials&&Number(button.dataset.build)===s.built){s.built++;if(s.built===4)window.EpisodeSound?.play('complete');}
     else if(button.id==='send'&&s.built===4){
       if(!s.recipient)message='Escolha quem deve receber a arte e a legenda.';
       else if(s.recipient!==selected)message=`Este pedido é de ${client().brand}. Confira o destinatário antes de enviar.`;
-      else{if(!s.sent)window.EpisodeSound?.play('complete');s.sent=true;}
+      else{if(!s.sent)window.EpisodeSound?.play(['message-send','complete']);s.sent=true;}
     } else if(button.id==='reset'){orders[selected]=blank();stage=0;message='Este atendimento foi reiniciado. Os outros clientes mantêm seu progresso.';}
     else return;
+    if(button.id==='send'&&message)window.EpisodeSound?.play('error');
     if(oldStage!==stage)$('explanation').open=false;
     render();
     // Keep keyboard users at the next meaningful action after completing a task.

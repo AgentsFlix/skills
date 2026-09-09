@@ -87,20 +87,21 @@ document.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b||b.disabled)return;
  if(b.dataset.stage!==undefined)stage=+b.dataset.stage;
  else if(b.dataset.go!==undefined)stage=+b.dataset.go;
- else if(b.id==='receive')received=true;
+ else if(b.id==='receive'){received=true;window.EpisodeSound?.play('message-receive');}
  else if(b.id==='prepare'&&received)toolsReady=true;
  else if(b.id==='advance')stage=Math.min(3,stage+1);
  else if(b.dataset.choice){const key=b.dataset.choice,value=b.dataset.value;if(key==='templates'&&!profile.templates.includes(value)&&profile.templates.length>=3)return;invalidate();if(key==='templates')profile.templates=profile.templates.includes(value)?profile.templates.filter(v=>v!==value):[...profile.templates,value];else profile[key]=value;}
  else if(b.dataset.part!==undefined)part=+b.dataset.part;
  else if(b.id==='continue'&&ready()[part]){if(part<3)part++;else{finished=true;window.EpisodeSound?.play('complete');}}
  else if(b.id==='back'){if(stage===3&&part>0)part--;else stage=Math.max(0,stage-1);}
- else if(b.id==='pull'&&finished){pulled=JSON.parse(JSON.stringify(profile));}
+ else if(b.id==='pull'&&finished){pulled=JSON.parse(JSON.stringify(profile));window.EpisodeSound?.play('document');}
  else if(b.dataset.template&&pulled&&pulled.templates.includes(b.dataset.template)){if(selectedTemplate!==b.dataset.template){selectedTemplate=b.dataset.template;built=false;sent=false;feedback='';}}
  else if(b.id==='build'&&pulled&&selectedTemplate){if(!built)window.EpisodeSound?.play('complete');built=true;}
- else if(b.id==='send'&&built){if(recipient!==pulled.niche)feedback=recipient?'Confira o destinatário. Este material é de '+brands[pulled.niche]+'.':'Escolha o cliente que deve receber.';else{if(!sent)window.EpisodeSound?.play('complete');sent=true;feedback='';}}
+ else if(b.id==='send'&&built){if(recipient!==pulled.niche)feedback=recipient?'Confira o destinatário. Este material é de '+brands[pulled.niche]+'.':'Escolha o cliente que deve receber.';else{if(!sent)window.EpisodeSound?.play(['message-send','complete']);sent=true;feedback='';}}
  else if(b.id==='review'){finished=false;part=0;stage=3;invalidate();}
  else if(b.id==='reset'){invalidate();stage=0;part=0;received=false;toolsReady=false;finished=false;profile={niche:null,voice:null,look:null,templates:[]};}
  else return;
+ if(b.id==='send'&&feedback)window.EpisodeSound?.play('error');
  render();
  if(b.id==='continue'&&finished)$('question').focus({preventScroll:true});
  else if(['receive','prepare'].includes(b.id))$('advance').focus({preventScroll:true});

@@ -2,8 +2,10 @@
   'use strict';
   const base = new URL('audio/', document.currentScript.src);
   const preferenceKey = 'agentflix-effects-enabled';
-  const levels = {button: 0.45, selection: 0.4, drag: 0.5, complete: 0.28};
-  const priority = {button: 0, selection: 1, drag: 2, complete: 3};
+  const levels = {button:0.45,selection:0.4,drag:0.5,complete:0.28,receipt:0.4,payment:0.35,dish:0.45,stir:0.65,boil:0.4,water:0.5,bell:0.4,handoff:0.4,'belt-stop':0.5,belt:0.22,document:0.35,error:0.12,'message-send':0.45,'message-receive':0.15};
+  const priority = {button:0,selection:1,drag:2,complete:3};
+  const rank = cues => Math.max(...cues.map(k => priority[k] ?? 4)) + cues.length / 100;
+  let loopWanted=false, loopSource=null, loopFallback=null, loopGeneration=0, sequenceTimer=null;
   const data = new Map(), decoded = new Map();
   let enabled = true, context = null, source = null, fallback = null;
   let pending = null, timer = null, generation = 0, lastKind = '', lastAt = 0;
@@ -26,48 +28,80 @@
     if (source) { try { source.stop(); } catch (_) {} source.disconnect(); source = null; }
     if (fallback) { fallback.pause(); fallback = null; }
   }
-  function stop() { generation++; clearTimeout(timer); timer = null; pending = null; stopVoice(); }
+  function stop() { generation++; clearTimeout(timer);clearTimeout(sequenceTimer);sequenceTimer=null;timer=null;pending=null;stopVoice(); }
   function unlock() {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     if (!context && AudioContext) { try { context = new AudioContext(); } catch (_) {} }
     if (context?.state === 'suspended') context.resume().catch(() => {});
   }
-  async function renderSound(kind) {
-    const now = performance.now();
-    if (lastKind === kind && now - lastAt < 80) return;
-    lastKind = kind; lastAt = now;
-    const token = ++generation;
+  function bufferFor(kind) {
+    if (!decoded.has(kind)) decoded.set(kind, data.get(kind).then(bytes => bytes ? context.decodeAudioData(bytes.slice(0)) : null).catch(() => null));
+    return decoded.get(kind);
+  }
+  function stopLoop() {
+    loopGeneration++;
+    if(loopSource){try{loopSource.stop();}catch(_){}loopSource.disconnect();loopSource=null;}
+    if(loopFallback){loopFallback.pause();loopFallback=null;}
+  }
+  async function syncLoop() {
+    if(!loopWanted||!enabled||document.hidden){stopLoop();return;}
+    if(loopSource||loopFallback)return;
+    unlock();const token=++loopGeneration;
     try {
-      if (context) {
-        if (!decoded.has(kind)) decoded.set(kind, data.get(kind).then(bytes => bytes ? context.decodeAudioData(bytes.slice(0)) : null).catch(() => null));
-        const buffer = await decoded.get(kind);
-        if (!buffer || token !== generation || !enabled || document.hidden || performance.now() - now > 700 || context.state !== 'running') return;
-        stopVoice();
-        const node = context.createBufferSource(), gain = context.createGain();
-        node.buffer = buffer; gain.gain.value = levels[kind];
-        node.connect(gain); gain.connect(context.destination); source = node;
-        node.onended = () => { node.disconnect(); gain.disconnect(); if (source === node) source = null; };
-        node.start();
-      } else {
-        if (!enabled || document.hidden) return;
-        stopVoice(); fallback = new Audio(new URL(kind + '.mp3', base).href);
-        fallback.volume = levels[kind]; await fallback.play();
+      if(context){
+        await context.resume();const buffer=await bufferFor('belt');
+        if(!buffer||token!==loopGeneration||!loopWanted||!enabled||document.hidden)return;
+        const node=context.createBufferSource(),gain=context.createGain();
+        node.buffer=buffer;node.loop=true;gain.gain.value=levels.belt;
+        node.connect(gain);gain.connect(context.destination);loopSource=node;
+        node.onended=()=>{node.disconnect();gain.disconnect();if(loopSource===node)loopSource=null;};node.start();
+      }else{
+        loopFallback=new Audio(new URL('belt.mp3',base).href);loopFallback.loop=true;loopFallback.volume=levels.belt;await loopFallback.play();
       }
-    } catch (_) { /* Sound must never interrupt an exercise. */ }
+    }catch(_){stopLoop();}
+  }
+  function loop(active){loopWanted=Boolean(active);syncLoop();}
+  async function renderSound(cues) {
+    const now=performance.now(),kind=cues[0];
+    if(lastKind===kind&&now-lastAt<80)return;
+    lastKind=kind;lastAt=now;
+    const token=++generation;clearTimeout(sequenceTimer);stopVoice();
+    try {
+      // Decode the entire short sequence before starting, without changing the MP3s.
+      const buffers=context?await Promise.all(cues.map(bufferFor)):null;
+      if(token!==generation||!enabled||document.hidden||performance.now()-now>700)return;
+      function next(i){
+        if(i>=cues.length||token!==generation||!enabled||document.hidden)return;
+        try {
+          if(context){
+            if(!buffers[i]||context.state!=='running')return;
+            const node=context.createBufferSource(),gain=context.createGain();
+            node.buffer=buffers[i];gain.gain.value=levels[cues[i]];
+            node.connect(gain);gain.connect(context.destination);source=node;
+            node.onended=()=>{node.disconnect();gain.disconnect();if(source===node)source=null;if(token===generation)sequenceTimer=setTimeout(()=>next(i+1),70);};node.start();
+          }else{
+            const audio=new Audio(new URL(cues[i]+'.mp3',base).href);fallback=audio;audio.volume=levels[cues[i]];
+            audio.onended=()=>{if(fallback===audio)fallback=null;if(token===generation)sequenceTimer=setTimeout(()=>next(i+1),70);};audio.play().catch(()=>{});
+          }
+        }catch(_){ /* A failed effect never blocks the activity. */ }
+      }
+      next(0);
+    }catch(_){ /* Sound must never interrupt an exercise. */ }
   }
   function play(kind) {
-    if (!(kind in levels) || !enabled || document.hidden) return;
+    const cues=Array.isArray(kind)?kind:[kind];
+    if(!cues.length||cues.some(k=>!(k in levels)||k==='belt')||!enabled||document.hidden)return;
     unlock();
-    if (!pending || priority[kind] > priority[pending]) pending = kind;
-    if (timer !== null) return;
-    // A successful action replaces its generic click, so one gesture has one sound.
-    timer = setTimeout(() => { const next = pending; pending = null; timer = null; if (next && enabled && !document.hidden) renderSound(next); }, 0);
+    if(!pending||rank(cues)>rank(pending))pending=cues;
+    if(timer!==null)return;
+    // Specific actions replace generic clicks; a deliberate sequence stays ordered.
+    timer=setTimeout(()=>{const next=pending;pending=null;timer=null;if(next&&enabled&&!document.hidden)renderSound(next);},0);
   }
-  window.EpisodeSound = Object.freeze({play});
+  window.EpisodeSound=Object.freeze({play,loop});
   button.addEventListener('click', () => {
     enabled = !enabled;
     try { localStorage.setItem(preferenceKey, String(enabled)); } catch (_) {}
-    if (!enabled) stop(); else play('selection');
+    if (!enabled){stop();stopLoop();}else{play('selection');syncLoop();}
     update();
   });
   const selections = '[data-choice],[data-template],[data-table],[data-flavor],[data-tool],[data-client],[data-piece],[data-slot],[data-remove]';
@@ -85,11 +119,11 @@
   document.addEventListener('drop', event => {
     if (event.defaultPrevented && event.target.closest?.('[data-drop-slot],[data-destination],#tray,#pieces')) play('selection');
   });
-  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
-  window.addEventListener('pagehide', stop);
+  document.addEventListener('visibilitychange', () => { if(document.hidden){stop();stopLoop();}else syncLoop(); });
+  window.addEventListener('pagehide',()=>{stop();loopWanted=false;stopLoop();});
   window.addEventListener('storage', event => {
     if (event.key !== preferenceKey) return;
-    enabled = event.newValue !== 'false'; if (!enabled) stop(); update();
+    enabled = event.newValue !== 'false'; if(!enabled){stop();stopLoop();}else syncLoop();update();
   });
   update();
 })();

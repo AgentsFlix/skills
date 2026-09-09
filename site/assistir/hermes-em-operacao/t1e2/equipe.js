@@ -81,16 +81,16 @@
   function stop(){clearInterval(timer);timer=null;}
   function play(){
     if(timer||tick>=18)return;
-    timer=setInterval(()=>{tick++;if(tick>=18){stop();window.EpisodeSound?.play('complete');}renderSimulation();},1000);
+    timer=setInterval(()=>{tick++;if(tick>=18){stop();window.EpisodeSound?.play(['payment','receipt','complete']);}renderSimulation();},1000);
     renderSimulation();
   }
   $('verify').addEventListener('click',()=>{
     checked=true;selected=null;renderAssembly();const correct=slots.filter((id,i)=>card(id)?.slot===i).length;const connected=links.filter((value,i)=>value===bridges[i].answer).length;
-    if(correct!==6||connected!==3){$('feedback').textContent=`${correct} de 6 responsabilidades e ${connected} de 3 passagens corretas. Use as pistas e ajuste sua equipe.`;return;}
+    if(correct!==6||connected!==3){window.EpisodeSound?.play('error');$('feedback').textContent=`${correct} de 6 responsabilidades e ${connected} de 3 passagens corretas. Use as pistas e ajuste sua equipe.`;return;}
     window.EpisodeSound?.play('complete');
     demo=0;mode='demo';$('assembly').hidden=true;$('simulation').hidden=false;renderSimulation();$('simulation').scrollIntoView({block:'start'});$('step').focus({preventScroll:true});
   });
-  $('step').addEventListener('click',()=>{if(demo>=5)return;demo++;if(demo===5)window.EpisodeSound?.play('complete');renderSimulation();if(demo===5)$('bulk').focus({preventScroll:true});});
+  $('step').addEventListener('click',()=>{if(demo>=5)return;demo++;window.EpisodeSound?.play([null,'bell',['handoff','boil'],['handoff','dish'],'bell',['payment','receipt','complete']][demo]);renderSimulation();if(demo===5)$('bulk').focus({preventScroll:true});});
   function startBulk(){stop();mode='bulk';tick=-1;$('mode-label').textContent='AGORA · PEDIDOS EM PARALELO';$('mode-description').textContent='Os mesmos clientes passam pelo atendimento, pelo preparo e pelo pagamento. A capacidade da equipe é de 15 atendimentos completos.';play();$('simulation').scrollIntoView({block:'start'});$('pause').focus({preventScroll:true});}
   $('bulk').addEventListener('click',startBulk);$('replay').addEventListener('click',startBulk);
   $('pause').addEventListener('click',()=>{if(timer){stop();renderSimulation();}else play();});

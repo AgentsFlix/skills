@@ -144,15 +144,15 @@
     }
   });
   puzzle.addEventListener('dragend', endDrag);
-  function stop() { clearInterval(timer); timer = null; running = false; }
+  function stop() { const wasRunning=running;clearInterval(timer);timer=null;running=false;window.EpisodeSound?.loop(false);if(wasRunning)window.EpisodeSound?.play('belt-stop'); }
   function run() {
     if (timer || served >= activeChefs*3) return;
-    running = true; renderFactory();
+    running = true; window.EpisodeSound?.loop(true);renderFactory();
     timer = setInterval(() => {
       served++;
       if (served === activeChefs*3) {
         stop();
-        window.EpisodeSound?.play('complete');
+        window.EpisodeSound?.play(['belt-stop','complete']);
         if (served === 9) {
           $('complete').hidden = false;
           $('complete-title').tabIndex = -1;
@@ -172,6 +172,7 @@
     checked = true; selected = null; renderPuzzle();
     const correct = slots.filter((id,i) => getPiece(id)?.stage === i).length;
     if (correct !== 6) {
+      window.EpisodeSound?.play('error');
       $('feedback').textContent = `${correct} de 6 etapas corretas. Ajuste as peças marcadas.`; $('feedback').focus({preventScroll:true});
       return;
     }
