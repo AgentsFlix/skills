@@ -10,7 +10,7 @@
       if (data.schema_version !== 1 || !data.skills || !Array.isArray(data.fileiras) || !data.guia?.inicio || !data.colecoes || !data.amostras || !Array.isArray(data.lentes_em)) throw Error('Curadoria inválida');
       const available = Object.keys(data.skills).filter(slug => by[slug]);
       const legends = Object.values(by).filter(s => s.cat === 'lendas');
-      if (Object.values(by).some(s=>s.cat!=='lendas'&&!data.skills[s.slug]) || available.some(slug=>!Array.isArray(data.skills[slug].antes))) throw Error('Curadoria incompleta');
+      if (Object.values(by).some(s=>s.cat!=='lendas'&&!s.readingOnly&&!data.skills[s.slug]) || available.some(slug=>!Array.isArray(data.skills[slug].antes))) throw Error('Curadoria incompleta');
       const journey = window.AgentFlixJourney(data, Object.keys(by), {getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)});
       let door = null, trail = ['inicio'], result = null, completeOnboarding = false;
       let kind = null, answers = [];

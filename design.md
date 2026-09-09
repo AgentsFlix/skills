@@ -94,3 +94,13 @@ O catálogo vem de `site/assistir/series.json`. Somente a série atual é exibid
 Mais informações abre a ficha com temporadas e episódios. Assistir e os cards de episódios abrem o player existente. Links antigos e números reais de temporada continuam válidos. A retomada é compartilhada entre acervo e player. As paradas, o pré-play, os comandos, os links e a escolha de caminhos preservam o contrato do player. Catálogo não inicia vídeo automaticamente.
 
 Celular mantém a navegação visível, o destaque com arte vertical e texto sobre o gradiente inferior e fileiras por gesto. Teclado acessa cards, busca, lista e ações; movimento reduzido desativa transições. Falhas de catálogo oferecem nova tentativa, e falhas de imagem preservam o nome. Estrutura e manutenção documentadas em `site/assistir/README.md`.
+
+## Contrato obrigatório de publicação: padrão Hormozi
+
+Toda nova peça Para o humano usa exatamente o componente atual do Hormozi na vitrine: `cardHtml` → prévia `previewHtml` → `renderModal` → `AgentFlixReader.mount`. Não copiar esse HTML, criar card manual, abrir uma página standalone, iframe ou manter abas/instalador paralelos. Mudanças posteriores do componente se aplicam a todas as leituras.
+
+A inclusão é declarativa: registrar slug, reader JSON e capa em `site/leitura/manifest.json`. O conteúdo usa o esquema `schemaVersion: 1.0`, capítulos, blocos, fontes e disclaimer. Uma skill ainda em revisão pode fornecer `fallback` com os dados aprovados e somente os alvos realmente disponíveis; nunca fabricar versão ou comando. A distribuição oficial prevalece quando a skill entra no catálogo. Pré-requisitos existentes permanecem sob a curadoria da vitrine.
+
+Card, hover com botão de leitura/Minha lista/seta, capa 16:9, modal com fechar, título, ações, abas Para o humano/Usar a skill, capítulos e ajustes de leitura pertencem ao componente comum. A capa fornecida mantém os pixels originais; a apresentação segue o mesmo enquadramento do Hormozi. Conteúdo editorial aprovado não é reescrito na migração.
+
+Antes de publicar, rodar `python3 -m unittest discover -s tests` e `python3 scripts/check_site.py`. O teste `test_reading_contract.py` verifica o registro, blocos e assets e impede leitor paralelo. Fazer QA de cada peça e Hormozi no mesmo build: card, hover, abertura, fechar/retorno, Minha lista, instalação manual, abas, capítulos, tema/tamanho, teclado e 1440/768/390 px. Aprovação de conteúdo novo continua necessária; a aprovação do componente não aprova novos textos.

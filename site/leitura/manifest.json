@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "readings": [
+    {
+      "slug": "copy-metodo-hormozi",
+      "reader": "leitura/copy-metodo-hormozi.json"
+    },
+    {
+      "slug": "habitos-que-cabem",
+      "reader": "leitura/habitos-que-cabem.json",
+      "cover": "/leitura/dia-22/assets/capa-dia-22.png",
+      "fallback": {
+        "name": "habitos-que-cabem",
+        "title": "Atomic Habits",
+        "title_netflix": "DIA 22",
+        "subtitle": "Hábitos que Cabem na Vida",
+        "row": "base",
+        "description": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.",
+        "reading_only": true,
+        "publication_status": "Publicação em revisão",
+        "source_pr": "https://github.com/AgentsFlix/skills/pull/57",
+        "chat_cmd": "Inspecione e use esta skill:\nhttps://raw.githubusercontent.com/AgentsFlix/skills/d59529e738c38c9a4b176ab69f05acce333880c4/skills/habitos-que-cabem/SKILL.md\n\nLeia a licença e as referências necessárias dessa mesma revisão. Se o pacote ZIP ou a versão colável estiver anexado, use esse material. Confira se a skill já está instalada; se não estiver, explique o que será feito e instale pelo mecanismo disponível. Sem suporte à instalação, aplique o procedimento nesta conversa e informe o limite.\n\nQuero encaixar a leitura na minha rotina. Reaproveite o contexto que já conhece sobre mim e pergunte apenas pelo que faltar.",
+        "zip_url": "https://agentsflix.ai/leitura/dia-22/downloads/habitos-que-cabem.zip",
+        "prompt_url": "https://agentsflix.ai/leitura/dia-22/downloads/habitos-que-cabem.md",
+        "activation_prompt": "Quero encaixar a leitura na minha rotina.",
+        "painel": {
+          "tamanho": "Criar, registrar, ajustar e retomar",
+          "requer": "Contexto da sua rotina",
+          "ano": "2026",
+          "como_usar": "Diga: \"Quero encaixar a leitura na minha rotina\". O agente usa o contexto disponível para criar um cartão do hábito e ajudar a registrar, ajustar ou retomar a prática.",
+          "esta_skill_e": [
+            "Criar um hábito",
+            "Registrar a prática",
+            "Ajustar ou retomar"
+          ],
+          "elenco": [
+            "Criar",
+            "Registrar",
+            "Ajustar",
+            "Retomar"
+          ],
+          "generos": [
+            "Hábitos",
+            "Leitura"
+          ],
+          "sinopse": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento."
+        }
+      }
+    }
+  ]
+}
