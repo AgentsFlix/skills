@@ -799,6 +799,7 @@
     $("q").setAttribute('aria-label', $("q").placeholder);
     if (reading) {
       const readings = filtered();
+      $("results").hidden = false; $("rows").hidden = true;
       $("results").innerHTML = `<div class="head"><h2 id="reading-heading" tabindex="-1">Para o humano</h2><span class="n" role="status">${readings.length} ${readings.length === 1 ? 'leitura' : 'leituras'}</span></div>
         ${readings.length ? '<div class="grid">' + readings.map(cardHtml).join('') + '</div>' : `<div class="empty"><p>${state.q.trim() ? 'Não encontramos uma leitura para essa busca.' : 'Nenhuma leitura disponível por enquanto.'}</p>${state.q.trim() ? '<button class="clear-reading-search" data-clear-reading-search>Limpar busca</button>' : ''}</div>`}`;
       return;
