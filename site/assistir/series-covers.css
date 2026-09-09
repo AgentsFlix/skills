@@ -107,3 +107,7 @@
     padding: 112% 18px 20px;
   }
 }
+
+/* Artes fornecidas com título conservam o topo no enquadramento. */
+.series-cover.art-with-title img { object-position: center top; }
+.tp-hero:has(.art-with-title) { overflow: hidden; }

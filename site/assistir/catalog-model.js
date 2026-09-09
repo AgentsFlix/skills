@@ -81,7 +81,7 @@
 
   function available(data) {
     return (data.series || []).filter(
-      (s) => s.catalogo !== false && s.seasons?.some((t) => t.eps?.length),
+      (s) => s.catalogo !== false && (s.em_breve === true || s.seasons?.some((t) => t.eps?.length)),
     );
   }
 

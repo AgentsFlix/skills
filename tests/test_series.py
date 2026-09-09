@@ -28,10 +28,13 @@ class Series(unittest.TestCase):
         slugs = [s["slug"] for s in series]
         self.assertEqual(len(slugs), len(set(slugs)), "slug repetido")
         for s in series:
-            for k in ("slug", "name", "customer", "cover", "cover_wide", "seasons"):
+            for k in ("slug", "name", "cover", "cover_wide", "seasons"):
                 self.assertIn(k, s, f"{s.get('slug')}: falta {k}")
             self.assertRegex(s["slug"], r"^[a-z0-9-]+$")
-            self.assertRegex(s["customer"], CUSTOMER)
+            if "em_breve" in s:
+                self.assertIsInstance(s["em_breve"], bool)
+            if not s.get("em_breve") or any(se.get("eps") for se in s["seasons"]):
+                self.assertRegex(s["customer"], CUSTOMER)
             for c in [s["cover"], s["cover_wide"]] + ([s["cover_mobile"]] if s.get("cover_mobile") else []):
                 self.assertTrue((ASSISTIR / c).is_file(), f"{s['slug']}: capa não existe: {c}")
 
@@ -43,7 +46,8 @@ class Series(unittest.TestCase):
             uids = []
             for se in s["seasons"]:
                 self.assertIn("title", se, f"{s['slug']} T{se.get('n')}: sem título")
-                self.assertTrue(se.get("eps"), f"{s['slug']} T{se['n']}: temporada sem episódio quebra a página do título")
+                self.assertIsInstance(se.get("eps"), list)
+                self.assertTrue(s.get("em_breve") is True or se.get("eps"), f"{s['slug']} T{se['n']}: temporada sem episódio quebra a página do título")
                 for e in se["eps"]:
                     for k in ("t", "d", "uid", "desc"):
                         self.assertIn(k, e, f"{s['slug']} T{se['n']}: episódio sem {k}: {e.get('t')}")

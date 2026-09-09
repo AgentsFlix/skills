@@ -154,7 +154,7 @@
   function renderTitle() {
     const r = resumeEp();
     const re = SERIE.seasons[r.season].eps[r.ep];
-    const p = r.fresh ? 0 : prog(re);
+    const p = !re || r.fresh ? 0 : prog(re);
     const nEps = SERIE.seasons.reduce((a, s) => a + s.eps.length, 0);
     document.title = `${SERIE.name} · AgentFlix`;
     const responsiveCover = Boolean(SERIE.cover_mobile);
@@ -164,29 +164,33 @@
     $("tp-hero").style.backgroundImage = responsiveCover
       ? "none"
       : `url(${SERIE.cover})`;
+    $("tp-cover").classList.toggle("art-with-title", Boolean(SERIE.cover_has_title));
     $("tp-cover").hidden = !responsiveCover;
     $("tp-cover").innerHTML = responsiveCover
       ? `<source media="(max-width: 600px)" srcset="${esc(SERIE.cover_mobile)}" width="1024" height="1536"><img src="${esc(SERIE.cover)}" alt="" width="1536" height="1024" fetchpriority="high">`
       : "";
     $("tp-kick").textContent =
-      `${SERIE.badge} · ${SERIE.ano} · ${SERIE.seasons.length} temporadas disponíveis · ${nEps} episódios · HD`;
+      SERIE.em_breve ? `${SERIE.ano} · Temporada 1 · Em breve` : `${SERIE.badge} · ${SERIE.ano} · ${SERIE.seasons.length} temporadas disponíveis · ${nEps} episódios · HD`;
     $("tp-name").innerHTML =
       `${esc(SERIE.name)} <span>${esc(SERIE.sub)}</span>`;
     $("tp-resume-label").textContent =
-      p > 0
+      !nEps ? "Em breve" : p > 0
         ? `Continuar T${sN(r.season)}:E${r.ep + 1}`
         : r.season || r.ep
           ? `Assistir T${sN(r.season)}:E${r.ep + 1}`
           : "Assistir";
+    document.querySelector('[data-act="resume"]').disabled = !nEps;
+    document.querySelector('[data-act="restart"]').hidden = !nEps;
     $("tp-resume").hidden = !(p > 0);
     $("tp-bar").style.width = Math.round(p * 100) + "%";
     $("tp-resume-text").textContent =
-      `T${sN(r.season)}:E${r.ep + 1} · ${re.t} · ${fmt(re.d * (1 - p))} restantes`;
+      re ? `T${sN(r.season)}:E${r.ep + 1} · ${re.t} · ${fmt(re.d * (1 - p))} restantes` : "";
     $("tp-syn").textContent = SERIE.syn;
     $("tp-about").textContent = SERIE.syn;
     const cam = rootEscolha() ? store.get(caminhoKey(), null) : null;
     $("tp-side").innerHTML =
       `<p><span>Elenco:</span> ${SERIE.cast.map(esc).join(", ")}</p><p><span>Gêneros:</span> ${SERIE.gen.map(esc).join(", ")}</p><p><span>Esta série é:</span> ${SERIE.traits.map(esc).join(", ")}</p>${cam ? `<p><span>Seu caminho:</span> ${esc(cam.label)} · <button class="lnk" data-act="trocar-caminho">trocar</button></p>` : ""}`;
+    if (!nEps) $("tp-side").innerHTML = "";
     renderSeasonSel();
     renderEps();
     requestAnimationFrame(measureDescriptions);
@@ -213,6 +217,10 @@
   </li>`;
   }
   function renderEps() {
+    if (SERIE.em_breve && !SERIE.seasons.some(s => s.eps.length)) {
+      $("eps").innerHTML = `<div class="upcoming-season"><p>Em breve</p><h3>${esc(SERIE.sub)}</h3><p>Os episódios da temporada 1 ainda não estão disponíveis.</p></div>`;
+      return;
+    }
     const r = resumeEp();
     const cur = (si, ei) => si === r.season && ei === r.ep;
     if (state.allSeasons) {
@@ -623,7 +631,7 @@
     if (!force && now - state.lastSave < 4000) return;
     state.lastSave = now;
     const e = curEp();
-    if (video.currentTime > 2)
+    if (e && video.currentTime > 2)
       store.set(progKey(e.uid), { t: video.currentTime, at: now });
   }
   function endOfEpisode() {
@@ -863,6 +871,7 @@
     }
   }
   function openPlayer(season, ep, opts) {
+    if (!SERIE.seasons[season]?.eps[ep]) return;
     show("player");
     loadEp(season, ep, opts);
     $("player")

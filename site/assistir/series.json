@@ -929,9 +929,34 @@
           "caminho": "Difícil (VPS)"
         }
       ]
+    },
+    {
+      "slug": "hermes-em-operacao",
+      "name": "HERMES EM OPERAÇÃO",
+      "sub": "Automações e rotinas para empresas reais",
+      "badge": "HERMES EM OPERAÇÃO",
+      "ano": 2026,
+      "em_breve": true,
+      "cover": "img/hermes-operacao-wide.png",
+      "cover_wide": "img/hermes-operacao-wide.png",
+      "cover_mobile": "img/hermes-operacao-mobile.png",
+      "syn": "Automações e rotinas para empresas reais",
+      "cast": [],
+      "gen": [
+        "Automações"
+      ],
+      "traits": [],
+      "seasons": [
+        {
+          "n": 1,
+          "title": "Temporada 1",
+          "eps": []
+        }
+      ],
+      "cover_has_title": true
     }
   ],
   "vitrine": {
-    "destaque": "hermes-agent"
+    "destaque": "hermes-em-operacao"
   }
 }

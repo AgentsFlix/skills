@@ -86,3 +86,9 @@ QA_BASE=http://127.0.0.1:8794 node ferramentas/qa-player/qa-player-contract.cjs
 ```
 
 Capturas desta entrega: `design-review/assistir-catalog/`. Mudanças de interface passam por revisão visual antes do merge; publicar um episódio continua exigindo a conferência de dados sensíveis nos quadros do vídeo.
+
+## Protótipo local: HERMES EM OPERAÇÃO
+
+Branch `codex/hermes-operacao-local`. Apenas local, sem push, PR ou deploy por pedido do Zé. Abra `/assistir/?s=hermes-em-operacao`. As duas artes são os PNGs originais fornecidos em 09/09/2026.
+
+`em_breve: true` permite uma série com temporada vazia no acervo e na ficha; não requer customer do Stream nem inventa episódios. Reprodução fica desativada e a série não entra em Continuar assistindo. A temporada 1 aguarda os episódios, títulos e vídeos definidos pelo Zé. Antes de produção, confirmar o conteúdo e seguir o fluxo de PR e QA.

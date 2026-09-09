@@ -57,11 +57,11 @@
       const bookmark = (series) =>
         `<button class="watch-bookmark watch-icon" data-save="${esc(series.slug)}" aria-label="${saved.includes(series.slug) ? "Remover" : "Adicionar"} ${esc(series.name)} ${saved.includes(series.slug) ? "da" : "à"} minha lista" aria-pressed="${saved.includes(series.slug)}">${icon(saved.includes(series.slug) ? "check" : "plus")}</button>`;
       const metadata = (series) =>
-        `${series.ano ? esc(series.ano) + " · " : ""}${model.episodes(series).length} episódios`;
+        series.em_breve ? "Temporada 1 · Em breve" : `${series.ano ? esc(series.ano) + " · " : ""}${model.episodes(series).length} episódios`;
       const cover = (series, large = false) => {
         const image = `<img src="${esc(large ? series.cover : series.cover_wide)}" alt="" ${series.cover_mobile ? 'width="1536" height="1024"' : ""} ${large ? 'fetchpriority="high"' : 'loading="lazy"'}>`;
         return series.cover_mobile
-          ? `<picture class="series-cover"><source media="(max-width: 600px)" srcset="${esc(series.cover_mobile)}" width="1024" height="1536">${image}</picture>`
+          ? `<picture class="series-cover${series.cover_has_title ? " art-with-title" : ""}"><source media="(max-width: 600px)" srcset="${esc(series.cover_mobile)}" width="1024" height="1536">${image}</picture>`
           : image;
       };
 
@@ -113,9 +113,9 @@
             <h1 id="watch-featured-name">${esc(series.name)}</h1>
             <p class="watch-meta">Série <span>·</span> ${esc(series.gen?.[0] || "Passo a passo")} <span>·</span> ${metadata(series)}</p>
             <p class="watch-hero-description">${esc(series.sub || series.syn)}</p>
-            <div class="watch-actions"><a class="watch-button primary" href="${esc(url(series, { ...r, number: series.seasons[r.season].n }))}" data-series="${esc(series.slug)}" data-play>${icon("play")}${started && !r.finished ? `Continuar T${series.seasons[r.season].n}:E${r.ep + 1}` : "Assistir"}</a><a class="watch-button secondary" href="${esc(url(series))}" data-series="${esc(series.slug)}">${icon("info")}Mais informações</a></div>
+            <div class="watch-actions">${series.em_breve ? `<a class="watch-button primary" href="${esc(url(series))}" data-series="${esc(series.slug)}">Ver temporada 1</a>` : `<a class="watch-button primary" href="${esc(url(series, { ...r, number: series.seasons[r.season].n }))}" data-series="${esc(series.slug)}" data-play>${icon("play")}${started && !r.finished ? `Continuar T${series.seasons[r.season].n}:E${r.ep + 1}` : "Assistir"}</a>`}<a class="watch-button secondary" href="${esc(url(series))}" data-series="${esc(series.slug)}">${icon("info")}Mais informações</a></div>
           </div>
-          <div class="watch-hero-note">${esc((series.traits || []).slice(0, 2).join(" · "))}</div>
+          ${series.traits?.length ? `<div class="watch-hero-note">${esc(series.traits.slice(0, 2).join(" · "))}</div>` : ""}
         </section>`;
       }
 
@@ -191,13 +191,13 @@
                 ),
               )
               .join("") +
-            shelf(
+            (model.episodes(featured).length ? shelf(
               "episodes",
               `Episódios · ${featured.badge || featured.name}`,
               model
                 .episodes(featured)
                 .map((item) => episodeCard(featured, item)),
-            ) +
+            ) : "") +
             '<footer class="watch-footer"><span>AgentFlix</span><p>O progresso e a sua lista ficam neste navegador.</p><a href="/privacidade.html">Privacidade</a></footer>';
         }
         bindImages();

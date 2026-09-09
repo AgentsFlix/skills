@@ -16,6 +16,12 @@ const continuing = (data, read) => Array.from(model.continuing(data, read));
 const data = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../site/assistir/series.json")),
 );
+const upcoming = data.series.find(s => s.slug === "hermes-em-operacao");
+assert.ok(model.available(data).some(s => s === upcoming));
+assert.equal(model.episodes(upcoming).length, 0);
+assert.equal(model.continuing({series:[upcoming]}, () => null).length, 0);
+assert.equal(model.available({series:[{...upcoming, em_breve: false}]}).length, 0);
+data.series = data.series.filter(s => s !== upcoming);
 const series = data.series.find((s) => s.slug === "hermes-agent");
 const memory = {};
 const read = (key, fallback) => memory[key] ?? fallback;
