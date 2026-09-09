@@ -26,70 +26,91 @@
   }
   function render() {
     const focus=document.activeElement?.id;
-    const c=client(),s=state(),t=stages[stage];
-    $('steps').innerHTML=stages.map((t,i)=>`<button id="stage-${i}" class="step" data-stage="${i}" ${i===stage?'aria-current="step"':''} aria-label="${i+1}. ${t[0]}${done()[i]?', concluída':''}"><span class="stage-picture">${art(t[2])}</span><strong><span class="step-number">${i+1}</span> ${t[0]}</strong><small>${t[1]}${done()[i]?' · ✓':''}</small></button>`).join('');
-    $('clients').innerHTML=clients.map(c=>`<button id="client-${c.id}" class="client" data-client="${c.id}" aria-pressed="${c.id===selected}">${art(c.id)}<span>${c.name}<small>${orders[c.id].sent?'Enviado para aprovação':orders[c.id].received?'Em atendimento':'Novo pedido'}</small></span></button>`).join('');
-    $('step-index').textContent=`ETAPA ${stage+1} DE 6 · ${t[0]}`;
-    $('lesson-title').textContent=t[3];$('description').textContent=t[4];$('concept').textContent=t[5];
-    $('order-client').textContent=c.brand;$('order-status').textContent=s.sent?'Aguardando aprovação':s.built===4?'Pronto para enviar':s.received?'Em atendimento':'Aguardando pedido';
-    let scene='',interaction='',caption='';
+    const c=client(),s=state(),t=stages[stage],completed=done()[stage];
+    $('steps').innerHTML=stages.map((t,i)=>`<button id="stage-${i}" class="step" data-stage="${i}" ${i===stage?'aria-current="step"':''} aria-label="${i+1}. ${t[0]}${done()[i]?', concluída':''}"><span class="stage-picture">${art(t[2])}</span><strong><span class="step-number">${i+1}</span> ${t[0]}</strong>${done()[i]?'<span class="step-check" aria-hidden="true">✓</span>':''}</button>`).join('');
+    $('clients').hidden=stage!==0;
+    $('clients').innerHTML=clients.map(c=>`<button id="client-${c.id}" class="client" data-client="${c.id}" aria-pressed="${c.id===selected}">${art(c.id)}<span>${c.name}${orders[c.id].sent?' ✓':''}</span></button>`).join('');
+    $('current-client').textContent=stage===0?'Escolha um cliente':c.brand;
+    $('change-client').hidden=stage===0;
+    $('step-index').textContent=`${stage+1} / 6 · ${t[0]}`;
+    $('concept').textContent=t[4]+' '+t[5];
+    let scene='',interaction='',title='',description='';
     const action=(id,label,disabled=false)=>`<button class="primary" id="${id}" ${disabled?'disabled':''}>${label}</button>`;
+    const object=name=>`<div class="scene-object">${art(name)}</div>`;
     if(stage===0){
-      scene=`<div class="work-card ${s.received?'':'waiting'}">${art('mensagem')}<p class="eyebrow">${s.received?c.brand:'CAIXA DE ENTRADA'}</p><h3>${s.received?'Novo pedido recebido':'Um cliente quer falar com você.'}</h3><p>${s.received?'“'+c.request+'”':'Clique em Receber pedido para começar.'}</p></div>`;
-      interaction=action('receive',s.received?'Pedido recebido ✓':'Receber pedido',s.received);
-      caption=s.received?`${c.brand} pediu um post sobre ${c.novelty.toLowerCase()}.`:`${c.brand} está pronto para enviar uma mensagem.`;
+      title=s.received?'Pedido recebido.':'Receba o pedido.';
+      description=s.received?'O chamado do cliente iniciou o fluxo.':'Um cliente quer divulgar uma novidade.';
+      scene=s.received?`<div class="request-card"><span>${c.brand}</span><p>“${c.request}”</p></div>`:object('mensagem');
+      if(!s.received)interaction=action('receive','Receber pedido');
     } else if(stage===1){
-      scene=`<div class="work-card"><p class="eyebrow">SUA EQUIPE</p><h3>Por enquanto, só você.</h3><p>Uma pessoa acompanha o pedido do começo ao fim.</p><span class="material-tag">Atendimento</span><span class="material-tag">Criação</span><span class="material-tag">Entrega</span></div>`;
-      interaction=`<div class="role-card">${art('profissional')}<div><strong>Agente: você</strong><p>Você é responsável por todas as etapas deste atendimento.</p></div></div>`;
-      caption='Muda a tarefa. A pessoa que executa continua a mesma.';
+      title='Você faz tudo.';description='Atende, cria e entrega. Por enquanto, a agência é você.';
+      scene='<div class="roles"><span>Atendimento</span><span>Criação</span><span>Entrega</span></div>';
+      if(!s.received)interaction=action('go-trigger','Receber um pedido primeiro');
     } else if(stage===2){
-      scene=`<div class="work-card">${art('editor')}<p class="eyebrow">FERRAMENTA</p><h3>${s.editor?'Editor aberto':'Seu editor de conteúdo'}</h3><p>${s.editor?'A área de trabalho está pronta. Agora faltam os materiais do cliente.':'Um espaço para a arte e a legenda.'}</p></div>`;
-      interaction=action('editor',s.editor?'Editor aberto ✓':'Abrir editor',!s.received||s.editor);
-      if(!s.received)interaction+='<p class="hint">Receba o pedido na etapa Gatilho para começar.</p>';
-      caption=s.editor?'O editor está aberto. O post ainda será construído.':'A ferramenta ajuda você a executar o trabalho.';
+      title=s.editor?'Editor aberto.':'Abra o editor.';
+      description=s.editor?'A ferramenta está pronta para criar.':'Sua ferramenta para montar arte e legenda.';
+      scene=object('editor');
+      if(!s.received)interaction=action('go-trigger','Receber um pedido primeiro');
+      else if(!s.editor)interaction=action('editor','Abrir editor');
     } else if(stage===3){
-      scene=`<div class="work-card">${art(s.materials?c.id:'pasta')}<p class="eyebrow">PASTA · ${c.brand}</p><h3>${s.materials?c.novelty:'Os materiais já existem.'}</h3><p>${s.materials?c.fact:'Consulte a pasta para conhecer a novidade e a imagem enviada.'}</p>${s.materials?'<span class="material-tag">Imagem</span><span class="material-tag">Informações</span><span class="material-tag">Identidade</span>':''}</div>`;
-      interaction=action('materials',s.materials?'Materiais consultados ✓':'Consultar pasta do cliente',!s.editor||s.materials);
-      if(!s.editor)interaction+='<p class="hint">Abra o editor na etapa Ferramenta antes de continuar.</p>';
-      if(s.materials)interaction+=`<div class="facts"><p><b>Pedido:</b> ${c.request}</p><p><b>Informação:</b> ${c.fact}</p><p><b>Voz da marca:</b> ${c.voice}.</p><p><b>Material visual:</b> ilustração e identidade disponíveis na pasta.</p></div>`;
-      caption=s.materials?'Você consultou o material existente. Ainda falta criar a mensagem do post.':'Puxar é consultar o que o cliente já forneceu.';
+      title=s.materials?'Material em mãos.':'Consulte a pasta.';
+      description=s.materials?'Você puxou o que já existia. Agora pode criar.':'Busque a imagem e as informações do cliente.';
+      scene=s.materials?`<div class="material-preview">${art(c.id)}<strong>${c.novelty}</strong><p>${c.fact}</p><small>Voz: ${c.voice.toLowerCase()}.</small></div>`:object('pasta');
+      if(!s.editor)interaction=action('go-editor','Abrir o editor primeiro');
+      else if(!s.materials)interaction=action('materials','Consultar pasta');
     } else if(stage===4){
+      const labels=['Criar a chamada','Montar a arte','Escrever a legenda','Revisar o post'];
+      title=s.built===4?'Post pronto.':labels[s.built]+'.';
+      description=['Transforme a novidade em uma chamada.','Junte a imagem à chamada.','Complete a mensagem do post.','Confira a novidade, os dados e o cliente.','Arte e legenda revisadas para aprovação.'][s.built];
       scene=post(c,s);
-      interaction='<div class="action-stack">'+['Criar a chamada','Montar a arte','Escrever a legenda','Revisar pedido e informações'].map((label,i)=>`<button class="secondary ${s.built>i?'completed':''}" id="build-${i}" data-build="${i}" ${!s.materials||s.built!==i?'disabled':''}><span class="check">${s.built>i?'✓':i+1}</span>${label}</button>`).join('')+'</div>';
-      if(!s.materials)interaction+='<p class="hint">Consulte a pasta na etapa Puxar para ter os materiais.</p>';
-      caption=['O material está na pasta. Comece pela chamada.','A chamada foi criada a partir da novidade.','A imagem e a chamada formam a arte.','A legenda completa a mensagem. Agora revise.','Arte e legenda revisadas. Prontas para aprovação.'][s.built];
+      interaction=`<div class="build-progress" aria-label="${s.built} de 4 ações concluídas">${labels.map((label,i)=>`<span class="${s.built>i?'complete':''}" title="${label}">${s.built>i?'✓':i+1}</span>`).join('')}</div>`;
+      if(!s.materials)interaction+=action('go-materials','Consultar os materiais primeiro');
+      else if(s.built<4)interaction+=`<button class="primary" id="build-${s.built}" data-build="${s.built}">${labels[s.built]}</button>`;
     } else {
+      title=s.sent?'Entrega realizada.':'Envie ao cliente certo.';
+      description=s.sent?'O post está aguardando aprovação.':'Envie a arte e a legenda para aprovação.';
       scene=post(c,s);
-      interaction=s.sent?`<div class="success"><strong>Entrega realizada ✓</strong><p>${c.brand} recebeu a arte e a legenda nesta simulação. O pedido está aguardando aprovação.</p></div><p class="hint">Escolha outro cliente para acompanhar um novo pedido.</p>`:`<label class="interaction-label" for="recipient">Quem deve receber o post?</label><select class="recipient" id="recipient"><option value="">Escolha o destinatário</option>${clients.map(c=>`<option value="${c.id}" ${s.recipient===c.id?'selected':''}>${c.brand}</option>`).join('')}</select>${action('send','Enviar para aprovação',s.built!==4)}${s.built!==4?'<p class="hint">Conclua as quatro ações da etapa Construir antes de enviar.</p>':''}`;
-      caption=s.sent?`Entrega concluída para ${c.brand}. A aprovação ainda está pendente.`:'O destino também faz parte do fluxo: entregue ao cliente que fez o pedido.';
+      if(s.sent)interaction=`<div class="success"><strong>✓ ${c.brand}</strong></div>`+action('change-client-done','Atender outro cliente');
+      else if(s.built!==4)interaction=action('go-build','Terminar o post primeiro');
+      else interaction=`<label class="interaction-label" for="recipient">Destinatário</label><select class="recipient" id="recipient"><option value="">Escolha o cliente</option>${clients.map(c=>`<option value="${c.id}" ${s.recipient===c.id?'selected':''}>${c.brand}</option>`).join('')}</select>${action('send','Enviar para aprovação')}`;
     }
+    $('lesson-title').textContent=title;$('description').textContent=description;
     $('scene').classList.toggle('compact-post',stage>=4);
-    $('scene').innerHTML=`<figure class="professional">${art('profissional')}<figcaption>Você · ${['atendimento','todos os papéis','criação','pesquisa','criação','atendimento'][stage]}</figcaption></figure>${scene}`;
-    $('scene-caption').textContent=caption;$('interaction').innerHTML=interaction;$('feedback').textContent=message;
-    $('position').textContent=`${stage+1} de 6 · ${t[0]}`;$('previous').disabled=stage===0;$('next').disabled=stage===5;
-    if(focus&&$(focus)&&!$(focus).disabled)$(focus).focus({preventScroll:true});
+    $('scene').innerHTML=`<figure class="professional">${art('profissional')}</figure>${scene}`;
+    $('interaction').innerHTML=interaction;$('feedback').textContent=message;
+    $('feedback').hidden=!message;
+    $('previous').disabled=stage===0;$('next').hidden=stage===5||!completed;
+    if(focus&&$(focus)&&!$(focus).disabled&&!$(focus).hidden)$(focus).focus({preventScroll:true});
   }
   document.addEventListener('click',event=>{
     const button=event.target.closest('button');if(!button||button.disabled)return;
     const s=state();message='';
+    const oldStage=stage;
     if(button.dataset.stage!==undefined)stage=Number(button.dataset.stage);
     else if(button.dataset.client){selected=button.dataset.client;stage=0;}
     else if(button.id==='previous')stage=Math.max(0,stage-1);
-    else if(button.id==='next')stage=Math.min(5,stage+1);
-    else if(button.id==='receive'){s.received=true;message='Pedido recebido. Avance para conhecer quem executa.';}
-    else if(button.id==='editor'&&s.received){s.editor=true;message='Editor aberto. Na próxima etapa, consulte os materiais.';}
-    else if(button.id==='materials'&&s.editor){s.materials=true;message='Materiais consultados. Agora você pode construir o post.';}
-    else if(button.dataset.build!==undefined&&s.materials&&Number(button.dataset.build)===s.built){s.built++;message=s.built===4?'Revisão concluída: a novidade, os dados e o cliente estão corretos.':'Veja o post tomando forma ao lado.';}
+    else if(button.id==='next'&&done()[stage])stage=Math.min(5,stage+1);
+    else if(['change-client','change-client-done','go-trigger'].includes(button.id))stage=0;
+    else if(button.id==='go-editor')stage=2;
+    else if(button.id==='go-materials')stage=3;
+    else if(button.id==='go-build')stage=4;
+    else if(button.id==='receive'){s.received=true;}
+    else if(button.id==='editor'&&s.received){s.editor=true;}
+    else if(button.id==='materials'&&s.editor){s.materials=true;}
+    else if(button.dataset.build!==undefined&&s.materials&&Number(button.dataset.build)===s.built){s.built++;}
     else if(button.id==='send'&&s.built===4){
       if(!s.recipient)message='Escolha quem deve receber a arte e a legenda.';
       else if(s.recipient!==selected)message=`Este pedido é de ${client().brand}. Confira o destinatário antes de enviar.`;
-      else{s.sent=true;message='Envio simulado concluído. Nenhuma publicação foi feita.';}
+      else{s.sent=true;}
     } else if(button.id==='reset'){orders[selected]=blank();stage=0;message='Este atendimento foi reiniciado. Os outros clientes mantêm seu progresso.';}
     else return;
+    if(oldStage!==stage)$('explanation').open=false;
     render();
     // Keep keyboard users at the next meaningful action after completing a task.
     if(button.dataset.build!==undefined&&state().built<4)$('build-'+state().built)?.focus({preventScroll:true});
     else if(['receive','editor','materials'].includes(button.id)||(button.dataset.build!==undefined&&state().built===4))$('next').focus({preventScroll:true});
+    else if(button.id==='send'&&state().sent)$('change-client-done').focus({preventScroll:true});
+    else if(button.id.startsWith('go-')||button.id.startsWith('change-client'))(stage===0?$('client-'+selected):$('interaction').querySelector('button'))?.focus({preventScroll:true});
   });
   document.addEventListener('change',event=>{if(event.target.id==='recipient'){state().recipient=event.target.value;$('feedback').textContent='';}});
   render();
