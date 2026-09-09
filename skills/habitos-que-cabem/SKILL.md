@@ -71,7 +71,17 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
    e atualize o estado derivado. Use o script opcional conforme `references/ciclo-de-vida.md` quando houver terminal.
    Guarde apenas referências às entregas, sem copiar conteúdo pessoal para o log técnico.
 7. Termine com o cartão, registro, ajuste ou relatório pedido, a próxima ação concreta e o estado real do acompanhamento.
-   Sem resposta necessária, marque aguardando resposta. Sem instrumentação, informe a limitação da auditoria.
+   Se uma resposta obrigatória estiver faltando, marque aguardando resposta. Sem instrumentação, informe a limitação da auditoria.
+
+## Decidir entre entregar e aguardar
+
+Reutilize os fatos que já estão no contexto do agente, inclusive a forma de registro escolhida. Referências já carregadas não precisam ser relidas arquivo por arquivo. Não faça uma pergunta de confirmação apenas para preencher um template.
+
+Um pedido de cartão para experimentar admite propostas identificadas nos campos ainda não combinados. Gatilho, ação e limites conhecidos permitem entregar; preferências opcionais de revisão não bloqueiam o cartão. Aguardar é necessário quando falta dado que impede o próximo passo solicitado, como uma janela de rotina desconhecida. Nesse caso entregue somente as perguntas necessárias com seus próprios exemplos, registre waiting e aguarde. Não registre completed para essa etapa.
+
+Antes de responder, remova convites opcionais que não mudam o próximo passo. Toda coleta que permanecer, inclusive em parênteses ou no encerramento, tem exemplo adjacente baseado no contexto ou explicitamente hipotético. Marcar a prática no cartão é um plano de registro; não prova que a pessoa já praticou.
+
+Finalize e confira o conteúdo antes de pedir ao hospedeiro que o salve com metadados de integridade. Se precisar corrigir um artefato já registrado, crie outra revisão pelo mesmo mecanismo, preservando a anterior e sua evidência. Na conversa, entregue síntese, link do cartão quando houver arquivo e próxima ação; os mapas de origem ficam no artefato.
 
 ## Pitfalls
 

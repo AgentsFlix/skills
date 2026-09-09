@@ -26,7 +26,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: habitos-que-cabem
-  content_revision: 1.1.0
+  content_revision: 1.1.1
   verification_evidence: []
 ---
 

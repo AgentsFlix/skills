@@ -17,6 +17,8 @@
 > Siga o procedimento da skill e confira seus critérios de entrega. Se faltar algo obrigatório, mantenha a etapa aguardando. Registre apenas uso e resultados observados, em armazenamento privado, com a identidade e a revisão desta skill. Sem persistência ou script, entregue um resumo reutilizável e explique os limites de auditoria. Confira o status e o prazo editorial do OKF; usar não renova a validade.
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
+>
+> Use os fatos já apresentados pela memória sem reler todo o pacote. Se pedi um cartão para experimentar, entregue uma proposta utilizável com o que já sabemos; campos opcionais desconhecidos não exigem confirmação. Só aguarde quando faltar um dado que impede a próxima ação solicitada. Cada pergunta necessária, até no encerramento, deve ter seu próprio exemplo. Confira o conteúdo antes de salvar e preserve revisões anteriores dos artefatos. Não confunda plano de registro com prática realizada.
 
 ---
 
@@ -77,7 +79,17 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
    e atualize o estado derivado. Use o script opcional conforme `references/ciclo-de-vida.md` quando houver terminal.
    Guarde apenas referências às entregas, sem copiar conteúdo pessoal para o log técnico.
 7. Termine com o cartão, registro, ajuste ou relatório pedido, a próxima ação concreta e o estado real do acompanhamento.
-   Sem resposta necessária, marque aguardando resposta. Sem instrumentação, informe a limitação da auditoria.
+   Se uma resposta obrigatória estiver faltando, marque aguardando resposta. Sem instrumentação, informe a limitação da auditoria.
+
+## Decidir entre entregar e aguardar
+
+Reutilize os fatos que já estão no contexto do agente, inclusive a forma de registro escolhida. Referências já carregadas não precisam ser relidas arquivo por arquivo. Não faça uma pergunta de confirmação apenas para preencher um template.
+
+Um pedido de cartão para experimentar admite propostas identificadas nos campos ainda não combinados. Gatilho, ação e limites conhecidos permitem entregar; preferências opcionais de revisão não bloqueiam o cartão. Aguardar é necessário quando falta dado que impede o próximo passo solicitado, como uma janela de rotina desconhecida. Nesse caso entregue somente as perguntas necessárias com seus próprios exemplos, registre waiting e aguarde. Não registre completed para essa etapa.
+
+Antes de responder, remova convites opcionais que não mudam o próximo passo. Toda coleta que permanecer, inclusive em parênteses ou no encerramento, tem exemplo adjacente baseado no contexto ou explicitamente hipotético. Marcar a prática no cartão é um plano de registro; não prova que a pessoa já praticou.
+
+Finalize e confira o conteúdo antes de pedir ao hospedeiro que o salve com metadados de integridade. Se precisar corrigir um artefato já registrado, crie outra revisão pelo mesmo mecanismo, preservando a anterior e sua evidência. Na conversa, entregue síntese, link do cartão quando houver arquivo e próxima ação; os mapas de origem ficam no artefato.
 
 ## Pitfalls
 
@@ -133,6 +145,8 @@ Mostre uma síntese curta e pergunte só pelas lacunas necessárias. TODA pergun
 Siga o procedimento da skill e confira seus critérios de entrega. Se faltar algo obrigatório, mantenha a etapa aguardando. Registre apenas uso e resultados observados, em armazenamento privado, com a identidade e a revisão desta skill. Sem persistência ou script, entregue um resumo reutilizável e explique os limites de auditoria. Confira o status e o prazo editorial do OKF; usar não renova a validade.
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
+
+Use os fatos já apresentados pela memória sem reler todo o pacote. Se pedi um cartão para experimentar, entregue uma proposta utilizável com o que já sabemos; campos opcionais desconhecidos não exigem confirmação. Só aguarde quando faltar um dado que impede a próxima ação solicitada. Cada pergunta necessária, até no encerramento, deve ter seu próprio exemplo. Confira o conteúdo antes de salvar e preserve revisões anteriores dos artefatos. Não confunda plano de registro com prática realizada.
 
 
 ---
@@ -223,7 +237,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" init --version 0.4.3 --revision 1.1.0
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" init --version 0.4.3 --revision 1.1.1
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" audit
@@ -314,7 +328,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: habitos-que-cabem
-  content_revision: 1.1.0
+  content_revision: 1.1.1
   verification_evidence: []
 ---
 
@@ -396,7 +410,7 @@ Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Ne
   "contract_version": "1.0.0",
   "skill_id": "habitos-que-cabem",
   "distribution_version": "0.4.3",
-  "content_revision": "1.1.0",
+  "content_revision": "1.1.1",
   "distribution_ref": "codex/habitos-que-cabem"
 }
 
@@ -564,7 +578,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.1.0",
+  "content_revision": "1.1.1",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }
