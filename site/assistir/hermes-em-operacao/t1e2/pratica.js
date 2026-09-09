@@ -34,13 +34,13 @@
     }
     return array;
   }
-  const chefArt = StageIdentity.chef();
+  const chefArt = n => StageIdentity.chef(n-1);
   const clientArt = (n, done) => StageIdentity.customer(n, done);
   function renderFactory() {
     $('chefs').innerHTML = [1,2,3].map(n => {
       const count = Math.max(0, Math.min(3, served - (n-1)*3));
       const unlocked = n <= activeChefs;
-      return `<div class="chef ${unlocked ? count < 3 ? 'active' : '' : 'locked'}">${chefArt}<div><strong>Chef ${n}</strong><p>${unlocked ? `${count} / 3 atendidos` : 'Aguarda um fluxo'}</p><div class="capacity" aria-hidden="true">${[0,1,2].map(i => `<i class="${i<count?'used':''}"></i>`).join('')}</div></div></div>`;
+      return `<div class="chef ${unlocked ? count < 3 ? 'active' : '' : 'locked'}">${chefArt(n)}<div><strong>Chef ${n}</strong><p>${unlocked ? `${count} / 3 atendidos` : 'Aguarda um fluxo'}</p><div class="capacity" aria-hidden="true">${[0,1,2].map(i => `<i class="${i<count?'used':''}"></i>`).join('')}</div></div></div>`;
     }).join('');
     $('customers').innerHTML = Array.from({length:9}, (_,i) => {
       const done = i < served, current = i === served && running;
@@ -64,9 +64,9 @@
     $('slots').innerHTML = stages.map((stage, i) => {
       const piece = getPiece(slots[i]);
       const correct = piece?.stage === i;
-      return `<div data-drop-slot="${i}" class="slot ${checked ? correct?'correct':'wrong' : ''}"><h3 class="stage-heading">${StageIdentity.header(i)}</h3><button class="drop ${piece?'':'empty'} ${piece?.id===selected?'selected':''}" data-slot="${i}" draggable="${Boolean(piece)}" ${piece ? `data-drag-piece="${piece.id}"` : ''} aria-label="${stage}: ${piece?piece.text:'espaço vazio'}">${piece?piece.text:'+ Colocar uma peça'}</button>${piece?`<button class="remove" data-remove="${i}" aria-label="Retirar peça de ${stage}">Retirar peça</button>`:''}${checked?`<p class="slot-hint">${correct?'✓ Correto':hints[i]}</p>`:''}</div>`;
+      return `<div data-drop-slot="${i}" class="slot ${checked ? correct?'correct':'wrong' : ''}"><h3 class="stage-heading">${StageIdentity.header(i)}</h3><button class="drop ${piece?'':'empty'} ${piece?.id===selected?'selected':''}" data-slot="${i}" draggable="${Boolean(piece)}" ${piece ? `data-drag-piece="${piece.id}"` : ''} aria-label="${stage}: ${piece?piece.text:'espaço vazio'}">${piece?StageIdentity.piece(piece.id)+piece.text:'+ Colocar uma peça'}</button>${piece?`<button class="remove" data-remove="${i}" aria-label="Retirar peça de ${stage}">Retirar peça</button>`:''}${checked?`<p class="slot-hint">${correct?'✓ Correto':hints[i]}</p>`:''}</div>`;
     }).join('');
-    $('tray').innerHTML = order.filter(id => !slots.includes(id)).map(id => `<button class="piece" draggable="true" data-drag-piece="${id}" data-piece="${id}" aria-pressed="${id===selected}">${getPiece(id).text}</button>`).join('');
+    $('tray').innerHTML = order.filter(id => !slots.includes(id)).map(id => `<button class="piece" draggable="true" data-drag-piece="${id}" data-piece="${id}" aria-pressed="${id===selected}">${StageIdentity.piece(id)}${getPiece(id).text}</button>`).join('');
   }
   function place(i) {
     if (!selected) {

@@ -1,0 +1,51 @@
+# Ilustrações AgentFlix
+
+Geradas pela ferramenta integrada do Codex com a skill agentflix-desenho. PNGs com canal alfa verificado.
+
+## chef-atendimento
+
+Create one standalone transparent PNG illustration asset for AgentFlix, an educational restaurant simulation. A friendly adult male chef in full body, natural adult human proportions, standing in a relaxed three-quarter pose and writing a customer's order in a small notebook held in the other hand. Simple calm face, dark hair as one flat shape, off-white chef shirt with rolled sleeves, muted cyan apron, gray trousers and off-white shoes. Simple hand-drawn editorial 2D illustration: thin organic charcoal contours, flat fills, very few internal details. Palette exclusively ivory #F0EEE6, charcoal #303633, gray #8A9690 and muted cyan #65AEB6. Entire figure centered with generous padding. Intended to sit on a dark website background. True transparent background with alpha channel; no background rectangle, white backdrop, checkerboard, halo, circle, floor or scene. No text, logo, watermark, border, UI, 3D or photorealism.
+
+## chef-cozinha
+
+Use case: illustration-story. Create ONE isolated reusable AgentFlix educational illustration asset. Match the reference's SIMPLE hand-drawn editorial 2D language, adult natural proportions, tiny understated facial features, hair as flat masses, thin slightly irregular charcoal outlines, very few internal details, FLAT color fills. Palette strictly warm ivory #F0EEE6 (also skin), muted cyan #65AEB6 only as one accent, sage gray #8A9690, charcoal #303633. A calm modest human everyday action, generous empty margins, entire subject visible. Actual transparent PNG alpha background, clean isolated edges, no dark or white backdrop, NO halo, no gradients, no decorative circle, no labels/text/letters/numbers/logos/watermarks. No detailed realistic portrait, no anime, no 3D, no dramatic lighting, no pencil crosshatching, no full environment. Keep flat spare editorial forms and a restful silhouette. Reference is style guidance only; do not reproduce the folders or background. Subject: Full-body adult woman chef with dark hair in a bun, ivory shirt and muted cyan apron, calmly stirring one small pot held at waist height. No countertop or kitchen.
+
+## chef-caixa
+
+Use case: illustration-story. Create ONE isolated reusable AgentFlix educational illustration asset. Match the reference's SIMPLE hand-drawn editorial 2D language, adult natural proportions, tiny understated facial features, hair as flat masses, thin slightly irregular charcoal outlines, very few internal details, FLAT color fills. Palette strictly warm ivory #F0EEE6 (also skin), muted cyan #65AEB6 only as one accent, sage gray #8A9690, charcoal #303633. A calm modest human everyday action, generous empty margins, entire subject visible. Actual transparent PNG alpha background, clean isolated edges, no dark or white backdrop, NO halo, no gradients, no decorative circle, no labels/text/letters/numbers/logos/watermarks. No detailed realistic portrait, no anime, no 3D, no dramatic lighting, no pencil crosshatching, no full environment. Keep flat spare editorial forms and a restful silhouette. Reference is style guidance only; do not reproduce the folders or background. Subject: Full-body adult man cashier-chef with short curly dark hair and small glasses, ivory shirt and muted cyan apron, calmly holding a payment terminal and offering one blank receipt. No counter.
+
+## cliente
+
+Create one standalone transparent PNG illustration asset for AgentFlix restaurant learning simulation. Simple hand-drawn editorial 2D illustration, thin organic charcoal outlines, mostly flat fills, very few details, calm adult visual language. Palette ivory #F0EEE6, muted cyan #65AEB6, sage gray #8A9690, charcoal #303633. Entire subject with generous margins centered. True transparent background with alpha channel, no background rectangle, no checkerboard, no halo, no circle, no text, no watermarks, no UI. Not photorealistic or 3D. Subject: full-body adult woman standing calmly waiting for her order, short dark hair as one flat mass, minimal facial features, ivory skin and shirt, muted cyan trousers, ivory shoes. Natural adult proportions, no object, no scene.
+
+## campainha
+
+Create one standalone transparent PNG illustration asset for AgentFlix restaurant learning simulation. Simple hand-drawn editorial 2D illustration, thin organic charcoal outlines, mostly flat fills, very few details, calm adult visual language. Palette ivory #F0EEE6, muted cyan #65AEB6, sage gray #8A9690, charcoal #303633. Entire subject with generous margins centered. True transparent background with alpha channel, no background rectangle, no checkerboard, no halo, no circle, no text, no watermarks, no UI. Not photorealistic or 3D. Subject: a single restaurant service bell, ivory dome, charcoal base and cyan push button. Compact square composition.
+
+## caderneta
+
+Create one standalone transparent PNG illustration asset for AgentFlix restaurant learning simulation. Simple hand-drawn editorial 2D illustration, thin organic charcoal outlines, mostly flat fills, very few details, calm adult visual language. Palette ivory #F0EEE6, muted cyan #65AEB6, sage gray #8A9690, charcoal #303633. Entire subject with generous margins centered. True transparent background with alpha channel, no background rectangle, no checkerboard, no halo, no circle, no text, no watermarks, no UI. Not photorealistic or 3D. Subject: a small ivory blank spiral order notebook with muted cyan cover and one charcoal pencil. Compact square composition.
+
+## menu
+
+Create one standalone transparent PNG illustration asset for AgentFlix restaurant learning simulation. Simple hand-drawn editorial 2D illustration, thin organic charcoal outlines, mostly flat fills, very few details, calm adult visual language. Palette ivory #F0EEE6, muted cyan #65AEB6, sage gray #8A9690, charcoal #303633. Entire subject with generous margins centered. True transparent background with alpha channel, no background rectangle, no checkerboard, no halo, no circle, no text, no watermarks, no UI. Not photorealistic or 3D. Subject: one open restaurant menu with three tiny simple noodle plate pictograms, no letters, no numbers, ivory pages and muted cyan cover. Compact square composition.
+
+## panela
+
+Create one standalone transparent PNG illustration asset for AgentFlix restaurant learning simulation. Simple hand-drawn editorial 2D illustration, thin organic charcoal outlines, mostly flat fills, very few details, calm adult visual language. Palette ivory #F0EEE6, muted cyan #65AEB6, sage gray #8A9690, charcoal #303633. Entire subject with generous margins centered. True transparent background with alpha channel, no background rectangle, no checkerboard, no halo, no circle, no text, no watermarks, no UI. Not photorealistic or 3D. Subject: a simple cooking pot with two handles, ivory body and muted cyan handle accent, a spoon and two subtle steam lines. Compact square composition.
+
+## prato
+
+Create one standalone transparent PNG illustration asset for AgentFlix restaurant learning simulation. Simple hand-drawn editorial 2D illustration, thin organic charcoal outlines, mostly flat fills, very few details, calm adult visual language. Palette ivory #F0EEE6, muted cyan #65AEB6, sage gray #8A9690, charcoal #303633. Entire subject with generous margins centered. True transparent background with alpha channel, no background rectangle, no checkerboard, no halo, no circle, no text, no watermarks, no UI. Not photorealistic or 3D. Subject: one elegant shallow ivory porcelain dinner plate of plain instant noodles, only noodles, no garnish or toppings, thin muted cyan rim. Simple three-quarter view. Compact square composition.
+
+## maquininha
+
+Create one standalone transparent PNG illustration asset for AgentFlix restaurant learning simulation. Simple hand-drawn editorial 2D illustration, thin organic charcoal outlines, mostly flat fills, very few details, calm adult visual language. Palette ivory #F0EEE6, muted cyan #65AEB6, sage gray #8A9690, charcoal #303633. Entire subject with generous margins centered. True transparent background with alpha channel, no background rectangle, no checkerboard, no halo, no circle, no text, no watermarks, no UI. Not photorealistic or 3D. Subject: one simple charcoal payment card terminal with ivory blank display, few unlabeled square keys, muted cyan accent, one short blank ivory receipt. Compact square composition.
+
+## esteira
+
+Create one standalone transparent PNG illustration asset for AgentFlix restaurant learning simulation. Simple hand-drawn editorial 2D illustration, thin organic charcoal outlines, mostly flat fills, very few details, calm adult visual language. Palette ivory #F0EEE6, muted cyan #65AEB6, sage gray #8A9690, charcoal #303633. Entire subject with generous margins centered. True transparent background with alpha channel, no background rectangle, no checkerboard, no halo, no circle, no text, no watermarks, no UI. Not photorealistic or 3D. Subject: one short empty automatic restaurant conveyor belt, side view slightly from above, elongated horizontal composition. Ivory and sage gray metal frame, charcoal rollers, one muted cyan rail, four short feet. Clear hand-drawn simple silhouette, no food, no people.
+
+## mesa
+
+Create one standalone transparent PNG illustration asset for AgentFlix restaurant learning simulation. Simple hand-drawn editorial 2D illustration, thin organic charcoal outlines, mostly flat fills, very few details, calm adult visual language. Palette ivory #F0EEE6, muted cyan #65AEB6, sage gray #8A9690, charcoal #303633. Entire subject with generous margins centered. True transparent background with alpha channel, no background rectangle, no checkerboard, no halo, no circle, no text, no watermarks, no UI. Not photorealistic or 3D. Subject: one small round restaurant pedestal table with ivory tabletop and sage gray stem and base, muted cyan thin rim. Simple three-quarter view, no objects, no people.
