@@ -38,9 +38,9 @@ def download_guard():
         with urllib.request.urlopen(GUARD_URL, timeout=30) as response:
             return response.read()
     except Exception:
-        # A API de conteúdo serve o mesmo commit quando o host raw limita downloads.
-        api_url = ("https://api.github.com/repos/NousResearch/hermes-agent/contents/"
-                   f"tools/skills_guard.py?ref={HERMES_SHA}")
+        # Blob de tools/skills_guard.py na árvore HERMES_SHA; SHA-256 conferido abaixo.
+        api_url = ("https://api.github.com/repos/NousResearch/hermes-agent/git/blobs/"
+                   "668c195e7d95517c169fe53e98f75affbbc395e6")
         request = urllib.request.Request(api_url, headers={"Accept": "application/vnd.github+json"})
         with urllib.request.urlopen(request, timeout=30) as response:
             payload = json.load(response)

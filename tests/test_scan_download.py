@@ -22,7 +22,7 @@ class GuardDownloadTests(unittest.TestCase):
         payload = json.dumps({"encoding": "base64", "content": base64.b64encode(b"guard").decode()}).encode()
         with patch("urllib.request.urlopen", side_effect=[OSError("429"), io.BytesIO(payload)]) as fetch:
             self.assertEqual(scan_skills.download_guard(), b"guard")
-            self.assertIn(scan_skills.HERMES_SHA, fetch.call_args.args[0].full_url)
+            self.assertTrue(fetch.call_args.args[0].full_url.endswith("/git/blobs/668c195e7d95517c169fe53e98f75affbbc395e6"))
 
     def test_unverified_download_is_never_loaded(self):
         with patch.dict("os.environ", {}, clear=True), patch.object(scan_skills, "download_guard", return_value=b"wrong"):
