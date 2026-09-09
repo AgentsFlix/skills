@@ -151,8 +151,17 @@ A elicitação limita o banco a três templates: Continuar fica indisponível co
 
 ### Som ambiente do episódio
 
-As seis páginas de T1:E2 carregam `ambient.js` e `ambient.css`. O MP3 `audio/back1.mp3` é uma cópia integral de Back1.mp3 fornecido pelo Zé, sem edição. Reprodução em loop, ganho de 12% e entrada suave de 800 ms usando Web Audio; fallback de volume no elemento de áudio. Começa na primeira interação permitida pelo navegador. O controle no cabeçalho permite ativar/silenciar, inclusive por teclado.
+As sete páginas de T1:E2 carregam `ambient.js` e `ambient.css`. O MP3 `audio/back1.mp3` é uma cópia integral de Back1.mp3 fornecido pelo Zé, sem edição. Reprodução em loop, ganho de 12% e entrada suave de 800 ms usando Web Audio; fallback de volume no elemento de áudio. Começa na primeira interação permitida pelo navegador. O controle no cabeçalho permite ativar/silenciar, inclusive por teclado.
 
 A preferência de silêncio fica no localStorage; a posição da música no sessionStorage da aba. Pausa ao ocultar/sair da página, retoma ao voltar se habilitado, e respeita silêncio após navegar. A navegação entre documentos pode interromper brevemente o áudio e requerer outra interação conforme a política do navegador. Erro no arquivo desativa o controle sem interferir na atividade.
 
 QA Chrome: loop real do MP3, ganho de 0,12, início por interação, teclado, silêncio persistente, restauração da posição, eventos de visibilidade e seis páginas em 1440, 768 e 390 px. Arquivo copiado validado por SHA-256 idêntico. Som e alterações permanecem locais.
+
+
+### Página 7: o aluno conversa com três clientes
+
+`hermes-em-operacao/t1e2/cliente-pratica.html` é a prática da captura, acessível pela página 6. Um celular simula a conversa; ao lado, o aluno registra cada resposta. Quatro perguntas revelam nicho, exemplo de escrita, visual escolhido entre três referências enviadas e três templates escolhidos entre seis imagens. As opções de registro aparecem após a pergunta. Respostas incorretas pedem revisão da conversa e não liberam a próxima parte.
+
+Os clientes fictícios têm perfis próprios: Café da Esquina (escrita próxima, visual natural, novidade/checklist/enquete), Academia Movimento (direta, gráfica, dica/bastidores/checklist) e Loja Horizonte (editorial, essencial, novidade/enquete/frase). A documentação capturada é carregada em Puxar. Construir mantém escrita e visual ativos e permite escolher um dos três templates do cliente. Entrega valida o destinatário antes de liberar o próximo atendimento. A conclusão exige três entregas; repetir o envio não soma outro cliente. Tudo é simulado e mantido em memória durante a visita; reiniciar ou recarregar começa novamente.
+
+Reutiliza as ilustrações aprovadas, as composições visuais e o som ambiente do episódio. QA Chrome em 1440, 768 e 390 px: três atendimentos completos, perguntas por teclado, respostas incorretas, imagens enviadas e escolhidas, limite de três templates, escolha única na construção, destinatário ausente/incorreto/correto, bloqueio de conclusão antecipada e reinício. Imagens, IDs e largura da página verificados. Entrega exclusivamente local.
