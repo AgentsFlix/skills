@@ -24,5 +24,13 @@
   function badges(indices) {
     return `<span class="stage-badges">${indices.map(i=>`<span class="stage-badge">${icon(i)}<span>${names[i]}</span></span>`).join('')}</span>`;
   }
-  window.StageIdentity = Object.freeze({icon, header, badges});
+
+  function chef() {
+    return `<svg class="chef-icon portrait" viewBox="0 0 64 76" aria-hidden="true" focusable="false"><circle cx="32" cy="40" r="30" fill="#282828"/><g stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 73V56Q13 43 32 43T54 56V73" fill="#f5f5f1"/><path d="M24 49v9h16V49m-17 8-4 16h26l-4-16" fill="#30b0c7"/><ellipse cx="32" cy="32" rx="16" ry="18" fill="#f5f5f1"/><path d="M16 23Q6 11 19 9Q22-1 32 6Q45-1 49 11Q61 20 48 26H16Z" fill="#f5f5f1"/><path d="M17 23h31v6H17z" fill="#b3b3b3"/><path d="M26 35h1m10 0h1m-10 8q4 3 8-1" fill="none"/></g></svg>`;
+  }
+  function customer(n, served) {
+    const shirt = ['#30b0c7', '#f5f5f1', '#888888'][n % 3];
+    return `<svg class="portrait" viewBox="0 0 64 76" aria-hidden="true" focusable="false"><circle cx="32" cy="40" r="30" fill="#282828"/><g stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 73V56Q13 43 32 43T54 56V73" fill="${shirt}"/><path d="M25 48l7 8 7-8" fill="none"/><ellipse cx="32" cy="29" rx="15" ry="18" fill="#f5f5f1"/><path d="${n % 2 ? 'M17 31Q8 8 28 8Q47 2 49 27L41 20 32 15 24 26Z' : 'M17 25Q13 7 31 7Q50 5 47 27L37 18Q25 24 17 25Z'}" fill="#888888"/><path d="M26 32h1m10 0h1m-10 8q4 4 8-1" fill="none"/>${served ? '<ellipse cx="32" cy="66" rx="25" ry="7" fill="#f5f5f1"/><ellipse cx="32" cy="63" rx="17" ry="5" fill="#b3b3b3"/><path d="M20 63q4-6 8 0t8 0t8 0" fill="none"/><path d="m46 44 4 4 8-10" fill="none" stroke="#30b0c7" stroke-width="3"/>' : ''}</g></svg>`;
+  }
+  window.StageIdentity = Object.freeze({icon, header, badges, chef, customer});
 })();

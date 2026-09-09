@@ -110,3 +110,5 @@ As peças também aceitam arrastar e soltar no navegador: mesa para etapa, entre
 ### Identidade das seis etapas
 
 `stage-identity.js` e `stage-identity.css` compartilham as ilustrações SVG e os cabeçalhos em aba nas três páginas. Paleta preto, branco/cinza e ciano: campainha (Gatilho), pessoa com crachá (Agente), caixa de ferramentas (Ferramenta), documento saindo da gaveta (Puxar), blocos em montagem (Construir), bandeja com destino (Entrega). Número e nome permanecem junto dos símbolos; as peças soltas não recebem símbolos que revelem o destino correto. As responsabilidades e passagens da equipe usam versões compactas.
+
+A identidade também rege os personagens, cenário e interfaces das três páginas: chefs e clientes são SVGs compartilhados de traço escuro, branco/cinza e ciano; restaurante, mesas, utensílios, esteira, peças e painéis usam a mesma paleta. Chef inativo fica em cinza; o ativo recupera o avental ciano. Clientes servidos exibem prato e check; a esteira em movimento recebe trilho ciano. Os estados continuam acompanhados de texto, sem depender apenas da cor.

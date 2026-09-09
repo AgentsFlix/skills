@@ -19,7 +19,7 @@
     {label:'Cliente → Chef 3', sub:'Um gatilho próprio para o pagamento', answer:'bill', hint:'É o cliente que avisa quando quer fechar a conta.'}
   ];
   const options = [['ticket','Bilhete do pedido'],['dish','Prato pronto'],['bill','Pedido de pagamento'],['invoice','Nota fiscal']];
-  const chef = `<svg class="chef-icon" viewBox="0 0 44 58" aria-hidden="true"><path d="M7 58V41Q22 29 37 41V58" fill="#c5b78c"/><circle cx="22" cy="26" r="13" fill="#be8d6c"/><path d="M8 17Q0 8 10 6Q13-2 22 5Q34-2 37 8Q45 15 35 20H8Z" fill="#eee8d1"/><circle cx="18" cy="25" r="1.5" fill="#382c24"/><circle cx="27" cy="25" r="1.5" fill="#382c24"/><path d="M18 32Q22 36 27 31" stroke="#664b39" fill="none"/></svg>`;
+  const chef = StageIdentity.chef();
   let slots=Array(6).fill(null), links=['','',''], selected=null, dragged=null, checked=false;
   let demo=0, tick=-1, mode='demo', timer=null;
   const order=cards.map(c=>c.id);

@@ -34,8 +34,8 @@
     }
     return array;
   }
-  const chefArt = `<svg viewBox="0 0 44 58" aria-hidden="true"><path d="M7 58V41Q22 29 37 41V58" fill="#c5b78c"/><circle cx="22" cy="26" r="13" fill="#be8d6c"/><path d="M8 17Q0 8 10 6Q13-2 22 5Q34-2 37 8Q45 15 35 20H8Z" fill="#eee8d1"/><circle cx="18" cy="25" r="1.5" fill="#382c24"/><circle cx="27" cy="25" r="1.5" fill="#382c24"/><path d="M18 32Q22 36 27 31" stroke="#664b39" fill="none"/></svg>`;
-  const clientArt = (n, done) => `<svg viewBox="0 0 40 48" aria-hidden="true"><path d="M5 48V34Q20 23 35 34V48" fill="${['#7f9a89','#b89c74','#7b929e'][n%3]}"/><circle cx="20" cy="16" r="11" fill="#c09a7a"/><path d="M9 12Q10 1 21 4Q33 1 32 14Q21 8 9 12" fill="#373733"/>${done ? '<ellipse cx="20" cy="42" rx="18" ry="6" fill="#f5edcf"/><ellipse cx="20" cy="40" rx="12" ry="4" fill="#d8b879"/><path d="M10 40q4-6 7 0t6 0t7 0" fill="none" stroke="#986c32" stroke-width="1.5"/>' : ''}</svg>`;
+  const chefArt = StageIdentity.chef();
+  const clientArt = (n, done) => StageIdentity.customer(n, done);
   function renderFactory() {
     $('chefs').innerHTML = [1,2,3].map(n => {
       const count = Math.max(0, Math.min(3, served - (n-1)*3));

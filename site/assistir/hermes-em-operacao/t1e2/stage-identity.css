@@ -21,3 +21,23 @@
 .concept .stage-symbol{width:60px;height:54px;margin-bottom:10px}
 @media(max-width:1050px){.stage-tab{font-size:10px;padding:10px 10px 8px;gap:6px}.stage-number{font-size:11px}#steps .step small{font-size:10px;padding:0 10px 12px}}
 @media(max-width:700px){#steps .step .stage-symbol{width:62px;height:56px}#steps .step .stage-art{min-height:68px}.stage-art{min-height:98px}.stage-symbol{width:87px;height:78px}.stage-tab{font-size:11px}#steps .stage-tab{font-size:10px;letter-spacing:0;gap:5px}.stage-badges{gap:4px 8px}.stage-badge{font-size:9px}}
+
+/* Personagens e superfícies da sequência: preto, branco, cinza e ciano. */
+.factory,.restaurant,.lane,.team-chef,.comparison{background:#181818;border-color:var(--line)}
+.chef,.customer,.team-order,.piece,.tool-card,.connection{background:#222;border-color:var(--line)}
+.chef.active,.customer.current,.team-chef.active,.team-order.working{border-color:#5fc9dc;background:#222}
+.customer.served,.team-order.done{background:#181818;border-color:#888}
+.chef{align-items:center}.chef svg{width:55px;height:65px}.customer svg{width:50px;height:60px}.chef-icon{width:54px;height:64px}
+.chef.locked{opacity:.65}.chef.locked svg{filter:grayscale(1)}
+.belt-window{background:#141414}.belt-track{background:repeating-linear-gradient(90deg,#888 0 3px,#333 3px 36px);border-color:#888;opacity:.8}
+.running .belt-track{border-top-color:#30b0c7}
+.chef,.team-chef,.customer{position:relative;overflow:hidden}
+.customer{padding-top:16px}.customer:before{content:'';position:absolute;top:0;left:0;width:44%;height:6px;background:#888;border-bottom-right-radius:9px}
+.customer.current:before,.customer.served:before{background:#30b0c7}
+.lane-head{background:#222}.lane-head h3,.chef strong{color:#f5f5f1}
+.piece:before{color:#888}.piece[aria-pressed=true],.drop.selected,.target.selected{background:#333;border-color:#5fc9dc}
+.slot.correct,.correct{border-color:#5fc9dc}.slot.correct .slot-hint,.correct .hint{color:#5fc9dc}
+.slot.wrong,.wrong{border-color:#b3b3b3}.slot-hint,.hint{color:#b3b3b3}
+.scene-top{color:#f5f5f1}.scene-top span:last-child,.scene-caption p{color:#b3b3b3}
+.delivery,.gate,section.result,.handoff{background:#181818;border-color:#5fc9dc}
+@media(max-width:700px){.chef svg{width:42px;height:50px}.customer svg{width:44px;height:52px}.chef-icon{width:46px;height:55px}}
