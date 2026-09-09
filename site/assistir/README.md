@@ -134,3 +134,11 @@ A revisão de simplicidade da Eugência reúne cena e ação em um painel: naveg
 Montagem e atendimento aparecem separadamente. A operação mostra apenas o lote atual de três clientes, com esteira SVG, pausa/retomada e contagem total. Explicações ficam em Como funciona; pistas aparecem após uma tentativa incorreta. Reutiliza as ilustrações aprovadas da Eugência. A página 4 ganhou um link para esta prática.
 
 QA em Chrome em 1440, 768 e 390 px: três rodadas, validação de peças, arrastar/mover/substituir/devolver, teclado, pausa e reinício. Verificação de assets e transbordamento horizontal; capturas de montagem, pausa e conclusão. Mantido exclusivamente local.
+
+### Página 6: novo cliente, captura de material
+
+`hermes-em-operacao/t1e2/novo-cliente.html` inicia com o primeiro contato de um cliente novo. A pessoa recebe a mensagem e prepara Pinterest (referências visuais) e editor (modelos). O link do Pinterest abre o serviço; a atividade usa exemplos locais, sem pesquisa, coleta ou envio automáticos.
+
+O fluxo desta página termina na etapa 4, Elicitar. Quatro escolhas progressivas capturam nicho, escrita, identidade visual e banco de templates. Nichos usam as ilustrações existentes; escrita compara a mesma mensagem; identidade compara tipografia, composição e cores aplicadas ao mesmo post; templates permitem seleção múltipla de novidade, dica e bastidores no visual escolhido. O banco final reúne os modelos e o perfil definido. As escolhas permanecem em memória durante a visita e podem ser revisadas ou reiniciadas. Nenhuma etapa posterior foi implementada.
+
+Navegação adicionada ao rodapé e à conclusão da prática da Eugência. QA Chrome em 1440, 768 e 390 px: três perfis, seleção por teclado, pré-requisitos, alternância e revisão de opções, banco com três modelos, reinício e ausência de transbordamento ou erros de assets. Protótipo exclusivamente local.
