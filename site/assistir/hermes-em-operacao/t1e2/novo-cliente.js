@@ -92,12 +92,12 @@ document.addEventListener('click',e=>{
  else if(b.id==='advance')stage=Math.min(3,stage+1);
  else if(b.dataset.choice){const key=b.dataset.choice,value=b.dataset.value;if(key==='templates'&&!profile.templates.includes(value)&&profile.templates.length>=3)return;invalidate();if(key==='templates')profile.templates=profile.templates.includes(value)?profile.templates.filter(v=>v!==value):[...profile.templates,value];else profile[key]=value;}
  else if(b.dataset.part!==undefined)part=+b.dataset.part;
- else if(b.id==='continue'&&ready()[part]){if(part<3)part++;else finished=true;}
+ else if(b.id==='continue'&&ready()[part]){if(part<3)part++;else{finished=true;window.EpisodeSound?.play('complete');}}
  else if(b.id==='back'){if(stage===3&&part>0)part--;else stage=Math.max(0,stage-1);}
  else if(b.id==='pull'&&finished){pulled=JSON.parse(JSON.stringify(profile));}
  else if(b.dataset.template&&pulled&&pulled.templates.includes(b.dataset.template)){if(selectedTemplate!==b.dataset.template){selectedTemplate=b.dataset.template;built=false;sent=false;feedback='';}}
- else if(b.id==='build'&&pulled&&selectedTemplate)built=true;
- else if(b.id==='send'&&built){if(recipient!==pulled.niche)feedback=recipient?'Confira o destinatário. Este material é de '+brands[pulled.niche]+'.':'Escolha o cliente que deve receber.';else{sent=true;feedback='';}}
+ else if(b.id==='build'&&pulled&&selectedTemplate){if(!built)window.EpisodeSound?.play('complete');built=true;}
+ else if(b.id==='send'&&built){if(recipient!==pulled.niche)feedback=recipient?'Confira o destinatário. Este material é de '+brands[pulled.niche]+'.':'Escolha o cliente que deve receber.';else{if(!sent)window.EpisodeSound?.play('complete');sent=true;feedback='';}}
  else if(b.id==='review'){finished=false;part=0;stage=3;invalidate();}
  else if(b.id==='reset'){invalidate();stage=0;part=0;received=false;toolsReady=false;finished=false;profile={niche:null,voice:null,look:null,templates:[]};}
  else return;

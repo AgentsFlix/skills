@@ -166,6 +166,7 @@
       served++;
       if (served === activeChefs*3) {
         stop();
+        window.EpisodeSound?.play('complete');
         if (served === 9) {
           $('complete').hidden = false;
           $('complete-title').tabIndex = -1;
@@ -188,6 +189,7 @@
       $('feedback').textContent = `${correct} de 6 etapas corretas. Veja as pistas, ajuste as peças e tente novamente.`;
       return;
     }
+    window.EpisodeSound?.play('complete');
     activeChefs = round;
     $('puzzle').hidden = true;
     $('factory-status').textContent = `Fluxo ${round} correto. Chef ${round} ativado.`;

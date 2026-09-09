@@ -97,11 +97,11 @@
     else if(button.id==='receive'){s.received=true;}
     else if(button.id==='editor'&&s.received){s.editor=true;}
     else if(button.id==='materials'&&s.editor){s.materials=true;}
-    else if(button.dataset.build!==undefined&&s.materials&&Number(button.dataset.build)===s.built){s.built++;}
+    else if(button.dataset.build!==undefined&&s.materials&&Number(button.dataset.build)===s.built){s.built++;if(s.built===4)window.EpisodeSound?.play('complete');}
     else if(button.id==='send'&&s.built===4){
       if(!s.recipient)message='Escolha quem deve receber a arte e a legenda.';
       else if(s.recipient!==selected)message=`Este pedido é de ${client().brand}. Confira o destinatário antes de enviar.`;
-      else{s.sent=true;}
+      else{if(!s.sent)window.EpisodeSound?.play('complete');s.sent=true;}
     } else if(button.id==='reset'){orders[selected]=blank();stage=0;message='Este atendimento foi reiniciado. Os outros clientes mantêm seu progresso.';}
     else return;
     if(oldStage!==stage)$('explanation').open=false;

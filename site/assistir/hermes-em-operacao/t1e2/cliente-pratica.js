@@ -135,12 +135,12 @@ document.addEventListener('click',e=>{
  else if(b.id==='next-client'&&sent&&current<2){current++;resetClient();}
  else if(b.dataset.choice){if(!asked[part]||sent)return;answerFeedback='';const key=b.dataset.choice,value=b.dataset.value;if(key==='templates'&&!profile.templates.includes(value)&&profile.templates.length>=3)return;invalidate();confirmed=confirmed.map((v,i)=>i<part?v:false);if(key==='templates')profile.templates=profile.templates.includes(value)?profile.templates.filter(v=>v!==value):[...profile.templates,value];else profile[key]=value;}
  else if(b.dataset.part!==undefined)part=+b.dataset.part;
- else if(b.id==='continue'&&asked[part]&&ready()[part]){const e=expected();const ok=part===0?profile.niche===e.niche:part===1?profile.voice===e.voice:part===2?profile.look===e.look:profile.templates.length===3&&profile.templates.every(t=>e.templates.includes(t));if(ok){answerFeedback='';confirmed[part]=true;if(part<3)part++;else finished=true;}else answerFeedback='Confira a resposta do cliente no celular e ajuste sua escolha.';}
+ else if(b.id==='continue'&&asked[part]&&ready()[part]){const e=expected();const ok=part===0?profile.niche===e.niche:part===1?profile.voice===e.voice:part===2?profile.look===e.look:profile.templates.length===3&&profile.templates.every(t=>e.templates.includes(t));if(ok){answerFeedback='';confirmed[part]=true;if(part<3)part++;else{finished=true;window.EpisodeSound?.play('complete');}}else answerFeedback='Confira a resposta do cliente no celular e ajuste sua escolha.';}
  else if(b.id==='back'){if(stage===3&&part>0)part--;else stage=Math.max(0,stage-1);}
  else if(b.id==='pull'&&finished){pulled=JSON.parse(JSON.stringify(profile));}
  else if(b.dataset.template&&pulled&&pulled.templates.includes(b.dataset.template)){if(selectedTemplate!==b.dataset.template){selectedTemplate=b.dataset.template;built=false;sent=false;feedback='';}}
- else if(b.id==='build'&&pulled&&selectedTemplate)built=true;
- else if(b.id==='send'&&built){if(recipient!==pulled.niche)feedback=recipient?'Confira o destinatário. Este material é de '+brands[pulled.niche]+'.':'Escolha o cliente que deve receber.';else{sent=true;feedback='';deliveries[current]={profile:JSON.parse(JSON.stringify(pulled)),template:selectedTemplate};}}
+ else if(b.id==='build'&&pulled&&selectedTemplate){if(!built)window.EpisodeSound?.play('complete');built=true;}
+ else if(b.id==='send'&&built){if(recipient!==pulled.niche)feedback=recipient?'Confira o destinatário. Este material é de '+brands[pulled.niche]+'.':'Escolha o cliente que deve receber.';else{if(!sent)window.EpisodeSound?.play('complete');sent=true;feedback='';deliveries[current]={profile:JSON.parse(JSON.stringify(pulled)),template:selectedTemplate};}}
  else if(b.id==='review'&&!sent){finished=false;part=0;stage=3;invalidate();}
  else if((b.id==='reset'||b.id==='restart-practice')){current=0;deliveries.fill(null);resetClient();}
  else return;
