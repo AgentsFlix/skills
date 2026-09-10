@@ -16,7 +16,7 @@ def luminance(color):
 
 
 def render(tokens, content, output):
-    if output.exists():raise ValueError('Use a new output directory for each revision')
+    if output.exists():raise ValueError('Use a new output directory for each revision: the output path already exists. Keep the existing input JSON files and choose an absent output path; the renderer creates it. Do not create that directory first or rewrite inputs to fix this error.')
     for key in ('background','foreground','accent'):
         if not re.fullmatch(r'#[0-9a-fA-F]{6}',tokens.get(key,'')):raise ValueError('Invalid color: '+key)
     for key in ('brand','font_family'):

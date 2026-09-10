@@ -41,7 +41,7 @@ Leia `references/contrato-agentflix.md` antes de perguntar ou configurar. Ele ex
 1. Leia o contexto de posicionamento, voz, pilares e identidade. Confirme o estado de aprovação das aplicações visuais; se faltar, produza proposta revisável, sem declarar template final aprovado.
 2. Escolha padrões pela matéria-prima: uma ideia simples pode ser estática; progressão ou sequência pode ser carrossel. Prints entram apenas quando existentes, autorizados e necessários; retrato ou geração de capa não são obrigatórios. Não adote as marcas de carrossel-icp, print-carousel ou epic-paper.
 3. Prepare tokens.json e conteudo.json conforme references/formato.md. Inclua uma estática e carrossel com capa, desenvolvimento suficiente e fechamento adequado, sem número fixo de slides ou CTA inventado.
-4. Com Python disponível, execute scripts/render.py --tokens tokens.json --content conteudo.json --output destino-novo. O helper gera SVGs 1080×1350, fontes JSON copiadas e uma galeria HTML local. Ele não usa rede, não gera imagens, não aprova a direção e não publica. Se outro editor for usado, exporte fontes editáveis equivalentes.
+4. Com Python disponível, execute scripts/render.py --tokens tokens.json --content conteudo.json --output destino-novo. A pasta de saída precisa ser inexistente e será criada pelo helper: mantenha os JSONs de entrada, por exemplo, em entradas/r1/ e use render/r1/ como saída. Não crie a pasta de saída antes da chamada nem use a pasta que já contém os JSONs. Se a saída existir, escolha outro caminho de saída; não duplique ou reescreva as entradas para resolver esse erro. O helper gera SVGs 1080×1350, fontes JSON copiadas e uma galeria HTML local. Ele não usa rede, não gera imagens, não aprova a direção e não publica. Se outro editor for usado, exporte fontes editáveis equivalentes.
 5. Abra a galeria/renderize os SVGs numa ferramenta disponível e confira hierarquia, cortes, sobreposição, contraste e fidelidade aos tokens. Se a ferramenta de inspeção estiver ausente, marque validação visual pendente. Um script encerrar sem erro não prova legibilidade.
 6. Entregue fontes, arquivos e instrução curta de reuso, preservando uma revisão anterior ao alterar. Ligue cada peça à pauta e à revisão visual. Registre aprovação humana da revisão concreta separada do QA técnico. O lote de rotina consome só peças no estado correto.
 
@@ -147,7 +147,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/editorial-templates" init --version 0.4.3 --revision 1.0.1
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/editorial-templates" init --version 0.4.3 --revision 1.0.2
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/editorial-templates" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/editorial-templates" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/editorial-templates" audit
@@ -226,7 +226,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: editorial-templates
-  content_revision: 1.0.1
+  content_revision: 1.0.2
   verification_evidence: []
 ---
 
@@ -321,6 +321,10 @@ Execute `python3 scripts/render.py --tokens tokens.json --content conteudo.json 
 
 A saída contém galeria.html, estatica.svg, carrossel-NN.svg, tokens.json, conteudo.json e arquivos.json com hashes. SVGs são fontes editáveis e imagens vetoriais; PNG/JPEG podem ser exportados em ferramenta disponível, sem alegar que os arquivos existem antes de exportar. A galeria é estática e local. Fontes, dimensões e arquivos devem ser inspecionados em renderização real antes de declarar template validado.
 
+## Separar entradas de saída
+
+O renderizador cria a pasta de saída e preserva revisões anteriores. Exemplo: entradas/r1/tokens.json e entradas/r1/conteudo.json já existem; use --output render/r1, que ainda não existe. Não crie render/r1 antes da chamada. Se a saída indicada já existe, reaproveite os mesmos JSONs e escolha uma saída nova. Não precisa mover, copiar ou reescrever entradas válidas por esse motivo.
+
 
 ---
 
@@ -331,7 +335,7 @@ A saída contém galeria.html, estatica.svg, carrossel-NN.svg, tokens.json, cont
   "contract_version": "1.0.0",
   "skill_id": "editorial-templates",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.1",
+  "content_revision": "1.0.2",
   "distribution_ref": "main"
 }
 
@@ -387,7 +391,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.1",
+  "content_revision": "1.0.2",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }
