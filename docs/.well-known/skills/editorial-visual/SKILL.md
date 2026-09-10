@@ -10,7 +10,7 @@ metadata:
   source: https://github.com/AgentsFlix/skills/tree/main/skills/editorial-visual
   tags: editorial, marca, memoria, okf
   contract_version: 1.0.0
-  content_revision: 1.0.2
+  content_revision: 1.0.3
   distribution_ref: main
 ---
 
@@ -25,6 +25,8 @@ Documente identidade visual para posts 4:5 e produza aplicações revisáveis. U
 Obrigatórios: marca, público, posicionamento/voz ou equivalentes e limites visuais. Paleta, tipografia e referências existentes são reaproveitadas; se ausentes, proponha alternativas identificadas. Entrega: brief-visual.md, tokens.json e aplicações 4:5.
 
 ## Procedure
+
+Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 

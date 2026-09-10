@@ -11,7 +11,7 @@ metadata:
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-perfil, hybrid-fundador
   contract_version: 1.0.0
-  content_revision: 1.0.3
+  content_revision: 1.0.4
   distribution_ref: main
 ---
 # Posicionamento e voz da marca
@@ -29,6 +29,8 @@ Obrigatórios: perfil, público e objetivo de comunicação ou equivalentes. Ace
 Para a entrega inicial, siga Procedure sem abrir questionário ou template institucional. Uma proposta útil contém enunciado de posicionamento, promessas com limites, diferenciais com origem e lacunas relevantes. Para voz, entregue princípios e aplicações rastreáveis. Consulte `references/elicit-brand-yaml.md` e os templates apenas para aprofundamento explicitamente solicitado. Use o destino local já autorizado.
 
 ## Procedure
+
+Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 

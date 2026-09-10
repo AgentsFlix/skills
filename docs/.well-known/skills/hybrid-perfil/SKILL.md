@@ -11,7 +11,7 @@ metadata:
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-fundador, hybrid-icp
   contract_version: 1.0.0
-  content_revision: 1.0.2
+  content_revision: 1.0.3
   distribution_ref: main
 ---
 # Perfil do negócio para a tarefa atual
@@ -24,16 +24,15 @@ Use quando a pessoa pedir para documentar ou revisar o negócio e continuar a jo
 
 ## Quick Reference
 
-Identificação do negócio, oferta, público declarado ou hipótese, problema e objetivo pertinente. Campos desconhecidos ficam explícitos. Não exigir missão, visão, credenciais ou equipe para uma síntese inicial.
+Identificação conhecida, oferta, público declarado ou hipótese, problema do cliente atendido e objetivo editorial. Diferencie a dor do cliente da vontade do profissional de divulgar seu negócio. Elicite os dados centrais ausentes antes de concluir a entrevista; missão, visão, credenciais, equipe e percentuais institucionais continuam opcionais.
 
-| Necessidade | Caminho |
-|---|---|
-| Entrega inicial desta jornada | Siga Procedure abaixo; não exige abrir nem copiar templates. |
-| Aprofundamento explicitamente solicitado | `references/elicit-company-profile.md` e os templates institucionais, apenas quando houver pedido de aprofundamento. |
+A entrega inicial usa Procedure, sem exigir templates. Nome pessoal conhecido basta para começar; marca formal, cidade e canais só são coletados se mudarem a decisão atual. Se só sabemos a profissão e o desejo de presença digital, salve o rascunho se útil, mas aguarde a resposta sobre oferta, público e problema do cliente antes de avançar. Estrutura de exemplo com campos: “Atuo como [profissão já recuperada da memória] e ofereço [serviço] para [público], para resolver [problema]”. Preencha somente os elementos já conhecidos; preserve os demais campos em aberto.
 
-Use o destino já autorizado pelo contexto. Configuração só é consultada quando falta um caminho real. A ausência de um YAML prévio não é um bloqueio.
+O perfil institucional ampliado em `references/elicit-company-profile.md` é opcional. Use o destino local autorizado; não exige abrir nem copiar templates. Dados desconhecidos após resposta explícita podem permanecer como lacunas, com hipóteses do agente separadas e os limites do próximo passo declarados.
 
 ## Procedure
+
+Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
@@ -43,6 +42,8 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
 4. Salve um perfil legível e reutilizável no destino local autorizado, em Markdown ou YAML, com identificação, oferta, público/hipótese, problema, objetivo, mapa de origem e lacunas. Preserve revisões anteriores. Quando a pessoa já pediu essa documentação, não peça nova autorização para gravar o rascunho.
 5. Confira se o perfil permite a próxima etapa de público sem ultrapassar o que a pessoa forneceu. Marque o documento como parcial quando houver campos abertos. Não calcule percentuais para essa síntese. A operação pode estar completed com documento parcial útil; waiting exige explicar a lacuna que impede a entrega atual, não a ausência de campos opcionais.
 6. Informe o arquivo, os limites e a próxima etapa. Não reconfirme tom, oferta ou escopo já dados. Avalie se revisão futura vale como rotina, respeitando recusas e mantendo ativação separada. O perfil institucional completo pode ser aprofundado quando houver um pedido específico.
+
+Aceite mínimo da entrevista: profissão e desejo de presença digital, sozinhos, não esclarecem o negócio. Quando oferta, público pretendido ou dor do cliente ainda dependem de resposta, faça uma coleta contextual curta e registre waiting, mesmo se um rascunho foi salvo. Não substitua a dor do cliente pela dificuldade do profissional em divulgar seu trabalho. Antes de avançar, incorpore a resposta ou o desconhecimento explicitamente declarado; nesse último caso, marque as hipóteses e os limites da síntese possível. Não exija nome empresarial, cidade, canais ou campos institucionais se não forem necessários à operação atual.
 
 ## Avaliação de rotina
 
@@ -58,7 +59,7 @@ Perfil inicial é pontual. Revisão pode valer após mudança de oferta, públic
 
 ## Verification
 
-O arquivo de perfil existe no destino autorizado, liga dados à origem e preserva desconhecidos/hipóteses. A entrevista cobre somente lacunas que mudam a entrega; exemplos não criam fatos. Estado da operação e do documento estão separados. Campos institucionais opcionais não impedem a passagem do perfil útil ao público. Confira o aceite transversal de references/contrato-agentflix.md.
+O arquivo de perfil existe no destino autorizado, liga dados à origem e preserva desconhecidos/hipóteses. A entrevista cobre somente lacunas que mudam a entrega; exemplos não criam fatos. Estado da operação e do documento estão separados. Campos institucionais opcionais não impedem a passagem do perfil útil ao público. Confira o aceite transversal de references/contrato-agentflix.md. Confira também se houve elicitação quando só existiam profissão e desejo de presença digital. Rascunho salvo não comprova entrevista concluída; oferta/público/dor ausentes precisam de resposta ou desconhecimento explicitamente confirmado, com limites declarados. Dor do cliente e objetivo editorial do profissional são campos distintos.
 
 ## Arquivos desta skill
 

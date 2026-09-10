@@ -42,6 +42,8 @@ Use o destino já autorizado pelo contexto. Configuração só é consultada qua
 
 ## Procedure
 
+Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
+
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
 1. Continue o perfil atual e o pedido. Leia relatos e acervo acessíveis antes de perguntar. Registre oferta, problema e público já informado; não peça novamente uma definição que já existe, mesmo que seja uma hipótese. Use a revisão atual do perfil, consultando histórico apenas quando necessário.

@@ -19,6 +19,8 @@
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
 > Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Entregue apenas a operação pedida agora. Se pedi uma proposta, salve-a como proposta e conclua essa produção; minha aprovação continua pendente e separada. Reutilize os arquivos anteriores por referência, sem copiá-los integralmente, e preserve o contexto para trabalhar a voz quando solicitada.
+>
+> Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
 
 ---
 # Posicionamento e voz da marca
@@ -36,6 +38,8 @@ Obrigatórios: perfil, público e objetivo de comunicação ou equivalentes. Ace
 Para a entrega inicial, siga Procedure sem abrir questionário ou template institucional. Uma proposta útil contém enunciado de posicionamento, promessas com limites, diferenciais com origem e lacunas relevantes. Para voz, entregue princípios e aplicações rastreáveis. Consulte `references/elicit-brand-yaml.md` e os templates apenas para aprofundamento explicitamente solicitado. Use o destino local já autorizado.
 
 ## Procedure
+
+Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
@@ -97,6 +101,8 @@ Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não
 
 Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Entregue apenas a operação pedida agora. Se pedi uma proposta, salve-a como proposta e conclua essa produção; minha aprovação continua pendente e separada. Reutilize os arquivos anteriores por referência, sem copiá-los integralmente, e preserve o contexto para trabalhar a voz quando solicitada.
 
+Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
+
 
 ---
 
@@ -151,7 +157,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" init --version 0.4.3 --revision 1.0.3
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" init --version 0.4.3 --revision 1.0.4
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" audit
@@ -246,7 +252,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-marca
-  content_revision: 1.0.3
+  content_revision: 1.0.4
   verification_evidence: []
 ---
 
@@ -582,7 +588,7 @@ Após brand:
   "contract_version": "1.0.0",
   "skill_id": "hybrid-marca",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.3",
+  "content_revision": "1.0.4",
   "distribution_ref": "main"
 }
 
@@ -746,7 +752,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.3",
+  "content_revision": "1.0.4",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }

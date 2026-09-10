@@ -11,7 +11,7 @@ metadata:
   tags: copy, copywriting, pesquisa, avatar
   related: copy-pipeline, copy-auditoria
   contract_version: 1.0.0
-  content_revision: 1.0.3
+  content_revision: 1.0.4
   distribution_ref: main
 ---
 # Pesquisa de público para a próxima decisão
@@ -31,6 +31,8 @@ Para a síntese inicial, siga Procedure; não precisa abrir ou preencher um temp
 Os templates preservam métodos e atribuições de origem. Mínimos de fatos, headlines e pontuações não são critérios de aceite desta síntese. Documentos citados que não estejam acessíveis permanecem fontes não consultadas.
 
 ## Procedure
+
+Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
