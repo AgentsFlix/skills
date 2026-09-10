@@ -941,11 +941,33 @@
       "cover_wide": "img/hermes-operacao-wide.png",
       "cover_mobile": "img/hermes-operacao-mobile.png",
       "syn": "Automações e rotinas para empresas reais",
-      "cast": [],
+      "cast": [
+        "José Carlos Amorim (Zé)",
+        "Allison Gustavo Braz",
+        "Arthur Freitas",
+        "Brunning",
+        "cristina Ruotolo",
+        "Débora Tavares",
+        "Filipe Costa",
+        "Gabriel Bourne",
+        "Luciana Gabriella da SIlva",
+        "Luciano LIBARDI",
+        "Luiz Feitosa",
+        "Marcio Nascimento",
+        "Marcos Freitas [Luz Financeira]",
+        "Marlon Pontes",
+        "Mário Carvalho",
+        "Thiago Moraes Raso",
+        "WAL PAES"
+      ],
       "gen": [
         "Automações"
       ],
-      "traits": [],
+      "traits": [
+        "Prática",
+        "Interativa",
+        "Didática"
+      ],
       "seasons": [
         {
           "n": 1,

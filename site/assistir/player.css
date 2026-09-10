@@ -270,6 +270,23 @@ a {
 .tp-side span {
   color: var(--dim);
 }
+.tp-cast {
+  margin: 0 0 12px;
+}
+.tp-cast summary {
+  width: fit-content;
+  padding: 10px 0;
+  min-height: 44px;
+  cursor: pointer;
+  color: var(--muted);
+}
+.tp-cast ul {
+  margin: 4px 0 16px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
 .tp-tabs {
   display: flex;
   gap: 28px;
@@ -277,6 +294,7 @@ a {
   border-bottom: 1px solid var(--line);
 }
 .tp-tabs button {
+  min-height: 44px;
   padding: 10px 0 12px;
   font-size: 14px;
   font-weight: 700;
@@ -290,6 +308,88 @@ a {
 }
 .tp-tab {
   padding: 18px 44px 36px;
+}
+.materials-heading {
+  margin: 0 0 24px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.material-season + .material-season {
+  margin-top: 28px;
+}
+.material-season h3 {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+.material-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.material-card {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--text);
+}
+.material-card:hover {
+  background: var(--active);
+}
+.material-card svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.material-folder {
+  width: 32px;
+  height: 32px;
+  color: var(--accent-text);
+}
+.material-arrow {
+  width: 20px;
+  height: 20px;
+}
+.material-copy {
+  display: grid;
+  gap: 8px;
+}
+.material-copy strong {
+  font-size: 17px;
+  line-height: 1.4;
+}
+.material-kicker,
+.material-description,
+.materials-empty {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.materials-empty {
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .material-card {
+    gap: 12px;
+    padding: 16px;
+    grid-template-columns: 24px minmax(0, 1fr) 20px;
+  }
+  .material-folder {
+    width: 24px;
+    height: 24px;
+  }
+  .materials-heading {
+    font-size: 20px;
+  }
 }
 
 /* episódios, no visual limpo: número, capa, nome, tempo, descrição */
