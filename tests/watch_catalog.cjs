@@ -18,7 +18,8 @@ const data = JSON.parse(
 );
 const upcoming = data.series.find(s => s.slug === "hermes-em-operacao");
 assert.ok(model.available(data).some(s => s === upcoming));
-assert.equal(model.episodes(upcoming).length, 0);
+assert.equal(model.episodes(upcoming).length, 1);
+assert.equal(model.episodeNumber(model.episodes(upcoming)[0].episode, 0), 2);
 assert.equal(model.continuing({series:[upcoming]}, () => null).length, 0);
 assert.equal(model.available({series:[{...upcoming, em_breve: false, seasons: [{n:1, eps:[]}]}]}).length, 0);
 data.series = data.series.filter(s => s !== upcoming);
@@ -125,3 +126,14 @@ assert.equal(model.resume(extra, read).fresh, true);
 console.log(
   "PASS: acervo por dados, múltiplas séries, filtros, retomada, escolha de caminho e fim de série",
 );
+
+// Numeração editorial pode começar no episódio 2 sem criar um episódio fictício.
+const numbered = {seasons: [{n: 1, eps: [{n: 2, uid: "a".repeat(32), d: 20}, {n: 5, uid: "b".repeat(32), d: 30}]}]};
+assert.equal(model.episodeNumber(numbered.seasons[0].eps[0], 0), 2);
+assert.equal(model.episodeNumber({}, 0), 1);
+assert.deepEqual({...model.choiceTarget(numbered, {temporada: 1, episodio: 5})}, {season: 0, ep: 1});
+assert.equal(model.choiceTarget(numbered, {temporada: 1, episodio: 1}), null);
+
+const lateProgress = key => key === `agentflix-prog-${upcoming.seasons[0].eps[0].uid}` ? {t:2683, at:1} : null;
+assert.equal(resume(upcoming, lateProgress).fresh, false, "última parte não é concluída por atingir 95%");
+assert.equal(resume(upcoming, key => key.startsWith('agentflix-finished-') ? true : lateProgress(key)).finished, true);

@@ -18,7 +18,7 @@
   const series = '../../?s=hermes-em-operacao';
   const header = document.querySelector('.top');
   const back = header?.querySelector('.back');
-  if (back) { back.href = series; back.textContent = '← Voltar à série'; }
+  if (back) { back.href = series + '#t1e2'; back.textContent = '← Voltar ao vídeo'; }
   const nav = document.createElement('nav');
   nav.className = 'episode-navigation';
   nav.setAttribute('aria-label', 'Partes do episódio 2');
