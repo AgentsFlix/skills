@@ -8,6 +8,12 @@
 
   const episodeNumber = (episode, index) => episode.n ?? index + 1;
 
+  // Paths in series.json are relative to /assistir/, never to the active lesson.
+  function assetUrl(path) {
+    return typeof path === "string" && path && !/^(?:[a-z][a-z0-9+.-]*:|\/)/i.test(path)
+      ? `/assistir/${path.replace(/^\.\//, "")}` : path;
+  }
+
   function lessonUrl(series, seasonIndex, episodeIndex) {
     const season = series.seasons[seasonIndex], episode = season.eps[episodeIndex];
     return episode.share_url || `/assistir/?s=${encodeURIComponent(series.slug)}#t${season.n}e${episodeNumber(episode, episodeIndex)}`;
@@ -133,6 +139,7 @@
   return Object.freeze({
     episodeNumber,
     lessonUrl,
+    assetUrl,
     lessonRoute,
     episodes,
     progress,
