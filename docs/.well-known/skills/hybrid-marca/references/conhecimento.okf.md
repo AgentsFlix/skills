@@ -17,7 +17,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-marca
-  content_revision: 1.0.7
+  content_revision: 1.0.8
   verification_evidence: []
 ---
 

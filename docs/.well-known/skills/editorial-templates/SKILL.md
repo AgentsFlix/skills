@@ -10,7 +10,7 @@ metadata:
   source: https://github.com/AgentsFlix/skills/tree/main/skills/editorial-templates
   tags: editorial, marca, memoria, okf
   contract_version: 1.0.0
-  content_revision: 1.0.6
+  content_revision: 1.0.7
   distribution_ref: main
 ---
 
@@ -26,7 +26,7 @@ Obrigatórios para finalizar: tokens e aplicações visuais aprovadas, conteúdo
 
 ## Procedure
 
-Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada.
+Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada. Se a pergunta for sobre prática ou experiência não confirmada, deixe o relato inteiro em aberto: “Sobre [contexto já conhecido], meu histórico é [relato, se houver]”. Não comece com “já fiz”, “eu começo fazendo” ou “nunca fiz” sem fonte, mesmo que o restante tenha campos. A oferta de uma atividade não prova sua realização. Escreva Base, Pergunta e Exemplo em linhas separadas.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 

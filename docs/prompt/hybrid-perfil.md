@@ -20,7 +20,7 @@
 >
 > Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Se você só sabe minha profissão e que quero começar a presença digital, pergunte pela oferta, pelo público e pelo problema do cliente. Salvar esse rascunho não encerra a entrevista necessária. Minha dificuldade de divulgar o negócio é um objetivo editorial; não a trate como o problema que meu serviço resolve para o cliente. Decida pela presença dos dados essenciais: se oferta, público pretendido e problema do cliente já estão nas fontes, documente e conclua a síntese solicitada. Minha validação geral do texto não é um novo input obrigatório. Se algum desses dados faltar, faça a pergunta contextual e aguarde a resposta ou meu desconhecimento explícito. Avalie rotina com o contexto disponível; isso não obriga a fazer pergunta de configuração. Uma recusa atual encerra o assunto. Guarde o trabalho útil antes de pedir refinamentos opcionais.
 >
-> Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada.
+> Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada. Se a pergunta for sobre prática ou experiência não confirmada, deixe o relato inteiro em aberto: “Sobre [contexto já conhecido], meu histórico é [relato, se houver]”. Não comece com “já fiz”, “eu começo fazendo” ou “nunca fiz” sem fonte, mesmo que o restante tenha campos. A oferta de uma atividade não prova sua realização. Escreva Base, Pergunta e Exemplo em linhas separadas.
 
 ---
 # Perfil do negócio para a tarefa atual
@@ -41,7 +41,7 @@ O perfil institucional ampliado em `references/elicit-company-profile.md` é opc
 
 ## Procedure
 
-Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada.
+Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada. Se a pergunta for sobre prática ou experiência não confirmada, deixe o relato inteiro em aberto: “Sobre [contexto já conhecido], meu histórico é [relato, se houver]”. Não comece com “já fiz”, “eu começo fazendo” ou “nunca fiz” sem fonte, mesmo que o restante tenha campos. A oferta de uma atividade não prova sua realização. Escreva Base, Pergunta e Exemplo em linhas separadas.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
@@ -105,7 +105,7 @@ Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não
 
 Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Se você só sabe minha profissão e que quero começar a presença digital, pergunte pela oferta, pelo público e pelo problema do cliente. Salvar esse rascunho não encerra a entrevista necessária. Minha dificuldade de divulgar o negócio é um objetivo editorial; não a trate como o problema que meu serviço resolve para o cliente. Decida pela presença dos dados essenciais: se oferta, público pretendido e problema do cliente já estão nas fontes, documente e conclua a síntese solicitada. Minha validação geral do texto não é um novo input obrigatório. Se algum desses dados faltar, faça a pergunta contextual e aguarde a resposta ou meu desconhecimento explícito. Avalie rotina com o contexto disponível; isso não obriga a fazer pergunta de configuração. Uma recusa atual encerra o assunto. Guarde o trabalho útil antes de pedir refinamentos opcionais.
 
-Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada.
+Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada. Se a pergunta for sobre prática ou experiência não confirmada, deixe o relato inteiro em aberto: “Sobre [contexto já conhecido], meu histórico é [relato, se houver]”. Não comece com “já fiz”, “eu começo fazendo” ou “nunca fiz” sem fonte, mesmo que o restante tenha campos. A oferta de uma atividade não prova sua realização. Escreva Base, Pergunta e Exemplo em linhas separadas.
 
 
 ---
@@ -161,7 +161,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" init --version 0.4.3 --revision 1.0.6
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" init --version 0.4.3 --revision 1.0.7
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" audit
@@ -256,7 +256,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-perfil
-  content_revision: 1.0.6
+  content_revision: 1.0.7
   verification_evidence: []
 ---
 
@@ -1133,7 +1133,7 @@ Criar `workspace/company/mission-vision.md`:
   "contract_version": "1.0.0",
   "skill_id": "hybrid-perfil",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.6",
+  "content_revision": "1.0.7",
   "distribution_ref": "main"
 }
 
@@ -2601,7 +2601,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.6",
+  "content_revision": "1.0.7",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }
