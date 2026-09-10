@@ -1,3 +1,5 @@
+> Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
+
 > Fonte de conhecimento levada do squad `copywriter-os` (Synkra / Hybrid). Blocos `activation-instructions`, `commands` com `*`, `IDE-FILE-RESOLUTION` e chamadas a scripts `.cjs`/`.sh` são do formato de origem e não se aplicam no Hermes: não há persona a assumir nem comando `*` a executar. Caminhos `{pasta}/…` apontam para a pasta configurada da skill.
 
 # dan-koe

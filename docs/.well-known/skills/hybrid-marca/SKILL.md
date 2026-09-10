@@ -10,7 +10,9 @@ metadata:
   source: https://github.com/AgentsFlix/skills/tree/main/skills/hybrid-marca
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-perfil, hybrid-fundador
-  config: 'hybrid.pasta: Pasta do negócio no seu computador: é onde os YAML do Hybrid Workspace vivem (perfil, ICP, marca, oferta, diagnósticos). Um negócio por pasta.'
+  contract_version: 1.0.0
+  content_revision: 1.0.0
+  distribution_ref: main
 ---
 
 # A MARCA · Núcleo, promessas, personalidade, voz e valores
@@ -27,6 +29,10 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Quick Reference
 
+Obrigatórios: perfil, público e objetivo de comunicação ou equivalentes. Acervo de voz e provas existentes são opcionais para entrevista; necessários para alegar extração ou promessa comprovada.
+
+Leia `references/configuracao.json` apenas para resolver configuração ausente após o bootstrap. Defaults são exemplos; confirme o destino real antes de escrever.
+
 | procedimento | referência |
 |---|---|
 | elicit brand yaml | `references/elicit-brand-yaml.md` |
@@ -37,11 +43,18 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Procedure
 
-1. Resolva a pasta: `hybrid.pasta`. Se não existir, crie. Para cada template listado acima que ainda não exista na pasta, copie-o de `templates/` para a pasta com o nome original (ex.: `company-icp.yaml` → `icp.yaml`).
-2. Abra a referência do procedimento e siga as fases na ordem. Onde ela escrever `{pasta}/…`, leia a pasta configurada. Onde ela citar um comando `*algo` ou um script `.cjs`/`.sh`, trate como nome da etapa, não como algo a executar.
-3. Conduza a elicitação em blocos: apresente o resumo do que já está preenchido, pergunte só o que falta, aceite 'não sei ainda' e deixe `null`. Nunca preencha com suposição.
-4. Grave o YAML na pasta, preservando a estrutura do template. Calcule a completude: campos preenchidos ÷ campos obrigatórios; atualize `metadata.completeness_percentage` e `status`.
-5. Se a completude ficou abaixo de 85%, diga quais seções faltam e o que perguntar na próxima sessão. Não declare o arquivo pronto.
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
+2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
+3. Trabalhe posicionamento, promessa e diferenciais com o mesmo contexto que alimentará a voz. Identifique qual problema resolve, para quem, alternativa e motivo verificável para escolher. Não invente prova de resultado, garantia ou diferenciação.
+4. Para voz, verifique acervo: se houver diversidade suficiente de textos próprios, extraia padrões com trechos e origem. Se houver pouco material, marque a inferência provisória e conduza entrevista de preferências; não declare DNA extraído. Continue as escolhas do posicionamento, sem repetir perfil/ICP.
+5. Entregue posicionamento e guia de voz: princípios, vocabulário, exemplos de aplicação contextualizados, limites e origens. Cada coleta aberta tem exemplo próprio baseado no contexto. Estado proposto/aprovado pertence à manifestação da pessoa; encaminhe as escolhas e pendências à matéria-prima/visual.
+6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
+
+## Avaliação de rotina
+
+Definição é pontual. Revisar após mudança de posicionamento ou acervo significativo; não criar notificação recorrente para reafirmar a voz.
 
 ## Pitfalls
 
@@ -52,19 +65,20 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O YAML existe na pasta configurada e parseia (`python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1]))' <arquivo>` sai 0).
-2. `metadata.completeness_percentage` foi recalculado e bate com a contagem de campos não-nulos.
-3. Nenhum campo obrigatório foi preenchido com valor que o usuário não deu; os pendentes estão em `null` e listados.
-4. Se abaixo de 85%, a resposta diz as seções faltantes e não declara pronto.
-5. Nenhum dado foi enviado para fora da pasta do negócio.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+Posicionamento e voz coerentes, promessas fundamentadas ou propostas, extração rastreável ou entrevista explícita quando falta acervo. Continuidade da mesma marca entre as duas operações. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
+- `references/ciclo-de-vida.md`
+- `references/configuracao.json`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
 - `references/elicit-brand-yaml.md`
+- `references/identidade.json`
+- `scripts/auditar.py`
 - `templates/brand-brandbook.yaml`
 - `templates/brand-messaging-framework.yaml`
 - `templates/brand-positioning-statement.yaml`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`

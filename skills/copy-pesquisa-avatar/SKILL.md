@@ -1,14 +1,23 @@
 ---
 name: copy-pesquisa-avatar
-description: "Antes de escrever, saber o que a pessoa já diz para si mesma. Use quando o pedido envolver avatar, público, conversa mental, motivos, nível de consciência, sofisticação do mercado."
+description: Antes de escrever, saber o que a pessoa já diz para si mesma. Use quando o pedido envolver avatar, público, conversa mental, motivos, nível de consciência, sofisticação do mercado.
 version: 0.4.3
-author: "José Carlos Amorim"
+author: José Carlos Amorim
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [copy, copywriting, pesquisa, avatar]
-    related_skills: [copy-pipeline, copy-auditoria]
+    tags:
+    - copy
+    - copywriting
+    - pesquisa
+    - avatar
+    related_skills:
+    - copy-pipeline
+    - copy-auditoria
 ---
 
 # DENTRO DA CABEÇA · Conversa mental, motivos, sofisticação
@@ -23,6 +32,8 @@ Antes de escrever, saber o que a pessoa já diz para si mesma. O agente pesquisa
 
 ## Quick Reference
 
+Obrigatórios: negócio/oferta, público/hipótese e decisão a esclarecer. Fontes disponíveis ou ferramenta de pesquisa real definem o alcance; falta de rede não autoriza fontes inventadas.
+
 Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Quality Checklist` próprios.
 
 | sub-tarefa | referência |
@@ -36,12 +47,18 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 
 ## Procedure
 
-1. Identifique a sub-tarefa pela tabela acima. Se o pedido cobre mais de uma, ordene-as na sequência em que uma alimenta a outra e execute uma por vez.
-2. Abra a referência escolhida e leia o bloco `Inputs`. Colete do usuário todos os `required`; pergunte o que faltar antes de escrever. Registre os `optional` que ele deu.
-3. Siga a referência: fórmulas, categorias e passos, na ordem em que aparecem. Onde ela citar um template em `templates/`, abra e preencha o template; onde citar um checklist, use-o no passo 5.
-4. Escreva a entrega no formato do bloco `Output Format` da referência, em português. Deixe `[COLCHETES]` só onde falta um dado do usuário; nunca invente número, depoimento ou nome.
-5. Rode o `Quality Checklist` (ou `Evaluation Criteria`) da referência sobre o que escreveu. Corrija o que falhou. Liste na entrega o resultado item a item.
-6. Entregue: a peça no formato pedido, a lista de `[COLCHETES]` a preencher, e o checklist com o resultado.
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
+2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
+3. Consulte o perfil/ICP e acervo antes de coletar novamente required/optional. Identifique as lacunas que realmente mudam a comunicação. Não transforme descrição da fundadora em entrevista de clientes.
+4. Pesquise nos materiais acessíveis e, quando disponível, ferramenta externa adequada. Registre origem, data conhecida e trecho que sustenta cada achado. Sem acesso, deixe a pesquisa externa pendente e entregue síntese do acervo/hipóteses e um plano específico de coleta.
+5. Escreva a síntese do público no formato pertinente da referência, diferenciando citação, fato observado, inferência e hipótese. Não invente números, depoimentos, emoções ou nomes. Perguntas necessárias têm exemplos contextuais próprios. Entregue ao ICP/posicionamento os achados e limites sem apagar sua procedência.
+6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
+
+## Avaliação de rotina
+
+Pesquisa recorrente pode valer com fontes novas e decisão a alimentar. Não gerar relatórios repetidos sem novidade nem monitorar canais sem acesso autorizado.
 
 ## Pitfalls
 
@@ -52,25 +69,25 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. Toda entrega nomeada no `Output Format` da referência usada existe na resposta (ex.: variações, top 3, pares de teste).
-2. Todos os `required` do bloco `Inputs` foram obtidos do usuário antes da escrita, ou a resposta diz explicitamente qual faltou e parou ali.
-3. Nenhum número, depoimento ou nome aparece sem ter vindo do usuário; o que falta está em `[COLCHETES]` e listado no fim.
-4. O `Quality Checklist` da referência aparece na entrega com cada item marcado, e nenhum item está falho.
-5. A resposta nomeia qual referência foi usada (`references/<sub-tarefa>.md`).
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+Cada achado tem fonte inspecionada ou rótulo de hipótese; pesquisa indisponível não é alegada como realizada. Não pontuar resultado por quantidade de hipóteses inventadas. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
 
 ## Arquivos desta skill
 
 - `references/analyze-mental-conversation.md`
+- `references/ativacao.md`
 - `references/avatar-research.md`
 - `references/checklist-avatar-research-checklist.md`
 - `references/checklist-copysearch-checklist.md`
+- `references/ciclo-de-vida.md`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
 - `references/copysearch.md`
 - `references/diagnose-awareness-level.md`
 - `references/diagnose-market-sophistication.md`
+- `references/identidade.json`
 - `references/map-6-primary-motives.md`
+- `scripts/auditar.py`
 - `templates/avatar-research-template.md`
 - `templates/copysearch-template.md`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`

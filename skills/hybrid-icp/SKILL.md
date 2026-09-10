@@ -1,19 +1,25 @@
 ---
 name: hybrid-icp
-description: "Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o ICP de [produto]\"."
+description: 'Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: "monta o ICP de [produto]".'
 version: 0.4.3
-author: "José Carlos Amorim"
+author: José Carlos Amorim
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [hybrid-workspace, negocio, elicitacao, yaml]
-    related_skills: [hybrid-diagnostico, hybrid-proxima-acao, hybrid-perfil, hybrid-fundador]
-    config:
-      - key: hybrid.pasta
-        description: "Pasta do negócio no seu computador: é onde os YAML do Hybrid Workspace vivem (perfil, ICP, marca, oferta, diagnósticos). Um negócio por pasta."
-        default: "~/hybrid/meu-negocio"
-        prompt: "Em que pasta ficam os arquivos deste negócio? (uma pasta por negócio)"
+    tags:
+    - hybrid-workspace
+    - negocio
+    - elicitacao
+    - yaml
+    related_skills:
+    - hybrid-diagnostico
+    - hybrid-proxima-acao
+    - hybrid-perfil
+    - hybrid-fundador
 ---
 
 # O CLIENTE IDEAL · ICP em 47 campos, com o nível de consciência do mercado antes
@@ -30,6 +36,12 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Quick Reference
 
+Obrigatórios: negócio/oferta, decisão de público a apoiar e fonte disponível. Características não pesquisadas são hipóteses; dados do perfil existente devem ser aproveitados.
+
+A contagem do template expandido está em `references/campos-icp.json`. Use seus caminhos e o total real para completude; o rótulo editorial de origem não é o denominador. Defaults vazios não são respostas.
+
+Leia `references/configuracao.json` apenas para resolver configuração ausente após o bootstrap. Defaults são exemplos; confirme o destino real antes de escrever.
+
 | procedimento | referência |
 |---|---|
 | elicit icp yaml | `references/elicit-icp-yaml.md` |
@@ -40,11 +52,18 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Procedure
 
-1. Resolva a pasta: `hybrid.pasta`. Se não existir, crie. Para cada template listado acima que ainda não exista na pasta, copie-o de `templates/` para a pasta com o nome original (ex.: `company-icp.yaml` → `icp.yaml`).
-2. Abra a referência do procedimento e siga as fases na ordem. Onde ela escrever `{pasta}/…`, leia a pasta configurada. Onde ela citar um comando `*algo` ou um script `.cjs`/`.sh`, trate como nome da etapa, não como algo a executar.
-3. Conduza a elicitação em blocos: apresente o resumo do que já está preenchido, pergunte só o que falta, aceite 'não sei ainda' e deixe `null`. Nunca preencha com suposição.
-4. Grave o YAML na pasta, preservando a estrutura do template. Calcule a completude: campos preenchidos ÷ campos obrigatórios; atualize `metadata.completeness_percentage` e `status`.
-5. Se a completude ficou abaixo de 85%, diga quais seções faltam e o que perguntar na próxima sessão. Não declare o arquivo pronto.
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
+2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
+3. Use o perfil anterior e os relatos/acervo autorizados. Separe público atual observado, público desejado e hipóteses. Perfil de pessoa fictícia é persona proposta, não pesquisa nem cliente entrevistado.
+4. Construa ICP com contexto, problema, critérios de decisão, objeções e limites. Use os campos do template como banco de investigação; não envie o questionário integral. Pergunte só lacunas que mudam a próxima decisão, cada uma com seu exemplo contextual.
+5. Ligue cada afirmação a fonte ou marque hipótese/desconhecido. Pesquise somente lacunas relevantes com ferramenta real disponível; sem pesquisa externa, entregue o que o acervo sustenta e plano da lacuna. Completude do YAML usa somente valores confirmados e denominador declarado; não force preenchimento de psicografia sem evidência. Entregue ICP e síntese aproveitável pelo posicionamento.
+6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
+
+## Avaliação de rotina
+
+Revisão pode valer com novas entrevistas, clientes ou mudança de oferta; coleta automatizada só com fontes e autorização reais.
 
 ## Pitfalls
 
@@ -55,19 +74,21 @@ Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e q
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O YAML existe na pasta configurada e parseia (`python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1]))' <arquivo>` sai 0).
-2. `metadata.completeness_percentage` foi recalculado e bate com a contagem de campos não-nulos.
-3. Nenhum campo obrigatório foi preenchido com valor que o usuário não deu; os pendentes estão em `null` e listados.
-4. Se abaixo de 85%, a resposta diz as seções faltantes e não declara pronto.
-5. Nenhum dado foi enviado para fora da pasta do negócio.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+ICP diferencia evidência, hipótese e ausência de dados; nenhuma psicografia inventada como fato. Completude rastreável quando declarada; perguntas essenciais com exemplos próprios. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
+- `references/campos-icp.json`
+- `references/ciclo-de-vida.md`
+- `references/configuracao.json`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
 - `references/elicit-icp-yaml.md`
 - `references/elicit-icp.md`
+- `references/identidade.json`
+- `scripts/auditar.py`
 - `templates/company-diagnosis.yaml`
 - `templates/company-icp.yaml`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`

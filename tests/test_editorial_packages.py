@@ -5,7 +5,7 @@ import unittest
 from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
-SLUGS = ['editorial-pilares', 'editorial-visual', 'editorial-templates', 'editorial-rotina']
+SLUGS = ['editorial-pilares', 'editorial-visual', 'editorial-templates', 'editorial-rotina', 'hybrid-perfil', 'hybrid-icp', 'hybrid-marca', 'hybrid-etl', 'copy-pesquisa-avatar', 'copy-voz', 'sop-extrair', 'copy-metodo-koe']
 
 
 class EditorialPackageTests(unittest.TestCase):
