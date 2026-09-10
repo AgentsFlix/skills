@@ -82,6 +82,7 @@
   .brand .logo { display: block; height: 36px; width: auto; }   /* kit: logo completa nunca abaixo de 180px de largura */
   nav.main { display: flex; gap: 18px; flex: 1 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: none; white-space: nowrap; font-size: 14px; font-weight: 600; color: #d6d6d6; }
   .spacer { flex: 1 1 12px; min-width: 12px; }
+  nav.main a { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-width: 44px; min-height: 44px; padding-bottom: 4px; border-bottom: 2px solid transparent; }
   .search { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; min-width: 0; border: 1px solid transparent; border-radius: 999px; }
   .search.open { background: var(--panel); border-color: var(--line); padding-right: 14px; }
   .search-toggle { width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: transparent; color: #fff; border-radius: 50%; cursor: pointer; }
@@ -89,7 +90,7 @@
   .search input { width: clamp(160px, 16vw, 260px); }
   .search:focus-within { border-color: var(--accent); }
   .search .slash { font-size: 12px; color: var(--accent-text); }
-  .search input { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: #fff; font-size: 13px; }
+  .search input { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: #fff; font-size: 16px; min-height: 44px; }
   .search input::placeholder { color: var(--muted); }
   .count { border: 0; background: none; cursor: pointer; min-height: 44px; padding: 0; display: flex; align-items: center; gap: 8px; flex: 0 0 auto; white-space: nowrap; font-size: 14px; color: var(--muted); }
   .count .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
