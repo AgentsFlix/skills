@@ -1965,6 +1965,9 @@ a {
   .tp-tab {
     padding: 14px 12px 40px;
   }
+  #tab-materiais {
+    padding-inline: 18px;
+  }
   .eps-head {
     flex-wrap: wrap;
   }
