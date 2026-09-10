@@ -305,6 +305,9 @@
     state.ep = ep;
     const e = curEp();
     state.lastChapter = -1;
+    $("lesson-share").hidden = !e.share_url;
+    $("lesson-share").textContent = "Copiar link da aula";
+    $("lesson-share-status").textContent = "";
     window.clar?.("assistiu", {
       serie: SERIE.slug,
       episodio: `T${sN(season)}E${eN(season, ep)}`,
@@ -952,6 +955,21 @@
   $("vol").addEventListener("input", (ev) => {
     video.volume = ev.target.value / 100;
     video.muted = video.volume === 0;
+  });
+
+  $("lesson-share").addEventListener("click", async () => {
+    const url = curEp()?.share_url;
+    if (!url) return;
+    const fullUrl = new URL(url, window.location.origin).href;
+    if (await window.agentflixCopy(fullUrl)) {
+      $("lesson-share").textContent = "Link copiado ✓";
+      $("lesson-share-status").textContent = "Link copiado. Cole na conversa do WhatsApp.";
+    } else {
+      $("lesson-share-url").value = fullUrl;
+      $("lesson-share-dialog").showModal();
+      $("lesson-share-url").focus();
+      $("lesson-share-url").select();
+    }
   });
 
   // ---------- cliques ----------
