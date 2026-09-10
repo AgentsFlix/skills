@@ -189,3 +189,14 @@ sem JavaScript. A página interativa `t1e2/` mantém seu endereço.
 link da aula**, com confirmação apenas após sucesso e cópia manual como alternativa.
 Não há envio automático ao WhatsApp. Uma futura capa deve usar outro nome de
 arquivo para permitir renovação do cache da prévia. Metadados seguem https://ogp.me/.
+
+### Revisão da mídia sem perder o progresso
+
+`uid` conserva a identidade da edição publicada. `stream_uid` opcional indica
+uma mídia substituta, usada por HLS, poster e miniaturas. Retomada, exercícios e
+conclusão continuam ligados a `uid`. Episódios sem `stream_uid` usam o vídeo
+original normalmente. Esse mecanismo exige a mesma timeline, cortes e capítulos.
+
+T1:E2 de HERMES EM OPERAÇÃO recebeu o tratamento de imagem aprovado em 1080p,
+com redução leve dos blocos de compressão e nitidez. Os 44min44s e os cinco
+exercícios continuam nos mesmos intervalos. O original é mantido para reversão.
