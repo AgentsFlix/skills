@@ -100,6 +100,28 @@ class Series(unittest.TestCase):
                                 self.assertIn("REFERRALCODE=JOSEAMORIM20", o["url"], f"{e['t']}: link da Hostinger sem o código de indicação")
                                 self.assertIn("referral_id=", o["url"], f"{e['t']}: link da Hostinger sem referral_id")
 
+    def test_operacao_t1e2_partes(self):
+        series = next(s for s in self.data['series'] if s['slug'] == 'hermes-em-operacao')
+        episode = next(e for e in series['seasons'][0]['eps'] if e.get('n') == 2)
+        expected = [(297,938,'pratica.html'),(1614,2127,'equipe.html'),(2298,3036,'eugencia-pratica.html'),(3544,4208,'cliente-pratica.html'),(7029,7157,'base-negocio.html')]
+        self.assertEqual(len(episode['partes']), 5)
+        stops = [c for c in episode['ch'] if c.get('acao', {}).get('fim_parte')]
+        self.assertEqual(len(stops), 5)
+        elapsed = 0
+        for i, ((start, end, file), part, stop) in enumerate(zip(expected, episode['partes'], stops), 1):
+            self.assertEqual((part['source_start'], part['source_end']), (start, end))
+            self.assertEqual(part['start'], elapsed)
+            elapsed += end - start
+            self.assertEqual(part['end'], elapsed)
+            self.assertAlmostEqual(stop['t'], elapsed, delta=.05)
+            action = stop['acao']
+            self.assertTrue(action['parar'])
+            self.assertEqual(action['tipo'], 'link')
+            self.assertEqual(action['opcoes'][0]['url'], 'https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/' + file)
+            self.assertEqual(action.get('encerrar', False), i == 5)
+            if i < 5: self.assertEqual(action['continuar_em'], elapsed)
+        self.assertAlmostEqual(episode['d'], 2684, delta=.1)
+
     def test_aula_ramificada(self):
         """escolha aponta para temporadas existentes; temporada de caminho tem rótulo; depois aponta para temporada existente."""
         for s in self.data["series"]:

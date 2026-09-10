@@ -6,6 +6,8 @@
 })(globalThis, () => {
   "use strict";
 
+  const episodeNumber = (episode, index) => episode.n ?? index + 1;
+
   function episodes(series) {
     return series.seasons.flatMap((season, si) =>
       season.eps.map((episode, ei) => ({
@@ -33,7 +35,7 @@
     const season = series.seasons.findIndex((s) => +s.n === +option.temporada);
     const number = option.episodio ?? 1;
     if (season < 0 || !Number.isInteger(number) || number < 1) return null;
-    const ep = number - 1;
+    const ep = series.seasons[season].eps.findIndex((e, i) => episodeNumber(e, i) === number);
     return series.seasons[season].eps[ep] ? { season, ep } : null;
   }
 
@@ -48,7 +50,9 @@
       series.seasons.findIndex((s) => !s.caminho && s.eps.length),
     );
     if (!last) return { season: first, ep: 0, fresh: true };
-    const done = last.saved.t / last.episode.d >= 0.95;
+    const done = last.episode.partes?.length
+      ? read(`agentflix-finished-${last.episode.uid}`, false) === true
+      : last.saved.t / last.episode.d >= 0.95;
     if (!done) return { season: last.season, ep: last.ep, fresh: false };
     const season = series.seasons[last.season];
     if (last.episode.escolha) {
@@ -117,6 +121,7 @@
   }
 
   return Object.freeze({
+    episodeNumber,
     episodes,
     progress,
     choiceTarget,

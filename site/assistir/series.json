@@ -950,7 +950,206 @@
         {
           "n": 1,
           "title": "Temporada 1",
-          "eps": [],
+          "eps": [
+            {
+              "n": 2,
+              "aula": 2,
+              "t": "O restaurante de Miojo Premium",
+              "d": 2684.04,
+              "uid": "f490e002b8d92a50e534ded6c75126a6",
+              "desc": "Cinco partes: do fluxo do restaurante à base do negócio, com uma atividade após cada explicação.",
+              "partes": [
+                {
+                  "n": 1,
+                  "source_start": 297,
+                  "source_end": 938,
+                  "start": 0,
+                  "end": 641,
+                  "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/pratica.html",
+                  "titulo": "Monte o fluxo do restaurante"
+                },
+                {
+                  "n": 2,
+                  "source_start": 1614,
+                  "source_end": 2127,
+                  "start": 641,
+                  "end": 1154,
+                  "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/equipe.html",
+                  "titulo": "Divida o trabalho entre os chefs"
+                },
+                {
+                  "n": 3,
+                  "source_start": 2298,
+                  "source_end": 3036,
+                  "start": 1154,
+                  "end": 1892,
+                  "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/eugencia-pratica.html",
+                  "titulo": "Monte o fluxo da Eugência"
+                },
+                {
+                  "n": 4,
+                  "source_start": 3544,
+                  "source_end": 4208,
+                  "start": 1892,
+                  "end": 2556,
+                  "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/cliente-pratica.html",
+                  "titulo": "Converse com três clientes"
+                },
+                {
+                  "n": 5,
+                  "source_start": 7029,
+                  "source_end": 7157,
+                  "start": 2556,
+                  "end": 2684,
+                  "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/base-negocio.html",
+                  "titulo": "Construa a base do negócio"
+                }
+              ],
+              "ch": [
+                {
+                  "t": 0,
+                  "n": "Parte 1 · Monte o fluxo do restaurante",
+                  "parte": 1
+                },
+                {
+                  "t": 641,
+                  "n": "Exercício 1 · Monte o fluxo do restaurante",
+                  "parte": 1,
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "fim_parte": true,
+                    "indicacao": false,
+                    "label": "Exercício 1",
+                    "titulo": "Parte 1 de 5 · Monte o fluxo do restaurante",
+                    "cta": "Abrir exercício em nova aba",
+                    "nota": "Faça a atividade na nova aba. O vídeo fica pausado até você voltar e continuar.",
+                    "opcoes": [
+                      {
+                        "label": "Monte o fluxo do restaurante",
+                        "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/pratica.html"
+                      }
+                    ],
+                    "continuar_em": 641,
+                    "pular": "Continuar para a próxima parte"
+                  }
+                },
+                {
+                  "t": 641.25,
+                  "n": "Parte 2 · Divida o trabalho entre os chefs",
+                  "parte": 2
+                },
+                {
+                  "t": 1154,
+                  "n": "Exercício 2 · Divida o trabalho entre os chefs",
+                  "parte": 2,
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "fim_parte": true,
+                    "indicacao": false,
+                    "label": "Exercício 2",
+                    "titulo": "Parte 2 de 5 · Divida o trabalho entre os chefs",
+                    "cta": "Abrir exercício em nova aba",
+                    "nota": "Faça a atividade na nova aba. O vídeo fica pausado até você voltar e continuar.",
+                    "opcoes": [
+                      {
+                        "label": "Divida o trabalho entre os chefs",
+                        "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/equipe.html"
+                      }
+                    ],
+                    "continuar_em": 1154,
+                    "pular": "Continuar para a próxima parte"
+                  }
+                },
+                {
+                  "t": 1154.25,
+                  "n": "Parte 3 · Monte o fluxo da Eugência",
+                  "parte": 3
+                },
+                {
+                  "t": 1892,
+                  "n": "Exercício 3 · Monte o fluxo da Eugência",
+                  "parte": 3,
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "fim_parte": true,
+                    "indicacao": false,
+                    "label": "Exercício 3",
+                    "titulo": "Parte 3 de 5 · Monte o fluxo da Eugência",
+                    "cta": "Abrir exercício em nova aba",
+                    "nota": "Faça a atividade na nova aba. O vídeo fica pausado até você voltar e continuar.",
+                    "opcoes": [
+                      {
+                        "label": "Monte o fluxo da Eugência",
+                        "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/eugencia-pratica.html"
+                      }
+                    ],
+                    "continuar_em": 1892,
+                    "pular": "Continuar para a próxima parte"
+                  }
+                },
+                {
+                  "t": 1892.25,
+                  "n": "Parte 4 · Converse com três clientes",
+                  "parte": 4
+                },
+                {
+                  "t": 2556,
+                  "n": "Exercício 4 · Converse com três clientes",
+                  "parte": 4,
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "fim_parte": true,
+                    "indicacao": false,
+                    "label": "Exercício 4",
+                    "titulo": "Parte 4 de 5 · Converse com três clientes",
+                    "cta": "Abrir exercício em nova aba",
+                    "nota": "Faça a atividade na nova aba. O vídeo fica pausado até você voltar e continuar.",
+                    "opcoes": [
+                      {
+                        "label": "Converse com três clientes",
+                        "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/cliente-pratica.html"
+                      }
+                    ],
+                    "continuar_em": 2556,
+                    "pular": "Continuar para a próxima parte"
+                  }
+                },
+                {
+                  "t": 2556.25,
+                  "n": "Parte 5 · Construa a base do negócio",
+                  "parte": 5
+                },
+                {
+                  "t": 2684,
+                  "n": "Exercício 5 · Construa a base do negócio",
+                  "parte": 5,
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "fim_parte": true,
+                    "indicacao": false,
+                    "label": "Exercício 5",
+                    "titulo": "Parte 5 de 5 · Construa a base do negócio",
+                    "cta": "Abrir exercício em nova aba",
+                    "nota": "Faça a atividade na nova aba. Quando terminar, volte para concluir o episódio.",
+                    "opcoes": [
+                      {
+                        "label": "Construa a base do negócio",
+                        "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e2/base-negocio.html"
+                      }
+                    ],
+                    "encerrar": true,
+                    "pular": "Concluir episódio"
+                  }
+                }
+              ],
+              "share_url": "/assistir/hermes-em-operacao/aula-2/"
+            }
+          ],
           "atividades": [
             {
               "n": 2,
@@ -963,7 +1162,8 @@
           ]
         }
       ],
-      "cover_has_title": true
+      "cover_has_title": true,
+      "customer": "customer-7o8y5tffw1185pu3"
     }
   ],
   "vitrine": {

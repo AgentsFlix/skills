@@ -176,6 +176,15 @@
           <path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z" />
         </svg>
       </button>
+      <button id="lesson-share" class="lesson-share" hidden>Copiar link da aula</button>
+      <span id="lesson-share-status" class="sr-only" role="status" aria-live="polite"></span>
+      <dialog id="lesson-share-dialog" class="lesson-share-dialog" aria-labelledby="lesson-share-heading">
+        <h2 id="lesson-share-heading">Copie o link da aula</h2>
+        <p>A cópia automática não funcionou. Selecione o link abaixo.</p>
+        <label for="lesson-share-url">Link para compartilhar</label>
+        <input id="lesson-share-url" type="url" readonly>
+        <form method="dialog"><button class="btn primary">Fechar</button></form>
+      </dialog>
       <div class="pause-info">
         <div class="k">VOCÊ ESTÁ ASSISTINDO</div>
         <h2 id="pi-title"></h2>
