@@ -71,7 +71,9 @@
     const p = store.get(progKey(e.uid), null);
     return p && e.d ? Math.min(1, p.t / e.d) : 0;
   };
-  const isWatched = (e) => prog(e) >= 0.95;
+  const isWatched = (e) => e.partes?.length
+    ? store.get(`agentflix-finished-${e.uid}`, false) === true
+    : prog(e) >= 0.95;
   const doneKey = (uid, k) => `${uid}-${k}`;
   const isDone = (uid, k) => !!store.get("agentflix-done", {})[doneKey(uid, k)];
   const markDoneStore = (uid, k) => {
@@ -182,7 +184,7 @@
           : "Assistir";
     const activity = SERIE.seasons.flatMap(s => s.atividades || [])[0];
     $("tp-activity").hidden = !activity;
-    $("tp-activity").textContent = activity ? `Abrir episódio ${activity.n}` : "";
+    $("tp-activity").textContent = activity ? (nEps ? `Materiais do episódio ${activity.n}` : `Abrir episódio ${activity.n}`) : "";
     $("tp-activity").href = activity?.url || "#";
     document.querySelector('[data-act="resume"]').hidden = Boolean(activity) && !nEps;
     document.querySelector('[data-act="resume"]').disabled = !nEps;
@@ -537,7 +539,7 @@
     if (state.checkout === k)
       mostrarContinuar(
         k,
-        "Quando terminar por lá, volte e clique em Continuar o vídeo.",
+        `Quando terminar por lá, volte e clique em ${continuationLabel(k)}.`,
       );
   }
   function setPaused(p) {
@@ -598,6 +600,7 @@
     if (k < 0) return;
     const c = chapters(e)[k];
     const a = c.acao;
+    if (c.parte) $("ctl-ep").textContent = `T${sN(state.season)}:E${eN(state.season, state.ep)} · Parte ${c.parte} de ${e.partes.length} · ${e.partes[c.parte - 1].titulo}`;
     // a parada abre uma vez por carregamento da página (state.stopped); o "feito" gravado no navegador só marca check e rótulos, não suprime a pausa: Cmd+R rearma tudo
     if (a && a.parar && !state.stopped[doneKey(e.uid, k)] && !video.paused) {
       state.stopped[doneKey(e.uid, k)] = true;
@@ -665,6 +668,7 @@
       openCheckout(finalStep);
       return;
     }
+    if (e.partes?.length && confirmed === true) store.set(`agentflix-finished-${e.uid}`, true);
     store.set(progKey(e.uid), { t: video.duration || e.d, at: Date.now() });
     if (e.escolha && e.escolha.t === undefined) {
       abrirEscolha(e);
@@ -850,7 +854,7 @@
     $("dl").innerHTML = s.eps
       .map((e, i) => {
         const p = prog(e);
-        return `<div class="dep ${state.dseason === state.season && i === state.ep ? "cur" : ""}" data-act="open-ep" data-s="${state.dseason}" data-e="${i}"><div class="n">${i + 1}</div><div class="th"><img src="${thumb(e.uid, 180)}" alt="" loading="lazy">${p > 0 ? `<span class="prog"><i style="width:${Math.round(p * 100)}%"></i></span>` : ""}</div><div><div class="tt">${esc(e.t)}</div><div class="dur">${fmtDur(e.d)}</div></div></div>`;
+        return `<div class="dep ${state.dseason === state.season && i === state.ep ? "cur" : ""}" data-act="open-ep" data-s="${state.dseason}" data-e="${i}"><div class="n">${eN(state.dseason, i)}</div><div class="th"><img src="${thumb(e.uid, 180)}" alt="" loading="lazy">${p > 0 ? `<span class="prog"><i style="width:${Math.round(p * 100)}%"></i></span>` : ""}</div><div><div class="tt">${esc(e.t)}</div><div class="dur">${fmtDur(e.d)}</div></div></div>`;
       })
       .join("");
   }
@@ -1056,6 +1060,7 @@
       const k = el.dataset.k !== undefined ? +el.dataset.k : buyIdx(curEp());
       if (k >= 0) {
         if (state.checkout !== null) {
+          if (chapters(curEp())[state.checkout]?.acao?.fim_parte) return;
           closeCheckout();
           video.play().catch(() => {});
         } else openCheckout(k);
@@ -1130,6 +1135,7 @@
       const bk = buyIdx(curEp());
       if (bk >= 0) {
         if (state.checkout !== null) {
+          if (chapters(curEp())[state.checkout]?.acao?.fim_parte) return;
           closeCheckout();
           video.play().catch(() => {});
         } else openCheckout(bk);

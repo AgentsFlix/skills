@@ -161,3 +161,19 @@ A parte 9 usa `jornada-marca-visuals.js` para ilustrar as três opções de cada
 A referência guardada pertence à marca ativa. A receita completa é acrescentada aos prompts a partir de Visual; a escolha não confirma aprovação. Trocar a referência preserva o histórico e invalida as revisões de Visual, Templates e Rotina quando necessário. Registros anteriores sem mockup continuam válidos. O download do mockup contém fontes locais; o download da jornada continua sendo apenas o registro das declarações do aluno.
 
 Para reutilizar o renderer: `MockupBank.render(config, slideIndex, wireframe)` devolve um SVG; `MockupBank.recipe(config)` documenta os parâmetros; `MockupBank.files(config)` devolve as fontes e `MockupBank.zip(files)` monta o arquivo portátil sem dependências. Testes: `tests/mockup_bank.cjs`, também executado por `tests/test_brand_journey.py`.
+
+## HERMES EM OPERAÇÃO · T1:E2 em cinco partes
+
+O episódio `n: 2` usa uma montagem de 44min44s e cinco paradas `link` em
+641, 1154, 1892, 2556 e 2684 segundos. `partes` registra os intervalos do original
+e da montagem. `fim_parte` mantém o último quadro ao abrir o exercício;
+`continuar_em` leva ao início da parte seguinte por clique. `encerrar` reserva
+o encerramento para a ação explícita após o último exercício, inclusive no evento
+`ended`. Abrir o link não retoma; P e espaço também não dispensam esse menu.
+
+O campo opcional `n` é o número editorial, usado na ficha, gaveta, catálogo e
+link `?s=hermes-em-operacao#t1e2`. Séries sem `n` conservam a numeração sequencial.
+Vídeo e materiais podem compartilhar o número 2; o deep link abre o vídeo e o
+botão Materiais mantém acesso às páginas. Os materiais também oferecem retorno
+ao vídeo. Progresso da última parte só é concluído pelo botão Concluir episódio,
+sem aplicar o limiar de 95% dos vídeos sem partes.

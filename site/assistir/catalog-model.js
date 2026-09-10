@@ -50,7 +50,9 @@
       series.seasons.findIndex((s) => !s.caminho && s.eps.length),
     );
     if (!last) return { season: first, ep: 0, fresh: true };
-    const done = last.saved.t / last.episode.d >= 0.95;
+    const done = last.episode.partes?.length
+      ? read(`agentflix-finished-${last.episode.uid}`, false) === true
+      : last.saved.t / last.episode.d >= 0.95;
     if (!done) return { season: last.season, ep: last.ep, fresh: false };
     const season = series.seasons[last.season];
     if (last.episode.escolha) {
