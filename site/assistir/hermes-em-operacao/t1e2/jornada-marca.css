@@ -85,6 +85,7 @@
 .journey-review #return-panel>summary { font-weight:600; }
 .journey-review>details[open] { padding-bottom:24px; }
 .journey-review>details> :not(summary) { margin-inline:24px; }
+.journey-review label:not(.check-row) { display:block; }
 .journey-review details p { font-size:14px; line-height:1.6; }
 .journey-review details details { border-top:1px solid var(--line); margin-top:16px; }
 .journey-review details details summary { padding:16px 0; }

@@ -45,9 +45,6 @@
 .visual-approval { display:flex;flex-direction:column;align-items:center;gap:10px;height:100%;width:100% }
 .visual-approval>.visual-post { height:150px }
 .visual-approval .visual-moodboard { height:150px }
-.flow-output .visual-document { width:200px;min-height:105px;padding:14px }
-.flow-output .visual-document b { margin-bottom:10px }
-.flow-output .doc-line { margin:5px 0 }
 @media(max-width:1000px) {
 .visual-writing p { font-size:18px }
 .visual-pair img { height:120px }
@@ -87,9 +84,6 @@
 .visual-approval>.visual-post { height:90px }
 .visual-approval .visual-moodboard { height:90px }
 .visual-approval { gap:5px }
-.flow-output .visual-document { width:148px;min-height:100px }
-.flow-output .visual-document>b { font-size:11px }
-.flow-output .doc-line { font-size:9px }
 }
 #brand-app .brand-option .visual-object img { height:125px }
 #brand-app .visual-pair img { height:130px }
@@ -106,8 +100,6 @@
 #brand-app .visual-chip { font-size:8px }
 #brand-app .visual-document>b { font-size:8px }
 #brand-app .doc-line { font-size:7px }
-#brand-app .flow-output .visual-document>b { font-size:11px }
-#brand-app .flow-output .doc-line { font-size:9px }
 #brand-app .visual-writing small { font-size:5px }
 #brand-app .visual-writing span { font-size:7px }
 #brand-app .visual-writing p { font-size:12px }
