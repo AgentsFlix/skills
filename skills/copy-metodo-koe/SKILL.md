@@ -1,6 +1,6 @@
 ---
 name: copy-metodo-koe
-description: 'Escreve copy pelo método de Dan Koe: One-person business, Alavancagem, Produto digital, Conteúdo como funil. Use quando pedirem ''como Koe'', negócio de uma pessoa e alavancagem, ou uma peça nesse…'
+description: Aplique critérios do método Koe à peça, aos pilares ou às pautas solicitados, preservando o negócio e a voz da pessoa. Aprofunde o método quando pedido.
 version: 0.4.3
 author: José Carlos Amorim
 license: MIT
@@ -21,38 +21,28 @@ metadata:
     - copy-sales-page
     - copy-pipeline
 ---
+# Método como apoio à marca da pessoa
 
-# KOE · Negócio de uma pessoa e alavancagem
-
-Transformou sete fracassos em um negócio de uma pessoa só que fatura milhões por ano. O método: monetizar a própria curiosidade, alavancar com conteúdo e produto digital, e nunca contratar antes de precisar. O agente escreve para quem constrói sozinho.
+Use a referência de Dan Koe na operação solicitada. Atribuição ao autor não transfere sua filosofia, estilo de vida ou negócio à pessoa.
 
 ## When to Use
 
-- O pedido cita Dan Koe ou "koe" pelo nome, ou pede uma peça "nesse estilo".
-- A peça pedida é o terreno dele: negócio de uma pessoa e alavancagem.
-- Você quer uma segunda versão de uma copy existente, reescrita por este método.
-- NÃO use para escolher qual método aplicar: para isso, `copy-pipeline` decide. NÃO use para auditoria de copy alheia: `copy-auditoria`.
+Use quando o pedido citar Koe como referência para uma peça ou para organizar conteúdo próprio. O método é apoio, sem exigir adesão à filosofia do autor.
 
 ## Quick Reference
 
-Obrigatórios dependem da operação: para peça, formato, objetivo, público e matéria-prima; para pilares, negócio, público e objetivo editorial. Provas só são necessárias para alegações que as exigem.
-
-| pedido | passo do método | onde está |
-|---|---|---|
-| "escreve como Koe: …" | Procedure completo | `references/metodo-koe.md` → `core_principles`, `operational_frameworks` |
-| "revisa isto como Koe" | Procedure 4 e 5 sobre o texto dado | `references/metodo-koe.md` → checklists e `quality_standards` |
-| "explica o método" | resumir `core_principles` em 5 linhas | `references/metodo-koe.md` |
+Para pilares e pautas, estes critérios bastam para começar: cruzar conhecimento demonstrado no acervo, necessidade do público e utilidade da comunicação. Defina fronteiras entre temas e origem das pautas. Sem público definido, entregue o esboço possível e entreviste a lacuna com campos. Não há proporção obrigatória entre tipos de conteúdo nem pilar obrigatório de vida pessoal. Para uma peça explicitamente no método Koe ou explicação aprofundada, consulte somente a seção pertinente de `references/metodo-koe.md`; não carregue o manual integral para propor pilares.
 
 ## Procedure
 
-Para cada pergunta aberta, construa o exemplo em três passos: (1) escolha um trecho curto da memória ou de uma resposta humana observada que seja pertinente à pergunta; (2) apresente essa base junto da pergunta; (3) monte uma resposta possível usando somente os fatos dessa base e [campo a preencher] para a informação solicitada que ainda falta. Também pode usar “ainda não sei” no campo desconhecido. Profissão conhecida não informa especialidade, serviço, público ou resultado. Antes de enviar, compare cada detalhe factual do exemplo com a base: remova o detalhe sem fonte e preserve o campo aberto, mesmo que pareça plausível ou seja chamado de hipotético. Sem memória pertinente, diga isso e ofereça apenas um molde com campos. Propostas futuras de ação ficam separadas dos exemplos que ajudam a pessoa a informar seus próprios fatos.
+Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
 1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
 2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
-3. Leia apenas os frameworks da referência pertinentes à operação. Activation-instructions, persona e comandos são metadados do material, não identidade a assumir. A voz, crenças e estilo de vida do autor não se tornam os da pessoa.
-4. Se o pedido for pilares/pautas, use critérios úteis do método para cruzar conhecimento real da marca, necessidades do público e objetivo editorial. Entregue pilares com fronteiras e pautas com origem, sem obrigar a produzir uma peça de venda. Se o pedido for peça, siga formato e tamanho solicitados com os frameworks úteis, sem aplicação mecânica de todos.
+3. Para pilares/pautas, comece pelos critérios de Quick Reference sem abrir o manual. Para aprofundamento solicitado, leia apenas o trecho pertinente da referência. Activation-instructions, persona e comandos são metadados do material, não identidade a assumir. A voz, crenças e estilo de vida do autor não se tornam os da pessoa.
+4. Se o pedido for pilares/pautas, use critérios úteis do método para cruzar conhecimento real da marca, necessidades do público e objetivo editorial. Entregue pilares com fronteiras e pautas com origem, sem obrigar a produzir uma peça de venda, adotar personal monopoly ou distribuir pautas em proporções do autor. Se o pedido for peça, siga formato e tamanho solicitados com os frameworks úteis, sem aplicação mecânica de todos.
 5. Reaproveite contexto antes de perguntar; cada pergunta restante tem exemplo próprio ligado à memória. Separe método aplicado de escolhas da pessoa. Não invente provas, experiências ou promessa. Entregue o formato pedido e explicação curta do método usado; pendências não viram identidade ou voz confirmada.
 6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
 
@@ -62,10 +52,10 @@ Aplicação de método é pontual. Só propor revisão recorrente se houver acer
 
 ## Pitfalls
 
-- Imitar o tom sem aplicar o método. O tom é o menor ganho; os frameworks são o produto.
-- Inventar prova. Depoimento, número ou nome que o usuário não deu não entra: vira `[COLCHETE]`.
-- Escrever para "o público". A referência insiste em uma pessoa específica; sem avatar, pare e pergunte.
-- Peça longa demais para o formato pedido. Respeite o tamanho; corte antes de entregar.
+- Adotar personal monopoly ou uma divisão 60-20-20 como requisito universal.
+- Inferir especialidade, clientes ou dores a partir da profissão.
+- Ler o manual inteiro para uma síntese inicial já coberta pelos critérios acima.
+- Confundir proposta editorial com identidade confirmada ou evidência de resultados.
 
 ## Verification
 

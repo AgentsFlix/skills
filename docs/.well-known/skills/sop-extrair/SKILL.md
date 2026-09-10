@@ -11,7 +11,7 @@ metadata:
   tags: processos, sop, qualidade, operacao
   related: sop-criar, sop-auditar
   contract_version: 1.0.0
-  content_revision: 1.0.4
+  content_revision: 1.0.5
   distribution_ref: main
 ---
 
@@ -43,16 +43,16 @@ Obrigatórios: processo a compreender, finalidade e material/relato autorizado. 
 
 ## Procedure
 
-Para cada pergunta aberta, construa o exemplo em três passos: (1) escolha um trecho curto da memória ou de uma resposta humana observada que seja pertinente à pergunta; (2) apresente essa base junto da pergunta; (3) monte uma resposta possível usando somente os fatos dessa base e [campo a preencher] para a informação solicitada que ainda falta. Também pode usar “ainda não sei” no campo desconhecido. Profissão conhecida não informa especialidade, serviço, público ou resultado. Antes de enviar, compare cada detalhe factual do exemplo com a base: remova o detalhe sem fonte e preserve o campo aberto, mesmo que pareça plausível ou seja chamado de hipotético. Sem memória pertinente, diga isso e ofereça apenas um molde com campos. Propostas futuras de ação ficam separadas dos exemplos que ajudam a pessoa a informar seus próprios fatos.
+Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
 1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
-2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
+2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. A extração inicial segue esta Procedure e não exige abrir o método ampliado nem templates. Consulte referência adicional somente para uma dúvida concreta. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
 3. Leia primeiro a descrição, gravação ou documentos já fornecidos. Extraia entradas, etapas, responsáveis, saídas, exceções e pontos de conferência; marque observado, declarado ou inferido, conforme a referência de confiança.
 4. Entreviste somente lacunas operacionais importantes, com exemplo próprio ao lado de cada pergunta aberta. Se faltar ferramenta para ler material, declare o limite e peça alternativa pertinente; não afirme ter executado script do runtime de origem nem etapa manual não realizada.
 5. Entregue mapa do processo com origem, lacunas e checklist aplicado, mais uma síntese editorial: dúvidas frequentes, erros demonstráveis, explicações úteis e pautas sustentadas no processo. A síntese é proposta; não fabricar experiência ou transformar cenário hipotético em procedimento observado.
-6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
+6. Salve a extração possível antes de perguntar sobre refinamentos. Escolha de ângulo editorial não impede extrair o material já acessível. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
 
 ## Avaliação de rotina
 

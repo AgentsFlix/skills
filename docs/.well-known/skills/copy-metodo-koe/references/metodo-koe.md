@@ -1,3 +1,5 @@
+> Material de aprofundamento do método original. A aplicação editorial inicial segue o SKILL.md. Filosofia de vida, personal monopoly, proporções de conteúdo e modelos de negócio não são escolhas da pessoa nem requisitos da sua marca. Consulte apenas um trecho pertinente quando a pessoa pedir aprofundamento.
+
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
 > Fonte de conhecimento levada do squad `copywriter-os` (Synkra / Hybrid). Blocos `activation-instructions`, `commands` com `*`, `IDE-FILE-RESOLUTION` e chamadas a scripts `.cjs`/`.sh` são do formato de origem e não se aplicam no Hermes: não há persona a assumir nem comando `*` a executar. Caminhos `{pasta}/…` apontam para a pasta configurada da skill.

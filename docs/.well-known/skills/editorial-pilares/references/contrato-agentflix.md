@@ -53,3 +53,7 @@ Conclua a entrega solicitada quando houver um artefato útil com origem e lacuna
 Salve cada revisão uma vez pelo mecanismo disponível. Quando uma ferramenta já cria o Markdown e seus metadados, envie o conteúdo diretamente a ela; não pré-grave o mesmo caminho com a ferramenta de arquivos. Se uma revisão já foi salva, preserve-a e crie outra somente quando houver uma correção concreta. Evite copiar perfil, público e documentos anteriores: referencie seus arquivos e acrescente a síntese necessária para compreender a entrega atual.
 
 Depois de salvar, encerre com uma resposta curta que informe resultado, caminho, estado, lacunas indispensáveis e próximo passo. Não repita o artefato inteiro, o mapa de memória ou o contrato no encerramento. Perguntas que ainda forem necessárias continuam exigindo seu próprio exemplo contextual. O documento pode ser detalhado; o resumo final não precisa duplicá-lo.
+
+Avaliar rotina é decidir se há benefício recorrente no contexto, não coletar configuração obrigatoriamente. Uma recusa atual encerra propostas de cadência e ativação. Sem benefício ou sem entrada nova, registre que não vale agora.
+
+Uma recomendação no acervo é uma recomendação declarada, não relato de experiência. Só classifique como história própria quando a fonte narrar um acontecimento. Ao escrever, preserve essa diferença e deixe cargos, público validado e métricas desconhecidos em aberto.

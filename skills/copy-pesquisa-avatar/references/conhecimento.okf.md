@@ -17,7 +17,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: copy-pesquisa-avatar
-  content_revision: 1.0.5
+  content_revision: 1.0.6
   verification_evidence: []
 ---
 

@@ -18,9 +18,9 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Entregue apenas a operação pedida agora. Se pedi uma proposta, salve-a como proposta e conclua essa produção; minha aprovação continua pendente e separada. Reutilize os arquivos anteriores por referência, sem copiá-los integralmente, e preserve o contexto para trabalhar a voz quando solicitada. Para posicionamento, entregue enunciado, promessas com limites, diferenciais com origem e lacunas de validação. Trabalhe vocabulário, tom e exemplos de voz quando eu pedir a etapa de voz. Pendências de validação futura ficam como notas e não impedem encerrar a produção da proposta.
+> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Entregue apenas a operação pedida agora. Se pedi uma proposta, salve-a como proposta e conclua essa produção; minha aprovação continua pendente e separada. Reutilize os arquivos anteriores por referência, sem copiá-los integralmente, e preserve o contexto para trabalhar a voz quando solicitada. Para posicionamento, entregue enunciado, promessas com limites, diferenciais com origem e lacunas de validação. Trabalhe vocabulário, tom e exemplos de voz quando eu pedir a etapa de voz. Pendências de validação futura ficam como notas e não impedem encerrar a produção da proposta. Avalie rotina com o contexto disponível; isso não obriga a fazer pergunta de configuração. Uma recusa atual encerra o assunto. Guarde o trabalho útil antes de pedir refinamentos opcionais.
 >
-> Para cada pergunta aberta, construa o exemplo em três passos: (1) escolha um trecho curto da memória ou de uma resposta humana observada que seja pertinente à pergunta; (2) apresente essa base junto da pergunta; (3) monte uma resposta possível usando somente os fatos dessa base e [campo a preencher] para a informação solicitada que ainda falta. Também pode usar “ainda não sei” no campo desconhecido. Profissão conhecida não informa especialidade, serviço, público ou resultado. Antes de enviar, compare cada detalhe factual do exemplo com a base: remova o detalhe sem fonte e preserve o campo aberto, mesmo que pareça plausível ou seja chamado de hipotético. Sem memória pertinente, diga isso e ofereça apenas um molde com campos. Propostas futuras de ação ficam separadas dos exemplos que ajudam a pessoa a informar seus próprios fatos.
+> Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada.
 
 ---
 # Trabalhar a marca
@@ -39,7 +39,7 @@ Para a entrega inicial, siga Procedure sem abrir questionário ou template insti
 
 ## Procedure
 
-Para cada pergunta aberta, construa o exemplo em três passos: (1) escolha um trecho curto da memória ou de uma resposta humana observada que seja pertinente à pergunta; (2) apresente essa base junto da pergunta; (3) monte uma resposta possível usando somente os fatos dessa base e [campo a preencher] para a informação solicitada que ainda falta. Também pode usar “ainda não sei” no campo desconhecido. Profissão conhecida não informa especialidade, serviço, público ou resultado. Antes de enviar, compare cada detalhe factual do exemplo com a base: remova o detalhe sem fonte e preserve o campo aberto, mesmo que pareça plausível ou seja chamado de hipotético. Sem memória pertinente, diga isso e ofereça apenas um molde com campos. Propostas futuras de ação ficam separadas dos exemplos que ajudam a pessoa a informar seus próprios fatos.
+Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
@@ -99,9 +99,9 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Entregue apenas a operação pedida agora. Se pedi uma proposta, salve-a como proposta e conclua essa produção; minha aprovação continua pendente e separada. Reutilize os arquivos anteriores por referência, sem copiá-los integralmente, e preserve o contexto para trabalhar a voz quando solicitada. Para posicionamento, entregue enunciado, promessas com limites, diferenciais com origem e lacunas de validação. Trabalhe vocabulário, tom e exemplos de voz quando eu pedir a etapa de voz. Pendências de validação futura ficam como notas e não impedem encerrar a produção da proposta.
+Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Entregue apenas a operação pedida agora. Se pedi uma proposta, salve-a como proposta e conclua essa produção; minha aprovação continua pendente e separada. Reutilize os arquivos anteriores por referência, sem copiá-los integralmente, e preserve o contexto para trabalhar a voz quando solicitada. Para posicionamento, entregue enunciado, promessas com limites, diferenciais com origem e lacunas de validação. Trabalhe vocabulário, tom e exemplos de voz quando eu pedir a etapa de voz. Pendências de validação futura ficam como notas e não impedem encerrar a produção da proposta. Avalie rotina com o contexto disponível; isso não obriga a fazer pergunta de configuração. Uma recusa atual encerra o assunto. Guarde o trabalho útil antes de pedir refinamentos opcionais.
 
-Para cada pergunta aberta, construa o exemplo em três passos: (1) escolha um trecho curto da memória ou de uma resposta humana observada que seja pertinente à pergunta; (2) apresente essa base junto da pergunta; (3) monte uma resposta possível usando somente os fatos dessa base e [campo a preencher] para a informação solicitada que ainda falta. Também pode usar “ainda não sei” no campo desconhecido. Profissão conhecida não informa especialidade, serviço, público ou resultado. Antes de enviar, compare cada detalhe factual do exemplo com a base: remova o detalhe sem fonte e preserve o campo aberto, mesmo que pareça plausível ou seja chamado de hipotético. Sem memória pertinente, diga isso e ofereça apenas um molde com campos. Propostas futuras de ação ficam separadas dos exemplos que ajudam a pessoa a informar seus próprios fatos.
+Pergunte somente o que muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: uma frase curta que reaproveita o fato conhecido e deixa [campo a preencher] no dado desconhecido. Dentro do campo, escreva só o nome do dado, sem listas de alternativas, sugestões de especialidade ou fatos plausíveis. Se não houver base pertinente, declare “sem informação registrada” e use apenas campos. Ausência de registro não significa que a pessoa nunca fez algo. Mantenha propostas novas de ações fora dos exemplos de resposta. Antes de enviar, remova toda afirmação factual do exemplo que não tenha origem na base citada.
 
 
 ---
@@ -157,7 +157,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" init --version 0.4.3 --revision 1.0.6
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" init --version 0.4.3 --revision 1.0.7
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-marca" audit
@@ -252,7 +252,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-marca
-  content_revision: 1.0.6
+  content_revision: 1.0.7
   verification_evidence: []
 ---
 
@@ -324,6 +324,10 @@ Conclua a entrega solicitada quando houver um artefato útil com origem e lacuna
 Salve cada revisão uma vez pelo mecanismo disponível. Quando uma ferramenta já cria o Markdown e seus metadados, envie o conteúdo diretamente a ela; não pré-grave o mesmo caminho com a ferramenta de arquivos. Se uma revisão já foi salva, preserve-a e crie outra somente quando houver uma correção concreta. Evite copiar perfil, público e documentos anteriores: referencie seus arquivos e acrescente a síntese necessária para compreender a entrega atual.
 
 Depois de salvar, encerre com uma resposta curta que informe resultado, caminho, estado, lacunas indispensáveis e próximo passo. Não repita o artefato inteiro, o mapa de memória ou o contrato no encerramento. Perguntas que ainda forem necessárias continuam exigindo seu próprio exemplo contextual. O documento pode ser detalhado; o resumo final não precisa duplicá-lo.
+
+Avaliar rotina é decidir se há benefício recorrente no contexto, não coletar configuração obrigatoriamente. Uma recusa atual encerra propostas de cadência e ativação. Sem benefício ou sem entrada nova, registre que não vale agora.
+
+Uma recomendação no acervo é uma recomendação declarada, não relato de experiência. Só classifique como história própria quando a fonte narrar um acontecimento. Ao escrever, preserve essa diferença e deixe cargos, público validado e métricas desconhecidos em aberto.
 
 
 ---
@@ -588,7 +592,7 @@ Após brand:
   "contract_version": "1.0.0",
   "skill_id": "hybrid-marca",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.6",
+  "content_revision": "1.0.7",
   "distribution_ref": "main"
 }
 
@@ -752,7 +756,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.6",
+  "content_revision": "1.0.7",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }
