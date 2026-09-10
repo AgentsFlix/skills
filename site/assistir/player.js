@@ -63,7 +63,9 @@
   };
   const video = $("video");
   const curEp = () => SERIE.seasons[state.season].eps[state.ep];
-  const base = (uid) => `https://${SERIE.customer}.cloudflarestream.com/${uid}`;
+  // uid conserva o progresso; stream_uid permite substituir a mídia da mesma edição.
+  const mediaUid = (uid) => SERIE.seasons.flatMap(s => s.eps || []).find(e => e.uid === uid)?.stream_uid || uid;
+  const base = (uid) => `https://${SERIE.customer}.cloudflarestream.com/${mediaUid(uid)}`;
   const thumb = (uid, h = 270, t) =>
     `${base(uid)}/thumbnails/thumbnail.jpg?height=${h}${t !== undefined ? `&time=${Math.max(0, Math.floor(t))}s` : ""}`;
   const progKey = (uid) => `agentflix-prog-${uid}`;
@@ -1120,7 +1122,7 @@
     }
   });
   document.addEventListener("keydown", (ev) => {
-    if ($("player").hidden || ev.target.tagName === "INPUT") return;
+    if ($("player").hidden || ev.target.tagName === "INPUT" || $("lesson-share-dialog").open || ev.target.closest("#lesson-share")) return;
     const k = ev.key.toLowerCase();
     if (state.escolha) {
       if (["1", "2", "3", "4"].includes(ev.key)) escolher(+ev.key - 1);
