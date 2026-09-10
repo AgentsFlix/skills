@@ -10,6 +10,7 @@
     ['novo-cliente.html', 'Receba um novo cliente'],
     ['cliente-pratica.html', 'Converse com três clientes'],
     ['base-negocio.html', 'Construa a base do negócio'],
+    ['jornada-marca.html', 'Monte a base da sua marca'],
   ];
   const file = location.pathname.split('/').pop() || 'index.html';
   const current = parts.findIndex(([path]) => path === file);
