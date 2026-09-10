@@ -11,7 +11,7 @@ metadata:
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-fundador, hybrid-icp
   contract_version: 1.0.0
-  content_revision: 1.0.3
+  content_revision: 1.0.4
   distribution_ref: main
 ---
 # Perfil do negócio para a tarefa atual
@@ -38,12 +38,10 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
 
 1. Leia o pedido, a memória atual e o acervo indicado. Se houver perfil anterior, use a revisão atual; consulte versões antigas somente para conflito ou lacuna concreta. Aproveite correções e recusas já resolvidas. Não abra questionários ou templates antes desse mapa.
 2. Registre identificação, oferta, público declarado (inclusive hipótese), problema e objetivo com origem. Separe fatos da pessoa, propostas do agente e desconhecido. Esses campos bastam para a síntese desta jornada; missão, visão, credenciais, história e equipe são aprofundamentos opcionais. Não é necessário copiar um template.
-3. Se faltar algo que impeça entender o negócio, pergunte apenas essa lacuna, com exemplo próprio ligado ao contexto. Use [campo a preencher] para números ou histórico não fornecidos. Se a pessoa não souber, registre desconhecido e avalie o que ainda pode ser entregue; não repita a pergunta nem peça que aceite um exemplo como fato.
+3. Escolha a rota pelo mapa de inputs. Se oferta, público pretendido e dor do cliente já estiverem nas fontes, siga diretamente para salvar e concluir a síntese. Se faltarem, entreviste somente essas lacunas, com exemplo próprio ligado ao contexto, e registre waiting até receber resposta ou desconhecimento explícito. Profissão e desejo de presença digital, sozinhos, não esclarecem esses campos. A dor do cliente é diferente da dificuldade do profissional em divulgar o negócio. Use [campo a preencher] para números ou histórico não fornecidos. Se a pessoa não souber, registre desconhecido e avalie o que ainda pode ser entregue; não repita a pergunta nem peça que aceite um exemplo como fato.
 4. Salve um perfil legível e reutilizável no destino local autorizado, em Markdown ou YAML, com identificação, oferta, público/hipótese, problema, objetivo, mapa de origem e lacunas. Preserve revisões anteriores. Quando a pessoa já pediu essa documentação, não peça nova autorização para gravar o rascunho.
-5. Confira se o perfil permite a próxima etapa de público sem ultrapassar o que a pessoa forneceu. Marque o documento como parcial quando houver campos abertos. Não calcule percentuais para essa síntese. A operação pode estar completed com documento parcial útil; waiting exige explicar a lacuna que impede a entrega atual, não a ausência de campos opcionais.
+5. Confira se o perfil permite a próxima etapa de público sem ultrapassar o que a pessoa forneceu. Marque o documento como parcial quando houver campos abertos. Não calcule percentuais para essa síntese. Quando os inputs essenciais estiverem cobertos pelas fontes ou pela entrevista, conclua a operação com completed e mantenha o estado parcial/proposto do documento quando cabível. Uma pergunta genérica para aprovar ou reconfirmar a síntese não substitui uma lacuna de input: não crie esse bloqueio. Waiting exige nomear o dado ausente e explicar qual entrega ele impede. A pessoa pode corrigir o perfil depois, sem que isso impeça concluir a síntese que pediu agora.
 6. Informe o arquivo, os limites e a próxima etapa. Não reconfirme tom, oferta ou escopo já dados. Avalie se revisão futura vale como rotina, respeitando recusas e mantendo ativação separada. O perfil institucional completo pode ser aprofundado quando houver um pedido específico.
-
-Aceite mínimo da entrevista: profissão e desejo de presença digital, sozinhos, não esclarecem o negócio. Quando oferta, público pretendido ou dor do cliente ainda dependem de resposta, faça uma coleta contextual curta e registre waiting, mesmo se um rascunho foi salvo. Não substitua a dor do cliente pela dificuldade do profissional em divulgar seu trabalho. Antes de avançar, incorpore a resposta ou o desconhecimento explicitamente declarado; nesse último caso, marque as hipóteses e os limites da síntese possível. Não exija nome empresarial, cidade, canais ou campos institucionais se não forem necessários à operação atual.
 
 ## Avaliação de rotina
 

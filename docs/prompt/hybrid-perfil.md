@@ -18,7 +18,7 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Se você só sabe minha profissão e que quero começar a presença digital, pergunte pela oferta, pelo público e pelo problema do cliente. Salvar esse rascunho não encerra a entrevista necessária. Minha dificuldade de divulgar o negócio é um objetivo editorial; não a trate como o problema que meu serviço resolve para o cliente.
+> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Se você só sabe minha profissão e que quero começar a presença digital, pergunte pela oferta, pelo público e pelo problema do cliente. Salvar esse rascunho não encerra a entrevista necessária. Minha dificuldade de divulgar o negócio é um objetivo editorial; não a trate como o problema que meu serviço resolve para o cliente. Decida pela presença dos dados essenciais: se oferta, público pretendido e problema do cliente já estão nas fontes, documente e conclua a síntese solicitada. Minha validação geral do texto não é um novo input obrigatório. Se algum desses dados faltar, faça a pergunta contextual e aguarde a resposta ou meu desconhecimento explícito.
 >
 > Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
 
@@ -47,12 +47,10 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
 
 1. Leia o pedido, a memória atual e o acervo indicado. Se houver perfil anterior, use a revisão atual; consulte versões antigas somente para conflito ou lacuna concreta. Aproveite correções e recusas já resolvidas. Não abra questionários ou templates antes desse mapa.
 2. Registre identificação, oferta, público declarado (inclusive hipótese), problema e objetivo com origem. Separe fatos da pessoa, propostas do agente e desconhecido. Esses campos bastam para a síntese desta jornada; missão, visão, credenciais, história e equipe são aprofundamentos opcionais. Não é necessário copiar um template.
-3. Se faltar algo que impeça entender o negócio, pergunte apenas essa lacuna, com exemplo próprio ligado ao contexto. Use [campo a preencher] para números ou histórico não fornecidos. Se a pessoa não souber, registre desconhecido e avalie o que ainda pode ser entregue; não repita a pergunta nem peça que aceite um exemplo como fato.
+3. Escolha a rota pelo mapa de inputs. Se oferta, público pretendido e dor do cliente já estiverem nas fontes, siga diretamente para salvar e concluir a síntese. Se faltarem, entreviste somente essas lacunas, com exemplo próprio ligado ao contexto, e registre waiting até receber resposta ou desconhecimento explícito. Profissão e desejo de presença digital, sozinhos, não esclarecem esses campos. A dor do cliente é diferente da dificuldade do profissional em divulgar o negócio. Use [campo a preencher] para números ou histórico não fornecidos. Se a pessoa não souber, registre desconhecido e avalie o que ainda pode ser entregue; não repita a pergunta nem peça que aceite um exemplo como fato.
 4. Salve um perfil legível e reutilizável no destino local autorizado, em Markdown ou YAML, com identificação, oferta, público/hipótese, problema, objetivo, mapa de origem e lacunas. Preserve revisões anteriores. Quando a pessoa já pediu essa documentação, não peça nova autorização para gravar o rascunho.
-5. Confira se o perfil permite a próxima etapa de público sem ultrapassar o que a pessoa forneceu. Marque o documento como parcial quando houver campos abertos. Não calcule percentuais para essa síntese. A operação pode estar completed com documento parcial útil; waiting exige explicar a lacuna que impede a entrega atual, não a ausência de campos opcionais.
+5. Confira se o perfil permite a próxima etapa de público sem ultrapassar o que a pessoa forneceu. Marque o documento como parcial quando houver campos abertos. Não calcule percentuais para essa síntese. Quando os inputs essenciais estiverem cobertos pelas fontes ou pela entrevista, conclua a operação com completed e mantenha o estado parcial/proposto do documento quando cabível. Uma pergunta genérica para aprovar ou reconfirmar a síntese não substitui uma lacuna de input: não crie esse bloqueio. Waiting exige nomear o dado ausente e explicar qual entrega ele impede. A pessoa pode corrigir o perfil depois, sem que isso impeça concluir a síntese que pediu agora.
 6. Informe o arquivo, os limites e a próxima etapa. Não reconfirme tom, oferta ou escopo já dados. Avalie se revisão futura vale como rotina, respeitando recusas e mantendo ativação separada. O perfil institucional completo pode ser aprofundado quando houver um pedido específico.
-
-Aceite mínimo da entrevista: profissão e desejo de presença digital, sozinhos, não esclarecem o negócio. Quando oferta, público pretendido ou dor do cliente ainda dependem de resposta, faça uma coleta contextual curta e registre waiting, mesmo se um rascunho foi salvo. Não substitua a dor do cliente pela dificuldade do profissional em divulgar seu trabalho. Antes de avançar, incorpore a resposta ou o desconhecimento explicitamente declarado; nesse último caso, marque as hipóteses e os limites da síntese possível. Não exija nome empresarial, cidade, canais ou campos institucionais se não forem necessários à operação atual.
 
 ## Avaliação de rotina
 
@@ -105,7 +103,7 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Se você só sabe minha profissão e que quero começar a presença digital, pergunte pela oferta, pelo público e pelo problema do cliente. Salvar esse rascunho não encerra a entrevista necessária. Minha dificuldade de divulgar o negócio é um objetivo editorial; não a trate como o problema que meu serviço resolve para o cliente.
+Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Se você só sabe minha profissão e que quero começar a presença digital, pergunte pela oferta, pelo público e pelo problema do cliente. Salvar esse rascunho não encerra a entrevista necessária. Minha dificuldade de divulgar o negócio é um objetivo editorial; não a trate como o problema que meu serviço resolve para o cliente. Decida pela presença dos dados essenciais: se oferta, público pretendido e problema do cliente já estão nas fontes, documente e conclua a síntese solicitada. Minha validação geral do texto não é um novo input obrigatório. Se algum desses dados faltar, faça a pergunta contextual e aguarde a resposta ou meu desconhecimento explícito.
 
 Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
 
@@ -163,7 +161,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" init --version 0.4.3 --revision 1.0.3
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" init --version 0.4.3 --revision 1.0.4
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" audit
@@ -258,7 +256,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-perfil
-  content_revision: 1.0.3
+  content_revision: 1.0.4
   verification_evidence: []
 ---
 
@@ -1131,7 +1129,7 @@ Criar `workspace/company/mission-vision.md`:
   "contract_version": "1.0.0",
   "skill_id": "hybrid-perfil",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.3",
+  "content_revision": "1.0.4",
   "distribution_ref": "main"
 }
 
@@ -2599,7 +2597,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.3",
+  "content_revision": "1.0.4",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }
