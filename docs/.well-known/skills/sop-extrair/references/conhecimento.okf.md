@@ -17,7 +17,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: sop-extrair
-  content_revision: 1.0.6
+  content_revision: 1.0.7
   verification_evidence: []
 ---
 
