@@ -145,3 +145,9 @@ assert.equal(model.lessonUrl(shared, 0, 1), '/assistir/?s=a-serie#t1e5');
 assert.deepEqual({...model.lessonRoute('/aulas/a-serie/t1/e2/')}, {slug:'a-serie', season:1, episode:2});
 assert.equal(model.lessonRoute('/aulas/../t1/e2/'), null);
 assert.equal(model.lessonRoute('/assistir/'), null);
+
+assert.equal(model.assetUrl('img/cover.png'), '/assistir/img/cover.png');
+assert.equal(model.assetUrl('./img/cover.png'), '/assistir/img/cover.png');
+assert.equal(model.assetUrl('/brand/logo.svg'), '/brand/logo.svg');
+assert.equal(model.assetUrl('https://example.test/image.jpg'), 'https://example.test/image.jpg');
+assert.equal(model.assetUrl(undefined), undefined);

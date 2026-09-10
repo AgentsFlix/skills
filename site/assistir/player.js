@@ -1356,6 +1356,10 @@
       if (!response.ok) throw Error("Catálogo indisponível");
       const data = await response.json();
       if (!Array.isArray(data.series)) throw Error("Catálogo inválido");
+      for (const series of data.series) {
+        for (const key of ["cover", "cover_wide", "cover_mobile"])
+          if (series[key]) series[key] = AgentFlixWatchModel.assetUrl(series[key]);
+      }
       SERIES = data.series;
       catalog = AgentFlixWatchCatalog.create(data, {
         read: store.get,
