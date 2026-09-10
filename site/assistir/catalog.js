@@ -49,10 +49,7 @@
         q = "";
 
       const url = (series, episode) => {
-        const result = new URL(location.href);
-        result.searchParams.set("s", series.slug);
-        result.hash = episode ? `t${episode.number}e${AgentFlixWatchModel.episodeNumber(series.seasons[episode.season].eps[episode.ep], episode.ep)}` : "";
-        return result.pathname + result.search + result.hash;
+        return episode ? model.lessonUrl(series, episode.season, episode.ep) : `/assistir/?s=${encodeURIComponent(series.slug)}`;
       };
       const bookmark = (series) =>
         `<button class="watch-bookmark watch-icon" data-save="${esc(series.slug)}" aria-label="${saved.includes(series.slug) ? "Remover" : "Adicionar"} ${esc(series.name)} ${saved.includes(series.slug) ? "da" : "à"} minha lista" aria-pressed="${saved.includes(series.slug)}">${icon(saved.includes(series.slug) ? "check" : "plus")}</button>`;

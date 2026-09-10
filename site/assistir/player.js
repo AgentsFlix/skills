@@ -334,7 +334,7 @@
     const saved = store.get(progKey(e.uid), null);
     const startAt =
       from !== undefined ? from : saved && !isWatched(e) ? saved.t : 0;
-    history.replaceState(null, "", `#t${sN(season)}e${eN(season, ep)}`); // uma entrada de histórico por visita: Voltar não empilha episódio
+    history.replaceState(null, "", AgentFlixWatchModel.lessonUrl(SERIE, season, ep)); // uma entrada de histórico por visita: Voltar não empilha episódio
     paintMarks();
     renderDrawer();
     paint();
@@ -902,7 +902,7 @@
       }
       video.removeAttribute("src");
       video.load();
-      history.replaceState(null, "", location.pathname + location.search);
+      history.replaceState(null, "", seriesUrl(SERIE.slug));
       renderTitle();
       $("tp-name").tabIndex = -1;
       $("tp-name").focus({ preventScroll: true });
@@ -1274,7 +1274,7 @@
     openPop(false);
   }
   function seriesUrl(slug) {
-    const url = new URL(location.href);
+    const url = new URL("/assistir/", location.origin);
     if (slug) url.searchParams.set("s", slug);
     else url.searchParams.delete("s");
     url.hash = "";
@@ -1321,7 +1321,8 @@
     }
   }
   function route() {
-    const slug = new URLSearchParams(location.search).get("s");
+    const lesson = AgentFlixWatchModel.lessonRoute(location.pathname);
+    const slug = lesson?.slug || new URLSearchParams(location.search).get("s");
     if (!slug) {
       showCatalog();
       return;
@@ -1341,7 +1342,7 @@
     state.ep = 0;
     state.allSeasons = false;
     state.seasonMenu = false;
-    const m = /^#t(\d+)e(\d+)$/.exec(location.hash);
+    const m = lesson ? [null, lesson.season, lesson.episode] : /^#t(\d+)e(\d+)$/.exec(location.hash);
     const si = m ? seasonIdxByN(m[1]) : -1;
     const activity = m && si >= 0 && SERIE.seasons[si].atividades?.find(e => e.n === +m[2]);
     const ei = m && si >= 0 ? SERIE.seasons[si].eps.findIndex((e, i) => eN(si, i) === +m[2]) : -1;
@@ -1351,7 +1352,7 @@
   }
   async function loadCatalog() {
     try {
-      const response = await fetch("series.json", { cache: "no-store" });
+      const response = await fetch("/assistir/series.json", { cache: "no-store" });
       if (!response.ok) throw Error("Catálogo indisponível");
       const data = await response.json();
       if (!Array.isArray(data.series)) throw Error("Catálogo inválido");

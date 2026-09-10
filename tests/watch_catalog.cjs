@@ -137,3 +137,11 @@ assert.equal(model.choiceTarget(numbered, {temporada: 1, episodio: 1}), null);
 const lateProgress = key => key === `agentflix-prog-${upcoming.seasons[0].eps[0].uid}` ? {t:2683, at:1} : null;
 assert.equal(resume(upcoming, lateProgress).fresh, false, "última parte não é concluída por atingir 95%");
 assert.equal(resume(upcoming, key => key.startsWith('agentflix-finished-') ? true : lateProgress(key)).finished, true);
+
+const shared = {...numbered, slug: 'a-serie'};
+shared.seasons[0].eps[0].share_url = '/aulas/a-serie/t1/e2/';
+assert.equal(model.lessonUrl(shared, 0, 0), '/aulas/a-serie/t1/e2/');
+assert.equal(model.lessonUrl(shared, 0, 1), '/assistir/?s=a-serie#t1e5');
+assert.deepEqual({...model.lessonRoute('/aulas/a-serie/t1/e2/')}, {slug:'a-serie', season:1, episode:2});
+assert.equal(model.lessonRoute('/aulas/../t1/e2/'), null);
+assert.equal(model.lessonRoute('/assistir/'), null);
