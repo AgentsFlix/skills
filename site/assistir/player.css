@@ -1001,6 +1001,9 @@ a {
 #player.escolha .postplay {
   display: none !important;
 }
+#player.pre .back {
+  z-index: 9;
+}
 #player.escolha .back {
   opacity: 1;
 }
