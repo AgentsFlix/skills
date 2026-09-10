@@ -415,6 +415,75 @@
       ]
     },
     {
+      "name": "editorial-pilares",
+      "description": "Defina pilares e pautas editoriais a partir do negócio, público, posicionamento e acervo. Use para planejar assuntos próprios da marca, sem adotar a voz de autores de referência.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/continuidade.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
+      ]
+    },
+    {
+      "name": "editorial-rotina",
+      "description": "Prepare pasta, lote de teste e especificação de rotina editorial com ativação separada. Use depois dos pilares e templates para organizar uma operação revisável sem publicar automaticamente.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/continuidade.md",
+        "references/contrato-agentflix.md",
+        "references/formato.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
+        "scripts/validar_lote.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
+      ]
+    },
+    {
+      "name": "editorial-templates",
+      "description": "Crie estáticas e carrosséis 4:5 editáveis usando a identidade da pessoa. Use para transformar a direção visual em modelos reutilizáveis e validar aplicações antes de produzir um lote.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/continuidade.md",
+        "references/contrato-agentflix.md",
+        "references/formato.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
+        "scripts/render.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
+      ]
+    },
+    {
+      "name": "editorial-visual",
+      "description": "Documente identidade visual para posts 4:5 e produza aplicações revisáveis. Use após posicionamento e voz; reutilize identidade existente e peça aprovação das aplicações antes de padronizar.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/continuidade.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "references/tokens.md",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
+      ]
+    },
+    {
       "name": "habitos-que-cabem",
       "description": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.",
       "files": [
