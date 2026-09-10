@@ -1,3 +1,5 @@
+> Material de aprofundamento opcional. A Procedure do SKILL.md define a operação atual: propor posicionamento ou trabalhar voz. Brandbook completo, fases, percentuais, diagnóstico e validação institucional só se aplicam ao aprofundamento solicitado. Aprovar uma proposta é decisão separada de produzi-la. Não exigir dados ou provas inexistentes para concluir uma proposta explicitamente provisória, nem inventá-los. Exemplos e campos não são fatos da pessoa.
+
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
 # Task: Elicit Brand (YAML)

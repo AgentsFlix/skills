@@ -619,7 +619,7 @@
     },
     {
       "name": "hybrid-marca",
-      "description": "A marca escrita antes de virar logo: o núcleo, as promessas que faz e as que não faz, a personalidade, o DNA de voz e os valores. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…",
+      "description": "Proponha posicionamento e promessas com base no perfil e público disponíveis. Trabalhe voz no mesmo contexto quando solicitada, distinguindo preferências, padrões do acervo e propostas.",
       "files": [
         "SKILL.md",
         "references/ativacao.md",

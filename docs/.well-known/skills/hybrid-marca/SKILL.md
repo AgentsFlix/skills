@@ -1,6 +1,6 @@
 ---
 name: hybrid-marca
-description: 'A marca escrita antes de virar logo: o núcleo, as promessas que faz e as que não faz, a personalidade, o DNA de voz e os valores. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…'
+description: Proponha posicionamento e promessas com base no perfil e público disponíveis. Trabalhe voz no mesmo contexto quando solicitada, distinguindo preferências, padrões do acervo e propostas.
 license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
@@ -11,46 +11,34 @@ metadata:
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-perfil, hybrid-fundador
   contract_version: 1.0.0
-  content_revision: 1.0.1
+  content_revision: 1.0.2
   distribution_ref: main
 ---
+# Posicionamento e voz da marca
 
-# A MARCA · Núcleo, promessas, personalidade, voz e valores
-
-A marca escrita antes de virar logo: o núcleo, as promessas que faz e as que não faz, a personalidade, o DNA de voz e os valores. O agente elicita e grava no brandbook, e as skills de copy passam a respeitar esse arquivo. Marca sem documento é gosto do dia.
-
-Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e que as outras skills leem. Tudo vive na pasta configurada em `hybrid.pasta` (pergunte ao usuário, se ainda não souber), um negócio por pasta. Nada é enviado para fora.
+Entregue a operação pedida usando o perfil, público e objetivo já disponíveis. Propor posicionamento, aprovar a proposta e extrair voz são operações distintas. Preserve o mesmo contexto entre elas; um brandbook completo é aprofundamento opcional.
 
 ## When to Use
 
-- Diga: "documenta a marca [nome]".
-- O negócio ainda não tem esse arquivo, ou ele está abaixo de 85% de completude.
-- NÃO use para medir o negócio: isso é `hybrid-diagnostico`, que lê o que esta skill escreve.
+Use para propor ou revisar posicionamento, promessas e diferenciais, ou para definir a voz da marca. Siga o pedido atual: uma proposta de posicionamento não exige antecipar o guia de voz nem preencher um brandbook integral.
 
 ## Quick Reference
 
 Obrigatórios: perfil, público e objetivo de comunicação ou equivalentes. Acervo de voz e provas existentes são opcionais para entrevista; necessários para alegar extração ou promessa comprovada.
 
-Leia `references/configuracao.json` apenas para resolver configuração ausente após o bootstrap. Defaults são exemplos; confirme o destino real antes de escrever.
-
-| procedimento | referência |
-|---|---|
-| elicit brand yaml | `references/elicit-brand-yaml.md` |
-| template que esta skill preenche | `templates/brand-brandbook.yaml` |
-| template que esta skill preenche | `templates/brand-messaging-framework.yaml` |
-| template que esta skill preenche | `templates/brand-positioning-statement.yaml` |
-
+Para a entrega inicial, siga Procedure sem abrir questionário ou template institucional. Uma proposta útil contém enunciado de posicionamento, promessas com limites, diferenciais com origem e lacunas relevantes. Para voz, entregue princípios e aplicações rastreáveis. Consulte `references/elicit-brand-yaml.md` e os templates apenas para aprofundamento explicitamente solicitado. Use o destino local já autorizado.
 
 ## Procedure
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
-1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
-2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
-3. Trabalhe posicionamento, promessa e diferenciais com o mesmo contexto que alimentará a voz. Identifique qual problema resolve, para quem, alternativa e motivo verificável para escolher. Não invente prova de resultado, garantia ou diferenciação.
-4. Para voz, verifique acervo: se houver diversidade suficiente de textos próprios, extraia padrões com trechos e origem. Se houver pouco material, marque a inferência provisória e conduza entrevista de preferências; não declare DNA extraído. Continue as escolhas do posicionamento, sem repetir perfil/ICP.
-5. Entregue posicionamento e guia de voz: princípios, vocabulário, exemplos de aplicação contextualizados, limites e origens. Cada coleta aberta tem exemplo próprio baseado no contexto. Estado proposto/aprovado pertence à manifestação da pessoa; encaminhe as escolhas e pendências à matéria-prima/visual.
-6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
+1. Identifique a operação pedida: propor ou revisar posicionamento, trabalhar voz ou aprofundar o brandbook. Reaproveite perfil, público, objetivo e decisões atuais da memória e dos artefatos anteriores. Consulte somente as lacunas necessárias; não reentreviste nem abra todos os templates.
+2. Para posicionamento, entregue um enunciado para o público declarado, a oferta e o problema; proponha promessas com limites e diferenciais ligados ao modo de trabalhar ou a evidências existentes. Separe fato, hipótese e proposta. Sem prova de resultado, não faça essa promessa; sua ausência não impede uma proposta honesta. Tagline, valores, crenças e inimigos são opcionais, somente se fizerem parte do pedido.
+3. Para voz, continue o posicionamento atual com seu estado proposto ou aprovado preservado. Extraia padrões apenas de acervo próprio suficiente, com trechos e origem; caso contrário, use preferências já declaradas e entreviste só lacunas necessárias. Entregue princípios, vocabulário e exemplos de aplicação. Não invente DNA nem exija concluir um brandbook para começar.
+4. Toda pergunta aberta traz seu próprio exemplo contextual, identificado como sugestão. Pergunte somente se a resposta muda a entrega atual. Desconhecimento já declarado permanece lacuna; não crie uma sequência obrigatória de aprovação ou perguntas opcionais.
+5. Salve no destino autorizado um artefato focado na operação atual. Referencie perfil e ICP anteriores em vez de copiá-los; acrescente apenas a síntese necessária para compreender a proposta, suas origens e limites. Mantenha detalhes de auditoria em seus registros. Reserve o encerramento para resultado, caminho, estado e próximo passo; não repita o documento inteiro.
+6. Confira o aceite do pedido. Se foi produzir uma proposta e o artefato foi salvo com origem, limites e lacunas, a operação pode ser completed enquanto o conteúdo permanece proposto, não aprovado. Use waiting somente se faltar uma dependência indispensável para produzir o que foi pedido; diga qual. Aprovação explícita continua necessária quando a operação pedida for aprovar ou aplicar conteúdo que exige aceite. Não simule essa aprovação.
+7. Registre somente uso observado, usando o esquema real da ferramenta disponível. Não recrie o evento started se o hospedeiro já o forneceu. Use os metadados do hospedeiro para criação e auditoria; o início da sessão não é a data de criação do arquivo. Avalie rotina respeitando recusas anteriores. Passe a proposta, suas origens e pendências à próxima etapa, sem publicar nem ativar automação.
 
 ## Avaliação de rotina
 
@@ -58,14 +46,16 @@ Definição é pontual. Revisar após mudança de posicionamento ou acervo signi
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pular o Diagnosis Gate quando a referência o pede. O nível de consciência muda todas as perguntas seguintes.
+- Bloquear a entrega de uma proposta por falta de aprovação, tagline, crença central ou prova de resultados que a pessoa não tem.
+- Tratar proposta entregue como conteúdo aprovado ou como fato comprovado.
+- Antecipar voz, valores, inimigos ou o brandbook inteiro quando o pedido é só posicionamento.
+- Copiar o perfil, ICP e contrato completos em cada entrega; referencie seus arquivos e acrescente o que esta etapa produz.
+- Reabrir uma recusa de rotina, agendamento ou lembretes.
+- Usar o horário de início da sessão como se fosse o horário de criação do documento.
 
 ## Verification
 
-Posicionamento e voz coerentes, promessas fundamentadas ou propostas, extração rastreável ou entrevista explícita quando falta acervo. Continuidade da mesma marca entre as duas operações. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
+A operação pedida tem artefato verificável: posicionamento, promessas e diferenciais fundamentados ou explicitamente propostos; ou guia de voz com preferências/extração rastreáveis. Mesma marca e contexto entre posicionamento e voz, com arquivos anteriores preservados. Produção da proposta, aprovação e publicação têm estados distintos. Campos de um brandbook ampliado não bloqueiam a proposta. Confira o aceite transversal de references/contrato-agentflix.md.
 
 ## Arquivos desta skill
 
