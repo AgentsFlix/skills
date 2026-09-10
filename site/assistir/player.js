@@ -184,11 +184,8 @@
         : r.season || r.ep
           ? `Assistir T${sN(r.season)}:E${eN(r.season, r.ep)}`
           : "Assistir";
-    const activity = SERIE.seasons.flatMap(s => s.atividades || [])[0];
-    $("tp-activity").hidden = !activity;
-    $("tp-activity").textContent = activity ? (nEps ? `Materiais do episódio ${activity.n}` : `Abrir episódio ${activity.n}`) : "";
-    $("tp-activity").href = activity?.url || "#";
-    document.querySelector('[data-act="resume"]').hidden = Boolean(activity) && !nEps;
+    const hasMaterials = SERIE.seasons.some(s => s.atividades?.length);
+    document.querySelector('[data-act="resume"]').hidden = hasMaterials && !nEps;
     document.querySelector('[data-act="resume"]').disabled = !nEps;
     document.querySelector('[data-act="restart"]').hidden = !nEps;
     $("tp-resume").hidden = !(p > 0);
@@ -198,12 +195,33 @@
     $("tp-syn").textContent = SERIE.syn;
     $("tp-about").textContent = SERIE.syn;
     const cam = rootEscolha() ? store.get(caminhoKey(), null) : null;
+    const cast = SERIE.cast || [];
+    const castDetails = cast.length > 3
+      ? `<p><span>Elenco:</span> ${esc(cast[0])}</p><details class="tp-cast"><summary>Ver elenco completo (${cast.length})</summary><ul>${cast.map(name => `<li>${esc(name)}</li>`).join("")}</ul></details>`
+      : cast.length ? `<p><span>Elenco:</span> ${cast.map(esc).join(", ")}</p>` : "";
     $("tp-side").innerHTML =
-      `<p><span>Elenco:</span> ${SERIE.cast.map(esc).join(", ")}</p><p><span>Gêneros:</span> ${SERIE.gen.map(esc).join(", ")}</p><p><span>Esta série é:</span> ${SERIE.traits.map(esc).join(", ")}</p>${cam ? `<p><span>Seu caminho:</span> ${esc(cam.label)} · <button class="lnk" data-act="trocar-caminho">trocar</button></p>` : ""}`;
+      `${castDetails}<p><span>Gêneros:</span> ${SERIE.gen.map(esc).join(", ")}</p>${SERIE.traits.length ? `<p><span>Esta série é:</span> ${SERIE.traits.map(esc).join(", ")}</p>` : ""}${cam ? `<p><span>Seu caminho:</span> ${esc(cam.label)} · <button class="lnk" data-act="trocar-caminho">trocar</button></p>` : ""}`;
     if (!nEps) $("tp-side").innerHTML = "";
     renderSeasonSel();
     renderEps();
+    renderMaterials();
+    selectTitleTab("eps");
     requestAnimationFrame(measureDescriptions);
+  }
+  function selectTitleTab(tab) {
+    document.querySelectorAll('.tp-tabs [role="tab"]').forEach(button => {
+      const selected = button.dataset.tab === tab;
+      button.classList.toggle("on", selected);
+      button.setAttribute("aria-selected", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      $(button.getAttribute("aria-controls")).hidden = !selected;
+    });
+  }
+  function renderMaterials() {
+    const seasons = SERIE.seasons.filter(s => s.atividades?.length);
+    $("tp-materials").innerHTML = seasons.length
+      ? seasons.map(s => `<section class="material-season"><h3>Temporada ${s.n}</h3><ul class="material-list">${s.atividades.map(e => `<li><a class="material-card" href="${esc(AgentFlixWatchModel.assetUrl(e.url))}"><svg class="material-folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M3 9h18"/></svg><span class="material-copy"><span class="material-kicker">Episódio ${e.n}${e.partes ? ` · ${e.partes} partes` : ""}</span><strong>${esc(e.t)}</strong><span class="material-description">${esc(e.desc)}</span></span><svg class="material-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a></li>`).join("")}</ul></section>`).join("")
+      : '<p class="materials-empty">Os materiais desta série ainda não estão disponíveis.</p>';
   }
   function renderSeasonSel() {
     const s = SERIE.seasons[state.season];
@@ -212,7 +230,7 @@
     el.innerHTML =
       `<button data-act="season-menu" aria-haspopup="listbox" aria-expanded="${state.seasonMenu}">${state.allSeasons ? "Todos os episódios" : `Temporada ${s.n}`} <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>` +
       (state.seasonMenu
-        ? `<div class="menu" role="listbox">${SERIE.seasons.map((x, i) => `<button class="${!state.allSeasons && i === state.season ? "on" : ""}" data-act="season" data-i="${i}">Temporada ${x.n}${x.caminho ? ` · Caminho: ${esc(x.caminho)}` : ""} <span>(${x.eps.length + (x.atividades?.length || 0)} ${x.eps.length + (x.atividades?.length || 0) === 1 ? "episódio" : "episódios"})</span></button>`).join("")}<hr><button class="${state.allSeasons ? "on" : ""}" data-act="season-all">Ver todos os episódios</button></div>`
+        ? `<div class="menu" role="listbox">${SERIE.seasons.map((x, i) => `<button class="${!state.allSeasons && i === state.season ? "on" : ""}" data-act="season" data-i="${i}">Temporada ${x.n}${x.caminho ? ` · Caminho: ${esc(x.caminho)}` : ""} <span>(${x.eps.length} ${x.eps.length === 1 ? "episódio" : "episódios"})</span></button>`).join("")}<hr><button class="${state.allSeasons ? "on" : ""}" data-act="season-all">Ver todos os episódios</button></div>`
         : "");
     $("eps-title").textContent = state.allSeasons
       ? "Todos os episódios"
@@ -227,9 +245,8 @@
   </li>`;
   }
   function renderEps() {
-    const activities = SERIE.seasons.flatMap(s => (s.atividades || []).map(e => ({...e, season: s.n}))).filter(e => state.allSeasons || e.season === SERIE.seasons[state.season].n);
-    if (activities.length && !SERIE.seasons.some(s => s.eps.length)) {
-      $("eps").innerHTML = `<ol class="eps">${activities.map(e => `<li class="ep"><div class="n">${e.n}</div><a class="th activity-thumb" href="${esc(e.url)}" aria-label="Abrir episódio ${e.n}: ${esc(e.t)}"><span>${e.partes ? `${e.partes} PARTES` : "INTERATIVO"}</span><strong>${esc(e.t)}</strong></a><div class="tx"><div class="tt"><a class="ep-title" href="${esc(e.url)}">${esc(e.t)}</a><span class="dur">Interativo${e.partes ? ` · ${e.partes} partes` : ""}</span></div><p class="ds">${esc(e.desc)}</p></div></li>`).join("")}</ol>`;
+    if (!SERIE.seasons.some(s => s.eps.length) && SERIE.seasons.some(s => s.atividades?.length)) {
+      $("eps").innerHTML = '<p class="materials-empty">Os episódios em vídeo ainda não estão disponíveis. As atividades estão na aba Materiais.</p>';
       return;
     }
     if (SERIE.em_breve && !SERIE.seasons.some(s => s.eps.length)) {
@@ -989,14 +1006,7 @@
     }
     const a = el.dataset.act;
     if (a === "tab") {
-      document
-        .querySelectorAll(".tp-tabs button")
-        .forEach((b) =>
-          b.classList.toggle("on", b.dataset.tab === el.dataset.tab),
-        );
-      ["eps", "sobre"].forEach((t) => {
-        $("tab-" + t).hidden = t !== el.dataset.tab;
-      });
+      selectTitleTab(el.dataset.tab);
     } else if (a === "season-menu") {
       state.seasonMenu = !state.seasonMenu;
       renderSeasonSel();
@@ -1122,6 +1132,19 @@
     }
   });
   document.addEventListener("keydown", (ev) => {
+    if (ev.target.matches('.tp-tabs [role="tab"]')) {
+      const tabs = [...document.querySelectorAll('.tp-tabs [role="tab"]')];
+      let index = tabs.indexOf(ev.target);
+      if (ev.key === "ArrowRight") index = (index + 1) % tabs.length;
+      else if (ev.key === "ArrowLeft") index = (index - 1 + tabs.length) % tabs.length;
+      else if (ev.key === "Home") index = 0;
+      else if (ev.key === "End") index = tabs.length - 1;
+      else return;
+      ev.preventDefault();
+      selectTitleTab(tabs[index].dataset.tab);
+      tabs[index].focus();
+      return;
+    }
     if ($("player").hidden || ev.target.tagName === "INPUT" || $("lesson-share-dialog").open || ev.target.closest("#lesson-share")) return;
     const k = ev.key.toLowerCase();
     if (state.escolha) {

@@ -103,7 +103,7 @@
           href="/assistir/"
           data-watch-home
           aria-label="Voltar para as séries"
-          >← Todas as séries</a
+          ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7" /></svg><span>Todas as séries</span></a
         >
         <div class="tp-hero" id="tp-hero">
           <picture class="series-cover" id="tp-cover" hidden></picture>
@@ -112,7 +112,6 @@
             <div class="kick" id="tp-kick"></div>
             <h1 class="tp-name" id="tp-name"></h1>
             <div class="tp-actions">
-              <a class="btn primary" id="tp-activity" hidden></a>
               <button class="btn primary" data-act="resume">
                 <svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" /></svg
                 ><span id="tp-resume-label">Assistir</span>
@@ -143,11 +142,12 @@
           </div>
           <aside class="tp-side" id="tp-side"></aside>
         </div>
-        <div class="tp-tabs">
-          <button class="on" data-act="tab" data-tab="eps">Episódios</button>
-          <button data-act="tab" data-tab="sobre">Sobre</button>
+        <div class="tp-tabs" role="tablist" aria-label="Conteúdo da série">
+          <button class="on" id="tp-tab-eps" role="tab" aria-selected="true" aria-controls="tab-eps" data-act="tab" data-tab="eps">Episódios</button>
+          <button id="tp-tab-sobre" role="tab" aria-selected="false" aria-controls="tab-sobre" tabindex="-1" data-act="tab" data-tab="sobre">Sobre</button>
+          <button id="tp-tab-materiais" role="tab" aria-selected="false" aria-controls="tab-materiais" tabindex="-1" data-act="tab" data-tab="materiais">Materiais</button>
         </div>
-        <div class="tp-tab" id="tab-eps">
+        <div class="tp-tab" id="tab-eps" role="tabpanel" aria-labelledby="tp-tab-eps" tabindex="0">
           <div class="eps-head">
             <div>
               <h2>Episódios</h2>
@@ -157,7 +157,11 @@
           </div>
           <div id="eps"></div>
         </div>
-        <div class="tp-tab sobre" id="tab-sobre" hidden>
+        <div class="tp-tab" id="tab-materiais" role="tabpanel" aria-labelledby="tp-tab-materiais" tabindex="0" hidden>
+          <h2 class="materials-heading">Materiais dos episódios</h2>
+          <div id="tp-materials"></div>
+        </div>
+        <div class="tp-tab sobre" id="tab-sobre" role="tabpanel" aria-labelledby="tp-tab-sobre" tabindex="0" hidden>
           <p id="tp-about"></p>
           <p>
             Teclas: <b>espaço</b> pausa · <b>←</b> e <b>→</b> voltam e avançam

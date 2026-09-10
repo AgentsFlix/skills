@@ -174,7 +174,7 @@ o encerramento para a ação explícita após o último exercício, inclusive no
 O campo opcional `n` é o número editorial, usado na ficha, gaveta, catálogo e
 link `?s=hermes-em-operacao#t1e2`. Séries sem `n` conservam a numeração sequencial.
 Vídeo e materiais podem compartilhar o número 2; o deep link abre o vídeo e o
-botão Materiais mantém acesso às páginas. Os materiais também oferecem retorno
+aba Materiais mantém acesso às páginas. Os materiais também oferecem retorno
 ao vídeo. Progresso da última parte só é concluído pelo botão Concluir episódio,
 sem aplicar o limiar de 95% dos vídeos sem partes.
 
@@ -212,3 +212,9 @@ Após mudar o catálogo ou `assistir/index.html`, rode `python3 scripts/build_le
 O link antigo `/assistir/hermes-em-operacao/aula-2/` leva ao novo endereço. O antigo `?s=hermes-em-operacao#t1e2` permanece aceito e o player atualiza a barra para o canônico. A atividade `/assistir/hermes-em-operacao/t1e2/` conserva seu significado próprio.
 
 Depois do deploy, verificar HTTP 200, metadados no HTML sem JavaScript, imagem pública e navegação no Chrome. Teste real de colagem no WhatsApp é separado: um crawler receber Open Graph corretamente não garante a exibição em todos os aparelhos ou confirmações dentro do aplicativo.
+
+### Ficha da série: materiais e elenco
+
+A ficha usa as abas Episódios, Sobre e Materiais, com navegação por teclado (setas, Home e End), estado ARIA e um painel visível por vez. `seasons[].atividades` alimenta somente Materiais, agrupados por temporada e episódio. URLs relativas são resolvidas a partir de `/assistir/`, inclusive ao voltar de uma aula canônica. O hero conserva apenas as ações de reprodução. Séries sem atividades mostram um estado vazio na aba.
+
+O elenco de HERMES EM OPERAÇÃO foi preenchido com os nomes registrados no Meet fornecido pelo responsável, sem o rótulo de apresentação e sem duplicar o mesmo participante. As notas e a gravação de origem permanecem privadas. Listas com mais de três nomes são expansíveis; a ficha não perde os metadados de gênero e características.
