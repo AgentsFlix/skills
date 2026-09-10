@@ -29,7 +29,7 @@ for(const i of [2,3,4,5,6,7,8])assert.equal(M.status(b,i),'Precisa revisar');
 assert.equal(M.status(b,0),'Concluída');assert.equal(b.stages[7].handoff,'Resumo da etapa 8');assert(b.stages[7].history.length);assert(!b.folder.confirmed);assert(!M.ready(b));
 const oldHistory=b.stages[1].history.length;
 M.changeInput(b,1,'context','O público mudou de novo');assert.equal(b.stages[1].history.length,oldHistory);
-M.recordReturn(b,1,ret(1,{pending:'Hipótese ainda sem fonte'}));assert.equal(M.status(b,1),'Concluída com pendências');
+M.recordReturn(b,1,ret(1,{pending:'Hipótese ainda sem fonte'}));assert.equal(M.status(b,1),'Concluída com pendências');assert(M.prompt(data,b,1,'Codex').includes('Hipótese ainda sem fonte'));
 M.recordReturn(b,2,ret(2));assert.equal(M.status(b,2),'Concluída com pendências');
 M.recordReturn(b,1,ret(1));for(let i=2;i<9;i++)M.recordReturn(b,i,ret(i));
 M.recordReturn(b,6,ret(6,{criterion:false}));assert.notEqual(M.status(b,6),'Concluída');assert(!M.ready(b)); // Text design is not visual approval.
