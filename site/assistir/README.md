@@ -141,7 +141,7 @@ recebidas/enviadas. Os arquivos vieram dos áudios aprovados para o episódio.
 
 ### Parte 9: jornada da marca real
 
-`jornada-marca-data.json` preserva as nove perguntas, opções e prompts fornecidos na especificação de 09/09/2026. O modelo acrescenta apenas escolha, contexto, continuidade, nome do negócio, agente escolhido, entradas pendentes e o contrato da pasta. Não inclui caminhos pessoais ou comandos de instalação inventados. As referências distribuídas abrem o catálogo existente; procedimentos pessoais ficam condicionados à disponibilidade e à adaptação no agente.
+`jornada-marca-data.json` preserva as nove perguntas, opções e prompts fornecidos na especificação de 09/09/2026. O modelo acrescenta apenas escolha, contexto, continuidade, nome do negócio, agente escolhido, entradas pendentes, a referência de mockup escolhida e o contrato da pasta. Não inclui caminhos pessoais ou comandos de instalação inventados. As referências distribuídas abrem o catálogo existente; procedimentos pessoais ficam condicionados à disponibilidade e à adaptação no agente.
 
 A parte 9 conserva estado em `agentflix-brand-journey-v1` no localStorage, separado por negócio; as oito simulações anteriores conservam seu comportamento de visita. O aluno declara conversa, revisão, critério e salvamento. A página não executa skills, não lê a conversa externa e não verifica arquivos ou acesso ao Drive. O progresso de navegação não conclui uma etapa.
 
@@ -150,3 +150,14 @@ Mudanças invalidam as confirmações das entregas dependentes e preservam os re
 Cópia bloqueada mantém o prompt disponível para seleção manual. Armazenamento indisponível ou inválido preserva o trabalho em memória e avisa para baixar o registro. Dados inválidos existentes não são sobrescritos. Mudanças em outra aba suspendem a gravação para evitar conflitos. O download é um registro da jornada, não os documentos externos da marca.
 
 Testes de comportamento: `tests/brand_journey.cjs`, chamado por `tests/test_brand_journey.py`. As confirmações são autodeclaradas; o fluxo externo de cada agente/skill/Drive precisa ser testado no ambiente do aluno e não é certificado por estes testes de interface.
+
+
+### Jornada visual e banco de mockups
+
+A parte 9 usa `jornada-marca-visuals.js` para ilustrar as três opções de cada etapa e mostrar entrada → agente → entrega. A interface mantém os textos e prompts aprovados; complementos, retorno, skills e continuidade ficam em áreas expansíveis. No celular, a navegação das nove etapas usa um seletor. A grade final representa os documentos guardados e suas pendências.
+
+`mockup-bank.js` é um módulo independente do negócio: 12 composições × 12 estilos, com estática ou carrossel de três slides de exemplo em 1080 × 1350. Marca, nicho, título, apoio, convite e cor de destaque são parâmetros. `mockup-bank-ui.js` permite escolher composição, aparência e conteúdo, alternar estrutura/exemplo e baixar um ZIP com fontes SVG editáveis, `receita.json` e instruções. Os espaços de imagem são marcadores para ativos próprios; os exemplos não incluem fotografias, conteúdo aprovado, legenda ou texto alternativo final. Carrosséis podem ser ampliados na fonte conforme a pauta.
+
+A referência guardada pertence à marca ativa. A receita completa é acrescentada aos prompts a partir de Visual; a escolha não confirma aprovação. Trocar a referência preserva o histórico e invalida as revisões de Visual, Templates e Rotina quando necessário. Registros anteriores sem mockup continuam válidos. O download do mockup contém fontes locais; o download da jornada continua sendo apenas o registro das declarações do aluno.
+
+Para reutilizar o renderer: `MockupBank.render(config, slideIndex, wireframe)` devolve um SVG; `MockupBank.recipe(config)` documenta os parâmetros; `MockupBank.files(config)` devolve as fontes e `MockupBank.zip(files)` monta o arquivo portátil sem dependências. Testes: `tests/mockup_bank.cjs`, também executado por `tests/test_brand_journey.py`.

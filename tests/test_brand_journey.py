@@ -14,6 +14,12 @@ class BrandJourney(unittest.TestCase):
             self.skipTest('Node não disponível')
         subprocess.run([node, str(ROOT / 'tests/brand_journey.cjs')], check=True)
 
+    def test_mockup_bank(self):
+        node = shutil.which('node')
+        if not node:
+            self.skipTest('Node não disponível')
+        subprocess.run([node, str(ROOT / 'tests/mockup_bank.cjs')], check=True)
+
     def test_episode_entry_and_skill_references(self):
         directory = ROOT / 'site/assistir/hermes-em-operacao/t1e2'
         data = json.loads((directory / 'jornada-marca-data.json').read_text())
