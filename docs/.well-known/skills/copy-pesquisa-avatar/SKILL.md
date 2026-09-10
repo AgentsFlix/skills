@@ -1,6 +1,6 @@
 ---
 name: copy-pesquisa-avatar
-description: Pesquise lacunas relevantes sobre o público usando memória, acervo e fontes disponíveis. Entregue uma síntese com evidências, hipóteses e plano de coleta, sem inventar pesquisa ou impor quotas de um…
+description: Pesquise lacunas sobre o público com memória, acervo e fontes disponíveis. Entregue evidências, hipóteses e plano de coleta, sem inventar pesquisa ou impor quotas de método.
 license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:

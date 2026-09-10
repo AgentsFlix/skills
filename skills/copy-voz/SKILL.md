@@ -1,6 +1,6 @@
 ---
 name: copy-voz
-description: 'Extrai o DNA de comunicação de uma pessoa: vocabulário, frases-assinatura, frameworks que ela repete, o jeito de abrir e fechar. Use quando o pedido envolver voz da marca, DNA de comunicação…'
+description: Documente a voz da pessoa por entrevista ou análise do seu acervo, com trechos, origem e limites. Não imponha idioma, quotas ou identidade de um autor de referência.
 version: 0.4.3
 author: José Carlos Amorim
 license: MIT
@@ -19,28 +19,21 @@ metadata:
     - copy-pipeline
     - copy-auditoria
 ---
+# Voz da pessoa, com origem e limites
 
-# INCONFUNDÍVEL · DNA de comunicação e frases-assinatura
-
-Extrai o DNA de comunicação de uma pessoa: vocabulário, frases-assinatura, frameworks que ela repete, o jeito de abrir e fechar. O agente lê o material que você der e devolve um guia de voz que qualquer outra skill passa a respeitar. Copy boa na voz errada ainda é copy errada.
+Continue o posicionamento e as preferências já conhecidos. Com acervo suficiente, extraia padrões sustentados pelo material; com pouco acervo, construa direção provisória por entrevista. Uma entrevista não vira extração de DNA por preencher um template.
 
 ## When to Use
 
-- O pedido envolve: voz da marca, DNA de comunicação, frases-assinatura, extrair frameworks, tom de voz.
-- Diga: "extrai a voz de [nome] a partir destes textos: [colar ou apontar]".
-- NÃO use quando o pedido é uma peça em um método específico de copywriter ("como Halbert"): isso é `copy-metodo-<nome>`.
+Use para documentar ou revisar tom, vocabulário, aberturas e fechamentos da própria pessoa. Escolha entrevista ou extração conforme o objetivo e o material; não é imitação de um copywriter de referência.
 
 ## Quick Reference
 
-Obrigatórios: autor/marca, objetivo e material disponível. Acervo suficiente é requisito para alegar extração de DNA, não para começar por entrevista de voz.
+Obrigatórios: autor/marca, objetivo e material acessível. Reaproveite preferências e decisões atuais.
 
-Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Quality Checklist` próprios.
+Para entrevista ou guia inicial, siga Procedure sem abrir templates ampliados. Para extração solicitada, escolha somente a referência pertinente de comunicação, frases ou frameworks. Vinte arquivos, dez frameworks, quarenta e duas frases e sete categorias são estruturas históricas, não requisitos universais. A suficiência do acervo depende da variedade e da força dos padrões observados; declare os limites.
 
-| sub-tarefa | referência |
-|---|---|
-| extract communication dna | `references/extract-communication-dna.md` |
-| extract signature phrases | `references/extract-signature-phrases.md` |
-| extract frameworks | `references/extract-frameworks.md` |
+Guias saem no idioma da pessoa. Citações mantêm o texto original e sua origem; eventual tradução é rotulada. Números e frequências exigem contagem reproduzível, não estimativa da LLM.
 
 ## Procedure
 
@@ -59,10 +52,10 @@ Revisão pode valer com acervo novo suficiente; definição inicial ou pequeno a
 
 ## Pitfalls
 
-- Pular o bloco `Inputs` e escrever com o que veio. Falta de avatar ou de benefício principal produz copy genérica; pergunte.
-- Misturar duas sub-tarefas numa entrega só. Uma de cada vez, cada uma com seu checklist.
-- Preencher `[COLCHETES]` com chute para a peça "ficar pronta". Colchete aberto é honesto; número inventado é dívida.
-- Ignorar o `Output Format`. Ele existe para a peça encaixar no passo seguinte (página, e-mail, anúncio).
+- Forçar inglês, um autor ou a identidade de outra marca sobre a pessoa.
+- Inventar frases, frameworks, categorias ou números para completar quotas de template.
+- Tratar exemplos de preenchimento como evidência ou chamar entrevista de DNA extraído.
+- Bloquear um guia provisório por falta de um acervo ampliado ou exigir configuração que já está disponível.
 
 ## Verification
 

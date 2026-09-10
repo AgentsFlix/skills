@@ -1,6 +1,6 @@
 ---
 name: copy-pesquisa-avatar
-description: Pesquise lacunas relevantes sobre o público usando memória, acervo e fontes disponíveis. Entregue uma síntese com evidências, hipóteses e plano de coleta, sem inventar pesquisa ou impor quotas de um método de copy.
+description: Pesquise lacunas sobre o público com memória, acervo e fontes disponíveis. Entregue evidências, hipóteses e plano de coleta, sem inventar pesquisa ou impor quotas de método.
 version: 0.4.3
 author: José Carlos Amorim
 license: MIT

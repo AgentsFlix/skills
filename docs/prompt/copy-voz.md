@@ -18,31 +18,24 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
+> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Entrevista e direção provisória não exigem dezenas de arquivos. Quantidades em templates não autorizam completar frases ou frameworks sem fonte; o idioma segue minha preferência, e frequências só aparecem com contagem verificável.
 
 ---
+# Voz da pessoa, com origem e limites
 
-# INCONFUNDÍVEL · DNA de comunicação e frases-assinatura
-
-Extrai o DNA de comunicação de uma pessoa: vocabulário, frases-assinatura, frameworks que ela repete, o jeito de abrir e fechar. O agente lê o material que você der e devolve um guia de voz que qualquer outra skill passa a respeitar. Copy boa na voz errada ainda é copy errada.
+Continue o posicionamento e as preferências já conhecidos. Com acervo suficiente, extraia padrões sustentados pelo material; com pouco acervo, construa direção provisória por entrevista. Uma entrevista não vira extração de DNA por preencher um template.
 
 ## When to Use
 
-- O pedido envolve: voz da marca, DNA de comunicação, frases-assinatura, extrair frameworks, tom de voz.
-- Diga: "extrai a voz de [nome] a partir destes textos: [colar ou apontar]".
-- NÃO use quando o pedido é uma peça em um método específico de copywriter ("como Halbert"): isso é `copy-metodo-<nome>`.
+Use para documentar ou revisar tom, vocabulário, aberturas e fechamentos da própria pessoa. Escolha entrevista ou extração conforme o objetivo e o material; não é imitação de um copywriter de referência.
 
 ## Quick Reference
 
-Obrigatórios: autor/marca, objetivo e material disponível. Acervo suficiente é requisito para alegar extração de DNA, não para começar por entrevista de voz.
+Obrigatórios: autor/marca, objetivo e material acessível. Reaproveite preferências e decisões atuais.
 
-Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Quality Checklist` próprios.
+Para entrevista ou guia inicial, siga Procedure sem abrir templates ampliados. Para extração solicitada, escolha somente a referência pertinente de comunicação, frases ou frameworks. Vinte arquivos, dez frameworks, quarenta e duas frases e sete categorias são estruturas históricas, não requisitos universais. A suficiência do acervo depende da variedade e da força dos padrões observados; declare os limites.
 
-| sub-tarefa | referência |
-|---|---|
-| extract communication dna | `references/extract-communication-dna.md` |
-| extract signature phrases | `references/extract-signature-phrases.md` |
-| extract frameworks | `references/extract-frameworks.md` |
+Guias saem no idioma da pessoa. Citações mantêm o texto original e sua origem; eventual tradução é rotulada. Números e frequências exigem contagem reproduzível, não estimativa da LLM.
 
 ## Procedure
 
@@ -61,10 +54,10 @@ Revisão pode valer com acervo novo suficiente; definição inicial ou pequeno a
 
 ## Pitfalls
 
-- Pular o bloco `Inputs` e escrever com o que veio. Falta de avatar ou de benefício principal produz copy genérica; pergunte.
-- Misturar duas sub-tarefas numa entrega só. Uma de cada vez, cada uma com seu checklist.
-- Preencher `[COLCHETES]` com chute para a peça "ficar pronta". Colchete aberto é honesto; número inventado é dívida.
-- Ignorar o `Output Format`. Ele existe para a peça encaixar no passo seguinte (página, e-mail, anúncio).
+- Forçar inglês, um autor ou a identidade de outra marca sobre a pessoa.
+- Inventar frases, frameworks, categorias ou números para completar quotas de template.
+- Tratar exemplos de preenchimento como evidência ou chamar entrevista de DNA extraído.
+- Bloquear um guia provisório por falta de um acervo ampliado ou exigir configuração que já está disponível.
 
 ## Verification
 
@@ -103,12 +96,14 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
+Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Entrevista e direção provisória não exigem dezenas de arquivos. Quantidades em templates não autorizam completar frases ou frameworks sem fonte; o idioma segue minha preferência, e frequências só aparecem com contagem verificável.
 
 
 ---
 
 ## Referência: references/checklist-copywriter-agent-creation-checklist.md
+
+> Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -665,7 +660,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-voz" init --version 0.4.3 --revision 1.0.1
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-voz" init --version 0.4.3 --revision 1.0.2
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-voz" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-voz" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-voz" audit
@@ -747,7 +742,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: copy-voz
-  content_revision: 1.0.1
+  content_revision: 1.0.2
   verification_evidence: []
 ---
 
@@ -820,6 +815,8 @@ Conclua a entrega solicitada quando houver um artefato útil com origem e lacuna
 ---
 
 ## Referência: references/extract-communication-dna.md
+
+> Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -2346,6 +2343,8 @@ These demonstrate expected depth, structure, and voice accuracy.
 
 ## Referência: references/extract-frameworks.md
 
+> Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
+
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
 # Extract Frameworks - Operational Framework Extraction for Copywriter Agents
@@ -2783,6 +2782,8 @@ Use output template: `templates/frameworks-extraction-tmpl.yaml`
 ---
 
 ## Referência: references/extract-signature-phrases.md
+
+> Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -3348,7 +3349,7 @@ Then provide:
   "contract_version": "1.0.0",
   "skill_id": "copy-voz",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.1",
+  "content_revision": "1.0.2",
   "distribution_ref": "main"
 }
 
@@ -3357,16 +3358,18 @@ Then provide:
 
 ## Referência: templates/communication-dna-tmpl.yaml
 
+# Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
+
 # Communication DNA Template
 # CopywriterOS - Template for communication DNA extraction output
 #
 # USAGE:
-# 1. Execute tasks/extract-communication-dna.md with source materials
+# 1. Execute references/extract-communication-dna.md with source materials
 # 2. Fill this template with extracted data
 # 3. Save to {pasta}/{slug}/analysis/communication-dna.yaml
 #
 # REFERENCE:
-# - tasks/extract-communication-dna.md (extraction process)
+# - references/extract-communication-dna.md (extraction process)
 # - agents/david-ogilvy.md communication_dna section (structure example)
 
 template:
@@ -3927,7 +3930,7 @@ example_filled_entry:
 # - Minimum quantities must be met for each section
 # - All examples must come from actual source materials
 # - YAML syntax must be valid (test before saving)
-# - All content must be in English
+# - Content must follow the language chosen by the person; preserve original quotations with their source
 # - No generic phrases - everything must be distinctive to this copywriter
 #
 # After completing extraction:
@@ -3988,7 +3991,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.1",
+  "content_revision": "1.0.2",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }
@@ -3998,17 +4001,19 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
 
 ## Referência: templates/frameworks-extraction-tmpl.yaml
 
+# Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
+
 # Copywriter Operational Frameworks Extraction Template
 # Version: 1.0.0
-# Task Reference: tasks/extract-frameworks.md
+# Task Reference: references/extract-frameworks.md
 # Purpose: Output template for the extract-frameworks task
 #
 # INSTRUCTIONS:
 # 1. Replace all [PLACEHOLDER] values with actual data
 # 2. Remove comments starting with # GUIDE: after filling
 # 3. Validate YAML syntax before saving
-# 4. Ensure exactly 10 frameworks are documented
-# 5. All content must be in English
+# 4. Document only frameworks supported by the available sources; do not fill a quota
+# 5. Content must follow the language chosen by the person
 
 # ==============================================================================
 # METADATA SECTION
@@ -4017,21 +4022,21 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
 metadata:
   copywriter_name: "[FULL NAME]"  # e.g., "Dan Koe", "David Ogilvy"
   extraction_date: "[YYYY-MM-DD]"  # Date of extraction
-  total_frameworks: 10  # Must be exactly 10
+  total_frameworks: 0  # Update from the verified entries; no fixed target
   source_files_count: "[XX]"  # Number of source files processed
   source_directory: "[PATH]"  # e.g., "{pasta}/fontes/"
   extractor: "AIOS extract-frameworks task v1.0"
 
 # Category coverage summary - update counts after extraction
 categories_covered:
-  copywriting: 0      # Target: 2-3
-  offer_creation: 0   # Target: 1-2
-  marketing_strategy: 0  # Target: 1-2
-  sales: 0            # Target: 1-2
-  content: 0          # Target: 1-2
-  audience: 0         # Target: 0-1
-  product: 0          # Target: 0-1
-  mindset: 0          # Target: 0-1
+  copywriting: 0      # Count observed frameworks; no category quota
+  offer_creation: 0   # Count observed frameworks; no category quota
+  marketing_strategy: 0  # Count observed frameworks; no category quota
+  sales: 0            # Count observed frameworks; no category quota
+  content: 0          # Count observed frameworks; no category quota
+  audience: 0         # Count observed frameworks; no category quota
+  product: 0          # Count observed frameworks; no category quota
+  mindset: 0          # Count observed frameworks; no category quota
 
 # ==============================================================================
 # CATEGORY ENUM REFERENCE
@@ -4201,7 +4206,7 @@ operational_frameworks:
   # FRAMEWORKS 3-10: Repeat the structure above
   # ---------------------------------------------------------------------------
   # Copy the Framework 2 structure and fill for each additional framework.
-  # Ensure you have exactly 10 frameworks total.
+  # Remove unsupported placeholder entries and count only documented frameworks.
   # Remove this comment block in the final output.
   # ---------------------------------------------------------------------------
 
@@ -4451,7 +4456,7 @@ operational_frameworks:
 #     [ ] At least 1 example
 # [ ] YAML syntax is valid (no special characters breaking structure)
 # [ ] Language is consistent with copywriter's voice
-# [ ] All content is in English
+# [ ] Content follows the language chosen by the person
 #
 # ==============================================================================
 
@@ -4460,23 +4465,25 @@ operational_frameworks:
 
 ## Referência: templates/signature-phrases-tmpl.yaml
 
+# Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
+
 # ==============================================================================
 # SIGNATURE PHRASES EXTRACTION TEMPLATE
 # CopywriterOS - AIOS Expansion Pack
 # ==============================================================================
 #
 # PURPOSE:
-# Output template for the extract-signature-phrases task. Documents 42+ memorable,
+# Output template for the extract-signature-phrases task. Documents source-backed memorable,
 # quotable phrases organized into a 7-tier system based on usage frequency.
 #
 # USAGE:
 # 1. Run extract-signature-phrases task
 # 2. Fill in all sections following the structure below
-# 3. Ensure minimum requirements are met before saving
+# 3. Ensure entries are traceable before saving; do not invent missing phrases or categories
 #
 # MINIMUM REQUIREMENTS:
-# - Total phrases: 42+
-# - All 7 tiers populated
+# - Total phrases: only the phrases actually supported by sources
+# - Populate only categories supported by the sources; leave unsupported categories out
 # - Each phrase has all 4 required fields
 # - No duplicate phrases
 # - YAML syntax validated
@@ -4493,13 +4500,13 @@ signature_phrases:
   metadata:
     copywriter: "[COPYWRITER_NAME]"          # Full name of the copywriter
     extraction_date: "YYYY-MM-DD"            # Date of extraction
-    total_phrases: 0                          # Total count (must be 42+)
+    total_phrases: 0                          # Total count of documented source-backed phrases
     source_files_processed: 0                 # Number of source files analyzed
     primary_theme: "[PRIMARY_THEME]"          # Main topic domain (Tier 3)
     secondary_theme: "[SECONDARY_THEME]"      # Second topic domain (Tier 4)
     tertiary_theme: "[TERTIARY_THEME]"        # Third topic domain (Tier 5)
     version: "1.0"
-    task_reference: "tasks/extract-signature-phrases.md"
+    task_reference: "references/extract-signature-phrases.md"
     template_version: "1.0.0"
 
   # ============================================================================
@@ -4522,7 +4529,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "The exact phrase in English as spoken/written by the copywriter"
-        portuguese: "Translation to Portuguese (or original if source is Portuguese)"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "When and how to use this phrase - specific guidance on application"
         source: "Source file or content piece where this was found"
 
@@ -4552,7 +4559,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase that captures their unique methodology or process"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when explaining how they approach problems or create results"
         source: "Source attribution"
 
@@ -4579,7 +4586,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase specifically about their primary expertise domain"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when discussing [PRIMARY_THEME] topics - specific application guidance"
         source: "Source attribution"
 
@@ -4606,7 +4613,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase specifically about their secondary expertise domain"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when discussing [SECONDARY_THEME] topics - specific application guidance"
         source: "Source attribution"
 
@@ -4633,7 +4640,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase specifically about their tertiary expertise domain"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when discussing [TERTIARY_THEME] topics - specific application guidance"
         source: "Source attribution"
 
@@ -4659,7 +4666,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase about success, life philosophy, or mindset principles"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use for inspiration or when addressing deeper life/success topics"
         source: "Source attribution"
 
@@ -4685,7 +4692,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "Specific tactical advice for a common situation"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when [specific situation] - this phrase addresses [specific problem/scenario]"
         source: "Source attribution"
 
@@ -4704,7 +4711,7 @@ signature_phrases:
 # [ ] Tier 5 has 6-8 phrases
 # [ ] Tier 6 has 5-7 phrases
 # [ ] Tier 7 has 5-7 phrases
-# [ ] Total is 42+ phrases
+# [ ] Total matches documented source-backed phrases; no fixed quota
 #
 # QUALITY CHECKS:
 # [ ] Each phrase is standalone (makes sense without context)

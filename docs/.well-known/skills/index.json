@@ -333,7 +333,7 @@
     },
     {
       "name": "copy-pesquisa-avatar",
-      "description": "Pesquise lacunas relevantes sobre o público usando memória, acervo e fontes disponíveis. Entregue uma síntese com evidências, hipóteses e plano de coleta, sem inventar pesquisa ou impor quotas de um…",
+      "description": "Pesquise lacunas sobre o público com memória, acervo e fontes disponíveis. Entregue evidências, hipóteses e plano de coleta, sem inventar pesquisa ou impor quotas de método.",
       "files": [
         "SKILL.md",
         "references/analyze-mental-conversation.md",
@@ -407,7 +407,7 @@
     },
     {
       "name": "copy-voz",
-      "description": "Extrai o DNA de comunicação de uma pessoa: vocabulário, frases-assinatura, frameworks que ela repete, o jeito de abrir e fechar. Use quando o pedido envolver voz da marca, DNA de comunicação…",
+      "description": "Documente a voz da pessoa por entrevista ou análise do seu acervo, com trechos, origem e limites. Não imponha idioma, quotas ou identidade de um autor de referência.",
       "files": [
         "SKILL.md",
         "references/ativacao.md",
