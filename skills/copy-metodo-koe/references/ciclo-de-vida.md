@@ -47,7 +47,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-metodo-koe" init --version 0.4.3 --revision 1.0.3
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-metodo-koe" init --version 0.4.3 --revision 1.0.4
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-metodo-koe" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-metodo-koe" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-metodo-koe" audit

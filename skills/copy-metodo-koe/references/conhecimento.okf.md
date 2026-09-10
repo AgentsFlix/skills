@@ -17,7 +17,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: copy-metodo-koe
-  content_revision: 1.0.3
+  content_revision: 1.0.4
   verification_evidence: []
 ---
 

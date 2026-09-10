@@ -11,7 +11,7 @@ metadata:
   tags: copy, copywriting, voz, marca-pessoal
   related: copy-pipeline, copy-auditoria
   contract_version: 1.0.0
-  content_revision: 1.0.4
+  content_revision: 1.0.5
   distribution_ref: main
 ---
 # Voz da pessoa, com origem e limites
@@ -32,7 +32,7 @@ Guias saem no idioma da pessoa. Citações mantêm o texto original e sua origem
 
 ## Procedure
 
-Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
+Para cada pergunta aberta, construa o exemplo em três passos: (1) escolha um trecho curto da memória ou de uma resposta humana observada que seja pertinente à pergunta; (2) apresente essa base junto da pergunta; (3) monte uma resposta possível usando somente os fatos dessa base e [campo a preencher] para a informação solicitada que ainda falta. Também pode usar “ainda não sei” no campo desconhecido. Profissão conhecida não informa especialidade, serviço, público ou resultado. Antes de enviar, compare cada detalhe factual do exemplo com a base: remova o detalhe sem fonte e preserve o campo aberto, mesmo que pareça plausível ou seja chamado de hipotético. Sem memória pertinente, diga isso e ofereça apenas um molde com campos. Propostas futuras de ação ficam separadas dos exemplos que ajudam a pessoa a informar seus próprios fatos.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 

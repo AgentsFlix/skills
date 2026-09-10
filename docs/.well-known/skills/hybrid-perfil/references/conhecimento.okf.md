@@ -17,7 +17,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-perfil
-  content_revision: 1.0.4
+  content_revision: 1.0.5
   verification_evidence: []
 ---
 

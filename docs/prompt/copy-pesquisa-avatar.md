@@ -20,7 +20,7 @@
 >
 > Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Templates e quotas de pesquisa são apoios opcionais; entregue a síntese rastreável possível sem exigir contagem mínima de fatos, headlines ou pontuação de método ampliado.
 >
-> Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
+> Para cada pergunta aberta, construa o exemplo em três passos: (1) escolha um trecho curto da memória ou de uma resposta humana observada que seja pertinente à pergunta; (2) apresente essa base junto da pergunta; (3) monte uma resposta possível usando somente os fatos dessa base e [campo a preencher] para a informação solicitada que ainda falta. Também pode usar “ainda não sei” no campo desconhecido. Profissão conhecida não informa especialidade, serviço, público ou resultado. Antes de enviar, compare cada detalhe factual do exemplo com a base: remova o detalhe sem fonte e preserve o campo aberto, mesmo que pareça plausível ou seja chamado de hipotético. Sem memória pertinente, diga isso e ofereça apenas um molde com campos. Propostas futuras de ação ficam separadas dos exemplos que ajudam a pessoa a informar seus próprios fatos.
 
 ---
 # Pesquisa de público para a próxima decisão
@@ -41,7 +41,7 @@ Os templates preservam métodos e atribuições de origem. Mínimos de fatos, he
 
 ## Procedure
 
-Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
+Para cada pergunta aberta, construa o exemplo em três passos: (1) escolha um trecho curto da memória ou de uma resposta humana observada que seja pertinente à pergunta; (2) apresente essa base junto da pergunta; (3) monte uma resposta possível usando somente os fatos dessa base e [campo a preencher] para a informação solicitada que ainda falta. Também pode usar “ainda não sei” no campo desconhecido. Profissão conhecida não informa especialidade, serviço, público ou resultado. Antes de enviar, compare cada detalhe factual do exemplo com a base: remova o detalhe sem fonte e preserve o campo aberto, mesmo que pareça plausível ou seja chamado de hipotético. Sem memória pertinente, diga isso e ofereça apenas um molde com campos. Propostas futuras de ação ficam separadas dos exemplos que ajudam a pessoa a informar seus próprios fatos.
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
@@ -411,7 +411,7 @@ Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não
 
 Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Templates e quotas de pesquisa são apoios opcionais; entregue a síntese rastreável possível sem exigir contagem mínima de fatos, headlines ou pontuação de método ampliado.
 
-Nas perguntas e nos exemplos de resposta, use somente o que recuperou da memória ou de respostas confirmadas. Onde faltar dado, mantenha [campo a preencher] ou um exemplo que diga “não sei ainda”. Não invente prazos, preços, quantidades, locais, composição de equipe ou histórico para completar o exemplo, mesmo sob o rótulo “hipotético”. Uma proposta futura de ação é diferente de preencher fatos da pessoa: mantenha essas duas coisas separadas.
+Para cada pergunta aberta, construa o exemplo em três passos: (1) escolha um trecho curto da memória ou de uma resposta humana observada que seja pertinente à pergunta; (2) apresente essa base junto da pergunta; (3) monte uma resposta possível usando somente os fatos dessa base e [campo a preencher] para a informação solicitada que ainda falta. Também pode usar “ainda não sei” no campo desconhecido. Profissão conhecida não informa especialidade, serviço, público ou resultado. Antes de enviar, compare cada detalhe factual do exemplo com a base: remova o detalhe sem fonte e preserve o campo aberto, mesmo que pareça plausível ou seja chamado de hipotético. Sem memória pertinente, diga isso e ofereça apenas um molde com campos. Propostas futuras de ação ficam separadas dos exemplos que ajudam a pessoa a informar seus próprios fatos.
 
 
 ---
@@ -1339,7 +1339,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" init --version 0.4.3 --revision 1.0.4
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" init --version 0.4.3 --revision 1.0.5
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" audit
@@ -1421,7 +1421,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: copy-pesquisa-avatar
-  content_revision: 1.0.4
+  content_revision: 1.0.5
   verification_evidence: []
 ---
 
@@ -3319,7 +3319,7 @@ MISTAKE 4: Ignoring Awareness × Sophistication
   "contract_version": "1.0.0",
   "skill_id": "copy-pesquisa-avatar",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.4",
+  "content_revision": "1.0.5",
   "distribution_ref": "main"
 }
 
@@ -4434,7 +4434,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.4",
+  "content_revision": "1.0.5",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }
