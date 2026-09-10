@@ -177,3 +177,26 @@ Vídeo e materiais podem compartilhar o número 2; o deep link abre o vídeo e o
 botão Materiais mantém acesso às páginas. Os materiais também oferecem retorno
 ao vídeo. Progresso da última parte só é concluído pelo botão Concluir episódio,
 sem aplicar o limiar de 95% dos vídeos sem partes.
+
+### Link compartilhável de HERMES EM OPERAÇÃO T1:E2
+
+Use `https://agentsflix.ai/assistir/hermes-em-operacao/aula-2/` ao compartilhar a
+ aula. A resposta HTML inclui Open Graph e uma capa JPEG 1200 × 630; o JavaScript
+abre o player em `?s=hermes-em-operacao#t1e2`. O link de fallback continua acessível
+sem JavaScript. A página interativa `t1e2/` mantém seu endereço.
+
+`share_url` é opcional por episódio. Quando presente, o player oferece **Copiar
+link da aula**, com confirmação apenas após sucesso e cópia manual como alternativa.
+Não há envio automático ao WhatsApp. Uma futura capa deve usar outro nome de
+arquivo para permitir renovação do cache da prévia. Metadados seguem https://ogp.me/.
+
+### Revisão da mídia sem perder o progresso
+
+`uid` conserva a identidade da edição publicada. `stream_uid` opcional indica
+uma mídia substituta, usada por HLS, poster e miniaturas. Retomada, exercícios e
+conclusão continuam ligados a `uid`. Episódios sem `stream_uid` usam o vídeo
+original normalmente. Esse mecanismo exige a mesma timeline, cortes e capítulos.
+
+T1:E2 de HERMES EM OPERAÇÃO recebeu o tratamento de imagem aprovado em 1080p,
+com redução leve dos blocos de compressão e nitidez. Os 44min44s e os cinco
+exercícios continuam nos mesmos intervalos. O original é mantido para reversão.

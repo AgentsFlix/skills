@@ -63,7 +63,9 @@
   };
   const video = $("video");
   const curEp = () => SERIE.seasons[state.season].eps[state.ep];
-  const base = (uid) => `https://${SERIE.customer}.cloudflarestream.com/${uid}`;
+  // uid conserva o progresso; stream_uid permite substituir a mídia da mesma edição.
+  const mediaUid = (uid) => SERIE.seasons.flatMap(s => s.eps || []).find(e => e.uid === uid)?.stream_uid || uid;
+  const base = (uid) => `https://${SERIE.customer}.cloudflarestream.com/${mediaUid(uid)}`;
   const thumb = (uid, h = 270, t) =>
     `${base(uid)}/thumbnails/thumbnail.jpg?height=${h}${t !== undefined ? `&time=${Math.max(0, Math.floor(t))}s` : ""}`;
   const progKey = (uid) => `agentflix-prog-${uid}`;
@@ -305,6 +307,9 @@
     state.ep = ep;
     const e = curEp();
     state.lastChapter = -1;
+    $("lesson-share").hidden = !e.share_url;
+    $("lesson-share").textContent = "Copiar link da aula";
+    $("lesson-share-status").textContent = "";
     window.clar?.("assistiu", {
       serie: SERIE.slug,
       episodio: `T${sN(season)}E${eN(season, ep)}`,
@@ -954,6 +959,21 @@
     video.muted = video.volume === 0;
   });
 
+  $("lesson-share").addEventListener("click", async () => {
+    const url = curEp()?.share_url;
+    if (!url) return;
+    const fullUrl = new URL(url, window.location.origin).href;
+    if (await window.agentflixCopy(fullUrl)) {
+      $("lesson-share").textContent = "Link copiado ✓";
+      $("lesson-share-status").textContent = "Link copiado. Cole na conversa do WhatsApp.";
+    } else {
+      $("lesson-share-url").value = fullUrl;
+      $("lesson-share-dialog").showModal();
+      $("lesson-share-url").focus();
+      $("lesson-share-url").select();
+    }
+  });
+
   // ---------- cliques ----------
   document.addEventListener("click", (ev) => {
     const el = ev.target.closest("[data-act], [data-speed]");
@@ -1102,7 +1122,7 @@
     }
   });
   document.addEventListener("keydown", (ev) => {
-    if ($("player").hidden || ev.target.tagName === "INPUT") return;
+    if ($("player").hidden || ev.target.tagName === "INPUT" || $("lesson-share-dialog").open || ev.target.closest("#lesson-share")) return;
     const k = ev.key.toLowerCase();
     if (state.escolha) {
       if (["1", "2", "3", "4"].includes(ev.key)) escolher(+ev.key - 1);
