@@ -145,6 +145,7 @@ d=M.initialExample();d.axes.creator.metrics.seguidores.source='';assert.equal(M.
 d=M.initialExample();d.reference.ideal_score=100;assert.throws(()=>M.initialDashboard(d),/80 pontos/);
 d=M.initialExample();d.axes.creator.metrics.seguidores.status='good';assert.throws(()=>M.initialDashboard(d));
 d=M.initialExample();d.axes.founder.metrics.reconhecimento.numerator=d.axes.founder.metrics.reconhecimento.denominator+1;assert.throws(()=>M.initialDashboard(d),/pesquisa/);
+d=M.initialExample();d.axes.founder.metrics.reconhecimento.numerator=1;d.axes.founder.metrics.reconhecimento.denominator=2;assert.equal(M.initialDashboard(d).axes.founder.partial,true);
 // Legacy source records can be read against the new proposal without mutating the old scores.
 d=make();const before=JSON.stringify(d);board=M.initialDashboard(d);assert.equal(JSON.stringify(d),before);assert.equal(score(d).creator.score,77);assert.equal(board.legacy,true);
 d.axes.creator.cohort.comparable=false;assert(M.initialDashboard(d).axes.creator.score!==null);assert.equal(score(d).creator.score,null);

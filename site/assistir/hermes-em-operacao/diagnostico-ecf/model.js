@@ -185,7 +185,7 @@
         const sourced=text(m.source)&&data.collected_at!==null;
         let quality=legacy?(c.comparable&&c.collection_complete&&m.evidence.length?'measured':'partial'):m.status;
         if(raw===null||!Number.isFinite(raw)||!sourced||quality==='missing') {raw=null;quality='missing';}
-        if(quality==='measured'&&!m.evidence.length)quality='partial';
+        if(quality==='measured'&&(!m.evidence.length||(key==='reconhecimento'&&m.denominator<10)))quality='partial';
         const ideal=reference.targets[id][key],points=raw===null?null:Math.min(100,IDEAL_SCORE*raw/ideal);
         return {key,label:SHORT_LABELS[key],raw,ideal,points,quality,record:m,scope:legacy?c.description:m.scope};
       });
