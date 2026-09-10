@@ -1,0 +1,320 @@
+{
+  "version": 1,
+  "stages": [
+    {
+      "n": 1,
+      "title": "ENTENDER O NEGÓCIO",
+      "short": "Negócio",
+      "question": "O que seu negócio oferece?",
+      "guidance": "Escolha o que mais se aproxima. Você não precisa ter tudo definido.",
+      "options": [
+        {
+          "title": "Produtos",
+          "description": "Itens físicos ou digitais."
+        },
+        {
+          "title": "Serviços",
+          "description": "Atendimento, execução ou acesso contínuo."
+        },
+        {
+          "title": "Produtos e serviços",
+          "description": "Uma combinação dos dois."
+        }
+      ],
+      "first": "Como você explicaria o que faz para alguém que acabou de conhecer?",
+      "result": "Um retrato do negócio, das ofertas existentes e do objetivo no Instagram.",
+      "criterion": "Consigo ler o resumo e dizer: é isso que eu faço.",
+      "technical": "Comece com hybrid-perfil se estiver acessível. Se eu já tiver documentos ou site e houver ferramentas adequadas, use hybrid-etl apenas para extrair o material fornecido e evitar perguntas repetidas. Trabalhe o recorte de negócio e oferta atual, sem iniciar o pipeline completo de fundador, time e preço. Preserve os registros gerados pela skill e derive negocio.md para esta jornada.",
+      "inputs": "Nenhum documento anterior. Conversa e materiais oferecidos pelo aluno.",
+      "skills": [
+        "hybrid-perfil",
+        "hybrid-etl"
+      ],
+      "paths": [
+        "01-negocio/negocio.md"
+      ],
+      "prompt": "ETAPA 1 DE 9 · ENTENDER O NEGÓCIO\n\nEstou construindo uma base para um agente criar postagens estáticas e carrosséis 4:5 no Instagram.\nPonto de partida: [PONTO DE PARTIDA]\nMeu contexto adicional: [CONTEXTO ADICIONAL]\nContinuidade: [CONTINUIDADE]\n\nCOMO CONDUZIR\nSou iniciante em marketing. Faça UMA pergunta por mensagem e espere minha resposta. Use o histórico disponível e os documentos fornecidos; pergunte só o que falta. Não presuma acesso à minha memória, outras conversas, arquivos ou Drive. Se eu não souber, ajude com exemplos e registre a lacuna, sem responder por mim. Separe fatos informados, hipóteses, propostas e decisões aprovadas.\n\nVerifique se a skill indicada e suas referências estão acessíveis. Quando estiverem, use o recorte pertinente a esta etapa. Quando não estiverem, avise que está trabalhando em modo guiado por prompt e siga a missão abaixo. Não invente comandos de instalação nem diga que executou uma skill indisponível. Respeite os critérios da skill usada; se trabalhar apenas uma parte, mantenha seu status parcial. Não execute pipelines completos, comandos legados ou etapas seguintes por conta própria.\n\nSKILLS E RECORTE\nComece com hybrid-perfil se estiver acessível. Se eu já tiver documentos ou site e houver ferramentas adequadas, use hybrid-etl apenas para extrair o material fornecido e evitar perguntas repetidas. Trabalhe o recorte de negócio e oferta atual, sem iniciar o pipeline completo de fundador, time e preço. Preserve os registros gerados pela skill e derive negocio.md para esta jornada.\n\nENTRADAS\nNenhum documento anterior. Conversa e materiais oferecidos pelo aluno.\nSe uma entrada necessária estiver ausente, peça o documento ou uma síntese. Não use hipóteses silenciosas para substituir essa entrada.\n\nMISSÃO\nExtraia da minha memória o que o negócio oferece, como funciona a entrega, quem já compra ou poderia comprar, estágio atual, diferenciais percebidos e o que desejo conseguir com o Instagram. Conhecimento pode ser produto, serviço ou ambos; não force categorias. Peça um exemplo concreto de uma oferta. Não invente preços, resultados ou uma oferta nova.\n\nENTREGA DA JORNADA\nPrepare negocio.md. Os documentos Markdown revisados e aprovados são a fonte de leitura do agente de conteúdo desta jornada. Preserve os arquivos nativos da skill como registros de origem, com caminho e versão. Reconcile divergências comigo antes de sobrescrever documentos; não presuma sincronização entre Markdown e YAML.\n\nMostre uma síntese para eu corrigir antes de consolidar. Registre data, versão, status, fontes e pendências. Critério desta etapa: Consigo ler o resumo e dizer: é isso que eu faço.\nSe esse critério não for atendido, explique o que falta e mantenha a etapa parcial. Não confunda critério da jornada com conclusão integral da skill nativa.\n\nEntregue o conteúdo pronto para salvar. Salve em uma pasta por negócio somente se houver ferramenta e acesso ao destino; caso contrário entregue o texto completo. Só diga que salvou após confirmar sucesso. A revisão dos documentos e a confirmação de salvamento são distintas de autorizar uma publicação.\n\nAo encerrar, devolva um bloco CONTEXTO PARA A PRÓXIMA ETAPA com: negócio; etapa e estado; modo ou skill usada; documentos e versões; decisões acumuladas; hipóteses e fontes; pendências; registros de origem; o que foi salvo e onde; o que foi apenas entregue em texto; próxima etapa e entradas necessárias.\n\nComece pela primeira pergunta útil, sem repetir uma já respondida. Sugestão: “Como você explicaria o que faz para alguém que acabou de conhecer?”"
+    },
+    {
+      "n": 2,
+      "title": "CONHECER O PÚBLICO",
+      "short": "Público",
+      "question": "O que você já sabe sobre seus clientes?",
+      "guidance": "Experiência real e hipótese terão lugares diferentes na sua base.",
+      "options": [
+        {
+          "title": "Já tenho clientes",
+          "description": "Vamos partir das conversas reais."
+        },
+        {
+          "title": "Tenho um público em mente",
+          "description": "Vamos investigar essa hipótese."
+        },
+        {
+          "title": "Ainda não sei",
+          "description": "Vamos descobrir um ponto de partida."
+        }
+      ],
+      "first": "Conte sobre uma pessoa que você já ajudou ou gostaria de ajudar.",
+      "result": "Um público prioritário, suas necessidades e as hipóteses que ainda precisam de evidência.",
+      "criterion": "Reconheço para quem vou falar e sei o que ainda é hipótese.",
+      "technical": "Use hybrid-icp se acessível. copy-pesquisa-avatar é apoio para perguntas de pesquisa específicas, quando houver ferramentas e escopo definidos. Identifique as fontes das conclusões sobre consciência e sofisticação do mercado; quando faltarem, mantenha hipóteses explícitas. Não confunda o preenchimento de um perfil com validação por clientes reais.",
+      "inputs": "negocio.md aprovado ou revisado, com hipóteses identificadas.",
+      "skills": [
+        "hybrid-icp",
+        "copy-pesquisa-avatar"
+      ],
+      "paths": [
+        "02-publico/publico.md",
+        "02-publico/pesquisas/"
+      ],
+      "prompt": "ETAPA 2 DE 9 · CONHECER O PÚBLICO\n\nEstou construindo uma base para um agente criar postagens estáticas e carrosséis 4:5 no Instagram.\nPonto de partida: [PONTO DE PARTIDA]\nMeu contexto adicional: [CONTEXTO ADICIONAL]\nContinuidade: [CONTINUIDADE]\n\nCOMO CONDUZIR\nSou iniciante em marketing. Faça UMA pergunta por mensagem e espere minha resposta. Use o histórico disponível e os documentos fornecidos; pergunte só o que falta. Não presuma acesso à minha memória, outras conversas, arquivos ou Drive. Se eu não souber, ajude com exemplos e registre a lacuna, sem responder por mim. Separe fatos informados, hipóteses, propostas e decisões aprovadas.\n\nVerifique se a skill indicada e suas referências estão acessíveis. Quando estiverem, use o recorte pertinente a esta etapa. Quando não estiverem, avise que está trabalhando em modo guiado por prompt e siga a missão abaixo. Não invente comandos de instalação nem diga que executou uma skill indisponível. Respeite os critérios da skill usada; se trabalhar apenas uma parte, mantenha seu status parcial. Não execute pipelines completos, comandos legados ou etapas seguintes por conta própria.\n\nSKILLS E RECORTE\nUse hybrid-icp se acessível. copy-pesquisa-avatar é apoio para perguntas de pesquisa específicas, quando houver ferramentas e escopo definidos. Identifique as fontes das conclusões sobre consciência e sofisticação do mercado; quando faltarem, mantenha hipóteses explícitas. Não confunda o preenchimento de um perfil com validação por clientes reais.\n\nENTRADAS\nnegocio.md aprovado ou revisado, com hipóteses identificadas.\nSe uma entrada necessária estiver ausente, peça o documento ou uma síntese. Não use hipóteses silenciosas para substituir essa entrada.\n\nMISSÃO\nLeia negocio.md ou peça que eu cole seu conteúdo. Descubra situações de compra, dificuldades, desejos, objeções, alternativas e expressões reais do público. Se tenho clientes, peça histórias e perguntas que escuto; não peça dados pessoais identificáveis. Se não tenho, formule hipóteses explícitas. Sugira pesquisa pública quando houver ferramentas, registrando fonte e data; se não houver, entregue perguntas de pesquisa pendentes. Não transforme suposições em pesquisa validada nem crie falas atribuídas a clientes.\n\nENTREGA DA JORNADA\nPrepare publico.md + fontes da pesquisa. Os documentos Markdown revisados e aprovados são a fonte de leitura do agente de conteúdo desta jornada. Preserve os arquivos nativos da skill como registros de origem, com caminho e versão. Reconcile divergências comigo antes de sobrescrever documentos; não presuma sincronização entre Markdown e YAML.\n\nMostre uma síntese para eu corrigir antes de consolidar. Registre data, versão, status, fontes e pendências. Critério desta etapa: Reconheço para quem vou falar e sei o que ainda é hipótese.\nSe esse critério não for atendido, explique o que falta e mantenha a etapa parcial. Não confunda critério da jornada com conclusão integral da skill nativa.\n\nEntregue o conteúdo pronto para salvar. Salve em uma pasta por negócio somente se houver ferramenta e acesso ao destino; caso contrário entregue o texto completo. Só diga que salvou após confirmar sucesso. A revisão dos documentos e a confirmação de salvamento são distintas de autorizar uma publicação.\n\nAo encerrar, devolva um bloco CONTEXTO PARA A PRÓXIMA ETAPA com: negócio; etapa e estado; modo ou skill usada; documentos e versões; decisões acumuladas; hipóteses e fontes; pendências; registros de origem; o que foi salvo e onde; o que foi apenas entregue em texto; próxima etapa e entradas necessárias.\n\nComece pela primeira pergunta útil, sem repetir uma já respondida. Sugestão: “Conte sobre uma pessoa que você já ajudou ou gostaria de ajudar.”"
+    },
+    {
+      "n": 3,
+      "title": "DEFINIR O POSICIONAMENTO",
+      "short": "Posicionamento",
+      "question": "Por que alguém escolheria seu negócio?",
+      "guidance": "Escolha uma pista. O agente vai ajudar a transformá-la numa proposta clara.",
+      "options": [
+        {
+          "title": "Pelo resultado",
+          "description": "O que a pessoa consegue com você."
+        },
+        {
+          "title": "Pelo jeito de fazer",
+          "description": "Seu método, cuidado ou experiência."
+        },
+        {
+          "title": "Ainda não sei",
+          "description": "Vamos encontrar motivos concretos."
+        }
+      ],
+      "first": "O que você faz de um jeito que seus clientes valorizam?",
+      "result": "Uma proposta clara, diferenciais sustentados e limites do que a marca promete.",
+      "criterion": "Eu usaria essa explicação para apresentar meu negócio.",
+      "technical": "Use hybrid-marca se acessível, trabalhando posicionamento, promessas, diferenciais e mensagens. Guarde o estado parcial da skill para continuar a voz na etapa seguinte. Não solicite toda a elicitação de marca novamente na etapa 4. Trate a escolha de posicionamento como decisão minha; fundamentos sem evidência continuam como hipótese.",
+      "inputs": "negocio.md e publico.md.",
+      "skills": [
+        "hybrid-marca"
+      ],
+      "paths": [
+        "01-negocio/posicionamento.md"
+      ],
+      "prompt": "ETAPA 3 DE 9 · DEFINIR O POSICIONAMENTO\n\nEstou construindo uma base para um agente criar postagens estáticas e carrosséis 4:5 no Instagram.\nPonto de partida: [PONTO DE PARTIDA]\nMeu contexto adicional: [CONTEXTO ADICIONAL]\nContinuidade: [CONTINUIDADE]\n\nCOMO CONDUZIR\nSou iniciante em marketing. Faça UMA pergunta por mensagem e espere minha resposta. Use o histórico disponível e os documentos fornecidos; pergunte só o que falta. Não presuma acesso à minha memória, outras conversas, arquivos ou Drive. Se eu não souber, ajude com exemplos e registre a lacuna, sem responder por mim. Separe fatos informados, hipóteses, propostas e decisões aprovadas.\n\nVerifique se a skill indicada e suas referências estão acessíveis. Quando estiverem, use o recorte pertinente a esta etapa. Quando não estiverem, avise que está trabalhando em modo guiado por prompt e siga a missão abaixo. Não invente comandos de instalação nem diga que executou uma skill indisponível. Respeite os critérios da skill usada; se trabalhar apenas uma parte, mantenha seu status parcial. Não execute pipelines completos, comandos legados ou etapas seguintes por conta própria.\n\nSKILLS E RECORTE\nUse hybrid-marca se acessível, trabalhando posicionamento, promessas, diferenciais e mensagens. Guarde o estado parcial da skill para continuar a voz na etapa seguinte. Não solicite toda a elicitação de marca novamente na etapa 4. Trate a escolha de posicionamento como decisão minha; fundamentos sem evidência continuam como hipótese.\n\nENTRADAS\nnegocio.md e publico.md.\nSe uma entrada necessária estiver ausente, peça o documento ou uma síntese. Não use hipóteses silenciosas para substituir essa entrada.\n\nMISSÃO\nLeia negocio.md e publico.md ou solicite os resumos ausentes. Investigue motivos de escolha, alternativas, diferenciais verificáveis e provas disponíveis. Proponha formas simples de explicar para quem o negócio existe, que problema resolve e por que escolhê-lo. Faça-me escolher e corrigir antes de consolidar. Não invente exclusividade, superioridade, garantias ou mudanças de oferta.\n\nENTREGA DA JORNADA\nPrepare posicionamento.md. Os documentos Markdown revisados e aprovados são a fonte de leitura do agente de conteúdo desta jornada. Preserve os arquivos nativos da skill como registros de origem, com caminho e versão. Reconcile divergências comigo antes de sobrescrever documentos; não presuma sincronização entre Markdown e YAML.\n\nMostre uma síntese para eu corrigir antes de consolidar. Registre data, versão, status, fontes e pendências. Critério desta etapa: Eu usaria essa explicação para apresentar meu negócio.\nSe esse critério não for atendido, explique o que falta e mantenha a etapa parcial. Não confunda critério da jornada com conclusão integral da skill nativa.\n\nEntregue o conteúdo pronto para salvar. Salve em uma pasta por negócio somente se houver ferramenta e acesso ao destino; caso contrário entregue o texto completo. Só diga que salvou após confirmar sucesso. A revisão dos documentos e a confirmação de salvamento são distintas de autorizar uma publicação.\n\nAo encerrar, devolva um bloco CONTEXTO PARA A PRÓXIMA ETAPA com: negócio; etapa e estado; modo ou skill usada; documentos e versões; decisões acumuladas; hipóteses e fontes; pendências; registros de origem; o que foi salvo e onde; o que foi apenas entregue em texto; próxima etapa e entradas necessárias.\n\nComece pela primeira pergunta útil, sem repetir uma já respondida. Sugestão: “O que você faz de um jeito que seus clientes valorizam?”"
+    },
+    {
+      "n": 4,
+      "title": "ENCONTRAR A VOZ",
+      "short": "Voz",
+      "question": "Como você quer soar nas postagens?",
+      "guidance": "É um ponto de partida. Exemplos vão ajudar você a escolher o tom.",
+      "options": [
+        {
+          "title": "Próximo e acolhedor",
+          "description": "Como uma conversa que ajuda."
+        },
+        {
+          "title": "Claro e didático",
+          "description": "Como quem explica sem complicar."
+        },
+        {
+          "title": "Direto e provocador",
+          "description": "Como quem faz pensar e agir."
+        }
+      ],
+      "first": "Como você responderia a uma dúvida comum de um cliente? Escreva ou mande um áudio, se seu agente aceitar.",
+      "result": "Regras de escrita com exemplos que realmente parecem com a marca.",
+      "criterion": "Eu me reconheço nos exemplos e consigo apontar o que não combina.",
+      "technical": "Continue hybrid-marca a partir da etapa 3, se acessível. Se houver amostras suficientes, confira os requisitos atuais de copy-voz antes de usá-la; a referência de DNA inspecionada exige pelo menos 20 arquivos de origem. Sem esse acervo, faça a entrevista e valide exemplos comigo, registrando que é uma voz inicial proposta, não um DNA extraído de corpus suficiente. A voz final deve ser a do negócio, sem impor o estilo de um copywriter.",
+      "inputs": "negocio.md, publico.md, posicionamento.md; amostras de voz quando existirem.",
+      "skills": [
+        "hybrid-marca",
+        "copy-voz"
+      ],
+      "paths": [
+        "03-voz/voz.md",
+        "03-voz/exemplos-aprovados.md"
+      ],
+      "prompt": "ETAPA 4 DE 9 · ENCONTRAR A VOZ\n\nEstou construindo uma base para um agente criar postagens estáticas e carrosséis 4:5 no Instagram.\nPonto de partida: [PONTO DE PARTIDA]\nMeu contexto adicional: [CONTEXTO ADICIONAL]\nContinuidade: [CONTINUIDADE]\n\nCOMO CONDUZIR\nSou iniciante em marketing. Faça UMA pergunta por mensagem e espere minha resposta. Use o histórico disponível e os documentos fornecidos; pergunte só o que falta. Não presuma acesso à minha memória, outras conversas, arquivos ou Drive. Se eu não souber, ajude com exemplos e registre a lacuna, sem responder por mim. Separe fatos informados, hipóteses, propostas e decisões aprovadas.\n\nVerifique se a skill indicada e suas referências estão acessíveis. Quando estiverem, use o recorte pertinente a esta etapa. Quando não estiverem, avise que está trabalhando em modo guiado por prompt e siga a missão abaixo. Não invente comandos de instalação nem diga que executou uma skill indisponível. Respeite os critérios da skill usada; se trabalhar apenas uma parte, mantenha seu status parcial. Não execute pipelines completos, comandos legados ou etapas seguintes por conta própria.\n\nSKILLS E RECORTE\nContinue hybrid-marca a partir da etapa 3, se acessível. Se houver amostras suficientes, confira os requisitos atuais de copy-voz antes de usá-la; a referência de DNA inspecionada exige pelo menos 20 arquivos de origem. Sem esse acervo, faça a entrevista e valide exemplos comigo, registrando que é uma voz inicial proposta, não um DNA extraído de corpus suficiente. A voz final deve ser a do negócio, sem impor o estilo de um copywriter.\n\nENTRADAS\nnegocio.md, publico.md, posicionamento.md; amostras de voz quando existirem.\nSe uma entrada necessária estiver ausente, peça o documento ou uma síntese. Não use hipóteses silenciosas para substituir essa entrada.\n\nMISSÃO\nLeia a base anterior ou peça seus resumos. Colete amostras da minha fala ou escrita, sem presumir acesso a áudios. Diferencie meu jeito pessoal da voz desejada para a marca. Mostre versões curtas da mesma mensagem para eu escolher e ajustar. Extraia vocabulário, ritmo, humor, nível de formalidade, uso de emojis, palavras evitadas e variação de tom por situação. A escolha inicial não é uma personalidade definitiva. Registre exemplos aprovados e exemplos a evitar.\n\nENTREGA DA JORNADA\nPrepare voz.md + exemplos-aprovados.md. Os documentos Markdown revisados e aprovados são a fonte de leitura do agente de conteúdo desta jornada. Preserve os arquivos nativos da skill como registros de origem, com caminho e versão. Reconcile divergências comigo antes de sobrescrever documentos; não presuma sincronização entre Markdown e YAML.\n\nMostre uma síntese para eu corrigir antes de consolidar. Registre data, versão, status, fontes e pendências. Critério desta etapa: Eu me reconheço nos exemplos e consigo apontar o que não combina.\nSe esse critério não for atendido, explique o que falta e mantenha a etapa parcial. Não confunda critério da jornada com conclusão integral da skill nativa.\n\nEntregue o conteúdo pronto para salvar. Salve em uma pasta por negócio somente se houver ferramenta e acesso ao destino; caso contrário entregue o texto completo. Só diga que salvou após confirmar sucesso. A revisão dos documentos e a confirmação de salvamento são distintas de autorizar uma publicação.\n\nAo encerrar, devolva um bloco CONTEXTO PARA A PRÓXIMA ETAPA com: negócio; etapa e estado; modo ou skill usada; documentos e versões; decisões acumuladas; hipóteses e fontes; pendências; registros de origem; o que foi salvo e onde; o que foi apenas entregue em texto; próxima etapa e entradas necessárias.\n\nComece pela primeira pergunta útil, sem repetir uma já respondida. Sugestão: “Como você responderia a uma dúvida comum de um cliente? Escreva ou mande um áudio, se seu agente aceitar.”"
+    },
+    {
+      "n": 5,
+      "title": "REUNIR MATÉRIA-PRIMA",
+      "short": "Matéria-prima",
+      "question": "De onde pode sair seu conteúdo?",
+      "guidance": "Pode haver mais de uma fonte. Escolha por onde começar.",
+      "options": [
+        {
+          "title": "Da minha experiência",
+          "description": "Histórias, métodos e bastidores."
+        },
+        {
+          "title": "De materiais que já tenho",
+          "description": "Documentos, aulas, textos ou catálogos."
+        },
+        {
+          "title": "Preciso de ajuda para lembrar",
+          "description": "Vamos começar pelas dúvidas do dia a dia."
+        }
+      ],
+      "first": "Qual dúvida sobre seu trabalho você já respondeu mais de uma vez?",
+      "result": "Assuntos, explicações e evidências que o agente pode transformar em conteúdo.",
+      "criterion": "Há matéria-prima concreta para produzir além de dicas genéricas.",
+      "technical": "Reutilize extrações já feitas, sem duplicá-las. Use hybrid-etl para materiais acessíveis e sop-extrair quando houver um processo ou método que eu consiga explicar. Limite o trabalho à matéria-prima relevante para os posts; não dispare o pipeline inteiro de extração de empresa. Consolide um índice de histórias, perguntas, métodos, exemplos e provas com fonte e permissão de uso.",
+      "inputs": "Documentos anteriores e materiais efetivamente fornecidos.",
+      "skills": [
+        "hybrid-etl",
+        "sop-extrair"
+      ],
+      "paths": [
+        "04-conhecimento/conhecimento.md",
+        "04-conhecimento/fontes/"
+      ],
+      "prompt": "ETAPA 5 DE 9 · REUNIR MATÉRIA-PRIMA\n\nEstou construindo uma base para um agente criar postagens estáticas e carrosséis 4:5 no Instagram.\nPonto de partida: [PONTO DE PARTIDA]\nMeu contexto adicional: [CONTEXTO ADICIONAL]\nContinuidade: [CONTINUIDADE]\n\nCOMO CONDUZIR\nSou iniciante em marketing. Faça UMA pergunta por mensagem e espere minha resposta. Use o histórico disponível e os documentos fornecidos; pergunte só o que falta. Não presuma acesso à minha memória, outras conversas, arquivos ou Drive. Se eu não souber, ajude com exemplos e registre a lacuna, sem responder por mim. Separe fatos informados, hipóteses, propostas e decisões aprovadas.\n\nVerifique se a skill indicada e suas referências estão acessíveis. Quando estiverem, use o recorte pertinente a esta etapa. Quando não estiverem, avise que está trabalhando em modo guiado por prompt e siga a missão abaixo. Não invente comandos de instalação nem diga que executou uma skill indisponível. Respeite os critérios da skill usada; se trabalhar apenas uma parte, mantenha seu status parcial. Não execute pipelines completos, comandos legados ou etapas seguintes por conta própria.\n\nSKILLS E RECORTE\nReutilize extrações já feitas, sem duplicá-las. Use hybrid-etl para materiais acessíveis e sop-extrair quando houver um processo ou método que eu consiga explicar. Limite o trabalho à matéria-prima relevante para os posts; não dispare o pipeline inteiro de extração de empresa. Consolide um índice de histórias, perguntas, métodos, exemplos e provas com fonte e permissão de uso.\n\nENTRADAS\nDocumentos anteriores e materiais efetivamente fornecidos.\nSe uma entrada necessária estiver ausente, peça o documento ou uma síntese. Não use hipóteses silenciosas para substituir essa entrada.\n\nMISSÃO\nConsulte a base anterior. Ajude-me a lembrar perguntas frequentes, métodos, exemplos, histórias, produtos, demonstrações e resultados documentados. Explore uma fonte de cada vez. Se eu mencionar arquivos ou links, peça o material necessário, sem alegar ter lido o que não acessou. Separe fatos, opiniões e hipóteses; registre fontes e permissões de uso de casos. Não invente depoimentos, estatísticas ou resultados. Liste lacunas de conteúdo.\n\nENTREGA DA JORNADA\nPrepare conhecimento.md + fontes e materiais. Os documentos Markdown revisados e aprovados são a fonte de leitura do agente de conteúdo desta jornada. Preserve os arquivos nativos da skill como registros de origem, com caminho e versão. Reconcile divergências comigo antes de sobrescrever documentos; não presuma sincronização entre Markdown e YAML.\n\nMostre uma síntese para eu corrigir antes de consolidar. Registre data, versão, status, fontes e pendências. Critério desta etapa: Há matéria-prima concreta para produzir além de dicas genéricas.\nSe esse critério não for atendido, explique o que falta e mantenha a etapa parcial. Não confunda critério da jornada com conclusão integral da skill nativa.\n\nEntregue o conteúdo pronto para salvar. Salve em uma pasta por negócio somente se houver ferramenta e acesso ao destino; caso contrário entregue o texto completo. Só diga que salvou após confirmar sucesso. A revisão dos documentos e a confirmação de salvamento são distintas de autorizar uma publicação.\n\nAo encerrar, devolva um bloco CONTEXTO PARA A PRÓXIMA ETAPA com: negócio; etapa e estado; modo ou skill usada; documentos e versões; decisões acumuladas; hipóteses e fontes; pendências; registros de origem; o que foi salvo e onde; o que foi apenas entregue em texto; próxima etapa e entradas necessárias.\n\nComece pela primeira pergunta útil, sem repetir uma já respondida. Sugestão: “Qual dúvida sobre seu trabalho você já respondeu mais de uma vez?”"
+    },
+    {
+      "n": 6,
+      "title": "ESCOLHER OS PILARES",
+      "short": "Pilares",
+      "question": "O que o Instagram precisa ajudar você a conseguir?",
+      "guidance": "Escolha a prioridade inicial. Os outros objetivos podem entrar na combinação.",
+      "options": [
+        {
+          "title": "Ser descoberto",
+          "description": "Chegar a pessoas que ainda não conhecem você."
+        },
+        {
+          "title": "Construir confiança",
+          "description": "Mostrar como pensa e como ajuda."
+        },
+        {
+          "title": "Gerar procura",
+          "description": "Levar pessoas a conversar ou comprar."
+        }
+      ],
+      "first": "Depois de ver seus posts, o que você gostaria que uma pessoa fizesse?",
+      "result": "Territórios de conteúdo com pautas concretas e uma função para o negócio.",
+      "criterion": "Entendo por que cada assunto entra e de onde virá seu conteúdo.",
+      "technical": "Esta etapa não possui uma skill dedicada validada na coleção atual. Execute o procedimento descrito como modo guiado por prompt. Se acessíveis, use os pilares de mensagem de hybrid-marca e a estrutura de organização de ideias presente em copy-metodo-koe como referências pontuais. Não execute automaticamente a escrita no estilo de Koe, nem adote seu modelo de negócio como padrão.",
+      "inputs": "Objetivo do negócio, publico.md, posicionamento.md, voz.md e conhecimento.md.",
+      "skills": [
+        "hybrid-marca",
+        "copy-metodo-koe"
+      ],
+      "paths": [
+        "05-editorial/pilares.md",
+        "05-editorial/banco-de-pautas.md"
+      ],
+      "prompt": "ETAPA 6 DE 9 · ESCOLHER OS PILARES\n\nEstou construindo uma base para um agente criar postagens estáticas e carrosséis 4:5 no Instagram.\nPonto de partida: [PONTO DE PARTIDA]\nMeu contexto adicional: [CONTEXTO ADICIONAL]\nContinuidade: [CONTINUIDADE]\n\nCOMO CONDUZIR\nSou iniciante em marketing. Faça UMA pergunta por mensagem e espere minha resposta. Use o histórico disponível e os documentos fornecidos; pergunte só o que falta. Não presuma acesso à minha memória, outras conversas, arquivos ou Drive. Se eu não souber, ajude com exemplos e registre a lacuna, sem responder por mim. Separe fatos informados, hipóteses, propostas e decisões aprovadas.\n\nVerifique se a skill indicada e suas referências estão acessíveis. Quando estiverem, use o recorte pertinente a esta etapa. Quando não estiverem, avise que está trabalhando em modo guiado por prompt e siga a missão abaixo. Não invente comandos de instalação nem diga que executou uma skill indisponível. Respeite os critérios da skill usada; se trabalhar apenas uma parte, mantenha seu status parcial. Não execute pipelines completos, comandos legados ou etapas seguintes por conta própria.\n\nSKILLS E RECORTE\nEsta etapa não possui uma skill dedicada validada na coleção atual. Execute o procedimento descrito como modo guiado por prompt. Se acessíveis, use os pilares de mensagem de hybrid-marca e a estrutura de organização de ideias presente em copy-metodo-koe como referências pontuais. Não execute automaticamente a escrita no estilo de Koe, nem adote seu modelo de negócio como padrão.\n\nENTRADAS\nObjetivo do negócio, publico.md, posicionamento.md, voz.md e conhecimento.md.\nSe uma entrada necessária estiver ausente, peça o documento ou uma síntese. Não use hipóteses silenciosas para substituir essa entrada.\n\nMISSÃO\nLeia negocio.md, publico.md, posicionamento.md, voz.md e conhecimento.md, pedindo os ausentes. Confirme o objetivo e proponha poucos pilares ligados às dúvidas do público e ao conhecimento disponível. Não confunda pilares temáticos com formatos ou objetivos: educação é função; dúvidas sobre escolher um produto podem formar um território temático. Para cada pilar, registre propósito, temas incluídos e excluídos, exemplos de pautas estáticas e carrosséis, fontes e chamadas para ação coerentes. Peça minha escolha antes de fechar.\n\nENTREGA DA JORNADA\nPrepare pilares.md + banco-de-pautas.md. Os documentos Markdown revisados e aprovados são a fonte de leitura do agente de conteúdo desta jornada. Preserve os arquivos nativos da skill como registros de origem, com caminho e versão. Reconcile divergências comigo antes de sobrescrever documentos; não presuma sincronização entre Markdown e YAML.\n\nMostre uma síntese para eu corrigir antes de consolidar. Registre data, versão, status, fontes e pendências. Critério desta etapa: Entendo por que cada assunto entra e de onde virá seu conteúdo.\nSe esse critério não for atendido, explique o que falta e mantenha a etapa parcial. Não confunda critério da jornada com conclusão integral da skill nativa.\n\nEntregue o conteúdo pronto para salvar. Salve em uma pasta por negócio somente se houver ferramenta e acesso ao destino; caso contrário entregue o texto completo. Só diga que salvou após confirmar sucesso. A revisão dos documentos e a confirmação de salvamento são distintas de autorizar uma publicação.\n\nAo encerrar, devolva um bloco CONTEXTO PARA A PRÓXIMA ETAPA com: negócio; etapa e estado; modo ou skill usada; documentos e versões; decisões acumuladas; hipóteses e fontes; pendências; registros de origem; o que foi salvo e onde; o que foi apenas entregue em texto; próxima etapa e entradas necessárias.\n\nComece pela primeira pergunta útil, sem repetir uma já respondida. Sugestão: “Depois de ver seus posts, o que você gostaria que uma pessoa fizesse?”"
+    },
+    {
+      "n": 7,
+      "title": "DEFINIR O VISUAL",
+      "short": "Visual",
+      "question": "Você já tem uma identidade visual?",
+      "guidance": "Vamos construir regras que funcionem em estáticas e carrosséis 4:5.",
+      "options": [
+        {
+          "title": "Sim, quero usar",
+          "description": "Tenho cores, fontes ou um manual."
+        },
+        {
+          "title": "Tenho algumas referências",
+          "description": "Sei mais ou menos do que gosto."
+        },
+        {
+          "title": "Vou começar do zero",
+          "description": "Preciso ver opções para escolher."
+        }
+      ],
+      "first": "O que você já tem de visual e o que gostaria que as pessoas sentissem ao ver sua marca?",
+      "result": "Uma direção visual escolhida e regras para o agente compor as peças.",
+      "criterion": "Vi aplicações da direção escolhida e aprovei a leitura no celular.",
+      "technical": "Esta etapa precisa de uma adaptação específica para design.md de Instagram. Use uma ferramenta visual disponível somente se realmente puder gerar e inspecionar exemplos. As skills pessoais marca e carrossel-icp carregam regras de outra marca; não as aplique como identidade do meu negócio. epic-paper só pode ser usado com Paper e MCP disponíveis. Se não houver ferramenta de imagem ou composição, entregue a especificação em texto e mantenha a aprovação visual pendente.",
+      "inputs": "Posicionamento, voz, pilares e ativos/referências fornecidos.",
+      "skills": [],
+      "paths": [
+        "06-visual/design.md",
+        "06-visual/ativos/",
+        "08-conteudos/aprovados/"
+      ],
+      "prompt": "ETAPA 7 DE 9 · DEFINIR O VISUAL\n\nEstou construindo uma base para um agente criar postagens estáticas e carrosséis 4:5 no Instagram.\nPonto de partida: [PONTO DE PARTIDA]\nMeu contexto adicional: [CONTEXTO ADICIONAL]\nContinuidade: [CONTINUIDADE]\n\nCOMO CONDUZIR\nSou iniciante em marketing. Faça UMA pergunta por mensagem e espere minha resposta. Use o histórico disponível e os documentos fornecidos; pergunte só o que falta. Não presuma acesso à minha memória, outras conversas, arquivos ou Drive. Se eu não souber, ajude com exemplos e registre a lacuna, sem responder por mim. Separe fatos informados, hipóteses, propostas e decisões aprovadas.\n\nVerifique se a skill indicada e suas referências estão acessíveis. Quando estiverem, use o recorte pertinente a esta etapa. Quando não estiverem, avise que está trabalhando em modo guiado por prompt e siga a missão abaixo. Não invente comandos de instalação nem diga que executou uma skill indisponível. Respeite os critérios da skill usada; se trabalhar apenas uma parte, mantenha seu status parcial. Não execute pipelines completos, comandos legados ou etapas seguintes por conta própria.\n\nSKILLS E RECORTE\nEsta etapa precisa de uma adaptação específica para design.md de Instagram. Use uma ferramenta visual disponível somente se realmente puder gerar e inspecionar exemplos. As skills pessoais marca e carrossel-icp carregam regras de outra marca; não as aplique como identidade do meu negócio. epic-paper só pode ser usado com Paper e MCP disponíveis. Se não houver ferramenta de imagem ou composição, entregue a especificação em texto e mantenha a aprovação visual pendente.\n\nENTRADAS\nPosicionamento, voz, pilares e ativos/referências fornecidos.\nSe uma entrada necessária estiver ausente, peça o documento ou uma síntese. Não use hipóteses silenciosas para substituir essa entrada.\n\nMISSÃO\nUse o posicionamento, público, voz e pilares aprovados. Peça identidade existente, ativos ou referências disponíveis. Se nada existir, proponha direções visuais distintas, explique em palavras simples e, se houver ferramenta, mostre aplicações reais antes da escolha. Sem ferramenta visual, registre propostas pendentes de visualização, sem alegar aprovação visual. Consolide design.md para estáticas e todos os slides de carrossel em 1080×1350, 4:5: cores, fontes acessíveis, hierarquia, margens, contraste, limites de texto, imagens, assinatura, capa, miolo e encerramento. Não trate sugestões como decisões aprovadas.\n\nENTREGA DA JORNADA\nPrepare design.md + ativos/ + exemplos visuais. Os documentos Markdown revisados e aprovados são a fonte de leitura do agente de conteúdo desta jornada. Preserve os arquivos nativos da skill como registros de origem, com caminho e versão. Reconcile divergências comigo antes de sobrescrever documentos; não presuma sincronização entre Markdown e YAML.\n\nMostre uma síntese para eu corrigir antes de consolidar. Registre data, versão, status, fontes e pendências. Critério desta etapa: Vi aplicações da direção escolhida e aprovei a leitura no celular.\nSe esse critério não for atendido, explique o que falta e mantenha a etapa parcial. Não confunda critério da jornada com conclusão integral da skill nativa.\n\nEntregue o conteúdo pronto para salvar. Salve em uma pasta por negócio somente se houver ferramenta e acesso ao destino; caso contrário entregue o texto completo. Só diga que salvou após confirmar sucesso. A revisão dos documentos e a confirmação de salvamento são distintas de autorizar uma publicação.\n\nAo encerrar, devolva um bloco CONTEXTO PARA A PRÓXIMA ETAPA com: negócio; etapa e estado; modo ou skill usada; documentos e versões; decisões acumuladas; hipóteses e fontes; pendências; registros de origem; o que foi salvo e onde; o que foi apenas entregue em texto; próxima etapa e entradas necessárias.\n\nComece pela primeira pergunta útil, sem repetir uma já respondida. Sugestão: “O que você já tem de visual e o que gostaria que as pessoas sentissem ao ver sua marca?”"
+    },
+    {
+      "n": 8,
+      "title": "MONTAR OS TEMPLATES",
+      "short": "Templates",
+      "question": "Qual tipo de postagem vamos experimentar primeiro?",
+      "guidance": "A escolha define o primeiro teste. A base final terá os dois formatos.",
+      "options": [
+        {
+          "title": "Estática de uma ideia",
+          "description": "Uma mensagem central em uma peça."
+        },
+        {
+          "title": "Carrossel passo a passo",
+          "description": "Uma explicação distribuída em etapas."
+        },
+        {
+          "title": "Carrossel de dúvidas",
+          "description": "Perguntas, objeções e respostas."
+        }
+      ],
+      "first": "Qual pauta da sua base você gostaria de ver pronta primeiro?",
+      "result": "Modelos de estática e carrossel com conteúdo, visual e instruções de uso.",
+      "criterion": "Os exemplos estão legíveis, corretos e coerentes com a voz e o visual.",
+      "technical": "Use os procedimentos de composição e verificação dessas skills apenas se acessíveis e compatíveis com minhas ferramentas. Antes, substitua referências de marca, voz, caminhos, ativos e cores pessoais pelos documentos aprovados do meu negócio. Sem uma adaptação disponível, execute em modo guiado e identifique essa condição. O template precisa ter fonte editável ou receita de composição reutilizável, além da imagem final. Não basta entregar um PNG ou uma descrição de intenção.",
+      "inputs": "design.md, voz.md, pilares.md, fontes da pauta e ativos.",
+      "skills": [
+        "carrossel-icp",
+        "print-carousel",
+        "epic-paper"
+      ],
+      "paths": [
+        "06-visual/templates/",
+        "08-conteudos/aprovados/"
+      ],
+      "prompt": "ETAPA 8 DE 9 · MONTAR OS TEMPLATES\n\nEstou construindo uma base para um agente criar postagens estáticas e carrosséis 4:5 no Instagram.\nPonto de partida: [PONTO DE PARTIDA]\nMeu contexto adicional: [CONTEXTO ADICIONAL]\nContinuidade: [CONTINUIDADE]\n\nCOMO CONDUZIR\nSou iniciante em marketing. Faça UMA pergunta por mensagem e espere minha resposta. Use o histórico disponível e os documentos fornecidos; pergunte só o que falta. Não presuma acesso à minha memória, outras conversas, arquivos ou Drive. Se eu não souber, ajude com exemplos e registre a lacuna, sem responder por mim. Separe fatos informados, hipóteses, propostas e decisões aprovadas.\n\nVerifique se a skill indicada e suas referências estão acessíveis. Quando estiverem, use o recorte pertinente a esta etapa. Quando não estiverem, avise que está trabalhando em modo guiado por prompt e siga a missão abaixo. Não invente comandos de instalação nem diga que executou uma skill indisponível. Respeite os critérios da skill usada; se trabalhar apenas uma parte, mantenha seu status parcial. Não execute pipelines completos, comandos legados ou etapas seguintes por conta própria.\n\nSKILLS E RECORTE\nUse os procedimentos de composição e verificação dessas skills apenas se acessíveis e compatíveis com minhas ferramentas. Antes, substitua referências de marca, voz, caminhos, ativos e cores pessoais pelos documentos aprovados do meu negócio. Sem uma adaptação disponível, execute em modo guiado e identifique essa condição. O template precisa ter fonte editável ou receita de composição reutilizável, além da imagem final. Não basta entregar um PNG ou uma descrição de intenção.\n\nENTRADAS\ndesign.md, voz.md, pilares.md, fontes da pauta e ativos.\nSe uma entrada necessária estiver ausente, peça o documento ou uma síntese. Não use hipóteses silenciosas para substituir essa entrada.\n\nMISSÃO\nLeia pilares.md, voz.md, design.md e o conhecimento usado na pauta. Escolha comigo uma pauta real e crie estrutura de conteúdo e modelo visual reutilizável. Inclua campos editáveis, limites de texto, quando usar, exemplo preenchido e regra para conteúdo que não cabe. Para carrossel, defina capa, progressão, ordem dos slides e encerramento; não fixe quantidade sem necessidade. Complete exemplos de estática e carrossel 4:5, com legenda e texto alternativo. Renderize somente se houver ferramenta; caso contrário entregue especificação e indique que a validação visual está pendente. Peça ajustes e registre exemplos aprovados.\n\nENTREGA DA JORNADA\nPrepare templates/ + exemplos completos de estática e carrossel. Os documentos Markdown revisados e aprovados são a fonte de leitura do agente de conteúdo desta jornada. Preserve os arquivos nativos da skill como registros de origem, com caminho e versão. Reconcile divergências comigo antes de sobrescrever documentos; não presuma sincronização entre Markdown e YAML.\n\nMostre uma síntese para eu corrigir antes de consolidar. Registre data, versão, status, fontes e pendências. Critério desta etapa: Os exemplos estão legíveis, corretos e coerentes com a voz e o visual.\nSe esse critério não for atendido, explique o que falta e mantenha a etapa parcial. Não confunda critério da jornada com conclusão integral da skill nativa.\n\nEntregue o conteúdo pronto para salvar. Salve em uma pasta por negócio somente se houver ferramenta e acesso ao destino; caso contrário entregue o texto completo. Só diga que salvou após confirmar sucesso. A revisão dos documentos e a confirmação de salvamento são distintas de autorizar uma publicação.\n\nAo encerrar, devolva um bloco CONTEXTO PARA A PRÓXIMA ETAPA com: negócio; etapa e estado; modo ou skill usada; documentos e versões; decisões acumuladas; hipóteses e fontes; pendências; registros de origem; o que foi salvo e onde; o que foi apenas entregue em texto; próxima etapa e entradas necessárias.\n\nComece pela primeira pergunta útil, sem repetir uma já respondida. Sugestão: “Qual pauta da sua base você gostaria de ver pronta primeiro?”"
+    },
+    {
+      "n": 9,
+      "title": "PREPARAR A ROTINA",
+      "short": "Rotina",
+      "question": "Como você quer começar a publicar?",
+      "guidance": "A base será testada com um lote antes de entrar em rotina.",
+      "options": [
+        {
+          "title": "Aprovar cada postagem",
+          "description": "Revisar texto e arte um a um."
+        },
+        {
+          "title": "Aprovar um lote",
+          "description": "Revisar a programação de uma vez."
+        },
+        {
+          "title": "Automatizar com regras",
+          "description": "Definir o que pode sair sem nova revisão."
+        }
+      ],
+      "first": "Com que frequência você consegue revisar conteúdos e quais assuntos sempre precisam passar por você?",
+      "result": "Uma pasta organizada, um lote validado e regras claras para a rotina.",
+      "criterion": "A base passou pelo piloto; pendências e autorização de publicação estão explícitas.",
+      "technical": "Reaproveite dessas skills apenas os princípios compatíveis com o meu ambiente: gatilho, fonte, destino, configuração, revisão, rastreamento de publicação e teste. Não use horários, volume, caminhos ou contas pessoais do autor. O resultado desta etapa é a base e a operação preparadas; a ativação da rotina é separada. A escolha de publicar automaticamente não autoriza envio agora.",
+      "inputs": "Documentos aprovados, templates, exemplos, pendências e preferência de revisão.",
+      "skills": [
+        "routine-builder",
+        "orquestrar-canais"
+      ],
+      "paths": [
+        "07-operacao/operacao.md",
+        "07-operacao/calendario-e-fila.md",
+        "LEIA-ME.md",
+        "estado-da-base.md",
+        "08-conteudos/aprovados/"
+      ],
+      "prompt": "ETAPA 9 DE 9 · PREPARAR A ROTINA\n\nEstou construindo uma base para um agente criar postagens estáticas e carrosséis 4:5 no Instagram.\nPonto de partida: [PONTO DE PARTIDA]\nMeu contexto adicional: [CONTEXTO ADICIONAL]\nContinuidade: [CONTINUIDADE]\n\nCOMO CONDUZIR\nSou iniciante em marketing. Faça UMA pergunta por mensagem e espere minha resposta. Use o histórico disponível e os documentos fornecidos; pergunte só o que falta. Não presuma acesso à minha memória, outras conversas, arquivos ou Drive. Se eu não souber, ajude com exemplos e registre a lacuna, sem responder por mim. Separe fatos informados, hipóteses, propostas e decisões aprovadas.\n\nVerifique se a skill indicada e suas referências estão acessíveis. Quando estiverem, use o recorte pertinente a esta etapa. Quando não estiverem, avise que está trabalhando em modo guiado por prompt e siga a missão abaixo. Não invente comandos de instalação nem diga que executou uma skill indisponível. Respeite os critérios da skill usada; se trabalhar apenas uma parte, mantenha seu status parcial. Não execute pipelines completos, comandos legados ou etapas seguintes por conta própria.\n\nSKILLS E RECORTE\nReaproveite dessas skills apenas os princípios compatíveis com o meu ambiente: gatilho, fonte, destino, configuração, revisão, rastreamento de publicação e teste. Não use horários, volume, caminhos ou contas pessoais do autor. O resultado desta etapa é a base e a operação preparadas; a ativação da rotina é separada. A escolha de publicar automaticamente não autoriza envio agora.\n\nENTRADAS\nDocumentos aprovados, templates, exemplos, pendências e preferência de revisão.\nSe uma entrada necessária estiver ausente, peça o documento ou uma síntese. Não use hipóteses silenciosas para substituir essa entrada.\n\nMISSÃO\nAudite os arquivos e aprovações das etapas anteriores. Não trate navegação nas telas ou cópia de prompts como aprovação. Defina comigo frequência, formatos, horários e fuso, temas que exigem revisão, validade de ofertas, regras de repetição e o que fazer se faltar evidência. Gere um lote piloto com base aprovada, revise textos e artes comigo e incorpore correções. Crie operacao.md, LEIA-ME.md com ordem de leitura e estado-da-base.md com pendências. Organize a pasta do Drive apenas se houver integração e acesso; senão entregue estrutura e arquivos sem alegar upload. Registre fila com identificador, pauta, fonte, template, arquivos ordenados, legenda, texto alternativo, aprovação, data e status. Especifique conexão de publicação separadamente, sem pedir senhas no chat ou guardá-las na base. A escolha de modo aqui não autoriza publicar nesta conversa. Registre autorização explícita antes de ativar publicação. Inclua verificação de publicação, prevenção de duplicatas, tratamento de falhas e revisão de resultados.\n\nENTREGA DA JORNADA\nPrepare operacao.md + LEIA-ME.md + estado-da-base.md + lote piloto. Os documentos Markdown revisados e aprovados são a fonte de leitura do agente de conteúdo desta jornada. Preserve os arquivos nativos da skill como registros de origem, com caminho e versão. Reconcile divergências comigo antes de sobrescrever documentos; não presuma sincronização entre Markdown e YAML.\n\nMostre uma síntese para eu corrigir antes de consolidar. Registre data, versão, status, fontes e pendências. Critério desta etapa: A base passou pelo piloto; pendências e autorização de publicação estão explícitas.\nSe esse critério não for atendido, explique o que falta e mantenha a etapa parcial. Não confunda critério da jornada com conclusão integral da skill nativa.\n\nEntregue o conteúdo pronto para salvar. Salve em uma pasta por negócio somente se houver ferramenta e acesso ao destino; caso contrário entregue o texto completo. Só diga que salvou após confirmar sucesso. A revisão dos documentos e a confirmação de salvamento são distintas de autorizar uma publicação.\n\nAo encerrar, devolva um bloco CONTEXTO PARA A PRÓXIMA ETAPA com: negócio; etapa e estado; modo ou skill usada; documentos e versões; decisões acumuladas; hipóteses e fontes; pendências; registros de origem; o que foi salvo e onde; o que foi apenas entregue em texto; próxima etapa e entradas necessárias.\n\nComece pela primeira pergunta útil, sem repetir uma já respondida. Sugestão: “Com que frequência você consegue revisar conteúdos e quais assuntos sempre precisam passar por você?”"
+    }
+  ],
+  "folderTree": "Minha marca/\n├── LEIA-ME.md\n├── estado-da-base.md\n├── 01-negocio/\n│   ├── negocio.md\n│   └── posicionamento.md\n├── 02-publico/\n│   ├── publico.md\n│   └── pesquisas/\n├── 03-voz/\n│   ├── voz.md\n│   └── exemplos-aprovados.md\n├── 04-conhecimento/\n│   ├── conhecimento.md\n│   └── fontes/\n├── 05-editorial/\n│   ├── pilares.md\n│   └── banco-de-pautas.md\n├── 06-visual/\n│   ├── design.md\n│   ├── ativos/\n│   └── templates/\n├── 07-operacao/\n│   ├── operacao.md\n│   └── calendario-e-fila.md\n├── 08-conteudos/\n│   ├── rascunhos/\n│   ├── aprovados/\n│   └── publicados/\n├── 09-aprendizados/\n│   └── resultados-e-ajustes.md\n└── registros-das-skills/"
+}
