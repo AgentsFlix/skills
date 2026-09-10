@@ -118,6 +118,7 @@
     return AgentFlixWatchModel.resume(SERIE, store.get);
   }
 
+  const eN = (si, ei) => AgentFlixWatchModel.episodeNumber(SERIE.seasons[si].eps[ei], ei);
   const chapters = (e) => e.ch || [];
   const chapterAt = (e, t) => {
     let k = -1;
@@ -175,9 +176,9 @@
       `${esc(SERIE.name)} <span>${esc(SERIE.sub)}</span>`;
     $("tp-resume-label").textContent =
       !nEps ? "Em breve" : p > 0
-        ? `Continuar T${sN(r.season)}:E${r.ep + 1}`
+        ? `Continuar T${sN(r.season)}:E${eN(r.season, r.ep)}`
         : r.season || r.ep
-          ? `Assistir T${sN(r.season)}:E${r.ep + 1}`
+          ? `Assistir T${sN(r.season)}:E${eN(r.season, r.ep)}`
           : "Assistir";
     const activity = SERIE.seasons.flatMap(s => s.atividades || [])[0];
     $("tp-activity").hidden = !activity;
@@ -189,7 +190,7 @@
     $("tp-resume").hidden = !(p > 0);
     $("tp-bar").style.width = Math.round(p * 100) + "%";
     $("tp-resume-text").textContent =
-      re ? `T${sN(r.season)}:E${r.ep + 1} · ${re.t} · ${fmt(re.d * (1 - p))} restantes` : "";
+      re ? `T${sN(r.season)}:E${eN(r.season, r.ep)} · ${re.t} · ${fmt(re.d * (1 - p))} restantes` : "";
     $("tp-syn").textContent = SERIE.syn;
     $("tp-about").textContent = SERIE.syn;
     const cam = rootEscolha() ? store.get(caminhoKey(), null) : null;
@@ -237,13 +238,13 @@
       $("eps").innerHTML = SERIE.seasons
         .map(
           (s, si) =>
-            `<h3 class="season-h">Temporada ${s.n} · ${esc(s.title)}</h3><ol class="eps">${s.eps.map((e, ei) => epRow(e, si, ei, ei + 1, cur(si, ei))).join("")}</ol>`,
+            `<h3 class="season-h">Temporada ${s.n} · ${esc(s.title)}</h3><ol class="eps">${s.eps.map((e, ei) => epRow(e, si, ei, eN(si, ei), cur(si, ei))).join("")}</ol>`,
         )
         .join("");
     } else {
       const s = SERIE.seasons[state.season];
       $("eps").innerHTML =
-        `<ol class="eps">${s.eps.map((e, ei) => epRow(e, state.season, ei, ei + 1, cur(state.season, ei))).join("")}</ol>`;
+        `<ol class="eps">${s.eps.map((e, ei) => epRow(e, state.season, ei, eN(state.season, ei), cur(state.season, ei))).join("")}</ol>`;
     }
   }
 
@@ -304,15 +305,15 @@
     state.lastChapter = -1;
     window.clar?.("assistiu", {
       serie: SERIE.slug,
-      episodio: `T${sN(season)}E${ep + 1}`,
+      episodio: `T${sN(season)}E${eN(season, ep)}`,
     });
     resetOverlays();
     $("ctl-title").textContent = SERIE.name;
-    $("ctl-ep").textContent = `T${sN(season)}:E${ep + 1} ${e.t}`;
+    $("ctl-ep").textContent = `T${sN(season)}:E${eN(season, ep)} ${e.t}`;
     $("mtitle").innerHTML =
-      `<b>${esc(SERIE.name)}</b> · T${sN(season)}:E${ep + 1} ${esc(e.t)}`;
+      `<b>${esc(SERIE.name)}</b> · T${sN(season)}:E${eN(season, ep)} ${esc(e.t)}`;
     $("pi-title").textContent = SERIE.name;
-    $("pi-ep").textContent = `T${sN(season)}:E${ep + 1} · ${e.t}`;
+    $("pi-ep").textContent = `T${sN(season)}:E${eN(season, ep)} · ${e.t}`;
     $("pi-desc").textContent = e.desc;
     $("btn-next").style.visibility = nextEp() ? "visible" : "hidden";
     const bi = buyIdx(e);
@@ -321,12 +322,12 @@
       $("btn-buy").querySelector(".lab").textContent =
         { comando: "Prompt (P)", passo: "Passo (P)", videos: "Vídeos (P)" }[
           chapters(e)[bi].acao.tipo
-        ] || "Planos da VPS (P)";
+        ] || (chapters(e)[bi].acao.indicacao ? "Planos da VPS (P)" : "Exercícios (P)");
     video.poster = thumb(e.uid, 720);
     const saved = store.get(progKey(e.uid), null);
     const startAt =
       from !== undefined ? from : saved && !isWatched(e) ? saved.t : 0;
-    history.replaceState(null, "", `#t${sN(season)}e${ep + 1}`); // uma entrada de histórico por visita: Voltar não empilha episódio
+    history.replaceState(null, "", `#t${sN(season)}e${eN(season, ep)}`); // uma entrada de histórico por visita: Voltar não empilha episódio
     paintMarks();
     renderDrawer();
     paint();
@@ -363,7 +364,7 @@
       })
       .join("");
     $("preplay").innerHTML =
-      `<div class="pre-card"><div class="k">ANTES DE COMEÇAR · T${sN(state.season)}:E${state.ep + 1}</div><h3>${esc(e.t)}</h3><div class="lbl">VOCÊ VAI PRECISAR DE</div><ul>${list}</ul><div class="tp-actions" style="margin-top:0"><button class="btn primary" data-act="pre-go">Começar</button></div></div>`;
+      `<div class="pre-card"><div class="k">ANTES DE COMEÇAR · T${sN(state.season)}:E${eN(state.season, state.ep)}</div><h3>${esc(e.t)}</h3><div class="lbl">VOCÊ VAI PRECISAR DE</div><ul>${list}</ul><div class="tp-actions" style="margin-top:0"><button class="btn primary" data-act="pre-go">Começar</button></div></div>`;
     $("preplay").hidden = false;
     $("player").classList.add("pre");
   }
@@ -421,7 +422,7 @@
         )
         .join("");
       $("checkout").innerHTML =
-        `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · VÍDEOS</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p><div class="minis">${vids}</div>
+        `<div class="k">T${sN(state.season)}:E${eN(state.season, state.ep)} · ${fmt(c.t)} · VÍDEOS</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p><div class="minis">${vids}</div>
       ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
       <div class="psel-row" style="margin-top:18px"><button class="btn continuar" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
       <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Pular este passo")} ▶</button>`;
@@ -430,7 +431,7 @@
     }
     if (a.tipo === "passo") {
       $("checkout").innerHTML =
-        `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · PASSO</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p>
+        `<div class="k">T${sN(state.season)}:E${eN(state.season, state.ep)} · ${fmt(c.t)} · PASSO</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p>
       ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
       <div class="psel-row" style="margin-top:18px"><button class="btn continuar" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
       <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Pular este passo")} ▶</button>`;
@@ -441,7 +442,7 @@
       $("vidcap").innerHTML =
         `<i></i><span><b>Pausado.</b> Copie o prompt e a gente continua.</span>`;
       $("checkout").innerHTML =
-        `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · PROMPT</div><h3>${esc(a.titulo || "Copie este prompt")}</h3><p>${esc(a.nota || "")}</p>
+        `<div class="k">T${sN(state.season)}:E${eN(state.season, state.ep)} · ${fmt(c.t)} · PROMPT</div><h3>${esc(a.titulo || "Copie este prompt")}</h3><p>${esc(a.nota || "")}</p>
       <div class="cmdbox ${isDone(e.uid, k) ? "copied" : ""}" role="button" tabindex="0" aria-label="Copiar prompt" data-act="copiar-prompt" data-k="${k}"><span class="inner"><code>${esc(a.texto || "")}</code><span class="copybtn" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span class="cta-lbl">${isDone(e.uid, k) ? "Copiado ✓" : "Copiar"}</span></span></span></div>
       ${a.depois ? `<div class="steps"><div class="lbl">DEPOIS DE COLAR</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
       <div class="cont-row">${isDone(e.uid, k) ? continuarHtml(k) : ""}</div>
@@ -450,7 +451,7 @@
       return;
     }
     $("checkout").innerHTML =
-      `<div class="k">T${sN(state.season)}:E${state.ep + 1} · ${fmt(c.t)} · ${a.indicacao ? "COMPRA" : "LINK"}</div><h3>${esc(a.titulo || (a.indicacao ? "Escolha o seu plano" : "Abra o link"))}</h3><p>${esc(a.nota || "")}</p>
+      `<div class="k">T${sN(state.season)}:E${eN(state.season, state.ep)} · ${fmt(c.t)} · ${a.indicacao ? "COMPRA" : "LINK"}</div><h3>${esc(a.titulo || (a.indicacao ? "Escolha o seu plano" : "Abra o link"))}</h3><p>${esc(a.nota || "")}</p>
     ${a.opcoes && a.opcoes.length > 1 ? periodSel(a, e.uid, k) : `<div class="psel-row"><button class="btn primary" data-act="ext" data-url="${esc(optDefault(a).url)}" data-k="${k}">${esc(a.cta || a.label)} ↗</button></div>`}
     ${a.indicacao ? `<div class="selo">${SELO}<br>Abre em nova aba. O vídeo fica pausado esperando você voltar.</div>` : ""}
     ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "NA HOSTINGER, DEPOIS DO CARRINHO")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
@@ -458,8 +459,9 @@
     ${isDone(e.uid, k) ? "" : `<button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Já tenho, continuar o vídeo")} ▶</button>`}`;
     $("checkout").hidden = false;
   }
+  const continuationLabel = (k) => chapters(curEp())[k]?.acao?.encerrar ? "Concluir episódio" : "Continuar o vídeo";
   const continuarHtml = (k) =>
-    `<p class="cont-hint">Quando terminar por lá, volte aqui:</p><button class="btn continuar" data-act="checkout-continuar" data-k="${k}">Continuar o vídeo ▶</button>`;
+    `<p class="cont-hint">Quando terminar por lá, volte aqui:</p><button class="btn continuar" data-act="checkout-continuar" data-k="${k}">${continuationLabel(k)} ▶</button>`;
   // depois da ação (copiar, abrir o link) o vídeo continua pausado: só o botão terracota retoma
   function mostrarContinuar(k, msg) {
     const row = $("checkout").querySelector(".cont-row");
@@ -468,6 +470,13 @@
     if (skip) skip.remove();
     $("vidcap").innerHTML = `<i></i><span><b>Pausado.</b> ${msg}</span>`;
     $("vidcap").hidden = false;
+  }
+  function continueCheckout() {
+    const a = chapters(curEp())[state.checkout]?.acao;
+    closeCheckout();
+    if (a?.encerrar) { endOfEpisode(true); return; }
+    if (Number.isFinite(a?.continuar_em)) video.currentTime = a.continuar_em;
+    video.play().catch(() => {});
   }
   function closeCheckout() {
     state.checkout = null;
@@ -592,6 +601,10 @@
     // a parada abre uma vez por carregamento da página (state.stopped); o "feito" gravado no navegador só marca check e rótulos, não suprime a pausa: Cmd+R rearma tudo
     if (a && a.parar && !state.stopped[doneKey(e.uid, k)] && !video.paused) {
       state.stopped[doneKey(e.uid, k)] = true;
+      if (a.fim_parte) {
+        video.pause();
+        video.currentTime = Math.max(0, c.t - 0.04);
+      }
       openCheckout(k, { pausar: a.pausar_em === undefined });
       return;
     }
@@ -644,8 +657,14 @@
     if (e && video.currentTime > 2)
       store.set(progKey(e.uid), { t: video.currentTime, at: now });
   }
-  function endOfEpisode() {
+  function endOfEpisode(confirmed = false) {
     const e = curEp();
+    const finalStep = chapters(e).findIndex((c) => c.acao?.encerrar);
+    if (finalStep >= 0 && confirmed !== true) {
+      state.stopped[doneKey(e.uid, finalStep)] = true;
+      openCheckout(finalStep);
+      return;
+    }
     store.set(progKey(e.uid), { t: video.duration || e.d, at: Date.now() });
     if (e.escolha && e.escolha.t === undefined) {
       abrirEscolha(e);
@@ -653,7 +672,7 @@
     } // aula ramificada: a raiz termina e a pessoa escolhe o caminho
     const nx = nextEp();
     $("player").classList.add("pp");
-    $("pp-this").textContent = `T${sN(state.season)}:E${state.ep + 1} · ${e.t}`;
+    $("pp-this").textContent = `T${sN(state.season)}:E${eN(state.season, state.ep)} · ${e.t}`;
     if (!nx) {
       $("pp-card").innerHTML =
         `<div class="k">FIM DA SÉRIE</div><div class="box"><img src="${SERIE.cover_wide}" alt=""><div><h4>${esc(SERIE.name)}</h4><p>Você chegou ao fim dos episódios abertos. Volte à vitrine ou reveja um episódio.</p></div></div><button class="go pass" data-act="close-player"><span>Voltar para a série</span></button>`;
@@ -662,7 +681,7 @@
     }
     const ne = SERIE.seasons[nx.season].eps[nx.ep];
     $("pp-card").innerHTML =
-      `<div class="k">PRÓXIMO EPISÓDIO · T${sN(nx.season)}:E${nx.ep + 1}</div><div class="box"><img src="${thumb(ne.uid)}" alt=""><div><h4>${esc(ne.t)}</h4><p>${esc(ne.desc)}</p></div></div><button class="go" data-act="next"><i id="pp-wipe"></i><span>▶ Reproduzindo em <em id="pp-n">5</em></span></button><button class="stay" data-act="stay">Ficar neste episódio</button>`;
+      `<div class="k">PRÓXIMO EPISÓDIO · T${sN(nx.season)}:E${eN(nx.season, nx.ep)}</div><div class="box"><img src="${thumb(ne.uid)}" alt=""><div><h4>${esc(ne.t)}</h4><p>${esc(ne.desc)}</p></div></div><button class="go" data-act="next"><i id="pp-wipe"></i><span>▶ Reproduzindo em <em id="pp-n">5</em></span></button><button class="stay" data-act="stay">Ficar neste episódio</button>`;
     $("postplay").hidden = false;
     let n = 5;
     const w = $("pp-wipe");
@@ -913,6 +932,14 @@
     onPausaAgendada();
     onEscolha();
   });
+  // Check lesson boundaries for every displayed frame, including between timeupdate events.
+  if (video.requestVideoFrameCallback) {
+    const watchFrame = () => {
+      if (SERIE && curEp()?.ch?.some(c => c.acao?.fim_parte) && !video.paused) onChapter();
+      video.requestVideoFrameCallback(watchFrame);
+    };
+    video.requestVideoFrameCallback(watchFrame);
+  }
   video.addEventListener("progress", paint);
   video.addEventListener("ended", endOfEpisode);
   video.addEventListener("volumechange", () => {
@@ -1020,12 +1047,10 @@
       closeCheckout();
       video.play().catch(() => {});
     } else if (a === "checkout-skip") {
-      closeCheckout();
-      video.play().catch(() => {});
+      continueCheckout();
     } else if (a === "checkout-continuar") {
       window.clar?.("continuar_clicado", { serie: SERIE.slug });
-      closeCheckout();
-      video.play().catch(() => {});
+      continueCheckout();
     } else if (a === "buy") {
       if (!$("preplay").hidden) return;
       const k = el.dataset.k !== undefined ? +el.dataset.k : buyIdx(curEp());
@@ -1293,9 +1318,9 @@
     const m = /^#t(\d+)e(\d+)$/.exec(location.hash);
     const si = m ? seasonIdxByN(m[1]) : -1;
     const activity = m && si >= 0 && SERIE.seasons[si].atividades?.find(e => e.n === +m[2]);
-    if (activity) { location.assign(activity.url); return; }
-    if (m && si >= 0 && SERIE.seasons[si].eps[m[2] - 1])
-      openPlayer(si, +m[2] - 1);
+    const ei = m && si >= 0 ? SERIE.seasons[si].eps.findIndex((e, i) => eN(si, i) === +m[2]) : -1;
+    if (ei >= 0) openPlayer(si, ei);
+    else if (activity) { location.assign(activity.url); return; }
     else show("title");
   }
   async function loadCatalog() {

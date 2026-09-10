@@ -6,6 +6,8 @@
 })(globalThis, () => {
   "use strict";
 
+  const episodeNumber = (episode, index) => episode.n ?? index + 1;
+
   function episodes(series) {
     return series.seasons.flatMap((season, si) =>
       season.eps.map((episode, ei) => ({
@@ -33,7 +35,7 @@
     const season = series.seasons.findIndex((s) => +s.n === +option.temporada);
     const number = option.episodio ?? 1;
     if (season < 0 || !Number.isInteger(number) || number < 1) return null;
-    const ep = number - 1;
+    const ep = series.seasons[season].eps.findIndex((e, i) => episodeNumber(e, i) === number);
     return series.seasons[season].eps[ep] ? { season, ep } : null;
   }
 
@@ -117,6 +119,7 @@
   }
 
   return Object.freeze({
+    episodeNumber,
     episodes,
     progress,
     choiceTarget,
