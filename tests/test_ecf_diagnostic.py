@@ -202,8 +202,13 @@ fs.writeFileSync(cli,['model.js','import.js','validator-cli.cjs'].map(f=>fs.read
 fs.writeFileSync(contract,JSON.stringify(expected));
 const run=()=>cp.spawnSync(process.execPath,[cli,input,'--contract',contract,'--output',out],{encoding:'utf8'});
 fs.writeFileSync(input,JSON.stringify(M.initialExample()));let p=run();assert.equal(p.status,0,p.stderr);assert.equal(JSON.parse(p.stdout).measured,9);assert.equal(read(JSON.parse(fs.readFileSync(out,'utf8'))).audit.complete,true);
-const content=fs.readFileSync(out,'utf8');p=run();assert.equal(p.status,1);assert.equal(fs.readFileSync(out,'utf8'),content);fs.unlinkSync(out);
-fs.writeFileSync(input,JSON.stringify(result.data));p=run();assert.equal(p.status,2,p.stderr);assert.equal(JSON.parse(p.stdout).measured,4);assert.equal(JSON.parse(p.stdout).missing.length,5);fs.unlinkSync(out);
+const content=fs.readFileSync(out,'utf8'),receipt=JSON.parse(p.stdout);
+assert.equal(receipt.validation_scope,'structure_and_calculation');assert.equal(receipt.evidence_validation,'not_performed');
+assert.equal(receipt.json_sha256,require('node:crypto').createHash('sha256').update(content).digest('hex'));
+assert.deepEqual(receipt.scores,{creator:{score:62,measured:3,total:3,partial:false},expert:{score:53,measured:3,total:3,partial:false},founder:{score:80,measured:3,total:3,partial:false}});
+assert.notEqual(receipt.json_sha256,require('node:crypto').createHash('sha256').update(content+' ').digest('hex'));
+p=run();assert.equal(p.status,1);assert.equal(fs.readFileSync(out,'utf8'),content);fs.unlinkSync(out);
+fs.writeFileSync(input,JSON.stringify(result.data));p=run();assert.equal(p.status,2,p.stderr);assert.equal(JSON.parse(p.stdout).measured,4);assert.equal(JSON.parse(p.stdout).missing.length,5);const partialReceipt=JSON.parse(p.stdout);assert.equal(partialReceipt.scores.founder.score,null);assert.equal(partialReceipt.scores.expert.measured,3);assert.equal(partialReceipt.scores.expert.partial,true);assert.equal(partialReceipt.json_sha256,require('node:crypto').createHash('sha256').update(fs.readFileSync(out)).digest('hex'));fs.unlinkSync(out);
 d=M.initialExample();d.axes.expert.metrics.autoridade.numerator=null;fs.writeFileSync(input,JSON.stringify(d));p=run();assert.equal(p.status,1);assert.match(p.stderr,/axes.expert.metrics.autoridade.numerator/);assert.equal(fs.existsSync(out),false);
 d=M.initialExample();d.credential_resolution={token:'private-marker'};fs.writeFileSync(input,JSON.stringify(d));p=run();assert.equal(p.status,1);assert(!p.stderr.includes('private-marker'));assert.equal(fs.existsSync(out),false);
 console.log('ECF: normalização segura, migração 4/9, lacunas, contrato fixo e entrega CLI verificados.');

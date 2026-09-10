@@ -116,7 +116,8 @@
       const item={path:'axes.'+id+'.metrics.'+c.key,label:M.AXES[id].name+' · '+c.label,status:c.quality,reason:c.record.reason};
       if(c.raw===null)missing.push(item);else if(c.quality!=='measured')limited.push(item);
     }
-    return {revision:REVISION,measured:9-missing.length,total:9,complete:!board.partial,missing,limited};
+    const scores=Object.fromEntries(Object.entries(board.axes).map(([id,a])=>[id,{score:a.score===null?null:Math.round(a.score),measured:a.measured,total:3,partial:a.partial}]));
+    return {revision:REVISION,measured:9-missing.length,total:9,complete:!board.partial,missing,limited,scores};
   }
   function read(raw,expected){
     if(typeof raw!=='string'||new TextEncoder().encode(raw).length>200000)fail('JSON','use o resumo de até 200 KB.');

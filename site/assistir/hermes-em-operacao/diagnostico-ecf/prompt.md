@@ -12,6 +12,16 @@ Antes de consultar a API, confira se esta mesma conversa já produziu arquivos p
 
 Priorize perfil, publicações e métricas. Entregue um primeiro checkpoint com indicadores e cobertura antes da leitura extensa de comentários e DMs. Processe e classifique as interações em lotes conforme chegam; preserve resultados locais e retome do último cursor confirmado, sem baixar novamente páginas completas. Use filtros temporais documentados quando existirem. Só interrompa a paginação por data quando a ordenação documentada garantir que não há dados relevantes adiante. Uma amostra ou coleta interrompida deve informar lidos, pendentes e limites, sem se apresentar como coleta completa. Não estime tempo de conclusão sem base.
 
+## Execução verificável e um único responsável pelo arquivo
+
+Execute esta tarefa diretamente, em primeiro plano, usando as ferramentas disponíveis. Não delegue a subagentes, não dispare jobs em segundo plano, não crie RUNs adicionais nem prometa continuar depois de encerrar a resposta. Não peça outra confirmação para a leitura e o processamento local já autorizados.
+
+Só diga “em execução” depois de uma ferramenta ter iniciado de fato e retornado um identificador real de processo/job ainda ativo. Se a chamada for síncrona, aguarde seu retorno e relate o que terminou. Não invente identificadores, progresso ou contagens. Planejamento não é execução. Em caso de falha, diga qual etapa não foi executada e preserve o ponto de retomada; não apresente um fallback como se ele já tivesse rodado.
+
+Se houver delegações antigas desta mesma coleta, primeiro consulte o estado real e encerre ou aguarde cada uma pelas ferramentas disponíveis. Não abra outro processamento concorrente da mesma base. Um pedido de cancelamento não comprova término; confirme o estado terminal. Se não conseguir confirmar, registre a pendência e não entregue um novo arquivo como resultado definitivo. Resultados tardios ficam separados para reconciliação, nunca alteram silenciosamente um JSON entregue.
+
+Mantenha um único rascunho ativo e um único responsável pela consolidação. Antes da entrega, confirme: processamento concluído, nenhuma tarefa antiga pendente, divergências resolvidas ou componentes afetados marcados missing, e validador executado sobre a versão exata que será anexada. Não altere o arquivo depois dessa validação. Uma revisão exige outro nome de arquivo e outra validação.
+
 ## 1. Descobrir o acesso e coletar
 
 Use a integração Zernio já instalada (skill zernio-operations, MCP, CLI ou SDK). Antes de executar, leia as instruções locais e descubra as ferramentas de leitura disponíveis. Consulte o contrato atual em https://docs.zernio.com/ e https://zernio.com/openapi.yaml. Base REST: https://zernio.com/api. Não invente comandos nem nomes de ferramentas. Resolva o acesso pela cascata autorizada abaixo antes de declarar a credencial indisponível.
@@ -84,6 +94,16 @@ Classifique você os casos claros de autoridade (reconhecimento específico ou a
 
 Conclua a deduplicação entre todos os lotes da mesma janela antes de somar pessoas. Para taxas por post, uma pessoa conta uma vez por post/categoria. Para contexto de perfil, uma pessoa conta uma vez por categoria no ciclo. Não some “faixa 1 + faixa 2” sem reconciliar as pessoas. Conte os casos claros, separe os ambíguos e marque a medição como partial quando houver pendências que possam mudar o número. Não transforme falta de classificação em zero.
 
+### Contagem reproduzível e reconciliação de divergências
+
+Mantenha, somente no ambiente privado da execução, uma tabela por pessoa e categoria: pseudônimo estável, referências às mensagens de origem, decisão (incluído, excluído ou ambíguo), motivo da decisão e versão do critério. Agregue o numerador dessa tabela com código; não escreva o total por memória ou por estimativa. Identifique também os arquivos/lotes de entrada, sua janela, itens lidos e itens pendentes. Não inclua essa tabela nem interlocutores no JSON público de resumo.
+
+A chave de deduplicação é a pessoa na conta e janela, usando identidade estável confirmada nos dados autorizados. ID de conversa não prova pessoa única. Só use conversationId como chave equivalente se os dados comprovarem uma correspondência 1:1 com a pessoa e ausência de múltiplas conversas dela na janela. Caso contrário, reconcilie pela identidade estável; se isso não for possível, deixe o componente missing e explique a lacuna. Deduplicar mensagens ou conversas não basta para afirmar “pessoas únicas”.
+
+Regras de palavras ou expressões podem ajudar a localizar candidatos, mas não substituem a leitura contextual para autoridade, conversa qualificada, intenção e DM qualificada. Examine os candidatos e os casos excluídos pelo filtro na base autorizada. Registre casos ambíguos separadamente. Uma triagem apenas por regex não se torna análise semântica concluída por ser chamada de conservadora. Um subconjunto revisado pode ser partial se sua identidade e deduplicação estiverem resolvidas, com cobertura explícita; nunca represente uma contagem disputada como um limite inferior já comprovado.
+
+Se duas execuções produzirem números diferentes, congele ambos como candidatos e compare os registros por pessoa/categoria, usando a mesma janela, mesmos arquivos e mesma versão do critério. Reconcilie cada inclusão, exclusão e duplicata. Não escolha automaticamente o menor, o maior, o mais recente ou o chamado “conservador”. Sem os registros de um resultado interrompido, ele não pode substituir nem confirmar o outro. Preserve as medições independentes já comprovadas; enquanto a divergência do componente não for resolvida, mantenha-o missing no novo candidato e preserve o arquivo anterior como histórico.
+
 Variáveis e seus denominadores:
 
 | Card | Chave | Medição |
@@ -96,7 +116,7 @@ Variáveis e seus denominadores:
 | Expert | conversas | Pessoas com conversa qualificada / alcance do mesmo conjunto. |
 | Founder | intencao | Pessoas com intenção declarada / alcance do conjunto atribuído. Quando só houver origem no perfil, use pessoas únicas da janela / alcance da conta nessa mesma janela e identifique scope como contexto do perfil, sem atribuir a posts. |
 | Founder | dms | Pessoas com DM qualificada / alcance do conjunto atribuído, ou alcance da conta na mesma janela quando a origem for apenas o perfil. Deduplicação entre lotes é obrigatória. Isso não é receita nem taxa de conversão causal. |
-| Founder | reconhecimento | Pessoas que reconhecem o problema específico ou fazem indicação clara / respostas válidas da pesquisa de percepção. Menos de 10 respostas: partial. Sem pesquisa: missing, nunca inferir da bio. |
+| Founder | reconhecimento | Pessoas que reconhecem o problema específico ou fazem indicação clara / respostas válidas da pesquisa de percepção. De 1 a 9 respostas válidas: partial, com as contagens reais. Zero respostas válidas ou nenhuma pesquisa: missing, nunca inferir da bio. Não confunda “menos de 10 respostas” com “pesquisa inexistente”. |
 
 Prefira o conjunto de posts do eixo quando houver classificação e métricas suficientes. Se uma medição usar todo o perfil, identifique explicitamente esse universo e não diga que ela mede apenas os posts do eixo. Para autoridade/conversas só atribuíveis ao perfil, aplica-se a mesma regra de pessoas únicas / alcance da conta na janela. Não misture universos nem denominadores para conseguir uma nota maior.
 
@@ -150,8 +170,10 @@ node validar-ecf.cjs rascunho-ecf.json --contract contrato-ecf.json --output dia
 
 O normalizador aceita BOM, um bloco Markdown contendo apenas JSON e números decimais escritos como texto, por exemplo "14". Ele recusa chaves repetidas, campos desconhecidos em v2, percentuais como "1%" e números ambíguos como "1.234,56". Não infere valores de frases, não troca denominadores e não preenche null com zero. A página calcula as notas a partir do arquivo validado.
 
-`missing` exige numerator=null, denominator=null e samples=[]. Registre contagens incompletas nos artefatos privados, com o motivo no resumo. Qualquer estado com medição exige valores válidos, source, scope e collected_at. `measured` também exige evidence; pesquisa com menos de 10 respostas deve ser partial. Não marque contagens ainda sem deduplicação como measured, partial ou estimated para conseguir uma nota: mantenha missing até reconciliar os lotes.
+`missing` exige numerator=null, denominator=null e samples=[]. Registre contagens incompletas nos artefatos privados, com o motivo no resumo. Qualquer estado com medição exige valores válidos, source, scope e collected_at. `measured` também exige evidence; pesquisa com menos de 10 respostas deve ser partial. Não marque contagens ainda sem deduplicação ou com divergência não resolvida como measured, partial ou estimated para conseguir uma nota: mantenha missing até reconciliar os lotes e as decisões por pessoa.
 
 Além do validador, confira manualmente nos artefatos: denominador do mesmo conjunto e período, atribuição por post ou contexto de perfil explícito, pessoas deduplicadas e evidências reais. Não inclua NaN, undefined, comentários, nomes de interlocutores, mensagens originais, tokens ou headers. Preserve artefatos e pontos de retomada no ambiente privado. Não publique o arquivo nem faça outras alterações em serviços.
 
-Na mensagem final, informe “JSON validado · X/9 medições · completo/parcial” usando a saída real do validador. Entregue uma tabela curta com Creator, Expert e Founder, média de cada card, cobertura X/3 e identificação de resultado parcial, seguida do arquivo. Não entregue um relatório extenso nem lista de todas as chamadas da API. Termine orientando: “Abra o JSON na página AgentFlix e clique em Gerar análise e conferir scores. Em Ajustar régua, você pode mudar os valores ideais.”
+A saída do validador inclui `validation_scope=structure_and_calculation` e `evidence_validation=not_performed`: ela confere o contrato e os cálculos, não lê nem valida as conversas privadas. `json_sha256` identifica os bytes exatos do arquivo criado; serve para vincular o recibo ao anexo, não para provar que as evidências são verdadeiras. Guarde o retorno real da ferramenta no ambiente privado. Não fabrique recibo, status de execução, hash ou alegação de “varredura de privacidade aprovada”. Só descreva outra conferência se ela realmente foi executada, informando seu escopo e seus limites, sem expor conteúdo privado.
+
+Na mensagem final, informe “Formato e cálculo verificados · X/9 medições disponíveis · completo/parcial” usando a saída real do validador. Entregue uma tabela curta com Creator, Expert e Founder, score e cobertura de cada card extraídos de `scores` no recibo, seguida do arquivo cujo SHA-256 foi registrado. Não recalcule nem reescreva notas manualmente. Não entregue um relatório extenso nem lista de todas as chamadas da API. Termine orientando: “Abra o JSON na página AgentFlix e clique em Gerar análise e conferir scores. Em Ajustar régua, você pode mudar os valores ideais.”
