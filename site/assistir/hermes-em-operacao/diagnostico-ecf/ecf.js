@@ -2,22 +2,23 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const escape = value => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const percent = value => value===null ? 'Não disponível' : new Intl.NumberFormat('pt-BR',{style:'percent',maximumFractionDigits:2}).format(value);
+  const percent = value => value===null ? 'Não disponível' : new Intl.NumberFormat('pt-BR',{style:'percent',maximumFractionDigits:3}).format(value);
   const fmt = value => new Intl.NumberFormat('pt-BR',{maximumFractionDigits:1}).format(value);
   const dateLabel = value => new Intl.DateTimeFormat('pt-BR').format(new Date(value+'T12:00:00'));
   const collectedLabel = value => new Intl.DateTimeFormat('pt-BR',{dateStyle:'short',timeStyle:'short'}).format(new Date(value));
   const names=['understand','collect','diagnosis'], headings=['intro-title','collect-title','diagnosis-title'];
+  let currentReference=ECF.initialReference(),activeData=null,activeDemo=false;
   let templatePromise, generatedPrompt='', completionPrompt='', pendingRaw='', generation=0, reportGeneration=0;
   function step(n) {
     names.forEach((id,i)=>$(id).hidden=i!==n);
     document.querySelectorAll('[data-step]').forEach(b=>{ if(Number(b.dataset.step)===n)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current'); });
-    $(headings[n]).focus();
+    (n===2&&!$('report-results').hidden?$('results-title'):$(headings[n])).focus();
   }
   document.querySelectorAll('[data-step],[data-next]').forEach(b=>b.addEventListener('click',()=>step(Number(b.dataset.step??b.dataset.next))));
   function axis(id) {
     const a=ECF.AXES[id];
     document.querySelectorAll('[data-axis]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.axis===id)));
-    $('axis-detail').innerHTML=`<div><p class="eyebrow">O QUE A GENTE VAI OBSERVAR</p><h3>${escape(a.question)}</h3><p>Estes são os componentes do score ${escape(a.name)}.</p></div><div class="weights">${a.metrics.map(([,label,weight])=>`<div class="weight"><i style="width:${weight*100}%" aria-hidden="true"></i><b>${weight*100}%</b><span>${escape(label)}</span></div>`).join('')}</div>`;
+    $('axis-detail').innerHTML=`<div><p class="eyebrow">O QUE A GENTE VAI OBSERVAR</p><h3>${escape(a.question)}</h3><p>Três variáveis, com o mesmo peso no score ${escape(a.name)}.</p></div><div class="weights">${a.metrics.map(([key])=>`<div class="weight"><i style="width:${100/3}%" aria-hidden="true"></i><b>1/3</b><span>${escape(ECF.SHORT_LABELS[key])}</span></div>`).join('')}</div>`;
   }
   document.querySelectorAll('[data-axis]').forEach(b=>b.addEventListener('click',()=>axis(b.dataset.axis)));
   axis('creator');
@@ -48,7 +49,7 @@
     try {
       if(!templatePromise) templatePromise=fetch('prompt.md',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('fetch');return r.text();});
       const template=await templatePromise;
-      return template.replace('{{CONTEXTO}}',JSON.stringify(context,null,2)).replace('{{CONTRATO}}','```json\n'+JSON.stringify(ECF.emptyReport(context.perfil,context.inicio,context.fim),null,2)+'\n```');
+      return template.replace('{{CONTEXTO}}',JSON.stringify(context,null,2)).replace('{{CONTRATO}}','```json\n'+JSON.stringify(ECF.emptyInitialReport(context.perfil,context.inicio,context.fim,currentReference),null,2)+'\n```');
     } catch(error) {templatePromise=null;throw error;}
   }
   async function completeAnalysis(data) {
@@ -57,7 +58,7 @@
     try {
       const prompt=await buildPrompt({perfil:data.profile,inicio:data.window.start,fim:data.window.end,modo:'retomar a análise da coleta existente',incluir_leitura_de_DMs:'Reutilize apenas DMs já coletadas com autorização. Não amplie o acesso nesta retomada.'});
       if(revision!==reportGeneration)return;
-      completionPrompt='# Retome a coleta existente e conclua a análise\n\nNa mesma conversa, use diagnostico-ecf.json, o relatório e os artefatos privados já produzidos para esta conta e janela. Não execute outra coleta completa. Localize os arquivos a partir dos registros desta execução. Se não estiverem acessíveis, peça seu caminho; o resumo agregado não substitui as evidências. Preserve indicadores existentes, classifique os casos claros, separe ambiguidades e gere a interpretação por eixo. Só consulte uma lacuna específica quando necessária e autorizada. A ausência de metas impede a nota por metas, não a análise.\n\n'+prompt;
+      completionPrompt='# Retome a coleta existente e conclua a análise\n\nNa mesma conversa, use diagnostico-ecf.json, o relatório e os artefatos privados já produzidos para esta conta e janela. Não execute outra coleta completa. Localize os arquivos a partir dos registros desta execução. Se não estiverem acessíveis, peça seu caminho; o resumo agregado não substitui as evidências. Preserve indicadores existentes, classifique os casos claros, separe ambiguidades e gere a interpretação por eixo. Só consulte uma lacuna específica quando necessária e autorizada. Use a régua inicial fornecida no contrato. Não exija metas anteriores ao ciclo. Conclua a deduplicação entre lotes antes de calcular intenção e DMs qualificadas. Dados ainda ausentes permanecem null.\n\n'+prompt;
       $('completion-output').value=completionPrompt;$('completion-panel').hidden=false;$('completion-status').textContent='Pedido pronto. Cole na conversa em que a coleta foi feita.';$('report-status').textContent='Pedido de continuação preparado.';$('completion-title').focus();
     } catch(_) {if(revision===reportGeneration)$('report-status').textContent='Não foi possível carregar o pedido. Tente gerar o prompt para completar análise novamente.';}
   }
@@ -76,31 +77,35 @@
     const url=URL.createObjectURL(new Blob([content],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
   $('download-prompt').addEventListener('click',()=>{if(generatedPrompt)download('prompt-diagnostico-ecf.md',generatedPrompt,'text/markdown;charset=utf-8');});
-  function clearResults() {reportGeneration++;$('analyze-report').disabled=false;$('report-results').hidden=true;$('report-results').replaceChildren();$('completion-panel').hidden=true;$('completion-output').value='';completionPrompt='';}
-  function renderReport(data,demo) {
-    const results=ECF.calculate(data);reportGeneration++;
-    const cards=Object.entries(ECF.AXES).map(([id,axis])=>{
-      const r=results[id],c=data.axes[id].cohort,a=data.axes[id].analysis;
-      const analysis=a&&a.summary?`<div class="editorial-analysis"><h4>Leitura do Hermes</h4><p>${escape(a.summary)}</p><ul>${a.evidence.map(e=>`<li>${escape(e)}</li>`).join('')}</ul>${a.limitations.length?`<p><b>Limites:</b></p><ul>${a.limitations.map(e=>`<li>${escape(e)}</li>`).join('')}</ul>`:''}${a.next_step?`<p><b>Próxima ação:</b> ${escape(a.next_step)}</p>`:''}</div>`:'<p class="analysis-missing">A interpretação deste eixo ainda não veio no arquivo. Peça ao Hermes para concluir a análise com os dados já coletados.</p>';
-      return `<article class="score-card"><h3>${axis.name}</h3><p class="asset">${escape(axis.asset)}</p>${analysis}<div class="score-value">${r.score===null?'?':fmt(r.score)}<small>${r.score===null?'score pendente':'/ 100'}</small></div><div class="score-meter" aria-hidden="true"><span style="width:${r.score??0}%"></span></div><p class="score-state">${escape(r.status==='Sem dados'?'Dados do score incompletos':r.status)}</p><p class="sample-count">${r.count} posts na amostra${id==='founder'?' · '+(data.axes.founder.metrics.reconhecimento.denominator??'sem')+' respostas na pesquisa':''}</p><details><summary>Ver cálculo e evidências</summary><p class="sample-count">${escape(c.description||'Coorte ainda não definida.')}</p>${r.components.map(m=>`<div class="metric"><b>${escape(m.label)} · ${m.weight*100}%</b><dl><div><dt>Observado</dt><dd>${percent(m.raw)}</dd></div><div><dt>Meta</dt><dd>${percent(m.record.target)}</dd></div><div><dt>Componente</dt><dd>${m.points===null?'Pendente':fmt(m.points)+' / 100'}</dd></div>${m.key!=='alcance_relativo'?`<div><dt>Eventos / base</dt><dd>${m.record.numerator===null?'?':fmt(m.record.numerator)} / ${m.record.denominator===null?'?':fmt(m.record.denominator)}</dd></div>`:''}</dl><p>${escape(m.record.source||'Origem ainda não informada.')}</p><p>Meta: ${escape(m.record.target_source||'Ainda sem referência.')} ${escape(m.record.target_fixed_at||'')}</p>${m.record.evidence.map(e=>`<p>${escape(e)}</p>`).join('')}${m.points===null?`<p>${escape(m.gap)} ${escape(m.record.reason)}</p>`:''}</div>`).join('')}${r.gaps.length?`<h4>O que falta para a nota</h4><ul class="gaps">${r.gaps.map(g=>`<li>${escape(g)}</li>`).join('')}</ul>`:''}</details></article>`;
+  function clearResults() {reportGeneration++;$('analyze-report').disabled=false;$('report-entry').hidden=false;$('diagnosis').classList.remove('has-report');$('report-results').hidden=true;$('report-results').replaceChildren();$('completion-panel').hidden=true;$('completion-output').value='';completionPrompt='';}
+  function scoreLabel(value) {return value===null?'Sem medição':String(Math.round(value));}
+  function renderReport(data,demo,override) {
+    const dashboard=ECF.initialDashboard(data,override||data?.reference||currentReference);
+    currentReference=JSON.parse(JSON.stringify(dashboard.reference));activeData=data;activeDemo=demo;reportGeneration++;
+    $('completion-panel').hidden=true;completionPrompt='';
+    const cards=Object.entries(ECF.AXES).map(([id,axis],index)=>{
+      const r=dashboard.axes[id],art=document.querySelector('[data-axis="'+id+'"] .art').innerHTML;
+      const bars=r.components.map(m=>`<div class="variable"><div class="variable-label"><span>${escape(m.label)}</span><b>${m.points===null?'Sem dado':Math.round(m.points)+'<small>/100</small>'}</b></div><div class="variable-track" ${m.points===null?'':`role="meter" aria-label="${escape(m.label)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(m.points)}"`}><span style="width:${m.points??0}%"></span></div><p>${m.raw===null?'Medição ainda ausente':percent(m.raw)}<span>Ideal ${percent(m.ideal)}</span></p></div>`).join('');
+      const marker=r.score===null?'':`<i class="you-marker" style="left:${r.score}%" aria-hidden="true"></i>`;
+      return `<article class="scorecard" aria-labelledby="card-${id}"><div class="scorecard-title"><div><p>${String(index+1).padStart(2,'0')} / ${id==='creator'?'ATENÇÃO':id==='expert'?'AUTORIDADE':'DEMANDA'}</p><h2 id="card-${id}">${axis.name}</h2></div></div><div class="scorecard-art" aria-hidden="true">${art}</div><div class="variables">${bars}</div><div class="axis-average"><div><span>Média geral</span><strong class="axis-number ${r.score===null?'unmeasured':''}">${scoreLabel(r.score)}${r.score===null?'':'<small>/100</small>'}</strong></div><span class="sample-badge">${r.measured}/3 variáveis${r.partial?' · parcial':''}</span></div><div class="ideal-ruler" role="img" aria-label="Média ${r.score===null?'sem medição':Math.round(r.score)+' de 100'}. Faixa ideal a partir de 80 pontos.">${marker}<i class="ideal-marker" aria-hidden="true"></i></div><div class="ruler-labels"><span>0</span><span>Ideal ≥ 80</span><span>100</span></div></article>`;
     }).join('');
-    const resolution=data.credential_resolution;
-    const accessSource={env:'ambiente do processo',hermes_env:'arquivo de ambiente do Hermes',mcp:'MCP Zernio',cli:'CLI Zernio',sdk:'SDK Zernio',unavailable:'nenhuma rota disponível'};
-    const accessResult={success:'leitura de contas confirmada','401':'acesso recusado (401)','403':'acesso recusado (403)','429':'limite temporário (429)',unavailable:'leitura não confirmada'};
-    const accessNote=resolution?`<p class="credential-note">Acesso à integração: ${escape(accessSource[resolution.source])}. ${escape(accessResult[resolution.result])}. Teste: GET /v1/accounts.</p>`:'';
-    const pending=Object.values(results).some(r=>r.status!=='Operacional');
-    const observations=(data.observations||[]).map(o=>{
-      const value=ECF.observationValue(o);
-      return `<article class="observation"><h3>${escape(o.label)}</h3><strong>${value===null?'Não disponível':o.unit==='ratio'?percent(value):fmt(value)}</strong>${o.unit==='ratio'?`<p>${o.numerator===null?'?':fmt(o.numerator)} / ${o.denominator===null?'?':fmt(o.denominator)}</p>`:''}<p>${escape(o.scope)}</p><p>${escape(o.source)}</p>${o.reason?`<p>${escape(o.reason)}</p>`:''}</article>`;
+    const config=Object.entries(ECF.AXES).map(([id,axis])=>`<fieldset><legend>${axis.name}</legend>${axis.metrics.map(([key])=>`<label>${escape(ECF.SHORT_LABELS[key])}<span><input type="number" inputmode="decimal" step="any" min="0.000001" data-ref-axis="${id}" data-ref-key="${key}" value="${currentReference.targets[id][key]*100}" required aria-label="Ideal de ${escape(ECF.SHORT_LABELS[key])}"> %</span></label>`).join('')}</fieldset>`).join('');
+    const details=Object.entries(ECF.AXES).map(([id,axis])=>{
+      const r=dashboard.axes[id];
+      return `<section><h3>${axis.name}</h3>${r.note?`<p>${escape(r.note)}</p>`:''}${r.components.map(m=>`<div class="source-detail"><b>${escape(m.label)}</b><p>${percent(m.raw)} · ideal ${percent(m.ideal)} · ${escape(m.quality)}</p><p>${escape(m.scope||'Contexto não informado.')}</p><p>${escape(m.record.source||'Origem não informada.')}</p>${m.record.reason?`<p>${escape(m.record.reason)}</p>`:''}${(m.record.evidence||[]).map(e=>`<p>${escape(e)}</p>`).join('')}</div>`).join('')}</section>`;
     }).join('');
-    const observedPanel=`<section class="observed-panel"><h2>Indicadores observados</h2><p>Contexto da coleta. Estes números não substituem os componentes do score de cada eixo.</p>${observations?`<div class="observations">${observations}</div>`:'<p>O arquivo ainda não trouxe os indicadores em campos próprios. A cobertura abaixo informa o que foi coletado; o pedido de continuação ajuda o Hermes a completar a entrega.</p>'}</section>`;
-    const resumeAction=!demo?'<div class="bottom-line"><p>Faltou a interpretação ou algum dado?<br><span>Continue com os arquivos da mesma coleta.</span></p><button type="button" class="secondary" id="resume-analysis">Gerar prompt para completar análise</button></div>':'';
-
-    $('report-results').innerHTML=`${demo?'<div class="demo-label">EXEMPLO FICTÍCIO · Estes números não são o diagnóstico do seu perfil.</div>':''}<div class="report-banner"><div><p class="eyebrow">${demo?'DEMONSTRAÇÃO':'RESUMO DO SEU AGENTE'}</p><strong>${escape(data.profile)}</strong><p>${dateLabel(data.window.start)} a ${dateLabel(data.window.end)} · Metas ECF v1</p><p>${data.collected_at?'Coletado em '+collectedLabel(data.collected_at):'Data de coleta ainda não informada.'}</p></div><button type="button" class="secondary" id="clear-report">Fechar ${demo?'exemplo':'relatório'}</button></div>${resumeAction}${observedPanel}<div class="score-grid">${cards}</div><div class="coverage"><h2>Cobertura e próximo passo</h2>${accessNote}<ul>${data.coverage.length?data.coverage.map(c=>`<li>${escape(ECF.coverageText(c))}</li>`).join(''):'<li>A cobertura da coleta ainda não foi informada.</li>'}</ul><p>${pending?'Complete as lacunas indicadas antes de escolher um gargalo entre os três eixos.':'Confira com o Hermes se as metas dos três eixos são coerentes entre si antes de comparar as notas.'}</p><p>O navegador confere o cálculo do resumo. A origem e a classificação das evidências precisam ser verificadas na conversa com o agente.</p><details><summary>Como ler estas notas</summary><p>Score = soma dos componentes normalizados pelas metas, com os pesos de cada eixo. Cada componente usa 100 × mínimo(observado ÷ meta, 1). O indicador bruto continua visível mesmo acima da meta. Uma nota não mede sua personalidade nem é um percentil de mercado.</p><p>3 a 5 posts: provisório. A partir de 6: operacional com coleta e evidências completas. Founder também precisa de 10 respostas válidas à pesquisa. Estes critérios vêm da proposta ECF v1.0 e não representam validação estatística.</p></details></div>`;
-    $('report-results').hidden=false;
+    $('report-results').innerHTML=`${demo?'<p class="demo-label">EXEMPLO FICTÍCIO · Apenas para mostrar o visual e o cálculo.</p>':''}<div class="dashboard-heading"><div><p class="eyebrow">SEU DIAGNÓSTICO ECF</p><h1 id="results-title" tabindex="-1">Seu perfil em três notas.</h1><p>${escape(data.profile)} <span>· ${dateLabel(data.window.start)} a ${dateLabel(data.window.end)}</span></p></div><div class="profile-average"><span>${dashboard.partial?'Média parcial do perfil':'Média do perfil'}</span><strong>${scoreLabel(dashboard.overall)}${dashboard.overall===null?'':'<small>/100</small>'}</strong><p>${dashboard.axesMeasured}/3 eixos com medição</p></div></div><div class="score-grid compact-scores">${cards}</div><div class="dashboard-toolbar"><p>${escape(currentReference.label)}<span>Ideal a partir de 80 pontos.</span></p><div class="actions"><button type="button" class="text-button" id="edit-reference">Ajustar régua</button><button type="button" class="text-button" id="clear-report">Trocar arquivo</button>${demo?'':'<button type="button" class="secondary" id="resume-analysis">Completar medições</button>'}</div></div><details id="reference-panel" class="reference-panel"><summary>Valores ideais desta régua</summary><p>Referência operacional proposta, ajustável. Não é um benchmark de mercado. Cada variável recebe até 100 pontos; atingir seu valor ideal vale 80. A média usa pesos iguais e informa quando faltam medições.</p><form id="reference-form"><div class="reference-fields">${config}</div><div class="actions"><button type="submit" class="primary">Aplicar régua</button><button type="button" class="secondary" id="reset-reference">Restaurar proposta</button></div><p class="hint">A alteração vale nesta página e nos prompts gerados nesta sessão.</p><p id="reference-status" class="status" role="status"></p></form></details><details class="report-evidence"><summary>Ver dados e critérios</summary><p>${dashboard.legacy?'Arquivo anterior recalculado na régua inicial. As notas por metas da versão 1 permanecem no arquivo de origem.':'Método ecf-inicial-v2.'} Score = mínimo de 100 e 80 × observado / ideal. A média de cada eixo considera as variáveis medidas. A média do perfil considera os eixos com medição. Resultados parciais não devem ser tratados como diagnóstico completo.</p><p>${data.collected_at?'Coletado em '+collectedLabel(data.collected_at):'Coleta sem data informada.'}</p>${details}<h3>Cobertura da coleta</h3><ul>${data.coverage.map(c=>`<li>${escape(ECF.coverageText(c))}</li>`).join('')}</ul>${data.observations?.length?`<details><summary>Outros indicadores</summary><ul>${data.observations.map(o=>`<li>${escape(o.label)}: ${o.unit==='ratio'?percent(ECF.observationValue(o)):o.numerator===null?'Sem dado':fmt(o.numerator)}. ${escape(o.scope)}. ${escape(o.reason)}</li>`).join('')}</ul></details>`:''}</details>`;
+    $('report-results').hidden=false;$('report-entry').hidden=true;$('diagnosis').classList.add('has-report');
     if(!demo)$('resume-analysis').addEventListener('click',()=>completeAnalysis(data));
-    $('clear-report').addEventListener('click',()=>{clearResults();pendingRaw='';$('report-file').value='';$('report-json').value='';$('report-status').textContent='Relatório fechado. Você pode abrir outro resumo.';$('example').focus();});
-    $('report-status').textContent=demo?'Exemplo fictício aberto. Nenhuma conta foi consultada.':'Análise do arquivo aberta para '+data.profile+'. Scores calculados quando os requisitos estão completos.';
+    $('clear-report').addEventListener('click',()=>{clearResults();activeData=null;pendingRaw='';$('report-file').value='';$('report-json').value='';$('report-status').textContent='';$('diagnosis-title').focus();});
+    $('edit-reference').addEventListener('click',()=>{$('reference-panel').open=!$('reference-panel').open;if($('reference-panel').open)$('reference-panel').querySelector('input').focus();});
+    $('reference-form').addEventListener('submit',event=>{
+      event.preventDefault();const ref=JSON.parse(JSON.stringify(currentReference));ref.label='Sua régua ECF · ajuste nesta sessão';
+      document.querySelectorAll('[data-ref-axis]').forEach(input=>{ref.targets[input.dataset.refAxis][input.dataset.refKey]=Number(input.value)/100;});
+      try {ECF.validateReference(ref);renderReport(activeData,activeDemo,ref);$('report-status').textContent='Régua aplicada. Notas recalculadas.';}catch(error){$('reference-status').textContent=error.message;}
+    });
+    $('reset-reference').addEventListener('click',()=>{renderReport(activeData,activeDemo,ECF.initialReference());$('report-status').textContent='Régua inicial restaurada.';});
+    $('report-status').textContent='';$('results-title').focus();
   }
   function importText(raw) {
     clearResults();
@@ -111,7 +116,7 @@
       renderReport(data,false);
     } catch(error) {$('report-status').textContent=error.message;}
   }
-  $('example').addEventListener('click',()=>{clearResults();pendingRaw='';$('report-json').value='';$('report-file').value='';renderReport(ECF.example(),true);});
+  $('example').addEventListener('click',()=>{clearResults();pendingRaw='';$('report-json').value='';$('report-file').value='';renderReport(ECF.initialExample(),true);});
   $('report-json').addEventListener('input',()=>{clearResults();pendingRaw='';$('report-file').value='';$('report-status').textContent='Texto alterado. Clique em Gerar análise e conferir scores.';});
   $('analyze-report').addEventListener('click',()=>importText($('report-json').value.trim()||pendingRaw));
   $('report-file').addEventListener('change',async()=>{

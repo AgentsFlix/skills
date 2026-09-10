@@ -39,7 +39,8 @@
     return o.numerator===null || (o.unit==='ratio' && !(o.denominator>0)) ? null : o.unit==='ratio' ? o.numerator/o.denominator : o.numerator;
   }
   function validate(data) {
-    if (!data || data.method !== METHOD) throw Error('Use um relatório no método ecf-metas-v1.');
+    if(data?.method===INITIAL_METHOD)return validateInitial(data);
+    if (!data || data.method !== METHOD) throw Error('Use um relatório ECF compatível: ecf-inicial-v2 ou ecf-metas-v1.');
     if (!profile(data.profile)) throw Error('O relatório precisa identificar um @perfil de Instagram válido.');
     if (!data.window || !date(data.window.start) || !date(data.window.end) || (Date.parse(data.window.end)-Date.parse(data.window.start))/86400000 !== 29) throw Error('O relatório precisa de uma janela de 30 dias, incluindo início e fim.');
     if (data.collected_at !== null && (typeof data.collected_at !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(data.collected_at) || Number.isNaN(Date.parse(data.collected_at)))) throw Error('Confira a data e hora de coleta do relatório.');
@@ -92,6 +93,7 @@
     return data;
   }
   function calculate(data) {
+    if(data?.method===INITIAL_METHOD)return initialDashboard(data).axes;
     validate(data);
     return Object.fromEntries(Object.entries(AXES).map(([id,axis])=>{
       const a=data.axes[id], c=a.cohort, count=c.post_ids.length;
@@ -138,5 +140,72 @@
     }
     return d;
   }
-  return {METHOD,AXES,emptyReport,validate,calculate,example,date,profile,coverageText,observationValue};
+  const INITIAL_METHOD='ecf-inicial-v2';
+  const IDEAL_SCORE=80;
+  const INITIAL_TARGETS={creator:{alcance_relativo:1,seguidores:.01,compartilhamentos:.01},expert:{salvamentos:.02,autoridade:.001,conversas:.001},founder:{intencao:.001,dms:.002,reconhecimento:.5}};
+  const SHORT_LABELS={alcance_relativo:'Alcance relativo',seguidores:'Novos seguidores',compartilhamentos:'Compartilhamentos',salvamentos:'Salvamentos',autoridade:'Autoridade',conversas:'Conversas qualificadas',intencao:'Intenção',dms:'DMs qualificadas',reconhecimento:'Reconhecimento'};
+  function initialReference() {return {label:'ECF inicial · proposta ajustável',ideal_score:IDEAL_SCORE,targets:JSON.parse(JSON.stringify(INITIAL_TARGETS))};}
+  function validateReference(ref) {
+    if(!ref || !text(ref.label) || ref.ideal_score!==IDEAL_SCORE || !ref.targets)throw Error('Confira a régua ECF inicial e o marco ideal de 80 pontos.');
+    for(const [id,a] of Object.entries(AXES))for(const [key] of a.metrics)if(!number(ref.targets[id]?.[key])||ref.targets[id][key]<=0)throw Error('Cada valor ideal precisa ser um número positivo.');
+    return ref;
+  }
+  function emptyInitialReport(handle,start,end,reference=initialReference()) {
+    return {method:INITIAL_METHOD,profile:handle,window:{start,end},collected_at:null,reference:JSON.parse(JSON.stringify(validateReference(reference))),credential_resolution:null,coverage:[],axes:Object.fromEntries(Object.entries(AXES).map(([id,a])=>[id,{note:'',metrics:Object.fromEntries(a.metrics.map(([key])=>[key,{numerator:null,denominator:null,samples:[],status:'missing',scope:'',source:'',evidence:[],reason:'Ainda não medido'}]))}]))};
+  }
+  function validateInitial(data) {
+    // Reuse the legacy envelope checks without changing its score calculation.
+    validate({...emptyReport(data.profile,data.window?.start,data.window?.end),collected_at:data.collected_at,coverage:data.coverage,credential_resolution:data.credential_resolution});
+    validateReference(data.reference);
+    for(const [id,a] of Object.entries(AXES)) {
+      const row=data.axes?.[id];
+      if(!row||typeof row.note!=='string'||row.note.length>1000||!row.metrics)throw Error('O arquivo precisa dos três cards ECF e suas variáveis.');
+      for(const [key] of a.metrics) {
+        const m=row.metrics[key];
+        if(!m||!['measured','partial','estimated','missing'].includes(m.status)||!Array.isArray(m.samples)||m.samples.length>500||m.samples.some(x=>!number(x))||!Array.isArray(m.evidence)||m.evidence.length>20||m.evidence.some(x=>!text(x)))throw Error('Confira o estado e as evidências de cada variável.');
+        for(const field of ['numerator','denominator'])if(m[field]!==null&&!number(m[field]))throw Error('Use números não negativos ou null nas medições.');
+        for(const field of ['source','scope','reason'])if(typeof m[field]!=='string'||m[field].length>1000)throw Error('Confira a origem e o contexto das medições.');
+        if(m.status!=='measured'&&!text(m.reason))throw Error('Medições parciais, estimadas ou ausentes precisam de motivo.');
+        if(key==='reconhecimento'&&m.numerator!==null&&m.denominator!==null&&(!Number.isInteger(m.numerator)||!Number.isInteger(m.denominator)||m.numerator>m.denominator))throw Error('Reconhecimento precisa contar respostas válidas da pesquisa.');
+      }
+    }
+    return data;
+  }
+  function initialDashboard(data,reference) {
+    validate(data);reference=reference||data.reference||initialReference();validateReference(reference);
+    const legacy=data.method===METHOD;
+    const results=Object.fromEntries(Object.entries(AXES).map(([id,a])=>{
+      const row=data.axes[id];
+      const components=a.metrics.map(([key])=>{
+        const m=row.metrics[key], c=row.cohort;
+        let raw=null;
+        if(key==='alcance_relativo') {
+          if(m.samples.length && (!legacy||m.samples.length===c.post_ids.length))raw=median(m.samples);
+        } else if(number(m.numerator)&&number(m.denominator)&&m.denominator>0&&(!legacy||key==='reconhecimento'||m.denominator===c.reach_total))raw=m.numerator/m.denominator;
+        const sourced=text(m.source)&&data.collected_at!==null;
+        let quality=legacy?(c.comparable&&c.collection_complete&&m.evidence.length?'measured':'partial'):m.status;
+        if(raw===null||!Number.isFinite(raw)||!sourced||quality==='missing') {raw=null;quality='missing';}
+        if(quality==='measured'&&!m.evidence.length)quality='partial';
+        const ideal=reference.targets[id][key],points=raw===null?null:Math.min(100,IDEAL_SCORE*raw/ideal);
+        return {key,label:SHORT_LABELS[key],raw,ideal,points,quality,record:m,scope:legacy?c.description:m.scope};
+      });
+      const available=components.filter(m=>m.points!==null);
+      const partial=available.length<3||available.some(m=>m.quality!=='measured');
+      return [id,{components,score:available.length?available.reduce((s,m)=>s+m.points,0)/available.length:null,measured:available.length,partial,note:legacy?(row.analysis?.summary||''):row.note}];
+    }));
+    const available=Object.values(results).filter(a=>a.score!==null);
+    return {axes:results,reference,legacy,overall:available.length?available.reduce((s,a)=>s+a.score,0)/available.length:null,axesMeasured:available.length,partial:available.length<3||available.some(a=>a.partial)};
+  }
+  function initialExample() {
+    const d=emptyInitialReport('@perfil.exemplo','2026-08-01','2026-08-30');d.collected_at='2026-09-01T12:00:00Z';d.coverage=['Exemplo fictício para mostrar os três cards. Nenhuma conta foi consultada.'];
+    const points={creator:[72,48,66],expert:[40,64,55],founder:[88,72,80]};
+    for(const [id,a] of Object.entries(AXES))a.metrics.forEach(([key],i)=>{
+      const m=d.axes[id].metrics[key],raw=d.reference.targets[id][key]*points[id][i]/IDEAL_SCORE;
+      Object.assign(m,{numerator:Math.round(raw*80000),denominator:80000,status:'measured',scope:'Conjunto fictício completo para esta variável.',source:'Demonstração ECF, sem dados reais.',evidence:['Números criados apenas para demonstrar o cálculo.'],reason:''});
+      if(key==='reconhecimento')Object.assign(m,{numerator:5,denominator:10});
+      if(key==='alcance_relativo')Object.assign(m,{numerator:null,denominator:null,samples:[raw,raw,raw]});
+    });
+    return d;
+  }
+  return {METHOD,AXES,emptyReport,validate,calculate,example,date,profile,coverageText,observationValue,INITIAL_METHOD,IDEAL_SCORE,SHORT_LABELS,initialReference,validateReference,emptyInitialReport,initialDashboard,initialExample};
 });

@@ -1,41 +1,43 @@
-# Diagnóstico ECF, primeira parte
+# Diagnóstico ECF: três cards
 
-Experiência independente em `/assistir/hermes-em-operacao/diagnostico-ecf/`, com leitura visual dos três eixos, prompt Zernio personalizado e conferência local do resumo devolvido pelo agente.
+Página independente em `/assistir/hermes-em-operacao/diagnostico-ecf/`. A primeira parte apresenta Creator, Expert e Founder, gera um prompt de coleta com Zernio e mostra três cards com as nove variáveis, médias e régua do ideal. Fontes, interpretação e cobertura ficam recolhidas em **Ver dados e critérios**.
 
-Recorte: coleta e diagnóstico. Uma coorte principal por eixo; planejamento editorial e publicação ficam para as próximas partes. O navegador não acessa Zernio e não recebe credenciais. Não há dependência de pacotes de skills em preparação.
+## Régua inicial ajustável
 
-Método: ecf-metas-v1. Pesos e normalização por metas documentadas da proposta ECF v1.0, de 10/09/2026. Ausência de dados preservada. Dados de exemplo são fictícios e identificados na interface.
+O método `ecf-inicial-v2` foi proposto nesta implementação a pedido do usuário em 10/09/2026, após a escolha explícita de uma régua ECF inicial ajustável. Os valores são parâmetros editoriais da proposta; não são estatísticas, benchmarks de mercado nem validação científica.
 
-Fontes de integração consultadas em 10/09/2026:
-- https://docs.zernio.com/analytics/get-analytics
-- https://docs.zernio.com/analytics/get-instagram-account-insights
-- https://docs.zernio.com/analytics/get-instagram-follower-history
-- https://zernio.com/openapi.yaml
+| Eixo | Variável | Ideal inicial |
+|---|---|---|
+| Creator | Alcance relativo | 100% |
+| Creator | Seguidores por alcance | 1% |
+| Creator | Compartilhamentos por alcance | 1% |
+| Expert | Salvamentos por alcance | 2% |
+| Expert | Autoridade por alcance | 0,1% |
+| Expert | Conversas qualificadas por alcance | 0,1% |
+| Founder | Intenção por alcance | 0,1% |
+| Founder | DMs qualificadas por alcance | 0,2% |
+| Founder | Reconhecimento na pesquisa | 50% |
 
-Validação prevista: testes do modelo, fluxo no navegador com teclado, exemplo e relatório incompleto; QA em 1440, 768 e 390 px; checks do CI do repositório.
+Nota da variável = `min(100, 80 * observado / ideal)`. O marco ideal fica em 80 pontos; desempenho acima da referência pode chegar a 100. A média de cada card usa pesos iguais entre as variáveis medidas. A média do perfil usa pesos iguais entre os eixos com medição. A interface informa X/3 e marca média parcial quando há dados ausentes, parciais, estimados ou sem evidências detalhadas. Ausência não vira zero. Sem variáveis medidas, a nota fica sem medição.
 
-## Contrato e operação
+**Ajustar régua** altera os ideais e recalcula as notas na sessão. **Restaurar proposta** recupera os parâmetros iniciais. Os próximos prompts carregam a régua ajustada em `reference`. Não há salvamento no navegador ou comparação entre períodos com réguas diferentes.
 
-`model.js` define a versão, o resumo vazio, a validação e o cálculo; `ecf.js` preenche o contexto e o contrato JSON no prompt antes de copiar ou baixar. `prompt.md` é a fonte do roteiro e contém dois marcadores internos, substituídos na experiência. Use o botão da página para obter o prompt completo.
+## Coleta e contrato
 
-O diagnóstico não armazena dados em localStorage/sessionStorage, não consulta APIs sociais e não envia o resumo para um servidor. As notas são calculadas a partir de um resumo declarado pelo agente; a autenticidade das fontes deve ser conferida na conversa. Cada eixo usa uma coorte principal, com IDs únicos, alcance compatível, evidências e metas fixadas antes do ciclo. Dados desconhecidos ficam pendentes.
+`prompt.md` orienta a descoberta da integração instalada, resolução de credencial limitada ao perfil Hermes atual, teste de leitura de contas, paginação e coleta sem alterar recursos. Reutiliza os arquivos da execução e pede classificação dos casos claros e deduplicação entre lotes. Não consulta novamente toda a conta para retomar uma análise.
 
-Testes: `python3 -m unittest discover -s tests -p test_ecf_diagnostic.py`; sintaxe dos dois scripts com `node --check`; CI completo e QA do navegador. Evidências em `design-review/diagnostico-ecf/`.
+O contrato v2 contém conta, janela, momento da coleta, resolução de credencial sem segredos, cobertura, régua e três eixos. Cada variável tem numerador, denominador, amostras, estado de medição, contexto, origem, evidências e motivo de pendências. As notas são calculadas no navegador. A coleta mantém detalhes privados no ambiente do Hermes; a página recebe somente o resumo agregado. Não há chamada a uma IA ou ao Instagram na página.
 
+O prompt distingue taxas atribuídas a posts de índices observados no perfil. Sem atribuição por post, intenção e DMs podem usar pessoas únicas e alcance da conta da mesma janela, com esse universo explícito. Soma de lotes sem deduplicação não é uma medição válida. Alcance relativo com base atual no lugar da histórica é uma estimativa identificada. Reconhecimento continua exigindo respostas reais da pesquisa.
 
-## Resolução de credencial
+Arquivos `ecf-metas-v1` continuam aceitos. A interface os lê na nova proposta, mostrando medições disponíveis e lacunas; não modifica o arquivo de origem. O cálculo antigo por metas, com seus pesos e pré-requisitos, permanece em `model.js` e nos testes. As duas escalas não são comparáveis. Indicadores antigos sem origem e medidas numéricas não ganham notas por interpretação de frases.
 
-O prompt autoriza uma cascata limitada ao perfil atual: ambiente, arquivo de ambiente ativo do Hermes, MCP existente, configuração oficial da CLI e SDK instalado. Cada rota disponível precisa confirmar a leitura de contas; SDK instalado, transporte MCP conectado e lista vazia de contas têm tratamentos próprios. A busca não recorre a outros perfis, diretórios legados, histórico, caches ou backups.
+## Arquivos e verificação
 
-`credential_resolution` é opcional para compatibilidade com relatórios anteriores. Nos novos resumos, começa como `null`; após tentativa, recebe exclusivamente `source`, `test_endpoint` e `result`, com valores enumerados. A importação recusa propriedades adicionais, inclusive chave mascarada. O histórico sanitizado das rotas fica em `coverage`. Nenhuma credencial foi acessada ou testada para implementar esta revisão.
+- `index.html` e `ecf.css`: navegação e apresentação dos três cards.
+- `ecf.js`: geração de prompt, importação local, ajuste da régua, renderização e continuação da coleta.
+- `model.js`: contratos, validação, cálculos v1/v2 e exemplo fictício.
+- `tests/test_ecf_diagnostic.py`: cálculos, médias parciais, denominadores, régua ajustável, compatibilidade e metadados de credencial.
+- `design-review/diagnostico-ecf/`: capturas e evidência de QA, exclusivamente com dados fictícios.
 
-Comandos Hermes conferidos no help/código da instalação disponível: `config env-path`, `mcp list` e `mcp test <name>`. Fontes Zernio: [CLI](https://docs.zernio.com/cli), [MCP](https://docs.zernio.com/mcp/setup) e [listar contas](https://docs.zernio.com/accounts/list-accounts). `mcp test` pode exibir trechos mascarados: o prompt exige capturar e descartar a saída bruta, expondo somente estado sanitizado. O texto do prompt é buscado sem cache HTTP para que uma recarga receba a revisão atual.
-
-
-## Análise antes da calibração
-
-A importação agora tem uma ação explícita: selecionar/colar o arquivo e clicar em **Gerar análise e conferir scores**. A página organiza a interpretação já feita pelo Hermes e faz os cálculos determinísticos; não consulta uma IA nem o Instagram. `observations` preserva indicadores descritivos, e `axes.<eixo>.analysis` traz interpretação, evidências anônimas, limites e próxima ação, independentemente de metas. Esses campos são opcionais para manter compatibilidade e não entram na fórmula `ecf-metas-v1`.
-
-O prompt exige classificação inicial dos casos claros pelo agente e revisão somente das ambiguidades. O pedido **Gerar prompt para completar análise** usa o contexto do arquivo aberto e orienta reutilizar os artefatos privados da mesma execução, sem repetir a coleta completa. JSONs anteriores com cobertura estruturada por recurso são aceitos; a tela exibe apenas descrições, páginas e itens, sem argumentos de endpoint. Novas saídas devem usar `coverage` como lista de strings.
-
-Notas continuam dependendo dos componentes, metas anteriores à janela e coortes comparáveis. Trocar essa régua para um score inicial sem metas seria uma mudança de método, não uma correção de importação. Relatórios reais do usuário permanecem fora do repositório e das capturas públicas.
+Testar com `python3 -m unittest discover -s tests` e `python3 scripts/check_site.py`, além do QA em Chrome em 1440, 768 e 390 px. Os arquivos reais do usuário não entram no repositório, em capturas públicas ou em telemetria.

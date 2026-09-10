@@ -117,6 +117,38 @@ o.numerator=-1;assert.throws(()=>score(d),/indicadores/);
 d=make();d.observations=[{label:'Alcance',numerator:1000,denominator:null,unit:'count',scope:'Posts da janela',source:'Exemplo',reason:''}];
 assert.equal(M.observationValue(d.observations[0]),1000);assert.equal(score(d).creator.score,77);
 d.axes.creator.analysis={summary:'Conclusão sem evidência',evidence:[],limitations:[],next_step:''};assert.throws(()=>score(d),/evidências/);
+// The initial ruler is a versioned proposal, independent from the old target method.
+d=M.initialExample();let board=M.initialDashboard(d);
+assert.equal(d.method,'ecf-inicial-v2');assert.equal(board.axes.creator.score,62);assert.equal(board.axes.expert.score,53);assert.equal(board.axes.founder.score,80);assert.equal(board.overall,65);assert.equal(board.partial,false);
+assert.equal(M.calculate(d).creator.score,62);
+// An ideal observation is 80; above the ideal can rise to the cap of 100.
+d=M.initialExample();d.axes.creator.metrics.compartilhamentos.numerator=d.reference.targets.creator.compartilhamentos*d.axes.creator.metrics.compartilhamentos.denominator;
+assert.equal(M.initialDashboard(d).axes.creator.components[2].points,80);
+d.axes.creator.metrics.compartilhamentos.numerator*=10;assert.equal(M.initialDashboard(d).axes.creator.components[2].points,100);
+// Zero is measured, but absent values are excluded visibly from an arithmetic mean.
+d=M.initialExample();d.axes.creator.metrics.compartilhamentos.numerator=0;assert.equal(M.initialDashboard(d).axes.creator.components[2].points,0);
+d.axes.creator.metrics.seguidores.status='missing';d.axes.creator.metrics.seguidores.reason='API sem campo';board=M.initialDashboard(d);
+assert.equal(board.axes.creator.score,36);assert.equal(board.axes.creator.measured,2);assert.equal(board.axes.creator.partial,true);assert.equal(board.partial,true);
+for(const m of Object.values(d.axes.founder.metrics)){m.status='missing';m.reason='Sem medição';}
+board=M.initialDashboard(d);assert.equal(board.axes.founder.score,null);assert.equal(board.axesMeasured,2);assert.equal(board.overall,(36+53)/2);
+d=M.emptyInitialReport('@sem.dados','2026-08-01','2026-08-30');assert.equal(M.initialDashboard(d).overall,null);
+// Editing an ideal changes only its variable and the dependent averages.
+d=M.initialExample();const ref=M.initialReference();ref.targets.expert.salvamentos*=2;board=M.initialDashboard(d,ref);
+assert.equal(board.axes.expert.components[0].points,20);assert.equal(board.axes.creator.score,62);assert.equal(board.axes.expert.score,(20+64+55)/3);
+assert.equal(d.reference.targets.expert.salvamentos,.02);
+for(const change of [0,-1,null,'1',Infinity]){const ref=M.initialReference();ref.targets.creator.seguidores=change;assert.throws(()=>M.initialDashboard(d,ref),/ideal/);}
+// Estimates and partial evidence keep scores visible with an explicit partial state.
+for(const quality of ['partial','estimated']){d=M.initialExample();d.axes.creator.metrics.alcance_relativo.status=quality;d.axes.creator.metrics.alcance_relativo.reason='Base aproximada';assert.equal(M.initialDashboard(d).axes.creator.partial,true);}
+d=M.initialExample();d.axes.creator.metrics.alcance_relativo.samples=[2,2,2];assert.equal(M.initialDashboard(d).axes.creator.components[0].points,100);
+d=M.initialExample();d.axes.creator.metrics.seguidores.denominator=0;assert.equal(M.initialDashboard(d).axes.creator.components[1].points,null);
+d=M.initialExample();d.axes.creator.metrics.seguidores.source='';assert.equal(M.initialDashboard(d).axes.creator.components[1].points,null);
+d=M.initialExample();d.reference.ideal_score=100;assert.throws(()=>M.initialDashboard(d),/80 pontos/);
+d=M.initialExample();d.axes.creator.metrics.seguidores.status='good';assert.throws(()=>M.initialDashboard(d));
+d=M.initialExample();d.axes.founder.metrics.reconhecimento.numerator=d.axes.founder.metrics.reconhecimento.denominator+1;assert.throws(()=>M.initialDashboard(d),/pesquisa/);
+// Legacy source records can be read against the new proposal without mutating the old scores.
+d=make();const before=JSON.stringify(d);board=M.initialDashboard(d);assert.equal(JSON.stringify(d),before);assert.equal(score(d).creator.score,77);assert.equal(board.legacy,true);
+d.axes.creator.cohort.comparable=false;assert(M.initialDashboard(d).axes.creator.score!==null);assert.equal(score(d).creator.score,null);
+assert.throws(()=>M.initialDashboard(null));
 console.log('ECF: cálculos, amostras, fontes, metas e lacunas verificados.');
 """
         subprocess.run([shutil.which('node'), '-e', script], cwd=ROOT, check=True)
