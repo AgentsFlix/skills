@@ -59,6 +59,8 @@ class Series(unittest.TestCase):
                     self.assertIsInstance(e["d"], (int, float))
                     self.assertGreater(e["d"], 0, f"{e['t']}: duração zero")
                     self.assertRegex(e["uid"], UID, f"{e['t']}: uid não é o do Stream")
+                    if "stream_uid" in e:
+                        self.assertRegex(e["stream_uid"], UID, f"{e['t']}: revisão de mídia inválida")
                     uids.append(e["uid"])
                     if e.get("preplay") is not None:
                         self.assertIsInstance(e["preplay"].get("req"), list, f"{e['t']}: preplay.req tem que ser lista")

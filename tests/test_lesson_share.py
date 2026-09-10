@@ -29,7 +29,7 @@ class LessonShareTest(unittest.TestCase):
                         continue
                     with self.subTest(episode=episode['t']):
                         url = episode['share_url']
-                        self.assertTrue(url.startswith('/assistir/'))
+                        self.assertTrue(url.startswith('/aulas/'))
                         page = SITE / url.lstrip('/') / 'index.html'
                         tags = Tags(page.read_text())
                         self.assertEqual(tags.meta['og:url'], 'https://agentsflix.ai' + url)
@@ -41,7 +41,6 @@ class LessonShareTest(unittest.TestCase):
                         raw = (SITE / image.path.lstrip('/')).read_bytes()
                         self.assertTrue(raw.startswith(b'\xff\xd8'))
                         self.assertLess(len(raw), 1024 * 1024)
-                        target = urlsplit(tags.links['watch-lesson'])
-                        self.assertEqual(parse_qs(target.query)['s'], [series['slug']])
-                        self.assertEqual(target.fragment, f"t{season['n']}e{episode.get('n', index+1)}")
-                        self.assertTrue((SITE / target.path.lstrip('/') / 'index.html').is_file())
+                        self.assertIn('id="player"', page.read_text())
+                        self.assertNotIn('location.replace', page.read_text())
+                        self.assertEqual(url, f"/aulas/{series['slug']}/t{season['n']}/e{episode['n']}/")

@@ -8,6 +8,22 @@
 
   const episodeNumber = (episode, index) => episode.n ?? index + 1;
 
+  // Paths in series.json are relative to /assistir/, never to the active lesson.
+  function assetUrl(path) {
+    return typeof path === "string" && path && !/^(?:[a-z][a-z0-9+.-]*:|\/)/i.test(path)
+      ? `/assistir/${path.replace(/^\.\//, "")}` : path;
+  }
+
+  function lessonUrl(series, seasonIndex, episodeIndex) {
+    const season = series.seasons[seasonIndex], episode = season.eps[episodeIndex];
+    return episode.share_url || `/assistir/?s=${encodeURIComponent(series.slug)}#t${season.n}e${episodeNumber(episode, episodeIndex)}`;
+  }
+
+  function lessonRoute(path) {
+    const match = /^\/aulas\/([a-z0-9]+(?:-[a-z0-9]+)*)\/t([1-9]\d*)\/e([1-9]\d*)\/(?:index\.html)?$/.exec(path);
+    return match ? { slug: match[1], season: +match[2], episode: +match[3] } : null;
+  }
+
   function episodes(series) {
     return series.seasons.flatMap((season, si) =>
       season.eps.map((episode, ei) => ({
@@ -122,6 +138,9 @@
 
   return Object.freeze({
     episodeNumber,
+    lessonUrl,
+    assetUrl,
+    lessonRoute,
     episodes,
     progress,
     choiceTarget,

@@ -1147,7 +1147,15 @@
                   }
                 }
               ],
-              "share_url": "/assistir/hermes-em-operacao/aula-2/"
+              "share_url": "/aulas/hermes-em-operacao/t1/e2/",
+              "stream_uid": "8d5a8d69f3708a9144e6a6d133ffaed5",
+              "preview": {
+                "title": "O que um miojo tem a ver com automação?",
+                "description": "Do restaurante à agência: entenda como um fluxo funciona e monte o seu. Aula + exercícios interativos no AgentFlix.",
+                "image": "/aulas/hermes-em-operacao/t1/e2/preview-f080fd9cc55ce56d.jpg",
+                "alt": "Uma chef prepara um miojo ao lado da pergunta: O que um miojo tem a ver com automação? HERMES EM OPERAÇÃO, temporada 1, episódio 2.",
+                "approved": true
+              }
             }
           ],
           "atividades": [
