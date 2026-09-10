@@ -79,5 +79,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/assistir/hermes-em-operacao/aula-2",
+      "destination": "/aulas/hermes-em-operacao/t1/e2/",
+      "permanent": true
+    }
   ]
 }
