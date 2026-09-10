@@ -1,3 +1,5 @@
+> Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
+
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
 # Task: Elicit Credentials (YAML)

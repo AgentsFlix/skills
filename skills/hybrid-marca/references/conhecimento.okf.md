@@ -5,7 +5,7 @@ description: Método e procedência editorial desta skill AgentFlix.
 status: draft
 generated:
   by: process:agentflix-skill-authoring
-  at: '2026-09-09T16:11:07.121754+00:00'
+  at: '2026-09-10'
 stale_after: '2026-12-10'
 sources:
 - id: metodo
@@ -17,7 +17,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-marca
-  content_revision: 1.0.0
+  content_revision: 1.0.1
   verification_evidence: []
 ---
 

@@ -18,48 +18,38 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência.
+> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
 
 ---
+# Público para orientar a próxima decisão
 
-# O CLIENTE IDEAL · ICP em 47 campos, com o nível de consciência do mercado antes
-
-Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Antes de perguntar qualquer coisa, a skill passa pelo Diagnosis Gate: nível de consciência e sofisticação do mercado, porque o ICP muda conforme o mercado já sabe ou não que tem o problema.
-
-Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e que as outras skills leem. Tudo vive na pasta configurada em `hybrid.pasta` (pergunte ao usuário, se ainda não souber), um negócio por pasta. Nada é enviado para fora.
+Continue o perfil do negócio e documente o público que a pessoa quer entender ou atender. Uma hipótese de público é um ponto de partida válido quando identificada como hipótese. Entregue contexto, problema, critérios relevantes, limites e plano das lacunas; pesquisa indisponível não impede registrar o que já se sabe.
 
 ## When to Use
 
-- Diga: "monta o ICP de [produto]".
-- O negócio ainda não tem esse arquivo, ou ele está abaixo de 85% de completude.
-- NÃO use para medir o negócio: isso é `hybrid-diagnostico`, que lê o que esta skill escreve.
+Use quando a pessoa pedir para documentar ou revisar o público e continuar a jornada. Comece com os dados disponíveis; não existe percentual mínimo para iniciar.
 
 ## Quick Reference
 
-Obrigatórios: negócio/oferta, decisão de público a apoiar e fonte disponível. Características não pesquisadas são hipóteses; dados do perfil existente devem ser aproveitados.
+Negócio/oferta, decisão de público que o pedido precisa apoiar e contexto disponível. Público não validado fica como hipótese; mercado e psicografia desconhecidos permanecem em aberto.
 
-A contagem do template expandido está em `references/campos-icp.json`. Use seus caminhos e o total real para completude; o rótulo editorial de origem não é o denominador. Defaults vazios não são respostas.
-
-Leia `references/configuracao.json` apenas para resolver configuração ausente após o bootstrap. Defaults são exemplos; confirme o destino real antes de escrever.
-
-| procedimento | referência |
+| Necessidade | Caminho |
 |---|---|
-| elicit icp yaml | `references/elicit-icp-yaml.md` |
-| elicit icp | `references/elicit-icp.md` |
-| template que esta skill preenche | `templates/company-icp.yaml` |
-| template que esta skill preenche | `templates/company-diagnosis.yaml` |
+| Entrega inicial desta jornada | Siga Procedure abaixo; não exige abrir nem copiar templates. |
+| Aprofundamento explicitamente solicitado | `references/elicit-icp.md`, `references/elicit-icp-yaml.md` e o esquema ampliado, somente para investigação adicional pertinente e solicitada. |
 
+Use o destino já autorizado pelo contexto. Configuração só é consultada quando falta um caminho real. A ausência de um YAML prévio não é um bloqueio.
 
 ## Procedure
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
-1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
-2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
-3. Use o perfil anterior e os relatos/acervo autorizados. Separe público atual observado, público desejado e hipóteses. Perfil de pessoa fictícia é persona proposta, não pesquisa nem cliente entrevistado.
-4. Construa ICP com contexto, problema, critérios de decisão, objeções e limites. Use os campos do template como banco de investigação; não envie o questionário integral. Pergunte só lacunas que mudam a próxima decisão, cada uma com seu exemplo contextual.
-5. Ligue cada afirmação a fonte ou marque hipótese/desconhecido. Pesquise somente lacunas relevantes com ferramenta real disponível; sem pesquisa externa, entregue o que o acervo sustenta e plano da lacuna. Completude do YAML usa somente valores confirmados e denominador declarado; não force preenchimento de psicografia sem evidência. Entregue ICP e síntese aproveitável pelo posicionamento.
-6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
+1. Continue o perfil atual e o pedido. Leia relatos e acervo acessíveis antes de perguntar. Registre oferta, problema e público já informado; não peça novamente uma definição que já existe, mesmo que seja uma hipótese. Use a revisão atual do perfil, consultando histórico apenas quando necessário.
+2. Monte uma síntese de público com: quem se quer entender/atender e seu contexto; problema ou necessidade; relação com a oferta; critérios de decisão e objeções quando houver fonte; limites e situações fora do foco. Em cada item, indique evidência, relato da pessoa, hipótese da pessoa, hipótese do agente ou desconhecido. Não deduza idade, renda, orçamento ou contagem de clientes a partir de um rótulo de público.
+3. Investigue somente lacunas que mudam a próxima decisão. Com ferramenta de pesquisa disponível e autorizada, registre fonte, data e o que ela sustenta. Sem acesso ou evidência, nomeie a lacuna e um modo concreto de investigá-la depois. Cada pergunta aberta tem exemplo ligado ao contexto, sem casos/clientes/números inventados. Níveis de consciência/sofisticação e diagnosis.yaml não são pré-requisitos para esta síntese.
+4. Diante de “não sei ainda”, preserve o desconhecido. Não repita a pergunta, peça um chute ou interprete silêncio como aprovação. Quando houver contexto suficiente, proponha um público provisório ou mantenha a hipótese já declarada, sem promover inferências a evidência. Aceitar o formato de uma proposta não confirma seus dados factuais.
+5. Salve o ICP provisório e a síntese para posicionamento no destino local autorizado, em Markdown ou YAML. Inclua mapa de origem, hipóteses não validadas, lacunas prioritárias e próximo passo de investigação. O pedido de documentar já abrange salvar esse rascunho local; não espere uma autorização adicional. Use o esquema ampliado apenas quando solicitado, sem copiar campos vazios para simular entrega.
+6. Verifique o arquivo. A operação está completed quando a entrega provisória solicitada é útil, rastreável e declara os limites, ainda que o documento permaneça parcial. Waiting só vale se faltar contexto que realmente impeça essa entrega, com o impedimento nomeado. Nenhum percentual de campos ou validação externa é exigido para declarar a síntese provisória concluída. Avalie rotina com fontes reais e respeite recusas, sem ativação implícita.
 
 ## Avaliação de rotina
 
@@ -67,14 +57,15 @@ Revisão pode valer com novas entrevistas, clientes ou mudança de oferta; colet
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pular o Diagnosis Gate quando a referência o pede. O nível de consciência muda todas as perguntas seguintes.
+- Transformar a lista de campos de um esquema ampliado em questionário obrigatório.
+- Exigir diagnosis.yaml, níveis de mercado ou um percentual de completude para entregar uma síntese provisória.
+- Pedir novamente informação atual, sugerir evidência inventada ou atribuir inferência do agente à pessoa.
+- Esperar nova autorização para salvar o rascunho no destino local já autorizado.
+- Confundir entrega parcial útil com pesquisa validada ou documento institucional completo.
 
 ## Verification
 
-ICP diferencia evidência, hipótese e ausência de dados; nenhuma psicografia inventada como fato. Completude rastreável quando declarada; perguntas essenciais com exemplos próprios. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
+Existe um arquivo de público ligado ao perfil atual, com origem, hipótese e desconhecido separados. Há síntese utilizável pelo posicionamento e plano das lacunas relevantes, sem pesquisa, clientes ou psicografia fictícios tratados como fatos. Não há pergunta redundante nem bloqueio por diagnosis.yaml, percentuais ou desconhecimento já declarado quando o rascunho é possível. Confira o aceite transversal de references/contrato-agentflix.md.
 
 ## Arquivos desta skill (incluídos abaixo)
 
@@ -108,7 +99,7 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência.
+Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
 
 
 ---
@@ -220,7 +211,9 @@ Use primeiro minha memória e o acervo já indicado. Não leia todos os template
     "status",
     "validation_note"
   ],
-  "rule": "Contar somente valor confirmado com origem. Null, vazio, FILL_THIS e sugestões não contam. False/zero só contam se confirmados."
+  "rule": "Contar somente valor confirmado com origem. Null, vazio, FILL_THIS e sugestões não contam. False/zero só contam se confirmados.",
+  "scope": "Esquema ampliado opcional, somente quando solicitado; não é denominador nem gate da síntese provisória.",
+  "required_for_initial_synthesis": []
 }
 
 
@@ -277,7 +270,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" init --version 0.4.3 --revision 1.0.0
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" init --version 0.4.3 --revision 1.0.1
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" audit
@@ -360,7 +353,7 @@ description: Método e procedência editorial desta skill AgentFlix.
 status: draft
 generated:
   by: process:agentflix-skill-authoring
-  at: '2026-09-09T16:11:07.121754+00:00'
+  at: '2026-09-10'
 stale_after: '2026-12-10'
 sources:
 - id: metodo
@@ -372,7 +365,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-icp
-  content_revision: 1.0.0
+  content_revision: 1.0.1
   verification_evidence: []
 ---
 
@@ -429,10 +422,24 @@ O documento `references/conhecimento.okf.md` separa fontes e prazo editorial do 
 
 Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Nenhuma pergunta redundante, exemplo tratado como fato, lacuna obrigatória escondida, métrica inventada ou agendamento alegado sem execução. Registre a avaliação de rotina e o resultado observado: aguardando não é concluído. Se não puder persistir, inclua esse limite no resumo.
 
+## Decisões atuais, exemplos e continuidade desta jornada
+
+O pedido atual e as respostas já dadas valem também no encerramento. Não peça reconfirmação do tom, escopo, oferta, público ou recusa conhecidos sem um conflito novo demonstrável. Uma correção explícita já resolve a nota antiga; não devolva esse conflito resolvido à pessoa. Se houver revisões anteriores, comece pela versão atual identificada e consulte o histórico apenas para uma lacuna ou divergência concreta.
+
+Cada exemplo deve preservar a origem dos fatos. Não crie contagem de clientes, casos, idade, faturamento, orçamento, duração, participantes, experiência profissional ou resultados para tornar o exemplo concreto. Se o dado faltar, use [campo a preencher] ou um exemplo de resposta que reconheça o desconhecimento, ligado ao contexto conhecido. Um exemplo não pode simular evidência de experiência que ninguém relatou. Hipótese do agente tem origem agente, nunca origem pessoa.
+
+Aceitar o formato ou a estrutura de um exemplo não confirma seus componentes factuais. Não ofereça “usar todos os exemplos” para preencher fatos. Se a pessoa aprovar uma proposta, registre o aceite daquela proposta e mantenha hipóteses e dados não confirmados identificados. “Não sei ainda” é desconhecimento: não é consentimento, evidência de ausência de prática nem convite para repetir a mesma pergunta ou pedir um chute.
+
+O pedido para documentar, preparar ou atualizar já abrange salvar a entrega no destino local autorizado. Não crie uma aprovação adicional para essa escrita reversível. Aprovação de conteúdo, publicação, acesso novo e ativação de rotina continuam decisões separadas.
+
+Conclua a entrega solicitada quando houver um artefato útil com origem e lacunas explícitas, mesmo que o documento ampliado permaneça parcial. Registre separadamente resultado da operação e estado do documento. Use waiting quando uma lacuna realmente impede a entrega atual; diga qual dependência impede qual resultado. Não retenha uma síntese possível por falta de campos opcionais, pesquisa indisponível ou desconhecimento já declarado. No encerramento, informe a próxima ação sem reabrir decisões resolvidas.
+
 
 ---
 
 ## Referência: references/elicit-icp-yaml.md
+
+> Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -799,6 +806,8 @@ Após ICP:
 
 ## Referência: references/elicit-icp.md
 
+> Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
+
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
 # Task: Elicit ICP
@@ -1016,7 +1025,7 @@ Criar múltiplos arquivos:
   "contract_version": "1.0.0",
   "skill_id": "hybrid-icp",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.0",
+  "content_revision": "1.0.1",
   "distribution_ref": "main"
 }
 
@@ -1024,6 +1033,8 @@ Criar múltiplos arquivos:
 ---
 
 ## Referência: templates/company-diagnosis.yaml
+
+# Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
 
 # COMPANY DIAGNOSIS — Market Awareness & Sophistication
 #
@@ -1271,6 +1282,8 @@ metadata_final:
 
 ## Referência: templates/company-icp.yaml
 
+# Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
+
 # COMPANY ICP — Ideal Customer Profile (95 FIELDS)
 #
 # MANDATORY: Complete diagnosis.yaml FIRST
@@ -1516,7 +1529,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.0",
+  "content_revision": "1.0.1",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }

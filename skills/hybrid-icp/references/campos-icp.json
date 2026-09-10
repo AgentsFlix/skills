@@ -103,5 +103,7 @@
     "status",
     "validation_note"
   ],
-  "rule": "Contar somente valor confirmado com origem. Null, vazio, FILL_THIS e sugestões não contam. False/zero só contam se confirmados."
+  "rule": "Contar somente valor confirmado com origem. Null, vazio, FILL_THIS e sugestões não contam. False/zero só contam se confirmados.",
+  "scope": "Esquema ampliado opcional, somente quando solicitado; não é denominador nem gate da síntese provisória.",
+  "required_for_initial_synthesis": []
 }

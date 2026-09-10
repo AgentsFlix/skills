@@ -1,6 +1,6 @@
 ---
 name: hybrid-perfil
-description: 'O perfil completo da empresa em YAML: quem é, para quem existe, o que promete, que credenciais sustentam a promessa. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: "monta o perfil…'
+description: Documente o perfil do negócio para a tarefa atual, usando memória e acervo antes da entrevista. Entregue um perfil com origem e lacunas; aprofunde dados institucionais quando solicitado.
 license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
@@ -11,49 +11,38 @@ metadata:
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-fundador, hybrid-icp
   contract_version: 1.0.0
-  content_revision: 1.0.0
+  content_revision: 1.0.1
   distribution_ref: main
 ---
+# Perfil do negócio para a tarefa atual
 
-# QUEM SOMOS · Missão, visão, credenciais e o perfil completo, em seis fases
-
-O perfil completo da empresa em YAML: quem é, para quem existe, o que promete, que credenciais sustentam a promessa. O agente conduz a elicitação em seis fases com gate de 85% de completude por seção, e não deixa avançar com campo vazio fingindo que está pronto. É a base que todas as outras skills Hybrid leem.
-
-Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e que as outras skills leem. Tudo vive na pasta configurada em `hybrid.pasta` (pergunte ao usuário, se ainda não souber), um negócio por pasta. Nada é enviado para fora.
+Transforme o que a pessoa já informou em um perfil reutilizável, com identificação, oferta, público, problema e objetivo. Use a entrevista apenas para o que falta e muda a entrega. O perfil institucional ampliado é um aprofundamento opcional.
 
 ## When to Use
 
-- Diga: "monta o perfil do negócio [nome]".
-- O negócio ainda não tem esse arquivo, ou ele está abaixo de 85% de completude.
-- NÃO use para medir o negócio: isso é `hybrid-diagnostico`, que lê o que esta skill escreve.
+Use quando a pessoa pedir para documentar ou revisar o negócio e continuar a jornada. Comece com os dados disponíveis; não existe percentual mínimo para iniciar.
 
 ## Quick Reference
 
-Para fechar o perfil: nome/identificação do negócio, oferta, público atendido, problema que resolve e objetivo informado. Missão detalhada, histórico, credenciais e equipe só são necessários quando mudam o pedido; não bloqueiam uma síntese inicial.
+Identificação do negócio, oferta, público declarado ou hipótese, problema e objetivo pertinente. Campos desconhecidos ficam explícitos. Não exigir missão, visão, credenciais ou equipe para uma síntese inicial.
 
-Leia `references/configuracao.json` apenas para resolver configuração ausente após o bootstrap. Defaults são exemplos; confirme o destino real antes de escrever.
-
-| procedimento | referência |
+| Necessidade | Caminho |
 |---|---|
-| setup business profile | `references/setup-business-profile.md` |
-| elicit company profile | `references/elicit-company-profile.md` |
-| elicit vision | `references/elicit-vision.md` |
-| elicit credentials | `references/elicit-credentials.md` |
-| template que esta skill preenche | `templates/company-company-profile.yaml` |
-| template que esta skill preenche | `templates/company-credentials.yaml` |
-| template que esta skill preenche | `templates/culture-mission-vision-positioning.yaml` |
+| Entrega inicial desta jornada | Siga Procedure abaixo; não exige abrir nem copiar templates. |
+| Aprofundamento explicitamente solicitado | `references/elicit-company-profile.md` e os templates institucionais, apenas quando houver pedido de aprofundamento. |
 
+Use o destino já autorizado pelo contexto. Configuração só é consultada quando falta um caminho real. A ausência de um YAML prévio não é um bloqueio.
 
 ## Procedure
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
-1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
-2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
-3. Leia o material existente primeiro. Extraia identificação, oferta, público, problema e objetivo com origem; destaque o que ainda é hipótese da pessoa. Use company-company-profile.yaml somente para campos pertinentes; founder DNA, credenciais e cultura são aprofundamentos opcionais, não pré-requisitos para esta etapa.
-4. Entreviste apenas sobre lacunas determinantes. Cada pergunta aberta, inclusive no encerramento, traz exemplo adjacente construído com a memória recuperada; se faltar contexto, exemplo explicitamente hipotético com campo a preencher. Não peça confirmação de fatos atuais apenas por estarem em outro formato.
-5. Entregue o perfil e um mapa de origem/lacunas. Se usar o YAML completo, mantenha null nos campos desconhecidos e status parcial; nunca conte metadados/defaults/exemplos como preenchimento. Não afirme percentual de completude sem denominador explícito dos campos obrigatórios. Encaminhe o perfil útil à etapa de público sem inventar empresa, missão ou credenciais.
-6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
+1. Leia o pedido, a memória atual e o acervo indicado. Se houver perfil anterior, use a revisão atual; consulte versões antigas somente para conflito ou lacuna concreta. Aproveite correções e recusas já resolvidas. Não abra questionários ou templates antes desse mapa.
+2. Registre identificação, oferta, público declarado (inclusive hipótese), problema e objetivo com origem. Separe fatos da pessoa, propostas do agente e desconhecido. Esses campos bastam para a síntese desta jornada; missão, visão, credenciais, história e equipe são aprofundamentos opcionais. Não é necessário copiar um template.
+3. Se faltar algo que impeça entender o negócio, pergunte apenas essa lacuna, com exemplo próprio ligado ao contexto. Use [campo a preencher] para números ou histórico não fornecidos. Se a pessoa não souber, registre desconhecido e avalie o que ainda pode ser entregue; não repita a pergunta nem peça que aceite um exemplo como fato.
+4. Salve um perfil legível e reutilizável no destino local autorizado, em Markdown ou YAML, com identificação, oferta, público/hipótese, problema, objetivo, mapa de origem e lacunas. Preserve revisões anteriores. Quando a pessoa já pediu essa documentação, não peça nova autorização para gravar o rascunho.
+5. Confira se o perfil permite a próxima etapa de público sem ultrapassar o que a pessoa forneceu. Marque o documento como parcial quando houver campos abertos. Não calcule percentuais para essa síntese. A operação pode estar completed com documento parcial útil; waiting exige explicar a lacuna que impede a entrega atual, não a ausência de campos opcionais.
+6. Informe o arquivo, os limites e a próxima etapa. Não reconfirme tom, oferta ou escopo já dados. Avalie se revisão futura vale como rotina, respeitando recusas e mantendo ativação separada. O perfil institucional completo pode ser aprofundado quando houver um pedido específico.
 
 ## Avaliação de rotina
 
@@ -61,14 +50,15 @@ Perfil inicial é pontual. Revisão pode valer após mudança de oferta, públic
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pular o Diagnosis Gate quando a referência o pede. O nível de consciência muda todas as perguntas seguintes.
+- Transformar a lista de campos de um esquema ampliado em questionário obrigatório.
+- Exigir diagnosis.yaml, níveis de mercado ou um percentual de completude para entregar uma síntese provisória.
+- Pedir novamente informação atual, sugerir evidência inventada ou atribuir inferência do agente à pessoa.
+- Esperar nova autorização para salvar o rascunho no destino local já autorizado.
+- Confundir entrega parcial útil com pesquisa validada ou documento institucional completo.
 
 ## Verification
 
-Perfil com campos obrigatórios conhecidos ou lacunas nomeadas, origem rastreável e estado parcial/completo coerente. Não exigir dados irrelevantes para a síntese solicitada. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
+O arquivo de perfil existe no destino autorizado, liga dados à origem e preserva desconhecidos/hipóteses. A entrevista cobre somente lacunas que mudam a entrega; exemplos não criam fatos. Estado da operação e do documento estão separados. Campos institucionais opcionais não impedem a passagem do perfil útil ao público. Confira o aceite transversal de references/contrato-agentflix.md.
 
 ## Arquivos desta skill
 

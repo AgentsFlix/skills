@@ -37,3 +37,15 @@ O documento `references/conhecimento.okf.md` separa fontes e prazo editorial do 
 ## Aceite transversal
 
 Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Nenhuma pergunta redundante, exemplo tratado como fato, lacuna obrigatória escondida, métrica inventada ou agendamento alegado sem execução. Registre a avaliação de rotina e o resultado observado: aguardando não é concluído. Se não puder persistir, inclua esse limite no resumo.
+
+## Decisões atuais, exemplos e continuidade desta jornada
+
+O pedido atual e as respostas já dadas valem também no encerramento. Não peça reconfirmação do tom, escopo, oferta, público ou recusa conhecidos sem um conflito novo demonstrável. Uma correção explícita já resolve a nota antiga; não devolva esse conflito resolvido à pessoa. Se houver revisões anteriores, comece pela versão atual identificada e consulte o histórico apenas para uma lacuna ou divergência concreta.
+
+Cada exemplo deve preservar a origem dos fatos. Não crie contagem de clientes, casos, idade, faturamento, orçamento, duração, participantes, experiência profissional ou resultados para tornar o exemplo concreto. Se o dado faltar, use [campo a preencher] ou um exemplo de resposta que reconheça o desconhecimento, ligado ao contexto conhecido. Um exemplo não pode simular evidência de experiência que ninguém relatou. Hipótese do agente tem origem agente, nunca origem pessoa.
+
+Aceitar o formato ou a estrutura de um exemplo não confirma seus componentes factuais. Não ofereça “usar todos os exemplos” para preencher fatos. Se a pessoa aprovar uma proposta, registre o aceite daquela proposta e mantenha hipóteses e dados não confirmados identificados. “Não sei ainda” é desconhecimento: não é consentimento, evidência de ausência de prática nem convite para repetir a mesma pergunta ou pedir um chute.
+
+O pedido para documentar, preparar ou atualizar já abrange salvar a entrega no destino local autorizado. Não crie uma aprovação adicional para essa escrita reversível. Aprovação de conteúdo, publicação, acesso novo e ativação de rotina continuam decisões separadas.
+
+Conclua a entrega solicitada quando houver um artefato útil com origem e lacunas explícitas, mesmo que o documento ampliado permaneça parcial. Registre separadamente resultado da operação e estado do documento. Use waiting quando uma lacuna realmente impede a entrega atual; diga qual dependência impede qual resultado. Não retenha uma síntese possível por falta de campos opcionais, pesquisa indisponível ou desconhecimento já declarado. No encerramento, informe a próxima ação sem reabrir decisões resolvidas.

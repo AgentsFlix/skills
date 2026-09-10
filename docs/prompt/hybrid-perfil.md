@@ -18,49 +18,38 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência.
+> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
 
 ---
+# Perfil do negócio para a tarefa atual
 
-# QUEM SOMOS · Missão, visão, credenciais e o perfil completo, em seis fases
-
-O perfil completo da empresa em YAML: quem é, para quem existe, o que promete, que credenciais sustentam a promessa. O agente conduz a elicitação em seis fases com gate de 85% de completude por seção, e não deixa avançar com campo vazio fingindo que está pronto. É a base que todas as outras skills Hybrid leem.
-
-Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e que as outras skills leem. Tudo vive na pasta configurada em `hybrid.pasta` (pergunte ao usuário, se ainda não souber), um negócio por pasta. Nada é enviado para fora.
+Transforme o que a pessoa já informou em um perfil reutilizável, com identificação, oferta, público, problema e objetivo. Use a entrevista apenas para o que falta e muda a entrega. O perfil institucional ampliado é um aprofundamento opcional.
 
 ## When to Use
 
-- Diga: "monta o perfil do negócio [nome]".
-- O negócio ainda não tem esse arquivo, ou ele está abaixo de 85% de completude.
-- NÃO use para medir o negócio: isso é `hybrid-diagnostico`, que lê o que esta skill escreve.
+Use quando a pessoa pedir para documentar ou revisar o negócio e continuar a jornada. Comece com os dados disponíveis; não existe percentual mínimo para iniciar.
 
 ## Quick Reference
 
-Para fechar o perfil: nome/identificação do negócio, oferta, público atendido, problema que resolve e objetivo informado. Missão detalhada, histórico, credenciais e equipe só são necessários quando mudam o pedido; não bloqueiam uma síntese inicial.
+Identificação do negócio, oferta, público declarado ou hipótese, problema e objetivo pertinente. Campos desconhecidos ficam explícitos. Não exigir missão, visão, credenciais ou equipe para uma síntese inicial.
 
-Leia `references/configuracao.json` apenas para resolver configuração ausente após o bootstrap. Defaults são exemplos; confirme o destino real antes de escrever.
-
-| procedimento | referência |
+| Necessidade | Caminho |
 |---|---|
-| setup business profile | `references/setup-business-profile.md` |
-| elicit company profile | `references/elicit-company-profile.md` |
-| elicit vision | `references/elicit-vision.md` |
-| elicit credentials | `references/elicit-credentials.md` |
-| template que esta skill preenche | `templates/company-company-profile.yaml` |
-| template que esta skill preenche | `templates/company-credentials.yaml` |
-| template que esta skill preenche | `templates/culture-mission-vision-positioning.yaml` |
+| Entrega inicial desta jornada | Siga Procedure abaixo; não exige abrir nem copiar templates. |
+| Aprofundamento explicitamente solicitado | `references/elicit-company-profile.md` e os templates institucionais, apenas quando houver pedido de aprofundamento. |
 
+Use o destino já autorizado pelo contexto. Configuração só é consultada quando falta um caminho real. A ausência de um YAML prévio não é um bloqueio.
 
 ## Procedure
 
 Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
 
-1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
-2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
-3. Leia o material existente primeiro. Extraia identificação, oferta, público, problema e objetivo com origem; destaque o que ainda é hipótese da pessoa. Use company-company-profile.yaml somente para campos pertinentes; founder DNA, credenciais e cultura são aprofundamentos opcionais, não pré-requisitos para esta etapa.
-4. Entreviste apenas sobre lacunas determinantes. Cada pergunta aberta, inclusive no encerramento, traz exemplo adjacente construído com a memória recuperada; se faltar contexto, exemplo explicitamente hipotético com campo a preencher. Não peça confirmação de fatos atuais apenas por estarem em outro formato.
-5. Entregue o perfil e um mapa de origem/lacunas. Se usar o YAML completo, mantenha null nos campos desconhecidos e status parcial; nunca conte metadados/defaults/exemplos como preenchimento. Não afirme percentual de completude sem denominador explícito dos campos obrigatórios. Encaminhe o perfil útil à etapa de público sem inventar empresa, missão ou credenciais.
-6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
+1. Leia o pedido, a memória atual e o acervo indicado. Se houver perfil anterior, use a revisão atual; consulte versões antigas somente para conflito ou lacuna concreta. Aproveite correções e recusas já resolvidas. Não abra questionários ou templates antes desse mapa.
+2. Registre identificação, oferta, público declarado (inclusive hipótese), problema e objetivo com origem. Separe fatos da pessoa, propostas do agente e desconhecido. Esses campos bastam para a síntese desta jornada; missão, visão, credenciais, história e equipe são aprofundamentos opcionais. Não é necessário copiar um template.
+3. Se faltar algo que impeça entender o negócio, pergunte apenas essa lacuna, com exemplo próprio ligado ao contexto. Use [campo a preencher] para números ou histórico não fornecidos. Se a pessoa não souber, registre desconhecido e avalie o que ainda pode ser entregue; não repita a pergunta nem peça que aceite um exemplo como fato.
+4. Salve um perfil legível e reutilizável no destino local autorizado, em Markdown ou YAML, com identificação, oferta, público/hipótese, problema, objetivo, mapa de origem e lacunas. Preserve revisões anteriores. Quando a pessoa já pediu essa documentação, não peça nova autorização para gravar o rascunho.
+5. Confira se o perfil permite a próxima etapa de público sem ultrapassar o que a pessoa forneceu. Marque o documento como parcial quando houver campos abertos. Não calcule percentuais para essa síntese. A operação pode estar completed com documento parcial útil; waiting exige explicar a lacuna que impede a entrega atual, não a ausência de campos opcionais.
+6. Informe o arquivo, os limites e a próxima etapa. Não reconfirme tom, oferta ou escopo já dados. Avalie se revisão futura vale como rotina, respeitando recusas e mantendo ativação separada. O perfil institucional completo pode ser aprofundado quando houver um pedido específico.
 
 ## Avaliação de rotina
 
@@ -68,14 +57,15 @@ Perfil inicial é pontual. Revisão pode valer após mudança de oferta, públic
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pular o Diagnosis Gate quando a referência o pede. O nível de consciência muda todas as perguntas seguintes.
+- Transformar a lista de campos de um esquema ampliado em questionário obrigatório.
+- Exigir diagnosis.yaml, níveis de mercado ou um percentual de completude para entregar uma síntese provisória.
+- Pedir novamente informação atual, sugerir evidência inventada ou atribuir inferência do agente à pessoa.
+- Esperar nova autorização para salvar o rascunho no destino local já autorizado.
+- Confundir entrega parcial útil com pesquisa validada ou documento institucional completo.
 
 ## Verification
 
-Perfil com campos obrigatórios conhecidos ou lacunas nomeadas, origem rastreável e estado parcial/completo coerente. Não exigir dados irrelevantes para a síntese solicitada. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
+O arquivo de perfil existe no destino autorizado, liga dados à origem e preserva desconhecidos/hipóteses. A entrevista cobre somente lacunas que mudam a entrega; exemplos não criam fatos. Estado da operação e do documento estão separados. Campos institucionais opcionais não impedem a passagem do perfil útil ao público. Confira o aceite transversal de references/contrato-agentflix.md.
 
 ## Arquivos desta skill (incluídos abaixo)
 
@@ -112,7 +102,7 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência.
+Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
 
 
 ---
@@ -168,7 +158,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" init --version 0.4.3 --revision 1.0.0
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" init --version 0.4.3 --revision 1.0.1
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-perfil" audit
@@ -251,7 +241,7 @@ description: Método e procedência editorial desta skill AgentFlix.
 status: draft
 generated:
   by: process:agentflix-skill-authoring
-  at: '2026-09-09T16:11:07.121754+00:00'
+  at: '2026-09-10'
 stale_after: '2026-12-10'
 sources:
 - id: metodo
@@ -263,7 +253,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-perfil
-  content_revision: 1.0.0
+  content_revision: 1.0.1
   verification_evidence: []
 ---
 
@@ -320,10 +310,24 @@ O documento `references/conhecimento.okf.md` separa fontes e prazo editorial do 
 
 Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Nenhuma pergunta redundante, exemplo tratado como fato, lacuna obrigatória escondida, métrica inventada ou agendamento alegado sem execução. Registre a avaliação de rotina e o resultado observado: aguardando não é concluído. Se não puder persistir, inclua esse limite no resumo.
 
+## Decisões atuais, exemplos e continuidade desta jornada
+
+O pedido atual e as respostas já dadas valem também no encerramento. Não peça reconfirmação do tom, escopo, oferta, público ou recusa conhecidos sem um conflito novo demonstrável. Uma correção explícita já resolve a nota antiga; não devolva esse conflito resolvido à pessoa. Se houver revisões anteriores, comece pela versão atual identificada e consulte o histórico apenas para uma lacuna ou divergência concreta.
+
+Cada exemplo deve preservar a origem dos fatos. Não crie contagem de clientes, casos, idade, faturamento, orçamento, duração, participantes, experiência profissional ou resultados para tornar o exemplo concreto. Se o dado faltar, use [campo a preencher] ou um exemplo de resposta que reconheça o desconhecimento, ligado ao contexto conhecido. Um exemplo não pode simular evidência de experiência que ninguém relatou. Hipótese do agente tem origem agente, nunca origem pessoa.
+
+Aceitar o formato ou a estrutura de um exemplo não confirma seus componentes factuais. Não ofereça “usar todos os exemplos” para preencher fatos. Se a pessoa aprovar uma proposta, registre o aceite daquela proposta e mantenha hipóteses e dados não confirmados identificados. “Não sei ainda” é desconhecimento: não é consentimento, evidência de ausência de prática nem convite para repetir a mesma pergunta ou pedir um chute.
+
+O pedido para documentar, preparar ou atualizar já abrange salvar a entrega no destino local autorizado. Não crie uma aprovação adicional para essa escrita reversível. Aprovação de conteúdo, publicação, acesso novo e ativação de rotina continuam decisões separadas.
+
+Conclua a entrega solicitada quando houver um artefato útil com origem e lacunas explícitas, mesmo que o documento ampliado permaneça parcial. Registre separadamente resultado da operação e estado do documento. Use waiting quando uma lacuna realmente impede a entrega atual; diga qual dependência impede qual resultado. Não retenha uma síntese possível por falta de campos opcionais, pesquisa indisponível ou desconhecimento já declarado. No encerramento, informe a próxima ação sem reabrir decisões resolvidas.
+
 
 ---
 
 ## Referência: references/elicit-company-profile.md
+
+> Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -648,6 +652,8 @@ Após company-profile:
 ---
 
 ## Referência: references/elicit-credentials.md
+
+> Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -989,6 +995,8 @@ Após credentials:
 
 ## Referência: references/elicit-vision.md
 
+> Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
+
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
 # Task: Elicit Vision
@@ -1114,7 +1122,7 @@ Criar `workspace/company/mission-vision.md`:
   "contract_version": "1.0.0",
   "skill_id": "hybrid-perfil",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.0",
+  "content_revision": "1.0.1",
   "distribution_ref": "main"
 }
 
@@ -1122,6 +1130,8 @@ Criar `workspace/company/mission-vision.md`:
 ---
 
 ## Referência: references/setup-business-profile.md
+
+> Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -1612,6 +1622,8 @@ workflow:
 
 ## Referência: templates/company-company-profile.yaml
 
+# Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
+
 ---
 # COMPANY-PROFILE.YAML - Quem você é como empresa
 # Purpose: Define a identidade, missão, valores e portfólio da empresa
@@ -1971,6 +1983,8 @@ template_notes: |
 ---
 
 ## Referência: templates/company-credentials.yaml
+
+# Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
 
 ---
 # CREDENTIALS.YAML - Proof of Authority (Education, Awards, Certifications)
@@ -2489,6 +2503,8 @@ template_notes: |
 
 ## Referência: templates/culture-mission-vision-positioning.yaml
 
+# Material de aprofundamento opcional. A Procedure do SKILL.md define a entrega atual. Exigências de diagnóstico prévio, fases completas, percentuais ou preenchimento integral deste material só se aplicam ao aprofundamento explicitamente solicitado; não bloqueiam a síntese inicial. Campos e exemplos são recursos de investigação, não fatos da pessoa. Consulte apenas trechos necessários e preserve hipóteses e lacunas.
+
 metadata:
   version: "1.0"
   template_type: culture_mvp
@@ -2574,7 +2590,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.0",
+  "content_revision": "1.0.1",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }

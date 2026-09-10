@@ -18,7 +18,7 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência.
+> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
 
 ---
 
@@ -413,7 +413,7 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência.
+Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
 
 
 ---
@@ -1335,7 +1335,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" init --version 0.4.3 --revision 1.0.0
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" init --version 0.4.3 --revision 1.0.1
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" audit
@@ -1405,7 +1405,7 @@ description: Método e procedência editorial desta skill AgentFlix.
 status: draft
 generated:
   by: process:agentflix-skill-authoring
-  at: '2026-09-09T16:11:07.121754+00:00'
+  at: '2026-09-10'
 stale_after: '2026-12-10'
 sources:
 - id: metodo
@@ -1417,7 +1417,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: copy-pesquisa-avatar
-  content_revision: 1.0.0
+  content_revision: 1.0.1
   verification_evidence: []
 ---
 
@@ -1473,6 +1473,18 @@ O documento `references/conhecimento.okf.md` separa fontes e prazo editorial do 
 ## Aceite transversal
 
 Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Nenhuma pergunta redundante, exemplo tratado como fato, lacuna obrigatória escondida, métrica inventada ou agendamento alegado sem execução. Registre a avaliação de rotina e o resultado observado: aguardando não é concluído. Se não puder persistir, inclua esse limite no resumo.
+
+## Decisões atuais, exemplos e continuidade desta jornada
+
+O pedido atual e as respostas já dadas valem também no encerramento. Não peça reconfirmação do tom, escopo, oferta, público ou recusa conhecidos sem um conflito novo demonstrável. Uma correção explícita já resolve a nota antiga; não devolva esse conflito resolvido à pessoa. Se houver revisões anteriores, comece pela versão atual identificada e consulte o histórico apenas para uma lacuna ou divergência concreta.
+
+Cada exemplo deve preservar a origem dos fatos. Não crie contagem de clientes, casos, idade, faturamento, orçamento, duração, participantes, experiência profissional ou resultados para tornar o exemplo concreto. Se o dado faltar, use [campo a preencher] ou um exemplo de resposta que reconheça o desconhecimento, ligado ao contexto conhecido. Um exemplo não pode simular evidência de experiência que ninguém relatou. Hipótese do agente tem origem agente, nunca origem pessoa.
+
+Aceitar o formato ou a estrutura de um exemplo não confirma seus componentes factuais. Não ofereça “usar todos os exemplos” para preencher fatos. Se a pessoa aprovar uma proposta, registre o aceite daquela proposta e mantenha hipóteses e dados não confirmados identificados. “Não sei ainda” é desconhecimento: não é consentimento, evidência de ausência de prática nem convite para repetir a mesma pergunta ou pedir um chute.
+
+O pedido para documentar, preparar ou atualizar já abrange salvar a entrega no destino local autorizado. Não crie uma aprovação adicional para essa escrita reversível. Aprovação de conteúdo, publicação, acesso novo e ativação de rotina continuam decisões separadas.
+
+Conclua a entrega solicitada quando houver um artefato útil com origem e lacunas explícitas, mesmo que o documento ampliado permaneça parcial. Registre separadamente resultado da operação e estado do documento. Use waiting quando uma lacuna realmente impede a entrega atual; diga qual dependência impede qual resultado. Não retenha uma síntese possível por falta de campos opcionais, pesquisa indisponível ou desconhecimento já declarado. No encerramento, informe a próxima ação sem reabrir decisões resolvidas.
 
 
 ---
@@ -3293,7 +3305,7 @@ MISTAKE 4: Ignoring Awareness × Sophistication
   "contract_version": "1.0.0",
   "skill_id": "copy-pesquisa-avatar",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.0",
+  "content_revision": "1.0.1",
   "distribution_ref": "main"
 }
 
@@ -4402,7 +4414,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.0",
+  "content_revision": "1.0.1",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }

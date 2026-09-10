@@ -5,7 +5,7 @@ description: Procedimento editorial autoral AgentFlix para a jornada de marca.
 status: draft
 generated:
   by: process:agentflix-skill-authoring
-  at: 2026-09-10T01:48:21.011076+00:00
+  at: 2026-09-10
 stale_after: 2026-12-09
 sources:
   - id: procedimento
@@ -14,7 +14,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: editorial-pilares
-  content_revision: 1.0.0
+  content_revision: 1.0.1
   verification_evidence: []
 ---
 

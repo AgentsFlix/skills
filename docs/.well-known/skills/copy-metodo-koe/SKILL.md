@@ -11,7 +11,7 @@ metadata:
   tags: copy, copywriting, koe, metodo, resposta-direta
   related: copy-headlines, copy-sales-page, copy-pipeline
   contract_version: 1.0.0
-  content_revision: 1.0.0
+  content_revision: 1.0.1
   distribution_ref: main
 ---
 

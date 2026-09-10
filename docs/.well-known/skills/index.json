@@ -598,7 +598,7 @@
     },
     {
       "name": "hybrid-icp",
-      "description": "Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o ICP de [produto]\".",
+      "description": "Documente o público a partir do perfil, dos relatos e das fontes disponíveis. Distinga evidência, hipótese e lacuna; entregue um ICP provisório útil sem inventar pesquisa.",
       "files": [
         "SKILL.md",
         "references/ativacao.md",
@@ -651,7 +651,7 @@
     },
     {
       "name": "hybrid-perfil",
-      "description": "O perfil completo da empresa em YAML: quem é, para quem existe, o que promete, que credenciais sustentam a promessa. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o perfil…",
+      "description": "Documente o perfil do negócio para a tarefa atual, usando memória e acervo antes da entrevista. Entregue um perfil com origem e lacunas; aprofunde dados institucionais quando solicitado.",
       "files": [
         "SKILL.md",
         "references/ativacao.md",
