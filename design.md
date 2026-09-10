@@ -33,6 +33,13 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 - Hover depende de mouse disponível (`any-hover`/`any-pointer`) e ignora eventos de toque. Não desativar pela largura: uma janela de 752 px com mouse também tem prévia. A capa e o corpo da prévia têm um botão de abertura cobrindo a superfície; ações como Minha lista ficam acima dele e não abrem a ficha. O clique respeita os pré-requisitos e o retorno de foco ao card.
 - Intenção de hover 300 ms, expansão 220 ms, tolerância de saída 120 ms, fechamento 160 ms. Preview sobreposto, sem mover os outros cards, limitado às bordas da tela. Respeitar movimento reduzido.
 
+## Ficha das séries no Assistir
+
+- Materiais de episódios ficam sempre na aba **Materiais**, ao lado de **Episódios** e **Sobre**. O hero reserva suas ações para assistir e retomar; não recebe botão de materiais.
+- Materiais são agrupados por temporada e identificados pelo número do episódio. Vídeo e atividade com o mesmo número não contam como dois episódios.
+- O retorno para todas as séries usa seta SVG de 20 px, traço de 2,5 px e pontas arredondadas, com texto ao lado e alvo mínimo de 44 px. Não usar a seta tipográfica.
+- Elencos longos mostram o primeiro nome e oferecem a lista completa em uma área expansível.
+
 ## Onboarding obrigatório
 
 1. A primeira visita na aba começa pelas três escolhas. A pedido do Zé após a revisão do Clarity em 08/09/2026, respostas e conclusão ficam no sessionStorage dessa aba: recarregar ou voltar do player restaura o caminho. Uma aba sem estado começa pelo guia. Não guardar a conclusão no localStorage nem compartilhar a seleção entre dispositivos. Estado inválido ou incompatível com a curadoria atual volta à entrada.
