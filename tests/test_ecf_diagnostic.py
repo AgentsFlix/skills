@@ -95,6 +95,28 @@ for(const field of ['token','api_key','headers','unexpected']) {
  d=make();d.credential_resolution={source:'hermes_env',test_endpoint:'GET /v1/accounts',result:'success',[field]:'sensitive-test-marker'};
  assert.throws(()=>score(d),error=>/resolução de credencial/.test(error.message)&&!error.message.includes('sensitive-test-marker'));
 }
+// Structured legacy coverage is compatible without rendering endpoint arguments.
+d=make();d.coverage=[{resource:'Comentários',reason:'Leitura parcial, classificação pendente.',pages:2,items:14,endpoint:'GET /example',parameters:'private-test-marker',status:{'200':2}}];
+assert.equal(score(d).creator.score,77);
+assert(!M.coverageText(d.coverage[0]).includes('private-test-marker'));
+assert.match(M.coverageText(d.coverage[0]),/14 itens/);
+for(const entry of [{}, {resource:'X',reason:'Y',token:'private-test-marker'}, {resource:'X',reason:'Y',items:-1}]) {
+ d=make();d.coverage=[entry];assert.throws(()=>score(d));
+}
+// Contextual observations and editorial interpretation do not become weighted scores.
+d=M.emptyReport('@baseline','2026-08-01','2026-08-30');d.collected_at='2026-09-01T12:00:00Z';
+d.observations=[{label:'Compartilhamentos por alcance',numerator:15,denominator:1000,unit:'ratio',scope:'5 posts de idades diferentes',source:'Coleta fictícia',reason:'Sem coorte comparável'}];
+d.axes.creator.analysis={summary:'Há compartilhamentos observados.',evidence:['15 eventos em 5 posts.'],limitations:['Sem metas prévias.'],next_step:'Completar a classificação.'};
+assert.equal(M.observationValue(d.observations[0]),.015);
+for(const axis of Object.values(score(d)))assert.equal(axis.score,null);
+let o=d.observations[0];o.numerator=0;assert.equal(M.observationValue(o),0);score(d);
+o.denominator=0;assert.equal(M.observationValue(o),null);score(d);
+o.reason='';assert.throws(()=>score(d),/indicadores/);o.reason='Alcance indisponível';
+o.numerator=null;assert.equal(M.observationValue(o),null);score(d);
+o.numerator=-1;assert.throws(()=>score(d),/indicadores/);
+d=make();d.observations=[{label:'Alcance',numerator:1000,denominator:null,unit:'count',scope:'Posts da janela',source:'Exemplo',reason:''}];
+assert.equal(M.observationValue(d.observations[0]),1000);assert.equal(score(d).creator.score,77);
+d.axes.creator.analysis={summary:'Conclusão sem evidência',evidence:[],limitations:[],next_step:''};assert.throws(()=>score(d),/evidências/);
 console.log('ECF: cálculos, amostras, fontes, metas e lacunas verificados.');
 """
         subprocess.run([shutil.which('node'), '-e', script], cwd=ROOT, check=True)

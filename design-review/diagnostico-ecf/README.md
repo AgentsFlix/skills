@@ -9,3 +9,10 @@ QA realizado em Google Chrome real, em sessão isolada, com larguras de 1440, 76
 O resumo permanece somente em memória na página; recarga remove a visualização. O navegador recalcula as notas, mas não autentica evidências do Instagram. A conferência de origem acontece na conversa do agente.
 
 As capturas estão prontas para a revisão visual prevista no contrato de design. Não representam aprovação humana já concedida.
+
+
+## Revisão após a primeira coleta
+
+`antes-analise-*` mostra a entrada de relatório anterior. `depois-analise-*` mostra a ação **Gerar análise e conferir scores**, os indicadores descritivos e as interpretações por eixo, todos com dados fictícios. A continuação oferece um prompt para reutilizar a coleta na mesma conversa. As capturas cobrem 1440, 768 e 390 px.
+
+O arquivo recebido foi validado somente em sessão local isolada, sem ser incluído no repositório ou nas capturas. O QA conferiu importação do formato estruturado de cobertura, ação explícita, indicadores sem meta, classificação com evidências, cópia/download de continuação, troca de arquivo/texto, exemplo anterior, rejeição de JSON inválido, escape de HTML e ausência de pedidos externos. Evidência resumida em `analysis-resultado.json`. A análise é produzida pelo Hermes; a página a organiza e calcula apenas os scores sustentados pelo contrato.

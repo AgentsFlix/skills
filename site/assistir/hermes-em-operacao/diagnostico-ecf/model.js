@@ -20,17 +20,40 @@
   const profile = x => typeof x === 'string' && /^@?[a-zA-Z0-9._]{1,30}$/.test(x);
   const median = values => { const s = [...values].sort((a,b)=>a-b); const m = Math.floor(s.length/2); return s.length%2 ? s[m] : (s[m-1]+s[m])/2; };
   function emptyReport(handle, start, end) {
-    return {method:METHOD, profile:handle, window:{start,end}, collected_at:null, coverage:[], credential_resolution:null, axes:Object.fromEntries(Object.entries(AXES).map(([id,axis])=>[id,{
+    return {method:METHOD, profile:handle, window:{start,end}, collected_at:null, coverage:[], observations:[], credential_resolution:null, axes:Object.fromEntries(Object.entries(AXES).map(([id,axis])=>[id,{
+      analysis:{summary:'',evidence:[],limitations:[],next_step:''},
       cohort:{description:'', post_ids:[], comparable:false, collection_complete:false, reach_total:null},
       metrics:Object.fromEntries(axis.metrics.map(([key])=>[key,{numerator:null,denominator:null,samples:[],target:null,target_source:'',target_fixed_at:null,source:'',evidence:[],reason:'Ainda não coletado'}]))
     }]))};
+  }
+  // Older exports used resource objects; render only their descriptive fields.
+  function coverageText(entry) {
+    if (text(entry)) return entry;
+    const allowed=['resource','endpoint','parameters','queried_at','pages','items','status','fields_unavailable','reason'];
+    if (!entry || typeof entry!=='object' || Array.isArray(entry) || Object.keys(entry).some(k=>!allowed.includes(k)) || !text(entry.resource) || !text(entry.reason) ||
+        (entry.pages!==undefined && entry.pages!==null && (!Number.isInteger(entry.pages)||entry.pages<0)) ||
+        (entry.items!==undefined && entry.items!==null && (!Number.isInteger(entry.items)||entry.items<0))) throw Error('Confira as descrições de cobertura da coleta.');
+    return [entry.resource,entry.pages!=null?entry.pages+' páginas':'',entry.items!=null?entry.items+' itens':'',entry.reason].filter(Boolean).join(' · ');
+  }
+  function observationValue(o) {
+    return o.numerator===null || (o.unit==='ratio' && !(o.denominator>0)) ? null : o.unit==='ratio' ? o.numerator/o.denominator : o.numerator;
   }
   function validate(data) {
     if (!data || data.method !== METHOD) throw Error('Use um relatório no método ecf-metas-v1.');
     if (!profile(data.profile)) throw Error('O relatório precisa identificar um @perfil de Instagram válido.');
     if (!data.window || !date(data.window.start) || !date(data.window.end) || (Date.parse(data.window.end)-Date.parse(data.window.start))/86400000 !== 29) throw Error('O relatório precisa de uma janela de 30 dias, incluindo início e fim.');
     if (data.collected_at !== null && (typeof data.collected_at !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(data.collected_at) || Number.isNaN(Date.parse(data.collected_at)))) throw Error('Confira a data e hora de coleta do relatório.');
-    if (!Array.isArray(data.coverage) || data.coverage.length > 40 || data.coverage.some(x=>!text(x))) throw Error('A cobertura precisa ser uma lista de descrições curtas.');
+    if (!Array.isArray(data.coverage) || data.coverage.length > 40) throw Error('A cobertura precisa ser uma lista de descrições curtas.');
+    data.coverage.forEach(coverageText);
+    if (data.observations!==undefined) {
+      if (!Array.isArray(data.observations) || data.observations.length>30) throw Error('Confira os indicadores observados.');
+      for(const o of data.observations) {
+        if (!o || !text(o.label) || !text(o.scope) || !text(o.source) || !['count','ratio'].includes(o.unit) ||
+            (o.numerator!==null&&!number(o.numerator)) || (o.denominator!==null&&!number(o.denominator)) ||
+            (o.unit==='count'&&o.denominator!==null) || typeof o.reason!=='string' || o.reason.length>1000 ||
+            ((o.numerator===null || (o.unit==='ratio'&&!(o.denominator>0)))&&!text(o.reason))) throw Error('Confira valores, origem e lacunas dos indicadores observados.');
+      }
+    }
     // Optional for earlier reports; when present, only operational metadata is accepted.
     const resolution=data.credential_resolution;
     if (resolution!==undefined && resolution!==null) {
@@ -44,6 +67,13 @@
     for (const [id,axis] of Object.entries(AXES)) {
       const a = data.axes && data.axes[id];
       if (!a || !a.cohort || !a.metrics) throw Error('O relatório precisa conter os três eixos e seus componentes.');
+      if (a.analysis!==undefined) {
+        const n=a.analysis;
+        if (!n || typeof n.summary!=='string' || n.summary.length>1000 || typeof n.next_step!=='string' || n.next_step.length>1000 ||
+            !Array.isArray(n.evidence) || n.evidence.length>10 || n.evidence.some(x=>!text(x)) ||
+            !Array.isArray(n.limitations) || n.limitations.length>10 || n.limitations.some(x=>!text(x)) ||
+            (text(n.summary)&&n.evidence.length===0)) throw Error('A análise editorial precisa de evidências resumidas e limites explícitos.');
+      }
       const c=a.cohort;
       if (!Array.isArray(c.post_ids) || c.post_ids.length>500 || c.post_ids.some(x=>!text(x)) || new Set(c.post_ids).size!==c.post_ids.length) throw Error('Os IDs da amostra precisam ser únicos em cada eixo.');
       if (typeof c.comparable !== 'boolean' || typeof c.collection_complete !== 'boolean') throw Error('Confira os estados de comparação e coleta de cada eixo.');
@@ -108,5 +138,5 @@
     }
     return d;
   }
-  return {METHOD,AXES,emptyReport,validate,calculate,example,date,profile};
+  return {METHOD,AXES,emptyReport,validate,calculate,example,date,profile,coverageText,observationValue};
 });

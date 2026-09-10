@@ -30,3 +30,12 @@ O prompt autoriza uma cascata limitada ao perfil atual: ambiente, arquivo de amb
 `credential_resolution` é opcional para compatibilidade com relatórios anteriores. Nos novos resumos, começa como `null`; após tentativa, recebe exclusivamente `source`, `test_endpoint` e `result`, com valores enumerados. A importação recusa propriedades adicionais, inclusive chave mascarada. O histórico sanitizado das rotas fica em `coverage`. Nenhuma credencial foi acessada ou testada para implementar esta revisão.
 
 Comandos Hermes conferidos no help/código da instalação disponível: `config env-path`, `mcp list` e `mcp test <name>`. Fontes Zernio: [CLI](https://docs.zernio.com/cli), [MCP](https://docs.zernio.com/mcp/setup) e [listar contas](https://docs.zernio.com/accounts/list-accounts). `mcp test` pode exibir trechos mascarados: o prompt exige capturar e descartar a saída bruta, expondo somente estado sanitizado. O texto do prompt é buscado sem cache HTTP para que uma recarga receba a revisão atual.
+
+
+## Análise antes da calibração
+
+A importação agora tem uma ação explícita: selecionar/colar o arquivo e clicar em **Gerar análise e conferir scores**. A página organiza a interpretação já feita pelo Hermes e faz os cálculos determinísticos; não consulta uma IA nem o Instagram. `observations` preserva indicadores descritivos, e `axes.<eixo>.analysis` traz interpretação, evidências anônimas, limites e próxima ação, independentemente de metas. Esses campos são opcionais para manter compatibilidade e não entram na fórmula `ecf-metas-v1`.
+
+O prompt exige classificação inicial dos casos claros pelo agente e revisão somente das ambiguidades. O pedido **Gerar prompt para completar análise** usa o contexto do arquivo aberto e orienta reutilizar os artefatos privados da mesma execução, sem repetir a coleta completa. JSONs anteriores com cobertura estruturada por recurso são aceitos; a tela exibe apenas descrições, páginas e itens, sem argumentos de endpoint. Novas saídas devem usar `coverage` como lista de strings.
+
+Notas continuam dependendo dos componentes, metas anteriores à janela e coortes comparáveis. Trocar essa régua para um score inicial sem metas seria uma mudança de método, não uma correção de importação. Relatórios reais do usuário permanecem fora do repositório e das capturas públicas.
