@@ -25,8 +25,8 @@
     invalidate(b,i);
   }
   function setMockup(b,value) {
-    const next=JSON.parse(JSON.stringify(value));if(JSON.stringify(b.mockup)===JSON.stringify(next))return;
-    const s=b.stages[6];archive(s);const used=hasWork(s);s.revision++;s.copiedAt=null;
+    if(!validMockup(value))throw Error('Mockup inválido');const next=JSON.parse(JSON.stringify(value));if(JSON.stringify(b.mockup)===JSON.stringify(next))return;
+    const s=b.stages[6];archive(s);if(b.mockup)s.history.push({at:stamp(),revision:s.revision,mockup:JSON.parse(JSON.stringify(b.mockup))});const used=hasWork(s);s.revision++;s.copiedAt=null;
     if(used){clearReview(s);if(!s.needsReview.includes(6))s.needsReview.push(6);}
     b.mockup=next;invalidate(b,6);
   }
@@ -66,9 +66,10 @@
     if(b.mockup&&i>=6)text+='\nREFERÊNCIA VISUAL ESCOLHIDA (não aprovada)\n'+JSON.stringify(b.mockup,null,2)+'\nÉ um mockup editável de partida, não uma identidade pronta nem um exemplo aprovado. Peça o ZIP de SVGs e a receita quando necessário; confira o conteúdo, fontes, imagens e contraste. A escolha não substitui aplicações reais, templates dos dois formatos ou aprovação do piloto.\n';
     return text;
   }
+  function validMockup(v) {return v&&typeof v==='object'&&['style','layout','format','brand','niche','title','body','cta','accent'].every(k=>typeof v[k]==='string')&&['static','carousel'].includes(v.format);}
   function validStore(x) {
     const text=v=>typeof v==='string',bool=v=>typeof v==='boolean';
-    return x?.version===1&&text(x.agent)&&Array.isArray(x.brands)&&x.brands.length<=100&&x.brands.every(b=>text(b.id)&&text(b.name)&&Number.isInteger(b.lastStage)&&b.lastStage>=0&&b.lastStage<9&&b.folder&&text(b.folder.url)&&bool(b.folder.confirmed)&&Array.isArray(b.stages)&&b.stages.length===9&&b.stages.every(s=>(s.choice===null||Number.isInteger(s.choice)&&s.choice>=0&&s.choice<3)&&['context','continuity','where','pending','handoff','mode'].every(k=>text(s[k]))&&['started','reviewed','saved','criterion'].every(k=>bool(s[k]))&&Array.isArray(s.needsReview)&&s.needsReview.every(n=>Number.isInteger(n)&&n>=0&&n<9)&&Number.isInteger(s.revision)&&s.revision>0&&Array.isArray(s.history)&&s.history.every(h=>h&&typeof h==='object')&&s.checks&&typeof s.checks==='object'))&&new Set(x.brands.map(b=>b.id)).size===x.brands.length;
+    return x?.version===1&&text(x.agent)&&Array.isArray(x.brands)&&x.brands.length<=100&&x.brands.every(b=>(b.mockup===undefined||validMockup(b.mockup))&&text(b.id)&&text(b.name)&&Number.isInteger(b.lastStage)&&b.lastStage>=0&&b.lastStage<9&&b.folder&&text(b.folder.url)&&bool(b.folder.confirmed)&&Array.isArray(b.stages)&&b.stages.length===9&&b.stages.every(s=>(s.choice===null||Number.isInteger(s.choice)&&s.choice>=0&&s.choice<3)&&['context','continuity','where','pending','handoff','mode'].every(k=>text(s[k]))&&['started','reviewed','saved','criterion'].every(k=>bool(s[k]))&&Array.isArray(s.needsReview)&&s.needsReview.every(n=>Number.isInteger(n)&&n>=0&&n<9)&&Number.isInteger(s.revision)&&s.revision>0&&Array.isArray(s.history)&&s.history.every(h=>h&&typeof h==='object')&&s.checks&&typeof s.checks==='object'))&&new Set(x.brands.map(b=>b.id)).size===x.brands.length;
   }
   return Object.freeze({createBrand,changeInput,setMockup,recordReturn,status,ready,driveURL,prompt,latestHandoff,validStore,dependencies,requiredChecks,stamp});
 });

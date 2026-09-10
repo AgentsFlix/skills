@@ -57,7 +57,7 @@
     if(el.id==='copy-prompt'){copyPrompt();return;}
     if(el.id==='show-prompt'){if($('prompt-full').hidden)showPrompt();else{$('prompt-full').hidden=true;el.setAttribute('aria-expanded','false');el.textContent='Ver prompt completo';}return;}
     switch(el.dataset.action){
-      case 'mockups':window.BrandMockups.open(brand().mockup||{brand:brand().name},value=>{M.setMockup(brand(),value);persist();render();notice('Referência visual guardada para os prompts de Visual e Templates. Revise com seu agente antes de aprovar.');});break;
+      case 'mockups':window.BrandMockups.open(brand().mockup||{brand:brand().name},value=>{M.setMockup(brand(),window.MockupBank.recipe(value));persist();render();focusHeading();notice('Referência visual guardada para os prompts de Visual e Templates. Revise com seu agente antes de aprovar.');});break;
       case 'resume':setView(brand().lastView==='summary'?'summary':'stage');break;
       case 'new-brand':setView('entry');break;
       case 'summary':setView('summary');break;
