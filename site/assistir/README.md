@@ -200,3 +200,15 @@ original normalmente. Esse mecanismo exige a mesma timeline, cortes e capítulos
 T1:E2 de HERMES EM OPERAÇÃO recebeu o tratamento de imagem aprovado em 1080p,
 com redução leve dos blocos de compressão e nitidez. Os 44min44s e os cinco
 exercícios continuam nos mesmos intervalos. O original é mantido para reversão.
+
+### Endereço permanente e prévia de cada aula
+
+Aulas novas aprovadas usam `/aulas/<slug>/t<n>/e<n>/` tanto para assistir quanto para compartilhar. A página serve o player completo com Open Graph estático, sem redirecionar para query/hash. O catálogo e a barra do player usam `share_url`; o progresso continua identificado por `uid`, mesmo se `stream_uid` mudar.
+
+A fonte é `series.json`: `n` fixo, `share_url` canônico e `preview` com `title`, `description`, `image`, `alt`, `approved: true`. A aprovação representa revisão anterior do responsável; não deve ser preenchida automaticamente por inferência. A capa precisa ser JPEG/PNG local de 1200×630, até 1 MB. Prefira nome com hash do conteúdo para atualizar a capa sem trocar a URL da aula.
+
+Após mudar o catálogo ou `assistir/index.html`, rode `python3 scripts/build_lessons.py`. O gerador usa o mesmo player e assets absolutos. `python3 scripts/build_lessons.py --check` e `tests/test_lesson_pages.py` impedem publicar páginas desatualizadas, identidade errada ou novas aulas sem prévia aprovada. `site/aulas/legacy.json` é a lista fechada de vídeos anteriores ao padrão, não uma saída para dispensar aulas novas do gate.
+
+O link antigo `/assistir/hermes-em-operacao/aula-2/` leva ao novo endereço. O antigo `?s=hermes-em-operacao#t1e2` permanece aceito e o player atualiza a barra para o canônico. A atividade `/assistir/hermes-em-operacao/t1e2/` conserva seu significado próprio.
+
+Depois do deploy, verificar HTTP 200, metadados no HTML sem JavaScript, imagem pública e navegação no Chrome. Teste real de colagem no WhatsApp é separado: um crawler receber Open Graph corretamente não garante a exibição em todos os aparelhos ou confirmações dentro do aplicativo.

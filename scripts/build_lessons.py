@@ -81,8 +81,8 @@ def render(template, series, season, episode, site):
     }.items())
     tags += f'\n    <link rel="canonical" href="{esc(url)}" />'
     tags += f'\n    <meta name="agentflix:lesson" content="{esc(series["slug"])}:t{season["n"]}:e{episode["n"]}" />'
-    result = re.sub(r'<title>.*?</title>', '<title>' + esc(preview['title']) + ' | AgentFlix</title>', template, count=1)
-    result = re.sub(r'<meta\s+name="description"\s+content="[^"]*"\s*/>', '<meta name="description" content="' + esc(preview['description']) + '" />', result, count=1)
+    result = re.sub(r'<title>.*?</title>', lambda _: '<title>' + esc(preview['title']) + ' | AgentFlix</title>', template, count=1)
+    result = re.sub(r'<meta\s+name="description"\s+content="[^"]*"\s*/>', lambda _: '<meta name="description" content="' + esc(preview['description']) + '" />', result, count=1)
     result = result.replace('<meta name="robots" content="noindex" />', '<meta name="robots" content="index,follow" />')
     result = result.replace('</head>', tags + '\n  </head>', 1)
     fallback = f'<noscript><p>{esc(episode["t"])}. Ative o JavaScript para assistir à aula.</p></noscript>'
