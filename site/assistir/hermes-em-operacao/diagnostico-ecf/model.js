@@ -20,7 +20,7 @@
   const profile = x => typeof x === 'string' && /^@?[a-zA-Z0-9._]{1,30}$/.test(x);
   const median = values => { const s = [...values].sort((a,b)=>a-b); const m = Math.floor(s.length/2); return s.length%2 ? s[m] : (s[m-1]+s[m])/2; };
   function emptyReport(handle, start, end) {
-    return {method:METHOD, profile:handle, window:{start,end}, collected_at:null, coverage:[], axes:Object.fromEntries(Object.entries(AXES).map(([id,axis])=>[id,{
+    return {method:METHOD, profile:handle, window:{start,end}, collected_at:null, coverage:[], credential_resolution:null, axes:Object.fromEntries(Object.entries(AXES).map(([id,axis])=>[id,{
       cohort:{description:'', post_ids:[], comparable:false, collection_complete:false, reach_total:null},
       metrics:Object.fromEntries(axis.metrics.map(([key])=>[key,{numerator:null,denominator:null,samples:[],target:null,target_source:'',target_fixed_at:null,source:'',evidence:[],reason:'Ainda não coletado'}]))
     }]))};
@@ -31,6 +31,16 @@
     if (!data.window || !date(data.window.start) || !date(data.window.end) || (Date.parse(data.window.end)-Date.parse(data.window.start))/86400000 !== 29) throw Error('O relatório precisa de uma janela de 30 dias, incluindo início e fim.');
     if (data.collected_at !== null && (typeof data.collected_at !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(data.collected_at) || Number.isNaN(Date.parse(data.collected_at)))) throw Error('Confira a data e hora de coleta do relatório.');
     if (!Array.isArray(data.coverage) || data.coverage.length > 40 || data.coverage.some(x=>!text(x))) throw Error('A cobertura precisa ser uma lista de descrições curtas.');
+    // Optional for earlier reports; when present, only operational metadata is accepted.
+    const resolution=data.credential_resolution;
+    if (resolution!==undefined && resolution!==null) {
+      const fields=['source','test_endpoint','result'];
+      if (typeof resolution!=='object' || Array.isArray(resolution) || Object.keys(resolution).length!==fields.length || Object.keys(resolution).some(key=>!fields.includes(key)) ||
+          !['env','hermes_env','mcp','cli','sdk','unavailable'].includes(resolution.source) || resolution.test_endpoint!=='GET /v1/accounts' ||
+          !['success','401','403','429','unavailable'].includes(resolution.result) || (resolution.source==='unavailable' && resolution.result!=='unavailable')) {
+        throw Error('A resolução de credencial deve conter somente origem, endpoint e resultado permitidos, sem valores de credenciais.');
+      }
+    }
     for (const [id,axis] of Object.entries(AXES)) {
       const a = data.axes && data.axes[id];
       if (!a || !a.cohort || !a.metrics) throw Error('O relatório precisa conter os três eixos e seus componentes.');

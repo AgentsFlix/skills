@@ -21,3 +21,12 @@ Validação prevista: testes do modelo, fluxo no navegador com teclado, exemplo 
 O diagnóstico não armazena dados em localStorage/sessionStorage, não consulta APIs sociais e não envia o resumo para um servidor. As notas são calculadas a partir de um resumo declarado pelo agente; a autenticidade das fontes deve ser conferida na conversa. Cada eixo usa uma coorte principal, com IDs únicos, alcance compatível, evidências e metas fixadas antes do ciclo. Dados desconhecidos ficam pendentes.
 
 Testes: `python3 -m unittest discover -s tests -p test_ecf_diagnostic.py`; sintaxe dos dois scripts com `node --check`; CI completo e QA do navegador. Evidências em `design-review/diagnostico-ecf/`.
+
+
+## Resolução de credencial
+
+O prompt autoriza uma cascata limitada ao perfil atual: ambiente, arquivo de ambiente ativo do Hermes, MCP existente, configuração oficial da CLI e SDK instalado. Cada rota disponível precisa confirmar a leitura de contas; SDK instalado, transporte MCP conectado e lista vazia de contas têm tratamentos próprios. A busca não recorre a outros perfis, diretórios legados, histórico, caches ou backups.
+
+`credential_resolution` é opcional para compatibilidade com relatórios anteriores. Nos novos resumos, começa como `null`; após tentativa, recebe exclusivamente `source`, `test_endpoint` e `result`, com valores enumerados. A importação recusa propriedades adicionais, inclusive chave mascarada. O histórico sanitizado das rotas fica em `coverage`. Nenhuma credencial foi acessada ou testada para implementar esta revisão.
+
+Comandos Hermes conferidos no help/código da instalação disponível: `config env-path`, `mcp list` e `mcp test <name>`. Fontes Zernio: [CLI](https://docs.zernio.com/cli), [MCP](https://docs.zernio.com/mcp/setup) e [listar contas](https://docs.zernio.com/accounts/list-accounts). `mcp test` pode exibir trechos mascarados: o prompt exige capturar e descartar a saída bruta, expondo somente estado sanitizado. O texto do prompt é buscado sem cache HTTP para que uma recarga receba a revisão atual.

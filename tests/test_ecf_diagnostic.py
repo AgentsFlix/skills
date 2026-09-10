@@ -73,6 +73,28 @@ d=make();d.axes.creator.metrics.seguidores.numerator=-1;assert.throws(()=>score(
 d=make();d.axes.creator.metrics.seguidores.numerator='150';assert.throws(()=>score(d));
 // An imported score or weight cannot override the method.
 d=make();d.axes.creator.score=100;d.axes.creator.metrics.seguidores.weight=1;assert.equal(score(d).creator.score,77);
+// Credential audit is optional for old reports and never changes the score.
+assert.equal(M.emptyReport('@perfil','2026-08-01','2026-08-30').credential_resolution,null);
+d=make();delete d.credential_resolution;assert.equal(score(d).creator.score,77);
+for(const source of ['env','hermes_env','mcp','cli','sdk']) {
+ for(const result of ['success','401','403','429','unavailable']) {
+  d=make();d.credential_resolution={source,test_endpoint:'GET /v1/accounts',result};assert.equal(score(d).creator.score,77);
+ }
+}
+d=make();d.credential_resolution={source:'unavailable',test_endpoint:'GET /v1/accounts',result:'unavailable'};assert.equal(score(d).creator.score,77);
+for(const resolution of [
+ {source:'cache',test_endpoint:'GET /v1/accounts',result:'success'},
+ {source:'env',test_endpoint:'GET /v1/users',result:'success'},
+ {source:'env',test_endpoint:'GET /v1/accounts',result:401},
+ {source:'env',test_endpoint:'GET /v1/accounts',result:'inventado'},
+ {source:'unavailable',test_endpoint:'GET /v1/accounts',result:'success'},
+ {source:'env',result:'success'}, [], 'env', true
+]) {d=make();d.credential_resolution=resolution;assert.throws(()=>score(d),/resolução de credencial/);}
+// Reject extra properties without repeating their names or contents in the error.
+for(const field of ['token','api_key','headers','unexpected']) {
+ d=make();d.credential_resolution={source:'hermes_env',test_endpoint:'GET /v1/accounts',result:'success',[field]:'sensitive-test-marker'};
+ assert.throws(()=>score(d),error=>/resolução de credencial/.test(error.message)&&!error.message.includes('sensitive-test-marker'));
+}
 console.log('ECF: cálculos, amostras, fontes, metas e lacunas verificados.');
 """
         subprocess.run([shutil.which('node'), '-e', script], cwd=ROOT, check=True)

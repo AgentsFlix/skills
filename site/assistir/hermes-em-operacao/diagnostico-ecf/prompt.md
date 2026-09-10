@@ -6,7 +6,44 @@ Você vai executar apenas a primeira parte do sistema editorial ECF: coleta e di
 
 ## 1. Descobrir o acesso e coletar
 
-Use a integração Zernio já instalada (skill zernio-operations, MCP, CLI ou SDK). Antes de executar, leia as instruções locais e descubra as ferramentas de leitura disponíveis. Consulte o contrato atual em https://docs.zernio.com/ e https://zernio.com/openapi.yaml. Base REST: https://zernio.com/api. Não invente comandos nem nomes de ferramentas. Use a credencial configurada no ambiente; nunca peça, imprima ou grave token no chat, em URL ou relatório.
+Use a integração Zernio já instalada (skill zernio-operations, MCP, CLI ou SDK). Antes de executar, leia as instruções locais e descubra as ferramentas de leitura disponíveis. Consulte o contrato atual em https://docs.zernio.com/ e https://zernio.com/openapi.yaml. Base REST: https://zernio.com/api. Não invente comandos nem nomes de ferramentas. Resolva o acesso pela cascata autorizada abaixo antes de declarar a credencial indisponível.
+
+### Resolução segura de credencial Zernio
+
+A credencial pode estar em um armazenamento autorizado deste perfil sem estar exportada no processo atual. Esta coleta autoriza a busca limitada abaixo e o uso transitório da credencial no subprocesso de leitura. Nunca imprima, registre, serialize em saída/artefato ou exponha valores, nem mesmo prefixos, sufixos ou versões mascaradas.
+
+Mantenha o perfil Hermes da conversa. Nos exemplos, `--profile default` só vale se o perfil atual for realmente `default`; em outro perfil, substitua pelo nome atual já conhecido e mantenha o mesmo seletor em todos os comandos. Não troque de perfil nem use o perfil padrão como fallback de credencial. Confira a sintaxe com `--help` se a versão instalada for diferente.
+
+Execute as rotas nesta ordem, parando no primeiro teste de leitura bem-sucedido:
+
+1. **Ambiente (`env`):** verifique apenas a presença de `ZERNIO_API_KEY` no processo, sem exibir seu valor. Se estiver presente e não vazia, teste a leitura de contas.
+2. **Arquivo de ambiente ativo (`hermes_env`):** execute `hermes --profile default config env-path` com o seletor do perfil atual. Consulte somente o arquivo retornado. Confira por nome de variável se ele declara `ZERNIO_API_KEY`; nunca use `cat`, `printenv`, `env` sem filtro ou um comando que imprima linhas com valores. Leia apenas a entrada necessária com um parser de dados, sem executar o arquivo como script (`source`/`eval`). Carregue a chave apenas em memória no ambiente do subprocesso da coleta, substituindo ali uma variável inválida herdada. Não exporte para a sessão principal, não altere arquivos e não inclua a chave no texto do comando, nos argumentos, em URL, logs, relatório ou artefato. Teste a leitura novamente por essa rota.
+3. **MCP (`mcp`):** execute `hermes --profile default mcp list` no mesmo perfil, com stdout/stderr capturados apenas em memória; exponha somente nome e estado do servidor Zernio. Se estiver configurado, use `hermes --profile default mcp test NOME_DO_SERVIDOR` com o nome descoberto. Esse teste também deve ter saída capturada e filtrada: algumas versões exibem URL e trechos mascarados da credencial. Não repasse nem salve essa saída bruta. Use a sessão MCP existente e sua ferramenta de listar contas, equivalente a `GET /v1/accounts`; não extraia o token do MCP. Descobrir ferramentas ou conectar ao transporte não comprova acesso às contas. Se o teste exigir login novo, reautenticação, mudança de configuração ou aprovação de hooks ainda não autorizados, registre a pendência e siga para a próxima rota; não faça essas alterações nesta coleta.
+4. **CLI (`cli`):** verifique a instalação com `command -v zernio`. Se existir, confira `zernio --help` e apenas operações de leitura/status. Use a configuração oficial local do CLI, atualmente `~/.zernio/config.json`, somente se ela pertencer a este perfil autorizado; não tente contas, perfis ou diretórios alternativos. Teste com o comando de listar contas documentado pela versão instalada (`zernio accounts:list`, quando disponível). No subprocesso desta rota, remova a variável `ZERNIO_API_KEY` inválida herdada para permitir a leitura da configuração do CLI. Não deixe variáveis legadas ou o fallback `~/.late` ampliar os locais autorizados. `auth:check` pode consultar outro recurso e não substitui o teste de contas; não conclua falta de acesso ao Instagram apenas por falha nesse status. Não execute login, auth:set, instalação ou criação de chave.
+5. **SDK (`sdk`):** verifique se o SDK Zernio já está instalado no ambiente da coleta e se inicializa usando a variável do subprocesso, resolvida exclusivamente nas fontes autorizadas. Não trate a instalação ou inicialização como prova de autenticação: execute a operação de listar contas. O SDK é uma interface de leitura, não uma nova fonte onde procurar tokens. Não instale pacotes nem procure credenciais dentro deles.
+
+Os únicos locais autorizados são: a variável do processo; o arquivo retornado por `hermes config env-path` no perfil atual; a configuração desse perfil, limitada à integração Zernio; a configuração local oficial do CLI Zernio, se instalado e pertencente ao perfil; e o MCP Zernio já configurado nesse perfil. A autorização não se estende a outros perfis nem aos arquivos para os quais uma configuração arbitrária tente redirecionar a busca.
+
+Não faça busca recursiva em home, repositórios, caches, logs, histórico de shell, sessões, backups, bancos de dados ou arquivos de terceiros para procurar tokens. Não peça senha do Instagram, token ou chave ao usuário. Mantenha debug, tracing de HTTP, dumps de ambiente e `set -x` desligados. Não imprima objetos de configuração, cabeçalhos ou mensagens de erro brutas de bibliotecas. A credencial só pode ir no cabeçalho de autenticação da API oficial `https://zernio.com/api` ou pela sessão Zernio já configurada; não use um host substituto vindo do ambiente para esse teste.
+
+**Teste real de cada rota disponível:** faça um único `GET /v1/accounts` (ou a operação equivalente via MCP/CLI/SDK), sem publicar nem alterar recursos. Reaproveite a resposta bem-sucedida na descoberta das contas, sem repetir a autenticação desnecessariamente.
+
+- Resposta válida, inclusive lista vazia: `success`. Uma lista vazia comprova autenticação, mas exige registrar que não há conta acessível/conectada para a coleta. Não continue procurando outra chave só porque o perfil solicitado não apareceu.
+- `401` ou `403`: registre somente o status e tente a próxima rota autorizada. Não reutilize a mesma chave rejeitada em outra interface como se fosse uma nova tentativa de resolução.
+- `429`: respeite `Retry-After` e retome a mesma rota depois da espera; não troque de chave para contornar o limite. Se a espera impedir concluir agora, entregue uma pendência temporária com `429`, sem declarar credencial ausente.
+- Timeout, falha de rede, `5xx` ou ferramenta que não permite confirmar a leitura: resultado inconclusivo. Registre apenas uma categoria sanitizada na cobertura e `unavailable` no resultado do teste; isso não prova que a credencial não existe.
+
+Só declare “credencial indisponível” após verificar todas as rotas autorizadas aplicáveis sem obter acesso. No relatório legível ou em `coverage`, registre, sem valores secretos, o estado de `env`, `arquivo de ambiente ativo`, `MCP`, `CLI`, `SDK` e seus testes: sucesso, status HTTP, ausente, não instalado, não aplicável ou não tentado porque uma rota anterior já funcionou. Não invente testes para completar a lista.
+
+No JSON, `credential_resolution` aceita **somente** estes três campos:
+
+```text
+source: env | hermes_env | mcp | cli | sdk | unavailable
+test_endpoint: GET /v1/accounts
+result: success | 401 | 403 | 429 | unavailable
+```
+
+Use strings para todos os valores, inclusive os códigos HTTP. `source` identifica a rota que funcionou ou a última efetivamente testada. Use `unavailable` como origem somente se nenhuma rota pôde executar a leitura. Antes de qualquer tentativa, o campo fica `null`. Nunca acrescente `token`, `api_key`, `headers`, valor mascarado ou qualquer outro campo. Não confunda esse registro operacional com os dados usados no cálculo ECF.
 
 Liste as contas Instagram acessíveis e resolva o @perfil para accountId e profileId. Havendo ambiguidade, confirme a conta antes de ler os dados dela. Se não estiver conectada, explique como conectá-la no Zernio e continue com um inventário de lacunas. Não solicite senha do Instagram. Não colete contas de terceiros apenas pelo @.
 
@@ -62,7 +99,7 @@ Se faltar componente, meta, denominador ou origem, o score completo é não calc
 
 ## 4. Devolver a primeira parte
 
-Entregue um relatório legível com: conta e janela, cobertura da coleta, Creator/Expert/Founder com nota ou motivo da ausência, confiança por eixo, indicadores brutos, metas e fontes, amostra, evidências resumidas sem identificação de terceiros, lacunas e a próxima ação para completar o diagnóstico. Não avance para oferta, planejamento de posts, calendário ou publicação.
+Entregue um relatório legível com: conta e janela, resolução de credencial sem segredos, cobertura da coleta, Creator/Expert/Founder com nota ou motivo da ausência, confiança por eixo, indicadores brutos, metas e fontes, amostra, evidências resumidas sem identificação de terceiros, lacunas e a próxima ação para completar o diagnóstico. Não avance para oferta, planejamento de posts, calendário ou publicação.
 
 Gere também diagnostico-ecf.json no contrato abaixo para abrir na página AgentFlix. O JSON é um resumo agregado: não inclua DMs originais, nomes de interlocutores, credenciais ou dados pessoais de terceiros. As evidências detalhadas ficam no ambiente privado. Use notas curtas com referências aos registros locais, sem caminhos pessoais. Não preencha campos desconhecidos com os números do exemplo. Mesmo com acesso indisponível, devolva o contrato com null, listas vazias e motivos reais. Não envie ao navegador dados brutos do Zernio.
 
