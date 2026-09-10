@@ -8,3 +8,6 @@
 @media(max-width:700px){.compact-scores{grid-template-columns:1fr;gap:18px}.dashboard-heading{display:block;margin-bottom:22px}.dashboard-heading h1{font-size:29px}.dashboard-heading>div>p>span{display:block;margin-top:3px}.profile-average{display:flex;align-items:center;gap:12px;text-align:left;margin-top:20px;flex-wrap:wrap}.profile-average strong{font-size:25px}.profile-average>span{font-size:11px}.profile-average p{display:none}.scorecard{padding:24px}.scorecard-art{height:112px;margin:10px 0 20px}.scorecard-title h2{font-size:27px}.variable-label{font-size:13px}.variable-label>b{font-size:16px}.variable p{font-size:11px}.axis-average{align-items:end;flex-direction:row}.sample-badge{font-size:10px;margin-bottom:7px}.dashboard-toolbar{align-items:start;flex-direction:column;gap:10px}.dashboard-toolbar .actions{width:100%;gap:15px}.dashboard-toolbar .actions button{flex:initial;padding:8px 0}.dashboard-toolbar .actions .secondary{padding:10px 14px;margin-left:auto}.reference-fields{grid-template-columns:1fr;gap:18px}.reference-fields label{align-items:center;flex-direction:row;font-size:12px;margin-bottom:8px}.reference-fields input{width:100px!important}.report-evidence>summary{padding:15px 0}}
 
 .ruler-labels span:nth-child(2){white-space:nowrap}
+
+/* Field paths in validation errors must wrap on a phone. */
+.status{overflow-wrap:anywhere}

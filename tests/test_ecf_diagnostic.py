@@ -2,6 +2,7 @@
 import pathlib
 import shutil
 import subprocess
+import tempfile
 import unittest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -153,6 +154,62 @@ assert.throws(()=>M.initialDashboard(null));
 console.log('ECF: cálculos, amostras, fontes, metas e lacunas verificados.');
 """
         subprocess.run([shutil.which('node'), '-e', script], cwd=ROOT, check=True)
+
+
+    @unittest.skipUnless(shutil.which('node'), 'Node is required for shared import checks')
+    def test_delivery_normalization_and_cli(self):
+        script = r"""
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),cp=require('node:child_process');
+const dir='site/assistir/hermes-em-operacao/diagnostico-ecf/',box={module:{exports:{}},TextEncoder};
+vm.runInNewContext(fs.readFileSync(dir+'model.js','utf8'),box);const M=box.module.exports;
+vm.runInNewContext(fs.readFileSync(dir+'import.js','utf8'),box);const I=box.module.exports;
+const read=d=>I.read(JSON.stringify(d));
+let d=M.initialExample(),result=read(d);assert.equal(result.audit.complete,true);assert.equal(result.audit.measured,9);
+// Byte-order marks, Markdown fences, and canonical numeric strings are safe repairs.
+d.axes.expert.metrics.salvamentos.numerator='400';
+result=I.read('\ufeff```json\n'+JSON.stringify(d)+'\n```');
+assert.equal(result.data.axes.expert.metrics.salvamentos.numerator,400);assert.equal(result.audit.changes.length,3);
+assert.equal(d.axes.expert.metrics.salvamentos.numerator,'400');
+for(const n of ['1,234','1.234,56','1.234','9007199254740993','1%','',false,[],{},-1]){d=M.initialExample();d.axes.expert.metrics.salvamentos.numerator=n;assert.throws(()=>read(d),/axes.expert.metrics.salvamentos.numerator/);}
+for(const raw of ['{"method":"a","method":"b"}','{"a":1,"\\u0061":2}','[1,]','{"x":1,}','{"x":NaN}','Here is your JSON: {}','{}\n{}'])assert.throws(()=>I.read(raw));
+// No guessing aliases, converting an unknown state to zero, or accepting false success.
+for(const change of [{numerator:null},{denominator:0},{source:''},{scope:''},{evidence:[]},{status:'ready'},{status:'missing',reason:'Unavailable'}]){
+ d=M.initialExample();Object.assign(d.axes.creator.metrics.seguidores,change);assert.throws(()=>read(d),/axes.creator.metrics.seguidores/);
+}
+d=M.initialExample();delete d.axes.expert.metrics.autoridade;assert.throws(()=>read(d),/axes.expert.metrics.autoridade/);
+d=M.initialExample();d.axes.expert.metrics.conversas.score=100;assert.throws(()=>read(d),/campos fora/);
+d=M.initialExample();d.axes.founder.metrics.reconhecimento.denominator=8;assert.throws(()=>read(d),/partial/);
+d.axes.founder.metrics.reconhecimento.status='partial';d.axes.founder.metrics.reconhecimento.reason='Amostra pequena';assert.equal(read(d).audit.complete,false);
+d=M.initialExample();d.axes.expert.metrics.conversas.numerator=0;assert.equal(read(d).data.axes.expert.metrics.conversas.numerator,0);assert.equal(read(d).audit.measured,9);
+// Frozen request context: profile, window, and every ideal must match.
+const expected=M.emptyInitialReport('@perfil.exemplo','2026-08-01','2026-08-30');
+for(const change of [x=>x.profile='@outro',x=>x.window={start:'2026-07-01',end:'2026-07-30'},x=>x.reference.targets.creator.seguidores=.9]){d=M.initialExample();change(d);assert.throws(()=>I.read(JSON.stringify(d),expected));}
+// Synthetic legacy file reproduces the 4/9 failure without private account data.
+const legacy=M.emptyReport('@perfil.exemplo','2026-08-01','2026-08-30');legacy.collected_at='2026-09-01T12:00:00Z';
+for(const [id,key,value] of [['creator','compartilhamentos',20],['expert','salvamentos',30],['expert','autoridade',2],['expert','conversas',0]]){
+ legacy.axes[id].cohort.reach_total=1000;legacy.axes[id].cohort.description='Conjunto fictício';
+ Object.assign(legacy.axes[id].metrics[key],{numerator:value,denominator:1000,source:'Exemplo fictício',reason:'Cobertura parcial'});
+}
+legacy.axes.founder.metrics.dms.reason='Há 23 conversas em lotes ainda sem deduplicação.';
+legacy.observations=[{label:'DMs',numerator:23,denominator:null,unit:'count',scope:'Lotes sem deduplicação',source:'Exemplo',reason:'Não é total único'}];
+result=read(legacy);assert.equal(result.audit.measured,4);assert.equal(result.audit.missing.length,5);assert.equal(result.data.axes.founder.metrics.dms.numerator,null);assert.equal(result.data.axes.expert.metrics.conversas.numerator,0);
+assert.equal(result.data.method,'ecf-inicial-v2');assert.equal(read(result.data).audit.measured,4);assert.equal(legacy.method,'ecf-metas-v1');
+for(const id of ['creator','expert','founder'])assert.equal(M.initialDashboard(result.data).axes[id].score,M.initialDashboard(legacy).axes[id].score);
+legacy.axes.expert.metrics.autoridade.denominator=2000;assert.equal(read(legacy).data.axes.expert.metrics.autoridade.status,'missing');
+// CLI assembled exactly as the prompt assembles it: shared code, no external dependency.
+const temp=process.argv[1],cli=path.join(temp,'validar-ecf.cjs'),input=path.join(temp,'draft.json'),contract=path.join(temp,'contract.json'),out=path.join(temp,'result.json');
+fs.writeFileSync(cli,['model.js','import.js','validator-cli.cjs'].map(f=>fs.readFileSync(dir+f,'utf8')).join('\n'));
+fs.writeFileSync(contract,JSON.stringify(expected));
+const run=()=>cp.spawnSync(process.execPath,[cli,input,'--contract',contract,'--output',out],{encoding:'utf8'});
+fs.writeFileSync(input,JSON.stringify(M.initialExample()));let p=run();assert.equal(p.status,0,p.stderr);assert.equal(JSON.parse(p.stdout).measured,9);assert.equal(read(JSON.parse(fs.readFileSync(out,'utf8'))).audit.complete,true);
+const content=fs.readFileSync(out,'utf8');p=run();assert.equal(p.status,1);assert.equal(fs.readFileSync(out,'utf8'),content);fs.unlinkSync(out);
+fs.writeFileSync(input,JSON.stringify(result.data));p=run();assert.equal(p.status,2,p.stderr);assert.equal(JSON.parse(p.stdout).measured,4);assert.equal(JSON.parse(p.stdout).missing.length,5);fs.unlinkSync(out);
+d=M.initialExample();d.axes.expert.metrics.autoridade.numerator=null;fs.writeFileSync(input,JSON.stringify(d));p=run();assert.equal(p.status,1);assert.match(p.stderr,/axes.expert.metrics.autoridade.numerator/);assert.equal(fs.existsSync(out),false);
+d=M.initialExample();d.credential_resolution={token:'private-marker'};fs.writeFileSync(input,JSON.stringify(d));p=run();assert.equal(p.status,1);assert(!p.stderr.includes('private-marker'));assert.equal(fs.existsSync(out),false);
+console.log('ECF: normalização segura, migração 4/9, lacunas, contrato fixo e entrega CLI verificados.');
+"""
+        with tempfile.TemporaryDirectory() as temp:
+            subprocess.run([shutil.which('node'), '-e', script, temp], cwd=ROOT, check=True)
 
 
 if __name__ == '__main__':

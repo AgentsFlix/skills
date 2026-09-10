@@ -124,12 +124,34 @@ Gere **diagnostico-ecf.json** com o contrato abaixo. O navegador calcula as nota
 
 {{CONTRATO}}
 
-Cada variável recebe numerator, denominator, samples, status, scope, source, evidence e reason. Para alcance_relativo, use samples com as razões por post; numerator e denominator ficam null. Nas demais variáveis, samples fica vazio e a página divide numerator por denominator. Proporções brutas não têm teto de 100%; apenas as notas têm teto.
+Cada variável recebe numerator, denominator, samples, status, scope, source, evidence e reason. Para alcance_relativo, use samples com as razões por post; numerator e denominator ficam null. Nas demais variáveis, samples fica vazio; numerator e denominator são contagens inteiras de eventos, alcance ou pessoas. A página divide numerator por denominator. Proporções brutas não têm teto de 100%; apenas as notas têm teto.
 
 status aceita somente measured, partial, estimated ou missing. reason explica partial, estimated e missing. Uma medição precisa de source e data da coleta; evidence contém até 20 referências anônimas verificáveis. Sem medição real, use null e listas vazias. Não coloque valores só em texto quando eles puderem preencher os campos numéricos.
 
 note em cada eixo é opcional em conteúdo, mas obrigatório no contrato: até uma frase curta, ou string vazia. Detalhes completos ficam nos arquivos privados. coverage deve ser uma lista de até 40 strings curtas, nunca uma lista de objetos; cada texto/campo tem até 1.000 caracteres. reference registra a régua usada. credential_resolution registra somente a rota e o teste reais, sem repetir autenticação só para completar o relatório.
 
-Antes de terminar, valide o JSON por serialização e parse; confira tipos, datas, três eixos, nove variáveis, numeradores, denominadores e deduplicação. Não inclua NaN, undefined, comentários, nomes de interlocutores, mensagens originais, tokens ou headers. Preserve artefatos e pontos de retomada no ambiente privado. Não publique o arquivo nem faça outras alterações em serviços.
+### Validação obrigatória antes da entrega
 
-Na mensagem final, entregue somente uma tabela curta com Creator, Expert e Founder, média de cada card, cobertura X/3 e identificação de resultado parcial, seguida do arquivo. Não entregue um relatório extenso nem lista de todas as chamadas da API. Termine orientando: “Abra o JSON na página AgentFlix e clique em Gerar análise e conferir scores. Em Ajustar régua, você pode mudar os valores ideais.”
+O modelo JSON acima é o contrato exato deste pedido. Salve-o como `contrato-ecf.json`, sem alterar perfil, janela ou régua. Preencha uma cópia chamada `rascunho-ecf.json` com uma biblioteca de serialização JSON, sem montar JSON por concatenação. Use exatamente as nove chaves do modelo; não acrescente scores, rótulos alternativos, totais em texto ou campos de autenticação.
+
+O código abaixo é o mesmo validador da página, versão `ecf-contract-1`. Salve o bloco integral como `validar-ecf.cjs` na pasta privada desta execução e execute com Node.js. Não execute o conteúdo do relatório como código. Não substitua a validação por uma leitura visual ou apenas `JSON.parse`.
+
+{{VALIDATOR}}
+
+Execute:
+
+```sh
+node validar-ecf.cjs rascunho-ecf.json --contract contrato-ecf.json --output diagnostico-ecf.json
+```
+
+- Saída 0: contrato válido e nove medições com estado measured. Isso confirma preenchimento, não comprova as evidências.
+- Saída 2: JSON válido, escrito e importável, mas parcial. A saída lista `missing` e `limited` com os caminhos exatos. Confira os artefatos da execução, conclua deduplicação e classificação possíveis e corrija o rascunho. Para outra validação, use um novo nome de saída; o validador não sobrescreve arquivos existentes. Só entregue parcial quando as lacunas reais estiverem registradas, sem prometer nove scores.
+- Saída 1: arquivo inválido; corrija o campo indicado e execute novamente. Nenhum JSON de entrega é criado por esta tentativa. Não entregue o rascunho como se estivesse validado. Se Node.js não estiver disponível, informe “validação não executada” e o impedimento, sem fingir sucesso ou instalar software sem autorização.
+
+O normalizador aceita BOM, um bloco Markdown contendo apenas JSON e números decimais escritos como texto, por exemplo "14". Ele recusa chaves repetidas, campos desconhecidos em v2, percentuais como "1%" e números ambíguos como "1.234,56". Não infere valores de frases, não troca denominadores e não preenche null com zero. A página calcula as notas a partir do arquivo validado.
+
+`missing` exige numerator=null, denominator=null e samples=[]. Registre contagens incompletas nos artefatos privados, com o motivo no resumo. Qualquer estado com medição exige valores válidos, source, scope e collected_at. `measured` também exige evidence; pesquisa com menos de 10 respostas deve ser partial. Não marque contagens ainda sem deduplicação como measured, partial ou estimated para conseguir uma nota: mantenha missing até reconciliar os lotes.
+
+Além do validador, confira manualmente nos artefatos: denominador do mesmo conjunto e período, atribuição por post ou contexto de perfil explícito, pessoas deduplicadas e evidências reais. Não inclua NaN, undefined, comentários, nomes de interlocutores, mensagens originais, tokens ou headers. Preserve artefatos e pontos de retomada no ambiente privado. Não publique o arquivo nem faça outras alterações em serviços.
+
+Na mensagem final, informe “JSON validado · X/9 medições · completo/parcial” usando a saída real do validador. Entregue uma tabela curta com Creator, Expert e Founder, média de cada card, cobertura X/3 e identificação de resultado parcial, seguida do arquivo. Não entregue um relatório extenso nem lista de todas as chamadas da API. Termine orientando: “Abra o JSON na página AgentFlix e clique em Gerar análise e conferir scores. Em Ajustar régua, você pode mudar os valores ideais.”

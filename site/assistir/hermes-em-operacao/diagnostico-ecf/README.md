@@ -41,3 +41,11 @@ Arquivos `ecf-metas-v1` continuam aceitos. A interface os lê na nova proposta, 
 - `design-review/diagnostico-ecf/`: capturas e evidência de QA, exclusivamente com dados fictícios.
 
 Testar com `python3 -m unittest discover -s tests` e `python3 scripts/check_site.py`, além do QA em Chrome em 1440, 768 e 390 px. Os arquivos reais do usuário não entram no repositório, em capturas públicas ou em telemetria.
+
+## Entrega determinística e normalização
+
+`import.js` é a biblioteca local compartilhada: confere os nove caminhos, tipos e estados, recusa chaves duplicadas e valida a consistência entre estado e medição. Converte apenas BOM, um bloco Markdown contendo JSON e números em texto com sintaxe decimal inequívoca. Não adivinha aliases, unidades, denominadores nem números em frases. JSON válido não significa coleta completa.
+
+O prompt incorpora `model.js`, `import.js` e `validator-cli.cjs` como um único `validar-ecf.cjs`. Hermes precisa de Node.js e executa o mesmo código da página, sem buscar dependências ou acessar a API para validar. Perfil, janela e régua são conferidos contra o contrato original. A saída usa permissão local 0600 e nunca sobrescreve um arquivo. Códigos: 0 completo, 2 parcial com JSON criado, 1 inválido sem novo arquivo. A validação não comprova a veracidade das evidências nem executa deduplicação de dados privados.
+
+A importação converte v1 para v2 por correspondência explícita dos campos; preserva as notas possíveis e os zeros medidos. Dados sem denominador ou origem compatível continuam ausentes. O JSON normalizado pode ser baixado nos detalhes. O pedido de continuação inclui essa base e os caminhos exatos das medições ausentes ou limitadas. Os testes cobrem ida e volta pelo CLI e navegador com um cenário fictício de quatro medições disponíveis e cinco ausentes.
