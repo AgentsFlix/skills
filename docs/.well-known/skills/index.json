@@ -333,7 +333,7 @@
     },
     {
       "name": "copy-pesquisa-avatar",
-      "description": "Antes de escrever, saber o que a pessoa já diz para si mesma. Use quando o pedido envolver avatar, público, conversa mental, motivos, nível de consciência, sofisticação do mercado.",
+      "description": "Pesquise lacunas relevantes sobre o público usando memória, acervo e fontes disponíveis. Entregue uma síntese com evidências, hipóteses e plano de coleta, sem inventar pesquisa ou impor quotas de um…",
       "files": [
         "SKILL.md",
         "references/analyze-mental-conversation.md",

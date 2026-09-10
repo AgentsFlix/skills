@@ -18,34 +18,24 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
+> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Templates e quotas de pesquisa são apoios opcionais; entregue a síntese rastreável possível sem exigir contagem mínima de fatos, headlines ou pontuação de método ampliado.
 
 ---
+# Pesquisa de público para a próxima decisão
 
-# DENTRO DA CABEÇA · Conversa mental, motivos, sofisticação
-
-Antes de escrever, saber o que a pessoa já diz para si mesma. O agente pesquisa o avatar, mapeia a conversa mental, os seis motivos primários e o nível de sofisticação do mercado, e devolve o retrato que a copy vai usar. Sem esse passo, toda headline é chute.
+Continue o perfil e a hipótese de público da pessoa. Investigue o que realmente muda a comunicação e entregue uma síntese rastreável do material acessível. Lacunas não se tornam fatos para preencher um template.
 
 ## When to Use
 
-- O pedido envolve: avatar, público, conversa mental, motivos, nível de consciência, sofisticação do mercado.
-- Diga: "pesquisa o avatar de [produto] em [mercado]".
-- NÃO use quando o pedido é uma peça em um método específico de copywriter ("como Halbert"): isso é `copy-metodo-<nome>`.
+Use para apoiar a documentação de público, posicionamento ou pautas com pesquisa pertinente. Aproveite perfil/ICP ou contexto equivalente; uma hipótese declarada é um ponto de partida válido. Não exige pesquisa externa quando ela não está disponível.
 
 ## Quick Reference
 
-Obrigatórios: negócio/oferta, público/hipótese e decisão a esclarecer. Fontes disponíveis ou ferramenta de pesquisa real definem o alcance; falta de rede não autoriza fontes inventadas.
+Obrigatórios: negócio/oferta, público ou hipótese e decisão a esclarecer. Fontes acessíveis definem o alcance.
 
-Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Quality Checklist` próprios.
+Para a síntese inicial, siga Procedure; não precisa abrir ou preencher um template. Para aprofundamento solicitado, escolha somente a referência pertinente entre avatar-research, analyze-mental-conversation, diagnose-market-sophistication, copysearch e diagnose-awareness-level. Esses métodos não são etapas obrigatórias da jornada. O material dos seis motivos está indisponível nesta edição; não invente categorias para substituí-lo.
 
-| sub-tarefa | referência |
-|---|---|
-| avatar research | `references/avatar-research.md` |
-| analyze mental conversation | `references/analyze-mental-conversation.md` |
-| map 6 primary motives | `references/map-6-primary-motives.md` |
-| diagnose market sophistication | `references/diagnose-market-sophistication.md` |
-| copysearch | `references/copysearch.md` |
-| diagnose awareness level | `references/diagnose-awareness-level.md` |
+Os templates preservam métodos e atribuições de origem. Mínimos de fatos, headlines e pontuações não são critérios de aceite desta síntese. Documentos citados que não estejam acessíveis permanecem fontes não consultadas.
 
 ## Procedure
 
@@ -55,7 +45,7 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
 2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
 3. Consulte o perfil/ICP e acervo antes de coletar novamente required/optional. Identifique as lacunas que realmente mudam a comunicação. Não transforme descrição da fundadora em entrevista de clientes.
 4. Pesquise nos materiais acessíveis e, quando disponível, ferramenta externa adequada. Registre origem, data conhecida e trecho que sustenta cada achado. Sem acesso, deixe a pesquisa externa pendente e entregue síntese do acervo/hipóteses e um plano específico de coleta.
-5. Escreva a síntese do público no formato pertinente da referência, diferenciando citação, fato observado, inferência e hipótese. Não invente números, depoimentos, emoções ou nomes. Perguntas necessárias têm exemplos contextuais próprios. Entregue ao ICP/posicionamento os achados e limites sem apagar sua procedência.
+5. Salve a síntese de público no destino autorizado, diferenciando citação, fato observado, inferência e hipótese. O formato inicial pode ser Markdown simples com mapa de origem, achados, lacunas e plano de coleta. Templates ampliados são opcionais: não exigir mínimos de fatos, headlines, insights ou pontos para esta entrega. Não invente números, depoimentos, emoções ou nomes. Perguntas necessárias têm exemplos contextuais próprios. Entregue ao ICP/posicionamento os achados e limites sem apagar sua procedência.
 6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
 
 ## Avaliação de rotina
@@ -64,10 +54,10 @@ Pesquisa recorrente pode valer com fontes novas e decisão a alimentar. Não ger
 
 ## Pitfalls
 
-- Pular o bloco `Inputs` e escrever com o que veio. Falta de avatar ou de benefício principal produz copy genérica; pergunte.
-- Misturar duas sub-tarefas numa entrega só. Uma de cada vez, cada uma com seu checklist.
-- Preencher `[COLCHETES]` com chute para a peça "ficar pronta". Colchete aberto é honesto; número inventado é dívida.
-- Ignorar o `Output Format`. Ele existe para a peça encaixar no passo seguinte (página, e-mail, anúncio).
+- Trocar evidência por leitura psicológica sem fonte ou tratar relato da fundadora como entrevista de cliente.
+- Preencher quotas de fatos/headlines com conteúdo inventado ou impor quantidade mínima de insights no lugar delas.
+- Percorrer todas as referências ou exigir um documento histórico ausente para começar.
+- Deixar de salvar a síntese possível por falta de pesquisa externa, campos opcionais ou pontuação.
 
 ## Verification
 
@@ -98,6 +88,8 @@ Cada achado tem fonte inspecionada ou rótulo de hipótese; pesquisa indisponív
 ---
 
 ## Referência: references/analyze-mental-conversation.md
+
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -413,12 +405,14 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado.
+Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Templates e quotas de pesquisa são apoios opcionais; entregue a síntese rastreável possível sem exigir contagem mínima de fatos, headlines ou pontuação de método ampliado.
 
 
 ---
 
 ## Referência: references/avatar-research.md
+
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -786,6 +780,8 @@ Use o template: `templates/avatar-research-template.md`
 
 ## Referência: references/checklist-avatar-research-checklist.md
 
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
+
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
 # Avatar Research Checklist
@@ -970,6 +966,8 @@ Status: [ ] Aprovado  [ ] Revisar  [ ] Refazer
 ---
 
 ## Referência: references/checklist-copysearch-checklist.md
+
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -1335,7 +1333,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" init --version 0.4.3 --revision 1.0.1
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" init --version 0.4.3 --revision 1.0.2
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" audit
@@ -1417,7 +1415,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: copy-pesquisa-avatar
-  content_revision: 1.0.1
+  content_revision: 1.0.2
   verification_evidence: []
 ---
 
@@ -1490,6 +1488,8 @@ Conclua a entrega solicitada quando houver um artefato útil com origem e lacuna
 ---
 
 ## Referência: references/copysearch.md
+
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -2419,6 +2419,8 @@ Upon completing CopySearch, you will have:
 
 ## Referência: references/diagnose-awareness-level.md
 
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
+
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
 # Diagnose Awareness Level - Schwartz Method
@@ -2870,6 +2872,8 @@ MISTAKE 4: Ignoring Mixed Audiences
 
 ## Referência: references/diagnose-market-sophistication.md
 
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
+
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
 # Diagnose Market Sophistication - Schwartz Method
@@ -3305,7 +3309,7 @@ MISTAKE 4: Ignoring Awareness × Sophistication
   "contract_version": "1.0.0",
   "skill_id": "copy-pesquisa-avatar",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.1",
+  "content_revision": "1.0.2",
   "distribution_ref": "main"
 }
 
@@ -3313,6 +3317,8 @@ MISTAKE 4: Ignoring Awareness × Sophistication
 ---
 
 ## Referência: references/map-6-primary-motives.md
+
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
 
 > Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
 
@@ -3330,6 +3336,8 @@ A cópia de origem desta referência estava vazia. Esta edição não dispõe do
 ---
 
 ## Referência: templates/avatar-research-template.md
+
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
 
 # **Persona [NOME DO PRODUTO/AVATAR]**
 
@@ -3721,6 +3729,8 @@ O que já passaram antes de chegar?
 ---
 
 ## Referência: templates/copysearch-template.md
+
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
 
 # CopySearch Report: [PRODUCT/CAMPAIGN NAME]
 
@@ -4414,7 +4424,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.1",
+  "content_revision": "1.0.2",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }

@@ -1,6 +1,6 @@
 ---
 name: copy-pesquisa-avatar
-description: Antes de escrever, saber o que a pessoa já diz para si mesma. Use quando o pedido envolver avatar, público, conversa mental, motivos, nível de consciência, sofisticação do mercado.
+description: Pesquise lacunas relevantes sobre o público usando memória, acervo e fontes disponíveis. Entregue uma síntese com evidências, hipóteses e plano de coleta, sem inventar pesquisa ou impor quotas de um método de copy.
 version: 0.4.3
 author: José Carlos Amorim
 license: MIT
@@ -19,31 +19,21 @@ metadata:
     - copy-pipeline
     - copy-auditoria
 ---
+# Pesquisa de público para a próxima decisão
 
-# DENTRO DA CABEÇA · Conversa mental, motivos, sofisticação
-
-Antes de escrever, saber o que a pessoa já diz para si mesma. O agente pesquisa o avatar, mapeia a conversa mental, os seis motivos primários e o nível de sofisticação do mercado, e devolve o retrato que a copy vai usar. Sem esse passo, toda headline é chute.
+Continue o perfil e a hipótese de público da pessoa. Investigue o que realmente muda a comunicação e entregue uma síntese rastreável do material acessível. Lacunas não se tornam fatos para preencher um template.
 
 ## When to Use
 
-- O pedido envolve: avatar, público, conversa mental, motivos, nível de consciência, sofisticação do mercado.
-- Diga: "pesquisa o avatar de [produto] em [mercado]".
-- NÃO use quando o pedido é uma peça em um método específico de copywriter ("como Halbert"): isso é `copy-metodo-<nome>`.
+Use para apoiar a documentação de público, posicionamento ou pautas com pesquisa pertinente. Aproveite perfil/ICP ou contexto equivalente; uma hipótese declarada é um ponto de partida válido. Não exige pesquisa externa quando ela não está disponível.
 
 ## Quick Reference
 
-Obrigatórios: negócio/oferta, público/hipótese e decisão a esclarecer. Fontes disponíveis ou ferramenta de pesquisa real definem o alcance; falta de rede não autoriza fontes inventadas.
+Obrigatórios: negócio/oferta, público ou hipótese e decisão a esclarecer. Fontes acessíveis definem o alcance.
 
-Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Quality Checklist` próprios.
+Para a síntese inicial, siga Procedure; não precisa abrir ou preencher um template. Para aprofundamento solicitado, escolha somente a referência pertinente entre avatar-research, analyze-mental-conversation, diagnose-market-sophistication, copysearch e diagnose-awareness-level. Esses métodos não são etapas obrigatórias da jornada. O material dos seis motivos está indisponível nesta edição; não invente categorias para substituí-lo.
 
-| sub-tarefa | referência |
-|---|---|
-| avatar research | `references/avatar-research.md` |
-| analyze mental conversation | `references/analyze-mental-conversation.md` |
-| map 6 primary motives | `references/map-6-primary-motives.md` |
-| diagnose market sophistication | `references/diagnose-market-sophistication.md` |
-| copysearch | `references/copysearch.md` |
-| diagnose awareness level | `references/diagnose-awareness-level.md` |
+Os templates preservam métodos e atribuições de origem. Mínimos de fatos, headlines e pontuações não são critérios de aceite desta síntese. Documentos citados que não estejam acessíveis permanecem fontes não consultadas.
 
 ## Procedure
 
@@ -53,7 +43,7 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
 2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
 3. Consulte o perfil/ICP e acervo antes de coletar novamente required/optional. Identifique as lacunas que realmente mudam a comunicação. Não transforme descrição da fundadora em entrevista de clientes.
 4. Pesquise nos materiais acessíveis e, quando disponível, ferramenta externa adequada. Registre origem, data conhecida e trecho que sustenta cada achado. Sem acesso, deixe a pesquisa externa pendente e entregue síntese do acervo/hipóteses e um plano específico de coleta.
-5. Escreva a síntese do público no formato pertinente da referência, diferenciando citação, fato observado, inferência e hipótese. Não invente números, depoimentos, emoções ou nomes. Perguntas necessárias têm exemplos contextuais próprios. Entregue ao ICP/posicionamento os achados e limites sem apagar sua procedência.
+5. Salve a síntese de público no destino autorizado, diferenciando citação, fato observado, inferência e hipótese. O formato inicial pode ser Markdown simples com mapa de origem, achados, lacunas e plano de coleta. Templates ampliados são opcionais: não exigir mínimos de fatos, headlines, insights ou pontos para esta entrega. Não invente números, depoimentos, emoções ou nomes. Perguntas necessárias têm exemplos contextuais próprios. Entregue ao ICP/posicionamento os achados e limites sem apagar sua procedência.
 6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
 
 ## Avaliação de rotina
@@ -62,10 +52,10 @@ Pesquisa recorrente pode valer com fontes novas e decisão a alimentar. Não ger
 
 ## Pitfalls
 
-- Pular o bloco `Inputs` e escrever com o que veio. Falta de avatar ou de benefício principal produz copy genérica; pergunte.
-- Misturar duas sub-tarefas numa entrega só. Uma de cada vez, cada uma com seu checklist.
-- Preencher `[COLCHETES]` com chute para a peça "ficar pronta". Colchete aberto é honesto; número inventado é dívida.
-- Ignorar o `Output Format`. Ele existe para a peça encaixar no passo seguinte (página, e-mail, anúncio).
+- Trocar evidência por leitura psicológica sem fonte ou tratar relato da fundadora como entrevista de cliente.
+- Preencher quotas de fatos/headlines com conteúdo inventado ou impor quantidade mínima de insights no lugar delas.
+- Percorrer todas as referências ou exigir um documento histórico ausente para começar.
+- Deixar de salvar a síntese possível por falta de pesquisa externa, campos opcionais ou pontuação.
 
 ## Verification
 
