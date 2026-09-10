@@ -11,7 +11,7 @@ metadata:
   tags: copy, copywriting, pesquisa, avatar
   related: copy-pipeline, copy-auditoria
   contract_version: 1.0.0
-  content_revision: 1.0.2
+  content_revision: 1.0.3
   distribution_ref: main
 ---
 # Pesquisa de público para a próxima decisão

@@ -17,7 +17,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-icp
-  content_revision: 1.0.1
+  content_revision: 1.0.2
   verification_evidence: []
 ---
 

@@ -11,7 +11,7 @@ metadata:
   tags: processos, sop, qualidade, operacao
   related: sop-criar, sop-auditar
   contract_version: 1.0.0
-  content_revision: 1.0.1
+  content_revision: 1.0.2
   distribution_ref: main
 ---
 

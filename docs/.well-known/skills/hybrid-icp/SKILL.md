@@ -11,7 +11,7 @@ metadata:
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-perfil, hybrid-fundador
   contract_version: 1.0.0
-  content_revision: 1.0.1
+  content_revision: 1.0.2
   distribution_ref: main
 ---
 # Público para orientar a próxima decisão

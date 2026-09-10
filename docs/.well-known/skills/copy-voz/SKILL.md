@@ -11,7 +11,7 @@ metadata:
   tags: copy, copywriting, voz, marca-pessoal
   related: copy-pipeline, copy-auditoria
   contract_version: 1.0.0
-  content_revision: 1.0.2
+  content_revision: 1.0.3
   distribution_ref: main
 ---
 # Voz da pessoa, com origem e limites

@@ -17,7 +17,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: copy-voz
-  content_revision: 1.0.2
+  content_revision: 1.0.3
   verification_evidence: []
 ---
 

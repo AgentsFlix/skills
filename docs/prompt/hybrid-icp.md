@@ -270,7 +270,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" init --version 0.4.3 --revision 1.0.1
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" init --version 0.4.3 --revision 1.0.2
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/hybrid-icp" audit
@@ -365,7 +365,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: hybrid-icp
-  content_revision: 1.0.1
+  content_revision: 1.0.2
   verification_evidence: []
 ---
 
@@ -433,6 +433,10 @@ Aceitar o formato ou a estrutura de um exemplo não confirma seus componentes fa
 O pedido para documentar, preparar ou atualizar já abrange salvar a entrega no destino local autorizado. Não crie uma aprovação adicional para essa escrita reversível. Aprovação de conteúdo, publicação, acesso novo e ativação de rotina continuam decisões separadas.
 
 Conclua a entrega solicitada quando houver um artefato útil com origem e lacunas explícitas, mesmo que o documento ampliado permaneça parcial. Registre separadamente resultado da operação e estado do documento. Use waiting quando uma lacuna realmente impede a entrega atual; diga qual dependência impede qual resultado. Não retenha uma síntese possível por falta de campos opcionais, pesquisa indisponível ou desconhecimento já declarado. No encerramento, informe a próxima ação sem reabrir decisões resolvidas.
+
+Salve cada revisão uma vez pelo mecanismo disponível. Quando uma ferramenta já cria o Markdown e seus metadados, envie o conteúdo diretamente a ela; não pré-grave o mesmo caminho com a ferramenta de arquivos. Se uma revisão já foi salva, preserve-a e crie outra somente quando houver uma correção concreta. Evite copiar perfil, público e documentos anteriores: referencie seus arquivos e acrescente a síntese necessária para compreender a entrega atual.
+
+Depois de salvar, encerre com uma resposta curta que informe resultado, caminho, estado, lacunas indispensáveis e próximo passo. Não repita o artefato inteiro, o mapa de memória ou o contrato no encerramento. Perguntas que ainda forem necessárias continuam exigindo seu próprio exemplo contextual. O documento pode ser detalhado; o resumo final não precisa duplicá-lo.
 
 
 ---
@@ -1025,7 +1029,7 @@ Criar múltiplos arquivos:
   "contract_version": "1.0.0",
   "skill_id": "hybrid-icp",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.1",
+  "content_revision": "1.0.2",
   "distribution_ref": "main"
 }
 
@@ -1529,7 +1533,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.1",
+  "content_revision": "1.0.2",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }

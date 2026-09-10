@@ -10,7 +10,7 @@ metadata:
   source: https://github.com/AgentsFlix/skills/tree/main/skills/editorial-rotina
   tags: editorial, marca, memoria, okf
   contract_version: 1.0.0
-  content_revision: 1.0.1
+  content_revision: 1.0.2
   distribution_ref: main
 ---
 
