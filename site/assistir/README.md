@@ -95,7 +95,7 @@ O cadastro usa `seasons[].atividades`, com número explícito 2, sem vídeo, UID
 
 ### Sequência do episódio
 
-`episode-navigation.js` centraliza as oito partes, o índice expansível e os links anterior/próxima.
+`episode-navigation.js` centraliza as nove partes, o índice expansível e os links anterior/próxima.
 Cada parte conserva os controles de suas etapas, as ilustrações aprovadas e a indicação de T1:E2.
 Links diretos continuam funcionando. A navegação entre páginas não marca tarefas como concluídas.
 As escolhas das práticas duram enquanto a página permanece aberta; recarregar inicia outra visita.
@@ -110,6 +110,7 @@ As escolhas das práticas duram enquanto a página permanece aberta; recarregar 
 | 6 | `novo-cliente.html` | Elicitar nicho, escrita, visual e três de seis templates; puxar a documentação, construir com um template e entregar. |
 | 7 | `cliente-pratica.html` | Conversar por celular com três clientes fictícios, registrar escolhas e entregar a cada um. |
 | 8 | `base-negocio.html` | Nove etapas da base: negócio, público, posicionamento, voz, conhecimento, pilares, visual, templates e operação. |
+| 9 | `jornada-marca.html` | Montar a base real da marca com prompts, conversa externa, revisão e salvamento declarados. |
 
 Os limites de capacidade são hipóteses pedagógicas da simulação, não medições reais.
 Nenhuma página envia mensagens ou publica nas redes sociais. A base final permite revisar arquivos
@@ -137,3 +138,15 @@ Som ambiente e efeitos têm controles independentes, disponíveis em todas as pa
 Efeitos: botão, seleção, arraste, conclusão, campainha, água, fervura, mexer, prato servido,
 passagem de pedido, maquininha, nota, esteira rodando/parando, documento, erro e mensagens
 recebidas/enviadas. Os arquivos vieram dos áudios aprovados para o episódio.
+
+### Parte 9: jornada da marca real
+
+`jornada-marca-data.json` preserva as nove perguntas, opções e prompts fornecidos na especificação de 09/09/2026. O modelo acrescenta apenas escolha, contexto, continuidade, nome do negócio, agente escolhido, entradas pendentes e o contrato da pasta. Não inclui caminhos pessoais ou comandos de instalação inventados. As referências distribuídas abrem o catálogo existente; procedimentos pessoais ficam condicionados à disponibilidade e à adaptação no agente.
+
+A parte 9 conserva estado em `agentflix-brand-journey-v1` no localStorage, separado por negócio; as oito simulações anteriores conservam seu comportamento de visita. O aluno declara conversa, revisão, critério e salvamento. A página não executa skills, não lê a conversa externa e não verifica arquivos ou acesso ao Drive. O progresso de navegação não conclui uma etapa.
+
+Mudanças invalidam as confirmações das entregas dependentes e preservam os registros anteriores. A conclusão exige nove etapas sem pendências, aplicações visuais aprovadas, estática e carrossel completos com modelos reutilizáveis, piloto revisado e pasta de Drive confirmada pelo aluno. Preparar publicação abre apenas orientação para o processo separado; não conecta nem publica.
+
+Cópia bloqueada mantém o prompt disponível para seleção manual. Armazenamento indisponível ou inválido preserva o trabalho em memória e avisa para baixar o registro. Dados inválidos existentes não são sobrescritos. Mudanças em outra aba suspendem a gravação para evitar conflitos. O download é um registro da jornada, não os documentos externos da marca.
+
+Testes de comportamento: `tests/brand_journey.cjs`, chamado por `tests/test_brand_journey.py`. As confirmações são autodeclaradas; o fluxo externo de cada agente/skill/Drive precisa ser testado no ambiente do aluno e não é certificado por estes testes de interface.
