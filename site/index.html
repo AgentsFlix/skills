@@ -668,7 +668,7 @@
         <div class="lines"></div>
         <div class="num">${s.n}</div>
         ${cover}
-        ${isLocked(s.slug) ? '<div class="lock" title="Conteúdo exclusivo" aria-label="Conteúdo exclusivo">🔒</div>' : ""}
+        ${isLocked(s.slug) ? `<div class="lock" title="Conteúdo exclusivo" aria-label="Conteúdo exclusivo">${lockIcon()}</div>` : ""}
         <div class="foot">
           <div class="badge">${esc(s.badge)}</div>
           <div class="ttl">${esc(s.title)}</div>
@@ -1117,6 +1117,10 @@
     else if(!h || h === "chips" || h === "inicio") setCatalogView("catalog", {updateUrl:false, scroll:h === "chips"});
   });
 
+  function lockIcon() {
+    return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/><path d="M12 14v3"/></svg>';
+  }
+
   function listIcon(selected) {
     return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${selected ? 'M5 12l4 4L19 6' : 'M12 4v16M4 12h16'}"/></svg>`;
   }
@@ -1523,7 +1527,7 @@
     const vids = shop.videos[s.slug] || [], prices = shop.prices[s.slug] || [], pass = shop.prices.pass || [];
     if (!vids.length && !prices.length) return "";
     const ok = hasAccess(s.slug);
-    const list = vids.map((v) => `<li><button class="vbtn ${ok ? "" : "off"}" data-act="${ok ? "play" : "buy"}" data-video="${esc(v.id)}" data-slug="${esc(s.slug)}"><span class="vt">${ok ? "▶" : "🔒"}</span><span class="vn">${esc(v.title)}</span>${v.duration_seconds ? `<span class="vd">${Math.max(1, Math.round(v.duration_seconds / 60))} min</span>` : ""}</button></li>`).join("");
+    const list = vids.map((v) => `<li><button class="vbtn ${ok ? "" : "off"}" data-act="${ok ? "play" : "buy"}" data-video="${esc(v.id)}" data-slug="${esc(s.slug)}"><span class="vt">${ok ? "▶" : lockIcon() }</span><span class="vn">${esc(v.title)}</span>${v.duration_seconds ? `<span class="vd">${Math.max(1, Math.round(v.duration_seconds / 60))} min</span>` : ""}</button></li>`).join("");
     const item = prices.find((p) => !p.interval), mo = pass.find((p) => p.interval === "month"), yr = pass.find((p) => p.interval === "year");
     const buy = ok
       ? `<p class="owned">ACESSO LIBERADO${shop.access.has("pass") && !shop.access.has(s.slug) ? " · PASSE" : ""}</p>`

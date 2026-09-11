@@ -218,4 +218,6 @@
   window.addEventListener('pagehide', stop);
   window.addEventListener('pageshow', renderFactory);
   renderFactory(); renderPuzzle();
+  EpisodePiecePicker.mount({root:$('puzzle'), tray:$('tray'), pieces:()=>order.map(getPiece), slots:()=>slots,
+    labels:stages, art:id=>StageIdentity.piece(id), place(id,i){selected=id;place(i);}});
 })();
