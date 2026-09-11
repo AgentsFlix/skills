@@ -12,7 +12,16 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "a80d813f1336b13c37ccfaa2857290e408a5ec8e38e9aa30263df1e7fce1f860",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "campainha-v1.png",
+          "caderneta-v1.png"
+        ],
+        [
+          "resultado do prompt 1"
+        ]
+      ]
     },
     {
       "name": "menu",
@@ -23,7 +32,15 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "94f4bf37a25a6a43e67afb8e223ee7dd52425bbbdbb7db46e204fddff29015e6",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "menu-v1.png"
+        ],
+        [
+          "resultado do prompt 1"
+        ]
+      ]
     },
     {
       "name": "prato",
@@ -33,7 +50,12 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "a04c7dd0608007dd3f640f207e17e7ef0d819fd6e3c72e89e1b7b15c03241261",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "prato-v1.png"
+        ]
+      ]
     },
     {
       "name": "academia",
@@ -45,7 +67,18 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "80b0b4041123896dc71f419463d0e60e564dabec46d8153135588744cf6d981b",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/academia.png"
+        ],
+        [
+          "resultado do prompt 1"
+        ],
+        [
+          "resultado do prompt 1"
+        ]
+      ]
     },
     {
       "name": "esteira",
@@ -55,7 +88,12 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "d565ca6b7235dcd4f4118b9fde688a6e997fcb841f5c500cadc806bfa1a30bdc",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "esteira-v1.png"
+        ]
+      ]
     },
     {
       "name": "maquininha",
@@ -65,7 +103,12 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "0c1d67d8d09258a66a833362fe6843b87ce3c8f879218b99fae8d381f306b399",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "maquininha-v1.png"
+        ]
+      ]
     },
     {
       "name": "editor",
@@ -75,7 +118,12 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "113d11ff6fabf7645312a94ff7b13032a5a0bb05f3e1d135b4ed097ac476c2ad",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/editor.png"
+        ]
+      ]
     },
     {
       "name": "loja",
@@ -85,7 +133,12 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "5c4adec6c9e931ad64383e6d77d7cf7cd12dea868c0a166bc0d09cd15c60ecf6",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/loja.png"
+        ]
+      ]
     },
     {
       "name": "cafe",
@@ -95,7 +148,12 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "79fd015f663af23ebf34a30a70e15320983467014cb0fa08f887a31411f82cb8",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/cafe.png"
+        ]
+      ]
     },
     {
       "name": "mensagem",
@@ -105,7 +163,12 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "9d4d6a465c81d8b1042c33a5e73facb579ec806488c9b3540482d52ef673ead3",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/mensagem.png"
+        ]
+      ]
     },
     {
       "name": "profissional",
@@ -115,11 +178,18 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "8a615f48fa295e300a6f4718b6875c57f23b935c70d22734a5da6c8e2bb21567",
-      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/profissional.png"
+        ]
+      ]
     }
   ],
   "approvedReference": {
     "file": "cafe.png",
     "approval": "Usuário aprovou o copo em 11/09/2026 e pediu o mesmo padrão de geração nas próximas ilustrações."
-  }
+  },
+  "date": "2026-09-11",
+  "export": "PNG copiado sem transformação; metadados e hashes apenas lidos por script"
 }

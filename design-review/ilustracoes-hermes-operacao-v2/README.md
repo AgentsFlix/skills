@@ -52,3 +52,10 @@ As nove páginas foram capturadas antes e depois em 1440, 768 e 390 px, totaliza
 | Jornada da marca | [1440](before/jornada-marca-1440.png) · [768](before/jornada-marca-768.png) · [390](before/jornada-marca-390.png) | [1440](after/jornada-marca-1440.png) · [768](after/jornada-marca-768.png) · [390](after/jornada-marca-390.png) |
 
 No celular, a entrada da jornada já ocultava a ilustração para priorizar o formulário; esse comportamento foi preservado. As capturas registram estados iniciais das páginas. Checks e resultado de integração ficam no [PR 76](https://github.com/AgentsFlix/skills/pull/76).
+
+## Validação da entrega
+
+- 76 testes Python aprovados; `check_site.py` sem erros.
+- 52 skills válidas; scanner sem bloqueios; `build_docs.py` sem alterações em `docs/` ou `catalog.json`.
+- [27 cenários de interação aprovados](interactions.json) no roteiro existente `tests/mobile_exercises.cjs`: toque, teclado, arraste, correção, rodadas e reinício. Inclui as três atividades que reutilizam as ilustrações nas peças e nos seletores.
+- Os dez PNGs v2 ativos foram carregados pelas páginas. Todos os onze finais têm alfa 0–255. Os 21 originais foram comparados por bytes com a base da auditoria.
