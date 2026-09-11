@@ -1,6 +1,6 @@
 (() => {
   const B=window.MockupBank,esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const art=name=>`<img src="art/eugencia/${name}.png" alt="" draggable="false">`;
+  const art=name=>`<img src="art/${['academia','cafe','editor','loja','mensagem','profissional'].includes(name)?'v2':'eugencia'}/${name}.png" alt="" draggable="false">`;
   const doc=(name,items)=>`<div class="visual-document"><b>${esc(name)}</b>${items.map((s,i)=>`<span class="doc-line ${i===0?'doc-line-title':''}">${esc(s)}</span>`).join('')}</div>`;
   const chip=(s)=>`<span class="visual-chip">${s}</span>`;
   const poster=(c)=>`<div class="visual-post">${B.render(c)}</div>`;

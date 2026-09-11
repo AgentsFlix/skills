@@ -12,7 +12,7 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "a80d813f1336b13c37ccfaa2857290e408a5ec8e38e9aa30263df1e7fce1f860",
-      "status": "gerada; QA visual no navegador pendente"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
     },
     {
       "name": "menu",
@@ -23,7 +23,7 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "94f4bf37a25a6a43e67afb8e223ee7dd52425bbbdbb7db46e204fddff29015e6",
-      "status": "gerada; QA visual no navegador pendente"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
     },
     {
       "name": "prato",
@@ -33,7 +33,7 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "a04c7dd0608007dd3f640f207e17e7ef0d819fd6e3c72e89e1b7b15c03241261",
-      "status": "gerada; QA visual no navegador pendente"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
     },
     {
       "name": "academia",
@@ -45,7 +45,81 @@
       ],
       "alpha": "RGBA; alfa 0–255",
       "sha256": "80b0b4041123896dc71f419463d0e60e564dabec46d8153135588744cf6d981b",
-      "status": "gerada; QA visual no navegador pendente"
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+    },
+    {
+      "name": "esteira",
+      "source": "esteira-v1.png",
+      "prompts": [
+        "Simplify this conveyor belt into a flat 2D hand-drawn editorial illustration. Use 5 broad belt segments, two simple legs, ivory side, thin muted cyan rim and sage gray belt. Remove bolts, bevels, shine, shading and tiny mechanical details. Fine charcoal outlines. Complete conveyor centered with generous empty margins. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "d565ca6b7235dcd4f4118b9fde688a6e997fcb841f5c500cadc806bfa1a30bdc",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+    },
+    {
+      "name": "maquininha",
+      "source": "maquininha-v1.png",
+      "prompts": [
+        "Simplify this payment terminal into a flat 2D hand-drawn editorial illustration. Nearly frontal view, ivory body and blank receipt, sage gray blank screen, a few plain grouped keypad shapes with one muted cyan confirmation key. Fine organic charcoal outlines, no 3D sidewalls, bevels, highlights or shading. Complete object centered with generous empty margins. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "0c1d67d8d09258a66a833362fe6843b87ce3c8f879218b99fae8d381f306b399",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+    },
+    {
+      "name": "editor",
+      "source": "eugencia/editor.png",
+      "prompts": [
+        "Simplify this laptop with a graphic editor into a flat 2D hand-drawn editorial illustration. Ivory screen with one charcoal framed empty square and muted cyan block below; just two simple tool symbols. Keyboard represented by 3 broad charcoal strokes, no individual tiny keys. Sage gray casing, fine charcoal organic outlines. Complete centered object occupying 75% of square canvas, no glow or shadows. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "113d11ff6fabf7645312a94ff7b13032a5a0bb05f3e1d135b4ed097ac476c2ad",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+    },
+    {
+      "name": "loja",
+      "source": "eugencia/loja.png",
+      "prompts": [
+        "Simplify this ivory shirt on a hanger into a flat 2D hand-drawn editorial illustration. Preserve the collar, pocket and short sleeves, only 3 simple buttons and 2 fold lines. Sage gray hanger and hook with fine charcoal outline so it reads on dark backgrounds. Muted cyan small collar accent. No stitching, shading, highlights or glow. Whole object centered with generous empty margins. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "5c4adec6c9e931ad64383e6d77d7cf7cd12dea868c0a166bc0d09cd15c60ecf6",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+    },
+    {
+      "name": "cafe",
+      "source": "eugencia/cafe.png",
+      "prompts": [
+        "Simplify this iced coffee cup illustration. Keep its straw, lid, ivory sleeve and two simple flat ice shapes. Thin charcoal outlines, muted cyan straw, charcoal coffee, no brown, no white reflection streaks, stitching, shadows or complex lid ridges. Flat 2D editorial style, whole object centered in a square canvas. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "79fd015f663af23ebf34a30a70e15320983467014cb0fa08f887a31411f82cb8",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+    },
+    {
+      "name": "mensagem",
+      "source": "eugencia/mensagem.png",
+      "prompts": [
+        "Enlarge this same message bubble illustration to occupy about 75% of a square canvas, evenly centered with generous empty margins. Preserve the ivory speech balloon, simple sage gray avatar and muted cyan notification circle. Fine organic charcoal outlines, flat fills, no glow or shadows. It needs to read clearly at 48px. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "9d4d6a465c81d8b1042c33a5e73facb579ec806488c9b3540482d52ef673ead3",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
+    },
+    {
+      "name": "profissional",
+      "source": "eugencia/profissional.png",
+      "prompts": [
+        "Create a simplified waist-up framing of this SAME woman working on her laptop, as a flat 2D hand-drawn editorial illustration. Preserve her long black hair, same light peach skin, subtle friendly face, ivory collared shirt and muted cyan trousers barely visible at waist. Head, shoulders, both forearms and both hands visible with the whole laptop. Omit chair and desk legs; use one simple ivory tabletop segment with clean natural ends. Fine organic charcoal outlines, sage gray laptop, few facial marks, no glow, no shadows. Square composition with whole group centered and generous empty margins, legible at 48px. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "8a615f48fa295e300a6f4718b6875c57f23b935c70d22734a5da6c8e2bb21567",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px"
     }
-  ]
+  ],
+  "approvedReference": {
+    "file": "cafe.png",
+    "approval": "Usuário aprovou o copo em 11/09/2026 e pediu o mesmo padrão de geração nas próximas ilustrações."
+  }
 }

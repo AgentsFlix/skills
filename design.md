@@ -128,6 +128,25 @@ acrescentados apenas pelo tema. Sem detalhes que desapareçam no tamanho final.
 
 Quando a peça pedir fundo sólido, substituir a linha de transparência pela cor e composição solicitadas; não pedir fundo transparente e sólido ao mesmo tempo. Para objeto isolado, retirar as instruções de anatomia. Para outra pose, descrever apenas a ação nova e manter a referência do personagem. Não gerar uma prancha de variantes quando o pedido for um asset.
 
+### Referência aprovada: copo transparente
+
+Em 11/09/2026, o Zé aprovou o resultado de [cafe.png](site/assistir/hermes-em-operacao/t1e2/art/v2/cafe.png) e pediu o mesmo padrão de geração nas próximas ilustrações. Esse copo é a referência concreta de acabamento e transparência para objetos editoriais: poucos detalhes, contorno fino, preenchimentos simples e recorte limpo. O objeto representado muda conforme o conteúdo; não acrescentar um copo a outras cenas.
+
+Para revisar uma peça, partir do original transparente, descrever a simplificação de forma curta e preservar seu significado. Acrescentar `Preserve a truly transparent background. Export as a transparent PNG, with no background.` O prompt usado no copo foi:
+
+```text
+Simplify this iced coffee cup illustration. Keep its straw, lid, ivory sleeve
+and two simple flat ice shapes. Thin charcoal outlines, muted cyan straw,
+charcoal coffee, no brown, no white reflection streaks, stitching, shadows
+or complex lid ridges. Flat 2D editorial style, whole object centered in a
+square canvas. Preserve a truly transparent background. Export as a
+transparent PNG, with no background.
+```
+
+Referência de entrada: `art/eugencia/cafe.png`. Ferramenta: geração integrada de imagens do Codex; modelo não informado. O prompt exato e os demais prompts estão em [art/v2/prompts.json](site/assistir/hermes-em-operacao/t1e2/art/v2/prompts.json).
+
+**A prévia quadriculada não comprova transparência.** Neste lote, algumas tentativas vieram em RGB com o quadriculado gravado. Elas foram rejeitadas. Exigir PNG com alfa real e conferir o recorte em fundos claro e escuro no navegador antes de integrar. Se uma edição repetir o fundo gravado, retomar o original transparente. Registrar a verificação do arquivo final; nunca prometer que o prompt sozinho garante o canal alfa.
+
 ### Conferência e registro de cada lote
 
 1. Identificar função, referência aprovada, quantidade e tamanho real de uso. Reutilizar assets adequados antes de criar duplicatas.
