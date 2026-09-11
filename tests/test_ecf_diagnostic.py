@@ -231,7 +231,7 @@ for(const change of [x=>x.axes={},x=>x.account.followers_gained=100,x=>x.inbox.q
 // Numerators and denominators of post ratios are always paired by post.
 d=make();d.posts.items[0].likes=null;r=board(d);assert.equal(r.axes.creator.components[1].raw,.04);assert.equal(r.axes.creator.components[1].quality,'partial');assert.equal(r.axes.expert.components[0].quality,'measured');
 d.account.reach=60000;assert.equal(board(d).axes.creator.components[1].raw,.04);assert.equal(board(d).axes.founder.components[0].raw,90/60000);
-d=make();d.account.follows=0;assert.equal(board(d).axes.founder.components[1].points,0);d.account.follows=null;assert.equal(board(d).axes.founder.components[1].points,null);assert.equal(read(d).audit.measured,8);
+d=make();d.account.accounts_engaged=0;assert.equal(board(d).axes.founder.components[1].points,0);d.account.accounts_engaged=null;assert.equal(board(d).axes.founder.components[1].points,null);assert.equal(read(d).audit.measured,8);
 d=make();d.account.reach=0;assert.equal(board(d).axes.creator.components[0].points,0);assert.equal(board(d).axes.founder.score,null);
 d=make();d.account.followers_updated_at=null;assert.equal(board(d).axes.creator.components[0].quality,'partial');assert.equal(board(d).axes.creator.components[0].raw,2.4);
 // Milliseconds vs seconds: median of per-Reel ratios, not completion rate or engagementRate.
@@ -248,6 +248,14 @@ d=N.emptyInitialReport('@perfil','2026-08-01','2026-08-30');assert.equal(board(d
 // Numeric repairs are explicit, without converting percentages or ambiguous formatting.
 d=make();d.account.reach='12000';assert.equal(read(d).data.account.reach,12000);assert.equal(read(d).audit.changes.length,1);
 for(const v of ['12.000,00','1%','12.500',false,-1]){d=make();d.account.reach=v;assert.throws(()=>read(d));}
+// Engaged accounts use native account counts, without adopting follower values.
+d=make();d.account.accounts_engaged=1200;r=board(d);assert.equal(r.axes.founder.components[1].raw,.1);assert.equal(r.axes.founder.components[1].points,80);
+d=make();d.account.follows=75;assert.throws(()=>read(d),/fora do contrato/);
+// V3 remains readable at its original score; migration preserves eight metrics and ideals.
+const old=N.V3.initialExample(),oldCopy=JSON.stringify(old);assert.equal(read(old).audit.revision,'ecf-zernio-v3');assert.equal(read(old).audit.scores.founder.score,63);
+old.reference.targets.founder.cliques_perfil=.02;old.reference.targets.creator.alcance=6;old.account.reason='Cobertura anterior limitada';const beforeUpgrade=JSON.stringify(old);
+const migrated=N.upgrade(old);assert.equal(JSON.stringify(old),beforeUpgrade);assert.equal(migrated.account.reason,old.account.reason);assert.equal(migrated.method,'ecf-zernio-v4');assert.equal(migrated.account.accounts_engaged,null);assert.equal(migrated.account.follows,undefined);assert.equal(migrated.reference.targets.founder.novos_seguidores,undefined);assert.equal(migrated.reference.targets.founder.contas_engajadas,.1);assert.equal(migrated.reference.targets.founder.cliques_perfil,.02);assert.equal(migrated.reference.targets.creator.alcance,6);assert.equal(JSON.stringify(migrated.posts),JSON.stringify(old.posts));assert.equal(migrated.inbox.unique_conversations,old.inbox.unique_conversations);assert.equal(read(migrated).audit.measured,8);assert.equal(N.V3.initialExample().method,'ecf-zernio-v3');assert.equal(JSON.stringify(N.V3.initialExample()),oldCopy);
+assert.throws(()=>I.read(JSON.stringify(make()),old),/method/);assert.throws(()=>I.read(JSON.stringify(old),make()),/method/);
 // New ideals stay independent from the previous ECF method.
 d=make();const ref=N.initialReference();ref.targets.creator.alcance=6;assert(Math.abs(N.initialDashboard(d,ref).axes.creator.score-160/3)<1e-8);
 assert.equal(I.read(JSON.stringify(M.initialExample())).data.method,'ecf-inicial-v2');
@@ -256,7 +264,7 @@ const tmp=process.argv[1],validator=path.join(tmp,'validate.cjs'),draft=path.joi
 fs.writeFileSync(validator,['model.js','native.js','import.js','validator-cli.cjs'].map(f=>fs.readFileSync(dir+f,'utf8')).join('\n'));
 const expected=N.emptyInitialReport('@perfil.exemplo','2026-08-01','2026-08-30');fs.writeFileSync(contract,JSON.stringify(expected));fs.writeFileSync(draft,JSON.stringify(make()));
 const run=()=>cp.spawnSync(process.execPath,[validator,draft,'--contract',contract,'--output',out],{encoding:'utf8'});
-let p=run();assert.equal(p.status,0,p.stderr);const receipt=JSON.parse(p.stdout);assert.equal(receipt.contract,'ecf-zernio-v3');assert.equal(receipt.measured,9);assert.equal(receipt.scores.expert.score,68);assert.equal(receipt.evidence_validation,'not_performed');assert.equal(receipt.json_sha256,require('node:crypto').createHash('sha256').update(fs.readFileSync(out)).digest('hex'));fs.unlinkSync(out);
+let p=run();assert.equal(p.status,0,p.stderr);const receipt=JSON.parse(p.stdout);assert.equal(receipt.contract,'ecf-zernio-v4');assert.equal(receipt.measured,9);assert.equal(receipt.scores.expert.score,68);assert.equal(receipt.evidence_validation,'not_performed');assert.equal(receipt.json_sha256,require('node:crypto').createHash('sha256').update(fs.readFileSync(out)).digest('hex'));fs.unlinkSync(out);
 d=make();d.inbox.unique_conversations=null;fs.writeFileSync(draft,JSON.stringify(d));p=run();assert.equal(p.status,2,p.stderr);assert.equal(JSON.parse(p.stdout).missing[0],'inbox.unique_conversations');fs.unlinkSync(out);
 for(const change of [x=>x.profile='@outro',x=>x.reference.targets.expert.salvamentos=.5]){d=make();change(d);fs.writeFileSync(draft,JSON.stringify(d));p=run();assert.equal(p.status,1);assert.equal(fs.existsSync(out),false);}
 console.log('ECF nativo: nove variáveis, fontes, unidades, cobertura, compatibilidade e CLI verificados.');

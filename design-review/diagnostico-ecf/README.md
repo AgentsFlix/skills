@@ -25,3 +25,10 @@ A pedido do usuário, o resultado principal passou a ter apenas Creator, Expert 
 O usuário escolheu uma régua ECF inicial ajustável, identificada como proposta. O método v2 usa pesos iguais nas médias, informa medições parciais e permite editar os ideais. O formulário transporta a régua ajustada no prompt. Os testes cobrem nove barras, três cards, médias, edição/restauração, geração/cópia do prompt v2, continuação da coleta, compatibilidade local com arquivo anterior, ausência de dados, escape de HTML, erro de JSON e ausência de overflow ou requisições externas. Detalhes em `cards-resultado.json`.
 
 A escolha da régua não é uma aprovação visual do resultado final. O PR continua disponível para revisão.
+
+
+## Revisão: contas engajadas no Founder
+
+`accounts-before-*` registra o exemplo v3 com Novos seguidores; `accounts-after-*` registra o exemplo v4 com Contas engajadas, em 1440, 768 e 390 px. As demais oito variáveis e o layout dos três cards permanecem. O ideal proposto da nova variável é 10%, ajustável na mesma régua. Todas as capturas usam dados fictícios.
+
+O QA em Chrome conferiu ajuste/restauração, contrato v4 no prompt copiado, execução do validador extraído do prompt, notas e hash, leitura v3 na escala original, migração explícita com preservação dos valores e ideais, importação de nove valores com cobertura parcial e exportação/reimportação sem alterações. A migração não converte seguidores em contas engajadas. Sem overflow nas três larguras, erros de página ou chamadas externas. Detalhes em `accounts-resultado.json`.

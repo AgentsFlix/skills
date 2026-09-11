@@ -126,8 +126,8 @@
     const fence=/^```(?:json)?\s*\n([\s\S]*?)\n```$/.exec(clean);
     if(fence){clean=fence[1];changes.push('Marcas do bloco JSON removidas.');}
     const source=parse(clean);
-    if(M.Native&&source?.method===M.Native.METHOD){
-      const N=M.Native;N.normalize(source,changes);N.validate(source);
+    if(M.Native?.forMethod(source?.method)){
+      const N=M.Native.forMethod(source.method);N.normalize(source,changes);N.validate(source);
       if(expected){
         N.validate(expected);
         if(source.profile.replace(/^@/,'').toLowerCase()!==expected.profile.replace(/^@/,'').toLowerCase()||source.window.start!==expected.window.start||source.window.end!==expected.window.end||(expected.account_id!==null&&source.account_id!==expected.account_id))fail('contrato','perfil, conta ou período diferente do pedido.');
