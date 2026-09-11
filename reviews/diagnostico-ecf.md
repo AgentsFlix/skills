@@ -21,7 +21,7 @@ Os prints foram fornecidos para a história e têm origem documentada junto aos 
 
 ## Verificação
 
-88 testes locais executados, 1 omitido pela versão do Python e os demais aprovados. Sintaxe do site, validação das 52 skills, scanner com zero bloqueios e build_docs sem diferenças nos arquivos gerados. QA Chrome em 1440, 768 e 390 px das quatro páginas e suas variações, imagens/modal, teclado, navegação/foco, recarga e movimento reduzido. Regressão do importador, compatibilidade v3/v4, CLI extraído do prompt, notas, hash e exportação/reimportação também aprovada.
+90 testes locais executados, 1 omitido pela versão do Python e os demais aprovados. Sintaxe do site, validação das 52 skills, scanner com zero bloqueios e build_docs sem diferenças nos arquivos gerados. QA Chrome em 1440, 768 e 390 px das quatro páginas e suas variações, imagens/modal, teclado, navegação/foco, recarga e movimento reduzido. Regressão do importador, compatibilidade v3/v4, CLI extraído do prompt, notas, hash e exportação/reimportação também aprovada.
 
 Evidências: `design-review/diagnostico-ecf/method-resultado.json`, capturas `method-*` e registros de cálculo/compatibilidade anteriores no mesmo diretório. As verificações automáticas não constituem revisão independente por outro agente nem autenticação das fontes de Instagram.
 
@@ -29,4 +29,4 @@ Evidências: `design-review/diagnostico-ecf/method-resultado.json`, capturas `me
 
 A nova abertura aguarda revisão visual conforme `design.md`. O PR segue rascunho. Os exemplos de tratamento explicam a metodologia e não implementam um plano editorial automático.
 
-88 testes e QA locais aprovados antes do envio; o resultado dos checks do HEAD final deve ser consultado no PR. A worktree e a prévia ficam disponíveis para revisão.
+90 testes e QA locais aprovados antes do envio; o resultado dos checks do HEAD final deve ser consultado no PR. A worktree e a prévia ficam disponíveis para revisão.
