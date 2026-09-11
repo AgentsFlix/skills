@@ -1124,7 +1124,7 @@
   document.addEventListener("keydown", (e) => {
     if (e.defaultPrevented) return;
     if (e.key === "Escape") { hidePreview(); if (!state.open && !$("q").hidden && !state.q) toggleSearch(false); if (introPhase !== "gate") stopIntro(true); closeAuth(); closeModal(); return; }
-    if ((e.key === "Enter" || e.key === " ") && introPhase === "gate") { e.preventDefault(); playIntro(true); return; }
+    if ((e.key === "Enter" || e.key === " ") && introPhase === "gate" && !e.target.closest('.intro-reading')) { e.preventDefault(); playIntro(true); return; }
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement || {}).tagName || "");
     if (e.key === "/" && !typing) { e.preventDefault(); toggleSearch(true); return; }
     if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches('.card[data-act="open"]')) { e.preventDefault(); openModal(e.target.dataset.slug); }
