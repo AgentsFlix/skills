@@ -217,5 +217,53 @@ console.log('ECF: normalização segura, migração 4/9, lacunas, contrato fixo 
             subprocess.run([shutil.which('node'), '-e', script, temp], cwd=ROOT, check=True)
 
 
+    @unittest.skipUnless(shutil.which('node'), 'Node is required for native metric checks')
+    def test_native_zernio_contract_and_scores(self):
+        script = r"""
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),cp=require('node:child_process');
+const dir='site/assistir/hermes-em-operacao/diagnostico-ecf/',box={module:{exports:{}},TextEncoder};
+for(const file of ['model.js','native.js'])vm.runInNewContext(fs.readFileSync(dir+file,'utf8'),box);
+const M=box.module.exports,N=M.Native;vm.runInNewContext(fs.readFileSync(dir+'import.js','utf8'),box);const I=box.module.exports;
+const read=d=>I.read(JSON.stringify(d)),board=d=>N.initialDashboard(d),make=()=>N.initialExample();
+let d=make(),r=board(d);assert.equal(r.axes.creator.score,64);assert.equal(r.axes.expert.score,68);assert(Math.abs(r.axes.founder.score-190/3)<1e-8);assert.equal(r.partial,false);assert.equal(read(d).audit.measured,9);assert.equal(read(d).audit.scores.founder.score,63);
+// A native file carries observations, never manually assigned scores or semantics.
+for(const change of [x=>x.axes={},x=>x.account.followers_gained=100,x=>x.inbox.qualified_dms=9,x=>x.posts.items[0].completionRate=1]){d=make();change(d);assert.throws(()=>read(d),/fora do contrato/);}
+// Numerators and denominators of post ratios are always paired by post.
+d=make();d.posts.items[0].likes=null;r=board(d);assert.equal(r.axes.creator.components[1].raw,.04);assert.equal(r.axes.creator.components[1].quality,'partial');assert.equal(r.axes.expert.components[0].quality,'measured');
+d.account.reach=60000;assert.equal(board(d).axes.creator.components[1].raw,.04);assert.equal(board(d).axes.founder.components[0].raw,90/60000);
+d=make();d.account.follows=0;assert.equal(board(d).axes.founder.components[1].points,0);d.account.follows=null;assert.equal(board(d).axes.founder.components[1].points,null);assert.equal(read(d).audit.measured,8);
+d=make();d.account.reach=0;assert.equal(board(d).axes.creator.components[0].points,0);assert.equal(board(d).axes.founder.score,null);
+d=make();d.account.followers_updated_at=null;assert.equal(board(d).axes.creator.components[0].quality,'partial');assert.equal(board(d).axes.creator.components[0].raw,2.4);
+// Milliseconds vs seconds: median of per-Reel ratios, not completion rate or engagementRate.
+d=make();d.posts.items.forEach((p,i)=>p.ig_reels_avg_watch_time_ms=[9000,15000,21000][i]);assert.equal(board(d).axes.expert.components[2].raw,.5);
+d.posts.items[0].media_product_type='FEED';d.posts.items[0].ig_reels_avg_watch_time_ms=0;d.posts.items[1].video_duration_seconds=null;assert.equal(board(d).axes.expert.components[2].raw,.7);assert.equal(board(d).axes.expert.components[2].quality,'partial');
+d.posts.items[2].video_duration_seconds=0;assert.equal(board(d).axes.expert.components[2].raw,null);
+d=make();d.posts.items.forEach(p=>{p.media_product_type='UNKNOWN';p.ig_reels_avg_watch_time_ms=0;});assert.equal(board(d).axes.expert.components[2].raw,null);assert.equal(board(d).axes.creator.components[1].raw,.04);
+d=make();d.posts.items[0].media_product_type='STORY';d.posts.items[0].likes=9999;assert.equal(board(d).axes.creator.components[1].raw,.04);
+d=make();d.posts.items.forEach(p=>p.ig_reels_avg_watch_time_ms=60000);assert.equal(board(d).axes.expert.components[2].raw,2);assert.equal(board(d).axes.expert.components[2].points,100);
+// Scope and coverage do not silently mix accounts or duplicated pages.
+for(const change of [x=>x.inbox.account_id='outra',x=>x.posts.items[1].id=x.posts.items[0].id,x=>x.posts.expected_count=4,x=>x.posts.items[0].published_at='2026-07-31T12:00:00Z',x=>x.account.status='missing',x=>x.posts.items[0].likes=1.2]){d=make();change(d);assert.throws(()=>read(d));}
+d=make();d.posts.expected_count=4;d.posts.status='partial';d.posts.reason='Uma página pendente';assert.equal(board(d).axes.expert.partial,true);
+d=N.emptyInitialReport('@perfil','2026-08-01','2026-08-30');assert.equal(board(d).overall,null);assert.equal(read(d).audit.measured,0);
+// Numeric repairs are explicit, without converting percentages or ambiguous formatting.
+d=make();d.account.reach='12000';assert.equal(read(d).data.account.reach,12000);assert.equal(read(d).audit.changes.length,1);
+for(const v of ['12.000,00','1%','12.500',false,-1]){d=make();d.account.reach=v;assert.throws(()=>read(d));}
+// New ideals stay independent from the previous ECF method.
+d=make();const ref=N.initialReference();ref.targets.creator.alcance=6;assert(Math.abs(N.initialDashboard(d,ref).axes.creator.score-160/3)<1e-8);
+assert.equal(I.read(JSON.stringify(M.initialExample())).data.method,'ecf-inicial-v2');
+// The copied validator emits the same native scores and byte hash as the page.
+const tmp=process.argv[1],validator=path.join(tmp,'validate.cjs'),draft=path.join(tmp,'draft.json'),contract=path.join(tmp,'contract.json'),out=path.join(tmp,'out.json');
+fs.writeFileSync(validator,['model.js','native.js','import.js','validator-cli.cjs'].map(f=>fs.readFileSync(dir+f,'utf8')).join('\n'));
+const expected=N.emptyInitialReport('@perfil.exemplo','2026-08-01','2026-08-30');fs.writeFileSync(contract,JSON.stringify(expected));fs.writeFileSync(draft,JSON.stringify(make()));
+const run=()=>cp.spawnSync(process.execPath,[validator,draft,'--contract',contract,'--output',out],{encoding:'utf8'});
+let p=run();assert.equal(p.status,0,p.stderr);const receipt=JSON.parse(p.stdout);assert.equal(receipt.contract,'ecf-zernio-v3');assert.equal(receipt.measured,9);assert.equal(receipt.scores.expert.score,68);assert.equal(receipt.evidence_validation,'not_performed');assert.equal(receipt.json_sha256,require('node:crypto').createHash('sha256').update(fs.readFileSync(out)).digest('hex'));fs.unlinkSync(out);
+d=make();d.inbox.unique_conversations=null;fs.writeFileSync(draft,JSON.stringify(d));p=run();assert.equal(p.status,2,p.stderr);assert.equal(JSON.parse(p.stdout).missing[0],'inbox.unique_conversations');fs.unlinkSync(out);
+for(const change of [x=>x.profile='@outro',x=>x.reference.targets.expert.salvamentos=.5]){d=make();change(d);fs.writeFileSync(draft,JSON.stringify(d));p=run();assert.equal(p.status,1);assert.equal(fs.existsSync(out),false);}
+console.log('ECF nativo: nove variáveis, fontes, unidades, cobertura, compatibilidade e CLI verificados.');
+"""
+        with tempfile.TemporaryDirectory() as temp:
+            subprocess.run([shutil.which('node'), '-e', script, temp], cwd=ROOT, check=True)
+
+
 if __name__ == '__main__':
     unittest.main()

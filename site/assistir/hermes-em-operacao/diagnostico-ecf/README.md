@@ -1,57 +1,61 @@
-# Diagnóstico ECF: três cards
+# Diagnóstico ECF: métricas nativas do Zernio
 
-Página independente em `/assistir/hermes-em-operacao/diagnostico-ecf/`. A primeira parte apresenta Creator, Expert e Founder, gera um prompt de coleta com Zernio e mostra três cards com as nove variáveis, médias e régua do ideal. Fontes, interpretação e cobertura ficam recolhidas em **Ver dados e critérios**.
+Página independente em `/assistir/hermes-em-operacao/diagnostico-ecf/`. Apresenta três cards, nove barras, médias e régua ajustável. O método atual é **ecf-zernio-v3**, solicitado em 10/09/2026 para usar somente métricas disponibilizadas pelo Zernio. A classificação de posts, comentários e DMs e a pesquisa de percepção deixam de ser pré-requisitos.
 
-## Régua inicial ajustável
+Creator organiza atenção, Expert organiza interesse e Founder organiza ações no perfil. São indicadores operacionais, não prova de expertise, intenção de compra, leads qualificados ou receita. A página não chama uma IA nem consulta o Instagram; lê o JSON local em memória.
 
-O método `ecf-inicial-v2` foi proposto nesta implementação a pedido do usuário em 10/09/2026, após a escolha explícita de uma régua ECF inicial ajustável. Os valores são parâmetros editoriais da proposta; não são estatísticas, benchmarks de mercado nem validação científica.
+## Métricas e régua proposta
 
-| Eixo | Variável | Ideal inicial |
-|---|---|---|
-| Creator | Alcance relativo | 100% |
-| Creator | Seguidores por alcance | 1% |
-| Creator | Compartilhamentos por alcance | 1% |
-| Expert | Salvamentos por alcance | 2% |
-| Expert | Autoridade por alcance | 0,1% |
-| Expert | Conversas qualificadas por alcance | 0,1% |
-| Founder | Intenção por alcance | 0,1% |
-| Founder | DMs qualificadas por alcance | 0,2% |
-| Founder | Reconhecimento na pesquisa | 50% |
+| Card | Variável | Cálculo | Ideal inicial proposto |
+|---|---|---|---|
+| Creator | Alcance por seguidor | alcance total da conta na janela / base atual de seguidores | 300% |
+| Creator | Curtidas | soma de likes / soma de reach dos mesmos posts | 5% |
+| Creator | Compartilhamentos | soma de shares / soma de reach dos mesmos posts | 1% |
+| Expert | Salvamentos | soma de saves / soma de reach dos mesmos posts | 2% |
+| Expert | Comentários | soma de comments / soma de reach dos mesmos posts | 1% |
+| Expert | Tempo assistido de Reels | mediana de tempo médio em ms / (duração em s × 1.000) | 50% |
+| Founder | Cliques no perfil | profile_links_taps / alcance da conta na janela | 1% |
+| Founder | Novos seguidores | dimensão de seguimentos brutos / alcance da conta na janela | 1% |
+| Founder | Conversas no inbox | summary.uniqueConversations / alcance da conta na janela | 1% |
 
-Nota da variável = `min(100, 80 * observado / ideal)`. O marco ideal fica em 80 pontos; desempenho acima da referência pode chegar a 100. A média de cada card usa pesos iguais entre as variáveis medidas. A média do perfil usa pesos iguais entre os eixos com medição. A interface informa X/3 e marca média parcial quando há dados ausentes, parciais, estimados ou sem evidências detalhadas. Ausência não vira zero. Sem variáveis medidas, a nota fica sem medição.
+Os ideais são parâmetros propostos e ajustáveis; não são benchmarks de mercado. Nota = `min(100, 80 * observado / ideal)`. Atingir o ideal vale 80; notas podem subir até 100. Cada média usa pesos iguais entre variáveis disponíveis e explicita a cobertura. Zero medido vale zero; campo ausente não recebe nota. As notas v3 não são comparáveis às escalas v1/v2.
 
-**Ajustar régua** altera os ideais e recalcula as notas na sessão. **Restaurar proposta** recupera os parâmetros iniciais. Os próximos prompts carregam a régua ajustada em `reference`. Não há salvamento no navegador ou comparação entre períodos com réguas diferentes.
+Os posts não são separados por suposto eixo editorial. FEED, REELS e UNKNOWN entram nas taxas de conteúdo; STORY e AD identificados ficam de fora. Cada taxa usa o subconjunto com ambos os campos; ausência de campo nesse conjunto indica cobertura parcial. A falta de duração de um Reel afeta somente tempo assistido. UNKNOWN/video não prova REELS. A base atual de seguidores é identificada como snapshot, não substitui a base histórica de uma publicação.
 
-## Coleta e contrato
+## Fontes verificadas
 
-`prompt.md` orienta a descoberta da integração instalada, resolução de credencial limitada ao perfil Hermes atual, teste de leitura de contas, paginação e coleta sem alterar recursos. Reutiliza os arquivos da execução e pede classificação dos casos claros e deduplicação entre lotes. Não consulta novamente toda a conta para retomar uma análise.
+Conferência da [OpenAPI pública do Zernio](https://zernio.com/openapi.yaml) em 10/09/2026:
 
-O contrato v2 contém conta, janela, momento da coleta, resolução de credencial sem segredos, cobertura, régua e três eixos. Cada variável tem numerador, denominador, amostras, estado de medição, contexto, origem, evidências e motivo de pendências. As notas são calculadas no navegador. A coleta mantém detalhes privados no ambiente do Hermes; a página recebe somente o resumo agregado. Não há chamada a uma IA ou ao Instagram na página.
+- [Posts](https://docs.zernio.com/analytics/get-analytics): reach, likes, comments, shares, saves; igReelsAvgWatchTime em ms e videoDurationSeconds em segundos. completionRate é descrito para TikTok, não Instagram. engagementRate alterna o denominador e não é usado no cálculo.
+- [Conta](https://docs.zernio.com/analytics/get-instagram-account-insights): reach e profile_links_taps como total_value da janela. follows_and_unfollows exige breakdown follow_type e seleção apenas da dimensão explícita de seguimentos. Não usar total que misture entradas/saídas nem crescimento líquido. O histórico followers_gained soma deltas diários positivos, portanto não substitui seguimentos brutos.
+- [Inbox agregado](https://docs.zernio.com/inbox-analytics/get-inbox-volume): summary.uniqueConversations, filtrado por conta, perfil, Instagram e janela inteira. Não soma faixas/dias, não inspeciona interlocutores ou mensagens e não afirma contar pessoas ou intenção qualificada.
+- [Contas conectadas](https://docs.zernio.com/accounts/list-accounts): followersCount e followersLastUpdated quando disponibilizados.
 
-O prompt distingue taxas atribuídas a posts de índices observados no perfil. Sem atribuição por post, intenção e DMs podem usar pessoas únicas e alcance da conta da mesma janela, com esse universo explícito. Soma de lotes sem deduplicação não é uma medição válida. Alcance relativo com base atual no lugar da histórica é uma estimativa identificada. Reconhecimento continua exigindo respostas reais da pesquisa.
+Disponibilidade depende de conta, permissões, plano, mídia e sincronização. Um campo documentado pode estar ausente. O prompt consulta apenas lacunas nos recursos necessários e preserva respostas anteriores; não tenta preencher ausências por classificação semântica. Dados de conta podem ter atraso de até 48 horas. A contagem do inbox reflete eventos registrados pelo serviço.
 
-Arquivos `ecf-metas-v1` continuam aceitos. A interface os lê na nova proposta, mostrando medições disponíveis e lacunas; não modifica o arquivo de origem. O cálculo antigo por metas, com seus pesos e pré-requisitos, permanece em `model.js` e nos testes. As duas escalas não são comparáveis. Indicadores antigos sem origem e medidas numéricas não ganham notas por interpretação de frases.
+## Contrato e validação
 
-## Arquivos e verificação
+O JSON v3 contém perfil, conta, janela, momento da coleta, régua e três recursos: `account`, `posts`, `inbox`. O Hermes extrai valores nativos e mantém metadados mínimos. `native.js` deriva as nove variáveis; nenhum campo `axes`, `score`, autoridade ou intenção é aceito como entrada v3.
 
-- `index.html` e `ecf.css`: navegação e apresentação dos três cards.
-- `ecf.js`: geração de prompt, importação local, ajuste da régua, renderização e continuação da coleta.
-- `model.js`: contratos, validação, cálculos v1/v2 e exemplo fictício.
-- `tests/test_ecf_diagnostic.py`: cálculos, médias parciais, denominadores, régua ajustável, compatibilidade e metadados de credencial.
-- `design-review/diagnostico-ecf/`: capturas e evidência de QA, exclusivamente com dados fictícios.
+Os recursos usam estados complete/partial/missing, origem e motivo. O validador confere IDs da mesma conta, paginação, unicidade dos posts, janela, campos e tipos, e mantém ausências explícitas. As origens e a autenticidade das respostas continuam dependendo da execução real do agente, não do validador. Resumos são limitados a 200 KB e 500 posts; recortes precisam indicar cobertura parcial.
 
-Testar com `python3 -m unittest discover -s tests` e `python3 scripts/check_site.py`, além do QA em Chrome em 1440, 768 e 390 px. Os arquivos reais do usuário não entram no repositório, em capturas públicas ou em telemetria.
+O prompt incorpora `model.js`, `native.js`, `import.js` e `validator-cli.cjs` num executável local `validar-ecf.cjs`, sem dependências externas além de Node.js. A mesma lógica roda no navegador. O CLI grava um arquivo novo com permissão 0600 e não sobrescreve outro: saída 0 = completo; 2 = parcial com JSON criado; 1 = inválido/erro sem nova entrega. O recibo inclui notas e hash dos bytes escritos e declara que verifica estrutura/cálculo, não evidências privadas.
 
-## Entrega determinística e normalização
+`import.js` permite apenas reparos seguros de BOM, bloco Markdown e números decimais inequívocos. Recusa duplicatas, campos fora do contrato, contagens fracionárias/ambíguas, misturas de contas e divergência do perfil/janela/régua do pedido. Não inventa números a partir de frases.
 
-`import.js` é a biblioteca local compartilhada: confere os nove caminhos, tipos e estados, recusa chaves duplicadas e valida a consistência entre estado e medição. Converte apenas BOM, um bloco Markdown contendo JSON e números em texto com sintaxe decimal inequívoca. Não adivinha aliases, unidades, denominadores nem números em frases. JSON válido não significa coleta completa.
+## Compatibilidade e interface
 
-O prompt incorpora `model.js`, `import.js` e `validator-cli.cjs` como um único `validar-ecf.cjs`. Hermes precisa de Node.js e executa o mesmo código da página, sem buscar dependências ou acessar a API para validar. Perfil, janela e régua são conferidos contra o contrato original. A saída usa permissão local 0600 e nunca sobrescreve um arquivo. Códigos: 0 completo, 2 parcial com JSON criado, 1 inválido sem novo arquivo. A validação não comprova a veracidade das evidências nem executa deduplicação de dados privados.
+Arquivos `ecf-metas-v1` e `ecf-inicial-v2` continuam sendo exibidos na escala anterior. Não são convertidos em observações v3: taxas de subconjuntos semânticos não recuperam as métricas nativas do perfil inteiro. A interface indica o método anterior e oferece **Usar métricas Zernio**, que gera um pedido para reutilizar as respostas nativas da coleta e consultar somente os campos ausentes.
 
-A importação converte v1 para v2 por correspondência explícita dos campos; preserva as notas possíveis e os zeros medidos. Dados sem denominador ou origem compatível continuam ausentes. O JSON normalizado pode ser baixado nos detalhes. O pedido de continuação inclui essa base e os caminhos exatos das medições ausentes ou limitadas. Os testes cobrem ida e volta pelo CLI e navegador com um cenário fictício de quatro medições disponíveis e cinco ausentes.
+No v3, **Completar métricas** reaproveita o JSON nativo e os arquivos existentes. **Ajustar régua** recalcula as notas em memória; os prompts nativos seguintes usam essa régua. Uma régua v2 não é aplicada às variáveis v3. Fontes, critérios e exportação do JSON ficam recolhidos nos detalhes. Nenhum relatório real é incluído nas capturas ou no repositório público.
 
-## Execução e confiança nas contagens
+## Arquivos e testes
 
-O prompt exige execução em primeiro plano, sem delegação, e estado real confirmado para trabalhos antigos antes de consolidar a entrega. A reconciliação ocorre por pessoa/categoria numa tabela privada, com os mesmos arquivos, janela e critério. ID de conversa só equivale a pessoa se a relação 1:1 estiver comprovada. Regex serve para localizar candidatos; contagens divergentes precisam de revisão dos registros, não da escolha automática do menor total. Componentes ainda em disputa ficam ausentes no novo candidato.
+- `model.js`: métodos históricos v1/v2, preservados.
+- `native.js`: contrato, validação, cálculo e exemplo fictício v3.
+- `import.js`, `validator-cli.cjs`: importação segura e entrega executável.
+- `ecf.js`, `index.html`, `ecf.css`: três cards, formulário e geração do prompt.
+- `prompt.md`: coleta dos recursos nativos e resolução limitada de credencial no perfil Hermes.
+- `tests/test_ecf_diagnostic.py`: médias, fontes, unidades, cobertura, compatibilidade e CLI.
 
-O recibo do CLI separa `validation_scope=structure_and_calculation` de `evidence_validation=not_performed`, inclui as notas calculadas pela mesma função da página e o SHA-256 dos bytes do JSON criado. Isso vincula recibo e arquivo e evita notas reescritas pelo agente. Não é atestado de execução remota, privacidade ou veracidade das fontes. A página não consulta os artefatos privados do Hermes.
+Executar a suíte do repositório, check_site, validação/scanner de skills, build_docs sem diferença, agent_work check e QA em Chrome real em 1440, 768 e 390 px. Capturas de demonstração ficam em `design-review/diagnostico-ecf/`; dados reais ficam locais.

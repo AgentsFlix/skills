@@ -125,7 +125,19 @@
     if(raw.charCodeAt(0)===0xfeff)changes.push('Marca BOM removida.');
     const fence=/^```(?:json)?\s*\n([\s\S]*?)\n```$/.exec(clean);
     if(fence){clean=fence[1];changes.push('Marcas do bloco JSON removidas.');}
-    const source=parse(clean);normalizeNumbers(source,changes);
+    const source=parse(clean);
+    if(M.Native&&source?.method===M.Native.METHOD){
+      const N=M.Native;N.normalize(source,changes);N.validate(source);
+      if(expected){
+        N.validate(expected);
+        if(source.profile.replace(/^@/,'').toLowerCase()!==expected.profile.replace(/^@/,'').toLowerCase()||source.window.start!==expected.window.start||source.window.end!==expected.window.end||(expected.account_id!==null&&source.account_id!==expected.account_id))fail('contrato','perfil, conta ou período diferente do pedido.');
+        if(source.reference.label!==expected.reference.label)fail('reference','preserve a régua do pedido.');
+        for(const [id,a] of Object.entries(N.AXES))for(const [k] of a.metrics)if(source.reference.targets[id][k]!==expected.reference.targets[id][k])fail('reference.targets.'+id+'.'+k,'preserve o ideal do pedido.');
+      }
+      const data=JSON.parse(JSON.stringify(source));
+      return{source,data,audit:{...N.inspect(data),changes,legacy:false}};
+    }
+    normalizeNumbers(source,changes);
     if(source?.method===M.INITIAL_METHOD)strict(source);else M.validate(source);
     const data=canonical(source);strict(data);
     if(expected){
