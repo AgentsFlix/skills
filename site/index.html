@@ -412,6 +412,7 @@
 </style>
 <link rel="stylesheet" href="vitrine.css">
 <link rel="stylesheet" href="human-reader.css">
+<link rel="stylesheet" href="reading-share.css">
 <script src="/analytics.js"></script>
 <script src="/clipboard.js"></script>
 </head>
@@ -470,6 +471,7 @@
 <script src="vitrine-state.js"></script>
 <script src="vitrine-visit.js"></script>
 <script src="vitrine.js"></script>
+<script src="reading-share.js"></script>
 <script src="human-reader.js"></script>
 <script>
 (() => {
@@ -599,7 +601,7 @@
       tint: c.tints[i % c.tints.length],
       meta: (p.tamanho || "").toUpperCase() + " · REQUER: " + (p.requer || "nenhuma").toUpperCase(),
       cmdFor: Object.fromEntries(TARGETS.map((t) => [t.id, t.field === "zip_url" ? zipLocal(s.zip_url) : t.field === "prompt_url" ? (s.reading_only ? safeUrl(s.prompt_url) : promptLocal(slug)) : (s[t.field] || "")])),
-      cardUrl: location.origin + location.pathname + "#" + slug,
+      cardUrl: s.reading_share ? "https://agentsflix.ai/compartilhar/" + slug + "/" : location.origin + "/#" + slug,
       zipUrl: zipLocal(s.zip_url), promptUrl: s.reading_only ? safeUrl(s.prompt_url) : promptLocal(slug),
       hay: [String(i + 1).padStart(2, "0"), slug, title, name, sub, syn, cast.join(" "), gen.join(" "), traits.join(" ")].join(" ").toLowerCase(),
       get inList() { return state.list.includes(slug); }
@@ -616,7 +618,18 @@
     return { t, value, note, hint: t.hint || "" };
   }
 
+  let sharedReading = "";
+  function enterSharedReading() {
+    if (!sharedReading || !BY[sharedReading] || !DISCOVERY?.completed) return false;
+    const slug = sharedReading; sharedReading = "";
+    setCatalogView("reading", {scroll:false, updateUrl:false});
+    openModal(slug);
+    return true;
+  }
+
   function loadCatalog(cat) {
+    sharedReading = document.documentElement.dataset.sharedReading || "";
+    if (location.hash && hashSlug() !== sharedReading) sharedReading = "";
     CAT = cat;
     const order = cat.row_order || Object.keys(CATS);
     const idx = (r) => { const k = order.indexOf(r); return k < 0 ? 99 : k; };
@@ -628,6 +641,7 @@
     DISCOVERY = window.AgentFlixDiscovery.create(DISCOVERY_DATA, BY, {
       filter() { hidePreview(); state.filter = "Tudo"; state.q = ""; $("q").value = ""; renderChips(); renderCatalog(); },
       enter() {
+        if (enterSharedReading()) return;
         setCatalogView("catalog", {scroll:false, updateUrl:false});
         history.replaceState(null, "", location.pathname + location.search + "#inicio");
         $("nav").scrollLeft = 0;
@@ -647,6 +661,7 @@
     const tap = cat.tap || "hermes skills tap add AgentsFlix/skills";
     $("tapText").textContent = tap; $("tapBtn").dataset.text = tap;
     render(true);
+    if (enterSharedReading()) return;
     const h = hashSlug();
     if (h === "ler") setCatalogView("reading", { scroll: false, updateUrl: false });
     else if (h && BY[h]) openModal(h);
@@ -842,7 +857,7 @@
     state.view = view; state.q = ""; $("q").value = ""; clearTimeout(qTimer);
     if(updateUrl) {
       const hash = view === "reading" ? "#ler" : "#chips";
-      if(location.hash !== hash) history.pushState(null, "", hash);
+      if(location.hash !== hash) history.pushState(null, "", location.pathname + location.search + hash);
     }
     renderHero(); renderCatalog();
     if(scroll) {
@@ -969,7 +984,7 @@
       window.clar?.(DISCOVERY.locked(slug) ? 'pre_requisito_bloqueado' : 'ficha_liberada', {skill:slug});
     }
     state.open = slug;
-    if (location.hash !== "#" + slug) history.replaceState(null, "", "#" + slug);
+    if (location.hash !== "#" + slug) history.replaceState(null, "", location.pathname + location.search + "#" + slug);
     renderModal();
     updateInert();
     const panel = document.querySelector("#modal .panel");

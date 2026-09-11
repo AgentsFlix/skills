@@ -1,7 +1,7 @@
 (() => {
 'use strict';
 const $=id=>document.getElementById(id);
-const art=name=>`<img src="art/eugencia/${name}.png" alt="" draggable="false">`;
+const art=name=>`<img src="art/${['academia','cafe','editor','loja','mensagem','profissional'].includes(name)?'v2':'eugencia'}/${name}.png" alt="" draggable="false">`;
 const niches=[{id:'cafe',label:'Cafeteria',subject:'Café gelado',detail:'Bebidas, encontros e pausas.'},{id:'academia',label:'Academia',subject:'Nova aula',detail:'Movimento, rotina e treino.'},{id:'loja',label:'Moda',subject:'Nova coleção',detail:'Peças, estilo e combinações.'}];
 const voices=[{id:'proxima',label:'Próxima',example:['Sua pausa merece um café. Vem conhecer a novidade!','Bora se movimentar? Tem aula nova esperando por você.','Seu próximo look pode estar aqui. Vem ver as novidades!']},{id:'direta',label:'Direta',example:['Novo café gelado. Disponível no balcão.','Nova aula disponível. Consulte os horários na recepção.','Nova coleção disponível. Conheça as peças na loja.']},{id:'editorial',label:'Editorial',example:['Um novo jeito de apreciar a sua pausa.','Movimento para fazer parte dos seus dias.','Texturas e formas para acompanhar os seus dias.']}];
 const looks=[{id:'natural',label:'Natural',detail:'Tons quentes · serifada',colors:['#ede4d5','#76533d','#bda78e']},{id:'grafica',label:'Gráfica',detail:'Contraste · títulos fortes',colors:['#d8eb69','#202620','#f4f5e9']},{id:'essencial',label:'Essencial',detail:'Respiro · linhas simples',colors:['#e6f0ed','#325c67','#78a9ad']}];

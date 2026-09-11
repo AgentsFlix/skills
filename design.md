@@ -43,7 +43,7 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 ## Onboarding obrigatório
 
 1. A primeira visita na aba começa pelas três escolhas. A pedido do Zé após a revisão do Clarity em 08/09/2026, respostas e conclusão ficam no sessionStorage dessa aba: recarregar ou voltar do player restaura o caminho. Uma aba sem estado começa pelo guia. Não guardar a conclusão no localStorage nem compartilhar a seleção entre dispositivos. Estado inválido ou incompatível com a curadoria atual volta à entrada.
-2. Não renderizar a lista completa nem liberar busca, Minha lista ou fichas antes de terminar as perguntas e clicar em `Abrir minha seleção`. A conclusão sempre abre o Início, com a recomendação e a seleção escolhidas, inclusive se a entrada veio de um link de leitura ou de skill. A pessoa acessa Ler ou abre uma ficha depois desse passo.
+2. Não renderizar a lista completa nem liberar busca, Minha lista ou fichas antes de terminar as perguntas e clicar em `Abrir minha seleção`. A conclusão sempre abre o Início, com a recomendação e a seleção escolhidas, inclusive se a entrada veio de um link de leitura ou de skill. A pessoa acessa Ler ou abre uma ficha depois desse passo. Exceção: endereços permanentes de compartilhamento `/compartilhar/<slug>/` abrem a leitura recebida após esse mesmo passo, respeitando os pré-requisitos.
 3. Quantidade disponível não é progresso. Cada ponto representa uma skill. O total e os grupos vêm de `vitrine.json`, nunca de porcentagens fixas. Coleções mostram nomes e contagens individuais. As perguntas mostram seu número, sem barra de progresso inventada. As quantidades e os pontos ficam em O que tem nesse caminho, após selecionar uma opção; o detalhe identifica cada grupo e explica o que os pontos representam.
 4. A resposta final define o objetivo. A peça recomendada é a primeira etapa ainda necessária para esse objetivo, respeitando os pré-requisitos e as instalações marcadas.
 5. Depois de entrar, manter a recomendação no topo, com motivo e ação. Início, marca e Meu caminho retornam à recomendação; durante as perguntas, o cabeçalho mostra apenas a marca sem link e uma orientação. Navegação, filtros e busca não apagam respostas nem o objetivo. Somente Refazer minhas escolhas ou Trocar de caminho reinicia o guia e bloqueia novamente o catálogo até concluir a nova escolha.
@@ -128,6 +128,25 @@ acrescentados apenas pelo tema. Sem detalhes que desapareçam no tamanho final.
 
 Quando a peça pedir fundo sólido, substituir a linha de transparência pela cor e composição solicitadas; não pedir fundo transparente e sólido ao mesmo tempo. Para objeto isolado, retirar as instruções de anatomia. Para outra pose, descrever apenas a ação nova e manter a referência do personagem. Não gerar uma prancha de variantes quando o pedido for um asset.
 
+### Referência aprovada: copo transparente
+
+Em 11/09/2026, o Zé aprovou o resultado de [cafe.png](site/assistir/hermes-em-operacao/t1e2/art/v2/cafe.png) e pediu o mesmo padrão de geração nas próximas ilustrações. Esse copo é a referência concreta de acabamento e transparência para objetos editoriais: poucos detalhes, contorno fino, preenchimentos simples e recorte limpo. O objeto representado muda conforme o conteúdo; não acrescentar um copo a outras cenas.
+
+Para revisar uma peça, partir do original transparente, descrever a simplificação de forma curta e preservar seu significado. Acrescentar `Preserve a truly transparent background. Export as a transparent PNG, with no background.` O prompt usado no copo foi:
+
+```text
+Simplify this iced coffee cup illustration. Keep its straw, lid, ivory sleeve
+and two simple flat ice shapes. Thin charcoal outlines, muted cyan straw,
+charcoal coffee, no brown, no white reflection streaks, stitching, shadows
+or complex lid ridges. Flat 2D editorial style, whole object centered in a
+square canvas. Preserve a truly transparent background. Export as a
+transparent PNG, with no background.
+```
+
+Referência de entrada: `art/eugencia/cafe.png`. Ferramenta: geração integrada de imagens do Codex; modelo não informado. O prompt exato e os demais prompts estão em [art/v2/prompts.json](site/assistir/hermes-em-operacao/t1e2/art/v2/prompts.json).
+
+**A prévia quadriculada não comprova transparência.** Neste lote, algumas tentativas vieram em RGB com o quadriculado gravado. Elas foram rejeitadas. Exigir PNG com alfa real e conferir o recorte em fundos claro e escuro no navegador antes de integrar. Se uma edição repetir o fundo gravado, retomar o original transparente. Registrar a verificação do arquivo final; nunca prometer que o prompt sozinho garante o canal alfa.
+
 ### Conferência e registro de cada lote
 
 1. Identificar função, referência aprovada, quantidade e tamanho real de uso. Reutilizar assets adequados antes de criar duplicatas.
@@ -206,3 +225,12 @@ Mobile usa os mesmos SVGs de interface e as mesmas ilustrações editoriais do d
 Nas atividades de associação da Aula 2, telas compactas e toque usam peça → lista de destinos. Um espaço vazio também abre a escolha de peças. A lista informa a posição atual e o que será substituído; a peça anterior volta para a mesa. Cancelar preserva a resposta e devolve o foco. Retirar permanece explícito. Conferir continua sendo uma ação separada, com as mesmas pistas e critérios do exercício.
 
 O arraste permanece disponível com mouse em telas amplas, junto da alternativa por clique e teclado. Toque não exige pressão longa nem interfere na rolagem. Controles novos têm alvo mínimo de 44 px, foco visível, rótulos e estado anunciado. O painel respeita a altura disponível e a área segura do dispositivo.
+
+
+## Compartilhar Para o humano
+
+A ficha e a barra de leitura usam o mesmo botão Compartilhar e o mesmo diálogo. Capa aprovada inteira, título e chamada aprovados formam a prévia. O diálogo segue tokens, cápsulas, foco visível, alvos de 44 px e fecha por Escape sem fechar a leitura.
+
+WhatsApp recebe o título e um endereço público permanente, sem fragmento. Instagram usa compartilhamento nativo de arquivo quando suportado; copiar link e baixar capa permanecem disponíveis. Nunca comunicar que algo foi publicado apenas porque a folha de compartilhamento abriu ou fechou.
+
+Registrar `share: {title, description, image, alt}` em `site/leitura/manifest.json`. Imagem local pública PNG/JPEG, ao menos 600 × 315 px e até 5 MB, preservando a arte aprovada. `scripts/build_reading_shares.py` gera `/compartilhar/<slug>/index.html` com os metadados no HTML inicial e a mesma vitrine. Regerar após qualquer mudança em `site/index.html` ou no registro; os testes conferem paridade integral. Não criar uma landing page, leitor, abas ou instalador paralelo.

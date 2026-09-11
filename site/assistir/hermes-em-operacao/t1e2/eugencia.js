@@ -17,7 +17,7 @@
   const orders = Object.fromEntries(clients.map(c => [c.id,blank()]));
   let selected='cafe', stage=0, message='';
   const $ = id => document.getElementById(id);
-  const art = (name,cls='') => `<img class="${cls}" src="art/eugencia/${name}.png" alt="" draggable="false">`;
+  const art = (name,cls='') => `<img class="${cls}" src="art/${['academia','cafe','editor','loja','mensagem','profissional'].includes(name)?'v2':'eugencia'}/${name}.png" alt="" draggable="false">`;
   const state = () => orders[selected];
   const client = () => clients.find(c => c.id===selected);
   const done = () => [state().received,state().received,state().editor,state().materials,state().built===4,state().sent];

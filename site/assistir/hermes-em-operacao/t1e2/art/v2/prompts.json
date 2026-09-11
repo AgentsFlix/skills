@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "tool": "image_gen integrada no Codex",
+  "model": "não exposto pela ferramenta",
+  "jobs": [
+    {
+      "name": "campainha",
+      "source": "campainha-v1.png",
+      "prompts": [
+        "Use case: style-transfer. Edit the first reference image into ONE final reusable AgentFlix editorial illustration PNG. The second reference is ONLY visual-family guidance; do not include its objects. Keep the target's meaning and recognisable silhouette. Use hand-drawn 2D editorial illustration, thin organic slightly irregular charcoal outlines, simple shapes, flat solid color fills, very few interior marks. Calm adult visual language. Palette: ivory #F0EEE6, charcoal #303633, muted cyan #65AEB6 as a single accent, sage gray #8A9690 only as support. No gradients, no specular highlights, no white shine streaks, no metallic/plastic rendering, no 3D shading, no shadows, no decorative badge/circle, no environment, no text, letters, numbers, logos or watermark. Real transparent alpha background, not an opaque backdrop or drawn checkerboard; clean edges without halo. Output a single square asset with the complete subject centered, approximately 75% of canvas width or height, consistent safety margins. Must be readable at 48px as well as at 200px. Do not make a contact sheet or multiple variants.\nTARGET: The restaurant service bell in reference 1. Preserve the ivory dome, low charcoal base and small muted-cyan push knob. Remove ALL curved white reflections, rim shine, bevels, cast shadows and lighting gradients. One flat ivory dome outlined in a fine organic charcoal line; one single flat sage-gray base with a charcoal edge, to remain visible on dark backgrounds; the cyan knob is the sole accent. Slight frontal three-quarter silhouette, but no rendered volume. Simple restful drawing, not a polished product icon.",
+        "Remove the entire background from this bell illustration. Deliver an actual transparent-background PNG cutout with RGBA alpha channel: all pixels outside the bell must have alpha 0. Keep only the bell. Background must be transparent. Preserve its ivory body, charcoal outline, sage base and cyan knob. Simplify color fills to solid flat colors. No background pattern, no checkerboard pixels, no shadow. Single centered object."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "a80d813f1336b13c37ccfaa2857290e408a5ec8e38e9aa30263df1e7fce1f860",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "campainha-v1.png",
+          "caderneta-v1.png"
+        ],
+        [
+          "resultado do prompt 1"
+        ]
+      ]
+    },
+    {
+      "name": "menu",
+      "source": "menu-v1.png",
+      "prompts": [
+        "Edit this illustration into a simpler hand-drawn 2D editorial asset for AgentFlix. Preserve the subject and meaning. Fine organic charcoal #303633 outlines, flat ivory #F0EEE6 fills, muted cyan #65AEB6 accent, sage gray #8A9690 support. Flat colors, restrained adult style, few interior marks. No shine, lighting gradients, shadows, 3D rendering, text, logos or environment. Output one square transparent-background PNG cutout with real RGBA alpha; all pixels outside the subject must be fully transparent. Subject centered within the middle 75% of the canvas, complete with generous transparent margins. Keep fills inside the object opaque and edges clean. Simple enough to recognize at 48px.\nKeep the open cyan-covered menu with ivory pages. Replace the three complex colored meals with three very simple monochrome noodle-bowl pictograms, only ivory and charcoal, each with a few curved strokes. Remove every yellow, orange, saturated green and decorative line. Preserve three options without letters.",
+        "Remove the entire background from this menu illustration. Deliver an actual transparent-background PNG cutout with RGBA alpha channel: all pixels outside the menu must have alpha 0. Keep only the open menu. Background must be transparent. Preserve ivory pages, charcoal lines and muted cyan cover. No background pattern, no checkerboard pixels, no shadow. Single centered object with transparent margins."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "94f4bf37a25a6a43e67afb8e223ee7dd52425bbbdbb7db46e204fddff29015e6",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "menu-v1.png"
+        ],
+        [
+          "resultado do prompt 1"
+        ]
+      ]
+    },
+    {
+      "name": "prato",
+      "source": "prato-v1.png",
+      "prompts": [
+        "Edit this illustration into a simpler hand-drawn 2D editorial asset for AgentFlix. Preserve the subject and meaning. Fine organic charcoal #303633 outlines, flat ivory #F0EEE6 fills, muted cyan #65AEB6 accent, sage gray #8A9690 support. Flat colors, restrained adult style, few interior marks. No shine, lighting gradients, shadows, 3D rendering, text, logos or environment. Output one square transparent-background PNG cutout with real RGBA alpha; all pixels outside the subject must be fully transparent. Subject centered within the middle 75% of the canvas, complete with generous transparent margins. Keep fills inside the object opaque and edges clean. Simple enough to recognize at 48px.\nKeep a shallow ivory dish of plain instant noodles with a muted cyan rim. Simplify noodles to one flat ivory mound with just 8 to 12 organic charcoal wavy strokes suggesting noodles. Eliminate yellow, sauce, green garnish, realistic noodle strands, highlights and bowl shading."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "a04c7dd0608007dd3f640f207e17e7ef0d819fd6e3c72e89e1b7b15c03241261",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "prato-v1.png"
+        ]
+      ]
+    },
+    {
+      "name": "academia",
+      "source": "eugencia/academia.png",
+      "prompts": [
+        "Edit this illustration into a simpler hand-drawn 2D editorial asset for AgentFlix. Preserve the subject and meaning. Fine organic charcoal #303633 outlines, flat ivory #F0EEE6 fills, muted cyan #65AEB6 accent, sage gray #8A9690 support. Flat colors, restrained adult style, few interior marks. No shine, lighting gradients, shadows, 3D rendering, text, logos or environment. Output one square transparent-background PNG cutout with real RGBA alpha; all pixels outside the subject must be fully transparent. Subject centered within the middle 75% of the canvas, complete with generous transparent margins. Keep fills inside the object opaque and edges clean. Simple enough to recognize at 48px.\nKeep the recognizable pair of dumbbells. Flat muted-cyan ends and sage-gray bars with fine charcoal contours. Simple organic silhouette, no reflected white streaks, no modeled volume or surrounding glow. Few interior marks.",
+        "Remove the entire background from this pair of dumbbells illustration. Deliver an actual transparent-background PNG cutout with RGBA alpha channel: all pixels outside the objects must have alpha 0. Keep only the two dumbbells, with empty transparent gaps between them. Background must be transparent. Preserve the drawing with its flat fills. No background pattern, no checkerboard pixels, no shadow. Single centered illustration with generous transparent margins.",
+        "Make the background transparent. Isolate the dumbbells. Keep their colors and drawing exactly as shown."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "80b0b4041123896dc71f419463d0e60e564dabec46d8153135588744cf6d981b",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/academia.png"
+        ],
+        [
+          "resultado do prompt 1"
+        ],
+        [
+          "resultado do prompt 1"
+        ]
+      ]
+    },
+    {
+      "name": "esteira",
+      "source": "esteira-v1.png",
+      "prompts": [
+        "Simplify this conveyor belt into a flat 2D hand-drawn editorial illustration. Use 5 broad belt segments, two simple legs, ivory side, thin muted cyan rim and sage gray belt. Remove bolts, bevels, shine, shading and tiny mechanical details. Fine charcoal outlines. Complete conveyor centered with generous empty margins. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "d565ca6b7235dcd4f4118b9fde688a6e997fcb841f5c500cadc806bfa1a30bdc",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "esteira-v1.png"
+        ]
+      ]
+    },
+    {
+      "name": "maquininha",
+      "source": "maquininha-v1.png",
+      "prompts": [
+        "Simplify this payment terminal into a flat 2D hand-drawn editorial illustration. Nearly frontal view, ivory body and blank receipt, sage gray blank screen, a few plain grouped keypad shapes with one muted cyan confirmation key. Fine organic charcoal outlines, no 3D sidewalls, bevels, highlights or shading. Complete object centered with generous empty margins. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "0c1d67d8d09258a66a833362fe6843b87ce3c8f879218b99fae8d381f306b399",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "maquininha-v1.png"
+        ]
+      ]
+    },
+    {
+      "name": "editor",
+      "source": "eugencia/editor.png",
+      "prompts": [
+        "Simplify this laptop with a graphic editor into a flat 2D hand-drawn editorial illustration. Ivory screen with one charcoal framed empty square and muted cyan block below; just two simple tool symbols. Keyboard represented by 3 broad charcoal strokes, no individual tiny keys. Sage gray casing, fine charcoal organic outlines. Complete centered object occupying 75% of square canvas, no glow or shadows. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "113d11ff6fabf7645312a94ff7b13032a5a0bb05f3e1d135b4ed097ac476c2ad",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/editor.png"
+        ]
+      ]
+    },
+    {
+      "name": "loja",
+      "source": "eugencia/loja.png",
+      "prompts": [
+        "Simplify this ivory shirt on a hanger into a flat 2D hand-drawn editorial illustration. Preserve the collar, pocket and short sleeves, only 3 simple buttons and 2 fold lines. Sage gray hanger and hook with fine charcoal outline so it reads on dark backgrounds. Muted cyan small collar accent. No stitching, shading, highlights or glow. Whole object centered with generous empty margins. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "5c4adec6c9e931ad64383e6d77d7cf7cd12dea868c0a166bc0d09cd15c60ecf6",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/loja.png"
+        ]
+      ]
+    },
+    {
+      "name": "cafe",
+      "source": "eugencia/cafe.png",
+      "prompts": [
+        "Simplify this iced coffee cup illustration. Keep its straw, lid, ivory sleeve and two simple flat ice shapes. Thin charcoal outlines, muted cyan straw, charcoal coffee, no brown, no white reflection streaks, stitching, shadows or complex lid ridges. Flat 2D editorial style, whole object centered in a square canvas. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "79fd015f663af23ebf34a30a70e15320983467014cb0fa08f887a31411f82cb8",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/cafe.png"
+        ]
+      ]
+    },
+    {
+      "name": "mensagem",
+      "source": "eugencia/mensagem.png",
+      "prompts": [
+        "Enlarge this same message bubble illustration to occupy about 75% of a square canvas, evenly centered with generous empty margins. Preserve the ivory speech balloon, simple sage gray avatar and muted cyan notification circle. Fine organic charcoal outlines, flat fills, no glow or shadows. It needs to read clearly at 48px. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "9d4d6a465c81d8b1042c33a5e73facb579ec806488c9b3540482d52ef673ead3",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/mensagem.png"
+        ]
+      ]
+    },
+    {
+      "name": "profissional",
+      "source": "eugencia/profissional.png",
+      "prompts": [
+        "Create a simplified waist-up framing of this SAME woman working on her laptop, as a flat 2D hand-drawn editorial illustration. Preserve her long black hair, same light peach skin, subtle friendly face, ivory collared shirt and muted cyan trousers barely visible at waist. Head, shoulders, both forearms and both hands visible with the whole laptop. Omit chair and desk legs; use one simple ivory tabletop segment with clean natural ends. Fine organic charcoal outlines, sage gray laptop, few facial marks, no glow, no shadows. Square composition with whole group centered and generous empty margins, legible at 48px. Preserve a truly transparent background. Export as a transparent PNG, with no background."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "8a615f48fa295e300a6f4718b6875c57f23b935c70d22734a5da6c8e2bb21567",
+      "status": "conferida em Chrome sobre fundos claro/escuro e em 48 px",
+      "referenceInputs": [
+        [
+          "eugencia/profissional.png"
+        ]
+      ]
+    }
+  ],
+  "approvedReference": {
+    "file": "cafe.png",
+    "approval": "Usuário aprovou o copo em 11/09/2026 e pediu o mesmo padrão de geração nas próximas ilustrações."
+  },
+  "date": "2026-09-11",
+  "export": "PNG copiado sem transformação; metadados e hashes apenas lidos por script"
+}

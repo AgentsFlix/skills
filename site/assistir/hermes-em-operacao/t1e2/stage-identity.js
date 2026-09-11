@@ -4,7 +4,8 @@
   const assets = ['campainha','chef-atendimento','caderneta','menu','panela','prato'];
   const chefs = ['chef-atendimento','chef-cozinha','chef-caixa'];
   function art(name, cls = '') {
-    return `<img class="drawn-art ${cls}" src="art/${name}-v1.png" alt="" aria-hidden="true" draggable="false" decoding="async">`;
+    const src = ['campainha','menu','prato','maquininha'].includes(name) ? `art/v2/${name}.png` : `art/${name}-v1.png`;
+    return `<img class="drawn-art ${cls}" src="${src}" alt="" aria-hidden="true" draggable="false" decoding="async">`;
   }
   function icon(i) {
     return `<span class="stage-symbol" data-stage-symbol="${i}">${art(assets[i])}</span>`;
