@@ -32,7 +32,7 @@ Capas cinematográficas da série, frames do vídeo e peças ainda não integrad
 - Composição dos arquivos originais em Chrome sobre `#191C1B` e `#F0EEE6`, sem filtros, sombras ou tratamento dos pixels. Comparação adicional em caixas de 48 px.
 - Captura do estado inicial das nove páginas em 1440, 768 e 390 px: 27 visualizações, sem erro JavaScript, imagem HTML não carregada ou overflow horizontal global nos estados observados. Isso não equivale a testar todas as respostas e etapas interativas.
 - Inspeção das imagens reutilizadas e dos tamanhos efetivos no código. Assets de estados posteriores também foram examinados individualmente na galeria, mesmo quando não aparecem na primeira tela.
-- Comparação de produção documentada em [producao.json](producao.json). As capturas das páginas correspondem à worktree auditada; a comparação por hash informa se ela representa os mesmos arquivos públicos.
+- Comparação de produção documentada em [producao.json](producao.json): os 21 PNGs e o catálogo público foram obtidos de `agentsflix.ai` e conferidos por SHA-256, com 22 correspondências de 22. As capturas das páginas correspondem à worktree auditada.
 
 Todos os PNGs têm canal alpha e pixels transparentes. No Chrome, não foi observado fundo opaco, quadriculado desenhado ou halo amplo nas composições verificadas. Algumas prévias do visualizador de arquivos mostraram brilho no entorno que **não se reproduziu no navegador**. Portanto, esse efeito não foi classificado como defeito dos arquivos. Ter alpha, isoladamente, não garante borda limpa em todo contexto.
 
@@ -86,6 +86,15 @@ Cada prancha mostra o **mesmo PNG original** sobre fundo escuro e claro e uma am
 4. **Tratar a esteira só se houver uso definido**: não gerar uma substituição para um arquivo sem referência encontrada. Registrar explicitamente seu destino se ele voltar ao produto.
 
 Nenhuma dessas recomendações pede aplicação de filtro global, dessaturação das capas, troca de comandos ou mudança das identidades escolhidas pelo aluno nos mockups.
+
+## Validação da entrega
+
+- Python 3.11 com PyYAML 6.0.3: 73 testes aprovados, sem testes omitidos.
+- `scripts/check_site.py`: zero erros. `scripts/validate_skills.py`: 52 skills válidas.
+- `scripts/scan_skills.py`: 52 skills, nenhuma bloqueada, verificador fixado pelo repositório.
+- `scripts/build_docs.py`: arquivos gerados sem diferença em `docs/` e `catalog.json`.
+- Links locais do padrão e relatório e hashes dos 21 originais conferidos.
+- [Registro das 27 visualizações no navegador](navegador.json), com tamanho renderizado e requisições observadas. As quatro pranchas acima são as evidências visuais versionadas da comparação.
 
 ## Reprodução e manutenção
 
