@@ -111,3 +111,11 @@ A inclusão é declarativa: registrar slug, reader JSON e capa em `site/leitura/
 Card, hover com botão de leitura/Minha lista/seta, capa 16:9, modal com fechar, título, ações, abas Para o humano/Usar a skill, capítulos e ajustes de leitura pertencem ao componente comum. A capa fornecida mantém os pixels originais; a apresentação segue o mesmo enquadramento do Hormozi. Conteúdo editorial aprovado não é reescrito na migração.
 
 Antes de publicar, rodar `python3 -m unittest discover -s tests` e `python3 scripts/check_site.py`. O teste `test_reading_contract.py` verifica o registro, blocos e assets e impede leitor paralelo. Fazer QA de cada peça e Hormozi no mesmo build: card, hover, abertura, fechar/retorno, Minha lista, instalação manual, abas, capítulos, tema/tamanho, teclado e 1440/768/390 px. Aprovação de conteúdo novo continua necessária; a aprovação do componente não aprova novos textos.
+
+## Mobile: ícones e atividades de montagem
+
+Mobile usa os mesmos SVGs de interface e as mesmas ilustrações editoriais do desktop. Não substituir ícones por emojis, nem criar uma variante de ícones para celular. A dimensão pode se adaptar; o desenho e o significado permanecem.
+
+Nas atividades de associação da Aula 2, telas compactas e toque usam peça → lista de destinos. Um espaço vazio também abre a escolha de peças. A lista informa a posição atual e o que será substituído; a peça anterior volta para a mesa. Cancelar preserva a resposta e devolve o foco. Retirar permanece explícito. Conferir continua sendo uma ação separada, com as mesmas pistas e critérios do exercício.
+
+O arraste permanece disponível com mouse em telas amplas, junto da alternativa por clique e teclado. Toque não exige pressão longa nem interfere na rolagem. Controles novos têm alvo mínimo de 44 px, foco visível, rótulos e estado anunciado. O painel respeita a altura disponível e a área segura do dispositivo.
