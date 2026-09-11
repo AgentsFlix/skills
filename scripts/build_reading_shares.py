@@ -16,17 +16,24 @@ def render(template, entry, site):
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug):
         raise ValueError('Slug inválido')
     share = entry.get('share', {})
-    for field in ('title', 'description', 'image', 'alt'):
+    for field in ('title', 'description', 'image', 'preview_image', 'alt'):
         if not isinstance(share.get(field), str) or not share[field].strip():
             raise ValueError(f'{slug}: falta share.{field}')
-    image = share['image']
-    if not re.fullmatch(r'/leitura/[a-zA-Z0-9/_.-]+\.(jpg|jpeg|png)', image) or '..' in image.split('/'):
-        raise ValueError('Capa deve ser um arquivo público local')
+    revision = share.get('revision')
+    if type(revision) is not int or revision < 1:
+        raise ValueError('Revisão da prévia precisa ser um inteiro positivo')
+    for field in ('image', 'preview_image'):
+        path = share[field]
+        if not re.fullmatch(r'/leitura/[a-zA-Z0-9/_.-]+\.(jpg|jpeg|png)', path) or '..' in path.split('/'):
+            raise ValueError('Capa deve ser um arquivo público local')
+        if not (site / path.lstrip('/')).is_file():
+            raise ValueError(f'{field} indisponível')
+    image = share['preview_image']
     raw = (site / image.lstrip('/')).read_bytes()
     width, height, mime = image_info(raw)
-    if width < 600 or height < 315 or len(raw) > 5 * 1024 * 1024:
-        raise ValueError('Capa precisa ter ao menos 600 × 315 px e até 5 MB')
-    url = f'{ORIGIN}/compartilhar/{slug}/'
+    if width < 600 or height < 315 or mime != 'image/jpeg' or len(raw) >= 300_000:
+        raise ValueError('Prévia precisa ser JPEG com ao menos 600 × 315 px e menos de 300 KB')
+    url = f'{ORIGIN}/compartilhar/{slug}/?v={revision}'
     esc = lambda value: html.escape(str(value), quote=True)
     values = {
         'og:title': share['title'], 'og:description': share['description'],

@@ -4,7 +4,8 @@
   const icon = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/></svg>';
   function payload(slug, metadata) {
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw Error('Leitura inválida');
-    const url = `${ORIGIN}/compartilhar/${slug}/`;
+    if (!Number.isInteger(metadata.revision) || metadata.revision < 1) throw Error('Revisão inválida');
+    const url = `${ORIGIN}/compartilhar/${slug}/?v=${metadata.revision}`;
     return {title:metadata.title, text:metadata.description, url,
       whatsapp:'https://wa.me/?text=' + encodeURIComponent(metadata.title + '\n' + url)};
   }
