@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "tool": "image_gen integrada no Codex",
+  "model": "não exposto pela ferramenta",
+  "jobs": [
+    {
+      "name": "campainha",
+      "source": "campainha-v1.png",
+      "prompts": [
+        "Use case: style-transfer. Edit the first reference image into ONE final reusable AgentFlix editorial illustration PNG. The second reference is ONLY visual-family guidance; do not include its objects. Keep the target's meaning and recognisable silhouette. Use hand-drawn 2D editorial illustration, thin organic slightly irregular charcoal outlines, simple shapes, flat solid color fills, very few interior marks. Calm adult visual language. Palette: ivory #F0EEE6, charcoal #303633, muted cyan #65AEB6 as a single accent, sage gray #8A9690 only as support. No gradients, no specular highlights, no white shine streaks, no metallic/plastic rendering, no 3D shading, no shadows, no decorative badge/circle, no environment, no text, letters, numbers, logos or watermark. Real transparent alpha background, not an opaque backdrop or drawn checkerboard; clean edges without halo. Output a single square asset with the complete subject centered, approximately 75% of canvas width or height, consistent safety margins. Must be readable at 48px as well as at 200px. Do not make a contact sheet or multiple variants.\nTARGET: The restaurant service bell in reference 1. Preserve the ivory dome, low charcoal base and small muted-cyan push knob. Remove ALL curved white reflections, rim shine, bevels, cast shadows and lighting gradients. One flat ivory dome outlined in a fine organic charcoal line; one single flat sage-gray base with a charcoal edge, to remain visible on dark backgrounds; the cyan knob is the sole accent. Slight frontal three-quarter silhouette, but no rendered volume. Simple restful drawing, not a polished product icon.",
+        "Remove the entire background from this bell illustration. Deliver an actual transparent-background PNG cutout with RGBA alpha channel: all pixels outside the bell must have alpha 0. Keep only the bell. Background must be transparent. Preserve its ivory body, charcoal outline, sage base and cyan knob. Simplify color fills to solid flat colors. No background pattern, no checkerboard pixels, no shadow. Single centered object."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "a80d813f1336b13c37ccfaa2857290e408a5ec8e38e9aa30263df1e7fce1f860",
+      "status": "gerada; QA visual no navegador pendente"
+    },
+    {
+      "name": "menu",
+      "source": "menu-v1.png",
+      "prompts": [
+        "Edit this illustration into a simpler hand-drawn 2D editorial asset for AgentFlix. Preserve the subject and meaning. Fine organic charcoal #303633 outlines, flat ivory #F0EEE6 fills, muted cyan #65AEB6 accent, sage gray #8A9690 support. Flat colors, restrained adult style, few interior marks. No shine, lighting gradients, shadows, 3D rendering, text, logos or environment. Output one square transparent-background PNG cutout with real RGBA alpha; all pixels outside the subject must be fully transparent. Subject centered within the middle 75% of the canvas, complete with generous transparent margins. Keep fills inside the object opaque and edges clean. Simple enough to recognize at 48px.\nKeep the open cyan-covered menu with ivory pages. Replace the three complex colored meals with three very simple monochrome noodle-bowl pictograms, only ivory and charcoal, each with a few curved strokes. Remove every yellow, orange, saturated green and decorative line. Preserve three options without letters.",
+        "Remove the entire background from this menu illustration. Deliver an actual transparent-background PNG cutout with RGBA alpha channel: all pixels outside the menu must have alpha 0. Keep only the open menu. Background must be transparent. Preserve ivory pages, charcoal lines and muted cyan cover. No background pattern, no checkerboard pixels, no shadow. Single centered object with transparent margins."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "94f4bf37a25a6a43e67afb8e223ee7dd52425bbbdbb7db46e204fddff29015e6",
+      "status": "gerada; QA visual no navegador pendente"
+    },
+    {
+      "name": "prato",
+      "source": "prato-v1.png",
+      "prompts": [
+        "Edit this illustration into a simpler hand-drawn 2D editorial asset for AgentFlix. Preserve the subject and meaning. Fine organic charcoal #303633 outlines, flat ivory #F0EEE6 fills, muted cyan #65AEB6 accent, sage gray #8A9690 support. Flat colors, restrained adult style, few interior marks. No shine, lighting gradients, shadows, 3D rendering, text, logos or environment. Output one square transparent-background PNG cutout with real RGBA alpha; all pixels outside the subject must be fully transparent. Subject centered within the middle 75% of the canvas, complete with generous transparent margins. Keep fills inside the object opaque and edges clean. Simple enough to recognize at 48px.\nKeep a shallow ivory dish of plain instant noodles with a muted cyan rim. Simplify noodles to one flat ivory mound with just 8 to 12 organic charcoal wavy strokes suggesting noodles. Eliminate yellow, sauce, green garnish, realistic noodle strands, highlights and bowl shading."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "a04c7dd0608007dd3f640f207e17e7ef0d819fd6e3c72e89e1b7b15c03241261",
+      "status": "gerada; QA visual no navegador pendente"
+    },
+    {
+      "name": "academia",
+      "source": "eugencia/academia.png",
+      "prompts": [
+        "Edit this illustration into a simpler hand-drawn 2D editorial asset for AgentFlix. Preserve the subject and meaning. Fine organic charcoal #303633 outlines, flat ivory #F0EEE6 fills, muted cyan #65AEB6 accent, sage gray #8A9690 support. Flat colors, restrained adult style, few interior marks. No shine, lighting gradients, shadows, 3D rendering, text, logos or environment. Output one square transparent-background PNG cutout with real RGBA alpha; all pixels outside the subject must be fully transparent. Subject centered within the middle 75% of the canvas, complete with generous transparent margins. Keep fills inside the object opaque and edges clean. Simple enough to recognize at 48px.\nKeep the recognizable pair of dumbbells. Flat muted-cyan ends and sage-gray bars with fine charcoal contours. Simple organic silhouette, no reflected white streaks, no modeled volume or surrounding glow. Few interior marks.",
+        "Remove the entire background from this pair of dumbbells illustration. Deliver an actual transparent-background PNG cutout with RGBA alpha channel: all pixels outside the objects must have alpha 0. Keep only the two dumbbells, with empty transparent gaps between them. Background must be transparent. Preserve the drawing with its flat fills. No background pattern, no checkerboard pixels, no shadow. Single centered illustration with generous transparent margins.",
+        "Make the background transparent. Isolate the dumbbells. Keep their colors and drawing exactly as shown."
+      ],
+      "alpha": "RGBA; alfa 0–255",
+      "sha256": "80b0b4041123896dc71f419463d0e60e564dabec46d8153135588744cf6d981b",
+      "status": "gerada; QA visual no navegador pendente"
+    }
+  ]
+}
