@@ -1,20 +1,24 @@
 /* Toda leitura usa a mesma ficha, registrada em leitura/manifest.json. */
 (() => {
   let READINGS = Object.create(null);
+  let SHARES = Object.create(null);
   async function catalogSkills(skills) {
     const response = await fetch('leitura/manifest.json', {cache:'no-cache'});
     if(!response.ok) throw Error('Registro de leituras indisponível');
     const manifest = await response.json();
     if(manifest.schemaVersion !== 1 || !Array.isArray(manifest.readings)) throw Error('Registro de leituras inválido');
     READINGS = Object.create(null);
+    SHARES = Object.create(null);
     const result = skills.map(s => ({...s}));
     for(const entry of manifest.readings) {
       if(!/^[a-z0-9-]+$/.test(entry.slug) || !/^leitura\/[a-z0-9-]+\.json$/.test(entry.reader) || READINGS[entry.slug]) throw Error('Leitura inválida ou duplicada');
       READINGS[entry.slug] = entry.reader;
+      SHARES[entry.slug] = entry.share;
       let skill = result.find(s => (s.name || s.slug) === entry.slug);
       if(!skill && entry.fallback) { skill = {...entry.fallback}; result.push(skill); }
       if(!skill) throw Error('Leitura sem skill: ' + entry.slug);
       if(entry.cover) skill.reading_cover = entry.cover;
+      if(entry.share) skill.reading_share = entry.share;
     }
     return result;
   }
@@ -27,6 +31,7 @@
     if (!Object.hasOwn(READINGS, slug)) return;
     const controller = new AbortController(), { signal } = controller;
     const body = panel.querySelector('.body'), scroller = panel.closest('.overlay');
+    const sharing = window.AgentFlixReadingShare?.mount(panel, slug, SHARES[slug], signal);
     scroller.classList.add('reader-overlay');
     const tabs = document.createElement('div');
     tabs.className = 'reader-tabs'; tabs.setAttribute('role', 'tablist'); tabs.setAttribute('aria-label', 'Conteúdo da skill');
@@ -82,6 +87,7 @@
         root = panel.querySelector('#human-reader'); root.hidden = hidden;
         bindReader(root, data, contentURL, scrollToReading, signal);
         bindPreferences(root, scroller, signal);
+        sharing?.addButton(root.querySelector('.reading-toolbar'));
         root.querySelector('.legal').textContent = data.disclaimer;
         cache.set(slug, data);
       } catch(error) {

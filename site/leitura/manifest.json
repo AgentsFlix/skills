@@ -3,7 +3,13 @@
   "readings": [
     {
       "slug": "copy-metodo-hormozi",
-      "reader": "leitura/copy-metodo-hormozi.json"
+      "reader": "leitura/copy-metodo-hormozi.json",
+      "share": {
+        "title": "Uma oferta que faz sentido antes do desconto.",
+        "description": "Entenda como resultado, confiança, tempo e esforço mudam a maneira de apresentar o que você vende.",
+        "image": "/leitura/assets/capa-hormozi.jpg",
+        "alt": "Hormozi: o empreendedor que criava ofertas irresistíveis."
+      }
     },
     {
       "slug": "habitos-que-cabem",
@@ -45,6 +51,12 @@
           ],
           "sinopse": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento."
         }
+      },
+      "share": {
+        "title": "No dia 22, continuou horrível.",
+        "description": "Eu acordei às 2h da manhã durante 21 dias para criar o hábito de ler. No dia 22, continuou horrível. Parei.",
+        "image": "/leitura/dia-22/assets/capa-dia-22.png",
+        "alt": "Dia 22: o jornalista que acordou às 2h por 21 dias e descobriu que repetir não basta."
       }
     }
   ]
