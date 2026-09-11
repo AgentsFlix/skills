@@ -87,8 +87,6 @@ const states = [];
           assert(await page.locator('#simulation').isVisible());
           for(let i=0;i<5;i++) await page.locator('#step').tap();
           await page.locator('#bulk').tap();
-          await page.clock.fastForward(20000);
-          // fastForward dispara intervalos uma vez; runFor preserva todos os ticks.
           await page.clock.runFor(20000);
           assert(await page.locator('#result').isVisible());
           await page.locator('#edit').tap();
@@ -106,6 +104,7 @@ const states = [];
         }
         assert.deepEqual(errors,[]);
         states.push({exercise:exercise.name,...viewport,touch:true,passed:true});
+        console.log(`OK toque ${exercise.name} ${viewport.width}x${viewport.height}`);
         await context.close();
       }
     }
@@ -114,9 +113,10 @@ const states = [];
       const context=await browser.newContext({viewport:{width:1440,height:1000}});
       const page=await context.newPage();
       await page.goto(`${base}/assistir/hermes-em-operacao/t1e2/${exercise.name}.html?qa=1`);
-      await page.locator(`[data-piece="${exercise.ids[0]}"]`).dragTo(page.locator('[data-slot="0"]'));
+      await page.evaluate(()=>Promise.all([...document.images].map(image=>image.decode().catch(()=>{}))));
+      await page.locator(`[data-piece="${exercise.ids[0]}"]`).dragTo(page.locator('[data-slot="0"]'),{sourcePosition:{x:15,y:15}});
       assert.equal(await page.locator('[data-remove]').count(),1);
-      await page.locator('[data-slot="0"]').dragTo(page.locator('#tray, #pieces'));
+      await page.locator('[data-slot="0"]').dragTo(page.locator('#tray, #pieces'),{sourcePosition:{x:15,y:15}});
       assert.equal(await page.locator('[data-remove]').count(),0);
       await page.locator(`[data-piece="${exercise.ids[0]}"]`).focus();
       await page.keyboard.press('Enter');

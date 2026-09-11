@@ -36,3 +36,5 @@ html.piece-picker-open,html.piece-picker-open body{overflow:hidden}
 }
 
 .piece-picker button{touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.piece-picker button,#puzzle .piece,#puzzle .drop,#assembly .piece,#assembly .target{-webkit-tap-highlight-color:transparent}
+.piece-picker-options button:active:not(:disabled){background:#333;border-color:var(--accent)}
