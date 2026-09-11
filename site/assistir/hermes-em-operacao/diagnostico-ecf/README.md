@@ -4,6 +4,19 @@ Página independente em `/assistir/hermes-em-operacao/diagnostico-ecf/`. Apresen
 
 Creator organiza atenção, Expert organiza interesse e Founder organiza ações no perfil. São indicadores operacionais, não prova de expertise, intenção de compra, leads qualificados ou receita. A página não chama uma IA nem consulta o Instagram; lê o JSON local em memória.
 
+## Metodologia em quatro páginas
+
+A abertura ensina o modelo com comparações, prints e exemplos interativos antes da coleta.
+
+1. **A história:** um perfil para curtidas/seguidores versus três ativos; os dois perfis de José Carlos e a experiência de vendas, com os três prints fornecidos e ampliação. CTA: Confio, vamo nessa.
+2. **As três moedas:** Atenção = Creator, Autoridade = Expert e Ação = Founder. Harmonia e três desequilíbrios alternam uma única barra por card. São combinações ilustrativas, independentes dos scores importados.
+3. **O conteúdo:** escolha do ativo mostra três formatos e sua função. São exemplos de roteamento editorial, sem promessa de resultado; o mesmo formato pode servir a outro ativo conforme a pauta.
+4. **O raio-x:** três exemplos de tratamento editorial e botão Fazer meu raio-x para o formulário Zernio existente. Não classifica automaticamente um perfil real como uma doença.
+
+`method.js` e `method.css` isolam essa experiência. As quatro páginas usam estado em memória e hash `#metodo-1` a `#metodo-4`; não gravam respostas. Artes existentes ficam em templates compartilhados com o diagnóstico. A coleta, o contrato v4, as fórmulas e o validador continuam separados. A metodologia fala em autoridade; os números de Expert continuam indicadores de interesse, sem atestar autoridade ou vendas.
+
+Os prints autorizados e suas fontes estão em `art/README.md`. Visualizações não recebem rótulo de alcance. O número de vendas é relato pessoal. A audiência da TV é apresentada em pontos domiciliares, sem conversão não demonstrada para pessoas.
+
 ## Métricas e régua proposta
 
 | Card | Variável | Cálculo | Ideal inicial proposto |

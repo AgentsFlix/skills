@@ -13,16 +13,9 @@
   function step(n) {
     names.forEach((id,i)=>$(id).hidden=i!==n);
     document.querySelectorAll('[data-step]').forEach(b=>{ if(Number(b.dataset.step)===n)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current'); });
-    (n===2&&!$('report-results').hidden?$('results-title'):$(headings[n])).focus();
+    (n===0?document.querySelector('.lesson:not([hidden]) h1'):n===2&&!$('report-results').hidden?$('results-title'):$(headings[n])).focus();
   }
   document.querySelectorAll('[data-step],[data-next]').forEach(b=>b.addEventListener('click',()=>step(Number(b.dataset.step??b.dataset.next))));
-  function axis(id) {
-    const a=Native.AXES[id];
-    document.querySelectorAll('[data-axis]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.axis===id)));
-    $('axis-detail').innerHTML=`<div><p class="eyebrow">O QUE A GENTE VAI OBSERVAR</p><h3>${escape(a.question)}</h3><p>Três variáveis, com o mesmo peso no score ${escape(a.name)}.</p></div><div class="weights">${a.metrics.map(([key])=>`<div class="weight"><i style="width:${100/3}%" aria-hidden="true"></i><b>1/3</b><span>${escape(Native.SHORT_LABELS[key])}</span></div>`).join('')}</div>`;
-  }
-  document.querySelectorAll('[data-axis]').forEach(b=>b.addEventListener('click',()=>axis(b.dataset.axis)));
-  axis('creator');
   const localDate = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   const end=new Date();end.setDate(end.getDate()-1);const start=new Date(end);start.setDate(start.getDate()-29);
   $('start').value=localDate(start);$('end').value=localDate(end);
@@ -92,7 +85,7 @@
     currentReference=JSON.parse(JSON.stringify(dashboard.reference));activeData=data;activeDemo=demo;reportGeneration++;
     $('completion-panel').hidden=true;completionPrompt='';
     const cards=Object.entries(viewModel.AXES).map(([id,axis],index)=>{
-      const r=dashboard.axes[id],art=document.querySelector('[data-axis="'+id+'"] .art').innerHTML;
+      const r=dashboard.axes[id],art=$('art-'+id).innerHTML;
       const bars=r.components.map(m=>`<div class="variable"><div class="variable-label"><span>${escape(m.label)}</span><b>${m.points===null?'Sem dado':Math.round(m.points)+'<small>/100</small>'}</b></div><div class="variable-track" ${m.points===null?'':`role="meter" aria-label="${escape(m.label)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(m.points)}"`}><span style="width:${m.points??0}%"></span></div><p>${m.raw===null?'Medição ainda ausente':percent(m.raw)}<span>Ideal ${percent(m.ideal)}</span></p></div>`).join('');
       const marker=r.score===null?'':`<i class="you-marker" style="left:${r.score}%" aria-hidden="true"></i>`;
       return `<article class="scorecard" aria-labelledby="card-${id}"><div class="scorecard-title"><div><p>${String(index+1).padStart(2,'0')} / ${id==='creator'?'ATENÇÃO':id==='expert'?(isNative?'INTERESSE':'AUTORIDADE'):(isNative?'AÇÕES':'DEMANDA')}</p><h2 id="card-${id}">${axis.name}</h2></div></div><div class="scorecard-art" aria-hidden="true">${art}</div><div class="variables">${bars}</div><div class="axis-average"><div><span>Média geral</span><strong class="axis-number ${r.score===null?'unmeasured':''}">${scoreLabel(r.score)}${r.score===null?'':'<small>/100</small>'}</strong></div><span class="sample-badge">${r.measured}/3 variáveis${r.partial?' · parcial':''}</span></div><div class="ideal-ruler" role="img" aria-label="Média ${r.score===null?'sem medição':Math.round(r.score)+' de 100'}. Faixa ideal a partir de 80 pontos.">${marker}<i class="ideal-marker" aria-hidden="true"></i></div><div class="ruler-labels"><span>0</span><span>Ideal ≥ 80</span><span>100</span></div></article>`;

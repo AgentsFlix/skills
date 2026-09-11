@@ -32,3 +32,12 @@ A escolha da régua não é uma aprovação visual do resultado final. O PR cont
 `accounts-before-*` registra o exemplo v3 com Novos seguidores; `accounts-after-*` registra o exemplo v4 com Contas engajadas, em 1440, 768 e 390 px. As demais oito variáveis e o layout dos três cards permanecem. O ideal proposto da nova variável é 10%, ajustável na mesma régua. Todas as capturas usam dados fictícios.
 
 O QA em Chrome conferiu ajuste/restauração, contrato v4 no prompt copiado, execução do validador extraído do prompt, notas e hash, leitura v3 na escala original, migração explícita com preservação dos valores e ideais, importação de nove valores com cobertura parcial e exportação/reimportação sem alterações. A migração não converte seguidores em contas engajadas. Sem overflow nas três larguras, erros de página ou chamadas externas. Detalhes em `accounts-resultado.json`.
+
+
+## Metodologia em quatro páginas
+
+`method-before-*` mostra a abertura anterior em 1440, 768 e 390 px. `method-after-1-*` a `method-after-4-*` mostram história, três moedas, formatos e raio-x nessas larguras. Os três prints da história foram fornecidos pelo autor para esta peça; origens em `site/assistir/hermes-em-operacao/diagnostico-ecf/art/README.md`. Os demais exemplos e barras são ilustrativos, sem JSON ou dados privados da coleta.
+
+As capturas `method-scenario-*`, `method-format-*` e `method-treatment-*` mostram estados alternativos. QA Chrome em sessão isolada: navegação/foco, retorno/recarga, ampliação de cada print, Escape, teclado, movimento reduzido, uma barra por card, nove formatos e três tratamentos. A ação Fazer meu raio-x chega ao formulário existente. O prompt conserva o contrato v4 e o diagnóstico mantém nove variáveis, artes e notas. Sem overflow, erros de página ou requisições externas. Resultados em `method-resultado.json`.
+
+Visualizações permanecem identificadas como visualizações. A experiência de vendas é relato pessoal; a audiência de TV usa pontos domiciliares sem estimar pessoas. A nova abertura está em prévia para revisão visual.
