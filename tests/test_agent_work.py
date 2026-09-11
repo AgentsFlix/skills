@@ -1,4 +1,6 @@
 import argparse
+from contextlib import redirect_stdout
+import io
 import importlib.util
 import json
 from pathlib import Path
@@ -40,6 +42,37 @@ class WorkTests(unittest.TestCase):
 
     def test_separate_scopes_allowed(self):
         self.start(); self.start('other', 'b.txt')
+
+    def test_status_without_registry_does_not_create_state(self):
+        folder = w.common_at(self.root) / 'agent-work'
+        with redirect_stdout(io.StringIO()):
+            w.status(self.root)
+        self.assertFalse(folder.exists())
+
+    def test_status_preserves_registry_bytes_and_mtime(self):
+        self.start()
+        folder = w.common_at(self.root) / 'agent-work'
+        before = {p.name: (p.read_bytes(), p.stat().st_mtime_ns) for p in folder.iterdir()}
+        with redirect_stdout(io.StringIO()):
+            w.status(self.root)
+        after = {p.name: (p.read_bytes(), p.stat().st_mtime_ns) for p in folder.iterdir()}
+        self.assertEqual(before, after)
+
+    def test_old_record_can_still_change_scope(self):
+        dest = self.start()
+        with w.registry(self.root) as tasks:
+            for key in ('contract_version', 'task_id', 'owner'):
+                tasks['codex/task'].pop(key)
+        w.scope(dest, argparse.Namespace(scope=['a.txt', 'b.txt']))
+        self.assertEqual(w.read_registry(self.root)['codex/task']['scopes'], ['a.txt', 'b.txt'])
+
+    def test_start_records_optional_external_identity(self):
+        w.start(self.root, argparse.Namespace(slug='managed', agent='hermes',
+                directory=str(self.base / 'managed'), scope=['a.txt'],
+                task_id='AF-17', owner='af-web'))
+        task = w.read_registry(self.root)['hermes/managed']
+        self.assertEqual((task['contract_version'], task['task_id'], task['owner']),
+                         (2, 'AF-17', 'af-web'))
 
     def test_check_rejects_main_and_outside_scope(self):
         with self.assertRaises(ValueError): w.check(self.root, None)
