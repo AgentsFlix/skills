@@ -52,6 +52,93 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 8. As três escolhas iniciais usam ilustrações editoriais exclusivas: concluir uma tarefa, organizar a base do negócio e descobrir um caminho. Traço desenhado, personagens adultos, fundo carvão, branco quente e ciano; sem texto dentro da arte, cores de alerta ou SVG ilustrativo. Arquivos locais em `site/onboarding/`, sem dependência do serviço de capas. Desktop mostra a composição inteira; no celular, o enquadramento quadrado recorta apenas as margens vazias, preservando personagens e objetos. As imagens são decorativas e os rótulos funcionam se elas falharem. Perguntas e resultado conservam as capas das skills. Movimento discreto de hover e zoom, desativado com movimento reduzido. Perguntas com muitas opções usam miniaturas compactas; no celular, Continuar acompanha a rolagem. O resultado mantém uma única peça com borda especial.
 9. Curadoria ausente ou inválida mostra erro com nova tentativa. Não abrir o catálogo antigo como atalho que ignora as dependências.
 
+## Ilustrações editoriais: padrão de criação
+
+Este contrato vale para personagens, objetos e cenas didáticas do AgentFlix, incluindo **Hermes em Operação → Materiais dos episódios**. Consolida a direção aprovada da skill `agentflix-desenho` no próprio projeto, para que a criação não dependa da instalação de uma skill pessoal. A referência de interface continua sendo a Netflix; as ilustrações têm linguagem editorial própria do AgentFlix.
+
+### Uma ideia por imagem
+
+Cada imagem comunica uma única ação ou função com o mínimo de elementos. O resultado deve ser adulto, acolhedor, tranquilo e fácil de reconhecer. Use ilustração editorial **2D desenhada à mão**, contornos finos, orgânicos e levemente irregulares, silhuetas simples e preenchimentos predominantemente chapados. Textura, quando necessária, é quase imperceptível e restrita ao preenchimento.
+
+Personagens têm proporções adultas naturais, anatomia simplificada, rosto com poucos detalhes, cabelo em massas, roupas lisas e expressões sutis. Em novas poses do mesmo personagem, usar a imagem de referência e preservar rosto, cabelo, tom de pele, roupa e proporções. Pessoas diferentes podem representar funções diferentes. Uma pessoa e um objeto principal bastam por padrão; mesa ou cadeira só entram quando ajudam a entender a ação.
+
+### Paleta da ilustração
+
+| Papel | Cor | Aplicação |
+|---|---|---|
+| Marfim quente | `#F0EEE6` | Preenchimentos claros. |
+| Ciano suave | `#65AEB6` | Um acento concentrado na ação ou no objeto principal. |
+| Cinza esverdeado | `#8A9690` | Apoio neutro, quando necessário. |
+| Carvão | `#303633` | Contornos e preenchimentos escuros. |
+| Fundo sólido opcional | `#191C1B` | Somente quando a composição pedir fundo escuro. |
+
+Esses valores são a direção cromática das artes, não novos tokens globais de CSS. A interface conserva a tabela de cores deste documento. Não distribuir o ciano em todos os elementos, introduzir amarelo/laranja/verde como acentos extras nem recolorir um personagem já aprovado. Uma cor diferente pedida pelo Zé conserva o traço, a simplicidade e a baixa quantidade de cores. Variações de antialiasing não são novas cores de marca.
+
+### Fundo, margens e uso na tela
+
+- Assets reutilizáveis dos materiais usam **transparência real** por padrão. Não desenhar quadriculado, fundo branco, halo ou círculo decorativo dentro do arquivo.
+- Preservar o sujeito inteiro e uma margem de segurança. Normalizar a escala aparente entre peças do mesmo conjunto: um balão de mensagem não pode parecer minúsculo ao lado de um envelope porque seu PNG contém mais área vazia. Comparar a silhueta visível, não apenas largura e altura do arquivo.
+- Não colocar letras, números, títulos, logotipos ou marca-d’água dentro da ilustração sem pedido explícito. Rótulos e estados pertencem ao HTML e continuam compreensíveis se a imagem falhar.
+- As três composições de onboarding já aprovadas em `site/onboarding/` conservam seu fundo carvão e os acentos originais. Seu fundo e seus círculos compositivos não viram moldura obrigatória dos assets transparentes dos materiais.
+- Imagens grandes podem mostrar a ação completa. Em miniaturas de aproximadamente 24–64 px, remover detalhes e preferir objeto ou enquadramento de busto quando o corpo inteiro perder leitura. Não reduzir uma cena complexa até parecer um ícone ilegível. Se for o mesmo personagem, a adaptação preserva sua identidade.
+- Sombra de contato discreta é admitida quando explica apoio. Não usar reflexos de plástico/metal, volume de render 3D, brilho, neon, gradiente chamativo ou sombra pesada para dar acabamento.
+- Conferir contraste no fundo real. Pernas de cadeira, cabelo e contornos em carvão não podem desaparecer no carvão da página. Resolver no desenho ou na composição, sem acrescentar glow por CSS.
+
+### Separar os tipos de imagem
+
+| Tipo | Regra |
+|---|---|
+| Personagem ou objeto editorial | Arte raster gerada com referência; seguir este padrão. Não substituir por personagem desenhado em CSS/SVG. |
+| Ícone funcional pequeno | Reutilizar a família SVG existente; formas simples, sem textura, com rótulo acessível. |
+| Diagrama ou mecanismo interativo | SVG/HTML pode compor setas, trilhos, números e estados ao redor dos assets. Preservar legibilidade e o significado da atividade. |
+| Mockup editável do negócio do aluno | A paleta e os textos pertencem à identidade escolhida no exercício. Não confundir esse resultado com uma nova paleta do AgentFlix. |
+| Capa cinematográfica, fotografia ou captura de aula | Seguir seu contrato próprio. Não aplicar este estilo de desenho nem dessaturar automaticamente. |
+
+### Prompt-base de produção
+
+O texto abaixo é um modelo reutilizável, não a alegação de um prompt histórico. Preencher os campos e anexar a referência visual aprovada da mesma família antes de gerar.
+
+```text
+Crie uma ilustração editorial original do AgentFlix.
+Sujeito: [pessoa ou objeto].
+Ação ou ideia única: [o que a pessoa precisa reconhecer].
+Uso e tamanho final: [cena, card ou miniatura; dimensões de exibição].
+Referência: [arquivo aprovado; identidade do personagem a preservar].
+
+Ilustração editorial bidimensional desenhada à mão. Contornos finos,
+orgânicos e levemente irregulares, silhuetas simples, acabamento limpo,
+preenchimentos predominantemente chapados e pouquíssimos detalhes internos.
+Aparência adulta, acolhedora e tranquila. Pessoas com proporções naturais,
+rosto simplificado, cabelo em massas, roupa lisa e expressão sutil.
+
+Uma única ação, um único foco visual. Uma pessoa e um objeto principal,
+quando necessários. Sem ambiente completo. Sujeito inteiro, composição
+clara, margens de segurança e escala aparente consistente com a referência.
+
+Paleta: marfim #F0EEE6, carvão #303633, ciano suave #65AEB6 como único acento
+na ação ou objeto; cinza esverdeado #8A9690 apenas como apoio. Se houver
+personagem de referência, preserve também seu tom de pele e sua roupa.
+
+Fundo transparente real, sem quadriculado desenhado, halo ou moldura.
+Sem texto, letras, números, logos ou marca-d'água. Sem fotografia, 3D,
+aparência plástica, reflexos brilhantes, neon, gradientes chamativos,
+sombras pesadas, círculos decorativos, cenários detalhados ou símbolos de IA
+acrescentados apenas pelo tema. Sem detalhes que desapareçam no tamanho final.
+```
+
+Quando a peça pedir fundo sólido, substituir a linha de transparência pela cor e composição solicitadas; não pedir fundo transparente e sólido ao mesmo tempo. Para objeto isolado, retirar as instruções de anatomia. Para outra pose, descrever apenas a ação nova e manter a referência do personagem. Não gerar uma prancha de variantes quando o pedido for um asset.
+
+### Conferência e registro de cada lote
+
+1. Identificar função, referência aprovada, quantidade e tamanho real de uso. Reutilizar assets adequados antes de criar duplicatas.
+2. Inspecionar o resultado gerado: ideia única, anatomia, traço, paleta, textura, detalhes, silhueta, margens e identidade. Um prompt correto não garante uma imagem conforme.
+3. Abrir o PNG no navegador sobre marfim `#F0EEE6` e carvão `#191C1B`, sem filtro ou sombra. Confirmar alpha real e borda limpa. O visualizador de arquivos pode representar o alpha de modo diferente; não diagnosticar halo apenas pela prévia dele.
+4. Comparar as peças lado a lado na mesma caixa e no tamanho final. Verificar especialmente os ícones pequenos. Conferir as páginas em 1440, 768 e 390 px, sem corte de partes importantes, distorção ou perda de leitura.
+5. Guardar original, arquivo de entrega e prompt completo em pasta versionada. Registrar ferramenta/modelo quando informado pela geração, referências usadas, data, versão, transformação/exportação e hash do arquivo entregue. Não inventar o modelo nem chamar um prompt reconstruído de original. Não incluir dados privados de alunos ou clientes.
+6. Usar nomes estáveis e versões explícitas para substituições; atualizar referências somente após a conferência. Registrar desvios encontrados e decisões no relatório do lote. Seguir o fluxo de PR, checks e merge de `CONTRIBUTING.md`; aprovações específicas de conteúdo continuam válidas.
+
+Auditoria inicial: [21 imagens dos materiais de Hermes em Operação](design-review/ilustracoes-hermes-operacao/README.md). Prompts históricos do lote: [restaurante](site/assistir/hermes-em-operacao/t1e2/art/prompts.md) e [Eugência](site/assistir/hermes-em-operacao/t1e2/art/eugencia/prompts.md). A auditoria descreve o estado encontrado; seus arquivos não se tornam novas referências aprovadas apenas por estarem no acervo.
+
 ## Instalado e pré-requisitos
 
 - Fonte da dependência: `skills[slug].antes` em `site/vitrine.json`, gerada de `prototipos/vitrine/curadoria.py` no repo privado. Não manter listas paralelas no HTML.

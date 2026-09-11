@@ -1,0 +1,134 @@
+[
+  {
+    "path": "assistir/series.json",
+    "status": 200,
+    "sha256": "2d1fae0fe748c2018744edea8b75bdc0dc3d8fcf3856f329011192570af46ae2",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/esteira-v1.png",
+    "status": 200,
+    "sha256": "b8cb4c7d43c50ad036bdf00b657a919bf725de59f170bd72f075ef2f40a6acce",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/chef-caixa-v1.png",
+    "status": 200,
+    "sha256": "523c0525434916e021bcb45e89186e14d8db1a2635470dc833b727693375ea0f",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/cliente-v1.png",
+    "status": 200,
+    "sha256": "a2a51acddc5489bd5d665b4d71a2bbd9731e4f618cc52efab66572eb0740e7c9",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+    "status": 200,
+    "sha256": "a856693b81a95b4d0816008db4507962ae26b04097a44611d4274f92a5367faa",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+    "status": 200,
+    "sha256": "5fc6f8170a31feb92038b6469e7213a5c8bece4e18278fbf7d9e2fd1e5c4542f",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+    "status": 200,
+    "sha256": "f8ed5a7d228838733c907b6e87b709ba8abfb6455f67340ab295c9a37c197026",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+    "status": 200,
+    "sha256": "99b28c69dd867510710cda452932fa76993ae3d4b40224b45d5293e1a7ce62ea",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/chef-cozinha-v1.png",
+    "status": 200,
+    "sha256": "268afd17f4ba631eaa75e1f1d1762c69371ccba90f5e30a537a80d4637dbe92a",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+    "status": 200,
+    "sha256": "3582f30f4165e36ee8c41947326e3ed53a7c64988816662c41e3e863621d7ab9",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/menu-v1.png",
+    "status": 200,
+    "sha256": "431b10b5dcff0d42b58c32ad9a087733bc307527833123405a5eaafce3dd2223",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png",
+    "status": 200,
+    "sha256": "4c065f9e6b5339c41960ca18f9afc6f999432389cd7b82eaba243cc162ae7e16",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/mesa-v1.png",
+    "status": 200,
+    "sha256": "2093a79fe79e3f558738e906c19f5d386ceac17b2d4590066f3dee4192b74b2b",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+    "status": 200,
+    "sha256": "7009d05b39f6b7d031a5c82443bc4ce3b75ccde7d3c661d3017a853b9e15b3f7",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/eugencia/envio.png",
+    "status": 200,
+    "sha256": "e52b78c39e739bb18e087b41d12a7259d2b1dd2fcc02cc411ee3657ffaaeebbf",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png",
+    "status": 200,
+    "sha256": "3a453e06107134b649e0bb48e2eaea767965e16f588fbb7acf8473772af33039",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png",
+    "status": 200,
+    "sha256": "14e126dc92df314425e486420c73ad07096e2951aebac0d149cd95c513ef28e2",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/eugencia/editor.png",
+    "status": 200,
+    "sha256": "fd58af5e173484cfbb77dacadd5a80a8e1987e9408d2a650dd89d0ab1767e452",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png",
+    "status": 200,
+    "sha256": "bb6ba7079b27532d23edf863f44491f26f7500ea14f06cca6ac131157af9e345",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+    "status": 200,
+    "sha256": "5a860a7c48104eaf9b7bfdadccc15313c4c6c98f92ddf120cd34a07bc7325f90",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/eugencia/criacao.png",
+    "status": 200,
+    "sha256": "67ba4c369697377c7b88883c3044c11113fecc2ee1c2b8319d0ba411bfdb4cc4",
+    "matches_worktree": true
+  },
+  {
+    "path": "assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+    "status": 200,
+    "sha256": "f79821bb749813c40b2243eccd0bdb70a170c2d8d1c9bbfd1ebce027a4d6e58c",
+    "matches_worktree": true
+  }
+]
