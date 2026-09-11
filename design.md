@@ -40,9 +40,9 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 - O retorno para todas as séries usa seta SVG de 20 px, traço de 2,5 px e pontas arredondadas, com texto ao lado e alvo mínimo de 44 px. Não usar a seta tipográfica.
 - Elencos longos mostram o primeiro nome e oferecem a lista completa em uma área expansível.
 
-## Onboarding obrigatório
+## Onboarding das skills
 
-1. A primeira visita na aba começa pelas três escolhas. A pedido do Zé após a revisão do Clarity em 08/09/2026, respostas e conclusão ficam no sessionStorage dessa aba: recarregar ou voltar do player restaura o caminho. Uma aba sem estado começa pelo guia. Não guardar a conclusão no localStorage nem compartilhar a seleção entre dispositivos. Estado inválido ou incompatível com a curadoria atual volta à entrada.
+1. A primeira visita ao catálogo de skills começa pelas três escolhas. A área Ler é pública, conforme o contrato de leitura abaixo. A pedido do Zé após a revisão do Clarity em 08/09/2026, respostas e conclusão ficam no sessionStorage dessa aba: recarregar ou voltar do player restaura o caminho. Uma aba sem estado começa pelo guia. Não guardar a conclusão no localStorage nem compartilhar a seleção entre dispositivos. Estado inválido ou incompatível com a curadoria atual volta à entrada.
 2. Não renderizar a lista completa nem liberar busca, Minha lista ou fichas antes de terminar as perguntas e clicar em `Abrir minha seleção`. A conclusão sempre abre o Início, com a recomendação e a seleção escolhidas, inclusive se a entrada veio de um link de leitura ou de skill. A pessoa acessa Ler ou abre uma ficha depois desse passo. Exceção: endereços permanentes de compartilhamento `/compartilhar/<slug>/` abrem a leitura recebida após esse mesmo passo, respeitando os pré-requisitos.
 3. Quantidade disponível não é progresso. Cada ponto representa uma skill. O total e os grupos vêm de `vitrine.json`, nunca de porcentagens fixas. Coleções mostram nomes e contagens individuais. As perguntas mostram seu número, sem barra de progresso inventada. As quantidades e os pontos ficam em O que tem nesse caminho, após selecionar uma opção; o detalhe identifica cada grupo e explica o que os pontos representam.
 4. A resposta final define o objetivo. A peça recomendada é a primeira etapa ainda necessária para esse objetivo, respeitando os pré-requisitos e as instalações marcadas.
@@ -164,7 +164,7 @@ Auditoria inicial: [21 imagens dos materiais de Hermes em Operação](design-rev
 - `Marcar como instalado` é uma confirmação manual. Copiar comando, salvar em Minha lista, abrir amostra ou declarar que já tem arquivos no onboarding não marca instalação.
 - A ficha liberada oferece `Marcar como instalado` no topo, ao lado de `Instalar em…`, e também junto do comando. As duas posições compartilham o mesmo estado e mostram `✓ Instalado` após a confirmação. Só a posição acionada anuncia o resultado; o foco permanece no botão. `Minha lista` tem rótulo visível próprio, separado de instalação. No celular, as ações empilham sem cortar o texto.
 - Persistência local: `agentflix-installed-v1` no localStorage. Não existe verificação remota do agente nem sincronização entre dispositivos. Se o navegador não permitir salvar, informar que a marcação vale só nesta visita.
-- Skill bloqueada abre somente uma orientação com os pré-requisitos faltantes e o caminho para a primeira etapa disponível. Não renderizar seu instalador, instruções de uso, amostras ou réguas nesse estado. Hover e link direto respeitam o mesmo bloqueio.
+- Na aba de uso, uma skill bloqueada abre somente uma orientação com os pré-requisitos faltantes e o caminho para a primeira etapa disponível. Não renderizar seu instalador, instruções de uso, amostras ou réguas nesse estado. Hover e link direto respeitam o mesmo bloqueio.
 - Ao instalar todos os pré-requisitos, o alerta `Antes: ...` desaparece e a ficha é liberada. Dependências em cadeia são verificadas recursivamente. Mais de um pré-requisito exige todos.
 - Remover uma marcação bloqueia novamente o que depende dela, inclusive se a skill dependente já tinha sido marcada. Preservar a marcação do dependente, mas não confundi-la com pré-requisitos completos.
 - Mudanças entre abas reavaliam a ficha aberta. Marcar uma instalação atualiza os cards, o próximo passo e a indicação de continuação, sem recarregar a página.
@@ -182,21 +182,23 @@ Implementação: `site/index.html`, `site/vitrine.css`, `site/vitrine.js` e `sit
 
 ## Leitura humana: exemplar Hormozi
 
-A ficha de `copy-metodo-hormozi` abre em **Para o humano**, com **Usar a skill** ao lado. É a única skill com leitura humana nesta etapa. A capa, a identificação e as ações continuam pertencendo à ficha da vitrine; o botão Instalar em… leva ao instalador existente, na segunda aba. As demais fichas mantêm sua composição.
+A ficha de `copy-metodo-hormozi` abre em **Para o humano**, com **Usar a skill** ao lado. É o exemplar do componente comum a todas as leituras registradas. A capa, a identificação e as ações continuam pertencendo à ficha da vitrine; o botão Instalar em… leva ao instalador existente, na segunda aba. As demais fichas mantêm sua composição.
 
 O painel do exemplar comporta até 1120 px. As abas acompanham a rolagem, seguidas da barra Aa · Leitura. Título do guia, capítulos e orientação formam um conjunto fixo; em janelas baixas esse conjunto pode rolar por dentro. No celular, os capítulos ficam em uma faixa horizontal. Voltar da aba de instalação recupera a posição da leitura.
 
 Escuro usa a base da marca. Papel é uma exceção aprovada para conforto: fundo creme e texto escuro apenas na leitura. Os cinco tamanhos e a aparência ficam em `agentflix-reading-v1`, por navegador e origem. Capa, ações e instalação não mudam de tema nem de tamanho. Escape fecha primeiro os ajustes abertos; depois, a ficha.
 
-O conteúdo aprovado é servido em `site/leitura/`, com as imagens e os créditos. O componente só é montado após o onboarding e a verificação de pré-requisitos da ficha. Não há página de leitura paralela que pule essa experiência. Falha no carregamento oferece nova tentativa e mantém o acesso à aba de instalação.
+O conteúdo aprovado é servido em `site/leitura/`, com as imagens e os créditos. A leitura é pública e abre sem onboarding, login ou pré-requisitos. A aba Usar a skill conserva a orientação e os pré-requisitos de instalação. O mesmo componente atende aos dois acessos; não há leitor paralelo. Falha no carregamento oferece nova tentativa e mantém o acesso à aba de instalação.
 
 ### Acervo de leitura
 
-**Ler** fica no menu principal, após **Assistir**, e abre a seleção **Para o humano** em `#ler`. A seleção lista todas as skills que têm leitura registrada no mesmo componente que libera a aba humana. Atualmente, apenas Hormozi. O filtro anterior de avulsas, coleções ou Minha lista não limita esse acervo.
+**Ler** fica no menu principal, após **Assistir**, e abre a seleção **Para o humano** em `#ler`. A seleção lista todas as skills que têm leitura registrada no mesmo componente que libera a aba humana. O filtro anterior de avulsas, coleções ou Minha lista não limita esse acervo.
 
 A grade conserva capas 16:9, proporções, tipografia e fundo escuro da vitrine. Um livro de traço discreto acompanha “Leitura disponível”. O card abre a ficha na aba humana; fechar retorna ao acervo e ao card acionado. O hover oferece “Ler método”. A busca da barra passa a buscar apenas nas leituras, com limpeza de busca quando não houver resultado.
 
-No celular, Ler acompanha a navegação horizontal. O tema Papel continua restrito ao conteúdo dentro da ficha. Abrir `#ler` ou acionar Ler antes do fim do onboarding exibe o guia obrigatório; a conclusão abre o Início, sem carregar a leitura antecipadamente. Depois do onboarding, Ler abre o acervo normalmente. As regras de pré-requisitos continuam sendo conferidas ao abrir cada ficha. Voltar ao Catálogo recupera a seleção anterior.
+No celular, Ler acompanha a navegação horizontal. O tema Papel continua restrito ao conteúdo dentro da ficha. `#ler`, links diretos de slugs registrados e `/compartilhar/<slug>/` abrem o acervo ou a peça imediatamente, sem vinheta nem perguntas. A entrada das skills oferece Ler livremente. Isso vale para toda nova leitura do registro, sem lista de exceções no código.
+
+Ler não conclui o onboarding, não marca instalação e não exige cadastro. Capa, capítulos, preferências e compartilhamento continuam no componente comum. Pré-requisitos de uma skill não bloqueiam seu texto: ficam na aba Usar a skill. Antes de concluir o guia, essa aba oferece Escolher meu caminho; ao concluir, retorna à mesma skill e confere os pré-requisitos. O destino é preservado na sessão da aba, inclusive após recarga. Catálogo e skills sem leitura continuam seguindo a orientação existente.
 
 ## Acervo Assistir
 
