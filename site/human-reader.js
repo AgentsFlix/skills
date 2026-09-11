@@ -18,6 +18,7 @@
       if(!skill && entry.fallback) { skill = {...entry.fallback}; result.push(skill); }
       if(!skill) throw Error('Leitura sem skill: ' + entry.slug);
       if(entry.cover) skill.reading_cover = entry.cover;
+      if(entry.share) skill.reading_share = entry.share;
     }
     return result;
   }

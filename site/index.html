@@ -601,7 +601,7 @@
       tint: c.tints[i % c.tints.length],
       meta: (p.tamanho || "").toUpperCase() + " · REQUER: " + (p.requer || "nenhuma").toUpperCase(),
       cmdFor: Object.fromEntries(TARGETS.map((t) => [t.id, t.field === "zip_url" ? zipLocal(s.zip_url) : t.field === "prompt_url" ? (s.reading_only ? safeUrl(s.prompt_url) : promptLocal(slug)) : (s[t.field] || "")])),
-      cardUrl: window.AgentFlixReader?.supports(slug) ? "https://agentsflix.ai/compartilhar/" + slug + "/" : location.origin + "/#" + slug,
+      cardUrl: s.reading_share ? "https://agentsflix.ai/compartilhar/" + slug + "/" : location.origin + "/#" + slug,
       zipUrl: zipLocal(s.zip_url), promptUrl: s.reading_only ? safeUrl(s.prompt_url) : promptLocal(slug),
       hay: [String(i + 1).padStart(2, "0"), slug, title, name, sub, syn, cast.join(" "), gen.join(" "), traits.join(" ")].join(" ").toLowerCase(),
       get inList() { return state.list.includes(slug); }
@@ -618,8 +618,7 @@
     return { t, value, note, hint: t.hint || "" };
   }
 
-  let sharedReading = document.documentElement.dataset.sharedReading || "";
-  if (location.hash && hashSlug() !== sharedReading) sharedReading = "";
+  let sharedReading = "";
   function enterSharedReading() {
     if (!sharedReading || !BY[sharedReading] || !DISCOVERY?.completed) return false;
     const slug = sharedReading; sharedReading = "";
@@ -629,6 +628,8 @@
   }
 
   function loadCatalog(cat) {
+    sharedReading = document.documentElement.dataset.sharedReading || "";
+    if (location.hash && hashSlug() !== sharedReading) sharedReading = "";
     CAT = cat;
     const order = cat.row_order || Object.keys(CATS);
     const idx = (r) => { const k = order.indexOf(r); return k < 0 ? 99 : k; };

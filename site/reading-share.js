@@ -65,8 +65,12 @@
     dialog.addEventListener('close', () => { if (trigger?.isConnected) trigger.focus({preventScroll:true}); }, {signal});
     dialog.addEventListener('keydown', event => {
       event.stopPropagation();
-      if (event.key === 'Escape') { event.preventDefault(); dialog.close(); }
     }, {signal});
+    // Native sheets can return focus to the document instead of the dialog.
+    document.addEventListener('keydown', event => {
+      if (!dialog.open || event.key !== 'Escape') return;
+      event.preventDefault(); event.stopImmediatePropagation(); dialog.close();
+    }, {capture:true, signal});
     dialog.addEventListener('click', event => {
       event.stopPropagation();
       if (event.target === dialog) {
