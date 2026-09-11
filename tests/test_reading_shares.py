@@ -49,9 +49,10 @@ class ReadingShares(unittest.TestCase):
             broken = copy.deepcopy(entry)
             del broken['share'][field]
             with self.assertRaises(ValueError): render(template, broken, ROOT/'site')
-        for image in ('//outside.example/cover.jpg','/leitura/../../secret.jpg','/leitura/image.svg'):
-            broken = copy.deepcopy(entry); broken['share']['preview_image'] = image
-            with self.assertRaises(ValueError): render(template, broken, ROOT/'site')
+        for field in ('image', 'preview_image'):
+            for image in ('//outside.example/cover.jpg','/leitura/../../secret.jpg','/leitura/image.svg','/leitura/missing.jpg'):
+                broken = copy.deepcopy(entry); broken['share'][field] = image
+                with self.assertRaises(ValueError): render(template, broken, ROOT/'site')
 
     def test_original_heavy_cover_cannot_be_reused_as_link_preview(self):
         template = (ROOT/'site/index.html').read_text()

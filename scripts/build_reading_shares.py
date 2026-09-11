@@ -22,9 +22,13 @@ def render(template, entry, site):
     revision = share.get('revision')
     if type(revision) is not int or revision < 1:
         raise ValueError('Revisão da prévia precisa ser um inteiro positivo')
+    for field in ('image', 'preview_image'):
+        path = share[field]
+        if not re.fullmatch(r'/leitura/[a-zA-Z0-9/_.-]+\.(jpg|jpeg|png)', path) or '..' in path.split('/'):
+            raise ValueError('Capa deve ser um arquivo público local')
+        if not (site / path.lstrip('/')).is_file():
+            raise ValueError(f'{field} indisponível')
     image = share['preview_image']
-    if not re.fullmatch(r'/leitura/[a-zA-Z0-9/_.-]+\.(jpg|jpeg|png)', image) or '..' in image.split('/'):
-        raise ValueError('Capa deve ser um arquivo público local')
     raw = (site / image.lstrip('/')).read_bytes()
     width, height, mime = image_info(raw)
     if width < 600 or height < 315 or mime != 'image/jpeg' or len(raw) >= 300_000:
