@@ -1,0 +1,427 @@
+{
+  "date": "2026-09-10",
+  "base_commit": "b6cc4f496c5f6bf1674b1bd9cf814cb26f568aad",
+  "count": 21,
+  "files": [
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "bytes": 544080,
+      "sha256": "a856693b81a95b4d0816008db4507962ae26b04097a44611d4274f92a5367faa",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1167085,
+      "opaque_pixels": 1975,
+      "alpha_bbox": [
+        97,
+        198,
+        1192,
+        1182
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "bytes": 466646,
+      "sha256": "3582f30f4165e36ee8c41947326e3ed53a7c64988816662c41e3e863621d7ab9",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1172265,
+      "opaque_pixels": 1157,
+      "alpha_bbox": [
+        103,
+        53,
+        1051,
+        1182
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "bytes": 1189202,
+      "sha256": "5fc6f8170a31feb92038b6469e7213a5c8bece4e18278fbf7d9e2fd1e5c4542f",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1168138,
+      "opaque_pixels": 0,
+      "alpha_bbox": [
+        71,
+        29,
+        828,
+        1510
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/chef-caixa-v1.png",
+      "bytes": 1232511,
+      "sha256": "523c0525434916e021bcb45e89186e14d8db1a2635470dc833b727693375ea0f",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1181169,
+      "opaque_pixels": 0,
+      "alpha_bbox": [
+        0,
+        41,
+        958,
+        1490
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/chef-cozinha-v1.png",
+      "bytes": 1165563,
+      "sha256": "268afd17f4ba631eaa75e1f1d1762c69371ccba90f5e30a537a80d4637dbe92a",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1189818,
+      "opaque_pixels": 0,
+      "alpha_bbox": [
+        65,
+        67,
+        860,
+        1472
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/cliente-v1.png",
+      "bytes": 1136647,
+      "sha256": "a2a51acddc5489bd5d665b4d71a2bbd9731e4f618cc52efab66572eb0740e7c9",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1222921,
+      "opaque_pixels": 0,
+      "alpha_bbox": [
+        65,
+        61,
+        846,
+        1478
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/esteira-v1.png",
+      "bytes": 563801,
+      "sha256": "b8cb4c7d43c50ad036bdf00b657a919bf725de59f170bd72f075ef2f40a6acce",
+      "width": 1774,
+      "height": 887,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1113843,
+      "opaque_pixels": 1883,
+      "alpha_bbox": [
+        88,
+        109,
+        1706,
+        709
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "bytes": 1097120,
+      "sha256": "5a860a7c48104eaf9b7bfdadccc15313c4c6c98f92ddf120cd34a07bc7325f90",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1152625,
+      "opaque_pixels": 0,
+      "alpha_bbox": [
+        101,
+        57,
+        1452,
+        1006
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "bytes": 607815,
+      "sha256": "7009d05b39f6b7d031a5c82443bc4ce3b75ccde7d3c661d3017a853b9e15b3f7",
+      "width": 1145,
+      "height": 1374,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1121401,
+      "opaque_pixels": 1201,
+      "alpha_bbox": [
+        49,
+        37,
+        935,
+        1296
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/criacao.png",
+      "bytes": 546961,
+      "sha256": "67ba4c369697377c7b88883c3044c11113fecc2ee1c2b8319d0ba411bfdb4cc4",
+      "width": 1343,
+      "height": 1171,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1108553,
+      "opaque_pixels": 1490,
+      "alpha_bbox": [
+        256,
+        156,
+        1210,
+        1027
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/editor.png",
+      "bytes": 1023936,
+      "sha256": "fd58af5e173484cfbb77dacadd5a80a8e1987e9408d2a650dd89d0ab1767e452",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 974117,
+      "opaque_pixels": 0,
+      "alpha_bbox": [
+        247,
+        159,
+        1290,
+        864
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/envio.png",
+      "bytes": 451838,
+      "sha256": "e52b78c39e739bb18e087b41d12a7259d2b1dd2fcc02cc411ee3657ffaaeebbf",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1143955,
+      "opaque_pixels": 1468,
+      "alpha_bbox": [
+        271,
+        248,
+        1023,
+        1141
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png",
+      "bytes": 824600,
+      "sha256": "14e126dc92df314425e486420c73ad07096e2951aebac0d149cd95c513ef28e2",
+      "width": 1190,
+      "height": 1322,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 855679,
+      "opaque_pixels": 1337,
+      "alpha_bbox": [
+        105,
+        32,
+        1171,
+        1288
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png",
+      "bytes": 702104,
+      "sha256": "bb6ba7079b27532d23edf863f44491f26f7500ea14f06cca6ac131157af9e345",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1412274,
+      "opaque_pixels": 0,
+      "alpha_bbox": [
+        522,
+        159,
+        1378,
+        952
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+      "bytes": 976227,
+      "sha256": "f79821bb749813c40b2243eccd0bdb70a170c2d8d1c9bbfd1ebce027a4d6e58c",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1169982,
+      "opaque_pixels": 0,
+      "alpha_bbox": [
+        313,
+        165,
+        1141,
+        1024
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png",
+      "bytes": 1287482,
+      "sha256": "3a453e06107134b649e0bb48e2eaea767965e16f588fbb7acf8473772af33039",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "transparent_pixels": 1085843,
+      "opaque_pixels": 0,
+      "alpha_bbox": [
+        27,
+        53,
+        956,
+        1493
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png",
+      "bytes": 688348,
+      "sha256": "4c065f9e6b5339c41960ca18f9afc6f999432389cd7b82eaba243cc162ae7e16",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 970956,
+      "opaque_pixels": 1348,
+      "alpha_bbox": [
+        97,
+        99,
+        1192,
+        1228
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png",
+      "bytes": 857413,
+      "sha256": "431b10b5dcff0d42b58c32ad9a087733bc307527833123405a5eaafce3dd2223",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 946807,
+      "opaque_pixels": 1466,
+      "alpha_bbox": [
+        0,
+        53,
+        1240,
+        1182
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/mesa-v1.png",
+      "bytes": 383032,
+      "sha256": "2093a79fe79e3f558738e906c19f5d386ceac17b2d4590066f3dee4192b74b2b",
+      "width": 1242,
+      "height": 1266,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1273716,
+      "opaque_pixels": 1830,
+      "alpha_bbox": [
+        33,
+        223,
+        1190,
+        1240
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "bytes": 520138,
+      "sha256": "f8ed5a7d228838733c907b6e87b709ba8abfb6455f67340ab295c9a37c197026",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1154375,
+      "opaque_pixels": 1936,
+      "alpha_bbox": [
+        41,
+        53,
+        1219,
+        1182
+      ]
+    },
+    {
+      "path": "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "bytes": 760850,
+      "sha256": "99b28c69dd867510710cda452932fa76993ae3d4b40224b45d5293e1a7ce62ea",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "transparent_pixels": 1139042,
+      "opaque_pixels": 963,
+      "alpha_bbox": [
+        81,
+        52,
+        1172,
+        1198
+      ]
+    }
+  ]
+}
