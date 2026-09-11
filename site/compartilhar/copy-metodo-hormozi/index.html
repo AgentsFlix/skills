@@ -436,6 +436,7 @@
       <a href="#lenda">Lendas</a>
     </nav>
     <span class="onboarding-header-note">Sua próxima descoberta começa aqui</span>
+    <a class="onboarding-reading" href="#ler" data-discover-reading>Ler livremente</a>
     <div class="spacer"></div>
     <div class="search" id="search">
       <button class="search-toggle" data-act="search" aria-label="Buscar" aria-expanded="false" aria-controls="q"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg></button>
@@ -620,9 +621,31 @@
     return { t, value, note, hint: t.hint || "" };
   }
 
+  // O registro editorial libera leitura, nunca conclusão do guia ou instalação.
+  const isReading = slug => !!BY[slug] && !!window.AgentFlixReader?.supports(slug);
+  const canOpenCard = slug => !!BY[slug] && (!!DISCOVERY?.completed || isReading(slug));
+  const pendingReadingKey = "agentflix-reading-skill";
+  let pendingReadingSkill = "";
+  function startReadingOnboarding(slug) {
+    if (!isReading(slug)) return;
+    pendingReadingSkill = slug;
+    try { sessionStorage.setItem(pendingReadingKey, slug); } catch(e) {}
+    resumeDiscovery();
+  }
+  function resumeReadingSkill() {
+    if (!DISCOVERY?.completed) return false;
+    let slug = pendingReadingSkill;
+    try { slug = slug || sessionStorage.getItem(pendingReadingKey); sessionStorage.removeItem(pendingReadingKey); } catch(e) {}
+    pendingReadingSkill = "";
+    if (!isReading(slug)) return false;
+    setCatalogView("reading", {scroll:false, updateUrl:false});
+    openModal(slug);
+    focusSkill();
+    return true;
+  }
   let sharedReading = "";
   function enterSharedReading() {
-    if (!sharedReading || !BY[sharedReading] || !DISCOVERY?.completed) return false;
+    if (!isReading(sharedReading)) return false;
     const slug = sharedReading; sharedReading = "";
     setCatalogView("reading", {scroll:false, updateUrl:false});
     openModal(slug);
@@ -643,6 +666,7 @@
     DISCOVERY = window.AgentFlixDiscovery.create(DISCOVERY_DATA, BY, {
       filter() { hidePreview(); state.filter = "Tudo"; state.q = ""; $("q").value = ""; renderChips(); renderCatalog(); },
       enter() {
+        if (resumeReadingSkill()) return;
         if (enterSharedReading()) return;
         setCatalogView("catalog", {scroll:false, updateUrl:false});
         history.replaceState(null, "", location.pathname + location.search + "#inicio");
@@ -663,6 +687,7 @@
     const tap = cat.tap || "hermes skills tap add AgentsFlix/skills";
     $("tapText").textContent = tap; $("tapBtn").dataset.text = tap;
     render(true);
+    if (resumeReadingSkill()) return;
     if (enterSharedReading()) return;
     const h = hashSlug();
     if (h === "ler") setCatalogView("reading", { scroll: false, updateUrl: false });
@@ -694,7 +719,7 @@
         ${s.inList ? '<div class="ldot"></div>' : ""}
       </div>`;
   const readingMark = () => `<span class="reading-available"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v15M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Z"/></svg><span>Leitura disponível</span></span>`;
-  const readingCardInfo = s => `<div class="journey-info reading-card-info">${readingMark()}<h3>${esc(s.name)}</h3><p>${esc(s.sub)}</p>${DISCOVERY?.locked(s.slug) ? `<small>${esc(DISCOVERY.status(s))}</small>` : ''}</div>`;
+  const readingCardInfo = s => `<div class="journey-info reading-card-info">${readingMark()}<h3>${esc(s.name)}</h3><p>${esc(s.sub)}</p></div>`;
   const cardHtml = (s) => `
     <div class="card ${DISCOVERY ? 'journey-card' : ''}" data-act="open" data-slug="${esc(s.slug)}" role="button" tabindex="0" aria-label="${state.view === 'reading' ? 'Ler ' : ''}${esc(s.name)}">${artHtml(s, cardCover(s))}${state.view === 'reading' ? readingCardInfo(s) : DISCOVERY ? DISCOVERY.card(s) : ''}
     </div>`;
@@ -802,14 +827,16 @@
     if (guideLink) guideLink.textContent = ready ? 'Meu caminho' : 'Como escolher';
     const reading = state.view === "reading";
     const readerLink = $("nav").querySelector('[data-discover-reading]');
-    if (ready && reading) readerLink?.setAttribute('aria-current', 'page');
+    if (reading) readerLink?.setAttribute('aria-current', 'page');
     else readerLink?.removeAttribute('aria-current');
-    $("catalog-stage").hidden = !ready;
-    document.body.classList.toggle("choosing", !ready);
+    $("catalog-stage").hidden = !ready && !reading;
+    $("discovery").hidden = ready || reading;
+    document.body.classList.toggle("choosing", !ready && !reading);
+    document.body.classList.toggle("public-reading", !ready && reading);
     const brand = document.querySelector('.top .brand');
-    if (ready) { brand.setAttribute('href','#inicio'); brand.removeAttribute('aria-disabled'); brand.removeAttribute('tabindex'); }
+    if (ready || reading) { brand.setAttribute('href','#inicio'); brand.removeAttribute('aria-disabled'); brand.removeAttribute('tabindex'); }
     else { brand.removeAttribute('href'); brand.setAttribute('aria-disabled','true'); brand.setAttribute('tabindex','-1'); }
-    if (!ready) { $("rows").innerHTML = ""; $("results").innerHTML = ""; $("recommendation").innerHTML = ""; return; }
+    if (!ready && !reading) { $("rows").innerHTML = ""; $("results").innerHTML = ""; $("recommendation").innerHTML = ""; return; }
     $("results").classList.toggle("reading-catalog", reading);
     $("recommendation").hidden = reading;
     $("chips").hidden = reading;
@@ -841,7 +868,7 @@
 
   function focusCatalogView() {
     const target = state.view === "reading" ? $("reading-heading") : $("chips");
-    if(!target || !DISCOVERY?.completed) return;
+    if(!target || (!DISCOVERY?.completed && state.view !== "reading")) return;
     if(state.view === "reading") {
       window.scrollTo({top:0, behavior:"instant"});
       $("nav").scrollLeft = $("nav").scrollWidth;
@@ -856,14 +883,14 @@
   }
   function setCatalogView(view, {scroll = true, updateUrl = true} = {}) {
     hidePreview(); closeModal(true);
-    state.view = view; state.q = ""; $("q").value = ""; clearTimeout(qTimer);
+    state.view = view; if(view === "reading") stopIntro(true); state.q = ""; $("q").value = ""; clearTimeout(qTimer);
     if(updateUrl) {
       const hash = view === "reading" ? "#ler" : "#chips";
       if(location.hash !== hash) history.pushState(null, "", location.pathname + location.search + hash);
     }
     renderHero(); renderCatalog();
     if(scroll) {
-      if(DISCOVERY?.completed) focusCatalogView();
+      if(DISCOVERY?.completed || view === "reading") focusCatalogView();
       else $("discovery").scrollIntoView({block:"start"});
     }
   }
@@ -895,7 +922,12 @@
     const s = state.open ? BY[state.open] : null;
     const m = $("modal");
     if (!s) { DISCOVERY?.cancel(); m.hidden = true; m.innerHTML = ""; document.body.style.overflow = ""; return; }
-    if (DISCOVERY?.locked(s.slug)) {
+    const reading = isReading(s.slug);
+    const skillReady = !!DISCOVERY?.completed && !DISCOVERY.locked(s.slug);
+    const skillGate = !DISCOVERY?.completed
+      ? `<section class="reading-skill-gate"><h2>Leve esta skill para o seu agente</h2><p>A leitura é livre. Para usar a skill, escolha seu caminho e veja por onde começar.</p><button class="guide-primary" data-act="reading-onboarding" data-slug="${esc(s.slug)}">Escolher meu caminho</button></section>`
+      : !skillReady ? DISCOVERY.gate(s) : "";
+    if (!reading && !skillReady) {
       DISCOVERY.cancel();
       m.innerHTML = `<div class="overlay" data-act="close"><div class="panel locked-panel" data-act="stop" role="dialog" aria-modal="true" aria-label="${esc(s.name)}"><button class="close" data-act="close" aria-label="fechar">✕</button>${DISCOVERY.gate(s)}</div></div>`;
       m.hidden=false;document.body.style.overflow="hidden";return;
@@ -916,16 +948,16 @@
               <p class="sub">${esc(s.sub)}</p>
               <div class="modal-installation" data-install-area>
                 <div class="modal-actions">
-                  <button class="btn-install" data-act="install-focus">Instalar em…</button>
-                  ${DISCOVERY ? DISCOVERY.installationButton(s) : ''}
+                  <button class="btn-install" data-act="install-focus">${skillReady ? 'Instalar em…' : 'Usar a skill'}</button>
+                  ${skillReady ? DISCOVERY.installationButton(s) : ''}
                   <button class="modal-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" aria-label="${s.inList ? 'Remover da minha lista' : 'Adicionar à minha lista'}" aria-pressed="${s.inList}">${listLabel(s)}</button>
                 </div>
                 <p class="installation-feedback" role="status"></p>
               </div>
             </div>
           </div>
-          <div class="body">
-            <div>
+          <div class="body ${skillReady ? '' : 'reading-skill-locked'}">
+            ${skillReady ? `<div>
               <div class="synopsis"><p class="syn" id="skill-syn">${esc(s.syn)}</p><button class="syn-toggle" data-act="synopsis" aria-expanded="false" aria-controls="skill-syn" hidden>Ler sinopse completa</button></div>
               ${s.badge === "LENDA" ? `<p class="legal">Skill independente: reúne o método publicado em livros, cursos e entrevistas do autor. Sem afiliação nem endosso dele.</p>` : ""}
               ${exclusiveHtml(s)}
@@ -947,12 +979,12 @@
                 ${s.since ? `<div class="fact"><span>Desde</span><b>v${esc(s.since)}</b></div>` : ""}
                 <div class="fact" data-fact="estado"><span>Estado</span><b>${esc(s.publicationStatus || (s.inList ? "na lista" : "disponível"))}</b></div>
               </div>
-            </div>
+            </div>` : skillGate}
           </div>
         </div>
       </div>`;
     m.hidden = false;
-    DISCOVERY?.bind(s);
+    if(skillReady) DISCOVERY.bind(s);
     window.AgentFlixReader?.mount(m.querySelector('.panel'), s.slug);
     requestAnimationFrame(measureSynopsis);
     document.body.style.overflow = "hidden";
@@ -976,14 +1008,15 @@
   let lastFocus = null;
   function updateInert() { try { $("page").inert = introPhase !== "off" || !!state.open; } catch (e) {} }
   function openModal(slug) {
-    if(!BY[slug])return;
-    if(!DISCOVERY?.completed)return;
+    if(!canOpenCard(slug))return;
+    if(isReading(slug) && !DISCOVERY?.completed && state.view !== "reading")
+      setCatalogView("reading", {scroll:false, updateUrl:false});
     const opener = pvCard || document.activeElement;
     hidePreview();
     if (!state.open) lastFocus = opener;
     if (state.open !== slug) {
       track("card_open", slug); window.clar?.("abriu_card", { skill: slug, alvo: state.target });
-      window.clar?.(DISCOVERY.locked(slug) ? 'pre_requisito_bloqueado' : 'ficha_liberada', {skill:slug});
+      window.clar?.(isReading(slug) ? 'leitura_aberta' : DISCOVERY.locked(slug) ? 'pre_requisito_bloqueado' : 'ficha_liberada', {skill:slug});
     }
     state.open = slug;
     if (location.hash !== "#" + slug) history.replaceState(null, "", location.pathname + location.search + "#" + slug);
@@ -1056,7 +1089,9 @@
     const el = e.target.closest("[data-act]");
     if (!el) return;
     const act = el.dataset.act;
-    if (!DISCOVERY?.completed && ['chip','toggle','target','install-focus'].includes(act)) { e.preventDefault(); return; }
+    if (!DISCOVERY?.completed && (['chip','target'].includes(act) ||
+      (act === 'toggle' && !isReading(el.dataset.slug)) ||
+      (act === 'install-focus' && !isReading(state.open)))) { e.preventDefault(); return; }
     if (act === "stop") return;   // clique dentro do painel: o closest para aqui e o overlay não recebe "close"
     if (act === "open") {
       e.preventDefault();
@@ -1069,14 +1104,16 @@
     else if (act === "target") setTarget(el.dataset.target);
     else if (act === "search") toggleSearch();
     else if (act === "synopsis") { const expanded = el.parentElement.classList.toggle("expanded"); el.setAttribute("aria-expanded", String(expanded)); el.textContent = expanded ? "Recolher sinopse" : "Ler sinopse completa"; }
-    else if (act === "install-focus") { window.AgentFlixReader?.showSkill(); $("install-target").scrollIntoView({ block: "center", behavior: "smooth" }); $("install-target").focus({ preventScroll: true }); }
+    else if (act === "install-focus") focusSkill();
+    else if (act === "reading-onboarding") startReadingOnboarding(el.dataset.slug);
+    else if (act === "read") { e.preventDefault(); setCatalogView("reading"); }
     else if (act === "copy") { e.preventDefault(); copyText(el); }
     else if (act === "chip") { if(state.view === "reading") setCatalogView("catalog", {scroll:false}); hidePreview(); if (DISCOVERY && ["Tudo", "Minha lista"].includes(el.dataset.filter)) DISCOVERY.setDoor(null); state.filter = el.dataset.filter; renderChips(); renderCatalog(); window.scrollTo({ top: $("chips").offsetTop - 80, behavior: "smooth" }); }
     else if (act === "prev") scrollRow(el.dataset.row, -1);
     else if (act === "next") scrollRow(el.dataset.row, 1);
     else if (act === "replay" || act === "enter") { window.clar?.('abertura_iniciada',{origem:act});playIntro(true); }
     else if (act === "skip") stopIntro(true);
-    else if (act === "home") { e.preventDefault(); if (DISCOVERY?.completed) resumeDiscovery(); }
+    else if (act === "home") { e.preventDefault(); if (DISCOVERY?.completed || state.view === "reading") resumeDiscovery(); }
     else if (act === "account") { if (shop.on) openAuth(); }
     else if (act === "auth-close") closeAuth();
     else if (act === "logout") logout();
@@ -1087,13 +1124,19 @@
   document.addEventListener("keydown", (e) => {
     if (e.defaultPrevented) return;
     if (e.key === "Escape") { hidePreview(); if (!state.open && !$("q").hidden && !state.q) toggleSearch(false); if (introPhase !== "gate") stopIntro(true); closeAuth(); closeModal(); return; }
-    if ((e.key === "Enter" || e.key === " ") && introPhase === "gate") { e.preventDefault(); playIntro(true); return; }
+    if ((e.key === "Enter" || e.key === " ") && introPhase === "gate" && !e.target.closest('.intro-reading')) { e.preventDefault(); playIntro(true); return; }
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement || {}).tagName || "");
     if (e.key === "/" && !typing) { e.preventDefault(); toggleSearch(true); return; }
     if ((e.key === "Enter" || e.key === " ") && e.target.matches && e.target.matches('.card[data-act="open"]')) { e.preventDefault(); openModal(e.target.dataset.slug); }
   });
+  function focusSkill() {
+    window.AgentFlixReader?.showSkill();
+    const target = $("install-target") || document.querySelector('#reader-skill button');
+    target?.scrollIntoView({block:"center", behavior:"instant"});
+    target?.focus({preventScroll:true});
+  }
   function toggleSearch(force) {
-    if(!DISCOVERY?.completed)return;
+    if(!DISCOVERY?.completed && state.view !== "reading")return;
     const open = force === undefined ? $("q").hidden : force;
     if (!open && state.q) { $("q").focus(); return; }
     $("q").hidden = !open; $("search").classList.toggle("open", open);
@@ -1147,7 +1190,7 @@
   const PREVIEW_OK = window.matchMedia("(any-hover: hover) and (any-pointer: fine)");
   let pvTimer = null, pvSlug = null;
   function previewHtml(s) {
-    if(DISCOVERY?.locked(s.slug)) return `${artHtml(s, coverImg(s, "cover", "wide", { eager: true }))}<div class="pv-body"><div class="pv-name">${esc(s.name)}</div><p class="pv-sub">${esc(DISCOVERY.status(s))}</p><button class="guide-primary" data-act="open" data-slug="${esc(s.slug)}">Ver pré-requisitos</button></div>`;
+    if(!isReading(s.slug) && DISCOVERY?.locked(s.slug)) return `${artHtml(s, coverImg(s, "cover", "wide", { eager: true }))}<div class="pv-body"><div class="pv-name">${esc(s.name)}</div><p class="pv-sub">${esc(DISCOVERY.status(s))}</p><button class="guide-primary" data-act="open" data-slug="${esc(s.slug)}">Ver pré-requisitos</button></div>`;
     return `${artHtml(s, coverImg(s, "cover", "wide", { eager: true }))}
       <div class="pv-body">
         <div class="pv-actions">
@@ -1163,7 +1206,7 @@
   let pvExit = null, pvClose = null, pvFrame = null, pvCard = null, pendingListRefresh = false;
   function clearPreviewTimers() { clearTimeout(pvTimer); clearTimeout(pvExit); clearTimeout(pvClose); cancelAnimationFrame(pvFrame); pvTimer = pvExit = pvClose = pvFrame = null; }
   function showPreview(card) {
-    if (!DISCOVERY?.completed || !card.isConnected || state.open || !PREVIEW_OK.matches) return;
+    if (!canOpenCard(card.dataset.slug) || !card.isConnected || state.open || !PREVIEW_OK.matches) return;
     const s = BY[card.dataset.slug]; if (!s) return;
     clearPreviewTimers();
     const r = (card.querySelector(".art") || card).getBoundingClientRect(), pv = $("preview");
@@ -1390,6 +1433,7 @@
         <div class="mark"><img src="brand/horizontal-transparente-dark.svg" alt="AgentFlix"></div>
         <div class="rule"></div>
         <button class="enter" data-act="enter"><span>▶</span><span>Entrar</span></button>
+        <a class="intro-reading" href="#ler" data-act="read">Ler livremente</a>
       </div>
       <div class="grain"></div>
       <div class="vignette"></div>`;
@@ -1572,9 +1616,6 @@
     $("footTotal").textContent = "catálogo indisponível";
   }
   (async () => {
-    let seen = false;
-    try { seen = !!sessionStorage.getItem("agentflix-intro-seen"); sessionStorage.setItem("agentflix-intro-seen", "1"); } catch (e) {}
-    if (!seen && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) playIntro(false);
     let cat = null, lastErr = null;
     for (const url of CATALOG_URLS) {
       try { const r = await fetch(url, { cache: "no-cache" }); if (!r.ok) throw new Error("HTTP " + r.status); cat = await r.json(); if (cat && Array.isArray(cat.skills)) break; cat = null; }
@@ -1584,6 +1625,12 @@
     try { const r = await fetch('vitrine.json', { cache: 'no-cache' }); if(r.ok) DISCOVERY_DATA = await r.json(); } catch(e) { /* Sem curadoria, a orientação deve ser recarregada. */ }
     try { cat = {...cat, skills: await window.AgentFlixReader.catalogSkills(cat.skills)}; loadCatalog(cat); }
     catch (e) { console.error(e); showLoadError("catálogo inválido: " + (e && e.message || e)); return; }
+    // Links de leitura abrem direto, sem vinheta nem gravação de onboarding.
+    if(state.view !== "reading") {
+      let seen = false;
+      try { seen = !!sessionStorage.getItem("agentflix-intro-seen"); sessionStorage.setItem("agentflix-intro-seen", "1"); } catch (e) {}
+      if (!seen && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) playIntro(false);
+    }
     initShop();   // só muda algo se a loja estiver ligada em /api/config
   })();
 })();

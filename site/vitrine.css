@@ -198,3 +198,16 @@
 
 .journey-card:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .journey-card:focus-visible .art{outline:none}
+
+/* O acervo editorial é público. O guia continua pertencendo às skills. */
+.onboarding-reading{display:none;color:var(--text);font-size:14px;font-weight:600;min-height:44px;align-items:center;white-space:nowrap}
+.choosing .onboarding-reading{display:inline-flex;margin-left:auto}
+.choosing .onboarding-header-note{margin-left:auto}
+.intro-reading{display:inline-flex;min-height:44px;align-items:center;color:var(--text);font-size:14px;margin-top:18px}
+.public-reading .count,.public-reading #acctBtn,.public-reading .tapbtn,.public-reading .replay{display:none!important}
+.reading-skill-locked{display:block!important}
+.reading-skill-locked[hidden]{display:none!important}
+.reading-skill-gate{max-width:640px}
+.reading-skill-gate h2{font-size:clamp(22px,3vw,30px);line-height:1.2;margin:0 0 16px}
+.reading-skill-gate p{color:var(--muted);line-height:1.6;margin:0 0 24px}
+.reading-skill-locked .prerequisite-gate{padding:0}
