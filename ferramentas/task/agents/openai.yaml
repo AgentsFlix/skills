@@ -1,0 +1,4 @@
+interface:
+  display_name: "Task"
+  short_description: "Tarefa, branch, PR, testes, merge e encerramento"
+  default_prompt: "Use $task para executar a tarefa descrita até o merge e o encerramento no AgentFlix."

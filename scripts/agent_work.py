@@ -11,7 +11,7 @@ import re
 import subprocess
 import sys
 
-VERSION = 1
+VERSION = 2
 
 
 def run(*args, cwd=None):
@@ -59,6 +59,17 @@ def registry(root):
         os.replace(tmp, file)
 
 
+def read_registry(root):
+    """Read the atomic snapshot without creating locks or rewriting state."""
+    file = common_at(root) / 'agent-work' / 'tasks.json'
+    return json.loads(file.read_text()) if file.exists() else {}
+
+
+def status(root, args=None):
+    print(json.dumps(read_registry(root), ensure_ascii=False, indent=2))
+    print(git(root, 'worktree', 'list'))
+
+
 def start(root, args):
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', args.slug):
         raise ValueError('Use slug em minúsculas, com hífens: player-retomar-aula.')
@@ -77,7 +88,10 @@ def start(root, args):
                 raise ValueError(f'Escopo reservado por {name}, em {task["directory"]}. Coordene antes de editar.')
         base = git(root, 'rev-parse', 'origin/main')
         git(root, 'worktree', 'add', '-b', branch, str(dest), base)
-        tasks[branch] = dict(state='active', directory=str(dest), scopes=scopes, base=base)
+        tasks[branch] = dict(state='active', directory=str(dest), scopes=scopes, base=base,
+                             contract_version=VERSION,
+                             task_id=getattr(args, 'task_id', None) or branch,
+                             owner=getattr(args, 'owner', None) or args.agent)
     print(json.dumps(dict(branch=branch, directory=str(dest), base=base, scopes=scopes), ensure_ascii=False, indent=2))
     print('Próximo: entre nessa pasta, leia AGENTS.md e abra um PR rascunho após o primeiro commit.')
 
@@ -163,18 +177,15 @@ def main():
     p.add_argument('slug'); p.add_argument('--agent', choices=['codex', 'hermes', 'claude'], default='codex')
     p.add_argument('--dir', dest='directory', required=True)
     p.add_argument('--scope', action='append', required=True, help='Arquivo ou pasta relativa; repetir para outros caminhos.')
+    p.add_argument('--task-id', help='Identidade da entrega no registro externo; não concede permissões.')
+    p.add_argument('--owner', help='Perfil ou tarefa proprietária, apenas para rastreabilidade.')
     sub.add_parser('status'); sub.add_parser('check')
     p = sub.add_parser('scope'); p.add_argument('--scope', action='append', required=True)
     p = sub.add_parser('finish'); p.add_argument('branch'); p.add_argument('--pr', type=int, required=True)
     args = parser.parse_args()
     try:
         root = root_at(args.repo)
-        if args.command == 'status':
-            with registry(root) as tasks:
-                print(json.dumps(tasks, ensure_ascii=False, indent=2))
-            print(git(root, 'worktree', 'list'))
-        else:
-            globals()[args.command](root, args)
+        globals()[args.command](root, args)
     except (RuntimeError, ValueError, OSError) as exc:
         parser.exit(1, str(exc) + '\n')
 
