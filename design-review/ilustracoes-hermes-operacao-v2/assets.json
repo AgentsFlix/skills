@@ -1,0 +1,205 @@
+{
+  "files": [
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/campainha.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 774838,
+      "opaquePixels": 2060,
+      "sha256": "a80d813f1336b13c37ccfaa2857290e408a5ec8e38e9aa30263df1e7fce1f860",
+      "sourcePreserved": true,
+      "active": true
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/menu.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 679798,
+      "opaquePixels": 1666,
+      "sha256": "94f4bf37a25a6a43e67afb8e223ee7dd52425bbbdbb7db46e204fddff29015e6",
+      "sourcePreserved": true,
+      "active": true
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/prato.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 1171290,
+      "opaquePixels": 899,
+      "sha256": "a04c7dd0608007dd3f640f207e17e7ef0d819fd6e3c72e89e1b7b15c03241261",
+      "sourcePreserved": true,
+      "active": true
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/academia.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 1016452,
+      "opaquePixels": 1934,
+      "sha256": "80b0b4041123896dc71f419463d0e60e564dabec46d8153135588744cf6d981b",
+      "sourcePreserved": true,
+      "active": true
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/esteira.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/esteira-v1.png",
+      "size": [
+        1774,
+        887
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 1188106,
+      "opaquePixels": 2443,
+      "sha256": "d565ca6b7235dcd4f4118b9fde688a6e997fcb841f5c500cadc806bfa1a30bdc",
+      "sourcePreserved": true,
+      "active": false
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/maquininha.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 1001510,
+      "opaquePixels": 1698,
+      "sha256": "0c1d67d8d09258a66a833362fe6843b87ce3c8f879218b99fae8d381f306b399",
+      "sourcePreserved": true,
+      "active": true
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/editor.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/editor.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 588477,
+      "opaquePixels": 1880,
+      "sha256": "113d11ff6fabf7645312a94ff7b13032a5a0bb05f3e1d135b4ed097ac476c2ad",
+      "sourcePreserved": true,
+      "active": true
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/loja.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png",
+      "size": [
+        1189,
+        1323
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 845818,
+      "opaquePixels": 2034,
+      "sha256": "5c4adec6c9e931ad64383e6d77d7cf7cd12dea868c0a166bc0d09cd15c60ecf6",
+      "sourcePreserved": true,
+      "active": true
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/cafe.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 1199061,
+      "opaquePixels": 1189,
+      "sha256": "79fd015f663af23ebf34a30a70e15320983467014cb0fa08f887a31411f82cb8",
+      "sourcePreserved": true,
+      "active": true
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/mensagem.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 890292,
+      "opaquePixels": 1484,
+      "sha256": "9d4d6a465c81d8b1042c33a5e73facb579ec806488c9b3540482d52ef673ead3",
+      "sourcePreserved": true,
+      "active": true
+    },
+    {
+      "file": "site/assistir/hermes-em-operacao/t1e2/art/v2/profissional.png",
+      "source": "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "transparentPixels": 985228,
+      "opaquePixels": 2601,
+      "sha256": "8a615f48fa295e300a6f4718b6875c57f23b935c70d22734a5da6c8e2bb21567",
+      "sourcePreserved": true,
+      "active": true
+    }
+  ],
+  "originalsPreserved": 21,
+  "activeReplacements": 10,
+  "unusedRevisedAsset": "esteira"
+}

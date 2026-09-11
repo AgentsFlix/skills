@@ -13,7 +13,7 @@
     {id:'invent',stage:-1,art:'pasta',text:'Inventar os dados sem consultar.'},
     {id:'anyone',stage:-1,art:'envio',text:'Enviar para qualquer cliente.'}
   ];
-  const art = name => `<img src="art/eugencia/${name}.png" alt="" draggable="false">`;
+  const art = name => `<img src="art/${['academia','cafe','editor','loja','mensagem','profissional'].includes(name)?'v2':'eugencia'}/${name}.png" alt="" draggable="false">`;
   const pieceArt = id => art(pieces.find(p=>p.id===id).art);
   const getPiece = id => pieces.find(p => p.id === id);
   let round = 1, served = 0, activeChefs = 0, selected = null;
