@@ -7,6 +7,7 @@ const {payload, shareCover} = ctx.window.AgentFlixReadingShare;
     const data = payload(entry.slug,entry.share), url = new URL(data.url);
     assert.equal(url.origin,'https://agentsflix.ai');
     assert.equal(url.hash,''); assert.equal(url.pathname,`/compartilhar/${entry.slug}/`);
+    assert.equal(url.searchParams.get('v'),String(entry.share.revision));
     assert.equal(new URL(data.whatsapp).searchParams.get('text'), entry.share.title + '\n' + data.url);
   }
   assert.throws(() => payload('../escape',{}));
