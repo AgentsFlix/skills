@@ -12,18 +12,18 @@
 <meta property="og:title" content="Uma oferta que faz sentido antes do desconto.">
 <meta property="og:description" content="Entenda como resultado, confiança, tempo e esforço mudam a maneira de apresentar o que você vende.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://agentsflix.ai/compartilhar/copy-metodo-hormozi/">
-<link rel="canonical" href="https://agentsflix.ai/compartilhar/copy-metodo-hormozi/">
-<meta property="og:image" content="https://agentsflix.ai/leitura/assets/capa-hormozi.jpg">
-<meta property="og:image:secure_url" content="https://agentsflix.ai/leitura/assets/capa-hormozi.jpg">
+<meta property="og:url" content="https://agentsflix.ai/compartilhar/copy-metodo-hormozi/?v=2">
+<link rel="canonical" href="https://agentsflix.ai/compartilhar/copy-metodo-hormozi/?v=2">
+<meta property="og:image" content="https://agentsflix.ai/leitura/assets/previews/hormozi-v2.jpg">
+<meta property="og:image:secure_url" content="https://agentsflix.ai/leitura/assets/previews/hormozi-v2.jpg">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1536">
-<meta property="og:image:height" content="1024">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
 <meta property="og:image:alt" content="Hormozi: o empreendedor que criava ofertas irresistíveis.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Uma oferta que faz sentido antes do desconto.">
 <meta name="twitter:description" content="Entenda como resultado, confiança, tempo e esforço mudam a maneira de apresentar o que você vende.">
-<meta name="twitter:image" content="https://agentsflix.ai/leitura/assets/capa-hormozi.jpg">
+<meta name="twitter:image" content="https://agentsflix.ai/leitura/assets/previews/hormozi-v2.jpg">
 <link rel="icon" href="brand/favicon-dark.svg" type="image/svg+xml">
 <link rel="icon" href="brand/favicon-dark.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
@@ -603,7 +603,7 @@
       tint: c.tints[i % c.tints.length],
       meta: (p.tamanho || "").toUpperCase() + " · REQUER: " + (p.requer || "nenhuma").toUpperCase(),
       cmdFor: Object.fromEntries(TARGETS.map((t) => [t.id, t.field === "zip_url" ? zipLocal(s.zip_url) : t.field === "prompt_url" ? (s.reading_only ? safeUrl(s.prompt_url) : promptLocal(slug)) : (s[t.field] || "")])),
-      cardUrl: s.reading_share ? "https://agentsflix.ai/compartilhar/" + slug + "/" : location.origin + "/#" + slug,
+      cardUrl: s.reading_share ? "https://agentsflix.ai/compartilhar/" + slug + "/?v=" + s.reading_share.revision : location.origin + "/#" + slug,
       zipUrl: zipLocal(s.zip_url), promptUrl: s.reading_only ? safeUrl(s.prompt_url) : promptLocal(slug),
       hay: [String(i + 1).padStart(2, "0"), slug, title, name, sub, syn, cast.join(" "), gen.join(" "), traits.join(" ")].join(" ").toLowerCase(),
       get inList() { return state.list.includes(slug); }
