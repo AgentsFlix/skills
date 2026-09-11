@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Monte o fluxo · T1:E2 · AgentFlix</title><link rel="stylesheet" href="episode.css"><link rel="stylesheet" href="pratica.css"><link rel="stylesheet" href="stage-identity.css"><script src="stage-identity.js" defer></script><script src="pratica.js" defer></script><link rel="stylesheet" href="ambient.css"><script src="ambient.js" defer></script><script src="effects.js" defer></script><link rel="stylesheet" href="episode-navigation.css"><script src="episode-navigation.js" defer></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Monte o fluxo · T1:E2 · AgentFlix</title><link rel="stylesheet" href="episode.css"><link rel="stylesheet" href="pratica.css"><link rel="stylesheet" href="stage-identity.css"><script src="stage-identity.js" defer></script><link rel="stylesheet" href="piece-picker.css"><script src="piece-picker.js" defer></script><script src="pratica.js" defer></script><link rel="stylesheet" href="ambient.css"><script src="ambient.js" defer></script><script src="effects.js" defer></script><link rel="stylesheet" href="episode-navigation.css"><script src="episode-navigation.js" defer></script></head>
 <body>
 <header class="top"><a href="./" class="back">← Página 1 · O restaurante</a><a class="brand" href="../../">AGENT<span>FLIX</span></a><span class="episode-label">TEMPORADA 1 · EPISÓDIO 2</span></header>
 <main>
@@ -23,8 +23,9 @@
 <div class="factory-foot"><p id="factory-status" role="status"></p><span id="served-count">0 de 9 clientes atendidos</span></div>
 </section>
 <section class="puzzle" id="puzzle" aria-labelledby="puzzle-title">
-<div class="section-head"><div><p class="eyebrow" id="round-label">FLUXO 1 · CHEF 1</p><h2 id="puzzle-title">Organize o atendimento</h2><p>Arraste uma peça até a etapa ou clique na peça e depois no espaço. Há peças a mais na mesa.</p></div><span class="counter" id="placed-count">0 / 6 peças</span></div>
-<p id="selection" class="selection" role="status">Escolha uma peça na mesa abaixo.</p>
+<div class="section-head"><div><p class="eyebrow" id="round-label">FLUXO 1 · CHEF 1</p><h2 id="puzzle-title">Organize o atendimento</h2><p class="drag-instruction">Arraste uma peça até a etapa ou clique na peça e depois no espaço. Há peças a mais na mesa.</p></div><span class="counter" id="placed-count">0 / 6 peças</span></div>
+<p class="touch-instruction">Toque em uma peça e escolha onde colocá-la. Você também pode tocar em um espaço vazio para escolher a peça.</p>
+<p id="selection" class="selection drag-instruction" role="status">Escolha uma peça na mesa abaixo.</p>
 <div id="slots" class="slots"></div>
 <div class="tray-head"><h3>Mesa de peças</h3><span>Use uma peça por etapa. Você pode trocar e retirar.</span></div>
 <div id="tray" class="tray"></div>
