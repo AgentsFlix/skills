@@ -9,6 +9,19 @@ SLUGS = ['editorial-pilares', 'editorial-visual', 'editorial-templates', 'editor
 
 
 class EditorialPackageTests(unittest.TestCase):
+    def test_public_audience_research_is_network_first_and_traceable(self):
+        package=ROOT/'skills/copy-pesquisa-avatar'
+        method=(package/'references/pesquisa-publica-profissional.md').read_text()
+        skill=(package/'SKILL.md').read_text()
+        self.assertIn('Não peça ao usuário que traga mensagens como primeira rota',method)
+        self.assertIn('Maton',method)
+        self.assertIn('yt-dlp',method)
+        self.assertIn('Meta: 30 a 50 trechos literais únicos',method)
+        self.assertIn('pelo menos 2 famílias de fonte e 4 artefatos públicos distintos',method)
+        self.assertIn('URL pública reabrível',method)
+        self.assertIn('retome desses arquivos e do `next_context`',method)
+        self.assertIn('references/pesquisa-publica-profissional.md',skill)
+
     def test_hybrid_etl_has_no_missing_private_source_map(self):
         package=ROOT/'skills/hybrid-etl'
         for name in ('etl-local-extract.md','etl-deep-pass.md'):

@@ -18,7 +18,7 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Templates e quotas de pesquisa são apoios opcionais; entregue a síntese rastreável possível sem exigir contagem mínima de fatos, headlines ou pontuação de método ampliado. Avalie rotina com o contexto disponível; isso não obriga a fazer pergunta de configuração. Uma recusa atual encerra o assunto. Guarde o trabalho útil antes de pedir refinamentos opcionais.
+> Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Templates e quotas gerais são apoios opcionais para sínteses simples. Quando o pedido citar pesquisa pública profissional ou `references/pesquisa-publica-profissional.md`, aplique os mínimos e a cascata dessa referência. Avalie rotina com o contexto disponível; isso não obriga a fazer pergunta de configuração. Uma recusa atual encerra o assunto. Guarde o trabalho útil antes de pedir refinamentos opcionais.
 >
 > Pergunte somente o que falta e muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: sugestão curta com o contexto conhecido e [nome do dado] para o desconhecido. Dentro dos colchetes, escreva somente o nome do dado; não inclua ex., listas de respostas possíveis, números ou histórias para escolher. Sem base pertinente, declare “sem informação registrada” e use apenas campos. Preserve o estado da fonte: público pretendido ou hipótese continuam assim no exemplo, sem atribuir comportamento observado a clientes. Para histórico desconhecido, use “Sobre [contexto conhecido], meu histórico é [relato, se houver]”; a oferta não prova experiência, e ausência de registro não prova que nunca aconteceu. Remova toda afirmação preenchida sem fonte. Propostas novas de ações ficam fora dos exemplos de resposta.
 
@@ -35,9 +35,11 @@ Use para apoiar a documentação de público, posicionamento ou pautas com pesqu
 
 Obrigatórios: negócio/oferta, público ou hipótese e decisão a esclarecer. Fontes acessíveis definem o alcance.
 
-Para a síntese inicial, siga Procedure; não precisa abrir ou preencher um template. Para aprofundamento solicitado, escolha somente a referência pertinente entre avatar-research, analyze-mental-conversation, diagnose-market-sophistication, copysearch e diagnose-awareness-level. Esses métodos não são etapas obrigatórias da jornada. O material dos seis motivos está indisponível nesta edição; não invente categorias para substituí-lo.
+Quando o pedido exigir pesquisa autônoma na rede, use `references/pesquisa-publica-profissional.md`: ela começa pelo negócio, prioriza comentários públicos, registra procedência por trecho e salva checkpoints. Material do usuário é complemento opcional.
 
-Os templates preservam métodos e atribuições de origem. Mínimos de fatos, headlines e pontuações não são critérios de aceite desta síntese. Documentos citados que não estejam acessíveis permanecem fontes não consultadas.
+Para a síntese inicial sem coleta pública, siga Procedure; não precisa abrir ou preencher um template. Para outros aprofundamentos, escolha somente a referência pertinente entre avatar-research, analyze-mental-conversation, diagnose-market-sophistication, copysearch e diagnose-awareness-level. O material dos seis motivos está indisponível nesta edição; não invente categorias para substituí-lo.
+
+Os templates preservam métodos e atribuições de origem. Mínimos de fatos, headlines e pontuações não são critérios de aceite da síntese simples. A rota pública profissional tem critérios próprios. Documentos citados que não estejam acessíveis permanecem fontes não consultadas.
 
 ## Procedure
 
@@ -48,8 +50,8 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
 1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
 2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. Abra apenas o método e o template necessários à entrega atual. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
 3. Consulte o perfil/ICP e acervo antes de coletar novamente required/optional. Identifique as lacunas que realmente mudam a comunicação. Não transforme descrição da fundadora em entrevista de clientes.
-4. Pesquise nos materiais acessíveis e, quando disponível, ferramenta externa adequada. Registre origem, data conhecida e trecho que sustenta cada achado. Sem acesso, deixe a pesquisa externa pendente e entregue síntese do acervo/hipóteses e um plano específico de coleta.
-5. Salve a síntese de público no destino autorizado, diferenciando citação, fato observado, inferência e hipótese. O formato inicial pode ser Markdown simples com mapa de origem, achados, lacunas e plano de coleta. Templates ampliados são opcionais: não exigir mínimos de fatos, headlines, insights ou pontos para esta entrega. Não invente números, depoimentos, emoções ou nomes. Perguntas necessárias têm exemplos contextuais próprios. Entregue ao ICP/posicionamento os achados e limites sem apagar sua procedência.
+4. Quando o pedido for pesquisa pública profissional, abra e aplique `references/pesquisa-publica-profissional.md`. Nessa rota, a coleta em rede é a operação pedida: comece pelo negócio e pelas fontes públicas, sem pedir ao usuário que traga mensagens como primeira saída. Use a cascata de ferramentas e os checkpoints da referência; integração indisponível leva à próxima rota e cobertura insuficiente permanece parcial. Nos demais pedidos, pesquise nos materiais acessíveis e, quando disponível, ferramenta externa adequada. Sempre registre origem, data conhecida e trecho que sustenta cada achado.
+5. Salve a síntese de público no destino autorizado, diferenciando citação, fato observado, inferência e hipótese. O formato inicial pode ser Markdown simples com mapa de origem, achados, lacunas e plano de coleta. Templates ampliados são opcionais fora da rota profissional: não exigir mínimos de fatos, headlines, insights ou pontos para uma síntese simples. Não invente números, depoimentos, emoções ou nomes. Perguntas necessárias têm exemplos contextuais próprios. Entregue ao ICP/posicionamento os achados e limites sem apagar sua procedência.
 6. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
 
 ## Avaliação de rotina
@@ -58,14 +60,16 @@ Pesquisa recorrente pode valer com fontes novas e decisão a alimentar. Não ger
 
 ## Pitfalls
 
+- Pedir que o usuário traga mensagens antes de tentar as fontes públicas autorizadas na rota profissional.
 - Trocar evidência por leitura psicológica sem fonte ou tratar relato da fundadora como entrevista de cliente.
-- Preencher quotas de fatos/headlines com conteúdo inventado ou impor quantidade mínima de insights no lugar delas.
+- Contar transcript, texto do vendedor, paráfrase ou conteúdo ilustrativo como voz literal do público.
+- Preencher quotas de fatos/headlines com conteúdo inventado ou impor quantidade mínima de insights fora da rota que a exige.
 - Percorrer todas as referências ou exigir um documento histórico ausente para começar.
-- Deixar de salvar a síntese possível por falta de pesquisa externa, campos opcionais ou pontuação.
+- Deixar de salvar a síntese possível e os checkpoints por falta de uma integração específica.
 
 ## Verification
 
-Cada achado tem fonte inspecionada ou rótulo de hipótese; pesquisa indisponível não é alegada como realizada. Não pontuar resultado por quantidade de hipóteses inventadas. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
+Cada achado tem fonte inspecionada ou rótulo de hipótese; pesquisa indisponível não é alegada como realizada. Na rota pública profissional, confira a amostragem, as famílias de fonte, a procedência por citação e os checkpoints de `references/pesquisa-publica-profissional.md`. Não pontuar resultado por quantidade de hipóteses inventadas. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
 
 ## Arquivos desta skill (incluídos abaixo)
 
@@ -82,6 +86,7 @@ Cada achado tem fonte inspecionada ou rótulo de hipótese; pesquisa indisponív
 - `references/diagnose-market-sophistication.md`
 - `references/identidade.json`
 - `references/map-6-primary-motives.md`
+- `references/pesquisa-publica-profissional.md`
 - `scripts/auditar.py`
 - `templates/avatar-research-template.md`
 - `templates/copysearch-template.md`
@@ -409,7 +414,7 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Templates e quotas de pesquisa são apoios opcionais; entregue a síntese rastreável possível sem exigir contagem mínima de fatos, headlines ou pontuação de método ampliado. Avalie rotina com o contexto disponível; isso não obriga a fazer pergunta de configuração. Uma recusa atual encerra o assunto. Guarde o trabalho útil antes de pedir refinamentos opcionais.
+Use primeiro minha memória e o acervo já indicado. Não leia todos os templates nem peça configuração que já está resolvida pelo ambiente. Continue os resultados anteriores e entregue a operação solicitada; cada pergunta necessária deve ter seu próprio exemplo contextual. Diferencie fatos, hipóteses e dependências pendentes. Não afirme pesquisa, aprovação ou automação sem evidência. Aproveite também as respostas recentes, sem reconfirmar decisões resolvidas. Exemplos não confirmam fatos; não invente números ou histórico profissional. Salve a entrega parcial útil no destino local já autorizado e separe seu estado da completude de um documento ampliado. Templates e quotas gerais são apoios opcionais para sínteses simples. Quando o pedido citar pesquisa pública profissional ou `references/pesquisa-publica-profissional.md`, aplique os mínimos e a cascata dessa referência. Avalie rotina com o contexto disponível; isso não obriga a fazer pergunta de configuração. Uma recusa atual encerra o assunto. Guarde o trabalho útil antes de pedir refinamentos opcionais.
 
 Pergunte somente o que falta e muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: sugestão curta com o contexto conhecido e [nome do dado] para o desconhecido. Dentro dos colchetes, escreva somente o nome do dado; não inclua ex., listas de respostas possíveis, números ou histórias para escolher. Sem base pertinente, declare “sem informação registrada” e use apenas campos. Preserve o estado da fonte: público pretendido ou hipótese continuam assim no exemplo, sem atribuir comportamento observado a clientes. Para histórico desconhecido, use “Sobre [contexto conhecido], meu histórico é [relato, se houver]”; a oferta não prova experiência, e ausência de registro não prova que nunca aconteceu. Remova toda afirmação preenchida sem fonte. Propostas novas de ações ficam fora dos exemplos de resposta.
 
@@ -1339,7 +1344,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" init --version 0.4.3 --revision 1.0.8
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" init --version 0.4.3 --revision 1.1.0
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/copy-pesquisa-avatar" audit
@@ -1421,7 +1426,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: copy-pesquisa-avatar
-  content_revision: 1.0.8
+  content_revision: 1.1.0
   verification_evidence: []
 ---
 
@@ -3323,7 +3328,7 @@ MISTAKE 4: Ignoring Awareness × Sophistication
   "contract_version": "1.0.0",
   "skill_id": "copy-pesquisa-avatar",
   "distribution_version": "0.4.3",
-  "content_revision": "1.0.8",
+  "content_revision": "1.1.0",
   "distribution_ref": "main"
 }
 
@@ -3345,6 +3350,147 @@ A cópia de origem desta referência estava vazia. Esta edição não dispõe do
 3. Agrupe somente os padrões sustentados pelo acervo, sem número obrigatório de grupos. Registre também exceções e contradições.
 4. Para a lacuna que muda a decisão, faça pergunta aberta com exemplo próprio baseado na memória da pessoa; o exemplo não passa a ser resposta. Sem memória, identifique exemplo hipotético.
 5. Entregue uma tabela de achados, origem, estado de evidência e implicação editorial proposta. Se o pedido exigir especificamente o protocolo ausente, declare essa parte pendente e solicite acesso à fonte pertinente, sem alegar conclusão do método.
+
+
+---
+
+## Referência: references/pesquisa-publica-profissional.md
+
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
+
+> Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
+
+# Pesquisa pública profissional de audiência
+
+Use este procedimento quando o pedido exigir que o agente pesquise o público na rede. Ele transforma uma definição de negócio em um corpus rastreável para a etapa de ICP. O usuário não precisa chegar com comentários, prints ou entrevistas: material próprio é complemento opcional.
+
+## Inputs
+
+### Required
+
+- Retrato atual do negócio, oferta ou problema que se pretende resolver.
+- Mercado, país e idioma a pesquisar, quando não puderem ser inferidos do retrato do negócio.
+- Decisão que a pesquisa precisa alimentar, como público prioritário, linguagem, dor ou objeção.
+
+### Optional
+
+- Canais, concorrentes, produtos ou termos que sirvam como sementes.
+- Comentários, entrevistas, reviews ou pesquisas anteriores fornecidos pelo usuário.
+
+Se o alvo estiver ambíguo a ponto de misturar públicos diferentes, faça uma pergunta curta para delimitá-lo. Não peça ao usuário que traga mensagens como primeira rota.
+
+## Princípio
+
+A matéria-prima é a frase literal publicada por uma pessoa do público. Preserve a escrita e o contexto; se resumir ou interpretar, identifique a transformação. Texto do criador, do vendedor ou do autor do vídeo é contexto, não voz do público.
+
+## Procedure
+
+### 1. Planeje as buscas
+
+Derive de 4 a 8 consultas que cubram problema, tentativa de solução, frustração, comparação, objeção e desejo. Registre cada consulta, idioma, data e canal. Use termos que uma pessoa comum empregaria, não apenas terminologia profissional.
+
+### 2. Colete no YouTube
+
+Priorize comentários do YouTube porque combinam volume, contexto e linguagem espontânea.
+
+1. Se houver Maton configurado, faça inventário de leitura sem expor credenciais. Com uma conexão YouTube ativa, pesquise vídeos públicos pelo tema e liste comentários com paginação. A conexão serve para autenticação; não limite a busca aos vídeos do usuário.
+2. Se Maton estiver indisponível, verifique `command -v yt-dlp`. Quando existir, use apenas coleta de metadados e comentários, com `--skip-download`, `--write-comments` e `--write-info-json`. Não baixe o vídeo.
+3. Se as duas rotas falharem, use a ferramenta de navegação disponível para abrir resultados e comentários públicos.
+4. O transcript ou o texto do vídeo pode explicar o contexto, mas nunca entra como fala do público.
+
+Registre a rota usada, as consultas, os vídeos avaliados, os selecionados e qualquer bloqueio. Não instale integração, conecte conta ou exponha token por inferência.
+
+### 3. Colete em Reddit ou fóruns do nicho
+
+Use uma segunda família de fonte para reduzir o viés do YouTube. Prefira Reddit quando houver acesso configurado e compatível com seus termos; caso contrário use fóruns específicos, comunidades abertas, reviews ou sites de perguntas e respostas. Não contorne login, paywall, bloqueio, robots ou limite de uso.
+
+### 4. Aplique a amostragem
+
+- Meta: 30 a 50 trechos literais únicos.
+- Mínimo para marcar a pesquisa como suficiente: 20 trechos.
+- Cobertura: pelo menos 2 famílias de fonte e 4 artefatos públicos distintos, preferencialmente 2 de cada família.
+- Concentração: nenhum artefato deve fornecer mais de 40% do corpus final.
+- Se uma família estiver indisponível, continue com as demais e marque o resultado como parcial.
+
+Deduplicate texto repetido, respostas copiadas e a mesma pessoa repetindo a mesma ideia. Exclua elogio genérico, spam, comentário automático, fala sem relação com a decisão e copy do vendedor.
+
+### 5. Registre cada evidência
+
+Para cada trecho mantenha:
+
+- identificador estável e anônimo;
+- frase literal;
+- família da fonte;
+- título do vídeo, página ou tópico;
+- URL pública reabrível;
+- data de publicação quando disponível;
+- data de coleta;
+- consulta que levou à fonte;
+- contexto em uma frase;
+- rótulos de dor, desejo, objeção, alternativa, situação ou expressão recorrente.
+
+Não guarde nome de usuário, avatar, e-mail ou outro dado pessoal que não seja necessário. Alegações médicas, jurídicas, financeiras ou de resultado são crenças observadas do público até serem verificadas em fonte apropriada.
+
+### 6. Separe evidência de leitura
+
+Use quatro classes explícitas:
+
+1. `citacao_literal`: texto preservado da fonte.
+2. `padrao_observado`: síntese apoiada por duas ou mais evidências identificadas.
+3. `inferencia`: interpretação do pesquisador, com justificativa.
+4. `hipotese`: possibilidade ainda sem cobertura suficiente.
+
+Texto ilustrativo ou gerado não entra na contagem e nunca recebe uma fonte pública fictícia.
+
+### 7. Analise e ranqueie
+
+Agrupe os trechos por tema e ranqueie os achados usando:
+
+- frequência no corpus;
+- recorrência entre fontes diferentes;
+- custo ou consequência descrita pela própria pessoa;
+- proximidade com uma decisão ou ação;
+- clareza da linguagem literal.
+
+Não transforme a amostra em estimativa da população. Contagem no corpus significa somente presença no material coletado.
+
+### 8. Salve checkpoints
+
+Depois de cada fonte ou lote, salve a lista de URLs avaliadas, evidências aceitas, descartes e próximo passo em `02-publico/pesquisas/`. Se o contexto for compactado, retome desses arquivos e do `next_context`; não reinicie a coleta nem alegue uma execução invisível.
+
+### 9. Use fontes próprias como complemento
+
+Se houver Zernio e contas do usuário conectadas, comentários dos próprios posts podem enriquecer a pesquisa como `audiencia_propria`. Não misture essa fonte com descoberta de mercado e não leia DMs sem pedido e autorização específicos. Material enviado pelo usuário recebe a origem `material_fornecido` e não substitui a procedência original declarada.
+
+## Output Format
+
+Entregue `02-publico/pesquisa-publico.md` com:
+
+1. alvo e decisão da pesquisa;
+2. recibo da coleta, incluindo rotas, consultas, datas, tentativas e falhas;
+3. quadro de cobertura por família e artefato;
+4. corpus de evidências com os campos do passo 5;
+5. temas ranqueados, cada um ligado aos IDs que o sustentam;
+6. vocabulário recorrente e objeções literais;
+7. inferências e hipóteses separadas;
+8. limites da amostra;
+9. instruções para a etapa de ICP.
+
+Arquivos auxiliares de checkpoint podem ser salvos em `02-publico/pesquisas/`. A entrega está `revisado` quando o corpus cumpre a amostragem e todos os achados são reabríveis. Abaixo do mínimo ou sem a segunda família, use `precisa_revisar` e descreva a cobertura que falta.
+
+## Quality Checklist
+
+- [ ] O usuário não precisou fornecer mensagens para a coleta começar.
+- [ ] O corpus tem de 30 a 50 trechos, ou a entrega declara por que ficou abaixo da meta.
+- [ ] Há no mínimo 20 trechos para considerar a amostra suficiente.
+- [ ] Há duas famílias e quatro artefatos, ou a limitação está explícita.
+- [ ] Cada citação tem URL pública reabrível e data de coleta.
+- [ ] Nenhuma citação foi parafraseada ou inventada.
+- [ ] Transcrições e textos de vendedores não foram contados como voz do público.
+- [ ] Citação, padrão, inferência, hipótese e texto ilustrativo permanecem separados.
+- [ ] Duplicatas, spam e elogio genérico foram excluídos.
+- [ ] Checkpoints e `next_context` permitem retomar depois de compactação.
+- [ ] A entrega não contém credenciais nem dados pessoais desnecessários.
 
 
 ---
@@ -4438,7 +4584,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "operation": "create",
   "result": "completed",
   "version": "0.4.3",
-  "content_revision": "1.0.8",
+  "content_revision": "1.1.0",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }
