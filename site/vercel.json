@@ -1,9 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
   "rewrites": [
     {
       "source": "/catalog.json",
       "destination": "https://agentsflix.github.io/skills/catalog.json"
+    },
+    {
+      "source": "/.well-known/agentflix-build.json",
+      "destination": "/.well-known/agentflix-build.json"
     },
     {
       "source": "/.well-known/:path*",
