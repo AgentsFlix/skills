@@ -6,6 +6,9 @@
   "engines": {
     "node": "24.x"
   },
+  "scripts": {
+    "build": "node scripts/build-identifier.mjs"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.0",
     "stripe": "^18.0.0"
