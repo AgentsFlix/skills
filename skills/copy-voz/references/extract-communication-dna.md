@@ -1,3 +1,7 @@
+> Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
+
+> Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
+
 # Extract Communication DNA - Linguistic Fingerprint Extraction Task
 
 ## Metadata

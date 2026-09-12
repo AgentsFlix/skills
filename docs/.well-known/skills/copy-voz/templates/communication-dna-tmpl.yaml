@@ -1,13 +1,15 @@
+# Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
+
 # Communication DNA Template
 # CopywriterOS - Template for communication DNA extraction output
 #
 # USAGE:
-# 1. Execute tasks/extract-communication-dna.md with source materials
+# 1. Execute references/extract-communication-dna.md with source materials
 # 2. Fill this template with extracted data
 # 3. Save to {pasta}/{slug}/analysis/communication-dna.yaml
 #
 # REFERENCE:
-# - tasks/extract-communication-dna.md (extraction process)
+# - references/extract-communication-dna.md (extraction process)
 # - agents/david-ogilvy.md communication_dna section (structure example)
 
 template:
@@ -568,7 +570,7 @@ example_filled_entry:
 # - Minimum quantities must be met for each section
 # - All examples must come from actual source materials
 # - YAML syntax must be valid (test before saving)
-# - All content must be in English
+# - Content must follow the language chosen by the person; preserve original quotations with their source
 # - No generic phrases - everything must be distinctive to this copywriter
 #
 # After completing extraction:

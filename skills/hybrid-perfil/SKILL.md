@@ -1,80 +1,89 @@
 ---
 name: hybrid-perfil
-description: "O perfil completo da empresa em YAML: quem é, para quem existe, o que promete, que credenciais sustentam a promessa. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o perfil…"
+description: Documente o perfil do negócio para a tarefa atual, usando memória e acervo antes da entrevista. Entregue um perfil com origem e lacunas; aprofunde dados institucionais quando solicitado.
 version: 0.4.3
-author: "José Carlos Amorim"
+author: José Carlos Amorim
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [hybrid-workspace, negocio, elicitacao, yaml]
-    related_skills: [hybrid-diagnostico, hybrid-proxima-acao, hybrid-fundador, hybrid-icp]
-    config:
-      - key: hybrid.pasta
-        description: "Pasta do negócio no seu computador: é onde os YAML do Hybrid Workspace vivem (perfil, ICP, marca, oferta, diagnósticos). Um negócio por pasta."
-        default: "~/hybrid/meu-negocio"
-        prompt: "Em que pasta ficam os arquivos deste negócio? (uma pasta por negócio)"
+    tags:
+    - hybrid-workspace
+    - negocio
+    - elicitacao
+    - yaml
+    related_skills:
+    - hybrid-diagnostico
+    - hybrid-proxima-acao
+    - hybrid-fundador
+    - hybrid-icp
 ---
+# Perfil do negócio para a tarefa atual
 
-# QUEM SOMOS · Missão, visão, credenciais e o perfil completo, em seis fases
-
-O perfil completo da empresa em YAML: quem é, para quem existe, o que promete, que credenciais sustentam a promessa. O agente conduz a elicitação em seis fases com gate de 85% de completude por seção, e não deixa avançar com campo vazio fingindo que está pronto. É a base que todas as outras skills Hybrid leem.
-
-Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e que as outras skills leem. Tudo vive na pasta configurada em `hybrid.pasta` (valor já no seu contexto), um negócio por pasta. Nada é enviado para fora.
+Transforme o que a pessoa já informou em um perfil reutilizável, com identificação, oferta, público, problema e objetivo. Use a entrevista apenas para o que falta e muda a entrega. O perfil institucional ampliado é um aprofundamento opcional.
 
 ## When to Use
 
-- Diga: "monta o perfil do negócio [nome]".
-- O negócio ainda não tem esse arquivo, ou ele está abaixo de 85% de completude.
-- NÃO use para medir o negócio: isso é `hybrid-diagnostico`, que lê o que esta skill escreve.
+Use quando a pessoa pedir para documentar ou revisar o negócio e continuar a jornada. Comece com os dados disponíveis; não existe percentual mínimo para iniciar.
 
 ## Quick Reference
 
-| procedimento | referência |
-|---|---|
-| setup business profile | `references/setup-business-profile.md` |
-| elicit company profile | `references/elicit-company-profile.md` |
-| elicit vision | `references/elicit-vision.md` |
-| elicit credentials | `references/elicit-credentials.md` |
-| template que esta skill preenche | `templates/company-company-profile.yaml` |
-| template que esta skill preenche | `templates/company-credentials.yaml` |
-| template que esta skill preenche | `templates/culture-mission-vision-positioning.yaml` |
+Identificação conhecida, oferta, público declarado ou hipótese, problema do cliente atendido e objetivo editorial. Diferencie a dor do cliente da vontade do profissional de divulgar seu negócio. Elicite os dados centrais ausentes antes de concluir a entrevista; missão, visão, credenciais, equipe e percentuais institucionais continuam opcionais.
 
+A entrega inicial usa Procedure, sem exigir templates. Nome pessoal conhecido basta para começar; marca formal, cidade e canais só são coletados se mudarem a decisão atual. Se só sabemos a profissão e o desejo de presença digital, salve o rascunho se útil, mas aguarde a resposta sobre oferta, público e problema do cliente antes de avançar. Estrutura de exemplo com campos: “Atuo como [profissão já recuperada da memória] e ofereço [serviço] para [público], para resolver [problema]”. Preencha somente os elementos já conhecidos; preserve os demais campos em aberto.
+
+O perfil institucional ampliado em `references/elicit-company-profile.md` é opcional. Use o destino local autorizado; não exige abrir nem copiar templates. Dados desconhecidos após resposta explícita podem permanecer como lacunas, com hipóteses do agente separadas e os limites do próximo passo declarados.
+
+Oferta já descrita dispensa nome comercial, duração e formato para esta síntese. Público pretendido explicitamente rotulado como hipótese já preenche o campo; não exija pesquisa nem reconfirmação. Problema descrito no material próprio não exige relato de contratação ou fala de cliente. Objetivo editorial declarado não precisa de confirmação genérica de que está fechado.
 
 ## Procedure
 
-1. Resolva a pasta: `hybrid.pasta`. Se não existir, crie. Para cada template listado acima que ainda não exista na pasta, copie-o de `templates/` para a pasta com o nome original (ex.: `company-icp.yaml` → `icp.yaml`).
-2. Abra a referência do procedimento e siga as fases na ordem. Onde ela escrever `{pasta}/…`, leia a pasta configurada. Onde ela citar um comando `*algo` ou um script `.cjs`/`.sh`, trate como nome da etapa, não como algo a executar.
-3. Conduza a elicitação em blocos: apresente o resumo do que já está preenchido, pergunte só o que falta, aceite 'não sei ainda' e deixe `null`. Nunca preencha com suposição.
-4. Grave o YAML na pasta, preservando a estrutura do template. Calcule a completude: campos preenchidos ÷ campos obrigatórios; atualize `metadata.completeness_percentage` e `status`.
-5. Se a completude ficou abaixo de 85%, diga quais seções faltam e o que perguntar na próxima sessão. Não declare o arquivo pronto.
+Pergunte somente o que falta e muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: sugestão curta com o contexto conhecido e [nome do dado] para o desconhecido. Dentro dos colchetes, escreva somente o nome do dado; não inclua ex., listas de respostas possíveis, números ou histórias para escolher. Sem base pertinente, declare “sem informação registrada” e use apenas campos. Preserve o estado da fonte: público pretendido ou hipótese continuam assim no exemplo, sem atribuir comportamento observado a clientes. Para histórico desconhecido, use “Sobre [contexto conhecido], meu histórico é [relato, se houver]”; a oferta não prova experiência, e ausência de registro não prova que nunca aconteceu. Remova toda afirmação preenchida sem fonte. Propostas novas de ações ficam fora dos exemplos de resposta.
+
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Leia o pedido, a memória atual e o acervo indicado. Se houver perfil anterior, use a revisão atual; consulte versões antigas somente para conflito ou lacuna concreta. Aproveite correções e recusas já resolvidas. Não abra questionários ou templates antes desse mapa.
+2. Registre identificação, oferta, público declarado (inclusive hipótese), problema e objetivo com origem. Separe fatos da pessoa, propostas do agente e desconhecido. Esses campos bastam para a síntese desta jornada; missão, visão, credenciais, história e equipe são aprofundamentos opcionais. Não é necessário copiar um template. Oferta já descrita dispensa nome comercial, duração e formato para esta síntese. Público pretendido explicitamente rotulado como hipótese já preenche o campo; não exija pesquisa nem reconfirmação. Problema descrito no material próprio não exige relato de contratação ou fala de cliente. Objetivo editorial declarado não precisa de confirmação genérica de que está fechado.
+3. Escolha a rota pelo mapa de inputs. Se oferta, público pretendido e dor do cliente já estiverem nas fontes, siga diretamente para salvar e concluir a síntese. Se faltarem, entreviste somente essas lacunas, com exemplo próprio ligado ao contexto, e registre waiting até receber resposta ou desconhecimento explícito. Profissão e desejo de presença digital, sozinhos, não esclarecem esses campos. A dor do cliente é diferente da dificuldade do profissional em divulgar o negócio. Use [campo a preencher] para números ou histórico não fornecidos. Se a pessoa não souber, registre desconhecido e avalie o que ainda pode ser entregue; não repita a pergunta nem peça que aceite um exemplo como fato.
+4. Salve um perfil legível e reutilizável no destino local autorizado, em Markdown ou YAML, com identificação, oferta, público/hipótese, problema, objetivo, mapa de origem e lacunas. Preserve revisões anteriores. Quando a pessoa já pediu essa documentação, não peça nova autorização para gravar o rascunho.
+5. Confira se o perfil permite a próxima etapa de público sem ultrapassar o que a pessoa forneceu. Marque o documento como parcial quando houver campos abertos. Não calcule percentuais para essa síntese. Quando os inputs essenciais estiverem cobertos pelas fontes ou pela entrevista, conclua a operação com completed e mantenha o estado parcial/proposto do documento quando cabível. Uma pergunta genérica para aprovar ou reconfirmar a síntese não substitui uma lacuna de input: não crie esse bloqueio. Waiting exige nomear o dado ausente e explicar qual entrega ele impede. A pessoa pode corrigir o perfil depois, sem que isso impeça concluir a síntese que pediu agora.
+6. Informe o arquivo, os limites e a próxima etapa. Não reconfirme tom, oferta ou escopo já dados. Avalie se revisão futura vale como rotina, respeitando recusas e mantendo ativação separada. O perfil institucional completo pode ser aprofundado quando houver um pedido específico.
+
+## Avaliação de rotina
+
+Perfil inicial é pontual. Revisão pode valer após mudança de oferta, público ou operação; não reentrevistar em frequência fixa sem motivo.
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pular o Diagnosis Gate quando a referência o pede. O nível de consciência muda todas as perguntas seguintes.
+- Transformar a lista de campos de um esquema ampliado em questionário obrigatório.
+- Exigir diagnosis.yaml, níveis de mercado ou um percentual de completude para entregar uma síntese provisória.
+- Pedir novamente informação atual, sugerir evidência inventada ou atribuir inferência do agente à pessoa.
+- Esperar nova autorização para salvar o rascunho no destino local já autorizado.
+- Confundir entrega parcial útil com pesquisa validada ou documento institucional completo.
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O YAML existe na pasta configurada e parseia (`python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1]))' <arquivo>` sai 0).
-2. `metadata.completeness_percentage` foi recalculado e bate com a contagem de campos não-nulos.
-3. Nenhum campo obrigatório foi preenchido com valor que o usuário não deu; os pendentes estão em `null` e listados.
-4. Se abaixo de 85%, a resposta diz as seções faltantes e não declara pronto.
-5. Nenhum dado foi enviado para fora da pasta do negócio.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+O arquivo de perfil existe no destino autorizado, liga dados à origem e preserva desconhecidos/hipóteses. A entrevista cobre somente lacunas que mudam a entrega; exemplos não criam fatos. Estado da operação e do documento estão separados. Campos institucionais opcionais não impedem a passagem do perfil útil ao público. Confira o aceite transversal de references/contrato-agentflix.md. Confira também se houve elicitação quando só existiam profissão e desejo de presença digital. Rascunho salvo não comprova entrevista concluída; oferta/público/dor ausentes precisam de resposta ou desconhecimento explicitamente confirmado, com limites declarados. Dor do cliente e objetivo editorial do profissional são campos distintos.
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
+- `references/ciclo-de-vida.md`
+- `references/configuracao.json`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
 - `references/elicit-company-profile.md`
 - `references/elicit-credentials.md`
 - `references/elicit-vision.md`
+- `references/identidade.json`
 - `references/setup-business-profile.md`
 - `references/workflow-business-profile-pipeline.yaml`
+- `scripts/auditar.py`
 - `templates/company-company-profile.yaml`
 - `templates/company-credentials.yaml`
 - `templates/culture-mission-vision-positioning.yaml`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`

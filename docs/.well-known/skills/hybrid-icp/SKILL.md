@@ -1,6 +1,6 @@
 ---
 name: hybrid-icp
-description: 'Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: "monta o ICP de [produto]".'
+description: Documente o público a partir do perfil, dos relatos e das fontes disponíveis. Distinga evidência, hipótese e lacuna; entregue um ICP provisório útil sem inventar pesquisa.
 license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
@@ -10,61 +10,71 @@ metadata:
   source: https://github.com/AgentsFlix/skills/tree/main/skills/hybrid-icp
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-perfil, hybrid-fundador
-  config: 'hybrid.pasta: Pasta do negócio no seu computador: é onde os YAML do Hybrid Workspace vivem (perfil, ICP, marca, oferta, diagnósticos). Um negócio por pasta.'
+  contract_version: 1.0.0
+  content_revision: 1.0.7
+  distribution_ref: main
 ---
+# Público para orientar a próxima decisão
 
-# O CLIENTE IDEAL · ICP em 47 campos, com o nível de consciência do mercado antes
-
-Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Antes de perguntar qualquer coisa, a skill passa pelo Diagnosis Gate: nível de consciência e sofisticação do mercado, porque o ICP muda conforme o mercado já sabe ou não que tem o problema.
-
-Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e que as outras skills leem. Tudo vive na pasta configurada em `hybrid.pasta` (pergunte ao usuário, se ainda não souber), um negócio por pasta. Nada é enviado para fora.
+Continue o perfil do negócio e documente o público que a pessoa quer entender ou atender. Uma hipótese de público é um ponto de partida válido quando identificada como hipótese. Entregue contexto, problema, critérios relevantes, limites e plano das lacunas; pesquisa indisponível não impede registrar o que já se sabe.
 
 ## When to Use
 
-- Diga: "monta o ICP de [produto]".
-- O negócio ainda não tem esse arquivo, ou ele está abaixo de 85% de completude.
-- NÃO use para medir o negócio: isso é `hybrid-diagnostico`, que lê o que esta skill escreve.
+Use quando a pessoa pedir para documentar ou revisar o público e continuar a jornada. Comece com os dados disponíveis; não existe percentual mínimo para iniciar.
 
 ## Quick Reference
 
-| procedimento | referência |
-|---|---|
-| elicit icp yaml | `references/elicit-icp-yaml.md` |
-| elicit icp | `references/elicit-icp.md` |
-| template que esta skill preenche | `templates/company-icp.yaml` |
-| template que esta skill preenche | `templates/company-diagnosis.yaml` |
+Negócio/oferta, decisão de público que o pedido precisa apoiar e contexto disponível. Público não validado fica como hipótese; mercado e psicografia desconhecidos permanecem em aberto.
 
+| Necessidade | Caminho |
+|---|---|
+| Entrega inicial desta jornada | Siga Procedure abaixo; não exige abrir nem copiar templates. |
+| Aprofundamento explicitamente solicitado | `references/elicit-icp.md`, `references/elicit-icp-yaml.md` e o esquema ampliado, somente para investigação adicional pertinente e solicitada. |
+
+Use o destino já autorizado pelo contexto. Configuração só é consultada quando falta um caminho real. A ausência de um YAML prévio não é um bloqueio.
 
 ## Procedure
 
-1. Resolva a pasta: `hybrid.pasta`. Se não existir, crie. Para cada template listado acima que ainda não exista na pasta, copie-o de `templates/` para a pasta com o nome original (ex.: `company-icp.yaml` → `icp.yaml`).
-2. Abra a referência do procedimento e siga as fases na ordem. Onde ela escrever `{pasta}/…`, leia a pasta configurada. Onde ela citar um comando `*algo` ou um script `.cjs`/`.sh`, trate como nome da etapa, não como algo a executar.
-3. Conduza a elicitação em blocos: apresente o resumo do que já está preenchido, pergunte só o que falta, aceite 'não sei ainda' e deixe `null`. Nunca preencha com suposição.
-4. Grave o YAML na pasta, preservando a estrutura do template. Calcule a completude: campos preenchidos ÷ campos obrigatórios; atualize `metadata.completeness_percentage` e `status`.
-5. Se a completude ficou abaixo de 85%, diga quais seções faltam e o que perguntar na próxima sessão. Não declare o arquivo pronto.
+Pergunte somente o que falta e muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: sugestão curta com o contexto conhecido e [nome do dado] para o desconhecido. Dentro dos colchetes, escreva somente o nome do dado; não inclua ex., listas de respostas possíveis, números ou histórias para escolher. Sem base pertinente, declare “sem informação registrada” e use apenas campos. Preserve o estado da fonte: público pretendido ou hipótese continuam assim no exemplo, sem atribuir comportamento observado a clientes. Para histórico desconhecido, use “Sobre [contexto conhecido], meu histórico é [relato, se houver]”; a oferta não prova experiência, e ausência de registro não prova que nunca aconteceu. Remova toda afirmação preenchida sem fonte. Propostas novas de ações ficam fora dos exemplos de resposta.
+
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Continue o perfil atual e o pedido. Leia relatos e acervo acessíveis antes de perguntar. Registre oferta, problema e público já informado; não peça novamente uma definição que já existe, mesmo que seja uma hipótese. Use a revisão atual do perfil, consultando histórico apenas quando necessário.
+2. Monte uma síntese de público com: quem se quer entender/atender e seu contexto; problema ou necessidade; relação com a oferta; critérios de decisão e objeções quando houver fonte; limites e situações fora do foco. Em cada item, indique evidência, relato da pessoa, hipótese da pessoa, hipótese do agente ou desconhecido. Não deduza idade, renda, orçamento ou contagem de clientes a partir de um rótulo de público.
+3. Investigue somente lacunas que mudam a próxima decisão. Com ferramenta de pesquisa disponível e autorizada, registre fonte, data e o que ela sustenta. Sem acesso ou evidência, nomeie a lacuna e um modo concreto de investigá-la depois. Cada pergunta aberta tem exemplo ligado ao contexto, sem casos/clientes/números inventados. Níveis de consciência/sofisticação e diagnosis.yaml não são pré-requisitos para esta síntese.
+4. Diante de “não sei ainda”, preserve o desconhecido. Não repita a pergunta, peça um chute ou interprete silêncio como aprovação. Quando houver contexto suficiente, proponha um público provisório ou mantenha a hipótese já declarada, sem promover inferências a evidência. Aceitar o formato de uma proposta não confirma seus dados factuais.
+5. Salve o ICP provisório e a síntese para posicionamento no destino local autorizado, em Markdown ou YAML. Inclua mapa de origem, hipóteses não validadas, lacunas prioritárias e próximo passo de investigação. O pedido de documentar já abrange salvar esse rascunho local; não espere uma autorização adicional. Use o esquema ampliado apenas quando solicitado, sem copiar campos vazios para simular entrega.
+6. Verifique o arquivo. A operação está completed quando a entrega provisória solicitada é útil, rastreável e declara os limites, ainda que o documento permaneça parcial. Waiting só vale se faltar contexto que realmente impeça essa entrega, com o impedimento nomeado. Nenhum percentual de campos ou validação externa é exigido para declarar a síntese provisória concluída. Avalie rotina com fontes reais e respeite recusas, sem ativação implícita.
+
+## Avaliação de rotina
+
+Revisão pode valer com novas entrevistas, clientes ou mudança de oferta; coleta automatizada só com fontes e autorização reais.
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pular o Diagnosis Gate quando a referência o pede. O nível de consciência muda todas as perguntas seguintes.
+- Transformar a lista de campos de um esquema ampliado em questionário obrigatório.
+- Exigir diagnosis.yaml, níveis de mercado ou um percentual de completude para entregar uma síntese provisória.
+- Pedir novamente informação atual, sugerir evidência inventada ou atribuir inferência do agente à pessoa.
+- Esperar nova autorização para salvar o rascunho no destino local já autorizado.
+- Confundir entrega parcial útil com pesquisa validada ou documento institucional completo.
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O YAML existe na pasta configurada e parseia (`python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1]))' <arquivo>` sai 0).
-2. `metadata.completeness_percentage` foi recalculado e bate com a contagem de campos não-nulos.
-3. Nenhum campo obrigatório foi preenchido com valor que o usuário não deu; os pendentes estão em `null` e listados.
-4. Se abaixo de 85%, a resposta diz as seções faltantes e não declara pronto.
-5. Nenhum dado foi enviado para fora da pasta do negócio.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+Existe um arquivo de público ligado ao perfil atual, com origem, hipótese e desconhecido separados. Há síntese utilizável pelo posicionamento e plano das lacunas relevantes, sem pesquisa, clientes ou psicografia fictícios tratados como fatos. Não há pergunta redundante nem bloqueio por diagnosis.yaml, percentuais ou desconhecimento já declarado quando o rascunho é possível. Confira o aceite transversal de references/contrato-agentflix.md.
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
+- `references/campos-icp.json`
+- `references/ciclo-de-vida.md`
+- `references/configuracao.json`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
 - `references/elicit-icp-yaml.md`
 - `references/elicit-icp.md`
+- `references/identidade.json`
+- `scripts/auditar.py`
 - `templates/company-diagnosis.yaml`
 - `templates/company-icp.yaml`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`

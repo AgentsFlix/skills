@@ -1,14 +1,23 @@
 ---
 name: sop-extrair
-description: "O processo existe na cabeça de quem faz. Use quando: \"extrai o SOP de [processo]\" e aponte a fonte (texto, arquivo, transcrição) ou peça a entrevista."
+description: 'O processo existe na cabeça de quem faz. Use quando: "extrai o SOP de [processo]" e aponte a fonte (texto, arquivo, transcrição) ou peça a entrevista.'
 version: 0.4.3
-author: "José Carlos Amorim"
+author: José Carlos Amorim
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [processos, sop, qualidade, operacao]
-    related_skills: [sop-criar, sop-auditar]
+    tags:
+    - processos
+    - sop
+    - qualidade
+    - operacao
+    related_skills:
+    - sop-criar
+    - sop-auditar
 ---
 
 # O PROCESSO · De descrição, documento, vídeo ou entrevista para um SOP rascunho
@@ -21,6 +30,8 @@ O processo existe na cabeça de quem faz. Esta skill tira de lá: entrevista est
 - NÃO use para escrever ou auditar o SOP: isso é `sop-criar` e `sop-auditar`.
 
 ## Quick Reference
+
+Obrigatórios: processo a compreender, finalidade e material/relato autorizado. Dados já presentes são entradas válidas; gaps são entrevistados com exemplos.
 
 | procedimento | referência |
 |---|---|
@@ -37,11 +48,20 @@ O processo existe na cabeça de quem faz. Esta skill tira de lá: entrevista est
 
 ## Procedure
 
-1. Identifique o procedimento pela tabela. Abra a referência e leia `Inputs` e `Prerequisites`; colete do usuário o que for `required` e pergunte o que faltar.
-2. Siga as fases da referência na ordem. Onde ela citar um arquivo de apoio desta skill (listados no fim), abra-o; onde citar script `.cjs`/`.py` do runtime de origem, faça a etapa manualmente e diga que fez.
-3. Marque cada passo extraído com o nível de confiança de `references/data-confidence-levels.yaml`: observado, declarado ou inferido.
-4. Rode o checklist correspondente (arquivos de apoio que começam com checklist-) sobre o resultado. Corrija o que falhou.
-5. Entregue no formato do template de saída, com o checklist marcado item a item.
+Pergunte somente o que falta e muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: sugestão curta com o contexto conhecido e [nome do dado] para o desconhecido. Dentro dos colchetes, escreva somente o nome do dado; não inclua ex., listas de respostas possíveis, números ou histórias para escolher. Sem base pertinente, declare “sem informação registrada” e use apenas campos. Preserve o estado da fonte: público pretendido ou hipótese continuam assim no exemplo, sem atribuir comportamento observado a clientes. Para histórico desconhecido, use “Sobre [contexto conhecido], meu histórico é [relato, se houver]”; a oferta não prova experiência, e ausência de registro não prova que nunca aconteceu. Remova toda afirmação preenchida sem fonte. Propostas novas de ações ficam fora dos exemplos de resposta.
+
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Antes de abrir questionários, faça bootstrap do pedido atual, memória disponível e acervo já indicado. Use as decisões da etapa anterior, preserve origem e diferencie dado conhecido, hipótese, conflito e lacuna. Não faça inventário de toda a instalação, não releia referências já carregadas e não exija user.yaml, bootstrap externo ou scaffold para começar com contexto equivalente.
+2. Resolva o destino com o contexto autorizado; `references/configuracao.json` contém dados de configuração, não perguntas obrigatórias prévias. A extração inicial segue esta Procedure e não exige abrir o método ampliado nem templates. Consulte referência adicional somente para uma dúvida concreta. Campos de outros documentos e exemplos do template não são respostas. Comandos herdados são nomes de fases, não dependências executáveis. Não leia todos os templates para decidir qual usar.
+3. Leia primeiro a descrição, gravação ou documentos já fornecidos. Extraia entradas, etapas, responsáveis, saídas, exceções e pontos de conferência; marque observado, declarado ou inferido, conforme a referência de confiança.
+4. Entreviste somente lacunas operacionais importantes, com exemplo próprio ao lado de cada pergunta aberta. Se faltar ferramenta para ler material, declare o limite e peça alternativa pertinente; não afirme ter executado script do runtime de origem nem etapa manual não realizada.
+5. Entregue mapa do processo com origem, lacunas e checklist aplicado, mais uma síntese editorial: dúvidas frequentes, erros demonstráveis, explicações úteis e pautas sustentadas no processo. A síntese é proposta; não fabricar experiência ou transformar cenário hipotético em procedimento observado.
+6. Salve a extração possível antes de perguntar sobre refinamentos. Escolha de ângulo editorial não impede extrair o material já acessível. Releia o rascunho e confira o aceite desta operação antes de registrá-lo. Campos obrigatórios desconhecidos impedem declarar o documento completo, mas não impedem entregar uma proposta explicitamente parcial quando solicitada. A etapa dependente de resposta fica waiting; documento parcial não vira completo por média. Guarde artefatos e mapa de origem fora do pacote, preserve revisões registradas e informe a próxima ação concreta. Avalie rotina conforme a seção própria; proposta nunca autoriza ativação.
+
+## Avaliação de rotina
+
+Revisar quando o processo mudar ou ocorrer falha relatada. Extração inicial não exige CRON; acompanhamento só se houver benefício e eventos reais disponíveis.
 
 ## Pitfalls
 
@@ -51,22 +71,22 @@ O processo existe na cabeça de quem faz. Esta skill tira de lá: entrevista est
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O artefato final segue o template de saída desta skill, seção por seção.
-2. Todo passo tem nível de confiança e fonte (quem disse, o que foi visto).
-3. O checklist correspondente aparece na entrega com cada item marcado, sem item falho.
-4. Há uma lista de perguntas abertas para o dono do processo.
-5. A resposta nomeia a referência usada.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+Processo rastreável, classificação de confiança e lacunas corretas; síntese editorial incluída e separada da descrição factual. Etapa dependente de informação permanece aguardando. Confira também o aceite transversal de references/contrato-agentflix.md. Não inferir aprovação humana, data de revisão ou automação por ausência de resposta.
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
 - `references/checklist-extraction-completeness-checklist.md`
+- `references/ciclo-de-vida.md`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
 - `references/data-category-map.yaml`
 - `references/data-confidence-levels.yaml`
 - `references/extract-from-video.md`
 - `references/extract-sop.md`
+- `references/identidade.json`
 - `references/structured-interview.md`
+- `scripts/auditar.py`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`
 - `templates/extraction-output-template.md`

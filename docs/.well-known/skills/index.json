@@ -268,10 +268,18 @@
     },
     {
       "name": "copy-metodo-koe",
-      "description": "Escreve copy pelo método de Dan Koe: One-person business, Alavancagem, Produto digital, Conteúdo como funil. Use quando pedirem 'como Koe', negócio de uma pessoa e alavancagem, ou uma peça nesse…",
+      "description": "Aplique critérios do método Koe à peça, aos pilares ou às pautas solicitados, preservando o negócio e a voz da pessoa. Aprofunde o método quando pedido.",
       "files": [
         "SKILL.md",
-        "references/metodo-koe.md"
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "references/metodo-koe.md",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
@@ -325,19 +333,28 @@
     },
     {
       "name": "copy-pesquisa-avatar",
-      "description": "Antes de escrever, saber o que a pessoa já diz para si mesma. Use quando o pedido envolver avatar, público, conversa mental, motivos, nível de consciência, sofisticação do mercado.",
+      "description": "Pesquise lacunas sobre o público com memória, acervo e fontes disponíveis. Entregue evidências, hipóteses e plano de coleta, sem inventar pesquisa ou impor quotas de método.",
       "files": [
         "SKILL.md",
         "references/analyze-mental-conversation.md",
+        "references/ativacao.md",
         "references/avatar-research.md",
         "references/checklist-avatar-research-checklist.md",
         "references/checklist-copysearch-checklist.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
         "references/copysearch.md",
         "references/diagnose-awareness-level.md",
         "references/diagnose-market-sophistication.md",
+        "references/identidade.json",
         "references/map-6-primary-motives.md",
+        "references/pesquisa-publica-profissional.md",
+        "scripts/auditar.py",
         "templates/avatar-research-template.md",
-        "templates/copysearch-template.md"
+        "templates/copysearch-template.md",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
@@ -391,14 +408,22 @@
     },
     {
       "name": "copy-voz",
-      "description": "Extrai o DNA de comunicação de uma pessoa: vocabulário, frases-assinatura, frameworks que ela repete, o jeito de abrir e fechar. Use quando o pedido envolver voz da marca, DNA de comunicação…",
+      "description": "Documente a voz da pessoa por entrevista ou análise do seu acervo, com trechos, origem e limites. Não imponha idioma, quotas ou identidade de um autor de referência.",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
         "references/checklist-copywriter-agent-creation-checklist.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
         "references/extract-communication-dna.md",
         "references/extract-frameworks.md",
         "references/extract-signature-phrases.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
         "templates/communication-dna-tmpl.yaml",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json",
         "templates/frameworks-extraction-tmpl.yaml",
         "templates/signature-phrases-tmpl.yaml"
       ]
@@ -412,6 +437,75 @@
         "references/create-warm-webinar-script.md",
         "references/create-webinar-script.md",
         "references/vsl-script.md"
+      ]
+    },
+    {
+      "name": "editorial-pilares",
+      "description": "Defina pilares e pautas editoriais a partir do negócio, público, posicionamento e acervo. Use para planejar assuntos próprios da marca, sem adotar a voz de autores de referência.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/continuidade.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
+      ]
+    },
+    {
+      "name": "editorial-rotina",
+      "description": "Prepare pasta, lote de teste e especificação de rotina editorial com ativação separada. Use depois dos pilares e templates para organizar uma operação revisável sem publicar automaticamente.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/continuidade.md",
+        "references/contrato-agentflix.md",
+        "references/formato.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
+        "scripts/validar_lote.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
+      ]
+    },
+    {
+      "name": "editorial-templates",
+      "description": "Crie estáticas e carrosséis 4:5 editáveis usando a identidade da pessoa. Use para transformar a direção visual em modelos reutilizáveis e validar aplicações antes de produzir um lote.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/continuidade.md",
+        "references/contrato-agentflix.md",
+        "references/formato.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
+        "scripts/render.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
+      ]
+    },
+    {
+      "name": "editorial-visual",
+      "description": "Documente identidade visual para posts 4:5 e produza aplicações revisáveis. Use após posicionamento e voz; reutilize identidade existente e peça aprovação das aplicações antes de padronizar.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/continuidade.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "references/tokens.md",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
@@ -477,12 +571,21 @@
       "description": "A empresa já escreveu sobre si mesma: site, PDFs, apresentações, posts. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"extrai tudo sobre [empresa] de [pasta ou site]\".",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/configuracao.json",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
         "references/etl-deep-pass.md",
         "references/etl-generate-artifacts.md",
         "references/etl-local-extract.md",
         "references/etl-web-research.md",
         "references/etl-web-scrape.md",
-        "references/workflow-etl-deep-pass-pipeline.yaml"
+        "references/identidade.json",
+        "references/workflow-etl-deep-pass-pipeline.yaml",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
@@ -496,24 +599,43 @@
     },
     {
       "name": "hybrid-icp",
-      "description": "Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o ICP de [produto]\".",
+      "description": "Documente o público a partir do perfil, dos relatos e das fontes disponíveis. Distinga evidência, hipótese e lacuna; entregue um ICP provisório útil sem inventar pesquisa.",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
+        "references/campos-icp.json",
+        "references/ciclo-de-vida.md",
+        "references/configuracao.json",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
         "references/elicit-icp-yaml.md",
         "references/elicit-icp.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
         "templates/company-diagnosis.yaml",
-        "templates/company-icp.yaml"
+        "templates/company-icp.yaml",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
       "name": "hybrid-marca",
-      "description": "A marca escrita antes de virar logo: o núcleo, as promessas que faz e as que não faz, a personalidade, o DNA de voz e os valores. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…",
+      "description": "Proponha posicionamento e promessas com base no perfil e público disponíveis. Trabalhe voz no mesmo contexto quando solicitada, distinguindo preferências, padrões do acervo e propostas.",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/configuracao.json",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
         "references/elicit-brand-yaml.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
         "templates/brand-brandbook.yaml",
         "templates/brand-messaging-framework.yaml",
-        "templates/brand-positioning-statement.yaml"
+        "templates/brand-positioning-statement.yaml",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
@@ -530,17 +652,26 @@
     },
     {
       "name": "hybrid-perfil",
-      "description": "O perfil completo da empresa em YAML: quem é, para quem existe, o que promete, que credenciais sustentam a promessa. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o perfil…",
+      "description": "Documente o perfil do negócio para a tarefa atual, usando memória e acervo antes da entrevista. Entregue um perfil com origem e lacunas; aprofunde dados institucionais quando solicitado.",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/configuracao.json",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
         "references/elicit-company-profile.md",
         "references/elicit-credentials.md",
         "references/elicit-vision.md",
+        "references/identidade.json",
         "references/setup-business-profile.md",
         "references/workflow-business-profile-pipeline.yaml",
+        "scripts/auditar.py",
         "templates/company-company-profile.yaml",
         "templates/company-credentials.yaml",
-        "templates/culture-mission-vision-positioning.yaml"
+        "templates/culture-mission-vision-positioning.yaml",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
       ]
     },
     {
@@ -665,12 +796,20 @@
       "description": "O processo existe na cabeça de quem faz. Use quando: \"extrai o SOP de [processo]\" e aponte a fonte (texto, arquivo, transcrição) ou peça a entrevista.",
       "files": [
         "SKILL.md",
+        "references/ativacao.md",
         "references/checklist-extraction-completeness-checklist.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
         "references/data-category-map.yaml",
         "references/data-confidence-levels.yaml",
         "references/extract-from-video.md",
         "references/extract-sop.md",
+        "references/identidade.json",
         "references/structured-interview.md",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json",
         "templates/extraction-output-template.md"
       ]
     }
