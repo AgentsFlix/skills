@@ -1,0 +1,191 @@
+{
+  "base": "http://127.0.0.1:8796/site",
+  "states": [
+    {
+      "exercise": "pratica",
+      "width": 320,
+      "height": 740,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "equipe",
+      "width": 320,
+      "height": 740,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "eugencia-pratica",
+      "width": 320,
+      "height": 740,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "pratica",
+      "width": 360,
+      "height": 800,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "equipe",
+      "width": 360,
+      "height": 800,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "eugencia-pratica",
+      "width": 360,
+      "height": 800,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "pratica",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "equipe",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "eugencia-pratica",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "pratica",
+      "width": 430,
+      "height": 932,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "equipe",
+      "width": 430,
+      "height": 932,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "eugencia-pratica",
+      "width": 430,
+      "height": 932,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "pratica",
+      "width": 768,
+      "height": 1000,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "equipe",
+      "width": 768,
+      "height": 1000,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "eugencia-pratica",
+      "width": 768,
+      "height": 1000,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "pratica",
+      "width": 1440,
+      "height": 1000,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "equipe",
+      "width": 1440,
+      "height": 1000,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "eugencia-pratica",
+      "width": 1440,
+      "height": 1000,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "pratica",
+      "width": 844,
+      "height": 390,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "equipe",
+      "width": 844,
+      "height": 390,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "eugencia-pratica",
+      "width": 844,
+      "height": 390,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "pratica",
+      "width": 390,
+      "height": 400,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "equipe",
+      "width": 390,
+      "height": 400,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "eugencia-pratica",
+      "width": 390,
+      "height": 400,
+      "touch": true,
+      "passed": true
+    },
+    {
+      "exercise": "pratica",
+      "desktopDrag": true,
+      "keyboard": true,
+      "passed": true
+    },
+    {
+      "exercise": "equipe",
+      "desktopDrag": true,
+      "keyboard": true,
+      "passed": true
+    },
+    {
+      "exercise": "eugencia-pratica",
+      "desktopDrag": true,
+      "keyboard": true,
+      "passed": true
+    }
+  ]
+}

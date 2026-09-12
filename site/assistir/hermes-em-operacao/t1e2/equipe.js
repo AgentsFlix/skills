@@ -97,4 +97,7 @@
   $('edit').addEventListener('click',()=>{stop();demo=0;tick=-1;mode='demo';$('assembly').hidden=false;$('simulation').hidden=true;$('mode-label').textContent='PRIMEIRO · ACOMPANHE UM PEDIDO';$('mode-description').textContent='Avance uma ação de cada vez. O pagamento começa quando o cliente pede a conta.';renderAssembly();$('assembly-title').tabIndex=-1;$('assembly-title').focus();});
   window.addEventListener('pagehide',stop);window.addEventListener('pageshow',()=>{if(!$('simulation').hidden)renderSimulation();});
   renderAssembly();
+  EpisodePiecePicker.mount({root:$('assembly'), tray:$('pieces'), pieces:()=>order.map(card), slots:()=>slots,
+    labels:roles.map((role,i)=>`Chef ${Math.floor(i/2)+1} · ${role}`), art:id=>StageIdentity.piece(id),
+    place(id,i){selected=id;place(i);}});
 })();

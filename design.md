@@ -33,17 +33,130 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 - Hover depende de mouse disponível (`any-hover`/`any-pointer`) e ignora eventos de toque. Não desativar pela largura: uma janela de 752 px com mouse também tem prévia. A capa e o corpo da prévia têm um botão de abertura cobrindo a superfície; ações como Minha lista ficam acima dele e não abrem a ficha. O clique respeita os pré-requisitos e o retorno de foco ao card.
 - Intenção de hover 300 ms, expansão 220 ms, tolerância de saída 120 ms, fechamento 160 ms. Preview sobreposto, sem mover os outros cards, limitado às bordas da tela. Respeitar movimento reduzido.
 
-## Onboarding obrigatório
+## Ficha das séries no Assistir
 
-1. A primeira visita na aba começa pelas três escolhas. A pedido do Zé após a revisão do Clarity em 08/09/2026, respostas e conclusão ficam no sessionStorage dessa aba: recarregar ou voltar do player restaura o caminho. Uma aba sem estado começa pelo guia. Não guardar a conclusão no localStorage nem compartilhar a seleção entre dispositivos. Estado inválido ou incompatível com a curadoria atual volta à entrada.
-2. Não renderizar a lista completa nem liberar busca, Minha lista ou fichas antes de terminar as perguntas e clicar em `Abrir minha seleção`. A conclusão sempre abre o Início, com a recomendação e a seleção escolhidas, inclusive se a entrada veio de um link de leitura ou de skill. A pessoa acessa Ler ou abre uma ficha depois desse passo.
+- Materiais de episódios ficam sempre na aba **Materiais**, ao lado de **Episódios** e **Sobre**. O hero reserva suas ações para assistir e retomar; não recebe botão de materiais.
+- Materiais são agrupados por temporada e identificados pelo número do episódio. Vídeo e atividade com o mesmo número não contam como dois episódios.
+- O retorno para todas as séries usa seta SVG de 20 px, traço de 2,5 px e pontas arredondadas, com texto ao lado e alvo mínimo de 44 px. Não usar a seta tipográfica.
+- Elencos longos mostram o primeiro nome e oferecem a lista completa em uma área expansível.
+
+## Onboarding das skills
+
+1. A primeira visita ao catálogo de skills começa pelas três escolhas. A área Ler é pública, conforme o contrato de leitura abaixo. A pedido do Zé após a revisão do Clarity em 08/09/2026, respostas e conclusão ficam no sessionStorage dessa aba: recarregar ou voltar do player restaura o caminho. Uma aba sem estado começa pelo guia. Não guardar a conclusão no localStorage nem compartilhar a seleção entre dispositivos. Estado inválido ou incompatível com a curadoria atual volta à entrada.
+2. O catálogo de skills exige terminar as perguntas e clicar em `Abrir minha seleção`. A conclusão abre o Início, com a recomendação e a seleção escolhidas. Se a pessoa iniciou a orientação pela aba Usar a skill de uma leitura, retorna a essa skill. O acervo Ler, sua busca, as fichas editoriais e o compartilhamento são públicos antes desse passo; o registro editorial define esse acesso.
 3. Quantidade disponível não é progresso. Cada ponto representa uma skill. O total e os grupos vêm de `vitrine.json`, nunca de porcentagens fixas. Coleções mostram nomes e contagens individuais. As perguntas mostram seu número, sem barra de progresso inventada. As quantidades e os pontos ficam em O que tem nesse caminho, após selecionar uma opção; o detalhe identifica cada grupo e explica o que os pontos representam.
 4. A resposta final define o objetivo. A peça recomendada é a primeira etapa ainda necessária para esse objetivo, respeitando os pré-requisitos e as instalações marcadas.
-5. Depois de entrar, manter a recomendação no topo, com motivo e ação. Início, marca e Meu caminho retornam à recomendação; durante as perguntas, o cabeçalho mostra apenas a marca sem link e uma orientação. Navegação, filtros e busca não apagam respostas nem o objetivo. Somente Refazer minhas escolhas ou Trocar de caminho reinicia o guia e bloqueia novamente o catálogo até concluir a nova escolha.
-6. O onboarding é uma tela dedicada. Menu, busca, Minha lista, conta e comandos do rodapé não aparecem antes de Abrir minha seleção. A marca não recebe foco nem clique nessa etapa; Privacidade continua acessível. A navegação é ocultada desde o HTML inicial para não piscar antes da carga.
+5. Depois de entrar, manter a recomendação no topo, com motivo e ação. Início, marca e Meu caminho retornam à recomendação; durante as perguntas, o cabeçalho mostra a marca sem link, uma orientação e Ler livremente. Navegação, filtros e busca não apagam respostas nem o objetivo. Somente Refazer minhas escolhas ou Trocar de caminho reinicia o guia e bloqueia novamente o catálogo até concluir a nova escolha.
+6. O onboarding é uma tela dedicada. Durante as perguntas, menu, busca, Minha lista, conta e comandos do rodapé não aparecem. A marca não recebe foco nem clique nessa etapa; Privacidade e Ler livremente continuam acessíveis. A navegação é ocultada desde o HTML inicial para não piscar antes da carga.
 7. Selecionar um card não troca a pergunta. Continuar confirma a escolha, registra a resposta e avança. Voltar recupera a resposta anterior marcada para revisão. Trocar de caminho retorna às três escolhas. Respostas confirmadas continuam restauráveis na aba; a seleção ainda não confirmada não é uma resposta salva.
 8. As três escolhas iniciais usam ilustrações editoriais exclusivas: concluir uma tarefa, organizar a base do negócio e descobrir um caminho. Traço desenhado, personagens adultos, fundo carvão, branco quente e ciano; sem texto dentro da arte, cores de alerta ou SVG ilustrativo. Arquivos locais em `site/onboarding/`, sem dependência do serviço de capas. Desktop mostra a composição inteira; no celular, o enquadramento quadrado recorta apenas as margens vazias, preservando personagens e objetos. As imagens são decorativas e os rótulos funcionam se elas falharem. Perguntas e resultado conservam as capas das skills. Movimento discreto de hover e zoom, desativado com movimento reduzido. Perguntas com muitas opções usam miniaturas compactas; no celular, Continuar acompanha a rolagem. O resultado mantém uma única peça com borda especial.
 9. Curadoria ausente ou inválida mostra erro com nova tentativa. Não abrir o catálogo antigo como atalho que ignora as dependências.
+
+## Ilustrações editoriais: padrão de criação
+
+Este contrato vale para personagens, objetos e cenas didáticas do AgentFlix, incluindo **Hermes em Operação → Materiais dos episódios**. Consolida a direção aprovada da skill `agentflix-desenho` no próprio projeto, para que a criação não dependa da instalação de uma skill pessoal. A referência de interface continua sendo a Netflix; as ilustrações têm linguagem editorial própria do AgentFlix.
+
+### Uma ideia por imagem
+
+Cada imagem comunica uma única ação ou função com o mínimo de elementos. O resultado deve ser adulto, acolhedor, tranquilo e fácil de reconhecer. Use ilustração editorial **2D desenhada à mão**, contornos finos, orgânicos e levemente irregulares, silhuetas simples e preenchimentos predominantemente chapados. Textura, quando necessária, é quase imperceptível e restrita ao preenchimento.
+
+Personagens têm proporções adultas naturais, anatomia simplificada, rosto com poucos detalhes, cabelo em massas, roupas lisas e expressões sutis. Em novas poses do mesmo personagem, usar a imagem de referência e preservar rosto, cabelo, tom de pele, roupa e proporções. Pessoas diferentes podem representar funções diferentes. Uma pessoa e um objeto principal bastam por padrão; mesa ou cadeira só entram quando ajudam a entender a ação.
+
+### Paleta da ilustração
+
+| Papel | Cor | Aplicação |
+|---|---|---|
+| Marfim quente | `#F0EEE6` | Preenchimentos claros. |
+| Ciano suave | `#65AEB6` | Um acento concentrado na ação ou no objeto principal. |
+| Cinza esverdeado | `#8A9690` | Apoio neutro, quando necessário. |
+| Carvão | `#303633` | Contornos e preenchimentos escuros. |
+| Fundo sólido opcional | `#191C1B` | Somente quando a composição pedir fundo escuro. |
+
+Esses valores são a direção cromática das artes, não novos tokens globais de CSS. A interface conserva a tabela de cores deste documento. Não distribuir o ciano em todos os elementos, introduzir amarelo/laranja/verde como acentos extras nem recolorir um personagem já aprovado. Uma cor diferente pedida pelo Zé conserva o traço, a simplicidade e a baixa quantidade de cores. Variações de antialiasing não são novas cores de marca.
+
+### Fundo, margens e uso na tela
+
+- Assets reutilizáveis dos materiais usam **transparência real** por padrão. Não desenhar quadriculado, fundo branco, halo ou círculo decorativo dentro do arquivo.
+- Preservar o sujeito inteiro e uma margem de segurança. Normalizar a escala aparente entre peças do mesmo conjunto: um balão de mensagem não pode parecer minúsculo ao lado de um envelope porque seu PNG contém mais área vazia. Comparar a silhueta visível, não apenas largura e altura do arquivo.
+- Não colocar letras, números, títulos, logotipos ou marca-d’água dentro da ilustração sem pedido explícito. Rótulos e estados pertencem ao HTML e continuam compreensíveis se a imagem falhar.
+- As três composições de onboarding já aprovadas em `site/onboarding/` conservam seu fundo carvão e os acentos originais. Seu fundo e seus círculos compositivos não viram moldura obrigatória dos assets transparentes dos materiais.
+- Imagens grandes podem mostrar a ação completa. Em miniaturas de aproximadamente 24–64 px, remover detalhes e preferir objeto ou enquadramento de busto quando o corpo inteiro perder leitura. Não reduzir uma cena complexa até parecer um ícone ilegível. Se for o mesmo personagem, a adaptação preserva sua identidade.
+- Sombra de contato discreta é admitida quando explica apoio. Não usar reflexos de plástico/metal, volume de render 3D, brilho, neon, gradiente chamativo ou sombra pesada para dar acabamento.
+- Conferir contraste no fundo real. Pernas de cadeira, cabelo e contornos em carvão não podem desaparecer no carvão da página. Resolver no desenho ou na composição, sem acrescentar glow por CSS.
+
+### Separar os tipos de imagem
+
+| Tipo | Regra |
+|---|---|
+| Personagem ou objeto editorial | Arte raster gerada com referência; seguir este padrão. Não substituir por personagem desenhado em CSS/SVG. |
+| Ícone funcional pequeno | Reutilizar a família SVG existente; formas simples, sem textura, com rótulo acessível. |
+| Diagrama ou mecanismo interativo | SVG/HTML pode compor setas, trilhos, números e estados ao redor dos assets. Preservar legibilidade e o significado da atividade. |
+| Mockup editável do negócio do aluno | A paleta e os textos pertencem à identidade escolhida no exercício. Não confundir esse resultado com uma nova paleta do AgentFlix. |
+| Capa cinematográfica, fotografia ou captura de aula | Seguir seu contrato próprio. Não aplicar este estilo de desenho nem dessaturar automaticamente. |
+
+### Prompt-base de produção
+
+O texto abaixo é um modelo reutilizável, não a alegação de um prompt histórico. Preencher os campos e anexar a referência visual aprovada da mesma família antes de gerar.
+
+```text
+Crie uma ilustração editorial original do AgentFlix.
+Sujeito: [pessoa ou objeto].
+Ação ou ideia única: [o que a pessoa precisa reconhecer].
+Uso e tamanho final: [cena, card ou miniatura; dimensões de exibição].
+Referência: [arquivo aprovado; identidade do personagem a preservar].
+
+Ilustração editorial bidimensional desenhada à mão. Contornos finos,
+orgânicos e levemente irregulares, silhuetas simples, acabamento limpo,
+preenchimentos predominantemente chapados e pouquíssimos detalhes internos.
+Aparência adulta, acolhedora e tranquila. Pessoas com proporções naturais,
+rosto simplificado, cabelo em massas, roupa lisa e expressão sutil.
+
+Uma única ação, um único foco visual. Uma pessoa e um objeto principal,
+quando necessários. Sem ambiente completo. Sujeito inteiro, composição
+clara, margens de segurança e escala aparente consistente com a referência.
+
+Paleta: marfim #F0EEE6, carvão #303633, ciano suave #65AEB6 como único acento
+na ação ou objeto; cinza esverdeado #8A9690 apenas como apoio. Se houver
+personagem de referência, preserve também seu tom de pele e sua roupa.
+
+Fundo transparente real, sem quadriculado desenhado, halo ou moldura.
+Sem texto, letras, números, logos ou marca-d'água. Sem fotografia, 3D,
+aparência plástica, reflexos brilhantes, neon, gradientes chamativos,
+sombras pesadas, círculos decorativos, cenários detalhados ou símbolos de IA
+acrescentados apenas pelo tema. Sem detalhes que desapareçam no tamanho final.
+```
+
+Quando a peça pedir fundo sólido, substituir a linha de transparência pela cor e composição solicitadas; não pedir fundo transparente e sólido ao mesmo tempo. Para objeto isolado, retirar as instruções de anatomia. Para outra pose, descrever apenas a ação nova e manter a referência do personagem. Não gerar uma prancha de variantes quando o pedido for um asset.
+
+### Referência aprovada: copo transparente
+
+Em 11/09/2026, o Zé aprovou o resultado de [cafe.png](site/assistir/hermes-em-operacao/t1e2/art/v2/cafe.png) e pediu o mesmo padrão de geração nas próximas ilustrações. Esse copo é a referência concreta de acabamento e transparência para objetos editoriais: poucos detalhes, contorno fino, preenchimentos simples e recorte limpo. O objeto representado muda conforme o conteúdo; não acrescentar um copo a outras cenas.
+
+Para revisar uma peça, partir do original transparente, descrever a simplificação de forma curta e preservar seu significado. Acrescentar `Preserve a truly transparent background. Export as a transparent PNG, with no background.` O prompt usado no copo foi:
+
+```text
+Simplify this iced coffee cup illustration. Keep its straw, lid, ivory sleeve
+and two simple flat ice shapes. Thin charcoal outlines, muted cyan straw,
+charcoal coffee, no brown, no white reflection streaks, stitching, shadows
+or complex lid ridges. Flat 2D editorial style, whole object centered in a
+square canvas. Preserve a truly transparent background. Export as a
+transparent PNG, with no background.
+```
+
+Referência de entrada: `art/eugencia/cafe.png`. Ferramenta: geração integrada de imagens do Codex; modelo não informado. O prompt exato e os demais prompts estão em [art/v2/prompts.json](site/assistir/hermes-em-operacao/t1e2/art/v2/prompts.json).
+
+**A prévia quadriculada não comprova transparência.** Neste lote, algumas tentativas vieram em RGB com o quadriculado gravado. Elas foram rejeitadas. Exigir PNG com alfa real e conferir o recorte em fundos claro e escuro no navegador antes de integrar. Se uma edição repetir o fundo gravado, retomar o original transparente. Registrar a verificação do arquivo final; nunca prometer que o prompt sozinho garante o canal alfa.
+
+### Conferência e registro de cada lote
+
+1. Identificar função, referência aprovada, quantidade e tamanho real de uso. Reutilizar assets adequados antes de criar duplicatas.
+2. Inspecionar o resultado gerado: ideia única, anatomia, traço, paleta, textura, detalhes, silhueta, margens e identidade. Um prompt correto não garante uma imagem conforme.
+3. Abrir o PNG no navegador sobre marfim `#F0EEE6` e carvão `#191C1B`, sem filtro ou sombra. Confirmar alpha real e borda limpa. O visualizador de arquivos pode representar o alpha de modo diferente; não diagnosticar halo apenas pela prévia dele.
+4. Comparar as peças lado a lado na mesma caixa e no tamanho final. Verificar especialmente os ícones pequenos. Conferir as páginas em 1440, 768 e 390 px, sem corte de partes importantes, distorção ou perda de leitura.
+5. Guardar original, arquivo de entrega e prompt completo em pasta versionada. Registrar ferramenta/modelo quando informado pela geração, referências usadas, data, versão, transformação/exportação e hash do arquivo entregue. Não inventar o modelo nem chamar um prompt reconstruído de original. Não incluir dados privados de alunos ou clientes.
+6. Usar nomes estáveis e versões explícitas para substituições; atualizar referências somente após a conferência. Registrar desvios encontrados e decisões no relatório do lote. Seguir o fluxo de PR, checks e merge de `CONTRIBUTING.md`; aprovações específicas de conteúdo continuam válidas.
+
+Auditoria inicial: [21 imagens dos materiais de Hermes em Operação](design-review/ilustracoes-hermes-operacao/README.md). Prompts históricos do lote: [restaurante](site/assistir/hermes-em-operacao/t1e2/art/prompts.md) e [Eugência](site/assistir/hermes-em-operacao/t1e2/art/eugencia/prompts.md). A auditoria descreve o estado encontrado; seus arquivos não se tornam novas referências aprovadas apenas por estarem no acervo.
 
 ## Instalado e pré-requisitos
 
@@ -51,7 +164,7 @@ Exceção funcional já aprovada: no player, `Continuar o vídeo` mantém o terr
 - `Marcar como instalado` é uma confirmação manual. Copiar comando, salvar em Minha lista, abrir amostra ou declarar que já tem arquivos no onboarding não marca instalação.
 - A ficha liberada oferece `Marcar como instalado` no topo, ao lado de `Instalar em…`, e também junto do comando. As duas posições compartilham o mesmo estado e mostram `✓ Instalado` após a confirmação. Só a posição acionada anuncia o resultado; o foco permanece no botão. `Minha lista` tem rótulo visível próprio, separado de instalação. No celular, as ações empilham sem cortar o texto.
 - Persistência local: `agentflix-installed-v1` no localStorage. Não existe verificação remota do agente nem sincronização entre dispositivos. Se o navegador não permitir salvar, informar que a marcação vale só nesta visita.
-- Skill bloqueada abre somente uma orientação com os pré-requisitos faltantes e o caminho para a primeira etapa disponível. Não renderizar seu instalador, instruções de uso, amostras ou réguas nesse estado. Hover e link direto respeitam o mesmo bloqueio.
+- Na aba de uso, uma skill bloqueada abre somente uma orientação com os pré-requisitos faltantes e o caminho para a primeira etapa disponível. Não renderizar seu instalador, instruções de uso, amostras ou réguas nesse estado. Hover e link direto respeitam o mesmo bloqueio.
 - Ao instalar todos os pré-requisitos, o alerta `Antes: ...` desaparece e a ficha é liberada. Dependências em cadeia são verificadas recursivamente. Mais de um pré-requisito exige todos.
 - Remover uma marcação bloqueia novamente o que depende dela, inclusive se a skill dependente já tinha sido marcada. Preservar a marcação do dependente, mas não confundi-la com pré-requisitos completos.
 - Mudanças entre abas reavaliam a ficha aberta. Marcar uma instalação atualiza os cards, o próximo passo e a indicação de continuação, sem recarregar a página.
@@ -69,21 +182,23 @@ Implementação: `site/index.html`, `site/vitrine.css`, `site/vitrine.js` e `sit
 
 ## Leitura humana: exemplar Hormozi
 
-A ficha de `copy-metodo-hormozi` abre em **Para o humano**, com **Usar a skill** ao lado. É a única skill com leitura humana nesta etapa. A capa, a identificação e as ações continuam pertencendo à ficha da vitrine; o botão Instalar em… leva ao instalador existente, na segunda aba. As demais fichas mantêm sua composição.
+A ficha de `copy-metodo-hormozi` abre em **Para o humano**, com **Usar a skill** ao lado. É o exemplar do componente comum a todas as leituras registradas. A capa, a identificação e as ações continuam pertencendo à ficha da vitrine; o botão Instalar em… leva ao instalador existente, na segunda aba. As demais fichas mantêm sua composição.
 
 O painel do exemplar comporta até 1120 px. As abas acompanham a rolagem, seguidas da barra Aa · Leitura. Título do guia, capítulos e orientação formam um conjunto fixo; em janelas baixas esse conjunto pode rolar por dentro. No celular, os capítulos ficam em uma faixa horizontal. Voltar da aba de instalação recupera a posição da leitura.
 
 Escuro usa a base da marca. Papel é uma exceção aprovada para conforto: fundo creme e texto escuro apenas na leitura. Os cinco tamanhos e a aparência ficam em `agentflix-reading-v1`, por navegador e origem. Capa, ações e instalação não mudam de tema nem de tamanho. Escape fecha primeiro os ajustes abertos; depois, a ficha.
 
-O conteúdo aprovado é servido em `site/leitura/`, com as imagens e os créditos. O componente só é montado após o onboarding e a verificação de pré-requisitos da ficha. Não há página de leitura paralela que pule essa experiência. Falha no carregamento oferece nova tentativa e mantém o acesso à aba de instalação.
+O conteúdo aprovado é servido em `site/leitura/`, com as imagens e os créditos. A leitura é pública e abre sem onboarding, login ou pré-requisitos. A aba Usar a skill conserva a orientação e os pré-requisitos de instalação. O mesmo componente atende aos dois acessos; não há leitor paralelo. Falha no carregamento oferece nova tentativa e mantém o acesso à aba de instalação.
 
 ### Acervo de leitura
 
-**Ler** fica no menu principal, após **Assistir**, e abre a seleção **Para o humano** em `#ler`. A seleção lista todas as skills que têm leitura registrada no mesmo componente que libera a aba humana. Atualmente, apenas Hormozi. O filtro anterior de avulsas, coleções ou Minha lista não limita esse acervo.
+**Ler** fica no menu principal, após **Assistir**, e abre a seleção **Para o humano** em `#ler`. A seleção lista todas as skills que têm leitura registrada no mesmo componente que libera a aba humana. O filtro anterior de avulsas, coleções ou Minha lista não limita esse acervo.
 
 A grade conserva capas 16:9, proporções, tipografia e fundo escuro da vitrine. Um livro de traço discreto acompanha “Leitura disponível”. O card abre a ficha na aba humana; fechar retorna ao acervo e ao card acionado. O hover oferece “Ler método”. A busca da barra passa a buscar apenas nas leituras, com limpeza de busca quando não houver resultado.
 
-No celular, Ler acompanha a navegação horizontal. O tema Papel continua restrito ao conteúdo dentro da ficha. Abrir `#ler` ou acionar Ler antes do fim do onboarding exibe o guia obrigatório; a conclusão abre o Início, sem carregar a leitura antecipadamente. Depois do onboarding, Ler abre o acervo normalmente. As regras de pré-requisitos continuam sendo conferidas ao abrir cada ficha. Voltar ao Catálogo recupera a seleção anterior.
+No celular, Ler acompanha a navegação horizontal. O tema Papel continua restrito ao conteúdo dentro da ficha. `#ler`, links diretos de slugs registrados e `/compartilhar/<slug>/` abrem o acervo ou a peça imediatamente, sem vinheta nem perguntas. A entrada das skills oferece Ler livremente. Isso vale para toda nova leitura do registro, sem lista de exceções no código.
+
+Ler não conclui o onboarding, não marca instalação e não exige cadastro. Capa, capítulos, preferências e compartilhamento continuam no componente comum. Pré-requisitos de uma skill não bloqueiam seu texto: ficam na aba Usar a skill. Antes de concluir o guia, essa aba oferece Escolher meu caminho; ao concluir, retorna à mesma skill e confere os pré-requisitos. O destino é preservado na sessão da aba, inclusive após recarga. Catálogo e skills sem leitura continuam seguindo a orientação existente.
 
 ## Acervo Assistir
 
@@ -104,3 +219,20 @@ A inclusão é declarativa: registrar slug, reader JSON e capa em `site/leitura/
 Card, hover com botão de leitura/Minha lista/seta, capa 16:9, modal com fechar, título, ações, abas Para o humano/Usar a skill, capítulos e ajustes de leitura pertencem ao componente comum. A capa fornecida mantém os pixels originais; a apresentação segue o mesmo enquadramento do Hormozi. Conteúdo editorial aprovado não é reescrito na migração.
 
 Antes de publicar, rodar `python3 -m unittest discover -s tests` e `python3 scripts/check_site.py`. O teste `test_reading_contract.py` verifica o registro, blocos e assets e impede leitor paralelo. Fazer QA de cada peça e Hormozi no mesmo build: card, hover, abertura, fechar/retorno, Minha lista, instalação manual, abas, capítulos, tema/tamanho, teclado e 1440/768/390 px. Aprovação de conteúdo novo continua necessária; a aprovação do componente não aprova novos textos.
+
+## Mobile: ícones e atividades de montagem
+
+Mobile usa os mesmos SVGs de interface e as mesmas ilustrações editoriais do desktop. Não substituir ícones por emojis, nem criar uma variante de ícones para celular. A dimensão pode se adaptar; o desenho e o significado permanecem.
+
+Nas atividades de associação da Aula 2, telas compactas e toque usam peça → lista de destinos. Um espaço vazio também abre a escolha de peças. A lista informa a posição atual e o que será substituído; a peça anterior volta para a mesa. Cancelar preserva a resposta e devolve o foco. Retirar permanece explícito. Conferir continua sendo uma ação separada, com as mesmas pistas e critérios do exercício.
+
+O arraste permanece disponível com mouse em telas amplas, junto da alternativa por clique e teclado. Toque não exige pressão longa nem interfere na rolagem. Controles novos têm alvo mínimo de 44 px, foco visível, rótulos e estado anunciado. O painel respeita a altura disponível e a área segura do dispositivo.
+
+
+## Compartilhar Para o humano
+
+A ficha e a barra de leitura usam o mesmo botão Compartilhar e o mesmo diálogo. Capa aprovada inteira, título e chamada aprovados formam a prévia. O diálogo segue tokens, cápsulas, foco visível, alvos de 44 px e fecha por Escape sem fechar a leitura.
+
+WhatsApp recebe o título e um endereço público permanente, sem fragmento. Instagram usa compartilhamento nativo de arquivo quando suportado; copiar link e baixar capa permanecem disponíveis. Nunca comunicar que algo foi publicado apenas porque a folha de compartilhamento abriu ou fechou.
+
+Registrar `share: {title, description, image, preview_image, revision, alt}` em `site/leitura/manifest.json`. `image` conserva a capa aprovada para o diálogo, Instagram e download. `preview_image` aponta para um JPEG local público com ao menos 600 × 315 px e menos de 300.000 bytes. Essa cópia comprimida preserva a composição, sem cortar nem reescrever a arte. `revision` é um inteiro positivo, incrementado quando a prévia muda; todos os links e o `og:url` usam `?v=<revision>` para permitir uma nova busca. `scripts/build_reading_shares.py` gera `/compartilhar/<slug>/index.html` com os metadados no HTML inicial e a mesma vitrine. Regerar após qualquer mudança em `site/index.html` ou no registro; os testes conferem paridade integral. Não criar uma landing page, leitor, abas ou instalador paralelo.

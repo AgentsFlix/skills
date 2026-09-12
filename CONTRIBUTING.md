@@ -1,6 +1,6 @@
 # Como trabalhar no AgentFlix
 
-Contrato de desenvolvimento, versão 1, aprovado pelo pedido do Zé em 08/09/2026.
+Contrato de desenvolvimento, versão 2, atualizado pelo plano de equipes autorizado pelo Zé em 10/09/2026.
 Vale para humanos, Hermes Bot, Codex e Claude. Leia também AGENTS.md e as instruções da pasta alterada.
 Uma tarefa usa uma branch, uma pasta própria e um PR. A main guarda a versão oficial.
 
@@ -83,12 +83,40 @@ Na migração, mantenha pastas com trabalho pendente; não misture seu conteúdo
 - Skills distribuídas: tags `vMAJOR.MINOR.PATCH` e releases identificam pacotes instaláveis. Correção compatível muda PATCH, adição compatível muda MINOR e quebra de compatibilidade muda MAJOR.
 - Não mover nem sobrescrever tag publicada. Criar tag só de commit já integrado e validado; conferir versão do catálogo, URLs e arquivos da release. Ajuste visual do site não obriga uma release de skills.
 - Arquivos gerados entre repositórios devem apontar para fontes e commits correspondentes. Nunca fazer upload de material privado para provar origem em um PR público.
-- Guarde no PR o resultado dos testes, SHA e confirmação de produção. No repo privado, atualize plano e log na mesma entrega.
+- Guarde no PR o resultado dos testes, SHA e confirmação de produção. Neste repositório, registre a entrega em `reviews/<slug>.md`, reservando somente esse arquivo.
+  Informe objetivo, PRs, testes, limitações e evidências; não declare merge ou deploy antes de confirmá-los.
+  Os arquivos globais de plano e log são consolidados por uma tarefa documental separada, com reserva própria.
 
 ## Limites das proteções
 
 O helper oferece proteção local para quem o usa. O GitHub exige PR e testes mesmo sem o helper.
 Uma conta administrativa pode editar as próprias regras; o contrato proíbe fazê-lo sem pedido explícito de manutenção.
 O estado real das regras é conferido pela API do GitHub, não presumido a partir deste documento.
-Este arquivo e `scripts/agent_work.py` têm sua fonte em `AgentsFlix/agentsflix`; mudanças comuns são distribuídas
-por PR para os outros repositórios e devem manter a mesma versão.
+O contrato e `scripts/agent_work.py` seguem a mesma versão nos repositórios AgentFlix. Mudanças comuns são
+distribuídas por PR; os destinos adaptam apenas referências locais e não copiam dados ou registros internos.
+
+
+## Equipes e passagem entre papéis
+
+O modo de sessão única continua válido. Uma atribuição do orquestrador AgentFlix executa apenas a etapa
+recebida: implementação, revisão, QA, integração ou encerramento. A especialização não cria branch permanente.
+O executor mantém a escrita da entrega; revisão e QA usam snapshots separados do SHA. O integrador devolve
+conflitos e atualizações de base ao executor. Resultados carregam tarefa, execução, repo, PR e SHA.
+
+Os campos opcionais `start --task-id ID --owner PERFIL` registram origem e proprietário no helper v2.
+Registros v1 continuam válidos. Esses campos são metadados, não autenticação nem uma trava entre máquinas.
+`status` é somente leitura. A reserva central e a autorização de cada operação pertencem ao intermediário.
+O Kanban recebe a worktree pronta como diretório; sua conclusão de etapa não autoriza remover a pasta.
+
+Nas entregas gerenciadas, o intermediário exige `validate`, `agent-review` e `qa` explicitamente `success`
+para o PR e HEAD vigentes, emitidos pelas Apps esperadas. Novo HEAD exige novas evidências. O integrador
+faz squash automaticamente com o SHA esperado e as proteções ativas; não arma auto-merge antecipado.
+As novas Apps só se tornam obrigatórias depois de emitir checks reais e passar pelos testes de rejeição.
+Durante a construção desse serviço, os PRs usam os checks atuais e revisão independente no Codex.
+
+Uma entrega permanece aberta até confirmar merge, deploy aplicável e limpeza pelo executor original.
+No modo gerenciado, o intermediário proprietário técnico da worktree executa essa limpeza: o integrador
+solicita somente o encerramento da própria entrega e não recebe acesso global a Git ou ao filesystem.
+O intermediário confirma todos os runs encerrados, o PR e SHA exatos, a publicação e a pasta limpa antes de `finish`.
+Nenhum processo pode assumir a escrita só porque um heartbeat expirou. Confirmar a parada do dono anterior
+antes de reassumir ou remover a pasta. Falha persistente preserva evidências, branch e trabalho pendente.

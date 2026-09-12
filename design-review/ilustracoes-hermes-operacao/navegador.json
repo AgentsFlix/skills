@@ -1,0 +1,2654 @@
+[
+  {
+    "page": "index",
+    "width": 1440,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/cliente-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/mesa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 60,
+        "height": 54,
+        "filter": "none"
+      }
+    ],
+    "svgImages": [
+      "art/cliente-v1.png",
+      "art/chef-atendimento-v1.png",
+      "art/panela-v1.png",
+      "art/prato-v1.png",
+      "art/caderneta-v1.png",
+      "art/maquininha-v1.png",
+      "art/mesa-v1.png",
+      "art/campainha-v1.png",
+      "art/prato-v1.png",
+      "art/mesa-v1.png",
+      "art/campainha-v1.png",
+      "art/prato-v1.png",
+      "art/mesa-v1.png",
+      "art/campainha-v1.png",
+      "art/prato-v1.png"
+    ]
+  },
+  {
+    "page": "pratica",
+    "width": 1440,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-cozinha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-caixa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/cliente-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/mesa-v1.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 92,
+        "height": 132,
+        "filter": "grayscale(1)"
+      },
+      {
+        "src": "art/chef-cozinha-v1.png",
+        "loaded": true,
+        "width": 92,
+        "height": 132,
+        "filter": "grayscale(1)"
+      },
+      {
+        "src": "art/chef-caixa-v1.png",
+        "loaded": true,
+        "width": 92,
+        "height": 132,
+        "filter": "grayscale(1)"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/maquininha-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/mesa-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/mesa-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "equipe",
+    "width": 1440,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-cozinha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-caixa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 92,
+        "height": 132,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-cozinha-v1.png",
+        "loaded": true,
+        "width": 92,
+        "height": 132,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-caixa-v1.png",
+        "loaded": true,
+        "width": 92,
+        "height": 132,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/maquininha-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "eugencia",
+    "width": 1440,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/editor.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/criacao.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/envio.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 40,
+        "height": 40,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 40,
+        "height": 40,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/editor.png",
+        "loaded": true,
+        "width": 40,
+        "height": 40,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 40,
+        "height": 40,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/criacao.png",
+        "loaded": true,
+        "width": 40,
+        "height": 40,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/envio.png",
+        "loaded": true,
+        "width": 40,
+        "height": 40,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 28,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/academia.png",
+        "loaded": true,
+        "width": 28,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/loja.png",
+        "loaded": true,
+        "width": 28,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 292,
+        "height": 290,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 292,
+        "height": 190,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "eugencia-pratica",
+    "width": 1440,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/editor.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/envio.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/criacao.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 45,
+        "height": 45,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 45,
+        "height": 45,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 45,
+        "height": 45,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/editor.png",
+        "loaded": true,
+        "width": 45,
+        "height": 45,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 45,
+        "height": 45,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/envio.png",
+        "loaded": true,
+        "width": 45,
+        "height": 45,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/criacao.png",
+        "loaded": true,
+        "width": 45,
+        "height": 45,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/envio.png",
+        "loaded": true,
+        "width": 45,
+        "height": 45,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/academia.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/loja.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "novo-cliente",
+    "width": 1440,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 70,
+        "height": 70,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "cliente-pratica",
+    "width": 1440,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 26,
+        "height": 28,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/academia.png",
+        "loaded": true,
+        "width": 26,
+        "height": 28,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/loja.png",
+        "loaded": true,
+        "width": 26,
+        "height": 28,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 70,
+        "height": 70,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "base-negocio",
+    "width": 1440,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 105,
+        "height": 105,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 105,
+        "height": 105,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 105,
+        "height": 105,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 43,
+        "height": 43,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "jornada-marca",
+    "width": 1440,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 487,
+        "height": 360,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "index",
+    "width": 768,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/cliente-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/mesa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 78,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 60,
+        "height": 54,
+        "filter": "none"
+      }
+    ],
+    "svgImages": [
+      "art/cliente-v1.png",
+      "art/chef-atendimento-v1.png",
+      "art/panela-v1.png",
+      "art/prato-v1.png",
+      "art/caderneta-v1.png",
+      "art/maquininha-v1.png",
+      "art/mesa-v1.png",
+      "art/campainha-v1.png",
+      "art/prato-v1.png",
+      "art/mesa-v1.png",
+      "art/campainha-v1.png",
+      "art/prato-v1.png",
+      "art/mesa-v1.png",
+      "art/campainha-v1.png",
+      "art/prato-v1.png"
+    ]
+  },
+  {
+    "page": "pratica",
+    "width": 768,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-cozinha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-caixa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/cliente-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/mesa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 108,
+        "filter": "grayscale(1)"
+      },
+      {
+        "src": "art/chef-cozinha-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 108,
+        "filter": "grayscale(1)"
+      },
+      {
+        "src": "art/chef-caixa-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 108,
+        "filter": "grayscale(1)"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 55,
+        "height": 88,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 55,
+        "height": 88,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 55,
+        "height": 88,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 55,
+        "height": 88,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 55,
+        "height": 88,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 55,
+        "height": 88,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 55,
+        "height": 88,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 55,
+        "height": 88,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 55,
+        "height": 88,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 116,
+        "height": 106,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/mesa-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/maquininha-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/mesa-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "equipe",
+    "width": 768,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-cozinha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-caixa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 108,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-cozinha-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 108,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-caixa-v1.png",
+        "loaded": true,
+        "width": 70,
+        "height": 108,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/maquininha-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 76,
+        "height": 76,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "eugencia",
+    "width": 768,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/editor.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/criacao.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/envio.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 30,
+        "height": 35,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 30,
+        "height": 35,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/editor.png",
+        "loaded": true,
+        "width": 30,
+        "height": 35,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 30,
+        "height": 35,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/criacao.png",
+        "loaded": true,
+        "width": 30,
+        "height": 35,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/envio.png",
+        "loaded": true,
+        "width": 30,
+        "height": 35,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 22,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/academia.png",
+        "loaded": true,
+        "width": 22,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/loja.png",
+        "loaded": true,
+        "width": 22,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 267,
+        "height": 220,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 267,
+        "height": 140,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "eugencia-pratica",
+    "width": 768,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/envio.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/criacao.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/editor.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/envio.png",
+        "loaded": true,
+        "width": 38,
+        "height": 38,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/envio.png",
+        "loaded": true,
+        "width": 38,
+        "height": 38,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 38,
+        "height": 38,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 38,
+        "height": 38,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/criacao.png",
+        "loaded": true,
+        "width": 38,
+        "height": 38,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 38,
+        "height": 38,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 38,
+        "height": 38,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/editor.png",
+        "loaded": true,
+        "width": 38,
+        "height": 38,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/academia.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/loja.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "novo-cliente",
+    "width": 768,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 70,
+        "height": 70,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "cliente-pratica",
+    "width": 768,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 26,
+        "height": 28,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/academia.png",
+        "loaded": true,
+        "width": 26,
+        "height": 28,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/loja.png",
+        "loaded": true,
+        "width": 26,
+        "height": 28,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 70,
+        "height": 70,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "base-negocio",
+    "width": 768,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 100,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 100,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 100,
+        "height": 100,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 43,
+        "height": 43,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "jornada-marca",
+    "width": 768,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 273,
+        "height": 360,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "index",
+    "width": 390,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/cliente-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/mesa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 62,
+        "height": 56,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 62,
+        "height": 56,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 62,
+        "height": 56,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 62,
+        "height": 56,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 62,
+        "height": 56,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 62,
+        "height": 56,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 60,
+        "height": 54,
+        "filter": "none"
+      }
+    ],
+    "svgImages": [
+      "art/cliente-v1.png",
+      "art/chef-atendimento-v1.png",
+      "art/panela-v1.png",
+      "art/prato-v1.png",
+      "art/caderneta-v1.png",
+      "art/maquininha-v1.png",
+      "art/mesa-v1.png",
+      "art/campainha-v1.png",
+      "art/prato-v1.png",
+      "art/mesa-v1.png",
+      "art/campainha-v1.png",
+      "art/prato-v1.png",
+      "art/mesa-v1.png",
+      "art/campainha-v1.png",
+      "art/prato-v1.png"
+    ]
+  },
+  {
+    "page": "pratica",
+    "width": 390,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-cozinha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-caixa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/cliente-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/mesa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 66,
+        "height": 96,
+        "filter": "grayscale(1)"
+      },
+      {
+        "src": "art/chef-cozinha-v1.png",
+        "loaded": true,
+        "width": 66,
+        "height": 96,
+        "filter": "grayscale(1)"
+      },
+      {
+        "src": "art/chef-caixa-v1.png",
+        "loaded": true,
+        "width": 66,
+        "height": 96,
+        "filter": "grayscale(1)"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 58,
+        "height": 92,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 58,
+        "height": 92,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 58,
+        "height": 92,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 58,
+        "height": 92,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 58,
+        "height": 92,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 58,
+        "height": 92,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 58,
+        "height": 92,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 58,
+        "height": 92,
+        "filter": "none"
+      },
+      {
+        "src": "art/cliente-v1.png",
+        "loaded": true,
+        "width": 58,
+        "height": 92,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 104,
+        "height": 94,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 104,
+        "height": 94,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 104,
+        "height": 94,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 104,
+        "height": 94,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 104,
+        "height": 94,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 104,
+        "height": 94,
+        "filter": "none"
+      },
+      {
+        "src": "art/mesa-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/mesa-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/maquininha-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "equipe",
+    "width": 390,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-atendimento-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/campainha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/caderneta-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/menu-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/prato-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-cozinha-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/panela-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/chef-caixa-v1.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/maquininha-v1.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 74,
+        "height": 108,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-cozinha-v1.png",
+        "loaded": true,
+        "width": 74,
+        "height": 108,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-caixa-v1.png",
+        "loaded": true,
+        "width": 74,
+        "height": 108,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/menu-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/chef-atendimento-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/caderneta-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/maquininha-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/panela-v1.png",
+        "loaded": true,
+        "width": 64,
+        "height": 64,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/prato-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      },
+      {
+        "src": "art/campainha-v1.png",
+        "loaded": true,
+        "width": 34,
+        "height": 32,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "eugencia",
+    "width": 390,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/editor.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/criacao.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/envio.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 26,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 26,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/editor.png",
+        "loaded": true,
+        "width": 26,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 26,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/criacao.png",
+        "loaded": true,
+        "width": 26,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/envio.png",
+        "loaded": true,
+        "width": 26,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 20,
+        "height": 26,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/academia.png",
+        "loaded": true,
+        "width": 20,
+        "height": 26,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/loja.png",
+        "loaded": true,
+        "width": 20,
+        "height": 26,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 155,
+        "height": 175,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 155,
+        "height": 120,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "eugencia-pratica",
+    "width": 390,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/editor.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/criacao.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/envio.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 30,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/editor.png",
+        "loaded": true,
+        "width": 30,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 30,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 30,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/criacao.png",
+        "loaded": true,
+        "width": 30,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 30,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/envio.png",
+        "loaded": true,
+        "width": 30,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/envio.png",
+        "loaded": true,
+        "width": 30,
+        "height": 30,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/academia.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/loja.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "novo-cliente",
+    "width": 390,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 46,
+        "height": 46,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "cliente-pratica",
+    "width": 390,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/academia.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/loja.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/mensagem.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 22,
+        "height": 22,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/academia.png",
+        "loaded": true,
+        "width": 22,
+        "height": 22,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/loja.png",
+        "loaded": true,
+        "width": 22,
+        "height": 22,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/mensagem.png",
+        "loaded": true,
+        "width": 46,
+        "height": 46,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "base-negocio",
+    "width": 390,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/cafe.png",
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/pasta.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 70,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 70,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/cafe.png",
+        "loaded": true,
+        "width": 70,
+        "height": 70,
+        "filter": "none"
+      },
+      {
+        "src": "art/eugencia/pasta.png",
+        "loaded": true,
+        "width": 43,
+        "height": 43,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  },
+  {
+    "page": "jornada-marca",
+    "width": 390,
+    "errors": [],
+    "requests": [
+      "site/assistir/hermes-em-operacao/t1e2/art/eugencia/profissional.png"
+    ],
+    "overflow": false,
+    "images": [
+      {
+        "src": "art/eugencia/profissional.png",
+        "loaded": true,
+        "width": 0,
+        "height": 0,
+        "filter": "none"
+      }
+    ],
+    "svgImages": []
+  }
+]
