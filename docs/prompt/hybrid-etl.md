@@ -371,7 +371,7 @@ Master orchestrator que encadeia as 4 layers do ETL Deep Pass: Local Extract, We
 - Bootstrap executado (`{pasta}/user.yaml` existe).
 - Negocio criado (`{pasta}/` existe).
 - Templates scaffolded (`*scaffold-templates` executado).
-- Mapa de fontes configurado em `references/imersao-business-map.yaml`.
+- Ao menos uma fonte local ou URL do negocio indicada pelo usuario, pelo pedido atual ou por `{pasta}/evidence/source-registry.yaml`.
 
 ## Usage
 
@@ -384,10 +384,10 @@ Master orchestrator que encadeia as 4 layers do ETL Deep Pass: Local Extract, We
 ### Fase 1: Pre-flight
 
 1. Validar que `{slug}` existe em `{pasta}/`.
-2. Ler `references/imersao-business-map.yaml` e localizar entrada do slug.
+2. Ler `{pasta}/evidence/source-registry.yaml`, se existir, e combinar com os caminhos locais e URLs indicados explicitamente pelo usuario ou pelo pedido atual.
 3. Ler `{pasta}/evidence/completeness-manifest.yaml` (se existir).
 4. Registrar completude inicial como `baseline_completeness`.
-5. **Gate:** Diretorio do business deve existir. Se ausente, HALT com instrucao para executar `*add-business`.
+5. **Gate:** Diretorio do business deve existir e ao menos uma fonte autorizada deve estar acessivel. Se o diretorio estiver ausente, HALT com instrucao para executar `*add-business`; se faltarem fontes, informe exatamente qual caminho ou URL o usuario precisa fornecer.
 
 ### Fase 2: Layer 1 — Local Extract
 
@@ -616,7 +616,7 @@ Layer 1 do deep pass pipeline. Le TODAS as fontes locais de um business (perfil,
 - Bootstrap executado (`{pasta}/user.yaml` existe)
 - Negocio criado (`{pasta}/` existe)
 - Templates scaffolded (`*scaffold-templates` executado)
-- Mapa de fontes configurado em `references/imersao-business-map.yaml`
+- Ao menos uma fonte local ou URL do negocio indicada pelo usuario, pelo pedido atual ou por `{pasta}/evidence/source-registry.yaml`
 
 ## Usage
 
@@ -629,17 +629,17 @@ Layer 1 do deep pass pipeline. Le TODAS as fontes locais de um business (perfil,
 
 ## Execution Flow
 
-### Fase 1: Resolver fontes do mapa
+### Fase 1: Resolver fontes autorizadas
 
-1. Ler `references/imersao-business-map.yaml`.
-2. Localizar entrada para o `{slug}` informado.
-3. Mapear todos os caminhos de fonte: `perfil`, `formulario`, `call_vendas`, `instalacao`.
-4. Classificar cada fonte como `available` ou `missing`.
-5. **Gate:** `perfil` e obrigatorio. Se ausente, HALT com mensagem de erro.
+1. Se existir, ler `{pasta}/evidence/source-registry.yaml`.
+2. Acrescentar os caminhos locais e URLs indicados explicitamente pelo usuario ou pelo pedido atual.
+3. Classificar cada fonte por tipo quando possivel: `perfil`, `formulario`, `call_vendas`, `instalacao`, `site` ou `outro`.
+4. Marcar cada fonte como `available` ou `missing`, sem procurar arquivos fora dos caminhos autorizados.
+5. **Gate:** ao menos uma fonte precisa estar disponivel. Se nenhuma estiver acessivel, HALT e informe exatamente qual caminho ou URL falta. Um perfil nao e obrigatorio quando outra fonte util foi fornecida.
 
 ### Fase 2: Extrair do perfil (baseline)
 
-1. Ler arquivo de perfil mapeado na Fase 1.
+1. Ler arquivo de perfil identificado na Fase 1, se disponivel.
 2. Extrair dados fundamentais: empresa, produto, dores, faturamento, segmento.
 3. Mapear campos extraidos para os templates YAML do workspace.
 4. Registrar confianca `ALTA` para dados diretos do perfil.
@@ -686,7 +686,7 @@ Layer 1 do deep pass pipeline. Le TODAS as fontes locais de um business (perfil,
 
 ## Acceptance Criteria
 
-1. Todas as fontes disponiveis foram lidas (`perfil` obrigatorio, demais best-effort).
+1. Todas as fontes autorizadas e disponiveis foram lidas; nenhuma categoria especifica e obrigatoria quando outra fonte util sustenta a extracao.
 2. Ao menos 3 arquivos YAML atualizados com dados novos.
 3. Nenhum dado fabricado — todos os campos rastreaveis ate a fonte original.
 4. `completeness-manifest.yaml` atualizado com metricas de completude.

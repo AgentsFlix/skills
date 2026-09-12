@@ -9,6 +9,15 @@ SLUGS = ['editorial-pilares', 'editorial-visual', 'editorial-templates', 'editor
 
 
 class EditorialPackageTests(unittest.TestCase):
+    def test_hybrid_etl_has_no_missing_private_source_map(self):
+        package=ROOT/'skills/hybrid-etl'
+        for name in ('etl-local-extract.md','etl-deep-pass.md'):
+            text=(package/'references'/name).read_text()
+            self.assertNotIn('imersao-business-map.yaml',text)
+            self.assertIn('source-registry.yaml',text)
+        procedure=(package/'SKILL.md').read_text()
+        self.assertIn('não exige abrir o método ampliado nem templates',procedure)
+
     def test_complete_and_consistent_distribution(self):
         for slug in SLUGS:
             with self.subTest(slug=slug):
