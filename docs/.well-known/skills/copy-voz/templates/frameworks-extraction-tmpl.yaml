@@ -1,14 +1,16 @@
+# Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
+
 # Copywriter Operational Frameworks Extraction Template
 # Version: 1.0.0
-# Task Reference: tasks/extract-frameworks.md
+# Task Reference: references/extract-frameworks.md
 # Purpose: Output template for the extract-frameworks task
 #
 # INSTRUCTIONS:
 # 1. Replace all [PLACEHOLDER] values with actual data
 # 2. Remove comments starting with # GUIDE: after filling
 # 3. Validate YAML syntax before saving
-# 4. Ensure exactly 10 frameworks are documented
-# 5. All content must be in English
+# 4. Document only frameworks supported by the available sources; do not fill a quota
+# 5. Content must follow the language chosen by the person
 
 # ==============================================================================
 # METADATA SECTION
@@ -17,21 +19,21 @@
 metadata:
   copywriter_name: "[FULL NAME]"  # e.g., "Dan Koe", "David Ogilvy"
   extraction_date: "[YYYY-MM-DD]"  # Date of extraction
-  total_frameworks: 10  # Must be exactly 10
+  total_frameworks: 0  # Update from the verified entries; no fixed target
   source_files_count: "[XX]"  # Number of source files processed
   source_directory: "[PATH]"  # e.g., "{pasta}/fontes/"
   extractor: "AIOS extract-frameworks task v1.0"
 
 # Category coverage summary - update counts after extraction
 categories_covered:
-  copywriting: 0      # Target: 2-3
-  offer_creation: 0   # Target: 1-2
-  marketing_strategy: 0  # Target: 1-2
-  sales: 0            # Target: 1-2
-  content: 0          # Target: 1-2
-  audience: 0         # Target: 0-1
-  product: 0          # Target: 0-1
-  mindset: 0          # Target: 0-1
+  copywriting: 0      # Count observed frameworks; no category quota
+  offer_creation: 0   # Count observed frameworks; no category quota
+  marketing_strategy: 0  # Count observed frameworks; no category quota
+  sales: 0            # Count observed frameworks; no category quota
+  content: 0          # Count observed frameworks; no category quota
+  audience: 0         # Count observed frameworks; no category quota
+  product: 0          # Count observed frameworks; no category quota
+  mindset: 0          # Count observed frameworks; no category quota
 
 # ==============================================================================
 # CATEGORY ENUM REFERENCE
@@ -201,7 +203,7 @@ operational_frameworks:
   # FRAMEWORKS 3-10: Repeat the structure above
   # ---------------------------------------------------------------------------
   # Copy the Framework 2 structure and fill for each additional framework.
-  # Ensure you have exactly 10 frameworks total.
+  # Remove unsupported placeholder entries and count only documented frameworks.
   # Remove this comment block in the final output.
   # ---------------------------------------------------------------------------
 
@@ -451,6 +453,6 @@ operational_frameworks:
 #     [ ] At least 1 example
 # [ ] YAML syntax is valid (no special characters breaking structure)
 # [ ] Language is consistent with copywriter's voice
-# [ ] All content is in English
+# [ ] Content follows the language chosen by the person
 #
 # ==============================================================================

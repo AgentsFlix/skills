@@ -1,6 +1,6 @@
 ---
 name: hybrid-marca
-description: 'A marca escrita antes de virar logo: o núcleo, as promessas que faz e as que não faz, a personalidade, o DNA de voz e os valores. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…'
+description: Proponha posicionamento e promessas com base no perfil e público disponíveis. Trabalhe voz no mesmo contexto quando solicitada, distinguindo preferências, padrões do acervo e propostas.
 license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
@@ -10,61 +10,69 @@ metadata:
   source: https://github.com/AgentsFlix/skills/tree/main/skills/hybrid-marca
   tags: hybrid-workspace, negocio, elicitacao, yaml
   related: hybrid-diagnostico, hybrid-proxima-acao, hybrid-perfil, hybrid-fundador
-  config: 'hybrid.pasta: Pasta do negócio no seu computador: é onde os YAML do Hybrid Workspace vivem (perfil, ICP, marca, oferta, diagnósticos). Um negócio por pasta.'
+  contract_version: 1.0.0
+  content_revision: 1.0.9
+  distribution_ref: main
 ---
+# Trabalhar a marca
 
-# A MARCA · Núcleo, promessas, personalidade, voz e valores
-
-A marca escrita antes de virar logo: o núcleo, as promessas que faz e as que não faz, a personalidade, o DNA de voz e os valores. O agente elicita e grava no brandbook, e as skills de copy passam a respeitar esse arquivo. Marca sem documento é gosto do dia.
-
-Parte do **Hybrid Workspace**: um conjunto de YAMLs que descrevem o negócio e que as outras skills leem. Tudo vive na pasta configurada em `hybrid.pasta` (pergunte ao usuário, se ainda não souber), um negócio por pasta. Nada é enviado para fora.
+Escolha a operação solicitada: posicionamento, voz ou aprofundamento do brandbook. Cada uma tem sua própria entrega. Use o mesmo perfil e público entre operações, preservando o estado proposto ou aprovado dos arquivos anteriores.
 
 ## When to Use
 
-- Diga: "documenta a marca [nome]".
-- O negócio ainda não tem esse arquivo, ou ele está abaixo de 85% de completude.
-- NÃO use para medir o negócio: isso é `hybrid-diagnostico`, que lê o que esta skill escreve.
+Use para propor ou revisar posicionamento, promessas e diferenciais, ou para definir a voz da marca. Siga o pedido atual: uma proposta de posicionamento não exige antecipar o guia de voz nem preencher um brandbook integral.
 
 ## Quick Reference
 
-| procedimento | referência |
-|---|---|
-| elicit brand yaml | `references/elicit-brand-yaml.md` |
-| template que esta skill preenche | `templates/brand-brandbook.yaml` |
-| template que esta skill preenche | `templates/brand-messaging-framework.yaml` |
-| template que esta skill preenche | `templates/brand-positioning-statement.yaml` |
+Obrigatórios: perfil, público e objetivo de comunicação ou equivalentes. Acervo de voz e provas existentes são opcionais para entrevista; necessários para alegar extração ou promessa comprovada.
 
+Para a entrega inicial, siga Procedure sem abrir questionário ou template institucional. Uma proposta útil contém enunciado de posicionamento, promessas com limites, diferenciais com origem e lacunas relevantes. Para voz, entregue princípios e aplicações rastreáveis. Consulte `references/elicit-brand-yaml.md` e os templates apenas para aprofundamento explicitamente solicitado. Use o destino local já autorizado.
+
+Para o guia inicial, esta rota basta: princípios, vocabulário, aplicações e origem. Se usar copy-voz como apoio disponível, leia primeiro seu SKILL.md; referências de communication-dna e signature-phrases são aprofundamento opcional, não pré-requisito para analisar as notas disponíveis. Salve a direção provisória antes de pedir material adicional.
 
 ## Procedure
 
-1. Resolva a pasta: `hybrid.pasta`. Se não existir, crie. Para cada template listado acima que ainda não exista na pasta, copie-o de `templates/` para a pasta com o nome original (ex.: `company-icp.yaml` → `icp.yaml`).
-2. Abra a referência do procedimento e siga as fases na ordem. Onde ela escrever `{pasta}/…`, leia a pasta configurada. Onde ela citar um comando `*algo` ou um script `.cjs`/`.sh`, trate como nome da etapa, não como algo a executar.
-3. Conduza a elicitação em blocos: apresente o resumo do que já está preenchido, pergunte só o que falta, aceite 'não sei ainda' e deixe `null`. Nunca preencha com suposição.
-4. Grave o YAML na pasta, preservando a estrutura do template. Calcule a completude: campos preenchidos ÷ campos obrigatórios; atualize `metadata.completeness_percentage` e `status`.
-5. Se a completude ficou abaixo de 85%, diga quais seções faltam e o que perguntar na próxima sessão. Não declare o arquivo pronto.
+Pergunte somente o que falta e muda a entrega atual. Cada pergunta aberta usa três linhas: Base: trecho literal pertinente da memória, acervo ou resposta humana observada; Pergunta: a lacuna; Exemplo de resposta: sugestão curta com o contexto conhecido e [nome do dado] para o desconhecido. Dentro dos colchetes, escreva somente o nome do dado; não inclua ex., listas de respostas possíveis, números ou histórias para escolher. Sem base pertinente, declare “sem informação registrada” e use apenas campos. Preserve o estado da fonte: público pretendido ou hipótese continuam assim no exemplo, sem atribuir comportamento observado a clientes. Para histórico desconhecido, use “Sobre [contexto conhecido], meu histórico é [relato, se houver]”; a oferta não prova experiência, e ausência de registro não prova que nunca aconteceu. Remova toda afirmação preenchida sem fonte. Propostas novas de ações ficam fora dos exemplos de resposta.
+
+Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`. Ele rege também as referências e os templates. Identidade e revisões: `references/identidade.json`. Ao concluir, aplique seu aceite transversal, registre o resultado observável e avalie rotina. Para auditar ou renovar, leia `references/ciclo-de-vida.md`.
+
+1. Identifique a operação pedida: propor ou revisar posicionamento, trabalhar voz ou aprofundar o brandbook. Reaproveite perfil, público, objetivo e decisões atuais da memória e dos artefatos anteriores. Consulte somente as lacunas necessárias; não reentreviste nem abra todos os templates.
+2. Rota de posicionamento. Execute quando o pedido for posicionamento, promessas ou diferenciais e passe ao passo 4 após esta entrega. Entregue um enunciado para o público declarado, a oferta e o problema; proponha promessas com limites e diferenciais ligados ao modo de trabalhar ou a evidências existentes. Separe fato, hipótese e proposta. Sem prova de resultado, não faça essa promessa; sua ausência não impede uma proposta honesta. Use como estrutura do artefato: enunciado; promessas e limites; diferenciais e origem; lacunas de validação. A aplicação de voz fica na sua rota própria. Tagline, valores, crenças e inimigos são opcionais, somente se fizerem parte do pedido.
+3. Rota de voz. Execute somente quando a pessoa pedir voz, tom, linguagem ou extração de DNA. Continue o posicionamento atual com seu estado proposto ou aprovado preservado. Extraia padrões apenas de acervo próprio suficiente, com trechos e origem; caso contrário, use preferências já declaradas e entreviste só lacunas necessárias. Entregue princípios, vocabulário e exemplos de aplicação. Não invente DNA nem exija concluir um brandbook para começar. Para o guia inicial, esta rota basta: princípios, vocabulário, aplicações e origem. Se usar copy-voz como apoio disponível, leia primeiro seu SKILL.md; referências de communication-dna e signature-phrases são aprofundamento opcional, não pré-requisito para analisar as notas disponíveis. Salve a direção provisória antes de pedir material adicional.
+4. Toda pergunta aberta traz seu próprio exemplo contextual, identificado como sugestão. Pergunte somente se a resposta muda a entrega atual. Desconhecimento já declarado permanece lacuna; não crie uma sequência obrigatória de aprovação ou perguntas opcionais.
+5. Salve no destino autorizado um artefato focado na operação atual. Referencie perfil e ICP anteriores em vez de copiá-los; acrescente apenas a síntese necessária para compreender a proposta, suas origens e limites. Mantenha detalhes de auditoria em seus registros. Reserve o encerramento para resultado, caminho, estado e próximo passo; não repita o documento inteiro.
+6. Confira o aceite do pedido. Se foi produzir uma proposta e o artefato foi salvo com origem, limites e lacunas, a operação pode ser completed enquanto o conteúdo permanece proposto, não aprovado. Use waiting somente se faltar uma dependência indispensável para produzir o que foi pedido; diga qual. Questões para validação futura ficam como notas, com origem e limite; não as transforme em entrevista obrigatória ou waiting se a proposta já é possível. Aprovação explícita continua necessária quando a operação pedida for aprovar ou aplicar conteúdo que exige aceite. Não simule essa aprovação.
+7. Registre somente uso observado, usando o esquema real da ferramenta disponível. Não recrie o evento started se o hospedeiro já o forneceu. Use os metadados do hospedeiro para criação e auditoria; o início da sessão não é a data de criação do arquivo. Avalie rotina respeitando recusas anteriores. Passe a proposta, suas origens e pendências à próxima etapa, sem publicar nem ativar automação.
+
+## Avaliação de rotina
+
+Definição é pontual. Revisar após mudança de posicionamento ou acervo significativo; não criar notificação recorrente para reafirmar a voz.
 
 ## Pitfalls
 
-- Preencher com suposição para "fechar" a completude. `null` é honesto; suposição vira decisão errada em cascata.
-- Tratar `*comando` e script da referência como executável. São etapas do formato de origem.
-- Ler o YAML errado: um negócio por pasta. Se a pasta tem arquivos de dois negócios, pare e pergunte.
-- Pular o Diagnosis Gate quando a referência o pede. O nível de consciência muda todas as perguntas seguintes.
+- Bloquear a entrega de uma proposta por falta de aprovação, tagline, crença central ou prova de resultados que a pessoa não tem.
+- Tratar proposta entregue como conteúdo aprovado ou como fato comprovado.
+- Antecipar voz, valores, inimigos ou o brandbook inteiro quando o pedido é só posicionamento.
+- Copiar o perfil, ICP e contrato completos em cada entrega; referencie seus arquivos e acrescente o que esta etapa produz.
+- Reabrir uma recusa de rotina, agendamento ou lembretes.
+- Usar o horário de início da sessão como se fosse o horário de criação do documento.
 
 ## Verification
 
-A entrega está pronta quando TODAS forem verdadeiras:
-
-1. O YAML existe na pasta configurada e parseia (`python3 -c 'import yaml,sys; yaml.safe_load(open(sys.argv[1]))' <arquivo>` sai 0).
-2. `metadata.completeness_percentage` foi recalculado e bate com a contagem de campos não-nulos.
-3. Nenhum campo obrigatório foi preenchido com valor que o usuário não deu; os pendentes estão em `null` e listados.
-4. Se abaixo de 85%, a resposta diz as seções faltantes e não declara pronto.
-5. Nenhum dado foi enviado para fora da pasta do negócio.
-
-Validada contra Hermes Agent 0.20.6 (tag v2026.8.27) em 2026-09-04.
+A operação pedida tem artefato verificável: posicionamento, promessas e diferenciais fundamentados ou explicitamente propostos; ou guia de voz com preferências/extração rastreáveis. Mesma marca e contexto entre posicionamento e voz, com arquivos anteriores preservados. Produção da proposta, aprovação e publicação têm estados distintos. Campos de um brandbook ampliado não bloqueiam a proposta. Confira o aceite transversal de references/contrato-agentflix.md.
 
 ## Arquivos desta skill
 
+- `references/ativacao.md`
+- `references/ciclo-de-vida.md`
+- `references/configuracao.json`
+- `references/conhecimento.okf.md`
+- `references/contrato-agentflix.md`
 - `references/elicit-brand-yaml.md`
+- `references/identidade.json`
+- `scripts/auditar.py`
 - `templates/brand-brandbook.yaml`
 - `templates/brand-messaging-framework.yaml`
 - `templates/brand-positioning-statement.yaml`
+- `templates/estado-da-skill.md`
+- `templates/evento-de-uso.json`

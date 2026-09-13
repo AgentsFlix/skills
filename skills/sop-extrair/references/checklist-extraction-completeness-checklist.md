@@ -1,3 +1,5 @@
+> Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
+
 # Extraction Completeness Checklist
 
 > **Purpose:** Verify that a process extraction by @sop-extractor captured all required sections before handoff to @sop-creator or @sop-ml-architect. This is the quality gate between EXTRACTION and CREATION stages.

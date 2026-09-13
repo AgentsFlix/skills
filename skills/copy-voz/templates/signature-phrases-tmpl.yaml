@@ -1,20 +1,22 @@
+# Material de aprofundamento opcional. Quantidades de arquivos, frameworks, frases e categorias não são metas universais nem pré-requisitos de entrevista. Mesmo no aprofundamento, use só itens sustentados pelo acervo, remova espaços sem evidência e atualize totais pelo que realmente encontrou. O idioma é o escolhido pela pessoa. Frequências e percentuais exigem contagem verificável; sem ferramenta/contagem, descreva padrões qualitativos com trechos e limites, sem números estimados apresentados como medição.
+
 # ==============================================================================
 # SIGNATURE PHRASES EXTRACTION TEMPLATE
 # CopywriterOS - AIOS Expansion Pack
 # ==============================================================================
 #
 # PURPOSE:
-# Output template for the extract-signature-phrases task. Documents 42+ memorable,
+# Output template for the extract-signature-phrases task. Documents source-backed memorable,
 # quotable phrases organized into a 7-tier system based on usage frequency.
 #
 # USAGE:
 # 1. Run extract-signature-phrases task
 # 2. Fill in all sections following the structure below
-# 3. Ensure minimum requirements are met before saving
+# 3. Ensure entries are traceable before saving; do not invent missing phrases or categories
 #
 # MINIMUM REQUIREMENTS:
-# - Total phrases: 42+
-# - All 7 tiers populated
+# - Total phrases: only the phrases actually supported by sources
+# - Populate only categories supported by the sources; leave unsupported categories out
 # - Each phrase has all 4 required fields
 # - No duplicate phrases
 # - YAML syntax validated
@@ -31,13 +33,13 @@ signature_phrases:
   metadata:
     copywriter: "[COPYWRITER_NAME]"          # Full name of the copywriter
     extraction_date: "YYYY-MM-DD"            # Date of extraction
-    total_phrases: 0                          # Total count (must be 42+)
+    total_phrases: 0                          # Total count of documented source-backed phrases
     source_files_processed: 0                 # Number of source files analyzed
     primary_theme: "[PRIMARY_THEME]"          # Main topic domain (Tier 3)
     secondary_theme: "[SECONDARY_THEME]"      # Second topic domain (Tier 4)
     tertiary_theme: "[TERTIARY_THEME]"        # Third topic domain (Tier 5)
     version: "1.0"
-    task_reference: "tasks/extract-signature-phrases.md"
+    task_reference: "references/extract-signature-phrases.md"
     template_version: "1.0.0"
 
   # ============================================================================
@@ -60,7 +62,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "The exact phrase in English as spoken/written by the copywriter"
-        portuguese: "Translation to Portuguese (or original if source is Portuguese)"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "When and how to use this phrase - specific guidance on application"
         source: "Source file or content piece where this was found"
 
@@ -90,7 +92,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase that captures their unique methodology or process"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when explaining how they approach problems or create results"
         source: "Source attribution"
 
@@ -117,7 +119,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase specifically about their primary expertise domain"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when discussing [PRIMARY_THEME] topics - specific application guidance"
         source: "Source attribution"
 
@@ -144,7 +146,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase specifically about their secondary expertise domain"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when discussing [SECONDARY_THEME] topics - specific application guidance"
         source: "Source attribution"
 
@@ -171,7 +173,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase specifically about their tertiary expertise domain"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when discussing [TERTIARY_THEME] topics - specific application guidance"
         source: "Source attribution"
 
@@ -197,7 +199,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "A phrase about success, life philosophy, or mindset principles"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use for inspiration or when addressing deeper life/success topics"
         source: "Source attribution"
 
@@ -223,7 +225,7 @@ signature_phrases:
     phrases:
       # --- EXAMPLE PHRASE (replace with actual content) ---
       - phrase: "Specific tactical advice for a common situation"
-        portuguese: "Translation to Portuguese"
+        portuguese: "Optional translation requested by the person; omit this field when unnecessary"
         context: "Use when [specific situation] - this phrase addresses [specific problem/scenario]"
         source: "Source attribution"
 
@@ -242,7 +244,7 @@ signature_phrases:
 # [ ] Tier 5 has 6-8 phrases
 # [ ] Tier 6 has 5-7 phrases
 # [ ] Tier 7 has 5-7 phrases
-# [ ] Total is 42+ phrases
+# [ ] Total matches documented source-backed phrases; no fixed quota
 #
 # QUALITY CHECKS:
 # [ ] Each phrase is standalone (makes sense without context)

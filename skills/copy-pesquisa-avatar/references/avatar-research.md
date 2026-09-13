@@ -1,3 +1,7 @@
+> Material de aprofundamento opcional. Metas de quantidade, headlines e pontuação pertencem ao método ampliado explicitamente solicitado; não bloqueiam a síntese inicial nem autorizam inventar evidência. Referências históricas a documentos ausentes não são dependências disponíveis: declare a ausência e use apenas o material acessível. A atribuição ao autor continua como procedência, sem impor seu método à marca da pessoa.
+
+> Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
+
 # Avatar Research - Pesquisa Profunda de Persona
 
 ## Metadata

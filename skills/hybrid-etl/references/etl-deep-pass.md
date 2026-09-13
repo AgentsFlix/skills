@@ -1,3 +1,5 @@
+> Antes de conduzir perguntas deste material, aplique `references/contrato-agentflix.md`: aproveite memória atual, pergunte só lacunas e acompanhe cada pergunta aberta com exemplo contextual.
+
 # Task: ETL Deep Pass (Master Orchestrator)
 
 ```yaml
@@ -19,7 +21,7 @@ Master orchestrator que encadeia as 4 layers do ETL Deep Pass: Local Extract, We
 - Bootstrap executado (`{pasta}/user.yaml` existe).
 - Negocio criado (`{pasta}/` existe).
 - Templates scaffolded (`*scaffold-templates` executado).
-- Mapa de fontes configurado em `references/imersao-business-map.yaml`.
+- Ao menos uma fonte local ou URL do negocio indicada pelo usuario, pelo pedido atual ou por `{pasta}/evidence/source-registry.yaml`.
 
 ## Usage
 
@@ -32,10 +34,10 @@ Master orchestrator que encadeia as 4 layers do ETL Deep Pass: Local Extract, We
 ### Fase 1: Pre-flight
 
 1. Validar que `{slug}` existe em `{pasta}/`.
-2. Ler `references/imersao-business-map.yaml` e localizar entrada do slug.
+2. Ler `{pasta}/evidence/source-registry.yaml`, se existir, e combinar com os caminhos locais e URLs indicados explicitamente pelo usuario ou pelo pedido atual.
 3. Ler `{pasta}/evidence/completeness-manifest.yaml` (se existir).
 4. Registrar completude inicial como `baseline_completeness`.
-5. **Gate:** Diretorio do business deve existir. Se ausente, HALT com instrucao para executar `*add-business`.
+5. **Gate:** Diretorio do business deve existir e ao menos uma fonte autorizada deve estar acessivel. Se o diretorio estiver ausente, HALT com instrucao para executar `*add-business`; se faltarem fontes, informe exatamente qual caminho ou URL o usuario precisa fornecer.
 
 ### Fase 2: Layer 1 — Local Extract
 
