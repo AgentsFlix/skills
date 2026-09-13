@@ -10,6 +10,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
 OUTPUT = SITE / ".well-known" / "agentflix-build.json"
+HERMES_V2 = SITE / ".well-known" / "agentflix-hermes-v2.json"
 
 
 class BuildIdentifierTests(unittest.TestCase):
@@ -70,6 +71,32 @@ class BuildIdentifierTests(unittest.TestCase):
         exact = {
             "source": "/.well-known/agentflix-build.json",
             "destination": "/.well-known/agentflix-build.json",
+        }
+        fallback = {
+            "source": "/.well-known/:path*",
+            "destination": "https://agentsflix.github.io/skills/.well-known/:path*",
+        }
+
+        self.assertIn(exact, rewrites)
+        self.assertIn(fallback, rewrites)
+        self.assertLess(rewrites.index(exact), rewrites.index(fallback))
+
+    def test_hermes_v2_endpoint_has_the_static_delivery_proof(self):
+        self.assertEqual(
+            json.loads(HERMES_V2.read_text()),
+            {
+                "schema_version": 1,
+                "service": "agentflix-hermes",
+                "purpose": "automated-delivery-proof",
+            },
+        )
+
+    def test_exact_hermes_v2_route_precedes_the_github_pages_fallback(self):
+        config = json.loads((SITE / "vercel.json").read_text())
+        rewrites = config["rewrites"]
+        exact = {
+            "source": "/.well-known/agentflix-hermes-v2.json",
+            "destination": "/.well-known/agentflix-hermes-v2.json",
         }
         fallback = {
             "source": "/.well-known/:path*",

@@ -11,6 +11,10 @@
       "destination": "/.well-known/agentflix-build.json"
     },
     {
+      "source": "/.well-known/agentflix-hermes-v2.json",
+      "destination": "/.well-known/agentflix-hermes-v2.json"
+    },
+    {
       "source": "/.well-known/:path*",
       "destination": "https://agentsflix.github.io/skills/.well-known/:path*"
     },
