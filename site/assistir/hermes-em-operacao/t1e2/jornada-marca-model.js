@@ -8,7 +8,7 @@
   const requiredChecks = {7:['static','carousel','reusable'],8:['pilot','corrections','index','operation']};
   const stamp = () => new Date().toISOString();
   const blankStage = () => ({choice:null,context:'',continuity:'',copiedAt:null,started:false,reviewed:false,saved:false,where:'',criterion:false,checks:{},pending:'',handoff:'',mode:'',needsReview:[],revision:1,history:[],confirmedAt:null});
-  function createBrand(name, id) { return {id,name:name.trim()||'Minha marca',lastStage:0,stages:Array.from({length:9},blankStage),folder:{url:'',confirmed:false,at:null},baseDashboard:null,createdAt:stamp()}; }
+  function createBrand(name, id) { return {id,name:name.trim()||'Minha marca',lastStage:0,stages:Array.from({length:9},blankStage),folder:{url:'',confirmed:false,at:null},createdAt:stamp()}; }
   function hasWork(s) { return Boolean(s.copiedAt||s.started||s.reviewed||s.saved||s.handoff); }
   function archive(s) { if (hasWork(s)) s.history.push({at:stamp(),revision:s.revision,choice:s.choice,context:s.context,continuity:s.continuity,handoff:s.handoff,mode:s.mode,reviewed:s.reviewed,saved:s.saved,where:s.where,criterion:s.criterion,checks:{...s.checks},pending:s.pending}); }
   function clearReview(s) { s.reviewed=false;s.saved=false;s.criterion=false;s.checks={};s.confirmedAt=null; }
@@ -67,13 +67,9 @@
     return text;
   }
   function validMockup(v) {return v&&typeof v==='object'&&['style','layout','format','brand','niche','title','body','cta','accent'].every(k=>typeof v[k]==='string')&&['static','carousel'].includes(v.format);}
-  function validBaseDashboard(v) {
-    const ids=['negocio','pesquisa','publico','posicionamento','voz','materia-prima'],text=x=>typeof x==='string',status=new Set(['rascunho','revisado','aprovado','precisa_revisar']);
-    return v&&typeof v==='object'&&v.schema==='agentflix-base-dashboard-1'&&text(v.businessName)&&typeof v.createdAt==='string'&&Array.isArray(v.records)&&v.records.length===ids.length&&v.records.every((record,index)=>record&&typeof record==='object'&&record.id===ids[index]&&text(record.label)&&text(record.art)&&text(record.filename)&&status.has(record.status)&&text(record.summary)&&typeof record.updatedAt==='string'&&['decisions','sources','pending','documents'].every(key=>Number.isInteger(record[key])&&record[key]>=0));
-  }
   function validStore(x) {
     const text=v=>typeof v==='string',bool=v=>typeof v==='boolean';
-    return x?.version===1&&text(x.agent)&&Array.isArray(x.brands)&&x.brands.length<=100&&x.brands.every(b=>(b.mockup===undefined||validMockup(b.mockup))&&(b.baseDashboard===undefined||b.baseDashboard===null||validBaseDashboard(b.baseDashboard))&&text(b.id)&&text(b.name)&&Number.isInteger(b.lastStage)&&b.lastStage>=0&&b.lastStage<9&&b.folder&&text(b.folder.url)&&bool(b.folder.confirmed)&&Array.isArray(b.stages)&&b.stages.length===9&&b.stages.every(s=>(s.choice===null||Number.isInteger(s.choice)&&s.choice>=0&&s.choice<3)&&['context','continuity','where','pending','handoff','mode'].every(k=>text(s[k]))&&['started','reviewed','saved','criterion'].every(k=>bool(s[k]))&&Array.isArray(s.needsReview)&&s.needsReview.every(n=>Number.isInteger(n)&&n>=0&&n<9)&&Number.isInteger(s.revision)&&s.revision>0&&Array.isArray(s.history)&&s.history.every(h=>h&&typeof h==='object')&&s.checks&&typeof s.checks==='object'))&&new Set(x.brands.map(b=>b.id)).size===x.brands.length;
+    return x?.version===1&&text(x.agent)&&Array.isArray(x.brands)&&x.brands.length<=100&&x.brands.every(b=>(b.mockup===undefined||validMockup(b.mockup))&&text(b.id)&&text(b.name)&&Number.isInteger(b.lastStage)&&b.lastStage>=0&&b.lastStage<9&&b.folder&&text(b.folder.url)&&bool(b.folder.confirmed)&&Array.isArray(b.stages)&&b.stages.length===9&&b.stages.every(s=>(s.choice===null||Number.isInteger(s.choice)&&s.choice>=0&&s.choice<3)&&['context','continuity','where','pending','handoff','mode'].every(k=>text(s[k]))&&['started','reviewed','saved','criterion'].every(k=>bool(s[k]))&&Array.isArray(s.needsReview)&&s.needsReview.every(n=>Number.isInteger(n)&&n>=0&&n<9)&&Number.isInteger(s.revision)&&s.revision>0&&Array.isArray(s.history)&&s.history.every(h=>h&&typeof h==='object')&&s.checks&&typeof s.checks==='object'))&&new Set(x.brands.map(b=>b.id)).size===x.brands.length;
   }
-  return Object.freeze({createBrand,changeInput,setMockup,recordReturn,status,ready,driveURL,prompt,latestHandoff,validStore,validBaseDashboard,dependencies,requiredChecks,stamp});
+  return Object.freeze({createBrand,changeInput,setMockup,recordReturn,status,ready,driveURL,prompt,latestHandoff,validStore,dependencies,requiredChecks,stamp});
 });

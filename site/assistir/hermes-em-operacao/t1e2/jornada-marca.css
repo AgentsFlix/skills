@@ -160,7 +160,7 @@
  .journey-toolbar label { display:block; }
  #brand-app .journey-toolbar label>span { display:none; }
  .journey-toolbar select { max-width:none; }
- .journey-toolbar>div { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+ .journey-toolbar>div { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
  #brand-app .journey-toolbar button { padding:10px 8px; font-size:12px; }
  .journey-index ol { display:none; }
  .journey-index .stage-mobile { display:grid; gap:8px; font-size:12px; }
