@@ -10,7 +10,7 @@
     "build": "node scripts/build-identifier.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.0",
+    "@supabase/supabase-js": "^2.116.0",
     "stripe": "^18.0.0"
   }
 }
