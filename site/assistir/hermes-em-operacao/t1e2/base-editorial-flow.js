@@ -8,24 +8,40 @@
   let project = null, loading = true, unavailable = false;
   const art = name => '<img src="base-editorial-art/'+name+'.png" alt="" width="200" height="180">';
   const chips = values => values.map(value=>'<span class="base-chip">'+value+'</span>').join('');
+  const illustrations = {
+    pesquisa: '<rect class="outline" x="20" y="58" width="52" height="42" rx="8"/><path class="line" d="M33 72h26M33 83h17"/><rect class="outline" x="84" y="30" width="55" height="44" rx="8"/><path class="paper" d="m105 40 16 12-16 12z"/><path class="outline" d="M91 107h40l9 11-9 11H91z"/><circle class="paper" cx="174" cy="93" r="25"/><circle class="accent-line" cx="170" cy="89" r="12"/><path class="accent-line" d="m179 98 15 15"/>',
+    canais: '<path class="outline" d="M38 52h23a14 14 0 0 1 0 28H47"/><path class="outline" d="M30 80H19a14 14 0 0 1 0-28h12"/><path class="line" d="m52 65 32 16M52 65l32-16"/><circle class="soft" cx="91" cy="49" r="8"/><circle class="accent" cx="91" cy="81" r="8"/><circle class="soft" cx="91" cy="113" r="8"/><path class="accent-line" d="M102 81h27"/><circle class="paper" cx="155" cy="81" r="26"/><circle class="accent-line" cx="151" cy="77" r="12"/><path class="accent-line" d="m160 86 16 16"/><circle class="soft" cx="202" cy="47" r="7"/><circle class="accent" cx="215" cy="81" r="7"/><circle class="soft" cx="202" cy="115" r="7"/>',
+    verificado: '<path class="paper" d="M61 25h75l25 25v82H61z"/><path class="line" d="M136 25v25h25M82 72h58M82 87h46M82 102h34"/><circle class="accent" cx="160" cy="115" r="25"/><path class="ink" d="m148 115 8 8 17-20"/>',
+    clientes: '<path class="outline" d="M35 50h52a12 12 0 0 1 12 12v21a12 12 0 0 1-12 12H60l-13 13v-13H35a12 12 0 0 1-12-12V62a12 12 0 0 1 12-12z"/><circle class="paper" cx="73" cy="98" r="16"/><path class="paper" d="M48 140c2-20 13-30 25-30s24 10 26 30"/><circle class="accent" cx="158" cy="80" r="17"/><path class="accent" d="M130 140c2-23 14-34 28-34s27 11 29 34"/><path class="line" d="M112 109h22M112 122h16"/>',
+    publico: '<circle class="soft" cx="55" cy="70" r="16"/><path class="soft" d="M30 128c3-23 14-34 25-34s23 11 25 34"/><circle class="soft" cx="100" cy="50" r="13"/><path class="soft" d="M79 102c3-18 12-28 21-28s18 10 21 28"/><circle class="soft" cx="100" cy="116" r="13"/><path class="soft" d="M79 150c3-18 12-28 21-28s18 10 21 28"/><circle class="paper" cx="163" cy="86" r="35"/><circle class="accent-line" cx="158" cy="81" r="17"/><path class="accent-line" d="m171 95 24 24"/><circle class="accent" cx="158" cy="81" r="6"/>',
+    descobrir: '<circle class="paper" cx="121" cy="84" r="45"/><path class="accent-line" d="M121 45v12M121 111v12M82 84h12M148 84h12"/><path class="ink" d="m121 61 11 22-11 24-11-24z"/><path class="line" d="M36 122c18-24 37-34 64-36M204 122c-18-24-37-34-64-36"/><circle class="soft" cx="32" cy="126" r="6"/><circle class="soft" cx="208" cy="126" r="6"/>',
+    resultado: '<circle class="outline" cx="173" cy="78" r="36"/><circle class="paper" cx="173" cy="78" r="22"/><circle class="accent" cx="173" cy="78" r="8"/><path class="accent-line" d="M34 112c29 0 37-46 77-46h17"/><path class="accent" d="m123 55 20 11-20 12z"/><path class="paper" d="M48 42v68M48 42h36L66 58 84 74H48"/>',
+    metodo: '<rect class="paper" x="22" y="41" width="52" height="38" rx="9"/><path class="ink" d="M38 60h19M47 51v18"/><path class="accent-line" d="M75 60h25"/><rect class="outline" x="100" y="41" width="52" height="38" rx="9"/><path class="line" d="M116 53h20M116 66h20"/><path class="accent-line" d="M153 60h25"/><rect class="accent" x="178" y="41" width="42" height="38" rx="9"/><path class="ink" d="m189 60 7 7 13-16"/><path class="line" d="M48 110h144"/>',
+    caminho: '<path class="paper" d="M119 31v105"/><path class="paper" d="M119 51H66l13 15-13 15h53zM119 88h54l-13 15 13 15h-54z"/><path class="accent-line" d="M119 113c-25 3-37 15-54 29M119 113c25 3 37 15 54 29"/><circle class="accent" cx="119" cy="31" r="8"/>',
+    acolhedora: '<path class="paper" d="M31 48h80a14 14 0 0 1 14 14v28a14 14 0 0 1-14 14H74l-18 18v-18H31a14 14 0 0 1-14-14V62a14 14 0 0 1 14-14z"/><path class="accent" d="M132 71h66a14 14 0 0 1 14 14v20a14 14 0 0 1-14 14h-25l-15 16v-16h-26a14 14 0 0 1-14-14V85a14 14 0 0 1 14-14z"/><path class="ink" d="M73 84c-10-12-24 3 0 19 24-16 10-31 0-19z"/>',
+    didatica: '<rect class="paper" x="27" y="30" width="143" height="91" rx="7"/><path class="line" d="M51 58h64M51 76h90M51 94h50"/><circle class="accent" cx="132" cy="58" r="10"/><path class="accent-line" d="M132 38v-8M115 46l-6-6M149 46l6-6"/><path class="ink" d="M178 135 205 96"/><circle class="soft" cx="174" cy="140" r="9"/>',
+    provocadora: '<path class="paper" d="m32 69 73-27v70L32 85z"/><path class="ink" d="M45 89 57 121h28L75 81"/><path class="accent-line" d="M117 60h18M119 83h24M116 106h17"/><circle class="accent" cx="180" cy="82" r="26"/><path class="ink" d="m180 65-10 19h9l-2 17 13-22h-9z"/>',
+    lembrar: '<path class="outline" d="M49 89h124v46H49z"/><path class="paper" d="M43 73h61l14 16H43z"/><path class="line" d="M69 108h83M69 122h58"/><path class="accent" d="M171 42h31a12 12 0 0 1 12 12v19a12 12 0 0 1-12 12h-11l-10 11V85h-10a12 12 0 0 1-12-12V54a12 12 0 0 1 12-12z"/><circle class="soft" cx="74" cy="45" r="18"/><path class="soft" d="M46 76c3-17 13-26 28-26s25 9 28 26"/>'
+  };
+  const illustration = name => '<svg class="base-illustration base-illustration--'+name+'" viewBox="0 0 240 160" aria-hidden="true" focusable="false">'+illustrations[name]+'</svg>';
   function visual(stage, option) {
     if (stage === 0) return option === 2 ? '<div class="base-pair">'+art('produto')+'<span>+</span>'+art('profissional')+'</div>' : '<div class="base-object">'+art(option===0?'produto':'profissional')+chips([option===0?'Físico ou digital':'Trabalho + resultado'])+'</div>';
     if (stage === 1) return [
-      '<div class="base-research"><strong>⌕</strong><div>'+chips(['YouTube'])+chips(['Reddit'])+chips(['Fóruns'])+'</div><small>Buscar → coletar → cruzar</small></div>',
-      '<div class="base-hypothesis"><strong>Seus canais</strong><div>'+chips(['Sementes'])+'<b>→</b>'+chips(['Descoberta'])+'</div><small>O Hermes amplia a busca</small></div>',
-      '<div class="base-research"><strong>✓</strong><div>'+chips(['Auditar'])+chips(['Completar'])+'</div><small>Procedência antes da síntese</small></div>'
+      illustration('pesquisa'),
+      illustration('canais'),
+      illustration('verificado')
     ][option];
     if (stage === 2) return [
-      '<div class="base-chat"><span>O que seus clientes perguntam?</span><span>Vamos ouvir os casos reais.</span><small>Relatos → evidências</small></div>',
-      '<div class="base-hypothesis"><strong>Quem pode precisar?</strong><div>'+chips(['Hipótese'])+'<b>→</b>'+chips(['Pesquisa'])+'</div><small>Uma ideia a validar</small></div>',
-      '<div class="base-possibilities"><div><span>○</span><span>?</span><span>○</span></div><small>Explorar possibilidades</small></div>'
+      illustration('clientes'),
+      illustration('publico'),
+      illustration('descobrir')
     ][option];
-    if (stage === 3) return '<div class="base-sequence">'+(option===0?['Problema','Resultado','Prova']:option===1?['Seu método','Seu cuidado','Sua diferença']:['O que faz?','Quem valoriza?','Por quê?']).map((label,i)=>chips([label])+(i<2?'<b>↓</b>':'')).join('')+'</div>';
-    if (stage === 4) return '<div class="base-voice"><small>UMA MESMA IDEIA · EXEMPLO</small><blockquote>'+['“Ficou com dúvida? Vamos encontrar o melhor caminho juntos.”','“Comece por uma pergunta: o que você precisa resolver?”','“Você sabe o que precisa ou está escolhendo no automático?”'][option]+'</blockquote></div>';
+    if (stage === 3) return [illustration('resultado'),illustration('metodo'),illustration('caminho')][option];
+    if (stage === 4) return [illustration('acolhedora'),illustration('didatica'),illustration('provocadora')][option];
     return [
       '<div class="base-object">'+art('profissional')+'<div>'+chips(['Histórias','Métodos'])+'</div></div>',
       '<div class="base-object">'+art('pasta')+chips(['Aulas · textos · documentos'])+'</div>',
-      '<div class="base-chat"><span>“Sempre me perguntam…”</span><span>Uma dúvida vira assunto.</span></div>'
+      illustration('lembrar')
     ][option];
   }
   const root = document.querySelector('main');

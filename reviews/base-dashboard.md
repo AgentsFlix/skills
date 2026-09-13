@@ -12,8 +12,13 @@ arquivos válidos.
 
 - Contrato: exemplos válidos para as seis etapas, rejeição de documento fora do
   caminho canônico e prompt de correção com o nome do JSON correto.
-- Navegador local: tela conferida em 1440 px e 390 px; somente a etapa atual
-  recebe destaque ciano.
+- Navegador local: tela conferida em 1440 px, 768 px e 390 px; somente a
+  etapa atual recebe destaque ciano.
+- Os 13 cards que usavam apenas chips, frases ou símbolos agora trazem uma
+  ilustração editorial própria. Em Pesquisa, "Tenho canais em mente" mostra
+  os links-semente se abrindo em descoberta; não há texto dentro da área de
+  arte. O nome salvo do negócio é apresentado como texto do painel, sem a
+  caixa cinza nativa do navegador.
 - Verificações: node tests/base_editorial.cjs,
   python3 -m unittest tests.test_brand_journey e
   python3 scripts/check_site.py.
