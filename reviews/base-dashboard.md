@@ -20,8 +20,9 @@ arquivos válidos.
   arte. O nome salvo do negócio é apresentado como texto do painel, sem a
   caixa cinza nativa do navegador.
 - Verificações: node tests/base_editorial.cjs,
-  python3 -m unittest tests.test_brand_journey e
-  python3 scripts/check_site.py.
+  python3 -m unittest discover -s tests,
+  python3 scripts/check_site.py e
+  python3 scripts/agent_work.py check.
 
 ## Limitações
 
