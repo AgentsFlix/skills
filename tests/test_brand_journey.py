@@ -20,6 +20,12 @@ class BrandJourney(unittest.TestCase):
             self.skipTest('Node não disponível')
         subprocess.run([node, str(ROOT / 'tests/mockup_bank.cjs')], check=True)
 
+    def test_base_editorial_contract(self):
+        node = shutil.which('node')
+        if not node:
+            self.skipTest('Node não disponível')
+        subprocess.run([node, str(ROOT / 'tests/base_editorial.cjs')], check=True)
+
     def test_episode_entry_and_skill_references(self):
         directory = ROOT / 'site/assistir/hermes-em-operacao/t1e2'
         data = json.loads((directory / 'jornada-marca-data.json').read_text())
@@ -36,3 +42,13 @@ class BrandJourney(unittest.TestCase):
         series = json.loads((ROOT / 'site/assistir/series.json').read_text())
         item = next(s for s in series['series'] if s['slug'] == 'hermes-em-operacao')
         self.assertEqual(item['seasons'][0]['atividades'][0]['partes'], 9)
+
+    def test_base_editorial_page_and_assets(self):
+        directory = ROOT / 'site/assistir/hermes-em-operacao/t1e2'
+        page = (directory / 'jornada-marca.html').read_text()
+        for filename in ['base-editorial-flow.js', 'base-editorial-dashboard.js', 'base-editorial.css', 'base-editorial-dashboard.css']:
+            self.assertIn(filename, page)
+        for index, slug in enumerate(['negocio', 'pesquisa', 'publico', 'posicionamento', 'voz', 'materia-prima'], start=1):
+            asset = directory / 'base-editorial-art' / 'banner' / f'{index:02d}-{slug}.webp'
+            self.assertTrue(asset.is_file())
+            self.assertGreater(asset.stat().st_size, 1_000)
