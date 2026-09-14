@@ -86,7 +86,8 @@
     return C.buildPrompt(index,project || {id:'IDENTIFICADOR_GERADO_AO_COPIAR',business_name:name||'NOME_DO_NEGOCIO',records:{}},startingPoint,contexts[index],stages);
   }
   function updatePrompt(index){scene(index).querySelector('.base-prompt-preview textarea').value=prompt(index);}
-  function validProject(value){return Boolean(value&&typeof value.id==='string'&&value.id&&typeof value.business_name==='string'&&value.records&&typeof value.records==='object'&&!Array.isArray(value.records));}
+  function validDiagnosis(value){return value===undefined||Boolean(window.ECFBaseScores?.validSummary?.(value));}
+  function validProject(value){return Boolean(value&&typeof value.id==='string'&&value.id&&typeof value.business_name==='string'&&value.records&&typeof value.records==='object'&&!Array.isArray(value.records)&&validDiagnosis(value.diagnosis));}
   function readStore(){
     const raw=localStorage.getItem(storageKey);
     if(raw){
@@ -206,6 +207,11 @@
     if(!project || !Object.keys(project.records).length)return;
     download('minha-base-ecf.json',JSON.stringify({format:'agentflix-base-bundle-1',exported_at:new Date().toISOString(),...project},null,2));
   }
+  function saveDiagnosis(summary){
+    if(!project)throw new Error('Abra sua base antes de conectar o diagnóstico ECF.');
+    if(!validDiagnosis(summary)||summary===undefined)throw new Error('O resumo do diagnóstico ECF não é válido.');
+    project.diagnosis=summary;saveProject();refresh();
+  }
   function refresh() {
     const count=Object.keys(project?.records||{}).length;
     const nameInput=document.querySelector('#base-name');
@@ -235,7 +241,7 @@
     window.dispatchEvent(new Event('ecf:base-updated'));
   }
   document.querySelector('#base-name').addEventListener('input',event=>{if(!project&&entryDraft){entryDraft.business_name=event.target.value.trim();saveEntryDraft();}stages.forEach((_,i)=>updatePrompt(i));});
-  window.ECFBaseFlow={downloadAll,canDownload:()=>Boolean(project&&Object.keys(project.records).length),isComplete:()=>Boolean(project&&Object.keys(project.records).length===stages.length),project:()=>project};
+  window.ECFBaseFlow={downloadAll,saveDiagnosis,canDownload:()=>Boolean(project&&Object.keys(project.records).length),isComplete:()=>Boolean(project&&Object.keys(project.records).length===stages.length),project:()=>project};
   try{store=readStore();entryDraft=readEntryDraft();const candidate=entryDraft?.id?store.projects[entryDraft.id]:store.active_id?store.projects[store.active_id]:null;project=candidate&&Object.keys(candidate.records).length?candidate:null;}catch(_){unavailable=true;}
   if(!project&&entryDraft)document.querySelector('#base-name').value=entryDraft.business_name;
   loading=false;
