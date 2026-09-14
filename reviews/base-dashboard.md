@@ -2,7 +2,8 @@
 
 ## Objetivo
 
-Portar o fluxo canônico aprovado de seis etapas para a jornada da marca:
+Manter a Jornada da Marca como porta de entrada e, depois de a pessoa informar
+o negócio e escolher “Começar a marca”, abrir a Base ECF de seis etapas:
 Negócio, Pesquisa, Público, Posicionamento, Voz e Matéria-prima. Cada etapa
 gera um prompt com as skills no GitHub, recebe apenas o JSON correspondente e
 exibe o recibo no próprio painel. A visão de pastas só aparece após 6/6
@@ -14,6 +15,11 @@ arquivos válidos.
   caminho canônico e prompt de correção com o nome do JSON correto.
 - Navegador local: tela conferida em 1440 px, 768 px e 390 px; somente a
   etapa atual recebe destaque ciano.
+- Navegador local: o envio da porta de entrada abre `base-editorial.html` e
+  transfere o nome e o identificador da jornada para esta aba. Após copiar um
+  prompt e recarregar, o mesmo identificador continua disponível para validar
+  o JSON devolvido pelo Hermes. Abrir a Base ECF diretamente continua começando
+  com o campo vazio.
 - Os 13 cards que usavam apenas chips, frases ou símbolos agora trazem uma
   ilustração editorial própria. Em Pesquisa, "Tenho canais em mente" mostra
   os links-semente se abrindo em descoberta; não há texto dentro da área de

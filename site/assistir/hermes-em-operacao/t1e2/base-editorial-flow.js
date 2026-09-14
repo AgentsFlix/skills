@@ -4,8 +4,8 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const statusNames = {rascunho:'Rascunho',revisado:'Revisado',aprovado:'Aprovado',precisa_revisar:'Precisa de revisão'};
   const selections = Array(stages.length).fill(null), contexts = Array(stages.length).fill(''), repairs = Array(stages.length).fill('');
-  const storageKey='agentflix-ecf-base-v1';
-  let project = null, loading = true, unavailable = false;
+  const storageKey='agentflix-ecf-base-v2', legacyStorageKey='agentflix-ecf-base-v1', entryKey='agentflix-ecf-base-entry-v1';
+  let project = null, store = {version:2,active_id:null,projects:{}}, entryDraft = null, loading = true, unavailable = false;
   const art = name => '<img src="base-editorial-art/'+name+'.png" alt="" width="200" height="180">';
   const chips = values => values.map(value=>'<span class="base-chip">'+value+'</span>').join('');
   const illustrations = {
@@ -86,8 +86,44 @@
     return C.buildPrompt(index,project || {id:'IDENTIFICADOR_GERADO_AO_COPIAR',business_name:name||'NOME_DO_NEGOCIO',records:{}},startingPoint,contexts[index],stages);
   }
   function updatePrompt(index){scene(index).querySelector('.base-prompt-preview textarea').value=prompt(index);}
-  function readProject(){const raw=localStorage.getItem(storageKey);if(!raw)return null;const value=JSON.parse(raw);if(!value||typeof value.id!=='string'||typeof value.business_name!=='string'||!value.records||typeof value.records!=='object')throw Error('A base salva neste navegador não pôde ser lida. Baixe uma cópia antes de continuar.');return Object.keys(value.records).length?value:null;}
-  function saveProject(){try{localStorage.setItem(storageKey,JSON.stringify(project));}catch(_){unavailable=true;throw Error('O navegador não conseguiu guardar esta base. Baixe o JSON antes de sair e libere espaço para continuar.');}}
+  function validProject(value){return Boolean(value&&typeof value.id==='string'&&value.id&&typeof value.business_name==='string'&&value.records&&typeof value.records==='object'&&!Array.isArray(value.records));}
+  function readStore(){
+    const raw=localStorage.getItem(storageKey);
+    if(raw){
+      const value=JSON.parse(raw);
+      if(!value||value.version!==2||(value.active_id!==null&&typeof value.active_id!=='string')||!value.projects||typeof value.projects!=='object'||Array.isArray(value.projects)||!Object.entries(value.projects).every(([id,candidate])=>id===candidate?.id&&validProject(candidate)))throw Error('A base salva neste navegador não pôde ser lida. Baixe uma cópia antes de continuar.');
+      return value;
+    }
+    const legacyRaw=localStorage.getItem(legacyStorageKey);
+    if(!legacyRaw)return {version:2,active_id:null,projects:{}};
+    const legacy=JSON.parse(legacyRaw);
+    if(!validProject(legacy))throw Error('A base salva neste navegador não pôde ser lida. Baixe uma cópia antes de continuar.');
+    return {version:2,active_id:Object.keys(legacy.records).length?legacy.id:null,projects:Object.keys(legacy.records).length?{[legacy.id]:legacy}:{}};
+  }
+  function readEntryDraft(){
+    try {
+      const value=JSON.parse(sessionStorage.getItem(entryKey)||'null');
+      return value?.version===1&&typeof value.id==='string'&&value.id&&typeof value.business_name==='string'&&value.business_name.trim()?{version:1,id:value.id,business_name:value.business_name.trim(),source:value.source==='journey'?'journey':'base'}:null;
+    } catch(_){return null;}
+  }
+  function saveEntryDraft(){try{sessionStorage.setItem(entryKey,JSON.stringify(entryDraft));}catch(_){}}
+  function draftFor(name){
+    entryDraft={version:1,id:entryDraft?.id||'local-'+(globalThis.crypto?.randomUUID?.()||Date.now()),business_name:name,source:entryDraft?.source||'base'};
+    saveEntryDraft();
+    return entryDraft;
+  }
+  function saveProject(){
+    try {
+      store.projects[project.id]=project;
+      store.active_id=project.id;
+      localStorage.setItem(storageKey,JSON.stringify(store));
+      try{sessionStorage.removeItem(entryKey);}catch(_){}
+      entryDraft=null;
+    } catch(_) {
+      unavailable=true;
+      throw Error('O navegador não conseguiu guardar esta base. Baixe o JSON antes de sair e libere espaço para continuar.');
+    }
+  }
   async function ensureProject() {
     if(loading) throw new Error('Aguarde a leitura da base salva.');
     if(project) return project;
@@ -97,7 +133,8 @@
       document.querySelector('#base-name').focus();
       throw new Error('Preencha o nome do negócio para gerar seu prompt.');
     }
-    project={id:'local-'+(globalThis.crypto?.randomUUID?.()||Date.now()),business_name:name,records:{}};
+    const draft=draftFor(name);
+    project={id:draft.id,business_name:draft.business_name,records:{}};
     refresh();
     return project;
   }
@@ -174,7 +211,7 @@
     const nameInput=document.querySelector('#base-name');
     if(project){nameInput.value=project.business_name;nameInput.readOnly=true;}
     document.querySelectorAll('.base-business-name').forEach(el=>el.textContent=project?.business_name||'Comece pelo nome do negócio na primeira etapa.');
-    const storageNote=unavailable?'O navegador não conseguiu guardar a última alteração. Baixe sua base antes de sair.':loading?'Abrindo sua base…':count?count+'/'+stages.length+' arquivos recebidos · Salvos neste navegador. Você pode baixar uma cópia. Enviar um arquivo não significa aprovar seu conteúdo.':project?'Ainda não há arquivo recebido. O nome será salvo quando chegar o primeiro JSON válido.':'Preencha o nome do negócio para começar. Seus arquivos serão salvos neste navegador.';
+    const storageNote=unavailable?'O navegador não conseguiu guardar a última alteração. Baixe sua base antes de sair.':loading?'Abrindo sua base…':count?count+'/'+stages.length+' arquivos recebidos · Salvos neste navegador. Você pode baixar uma cópia. Enviar um arquivo não significa aprovar seu conteúdo.':project?'Ainda não há arquivo recebido. O nome será salvo quando chegar o primeiro JSON válido.':entryDraft?.source==='journey'?'Nome trazido da jornada. Seus arquivos serão salvos neste navegador.':'Preencha o nome do negócio para começar. Seus arquivos serão salvos neste navegador.';
     document.querySelectorAll('.base-storage-note').forEach(el=>el.textContent=storageNote);
     document.querySelectorAll('[data-base-nav]').forEach(link=>{const has=Boolean(project?.records[link.dataset.baseNav]);link.classList.toggle('base-nav-saved',has);link.querySelector('.base-nav-check').hidden=!has;});
     stages.forEach((stage,index)=>{
@@ -197,9 +234,10 @@
     });
     window.dispatchEvent(new Event('ecf:base-updated'));
   }
-  document.querySelector('#base-name').addEventListener('input',()=>stages.forEach((_,i)=>updatePrompt(i)));
+  document.querySelector('#base-name').addEventListener('input',event=>{if(!project&&entryDraft){entryDraft.business_name=event.target.value.trim();saveEntryDraft();}stages.forEach((_,i)=>updatePrompt(i));});
   window.ECFBaseFlow={downloadAll,canDownload:()=>Boolean(project&&Object.keys(project.records).length),isComplete:()=>Boolean(project&&Object.keys(project.records).length===stages.length),project:()=>project};
-  try{project=readProject();}catch(_){unavailable=true;}
+  try{store=readStore();entryDraft=readEntryDraft();const candidate=entryDraft?.id?store.projects[entryDraft.id]:store.active_id?store.projects[store.active_id]:null;project=candidate&&Object.keys(candidate.records).length?candidate:null;}catch(_){unavailable=true;}
+  if(!project&&entryDraft)document.querySelector('#base-name').value=entryDraft.business_name;
   loading=false;
   refresh();
 })();

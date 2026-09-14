@@ -45,9 +45,19 @@ class BrandJourney(unittest.TestCase):
 
     def test_base_editorial_page_and_assets(self):
         directory = ROOT / 'site/assistir/hermes-em-operacao/t1e2'
-        page = (directory / 'jornada-marca.html').read_text()
+        journey = (directory / 'jornada-marca.html').read_text()
+        self.assertIn('jornada-marca.js', journey)
+        self.assertNotIn('base-editorial-flow.js', journey)
+        journey_script = (directory / 'jornada-marca.js').read_text()
+        self.assertIn("location.assign('base-editorial.html')", journey_script)
+        page = (directory / 'base-editorial.html').read_text()
         for filename in ['base-editorial-flow.js', 'base-editorial-dashboard.js', 'base-editorial.css', 'base-editorial-dashboard.css']:
             self.assertIn(filename, page)
+        flow = (directory / 'base-editorial-flow.js').read_text()
+        self.assertIn('agentflix-ecf-base-entry-v1', flow)
+        self.assertIn('agentflix-ecf-base-v2', flow)
+        self.assertIn("legacyStorageKey='agentflix-ecf-base-v1'", flow)
+        self.assertIn('store.projects[project.id]=project', flow)
         for index, slug in enumerate(['negocio', 'pesquisa', 'publico', 'posicionamento', 'voz', 'materia-prima'], start=1):
             asset = directory / 'base-editorial-art' / 'banner' / f'{index:02d}-{slug}.webp'
             self.assertTrue(asset.is_file())
