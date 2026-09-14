@@ -205,7 +205,10 @@
   }
   function downloadAll() {
     if(!project || !Object.keys(project.records).length)return;
+    const bundle=window.ECFBaseBundle?.createBundle(project);
+    if(bundle)return window.ECFBaseBundle.download(bundle);
     download('minha-base-ecf.json',JSON.stringify({format:'agentflix-base-bundle-1',exported_at:new Date().toISOString(),...project},null,2));
+    return true;
   }
   function saveDiagnosis(summary){
     if(!project)throw new Error('Abra sua base antes de conectar o diagnóstico ECF.');
