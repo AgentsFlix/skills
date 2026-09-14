@@ -30,3 +30,7 @@ Os dados ficam no armazenamento local do navegador e podem ser baixados como
 minha-base-ecf.json; não são enviados a um serviço remoto. O teste
 automatizado do contrato cobre importação e correção. O seletor de arquivos do
 navegador de teste não expôs o evento de upload para automação local.
+
+O nome do negócio só é persistido junto do primeiro JSON válido. Assim, uma
+tentativa sem arquivo recebido volta a abrir com o campo vazio; uma base que já
+recebeu ao menos um arquivo continua retomável neste navegador.

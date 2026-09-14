@@ -86,7 +86,7 @@
     return C.buildPrompt(index,project || {id:'IDENTIFICADOR_GERADO_AO_COPIAR',business_name:name||'NOME_DO_NEGOCIO',records:{}},startingPoint,contexts[index],stages);
   }
   function updatePrompt(index){scene(index).querySelector('.base-prompt-preview textarea').value=prompt(index);}
-  function readProject(){const raw=localStorage.getItem(storageKey);if(!raw)return null;const value=JSON.parse(raw);if(!value||typeof value.id!=='string'||typeof value.business_name!=='string'||!value.records||typeof value.records!=='object')throw Error('A base salva neste navegador não pôde ser lida. Baixe uma cópia antes de continuar.');return value;}
+  function readProject(){const raw=localStorage.getItem(storageKey);if(!raw)return null;const value=JSON.parse(raw);if(!value||typeof value.id!=='string'||typeof value.business_name!=='string'||!value.records||typeof value.records!=='object')throw Error('A base salva neste navegador não pôde ser lida. Baixe uma cópia antes de continuar.');return Object.keys(value.records).length?value:null;}
   function saveProject(){try{localStorage.setItem(storageKey,JSON.stringify(project));}catch(_){unavailable=true;throw Error('O navegador não conseguiu guardar esta base. Baixe o JSON antes de sair e libere espaço para continuar.');}}
   async function ensureProject() {
     if(loading) throw new Error('Aguarde a leitura da base salva.');
@@ -98,7 +98,7 @@
       throw new Error('Preencha o nome do negócio para gerar seu prompt.');
     }
     project={id:'local-'+(globalThis.crypto?.randomUUID?.()||Date.now()),business_name:name,records:{}};
-    saveProject();refresh();
+    refresh();
     return project;
   }
   async function copyText(value) {
@@ -174,7 +174,8 @@
     const nameInput=document.querySelector('#base-name');
     if(project){nameInput.value=project.business_name;nameInput.readOnly=true;}
     document.querySelectorAll('.base-business-name').forEach(el=>el.textContent=project?.business_name||'Comece pelo nome do negócio na primeira etapa.');
-    document.querySelectorAll('.base-storage-note').forEach(el=>el.textContent=unavailable?'O navegador não conseguiu guardar a última alteração. Baixe sua base antes de sair.':loading?'Abrindo sua base…':count+'/'+stages.length+' arquivos recebidos · Salvos neste navegador. Você pode baixar uma cópia. Enviar um arquivo não significa aprovar seu conteúdo.');
+    const storageNote=unavailable?'O navegador não conseguiu guardar a última alteração. Baixe sua base antes de sair.':loading?'Abrindo sua base…':count?count+'/'+stages.length+' arquivos recebidos · Salvos neste navegador. Você pode baixar uma cópia. Enviar um arquivo não significa aprovar seu conteúdo.':project?'Ainda não há arquivo recebido. O nome será salvo quando chegar o primeiro JSON válido.':'Preencha o nome do negócio para começar. Seus arquivos serão salvos neste navegador.';
+    document.querySelectorAll('.base-storage-note').forEach(el=>el.textContent=storageNote);
     document.querySelectorAll('[data-base-nav]').forEach(link=>{const has=Boolean(project?.records[link.dataset.baseNav]);link.classList.toggle('base-nav-saved',has);link.querySelector('.base-nav-check').hidden=!has;});
     stages.forEach((stage,index)=>{
       const section=scene(index),record=project?.records[stage.id];
