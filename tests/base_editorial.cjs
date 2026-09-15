@@ -80,6 +80,8 @@ console.log('PASS base editorial: seis etapas, contrato JSON, correção, export
   const document='# Base de Conhecimento Social Media — Marca de exemplo\n\n> **Status:** Rascunho\n\n'+sectionNames.map((name,index)=>'## '+(index+1)+'. '+name+'\n\n'+(content[index+1]||'Não informado.')+'\n').join('\n');
   const parsed=model.parse(document);
   assert.equal(parsed.name,'Marca de exemplo');
+  assert.equal(model.parse(document.replace(/^## (\d)/gm,'### $1')).topics.length,1);
+  assert.equal(model.parse(document.replace(/^## (\d)/gm,'#### $1')).pillars.length,1);
   assert.equal(parsed.status,'Rascunho');
   assert.equal(parsed.topics[0].title,'Uma tarefa | um passo');
   assert.equal(parsed.entry,'Uma tarefa simples');
