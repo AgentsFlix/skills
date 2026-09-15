@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Minha marca · AgentFlix</title>
+  <link rel="stylesheet" href="minha-marca.css?v=20260915-1">
+  <script src="../../../clipboard.js" defer></script>
+  <script src="marca-conhecimento-model.js?v=20260915-1" defer></script>
+  <script src="minha-marca.js?v=20260915-1" defer></script>
+</head>
+<body>
+  <a class="skip" href="#workspace">Ir para o conteúdo</a>
+  <div class="page-top"><a href="base-conhecimento-social-media.html">← Base ECF</a><span>Agent<span class="accent-text">Flix</span></span></div>
+  <main class="brand-shell">
+    <header class="brand-header">
+      <div class="identity"><p class="eyebrow">MINHA MARCA</p><h1 id="brand-name">Sua marca, em perspectiva.</h1><p id="view-label">Plano editorial</p></div>
+      <div class="header-tools">
+        <div class="toolbar"><label class="search"><span data-icon="search"></span><input id="search" type="search" placeholder="Buscar na base" aria-label="Buscar na base" disabled></label><button id="theme" class="icon-button" type="button" aria-label="Ativar tema claro" title="Alternar tema"><span data-icon="sun"></span></button><button id="fullscreen" class="icon-button" type="button" aria-label="Tela cheia" title="Tela cheia"><span data-icon="expand"></span></button></div>
+        <div class="metadata" id="metadata">Seu arquivo dá forma a este espaço.</div>
+      </div>
+    </header>
+    <div class="brand-body">
+      <nav class="rail" aria-label="Sua marca"><a href="#plano" data-view="plano" aria-current="page"><span data-icon="grid"></span><span>Plano</span></a><a href="#estrategia" data-view="estrategia"><span data-icon="compass"></span><span>Estratégia</span></a><a href="#biblioteca" data-view="biblioteca"><span data-icon="file"></span><span>Biblioteca</span></a><button id="replace-file" type="button" title="Enviar base .md"><span data-icon="upload"></span><span>Enviar base</span></button></nav>
+      <div id="workspace" tabindex="-1">
+        <section class="empty" id="upload-panel"><div class="empty-icon" data-icon="folder"></div><p class="eyebrow">O RESULTADO DA SUA CONVERSA COM O HERMES</p><h2>Seu conhecimento.<br>Um plano claro.</h2><p>Envie a Base de Conhecimento Social Media em <strong>.md</strong> para abrir seu Plano, sua Estratégia e sua Biblioteca.</p><button class="primary" id="upload-button" type="button">Enviar minha base <span aria-hidden="true">↑</span></button><span class="file-hint">Arquivo Markdown · até 2 MB · salvo neste navegador</span></section>
+        <div id="view-content" hidden></div>
+      </div>
+    </div>
+    <footer class="workspace-footer"><p id="status" role="status" aria-live="polite"></p><button id="original" type="button" hidden>Ver documento completo ↗</button></footer>
+  </main>
+  <input type="file" id="knowledge-upload" accept=".md,.markdown,text/markdown,text/plain" hidden>
+  <section id="upload-error" class="error-panel" hidden aria-labelledby="error-title"><h2 id="error-title">Vamos ajustar o arquivo.</h2><p id="error-message" role="alert"></p><p>Anexe o mesmo arquivo no Hermes e envie esta instrução.</p><button id="copy-repair" class="primary" type="button">Copiar prompt de correção</button><details><summary>Ver instrução</summary><textarea id="repair-text" readonly aria-label="Prompt de correção" rows="8"></textarea></details></section>
+  <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-header"><h2 id="detail-title"></h2><button id="close-dialog" class="icon-button" type="button" aria-label="Fechar detalhes">×</button></div><div id="detail-body"></div></dialog>
+</body>
+</html>

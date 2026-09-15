@@ -60,3 +60,49 @@ assert.equal(sandbox.ECFBaseBundle.activeBundle({getItem:()=>JSON.stringify({ver
 assert.equal(sandbox.ECFBaseBundle.activeBundle({getItem:()=>'{inválido'}),null);
 assert.equal(sandbox.ECFBaseBundle.activeBundle({getItem:()=>JSON.stringify({version:2,active_id:'ausente',projects:{}})}),null);
 console.log('PASS base editorial: seis etapas, contrato JSON, correção, exportação e skills no GitHub');
+
+// The returned social-media document is data; its headings and tables drive the views.
+{
+  const context={module:{exports:{}},TextEncoder};
+  vm.runInNewContext(fs.readFileSync(path.join(directory,'marca-conhecimento-model.js'),'utf8'),context);
+  const model=context.module.exports;
+  const sectionNames=['Resumo operacional','Mandato do Social Media','Público e contexto de decisão','Posicionamento e mensagens','Voz e regras de escrita','Matéria-prima e prova','Arquitetura Editorial ECF','Banco de pautas priorizadas','Conversão e CTA','Métricas e hipóteses de aprendizado','Governança do conhecimento','Lacunas e decisões padrão aplicadas'];
+  const content={
+    2:'| Decisão | Direção operacional | Estado e fonte |\n|---|---|---|\n| Porta de entrada | Uma tarefa simples | Escolha informada |',
+    3:'| Situação | Dor ou dúvida | Desejo | Linguagem real | Estado da evidência | Fonte |\n|---|---|---|---|---|---|\n| Tem uma tarefa | Não sabe começar | Um primeiro passo | Como começo? | Hipótese | Entrevista |',
+    4:'### Mensagem central\n\n> **Aprenda fazendo.**\n\n### Promessas permitidas\n\n- Um passo prático.\n\n### Limites de promessa\n\n- Não garantir resultados.',
+    5:'| Aspecto | Regra operacional |\n|---|---|\n| Tom | Direto e claro |',
+    6:'| Tipo | Item | Tese que pode sustentar | Estado e permissão | Fonte | Restrição factual |\n|---|---|---|---|---|---|\n| Relato | Um caso | Uma possibilidade | Uso interno | Relato original | Não publicar |',
+    7:'| Pilar | Papel ECF predominante |\n|---|---|\n| Primeiro passo | Expert |\n\n### Distribuição padrão\n\n| Papel | Proporção padrão | Função | Métrica primária |\n|---|---|---|---|\n| Creator | 3 de cada 10 | Descoberta | Alcance |\n| Expert | 50% | Aprendizado | Salvamentos |\n| Founder | 2/10 | Ação | Conversas |',
+    8:'| Prioridade | Pauta | Gancho | Pilar | Papel ECF | Fonte ou prova | CTA | Limite |\n|---|---|---|---|---|---|---|---|\n| Alta | Uma tarefa \\| um passo | Comece aqui | Primeiro passo | Expert | Relato original | Experimente | Não generalizar |',
+    12:'### Lacunas que permanecem\n\n- Confirmar a oferta.'
+  };
+  const document='# Base de Conhecimento Social Media — Marca de exemplo\n\n> **Status:** Rascunho\n\n'+sectionNames.map((name,index)=>'## '+(index+1)+'. '+name+'\n\n'+(content[index+1]||'Não informado.')+'\n').join('\n');
+  const parsed=model.parse(document);
+  assert.equal(parsed.name,'Marca de exemplo');
+  assert.equal(parsed.status,'Rascunho');
+  assert.equal(parsed.topics[0].title,'Uma tarefa | um passo');
+  assert.equal(parsed.entry,'Uma tarefa simples');
+  assert.equal(parsed.message,'Aprenda fazendo.');
+  assert.equal(parsed.materials[0]['Estado e permissão'],'Uso interno');
+  assert.equal(parsed.topics[0].permission,''); // Do not infer publication permission from a source mention.
+  assert.deepEqual([...parsed.distribution].map(item=>item.ratio),[.3,.5,.2]);
+  assert.equal(parsed.version,'');
+  assert.equal(parsed.updated,'');
+  assert.equal(parsed.sourceMap.length,0);
+  assert.equal(model.parse('\ufeff'+document.replaceAll('\n','\r\n')).topics.length,1);
+  assert.throws(()=>model.parse('# Outro arquivo'),/começar/);
+  assert.throws(()=>model.parse(document.replace('## 3.','## Sem número.')),/Faltam seções/);
+  assert.throws(()=>model.parse(document+'\n## 8. Duplicada\n'),/mais de uma vez/);
+  assert.throws(()=>model.parse(document.replace('| Expert | Relato original |','| Expert |')),/colunas/);
+  assert.throws(()=>model.parse(document.replace('| Pauta |','| Assunto |')),/tabela de pautas/);
+  assert.throws(()=>model.parse('a'.repeat(model.MAX_BYTES+1)),/2 MB/);
+  assert.equal(model.proportion('60 de cada 10'),null);
+  assert.equal(model.proportion('2/0'),null);
+  assert.equal(model.proportion('Não informado'),null);
+  assert.equal(model.parse(document.replace('3 de cada 10','Não informado')).distribution[0].ratio,null);
+  assert.equal(model.parse(document.replace('Marca de exemplo','Outro negócio')).name,'Outro negócio');
+  assert.equal(model.parse(document.replace('Uma tarefa \\| um passo','<script>injetado()</script>')).topics[0].title,'<script>injetado()</script>');
+  assert.match(model.repair('Falta seção 8'),/Falta seção 8/);
+  assert.match(model.repair('Falta seção 8'),/Não invente dados/);
+}

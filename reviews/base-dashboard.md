@@ -40,3 +40,39 @@ navegador de teste não expôs o evento de upload para automação local.
 O nome do negócio só é persistido junto do primeiro JSON válido. Assim, uma
 tentativa sem arquivo recebido volta a abrir com o campo vazio; uma base que já
 recebeu ao menos um arquivo continua retomável neste navegador.
+
+## Continuação: Minha marca (15/09/2026)
+
+Após gerar a Base de Conhecimento Social Media no Hermes, a pessoa abre
+`minha-marca.html` pelo handoff e envia o documento Markdown. As três visões
+usam o documento importado: Plano editorial, Estratégia e Biblioteca.
+A interface segue as referências aprovadas, com cards marfim, recorte de pasta,
+contornos simples, fundo carvão e acento ciano. Cards da mesma família têm altura igual.
+
+O parser lê as 12 seções numeradas e suas tabelas. Não contém conteúdo de marca
+pré-carregado. O original fica disponível integralmente, junto de fichas de pautas,
+pilares, fontes, permissões e limites. Busca percorre pautas e seções; os cards
+ECF filtram as pautas. Proporções são planejamento editorial declarado, nunca
+notas de diagnóstico. Metadados ausentes são identificados como não informados.
+
+Upload e substituição são validados antes de trocar a base. Arquivo inválido
+preserva a base anterior e oferece prompt de correção. HTML importado é tratado
+como texto. O arquivo fica apenas no navegador, em chave própria, e não altera
+os seis registros da Base ECF. Falha de persistência é informada explicitamente.
+
+Validação local:
+
+- 98 testes Python aprovados, 1 ignorado; contrato Markdown exercitado pelo teste
+  Node existente: BOM/CRLF, outra marca, campos ausentes, proporções variadas,
+  tabelas quebradas, seção duplicada/ausente, limite de tamanho e conteúdo HTML.
+- Check do site: 0 erros.
+- Chrome: upload real, substituição, recarregamento, três abas, busca, filtros,
+  ficha de pauta, fontes, documento completo, tema e correção de arquivo inválido.
+- Desktop, tablet e celular: 1440, 768 e 390 px, sem transbordamento horizontal;
+  alturas iguais verificadas no navegador. Capturas públicas usam somente dados
+  fictícios em `design-review/base-dashboard/minha-marca/`.
+
+Limites: o formato aceito é o Markdown com as 12 seções do prompt. Não há servidor
+para sincronizar dados entre dispositivos. Fonte citada não implica permissão de
+uso: a ficha não deduz essa autorização. Merge e produção desta continuação ainda
+precisam ser confirmados.
