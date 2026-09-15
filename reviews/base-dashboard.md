@@ -102,3 +102,11 @@ A revisão final também identificou a ausência possível da tabela de distribu
 ## Correção do raio dos cards, 15/09/2026
 
 As extremidades do recorte inferior agora fazem transições arredondadas, usando o mesmo raio da superfície e do indicador menor. O fundo acompanha a largura real do indicador nas três telas e nos dois temas. Capturas antes/depois com exemplo fictício em `design-review/base-dashboard/minha-marca/radius/`. Conferência em 1440, 768 e 390 px: alturas iguais, raios compartilhados e ausência de transbordamento horizontal. A publicação continua sujeita aos checks obrigatórios do PR #89.
+
+## Alinhamento com o design system e ilustrações editoriais
+
+Revisão de 15/09/2026 das visões Plano, Estratégia e Biblioteca. A moldura marfim de 10 px, os cards claros dominantes, os raios de 25 a 38 px e os recortes ornamentais davam ao painel uma linguagem própria que concorria com a vitrine. A interface agora usa os tokens canônicos: fundo `#141414`, painéis `#181818`, apoio `#333333`, texto `#F5F5F1`, texto secundário `#B3B3B3`, bordas discretas e ciano restrito a foco e orientação. Cards usam raio de 16 px, superfícies internas 12 px e modal 14 px.
+
+Os SVGs continuam nos controles funcionais, onde garantem precisão em busca, navegação, estado e ações. As sete ilustrações semânticas grandes foram substituídas por PNGs editoriais gerados para Creator, Expert, Founder, Público, Posicionamento, Voz e Porta de entrada. Founder mantém personagem masculino. Os arquivos têm canal RGBA e pixels totalmente transparentes; foram aplicados sem remoção de fundo por script. Prompts e critérios de validação estão em `site/assistir/hermes-em-operacao/t1e2/art/dashboard/prompts.json`.
+
+A distribuição passou a combinar dez pontos com a leitura explícita “4 de cada 10”, em vez de depender de uma barra e de porcentagem isoladas. Em Estratégia, descrições longas são limitadas visualmente a três linhas sem alterar o conteúdo acessível. Em Biblioteca, a seleção recebe marca lateral ciano e as linhas preservam contraste e hierarquia no mesmo vocabulário visual das demais telas.

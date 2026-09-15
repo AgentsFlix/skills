@@ -5,8 +5,10 @@ import html
 import pathlib
 import re
 import shutil
+import struct
 import subprocess
 import unittest
+import zlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -99,3 +101,53 @@ class BrandJourney(unittest.TestCase):
         self.assertIn('activeBundle()', handoff_script)
         self.assertIn('window.agentflixCopy', handoff_script)
         self.assertNotIn('innerHTML', handoff_script)
+
+    def test_brand_dashboard_uses_transparent_editorial_art(self):
+        directory = ROOT / 'site/assistir/hermes-em-operacao/t1e2'
+        script = (directory / 'minha-marca.js').read_text()
+        assets = ['creator', 'expert', 'founder', 'audience', 'positioning', 'voice', 'entry']
+
+        def alpha_extrema(data):
+            offset, idat, width, height = 8, [], 0, 0
+            while offset < len(data):
+                length = struct.unpack('>I', data[offset:offset + 4])[0]
+                kind = data[offset + 4:offset + 8]
+                payload = data[offset + 8:offset + 8 + length]
+                if kind == b'IHDR':
+                    width, height, bit_depth, color_type = struct.unpack('>IIBB', payload[:10])
+                    self.assertEqual((bit_depth, color_type), (8, 6))
+                elif kind == b'IDAT':
+                    idat.append(payload)
+                offset += length + 12
+            raw, stride, cursor, previous, alphas = zlib.decompress(b''.join(idat)), width * 4, 0, bytearray(width * 4), []
+            for _ in range(height):
+                filter_type, cursor = raw[cursor], cursor + 1
+                row = bytearray(raw[cursor:cursor + stride]); cursor += stride
+                for index, value in enumerate(row):
+                    left = row[index - 4] if index >= 4 else 0
+                    above = previous[index]
+                    upper_left = previous[index - 4] if index >= 4 else 0
+                    if filter_type == 1:
+                        row[index] = (value + left) & 255
+                    elif filter_type == 2:
+                        row[index] = (value + above) & 255
+                    elif filter_type == 3:
+                        row[index] = (value + ((left + above) // 2)) & 255
+                    elif filter_type == 4:
+                        estimate = left + above - upper_left
+                        predictor = min((left, above, upper_left), key=lambda item: abs(estimate - item))
+                        row[index] = (value + predictor) & 255
+                alphas.extend(row[3::4]); previous = row
+            return min(alphas), max(alphas)
+
+        for name in assets:
+            asset = directory / 'art' / 'dashboard' / f'{name}.png'
+            data = asset.read_bytes()
+            self.assertGreater(len(data), 100_000)
+            self.assertEqual(data[:8], b'\x89PNG\r\n\x1a\n')
+            self.assertEqual(data[25], 6, f'{asset.name} precisa ser PNG RGBA')
+            self.assertEqual(alpha_extrema(data), (0, 255), f'{asset.name} precisa combinar transparência real e pixels visíveis')
+            self.assertIn(f"'{name}'", script)
+        self.assertIn("art/dashboard/'+name+'.png", script)
+        self.assertIn("art('entry')", script)
+        self.assertIn('class="card-icon">\'+art(symbol)', script)
