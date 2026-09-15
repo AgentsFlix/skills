@@ -96,6 +96,10 @@ console.log('PASS base editorial: seis etapas, contrato JSON, correção, export
   assert.equal(parsed.materials[0]['Estado e permissão'],'Uso interno');
   assert.equal(parsed.topics[0].permission,''); // Do not infer publication permission from a source mention.
   assert.deepEqual([...parsed.distribution].map(item=>item.ratio),[.3,.5,.2]);
+  assert.throws(()=>model.parse(document.replace(/\| Papel \| Proporção padrão[\s\S]*?(?=\n## 8\.)/,'')),/tabela de distribuição/);
+  assert.throws(()=>model.parse(document.replace('| Proporção padrão |','| Proporção alternativa |')),/tabela de distribuição/);
+  assert.throws(()=>model.parse(document.replace('| Founder | 2\/10 | Ação | Conversas |','')),/cada papel/);
+  assert.throws(()=>model.parse(document.replace('| Founder | 2\/10 | Ação | Conversas |','| Creator | 2\/10 | Ação | Conversas |')),/cada papel/);
   assert.equal(parsed.version,'');
   assert.equal(parsed.updated,'');
   assert.equal(parsed.sourceMap.length,0);

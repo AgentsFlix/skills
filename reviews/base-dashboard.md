@@ -96,3 +96,5 @@ Os checks de publicação `agent-review` e `qa`, exigidos de Apps específicas p
 proteção atual da main, ainda não foram emitidos para esta continuação. A revisão
 local não substitui esses checks. O PR permanece aberto enquanto essa exigência
 não for atendida pelo serviço responsável.
+
+A revisão final também identificou a ausência possível da tabela de distribuição ECF. O importador agora exige seus quatro cabeçalhos e exatamente uma linha para Creator, Expert e Founder. Proporções ausentes continuam explícitas como não informadas; o prompt de correção descreve o mesmo contrato. Testes cobrem tabela ausente, cabeçalho inválido, papel ausente e duplicado.
