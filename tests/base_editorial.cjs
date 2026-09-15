@@ -77,11 +77,18 @@ console.log('PASS base editorial: seis etapas, contrato JSON, correção, export
     8:'| Prioridade | Pauta | Gancho | Pilar | Papel ECF | Fonte ou prova | CTA | Limite |\n|---|---|---|---|---|---|---|---|\n| Alta | Uma tarefa \\| um passo | Comece aqui | Primeiro passo | Expert | Relato original | Experimente | Não generalizar |',
     12:'### Lacunas que permanecem\n\n- Confirmar a oferta.'
   };
+  content[7]=content[7].replace('| Pilar | Papel ECF predominante |\n|---|---|\n| Primeiro passo | Expert |', '| Pilar | Problema ou desejo que atende | Papel ECF predominante | Formatos lógicos | Séries recorrentes | Fontes do bundle | Limites |\n|---|---|---|---|---|---|---|\n'+['Primeiro passo','Perguntas reais','Aplicação prática'].map(pilar=>'| '+pilar+' | Aprender | Expert | Tutorial | Série de exemplos | Fonte de exemplo | Não garantir resultados |').join('\n'));
+  content[8]+='\n'+Array.from({length:17},(_,i)=>'| Média | Exemplo editorial '+(i+2)+' | Um próximo passo | Primeiro passo | '+['Creator','Expert','Founder'][i%3]+' | Relato original | Experimente | Não generalizar |').join('\n');
+  content[9]='| Papel ECF | O que a pessoa acabou de receber | Próxima ação adequada | Formulação de CTA | O que não prometer |\n|---|---|---|---|---|\n| Expert | Um exemplo | Experimentar | Teste o primeiro passo | Resultado garantido |';
+  content[10]='| Papel ECF | Hipótese editorial | Métrica primária | Sinal complementar | O que não concluir só com essa métrica |\n|---|---|---|---|---|\n| Expert | O exemplo ajuda | Salvamentos | Perguntas | Que todos aplicaram |';
   const document='# Base de Conhecimento Social Media — Marca de exemplo\n\n> **Status:** Rascunho\n\n'+sectionNames.map((name,index)=>'## '+(index+1)+'. '+name+'\n\n'+(content[index+1]||'Não informado.')+'\n').join('\n');
   const parsed=model.parse(document);
   assert.equal(parsed.name,'Marca de exemplo');
-  assert.equal(model.parse(document.replace(/^## (\d)/gm,'### $1')).topics.length,1);
-  assert.equal(model.parse(document.replace(/^## (\d)/gm,'#### $1')).pillars.length,1);
+  assert.equal(model.parse(document.replace(/^## (\d)/gm,'### $1')).topics.length,18);
+  assert.equal(model.parse(document.replace(/^## (\d)/gm,'#### $1')).pillars.length,3);
+  assert.throws(()=>model.parse(document.replace('4. Posicionamento e mensagens','4. Outro título')),/Título de seção/);
+  assert.throws(()=>model.parse(document.replace('| Hipótese editorial |','| Texto livre |')),/seção 10/);
+  assert.throws(()=>model.parse(document.replace(/\| Média \| Exemplo editorial 18[^\n]*/,'')),/18 pautas/);
   assert.equal(parsed.status,'Rascunho');
   assert.equal(parsed.topics[0].title,'Uma tarefa | um passo');
   assert.equal(parsed.entry,'Uma tarefa simples');
@@ -92,12 +99,12 @@ console.log('PASS base editorial: seis etapas, contrato JSON, correção, export
   assert.equal(parsed.version,'');
   assert.equal(parsed.updated,'');
   assert.equal(parsed.sourceMap.length,0);
-  assert.equal(model.parse('\ufeff'+document.replaceAll('\n','\r\n')).topics.length,1);
+  assert.equal(model.parse('\ufeff'+document.replaceAll('\n','\r\n')).topics.length,18);
   assert.throws(()=>model.parse('# Outro arquivo'),/começar/);
   assert.throws(()=>model.parse(document.replace('## 3.','## Sem número.')),/Faltam seções/);
-  assert.throws(()=>model.parse(document+'\n## 8. Duplicada\n'),/mais de uma vez/);
+  assert.throws(()=>model.parse(document+'\n## 8. Duplicada\n'),/Título de seção|mais de uma vez/);
   assert.throws(()=>model.parse(document.replace('| Expert | Relato original |','| Expert |')),/colunas/);
-  assert.throws(()=>model.parse(document.replace('| Pauta |','| Assunto |')),/tabela de pautas/);
+  assert.throws(()=>model.parse(document.replace('| Pauta |','| Assunto |')),/tabela preenchida/);
   assert.throws(()=>model.parse('a'.repeat(model.MAX_BYTES+1)),/2 MB/);
   assert.equal(model.proportion('60 de cada 10'),null);
   assert.equal(model.proportion('2/0'),null);

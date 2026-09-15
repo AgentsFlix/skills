@@ -27,7 +27,31 @@
   };
   const icon=name=>'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'+(paths[name]||paths.file)+'</svg>';
   document.querySelectorAll('[data-icon]').forEach(node=>node.innerHTML=icon(node.dataset.icon));
-  const storeKey='agentflix-social-media-document-v1';
+  const prefix='agentflix-social-media-document-v2:';
+  const params=new URLSearchParams(location.search),projectId=params.get('base');
+  let project=null,contextError='';
+  if(projectId){
+    try{
+      const store=JSON.parse(localStorage.getItem('agentflix-ecf-base-v2')||'null');
+      const candidate=store?.version===2&&Object.hasOwn(store.projects||{},projectId)?store.projects[projectId]:null;
+      if(candidate?.id!==projectId||!window.ECFBaseBundle?.validProject(candidate,true))throw new Error();
+      project=candidate;
+    }catch(_){contextError='Esta Base ECF não está disponível neste navegador. Volte à Base ECF para abri-la.';}
+  }
+  let storeKey=project?prefix+'project:'+encodeURIComponent(projectId):params.has('marca')?prefix+'name:'+encodeURIComponent(params.get('marca')):null;
+  function chooseStandalone(name){
+    storeKey=prefix+'name:'+encodeURIComponent(M.key(name));
+    try{localStorage.setItem(prefix+'last',storeKey);}catch(_){}
+    const url=new URL(location.href);url.searchParams.set('marca',M.key(name));history.replaceState(null,'',url);
+  }
+  function savedDocuments(){
+    const entries=[];
+    try{for(let index=0;index<localStorage.length;index++){
+      const key=localStorage.key(index);if(!key.startsWith(prefix))continue;
+      try{const saved=JSON.parse(localStorage.getItem(key));if(saved?.format===2&&typeof saved.raw==='string')entries.push({key,...saved});}catch(_){}
+    }}catch(_){}
+    return entries;
+  }
   const labels={plano:'Plano editorial',estrategia:'Estratégia',biblioteca:'Biblioteca'};
   const roles=[['Creator','Atenção','creator'],['Expert','Autoridade','expert'],['Founder','Ação','founder']];
   let model=null,raw='',selected=0,roleFilter='',libraryTab='pautas',filename='',importedAt='',uploadSequence=0;
@@ -86,6 +110,7 @@
     $('#view-label').textContent=labels[current];
     document.querySelectorAll('[data-view]').forEach(node=>{if(node.dataset.view===current)node.setAttribute('aria-current','page');else node.removeAttribute('aria-current');});
     if(!model)return;
+    $('#saved-bases').hidden=savedDocuments().length<2;
     $('#upload-panel').hidden=true;$('#view-content').hidden=false;$('#search').disabled=false;$('#original').hidden=false;
     $('#brand-name').textContent=model.name;document.title=model.name+' · '+labels[current]+' · AgentFlix';
     const dates=[model.version?'Versão '+model.version:'Versão não informada',model.updated?'Atualização: '+model.updated:'Importado em '+new Date(importedAt).toLocaleDateString('pt-BR')];
@@ -102,11 +127,16 @@
       const text=await file.text();
       if(sequence!==uploadSequence)return;
       const parsed=M.parse(text),date=new Date().toISOString();
-      let saved=true;
-      try{localStorage.setItem(storeKey,JSON.stringify({format:1,raw:text,filename:file.name,importedAt:date}));}catch(_){saved=false;}
+      if(contextError)throw new Error(contextError);
+      if(project&&M.key(project.business_name)!==M.key(parsed.name))throw new Error('Este arquivo é de “'+parsed.name+'”, mas a Base ECF aberta é de “'+project.business_name+'”. Envie o documento da marca correspondente.');
+      if(!project)chooseStandalone(parsed.name);
+      const value=JSON.stringify({format:2,projectId:project?.id||null,name:parsed.name,raw:text,filename:file.name,importedAt:date});
+      let saved=true,sessionSaved=false;
+      try{localStorage.setItem(storeKey,value);sessionStorage.removeItem(storeKey);}catch(_){saved=false;try{sessionStorage.setItem(storeKey,value);sessionSaved=true;}catch(__){}}
+
       model=parsed;raw=text;filename=file.name;importedAt=date;selected=0;roleFilter='';libraryTab='pautas';$('#search').value='';
       $('#upload-error').hidden=true;
-      $('#status').textContent=saved?filename+' · Recebido e salvo neste navegador.':filename+' · Aberto nesta sessão. O navegador não permitiu salvar; mantenha uma cópia do arquivo.';
+      $('#status').textContent=saved?filename+' · Recebido e salvo neste navegador.':filename+(sessionSaved?' · Salvo apenas nesta aba. Mantenha uma cópia do arquivo.':' · Não foi salvo. Ao recarregar, a versão anterior pode voltar. Mantenha uma cópia deste arquivo.');
       if(view()!=='plano')location.hash='plano';render();$('#workspace').focus();
     }catch(error){if(sequence===uploadSequence)fail(error.message);}
     finally{$('#knowledge-upload').value='';}
@@ -138,13 +168,35 @@
   if(!document.fullscreenEnabled)$('#fullscreen').hidden=true;
   $('#fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('.brand-shell').requestFullscreen();}catch(_){$('#status').textContent='O navegador não permitiu abrir em tela cheia.';}};
   $('#copy-repair').onclick=async()=>{try{if(!await window.agentflixCopy?.($('#repair-text').value))throw new Error();$('#status').textContent='Prompt de correção copiado. Anexe o arquivo no Hermes e cole a instrução.';$('#copy-repair').textContent='Copiado ✓';}catch(_){$('#upload-error details').open=true;$('#repair-text').focus();$('#repair-text').select();$('#copy-repair').textContent='Selecione e copie a instrução abaixo';}};
+  $('#saved-bases').onclick=()=>openDetail('Bases salvas',savedDocuments().map(saved=>'<button class="topic-row" type="button" data-saved-key="'+esc(saved.key)+'">'+icon('folder')+'<span><strong>'+esc(saved.name)+'</strong><small>'+esc(saved.filename)+'</small></span></button>').join(''));
+  $('#detail-body').addEventListener('click',event=>{
+    const button=event.target.closest('[data-saved-key]');if(!button)return;
+    const saved=savedDocuments().find(item=>item.key===button.dataset.savedKey);if(!saved)return;
+    const url=new URL(location.href);url.search='';url.hash='plano';
+    url.searchParams.set(saved.projectId?'base':'marca',saved.projectId||M.key(saved.name));location.assign(url);
+  });
   try{
-    const saved=JSON.parse(localStorage.getItem(storeKey)||'null');
-    if(saved?.format===1&&typeof saved.raw==='string'){
-      model=M.parse(saved.raw);raw=saved.raw;filename=String(saved.filename||'Base de conhecimento.md');
+    let saved=null,sessionOnly=false;
+    if(!projectId&&!storeKey){const last=localStorage.getItem(prefix+'last');if(last?.startsWith(prefix+'name:'))storeKey=last;}
+    if(!contextError&&storeKey){
+      const pending=sessionStorage.getItem(storeKey);sessionOnly=Boolean(pending);
+      saved=JSON.parse(pending||localStorage.getItem(storeKey)||'null');
+    }else if(!contextError&&!projectId){
+      // Legacy standalone documents have no project identity. Never attach them to a Base ECF.
+      const legacy=JSON.parse(localStorage.getItem('agentflix-social-media-document-v1')||'null');
+      if(legacy?.format===1){saved={...legacy,format:2,projectId:null};}
+    }
+    if(saved?.format===2&&typeof saved.raw==='string'&&(saved.projectId||null)===(projectId||null)){
+      const parsed=M.parse(saved.raw);
+      if(project&&M.key(parsed.name)!==M.key(project.business_name))throw new Error();
+      model=parsed;raw=saved.raw;filename=String(saved.filename||'Base de conhecimento.md');
       importedAt=Number.isFinite(Date.parse(saved.importedAt))?saved.importedAt:new Date().toISOString();
-      $('#status').textContent=filename+' · Salvo neste navegador.';
+      if(!project){chooseStandalone(model.name);if(!saved.name)localStorage.setItem(storeKey,JSON.stringify({...saved,name:model.name}));}
+      $('#status').textContent=filename+(sessionOnly?' · Salvo apenas nesta aba. Mantenha uma cópia.':' · Salvo neste navegador.');
     }
   }catch(_){$('#status').textContent='Não foi possível restaurar a base. Envie novamente o arquivo .md.';}
+  $('#saved-bases').hidden=savedDocuments().length<2;
+  if(contextError){$('#status').textContent=contextError;$('#upload-button').disabled=true;$('#replace-file').disabled=true;}
+
   render();
 })();

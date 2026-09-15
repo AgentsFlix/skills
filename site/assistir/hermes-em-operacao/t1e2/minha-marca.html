@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Minha marca · AgentFlix</title>
   <link rel="stylesheet" href="minha-marca.css?v=20260915-1">
+  <script src="base-editorial-data.js" defer></script>
+  <script src="base-editorial-contract.js" defer></script>
+  <script src="base-editorial-ecf-scores.js?v=20260914-2" defer></script>
+  <script src="base-editorial-bundle.js?v=20260914-2" defer></script>
   <script src="../../../clipboard.js" defer></script>
-  <script src="marca-conhecimento-model.js?v=20260915-2" defer></script>
-  <script src="minha-marca.js?v=20260915-1" defer></script>
+  <script src="marca-conhecimento-model.js?v=20260915-3" defer></script>
+  <script src="minha-marca.js?v=20260915-2" defer></script>
 </head>
 <body>
   <a class="skip" href="#workspace">Ir para o conteúdo</a>
@@ -27,7 +31,7 @@
         <div id="view-content" hidden></div>
       </div>
     </div>
-    <footer class="workspace-footer"><p id="status" role="status" aria-live="polite"></p><button id="original" type="button" hidden>Ver documento completo ↗</button></footer>
+    <footer class="workspace-footer"><p id="status" role="status" aria-live="polite"></p><button id="saved-bases" type="button" hidden>Bases salvas</button><button id="original" type="button" hidden>Ver documento completo ↗</button></footer>
   </main>
   <input type="file" id="knowledge-upload" accept=".md,.markdown,text/markdown,text/plain" hidden>
   <section id="upload-error" class="error-panel" hidden aria-labelledby="error-title"><h2 id="error-title">Vamos ajustar o arquivo.</h2><p id="error-message" role="alert"></p><p>Anexe o mesmo arquivo no Hermes e envie esta instrução.</p><button id="copy-repair" class="primary" type="button">Copiar prompt de correção</button><details><summary>Ver instrução</summary><textarea id="repair-text" readonly aria-label="Prompt de correção" rows="8"></textarea></details></section>

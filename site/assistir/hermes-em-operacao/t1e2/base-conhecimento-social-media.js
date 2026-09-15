@@ -63,5 +63,8 @@
     copyStatus.textContent = 'Prompt baixado. Anexe o JSON e cole este prompt na mesma conversa do Hermes.';
   });
 
+  const next=document.querySelector('.knowledge-return');
+  const project=window.ECFBaseBundle?.activeProject();
+  if(next&&project)next.href='minha-marca.html?base='+encodeURIComponent(project.id);
   updateDownloadState();
 })();

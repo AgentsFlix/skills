@@ -76,3 +76,23 @@ Limites: o formato aceito é o Markdown com as 12 seções do prompt. Não há s
 para sincronizar dados entre dispositivos. Fonte citada não implica permissão de
 uso: a ficha não deduz essa autorização. Merge e produção desta continuação ainda
 precisam ser confirmados.
+
+A revisão independente identificou e motivou correções adicionais:
+
+- Títulos numerados aceitam níveis Markdown de 2 a 6, incluindo o `###` usado
+  no prompt. Nomes de seção, tabelas obrigatórias, 3 a 5 pilares e pelo menos
+  18 pautas são validados antes de salvar.
+- O handoff transmite o identificador da Base ECF. Documentos ficam separados
+  por projeto; a marca do arquivo deve corresponder à Base ECF aberta. Arquivos
+  independentes ficam separados pelo nome, com acesso por “Bases salvas”.
+- Se o armazenamento local falhar, a versão nova é guardada na sessão da aba
+  quando possível, com aviso. Se ambos falharem, a mensagem informa explicitamente
+  que recarregar pode restaurar a versão anterior.
+- Chrome confirmou duas marcas com projetos distintos, rejeição da marca errada,
+  retorno à primeira base, projeto desconhecido e recarregamento depois de falha
+  simulada na persistência.
+
+Os checks de publicação `agent-review` e `qa`, exigidos de Apps específicas pela
+proteção atual da main, ainda não foram emitidos para esta continuação. A revisão
+local não substitui esses checks. O PR permanece aberto enquanto essa exigência
+não for atendida pelo serviço responsável.
