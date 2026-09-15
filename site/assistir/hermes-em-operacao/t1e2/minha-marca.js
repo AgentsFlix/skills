@@ -56,6 +56,8 @@
   }
   const labels={plano:'Plano editorial',estrategia:'Estratégia',biblioteca:'Biblioteca'};
   const roles=[['Creator','Atenção','creator'],['Expert','Autoridade','expert'],['Founder','Ação','founder']];
+  const roleTargets={Creator:4,Expert:4,Founder:2};
+  const ratioStates={good:'bom',moderate:'moderado',bad:'ruim'};
   let model=null,raw='',selected=0,roleFilter='',libraryTab='pautas',filename='',importedAt='',uploadSequence=0;
   const view=()=>Object.hasOwn(labels,location.hash.slice(1))?location.hash.slice(1):'plano';
   const fallback=value=>value||'Não informado';
@@ -77,13 +79,16 @@
     const ratio=distribution?.ratio;
     const isRatio=typeof ratio==='number';
     const amount=isRatio?Math.round(ratio*10):null;
+    const target=roleTargets[name];
+    const state=!isRatio?'unknown':amount===target?'good':Math.abs(amount-target)===1?'moderate':'bad';
     const description=mode==='library'?topicCount(name)+' pautas':isRatio?amount+' de cada 10':'Não informado';
-    const bar=mode==='plan'&&isRatio?'<span class="bar" aria-hidden="true">'+Array.from({length:10},(_,i)=>'<i class="'+(i<Math.round(ratio*10)?'filled':'')+'"></i>').join('')+'</span>':'';
-    return '<button class="role-card" type="button" data-role="'+name+'" aria-label="'+name+': '+esc(mode==='plan'?(distribution?.label||'distribuição não informada'):description)+'. Ver pautas"><span class="role-copy"><span class="role-kicker">'+currency+'</span><h2>'+name+'</h2></span><span class="card-icon">'+art(symbol)+'</span><span class="card-tag">'+bar+'<strong>'+description+'</strong></span></button>';
+    const bar=mode==='plan'&&isRatio?'<span class="bar status-'+state+'" aria-hidden="true">'+Array.from({length:10},(_,i)=>'<i class="'+(i<amount?'filled':'')+'">'+(i===target-1?'<b class="ideal-marker">⌃</b>':'')+'</i>').join('')+'</span>':'';
+    const stateLabel=mode==='plan'&&isRatio?' Situação '+ratioStates[state]+'. Referência saudável: '+target+' de cada 10.':'';
+    return '<button class="role-card" type="button" data-role="'+name+'" aria-label="'+name+': '+esc(mode==='plan'?(distribution?.label||'distribuição não informada'):description)+stateLabel+' Ver pautas"><span class="role-copy"><span class="role-kicker">'+currency+'</span><h2>'+name+'</h2></span><span class="card-icon">'+art(symbol)+'</span><span class="card-tag">'+bar+'<strong>'+description+'</strong></span></button>';
   }).join('')+'</div>';}
   function plan(){
     const first=model.topics[0];
-    return roleCards('plan')+'<p class="hint">Cada ponto representa uma parte de dez da distribuição editorial declarada na base.</p><div class="content-grid"><div class="main-stack"><section class="surface entry"><div class="entry-copy"><p class="eyebrow">PORTA DE ENTRADA EDITORIAL</p><h2>'+esc(fallback(model.entry))+'</h2><p>'+esc(fallback(model.transformation))+'</p></div><span class="entry-visual">'+art('entry')+'</span></section><button class="surface suggestion" type="button" data-topic="'+first.id+'"><span>Pauta sugerida · primeira na ordem do documento</span><strong>'+esc(first.title)+'</strong><small>'+esc(first.role)+' · '+esc(fallback(first.priority))+'</small></button></div><section class="dark-panel bank-panel"><div class="bank-heading"><div><h2>Banco de pautas</h2><p>'+model.topics.length+' pautas</p></div><button class="round-action" data-library="pautas" aria-label="Abrir todas as pautas" type="button">'+icon('arrow')+'</button></div><div class="bank-topics">'+model.topics.slice(0,3).map(topic=>'<button class="paper-topic" type="button" data-topic="'+topic.id+'">'+icon('file')+'<span><strong>'+esc(topic.title)+'</strong><small>'+esc(topic.role)+'</small></span></button>').join('')+'</div></section></div>';
+    return roleCards('plan')+'<p class="hint">Cada ponto representa uma parte de dez. Vermelho indica ruim, amarelo moderado e azul bom. O marcador ⌃ mostra a referência saudável de cada perfil.</p><div class="content-grid"><div class="main-stack"><section class="surface entry"><div class="entry-copy"><p class="eyebrow">PORTA DE ENTRADA EDITORIAL</p><h2>'+esc(fallback(model.entry))+'</h2><p>'+esc(fallback(model.transformation))+'</p></div><span class="entry-visual">'+art('entry')+'</span></section><button class="surface suggestion" type="button" data-topic="'+first.id+'"><span>Pauta sugerida · primeira na ordem do documento</span><strong>'+esc(first.title)+'</strong><small>'+esc(first.role)+' · '+esc(fallback(first.priority))+'</small></button></div><section class="dark-panel bank-panel"><div class="bank-heading"><div><h2>Banco de pautas</h2><p>'+model.topics.length+' pautas</p></div><button class="round-action" data-library="pautas" aria-label="Abrir todas as pautas" type="button">'+icon('arrow')+'</button></div><div class="bank-topics">'+model.topics.slice(0,3).map(topic=>'<button class="paper-topic" type="button" data-topic="'+topic.id+'">'+icon('file')+'<span><strong>'+esc(topic.title)+'</strong><small>'+esc(topic.role)+'</small></span></button>').join('')+'</div></section></div>';
   }
   function strategy(){
     const voice=get(model.voice.find(row=>M.key(get(row,'Aspecto'))==='tom'),'Regra operacional');

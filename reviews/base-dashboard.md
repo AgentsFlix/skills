@@ -110,3 +110,7 @@ Revisão de 15/09/2026 das visões Plano, Estratégia e Biblioteca. A moldura ma
 Os SVGs continuam nos controles funcionais, onde garantem precisão em busca, navegação, estado e ações. As sete ilustrações semânticas grandes foram substituídas por PNGs editoriais gerados para Creator, Expert, Founder, Público, Posicionamento, Voz e Porta de entrada. Founder mantém personagem masculino. Os arquivos têm canal RGBA e pixels totalmente transparentes; foram aplicados sem remoção de fundo por script. Prompts e critérios de validação estão em `site/assistir/hermes-em-operacao/t1e2/art/dashboard/prompts.json`.
 
 A distribuição passou a combinar dez pontos com a leitura explícita “4 de cada 10”, em vez de depender de uma barra e de porcentagem isoladas. Em Estratégia, descrições longas são limitadas visualmente a três linhas sem alterar o conteúdo acessível. Em Biblioteca, a seleção recebe marca lateral ciano e as linhas preservam contraste e hierarquia no mesmo vocabulário visual das demais telas.
+
+## Situação da distribuição editorial
+
+Creator, Expert e Founder usam a referência saudável de 4, 4 e 2 pontos, respectivamente. Os pontos preenchidos agora mostram a situação de cada perfil: azul quando o valor coincide com a referência, amarelo quando está a um ponto e vermelho quando se distancia dois ou mais. O marcador `⌃` fica sobre o ponto ideal, e o rótulo acessível informa situação e referência sem depender somente da cor.

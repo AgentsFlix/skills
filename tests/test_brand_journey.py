@@ -151,3 +151,6 @@ class BrandJourney(unittest.TestCase):
         self.assertIn("art/dashboard/'+name+'.png", script)
         self.assertIn("art('entry')", script)
         self.assertIn('class="card-icon">\'+art(symbol)', script)
+        self.assertIn("const roleTargets={Creator:4,Expert:4,Founder:2}", script)
+        self.assertIn("status-'+state", script)
+        self.assertIn('ideal-marker', script)
