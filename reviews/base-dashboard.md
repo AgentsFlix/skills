@@ -98,3 +98,7 @@ local não substitui esses checks. O PR permanece aberto enquanto essa exigênci
 não for atendida pelo serviço responsável.
 
 A revisão final também identificou a ausência possível da tabela de distribuição ECF. O importador agora exige seus quatro cabeçalhos e exatamente uma linha para Creator, Expert e Founder. Proporções ausentes continuam explícitas como não informadas; o prompt de correção descreve o mesmo contrato. Testes cobrem tabela ausente, cabeçalho inválido, papel ausente e duplicado.
+
+## Correção do raio dos cards, 15/09/2026
+
+As extremidades do recorte inferior agora fazem transições arredondadas, usando o mesmo raio da superfície e do indicador menor. O fundo acompanha a largura real do indicador nas três telas e nos dois temas. Capturas antes/depois com exemplo fictício em `design-review/base-dashboard/minha-marca/radius/`. Conferência em 1440, 768 e 390 px: alturas iguais, raios compartilhados e ausência de transbordamento horizontal. A publicação continua sujeita aos checks obrigatórios do PR #89.
