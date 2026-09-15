@@ -1,0 +1,74 @@
+[
+  {
+    "state": "plano",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "title": "AgentFlix · Plano editorial · AgentFlix",
+    "errors": []
+  },
+  {
+    "state": "estrategia",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "title": "AgentFlix · Estratégia · AgentFlix",
+    "errors": []
+  },
+  {
+    "state": "biblioteca",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "title": "AgentFlix · Biblioteca · AgentFlix",
+    "errors": []
+  },
+  {
+    "state": "plano",
+    "width": 768,
+    "scrollWidth": 768,
+    "innerWidth": 768,
+    "title": "AgentFlix · Plano editorial · AgentFlix",
+    "errors": []
+  },
+  {
+    "state": "estrategia",
+    "width": 768,
+    "scrollWidth": 768,
+    "innerWidth": 768,
+    "title": "AgentFlix · Estratégia · AgentFlix",
+    "errors": []
+  },
+  {
+    "state": "biblioteca",
+    "width": 768,
+    "scrollWidth": 768,
+    "innerWidth": 768,
+    "title": "AgentFlix · Biblioteca · AgentFlix",
+    "errors": []
+  },
+  {
+    "state": "plano",
+    "width": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "title": "AgentFlix · Plano editorial · AgentFlix",
+    "errors": []
+  },
+  {
+    "state": "estrategia",
+    "width": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "title": "AgentFlix · Estratégia · AgentFlix",
+    "errors": []
+  },
+  {
+    "state": "biblioteca",
+    "width": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "title": "AgentFlix · Biblioteca · AgentFlix",
+    "errors": []
+  }
+]

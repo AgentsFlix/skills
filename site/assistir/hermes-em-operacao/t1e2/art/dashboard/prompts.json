@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-09-15",
+  "style_reference": "founder.png",
+  "base_prompt": "Use the referenced Founder image only as the visual style guide: same restrained adult 2D editorial drawing, same thin organic slightly irregular charcoal outlines, flat fills, apparent scale, and generous transparent margins. AgentFlix palette: warm ivory #F0EEE6, charcoal #303633, muted cyan #65AEB6 as the single accent, sage gray #8A9690 only if needed. Keep one clear idea, simple silhouette, very few interior marks, legible around 96 px. Square PNG with a truly transparent background and real alpha; every pixel outside the subject must have alpha 0. No text, letters, numbers, logo, frame, circle, complete environment, halo, gradient, heavy shadow, photorealism, 3D, childish caricature, or detailed portrait.",
+  "assets": {
+    "creator.png": "Create a different adult woman Creator holding a simple megaphone and calmly addressing an unseen audience. Natural adult proportions, subtle focused expression, full upper-body composition with the whole megaphone visible. Concentrate cyan on the megaphone.",
+    "expert.png": "Create a different adult Expert seated with an open book and one simple evidence card, calmly explaining a point with one hand. Natural adult proportions, subtle confident expression, full composition with all hands and objects visible. Concentrate cyan on the open book.",
+    "founder.png": "Um fundador homem adulto, com proporções naturais e anatomia simplificada, em pé diante de uma pequena mesa, escolhendo com calma entre dois cartões simples e apontando para o cartão escolhido. Expressão serena e decidida, postura confortável. Ciano concentrado apenas no cartão escolhido.",
+    "audience.png": "Create an illustrative icon for Público: two diverse adult people in conversation, one listening and one speaking, with a single small speech bubble. Natural proportions, subtle attentive expressions, waist-up composition, all heads and hands visible. Concentrate cyan on the speech bubble.",
+    "positioning.png": "Create an illustrative object icon for Posicionamento: a hand placing a single cyan marker precisely at the center of a simple target. Keep the hand anatomically simple and the target fully visible. Concentrate cyan only on the marker and center point.",
+    "voice.png": "Create an illustrative icon for Voz: one adult woman speaking calmly into a simple desk microphone with one clean speech bubble. Natural adult proportions, subtle expression, upper-body composition, all hands and microphone visible. Concentrate cyan on the speech bubble.",
+    "entry.png": "Create an illustrative object icon for Porta de entrada editorial: a simple compass beside a short path made of three broad stepping stones, with the needle pointing to the first step. Keep the entire compass and path visible. Concentrate cyan on the compass needle and first step."
+  },
+  "validation": "Use the source PNGs without scripted background removal. Validate RGBA alpha, fully transparent pixels, and browser rendering over #141414 and #F0EEE6."
+}
