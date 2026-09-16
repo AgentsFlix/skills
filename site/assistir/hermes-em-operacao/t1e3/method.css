@@ -18,19 +18,18 @@
 .lesson-heading>p:not(.eyebrow){font-size:16px;color:var(--muted);margin:18px 0 0;max-width:600px}
 .method h2{font-size:26px;line-height:1.2}
 .method h3{margin:0}
-.belief-comparison{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:0 0 64px}
-.belief-comparison section{background:var(--panel);padding:26px 28px;border:1px solid var(--line);border-radius:18px}
-.belief-comparison h2{font-size:15px;font-weight:400;color:var(--muted);margin-bottom:25px}
-.belief-new h2{color:var(--accent-text)}
-.belief-map{display:flex;align-items:center;gap:20px;min-height:90px}
-.profile-node{display:grid;place-items:center;min-width:83px;min-height:83px;border:1px solid #777;border-radius:50%;font-size:16px}
-.flow-arrow{font-size:26px;color:#8b9594;font-weight:400}
-.vanity-pair{display:flex;gap:24px}
-.vanity-pair span{display:flex;flex-direction:column;gap:13px;color:var(--muted);font-size:14px;white-space:nowrap}
-.vanity-pair svg{width:28px;height:28px;fill:none;stroke:#b3b3b3;stroke-width:1.4;overflow:visible}
-.asset-trio{display:flex;gap:25px;flex:1;justify-content:space-between}
-.asset-trio span{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:14px}
-.asset-trio b{font-size:32px;font-weight:600;color:var(--accent-text)}
+.belief-funnel{margin:0 0 64px;padding:26px 28px 32px;background:var(--panel);border:1px solid var(--line);border-radius:18px}
+.belief-funnel>h2{margin:0;color:var(--accent-text);font-size:15px;font-weight:400}
+.ecf-funnel{position:relative;width:min(100%,530px);aspect-ratio:530/465;margin:14px auto 0;container-type:inline-size}
+.ecf-funnel-source{position:absolute;z-index:2;top:0;left:50%;translate:-50% 0;display:grid;justify-items:center;gap:.35cqw;color:var(--accent-text)}
+.ecf-funnel-source b{display:grid;place-items:center;width:12.08cqw;height:12.08cqw;padding:0 1.32cqw;border:1px solid #838886;border-radius:50%;color:var(--text);font-size:2.26cqw;line-height:1.1;white-space:nowrap}
+.ecf-funnel-source i{font-size:5.28cqw;font-style:normal;line-height:1}
+.ecf-funnel-shape{position:absolute;z-index:0;top:15.85cqw;left:0;width:100%;height:72.08cqw;overflow:visible}
+.ecf-funnel-shape .body{fill:#182022}.ecf-funnel-shape .outline,.ecf-funnel-shape .divider{fill:none;stroke:#5f8589;stroke-width:1}
+.ecf-funnel-stage{position:absolute;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 13.96cqw;align-items:center;gap:1.32cqw}
+.ecf-funnel-stage img{grid-column:2;width:13.96cqw;height:13.96cqw;object-fit:contain;object-position:center}
+.ecf-funnel-copy{grid-column:1;min-width:0}.ecf-funnel-copy span{display:block;margin-bottom:.38cqw;color:var(--accent-text);font-size:2.08cqw;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.ecf-funnel-copy strong{display:block;font-size:4.15cqw;line-height:1;letter-spacing:-.04em}
+.ecf-funnel-creator{top:20cqw;left:12%;width:76%}.ecf-funnel-expert{top:43.21cqw;left:18%;width:64%}.ecf-funnel-founder{top:66.04cqw;left:29%;width:43%;grid-template-columns:minmax(0,1fr) 10.6cqw}.ecf-funnel-founder img{width:10.6cqw;height:10.6cqw}.ecf-funnel-founder .ecf-funnel-copy span{font-size:1.8cqw}.ecf-funnel-founder .ecf-funnel-copy strong{font-size:3.58cqw}
 .story-heading{margin-bottom:24px}
 .story-heading h2{font-size:30px;margin:10px 0 0}
 .profile-stories{display:grid;grid-template-columns:1fr 1fr;gap:28px}
@@ -159,13 +158,7 @@
 .method button:focus-visible{outline:2px solid var(--text);outline-offset:5px}
 
 
-@media(max-width:1050px){.method-layout{grid-template-columns:190px minmax(0,1fr);gap:32px}.belief-map{gap:14px}
-.belief-comparison section{padding:22px}
-.profile-node{min-width:65px;min-height:65px;font-size:14px}
-.vanity-pair{gap:15px}
-.vanity-pair span{font-size:12px}
-.asset-trio{gap:15px}
-.asset-trio span{font-size:12px}
+@media(max-width:1050px){.method-layout{grid-template-columns:190px minmax(0,1fr);gap:32px}.belief-funnel{padding:22px 24px 28px}
 .learning-card{padding:22px}
 .learning-art{height:140px}
 .selectable-cards .learning-card[aria-pressed=true]{padding:21px}
@@ -196,13 +189,7 @@
 
 @media(max-width:900px){.method-layout{display:block}.lesson-rail{position:static;display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;margin:0 0 38px;padding-top:0;border-top:0}.lesson-rail-summary{padding:0;border-bottom:0}.lesson-nav{grid-template-columns:repeat(4,minmax(108px,1fr));overflow-x:auto;gap:8px;margin:0;padding-bottom:4px}.lesson-nav button{min-height:72px;align-items:flex-start;flex-direction:column;gap:5px;border:1px solid var(--line);border-left:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel);font-size:12px}.lesson-nav button[aria-current]{border:1px solid var(--accent);background:#1c292a}}
 
-@media(max-width:760px){.belief-comparison{grid-template-columns:1fr;margin-bottom:40px}
-.belief-map{justify-content:space-between;gap:20px}
-.profile-node{min-width:75px;min-height:75px}
-.belief-map .flow-arrow{margin-right:auto}
-.asset-trio{flex:initial;min-width:50%}
-.vanity-pair{gap:30px}
-.asset-trio span,.vanity-pair span{font-size:14px}
+@media(max-width:760px){.belief-funnel{margin-bottom:40px}
 .profile-stories{gap:16px}
 .photo-button img{height:250px}
 .story-numbers{grid-template-columns:1fr;gap:12px}
@@ -239,15 +226,7 @@
 @media(max-width:560px){.lesson-rail{display:block;margin-bottom:32px}.lesson-rail-summary{display:flex;align-items:center;flex-wrap:wrap;gap:0 9px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-bottom:10px}.lesson-rail-summary .eyebrow{width:100%;margin-bottom:4px}.lesson-rail-summary>span{margin:0 0 0 auto;font-size:10px}.lesson-nav{grid-template-columns:repeat(4,minmax(94px,1fr));gap:7px}.lesson-nav button{font-size:11px;min-height:66px;padding:9px}
 .lesson-heading h1{font-size:34px;letter-spacing:-1px}
 .lesson-heading>p:not(.eyebrow){font-size:15px}
-.belief-comparison section{padding:20px}
-.belief-comparison h2{font-size:14px}
-.belief-map{gap:12px;min-height:70px}
-.profile-node{min-width:61px;min-height:61px;font-size:13px}
-.flow-arrow{font-size:22px}
-.vanity-pair{gap:16px}
-.asset-trio{gap:16px}
-.asset-trio b{font-size:27px}
-.asset-trio span,.vanity-pair span{font-size:12px}
+.belief-funnel{padding:20px 14px 24px;border-radius:16px}.belief-funnel>h2{font-size:14px}.ecf-funnel{width:100%;margin-top:8px}
 .story-heading h2{font-size:27px}
 .profile-stories{grid-template-columns:1fr;gap:24px}
 .profile-story h3{font-size:22px}

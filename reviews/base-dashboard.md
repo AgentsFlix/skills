@@ -172,3 +172,16 @@ próximo card. O estado ativo usa superfície suave e raio de 10 px. O QA em Chr
 real confirmou a troca do resumo e do `aria-current`, ausência de transbordamento
 horizontal e zero erros de página em 1440, 768 e 390 px. As evidências estão em
 `design-review/base-dashboard/t1e3/*-04-navegacao-metodo.png`.
+
+## Funil de Creator, Expert e Founder
+
+A antiga comparação de curtidas, seguidores e as três letras foi substituída por
+um único trapézio invertido. O funil começa em `1 perfil`, com uma única seta, e
+separa Atrair / Creator, Demonstrar / Expert e Convidar / Founder por duas linhas
+divisórias. As três ilustrações transparentes ficam dentro das faixas inclinadas;
+Creator fica deslocado à direita sem ultrapassar a borda. Não há ícones nem rótulos
+de seguidores, compartilhamentos ou conversão nesse componente.
+
+O QA em Chrome real conferiu geometria das artes, estado sem transbordamento e
+zero erros de página em 1440, 768 e 390 px. As capturas estão em
+`design-review/base-dashboard/t1e3/*-05-funil-ecf.png`.

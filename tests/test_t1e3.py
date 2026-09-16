@@ -62,6 +62,26 @@ class HermesOperationT1E3(unittest.TestCase):
         self.assertIn("String(n+1).padStart(2,'0')", script)
         self.assertIn("(n+1)+' de 4 capítulos'", script)
 
+    def test_method_introduces_ecf_with_a_single_funnel(self):
+        entry = (CHAPTER / "index.html").read_text(encoding="utf-8")
+        style = (CHAPTER / "method.css").read_text(encoding="utf-8")
+
+        self.assertIn('class="belief-funnel"', entry)
+        self.assertIn('class="ecf-funnel"', entry)
+        self.assertIn('M10 8H520L365 372H165Z', entry)
+        self.assertIn('M61 128H469M112 248H418', entry)
+        for stage in ("Atrair", "Creator", "Demonstrar", "Expert", "Convidar", "Founder"):
+            self.assertIn(stage, entry)
+        self.assertNotIn('class="belief-old"', entry)
+        self.assertNotIn('class="asset-trio"', entry)
+        self.assertNotIn('Mais seguidores', entry)
+        self.assertNotIn('Mais curtidas', entry)
+
+        self.assertIn(".ecf-funnel-stage img", style)
+        self.assertIn(".ecf-funnel-creator", style)
+        self.assertIn(".ecf-funnel-expert", style)
+        self.assertIn(".ecf-funnel-founder", style)
+
     def test_diagnosis_handoff_keeps_only_safe_summary(self):
         diagnosis = (CHAPTER / "ecf.js").read_text(encoding="utf-8")
         handoff = (CHAPTER / "chapter-handoff.js").read_text(encoding="utf-8")
