@@ -11,3 +11,10 @@ Imagens fornecidas por José Carlos Amorim em 11/09/2026 para uso na abertura de
 A experiência de quase nenhuma venda de IA no primeiro perfil e mais de R$ 30 mil a partir do segundo é relato pessoal do autor, não informação comprovada pelos prints de seguidores. Não é uma promessa de receita.
 
 A página preserva a unidade visualizações. Não calcula uma razão de desempenho entre janelas de datas desconhecidas, nem converte pontos domiciliares em telespectadores.
+
+## Ilustrações do método
+
+`creator.png`, `expert.png` e `founder.png` são ilustrações editoriais exclusivas
+do AgentFlix usadas nos cartões do método. Os três arquivos são PNG RGBA com fundo
+transparente e substituem os desenhos SVG anteriores sem carregar texto ou sentido
+essencial; por isso permanecem decorativos no HTML.
