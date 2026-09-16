@@ -86,6 +86,29 @@ class HermesOperationT1E3(unittest.TestCase):
         self.assertIn(".ecf-funnel-expert", style)
         self.assertIn(".ecf-funnel-founder", style)
 
+    def test_content_lesson_has_the_communication_filter_with_local_art(self):
+        entry = (CHAPTER / "index.html").read_text(encoding="utf-8")
+        script = (CHAPTER / "method.js").read_text(encoding="utf-8")
+        style = (CHAPTER / "method.css").read_text(encoding="utf-8")
+        art = CHAPTER / "art" / "comunicacao-filtro"
+
+        self.assertLess(entry.index('class="format-section"'), entry.index('class="communication-filter"'))
+        self.assertLess(entry.index('class="communication-filter"'), entry.index('data-lesson-go="3"'))
+        self.assertIn('A mesma oferta pode trazer três clientes diferentes.', entry)
+        self.assertIn('Escolha uma mensagem em cada cenário e veja quem ela atrai.', entry)
+        self.assertIn('const communicationScenarios=', script)
+        self.assertIn('communicationFilter();', script)
+        self.assertIn('aria-pressed', script)
+        self.assertIn('.communication-option:focus-visible', style)
+        self.assertIn('@media(max-width:900px){.communication-scenario-layout{grid-template-columns:1fr', style)
+        for name in (
+            'filtro_produto.png', 'filtro_comercial.png', 'filtro_cliente_ideal.png',
+            'terno_produto.png', 'terno_comercial.png', 'terno_cliente_ideal.png',
+            'helicoptero_produto.png', 'helicoptero_comercial.png', 'helicoptero_cliente_ideal.png',
+        ):
+            self.assertTrue((art / name).is_file(), name)
+            self.assertIn('art/comunicacao-filtro/' + name, script)
+
     def test_diagnosis_handoff_keeps_only_safe_summary(self):
         diagnosis = (CHAPTER / "ecf.js").read_text(encoding="utf-8")
         handoff = (CHAPTER / "chapter-handoff.js").read_text(encoding="utf-8")

@@ -212,3 +212,21 @@ dashboard, salva-o no navegador e abre Plano, Estratégia e Biblioteca. A marca,
 as fontes e o status permanecem identificados como demonstração. QA em Chrome
 real validou o caminho completo em 1440, 768 e 390 px; as capturas estão em
 `design-review/base-dashboard/t1e3/*-07-conhecimento-ficticio.png`.
+
+## Comunicação é o filtro
+
+A terceira parte do método ECF ganhou uma seção interativa depois dos formatos
+e antes do raio x. Ela apresenta três cenários em sequência: filtro dos sonhos,
+terno high ticket e aluguel de helicóptero. Em cada um, a pessoa escolhe entre
+mensagem sobre o produto, mensagem comercial e linguagem do cliente ideal.
+
+A escolha troca sem recarregar a mensagem, a ilustração e o painel com quem ela
+atrai, prós e contras. As nove artes fornecidas foram copiadas para
+`t1e3/art/comunicacao-filtro/` e cada opção aponta para seu PNG local, com texto
+alternativo que descreve a ação visual. A primeira opção inicia selecionada.
+
+Os controles são botões, têm estado selecionado textual, foco visível e não
+dependem apenas da cor. Em desktop, a escolha e a mensagem ficam à esquerda,
+com arte e perfil à direita. Em tablet e celular, a composição empilha sem
+rolagem horizontal. A conferência local percorreu os nove estados e verificou
+as larguras 1440, 768 e 390 px.
