@@ -28,6 +28,7 @@
 .base-fictional-action p{margin:0;font-weight:600;color:var(--text)}
 .base-fictional-action small{width:100%;font-size:12px;line-height:1.45}
 .base-fictional-action .base-fictional{min-height:40px;padding:9px 14px}
+.base-fictional-upload{margin:0 0 22px;padding:16px;border:1px solid var(--line);border-radius:12px;background:#1e2521}
 .base-option-art{display:flex;align-items:center;justify-content:center;background:#202723;height:244px;flex:0 0 244px;padding:25px;width:100%}
 .base-option-copy{display:flex;flex-direction:column;gap:10px;padding:23px;flex:1}
 .base-option-copy strong{font-size:22px;line-height:1.2;letter-spacing:-.5px;font-weight:600}

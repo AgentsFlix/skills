@@ -111,8 +111,8 @@
       guideOutcome.textContent='Quando ele entregar '+stage.id+'.json, salve o arquivo e volte para esta tela.';guideButton.textContent='Estou com o arquivo';
     }else if(mode==='upload'){
       guide.classList.add('base-tour-detail','base-tour-detail-upload');guideKicker.textContent='02 · TRAGA O RESULTADO';guideTitle.textContent='Traga o arquivo de volta para a sua base.';
-      guideDescription.textContent='Clique no botão destacado “Abrir '+stage.id+'.json” e selecione o arquivo que o Hermes entregou.';
-      guideOutcome.textContent='A tela confere o formato e guarda o resultado neste navegador. Resultado esperado: '+stage.result.charAt(0).toLowerCase()+stage.result.slice(1);guideTarget=scenes[index].querySelector('.base-upload-side');guideActionTarget=scenes[index].querySelector('.base-upload-empty:not([hidden]) .base-file-button, .base-receipt:not([hidden]) .base-replace');guideButton.hidden=true;
+      guideDescription.textContent='Para demonstrar o fluxo, clique no botão destacado “Preencher com exemplo fictício”. Para usar o resultado real, clique em “Abrir '+stage.id+'.json”.';
+      guideOutcome.textContent='A tela confere o formato e guarda o resultado neste navegador. Resultado esperado: '+stage.result.charAt(0).toLowerCase()+stage.result.slice(1);guideTarget=scenes[index].querySelector('.base-upload-side');guideActionTarget=scenes[index].querySelector('.base-fictional:not([disabled]), .base-upload-empty:not([hidden]) .base-file-button, .base-receipt:not([hidden]) .base-replace');guideButton.hidden=true;
     }else if(mode==='importing'){
       guide.classList.add('base-tour-intro');guideKicker.textContent='CONFERINDO O ARQUIVO';guideTitle.textContent='Só um instante.';guideDescription.textContent='A tela está validando o arquivo que voltou do Hermes.';guideOutcome.textContent='Se o formato estiver correto, esta etapa será salva no navegador automaticamente.';guideButton.hidden=true;
     }

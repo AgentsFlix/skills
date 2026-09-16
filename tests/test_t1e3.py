@@ -40,6 +40,10 @@ class HermesOperationT1E3(unittest.TestCase):
         base = (CHAPTER / "base-editorial.html").read_text(encoding="utf-8")
         self.assertIn("chapter-handoff.js", base)
         self.assertIn("base-editorial-dashboard.js", base)
+        flow = (CHAPTER / "base-editorial-flow.js").read_text(encoding="utf-8")
+        self.assertRegex(flow, r'base-upload-side[\s\S]*base-fictional-action[\s\S]*Preencher com exemplo fictício')
+        page = (CHAPTER / "base-editorial-page.js").read_text(encoding="utf-8")
+        self.assertIn(".base-fictional:not([disabled])", page)
 
     def test_method_navigation_separates_journey_from_local_chapters(self):
         entry = (CHAPTER / "index.html").read_text(encoding="utf-8")

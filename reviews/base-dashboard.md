@@ -189,9 +189,10 @@ zero erros de página em 1440, 768 e 390 px. As capturas estão em
 ## Demonstração fictícia da Base ECF
 
 Cada uma das seis etapas da Base ECF tem o botão “Preencher com exemplo
-fictício”. Ele seleciona uma figura coerente com a etapa, cria ou reutiliza a
-base local e salva um rascunho validado pelo mesmo contrato usado no retorno do
-Hermes. Os exemplos usam o Estúdio Aurora somente como cenário ilustrativo:
+fictício” dentro de “02 · Traga o resultado”, onde permanece disponível durante
+o onboarding. Ele seleciona uma figura coerente com a etapa, cria ou reutiliza
+a base local e salva um rascunho validado pelo mesmo contrato usado no retorno
+do Hermes. Os exemplos usam o Estúdio Aurora somente como cenário ilustrativo:
 cada arquivo e cada resumo informa que não há fonte externa, pesquisa, cliente
 ou dado real envolvido. Depois do sexto clique, a pessoa chega ao dashboard com
 seis pastas demonstrativas e pode percorrer todo o fluxo.
