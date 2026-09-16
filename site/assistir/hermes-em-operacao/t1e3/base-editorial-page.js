@@ -140,6 +140,11 @@
   });
   window.addEventListener('ecf:prompt-copied',event=>{if(event.detail?.index!==current||guideMode!=='copy')return;completeAction(current,'copy');openGuide('return',current);});
   window.addEventListener('ecf:file-imported',event=>{if(event.detail?.index!==current)return;completeAction(current,'upload');clearGuide();next.focus({preventScroll:true});});
+  window.addEventListener('ecf:fictional-filled',event=>{
+    if(event.detail?.index!==current)return;
+    ['stage','choice','copy','ready','upload'].forEach(action=>completeAction(current,action));
+    clearGuide();next.focus({preventScroll:true});
+  });
   window.addEventListener('ecf:file-import-failed',event=>{if(event.detail?.index===current)clearGuide();});
   window.addEventListener('resize',()=>requestAnimationFrame(()=>{positionGuide();revealActionTarget();}));
   document.addEventListener('keydown',event=>{

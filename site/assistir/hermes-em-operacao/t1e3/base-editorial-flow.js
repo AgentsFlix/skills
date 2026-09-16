@@ -67,7 +67,7 @@
     section.setAttribute('aria-labelledby','base-title-'+index);
     section.innerHTML = '<nav class="base-nav" style="--base-stages:'+stages.length+'" aria-label="Etapas da base">'+stages.map((item,i)=>'<a href="#etapa-'+(i+1)+'" data-base-nav="'+item.id+'" '+(index===i?'aria-current="step"':'')+'><span class="base-nav-number">'+(i+1)+'</span><span>'+item.short+'</span><span class="base-nav-check" aria-label="Arquivo recebido" hidden>✓</span></a>').join('')+'</nav>'
       +'<div class="base-decision"><div class="base-heading"><div><p class="eyebrow">'+stage.n+' DE '+stages.length+' · '+stage.title+'</p><h1 id="base-title-'+index+'" tabindex="-1">'+stage.question+'</h1><p>'+stage.guidance+'</p></div></div>'
-      +'<div class="base-choices" role="group" aria-label="'+esc(stage.question)+'">'+stage.options.map((option,i)=>'<button type="button" class="base-choice" data-choice="'+i+'" aria-pressed="false"><span class="base-selection" aria-hidden="true"></span><span class="base-option-art" aria-hidden="true">'+visual(index,i)+'</span><span class="base-option-copy"><strong>'+esc(option.title)+'</strong><span>'+esc(option.description)+'</span></span></button>').join('')+'</div></div>'
+      +'<div class="base-choices" role="group" aria-label="'+esc(stage.question)+'">'+stage.options.map((option,i)=>'<button type="button" class="base-choice" data-choice="'+i+'" aria-pressed="false"><span class="base-selection" aria-hidden="true"></span><span class="base-option-art" aria-hidden="true">'+visual(index,i)+'</span><span class="base-option-copy"><strong>'+esc(option.title)+'</strong><span>'+esc(option.description)+'</span></span></button>').join('')+'</div><div class="base-fictional-action"><p>Quer mostrar o fluxo completo?</p><button type="button" class="secondary base-fictional">Preencher com exemplo fictício</button><small>Salva um rascunho ilustrativo desta etapa. Não use como dado real.</small></div></div>'
       +'<div class="base-workspace"><section class="base-prompt-side" aria-labelledby="base-prompt-title-'+index+'"><p class="base-step-label">01 · LEVE PARA O HERMES</p><h2 id="base-prompt-title-'+index+'">Converse. Dê contexto.</h2>'
       +(index===0?'<label for="base-name">Nome do negócio</label><input id="base-name" maxlength="120" placeholder="Como seu negócio se chama?" autocomplete="organization">':'<p class="base-business-name"></p>')
       +skillCards(stage.skills)
@@ -77,11 +77,8 @@
       +'<section class="base-upload-side" aria-labelledby="base-upload-title-'+index+'"><p class="base-step-label">02 · TRAGA O RESULTADO</p><h2 id="base-upload-title-'+index+'">Sua base começa a ganhar forma.</h2><div class="base-upload-empty"><div class="base-file-graphic" aria-hidden="true">'+art('pasta')+'</div><label class="base-file-button" for="base-file-'+index+'">Abrir '+stage.id+'.json <span aria-hidden="true">↑</span></label><input class="base-file-input" id="base-file-'+index+'" type="file" accept=".json,application/json"><p>O arquivo que o Hermes entregou.</p></div>'
       +'<div class="base-receipt" hidden></div><p class="base-file-feedback" role="status"></p><div class="base-repair" hidden><p class="base-step-label">ARQUIVO PRECISA DE CORREÇÃO</p><h3>Peça ao Hermes para ajustar.</h3><p>A correção preserva o conteúdo e aplica o contrato desta etapa.</p><button type="button" class="secondary base-repair-copy">Copiar pedido de correção <span aria-hidden="true">↗</span></button><p class="base-repair-feedback" role="status"></p><details><summary>Conferir o pedido</summary><textarea readonly rows="10" aria-label="Pedido de correção"></textarea><button type="button" class="text-button base-repair-download">Baixar pedido .md</button></details></div></section></div>'
       +'<p class="base-storage-note" role="status">Abrindo sua base…</p>';
-    section.querySelectorAll('[data-choice]').forEach(button=>button.addEventListener('click',()=>{
-      selections[index]=Number(button.dataset.choice);
-      section.querySelectorAll('[data-choice]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-      updatePrompt(index);
-    }));
+    section.querySelectorAll('[data-choice]').forEach(button=>button.addEventListener('click',()=>selectOption(index,Number(button.dataset.choice))));
+    section.querySelector('.base-fictional').addEventListener('click',()=>fillFictional(index));
     section.querySelector('#base-extra-'+index).addEventListener('input',event=>{contexts[index]=event.target.value;updatePrompt(index);});
     section.querySelector('.base-copy').addEventListener('click',()=>copyPrompt(index));
     section.querySelector('.base-prompt-download').addEventListener('click',async()=>{
@@ -96,6 +93,12 @@
   });
   const scene = index => document.querySelector('[data-scene="'+(12+index)+'"]');
   function tell(index,selector,message){scene(index).querySelector(selector).textContent=message;}
+  function selectOption(index, option) {
+    selections[index]=option;
+    const section=scene(index);
+    section.querySelectorAll('[data-choice]').forEach(item=>item.setAttribute('aria-pressed',String(Number(item.dataset.choice)===option)));
+    updatePrompt(index);
+  }
   function prompt(index) {
     const name = document.querySelector('#base-name').value.trim();
     const startingPoint = selections[index]===null ? (project?.records[stages[index].id]?'Retome a versão salva desta etapa e pergunte apenas o que falta.':'Ainda não escolhi; ajude-me a descobrir') : stages[index].options[selections[index]].title;
@@ -154,6 +157,30 @@
     project={id:draft.id,business_name:draft.business_name,records:{}};
     refresh();
     return project;
+  }
+  function ensureFictionalProject() {
+    if (loading) throw new Error('Aguarde a leitura da base salva.');
+    if (project) return project;
+    const input=document.querySelector('#base-name');
+    const name=input.value.trim()||'Estúdio Aurora (exemplo)';
+    input.value=name;
+    const draft=draftFor(name);
+    project={id:draft.id,business_name:draft.business_name,records:{}};
+    refresh();
+    return project;
+  }
+  function fillFictional(index) {
+    try {
+      const demoProject=ensureFictionalProject();
+      selectOption(index,[2,0,1,1,1,0][index]);
+      const output=C.parse(JSON.stringify(C.fictional(index,demoProject)),{id:demoProject.id,business_name:demoProject.business_name,stage:stages[index].id});
+      project.records[stages[index].id]={output,saved_at:new Date().toISOString()};
+      saveProject();clearRepair(index);refresh();
+      tell(index,'.base-file-feedback','Exemplo fictício salvo neste navegador. Substitua-o por dados reais antes de usar a base.');
+      window.dispatchEvent(new CustomEvent('ecf:fictional-filled',{detail:{index,stage:stages[index].id}}));
+    } catch(error) {
+      tell(index,'.base-file-feedback',error.message);
+    }
   }
   async function copyText(value) {
     if(navigator.clipboard?.writeText) return navigator.clipboard.writeText(value);
@@ -244,6 +271,7 @@
     stages.forEach((stage,index)=>{
       const section=scene(index),record=project?.records[stage.id];
       section.querySelector('.base-copy').disabled=loading;
+      section.querySelector('.base-fictional').disabled=loading||unavailable;
       section.querySelector('.base-file-input').disabled=loading||unavailable;
       section.querySelector('.base-upload-empty').hidden=Boolean(record);
       const receipt=section.querySelector('.base-receipt');receipt.hidden=!record;

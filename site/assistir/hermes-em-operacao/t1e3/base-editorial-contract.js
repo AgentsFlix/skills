@@ -161,6 +161,25 @@
       next_context:'Contexto suficiente para continuar a etapa seguinte sem depender da memória da conversa.'
     };
   }
+  const DEMO = [
+    ['Exemplo fictício: o Estúdio Aurora combina cadernos personalizados e oficinas de organização criativa.',['Oferta demonstrativa: produtos e serviços.','Objetivo demonstrativo: tornar a proposta fácil de explicar no Instagram.'],['As pessoas valorizam presenteáveis e uma rotina mais organizada.'],['Validar este retrato com informações reais do negócio.'],'# Negócio — demonstração fictícia\n\nO **Estúdio Aurora** vende cadernos personalizados e conduz oficinas de organização criativa. A entrega combina produtos físicos, orientação prática e atendimento sob encomenda.\n\n> Este conteúdo é somente um exemplo para apresentar o fluxo do AgentFlix. Não descreve um negócio real.'],
+    ['Exemplo fictício: a pesquisa organiza perguntas e objeções ilustrativas sobre organização pessoal.',['Pesquisar conversas públicas antes de definir a comunicação.','Separar citações verificadas de frases apenas ilustrativas.'],['A falta de tempo aparece como uma barreira recorrente para começar a se organizar.'],['Substituir as evidências ilustrativas por fontes públicas reabríveis.'],'# Pesquisa de público — demonstração fictícia\n\nA demonstração simula um corpus sobre organização pessoal: começar sem saber por onde ir, manter uma rotina e escolher ferramentas simples.\n\n> Nenhuma fonte real foi consultada. Antes de usar esta base, o Hermes deve coletar e registrar URLs, datas e trechos verificáveis.'],
+    ['Exemplo fictício: o público prioritário é quem quer organizar a semana com um primeiro passo simples.',['Priorizar pessoas que querem sair do improviso sem adotar um método complexo.','Tratar o recorte como hipótese até a pesquisa real confirmar.'],['Uma rotina visual e curta reduz a resistência inicial.'],['Confirmar necessidades, linguagem e critérios com evidências reais.'],'# Público prioritário — demonstração fictícia\n\nPessoa que sente a semana dispersa, quer um jeito simples de planejar e procura ferramentas que consiga usar no dia seguinte.\n\n> Perfil ilustrativo criado para esta demonstração. Não representa pesquisa, cliente ou depoimento real.'],
+    ['Exemplo fictício: o Estúdio Aurora se posiciona como um jeito simples de transformar intenção em rotina visível.',['Explicar a oferta com foco em um primeiro passo possível.','Evitar promessas de produtividade ou resultado garantido.'],['A combinação de material e orientação ajuda a pessoa a começar.'],['Validar diferenciais e provas disponíveis com o negócio real.'],'# Posicionamento — demonstração fictícia\n\nO Estúdio Aurora ajuda pessoas a transformar intenção em uma rotina visível, com cadernos personalizados e oficinas práticas para começar sem complicar.\n\n> Esta é uma formulação ilustrativa. Diferenciais e promessas precisam ser aprovados pelo negócio real.'],
+    ['Exemplo fictício: a voz é clara, acolhedora e prática, sem prometer uma mudança imediata.',['Usar frases curtas e um convite por vez.','Explicar antes de sugerir uma ação.'],['Um tom próximo torna a organização menos intimidadora.'],['Revisar a voz com amostras reais de fala e escrita.'],'# Voz — demonstração fictícia\n\n**Tom:** próximo, claro e prático.\n\n**Exemplo:** “Escolha uma coisa que você quer enxergar melhor nesta semana. A gente começa por ela.”\n\n> Regras e texto apenas ilustrativos; não são a voz extraída de uma marca real.'],
+    ['Exemplo fictício: histórias, dúvidas e demonstrações viram matéria-prima para os primeiros conteúdos.',['Começar por dúvidas recorrentes e bastidores de produção.','Registrar a origem de cada história antes de publicar.'],['Mostrar um antes e depois de organização pode abrir conversas úteis.'],['Trocar os itens ilustrativos por materiais com fonte e permissão de uso.'],'# Matéria-prima — demonstração fictícia\n\n- Dúvida ilustrativa: “Como eu começo sem comprar um monte de coisa?”\n- Bastidor ilustrativo: escolha de páginas para uma semana possível.\n- Método ilustrativo: escolher, visualizar, revisar.\n\n> Nenhum item é uma prova, caso ou material real. Registre fontes e permissões antes de transformar a base em conteúdo.']
+  ];
+  function fictional(index, project) {
+    const sample = DEMO[index];
+    if (!sample) throw new Error('Não há exemplo fictício para esta etapa.');
+    const [summary,decisions,hypotheses,pending,content] = sample;
+    return {
+      ...example(index,project),summary,decisions,hypotheses,pending,
+      documents:PATHS[index].map((path,documentIndex)=>({path,content:content+(documentIndex ? '\n\n## Exemplos aprovados — demonstração\n\nEste segundo documento existe apenas para cumprir a estrutura da etapa e deve ser substituído por conteúdo real.' : '')})),
+      sources:['Demonstração fictícia do AgentFlix. Nenhuma fonte externa foi consultada.'],skills_used:[],
+      next_context:'Demonstração fictícia concluída na etapa '+(index+1)+' de '+KEYS.length+'. Substitua este rascunho por dados reais antes de usar a base para decisões ou conteúdo.'
+    };
+  }
   function buildPrompt(index, project, selection, extra, stages) {
     const stage = stages[index], model = example(index,project);
     let prompt = stage.prompt.replace(/^ETAPA \d+ DE \d+/, 'ETAPA ' + (index + 1) + ' DE ' + stages.length)
@@ -212,6 +231,6 @@
     prompt += '\n\nAntes de responder, confirme internamente que o JSON abre, contém somente os caminhos canônicos e usa o nome ' + stage + '.json. Na resposta, anexe apenas o JSON corrigido. Se não puder anexar, devolva um único bloco JSON completo.';
     return prompt;
   }
-  root.ECFBaseContract = { VERSION, KEYS, PATHS, MAX_BYTES, businessSlug, skillSource, normalize, validate, parse, example, buildPrompt, buildRepairPrompt };
+  root.ECFBaseContract = { VERSION, KEYS, PATHS, MAX_BYTES, businessSlug, skillSource, normalize, validate, parse, example, fictional, buildPrompt, buildRepairPrompt };
   if (typeof module !== 'undefined') module.exports = root.ECFBaseContract;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

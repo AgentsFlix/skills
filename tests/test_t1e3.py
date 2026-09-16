@@ -108,6 +108,25 @@ class HermesOperationT1E3(unittest.TestCase):
         for script in CHAPTER.glob("*.js"):
             subprocess.run([node, "--check", str(script)], check=True)
 
+    def test_each_base_stage_has_a_valid_fictional_demo_record(self):
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("Node não disponível")
+        program = r'''
+          const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+          const directory=process.argv[1],sandbox={TextEncoder};
+          vm.runInNewContext(fs.readFileSync(directory+'/base-editorial-data.js','utf8'),sandbox);
+          vm.runInNewContext(fs.readFileSync(directory+'/base-editorial-contract.js','utf8'),sandbox);
+          const project={id:'demo-test',business_name:'Estúdio Aurora (exemplo)',records:{}};
+          sandbox.ECFBaseStages.forEach((stage,index)=>{
+            const output=sandbox.ECFBaseContract.fictional(index,project);
+            assert.match(output.summary,/fictício/i);
+            assert.match(output.sources[0],/Nenhuma fonte externa/i);
+            assert.doesNotThrow(()=>sandbox.ECFBaseContract.parse(JSON.stringify(output),{id:project.id,business_name:project.business_name,stage:stage.id}));
+          });
+        '''
+        subprocess.run([node, "-e", program, str(CHAPTER)], check=True)
+
 
 if __name__ == "__main__":
     unittest.main()
