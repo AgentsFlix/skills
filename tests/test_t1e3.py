@@ -41,6 +41,27 @@ class HermesOperationT1E3(unittest.TestCase):
         self.assertIn("chapter-handoff.js", base)
         self.assertIn("base-editorial-dashboard.js", base)
 
+    def test_method_navigation_separates_journey_from_local_chapters(self):
+        entry = (CHAPTER / "index.html").read_text(encoding="utf-8")
+        style = (CHAPTER / "method.css").read_text(encoding="utf-8")
+        script = (CHAPTER / "method.js").read_text(encoding="utf-8")
+
+        self.assertLess(entry.index('class="steps"'), entry.index('class="lesson-rail"'))
+        self.assertIn('class="lesson-rail-summary"', entry)
+        self.assertIn('id="lesson-current"', entry)
+        self.assertIn('id="lesson-label"', entry)
+        self.assertIn('id="lesson-progress"', entry)
+        self.assertEqual(entry.count('data-lesson="'), 4)
+
+        self.assertIn("position:sticky", style)
+        self.assertIn("@media(max-width:900px)", style)
+        self.assertIn("@media(max-width:560px)", style)
+        self.assertIn("border-radius:10px", style)
+
+        self.assertIn("const labels=['A história','As três moedas','O conteúdo','O raio-x']", script)
+        self.assertIn("String(n+1).padStart(2,'0')", script)
+        self.assertIn("(n+1)+' de 4 capítulos'", script)
+
     def test_diagnosis_handoff_keeps_only_safe_summary(self):
         diagnosis = (CHAPTER / "ecf.js").read_text(encoding="utf-8")
         handoff = (CHAPTER / "chapter-handoff.js").read_text(encoding="utf-8")

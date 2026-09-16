@@ -54,8 +54,12 @@
   }
   function lesson(n,move=true){
     if(!Number.isInteger(n)||n<0||n>3)return;
+    const labels=['A história','As três moedas','O conteúdo','O raio-x'];
     document.querySelectorAll('[data-lesson-page]').forEach((p,i)=>p.hidden=i!==n);
     document.querySelectorAll('[data-lesson]').forEach(b=>{if(Number(b.dataset.lesson)===n)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+    $('lesson-current').textContent=String(n+1).padStart(2,'0');
+    $('lesson-label').textContent=labels[n];
+    $('lesson-progress').textContent=(n+1)+' de 4 capítulos';
     if(move){history.replaceState(null,'','#metodo-'+(n+1));document.querySelector('[data-lesson-page="'+n+'"] h1').focus({preventScroll:true});$('understand').scrollIntoView({block:'start',behavior:'instant'});}
   }
   document.querySelectorAll('[data-lesson],[data-lesson-go]').forEach(b=>b.addEventListener('click',()=>lesson(Number(b.dataset.lesson??b.dataset.lessonGo))));

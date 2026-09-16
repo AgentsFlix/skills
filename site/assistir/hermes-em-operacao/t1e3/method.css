@@ -1,9 +1,17 @@
-/* The methodology is a visual lesson; the diagnostic keeps its own cards and scale. */
+/* The top stepper is the journey. This rail is only the local table of contents. */
 .method{--lesson-gap:28px;scroll-margin-top:24px}
-.lesson-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;border-bottom:1px solid var(--line);margin:0 0 44px}
-.lesson-nav button{min-height:52px;display:flex;align-items:center;gap:10px;background:none;color:var(--muted);border:0;border-bottom:2px solid transparent;border-radius:0;padding:0 0 16px;font-size:14px;text-align:left}
-.lesson-nav button span{font-size:12px;opacity:.75}
-.lesson-nav button[aria-current]{color:var(--text);border-bottom-color:var(--accent)}
+.method-layout{display:grid;grid-template-columns:226px minmax(0,1fr);gap:clamp(38px,5vw,78px);align-items:start}
+.lesson-rail{position:sticky;top:24px;border-top:1px solid var(--line);padding-top:18px}
+.lesson-rail-summary{padding:0 0 20px;border-bottom:1px solid var(--line)}
+.lesson-rail-summary .eyebrow{margin-bottom:7px;font-size:9px}
+.lesson-rail-summary p:not(.eyebrow){display:flex;align-items:baseline;gap:10px;margin:0;color:var(--text);font-size:14px;font-weight:600}
+.lesson-rail-summary strong{font-size:13px;color:var(--accent-text);letter-spacing:1px}
+.lesson-rail-summary>span{display:block;margin-top:5px;color:var(--muted);font-size:11px}
+.lesson-nav{display:grid;gap:2px;margin:14px 0 0}
+.lesson-nav button{min-height:44px;display:flex;align-items:center;gap:12px;background:none;color:var(--muted);border:0;border-left:2px solid transparent;border-radius:10px;padding:9px 10px;font-size:13px;text-align:left}
+.lesson-nav button span{font-size:11px;opacity:.75}
+.lesson-nav button[aria-current]{color:var(--text);border-left-color:var(--accent);background:linear-gradient(90deg,#1d292b 0%,transparent 100%)}
+.lesson-content{min-width:0}
 .lesson-heading{margin:0 0 32px}
 .lesson-heading h1{font-size:clamp(32px,4.2vw,46px);line-height:1.1;letter-spacing:-1.5px;margin:10px 0 0}
 .lesson-heading h1 span{color:var(--muted)}
@@ -67,7 +75,8 @@
 .learning-card-heading>span{display:block;font-size:12px;letter-spacing:1.6px;color:var(--muted);margin-bottom:9px}
 .learning-card h3{font-size:29px;line-height:1.2;font-weight:600}
 .learning-art{height:170px;margin:15px -6px}
-.learning-art svg{width:100%;height:100%;display:block}
+.learning-art svg,.learning-art img{width:100%;height:100%;display:block}
+.learning-art img{object-fit:contain;object-position:center}
 .learning-card>p{color:var(--muted);font-size:14px;line-height:1.4;margin:0 0 28px}
 .learning-bar-label{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-bottom:12px}
 .learning-bar-label>b{font-weight:600}
@@ -150,7 +159,7 @@
 .method button:focus-visible{outline:2px solid var(--text);outline-offset:5px}
 
 
-@media(max-width:1050px){.belief-map{gap:14px}
+@media(max-width:1050px){.method-layout{grid-template-columns:190px minmax(0,1fr);gap:32px}.belief-map{gap:14px}
 .belief-comparison section{padding:22px}
 .profile-node{min-width:65px;min-height:65px;font-size:14px}
 .vanity-pair{gap:15px}
@@ -184,6 +193,8 @@
 .photo-button img{height:310px}
 }
 
+
+@media(max-width:900px){.method-layout{display:block}.lesson-rail{position:static;display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;margin:0 0 38px;padding-top:0;border-top:0}.lesson-rail-summary{padding:0;border-bottom:0}.lesson-nav{grid-template-columns:repeat(4,minmax(108px,1fr));overflow-x:auto;gap:8px;margin:0;padding-bottom:4px}.lesson-nav button{min-height:72px;align-items:flex-start;flex-direction:column;gap:5px;border:1px solid var(--line);border-left:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel);font-size:12px}.lesson-nav button[aria-current]{border:1px solid var(--accent);background:#1c292a}}
 
 @media(max-width:760px){.belief-comparison{grid-template-columns:1fr;margin-bottom:40px}
 .belief-map{justify-content:space-between;gap:20px}
@@ -225,9 +236,7 @@
 }
 
 
-@media(max-width:560px){.lesson-nav{gap:12px;margin-bottom:32px}
-.lesson-nav button{flex-direction:column;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;min-height:66px;padding-bottom:12px}
-.lesson-nav button span{font-size:12px}
+@media(max-width:560px){.lesson-rail{display:block;margin-bottom:32px}.lesson-rail-summary{display:flex;align-items:center;flex-wrap:wrap;gap:0 9px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-bottom:10px}.lesson-rail-summary .eyebrow{width:100%;margin-bottom:4px}.lesson-rail-summary>span{margin:0 0 0 auto;font-size:10px}.lesson-nav{grid-template-columns:repeat(4,minmax(94px,1fr));gap:7px}.lesson-nav button{font-size:11px;min-height:66px;padding:9px}
 .lesson-heading h1{font-size:34px;letter-spacing:-1px}
 .lesson-heading>p:not(.eyebrow){font-size:15px}
 .belief-comparison section{padding:20px}

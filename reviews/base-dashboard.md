@@ -157,3 +157,18 @@ QA em Chrome real cobriu 1440, 768 e 390 px, sem transbordamento horizontal,
 erros de JavaScript ou recursos locais ausentes. As nove capturas estão em
 `design-review/base-dashboard/t1e3/` e mostram método, diagnóstico e início da
 base em cada largura.
+
+## Hierarquia de navegação do método ECF
+
+O capítulo 3 mantém uma única jornada principal no topo: Conheça o método,
+Colete com Zernio e Gerar análise. A história, As três moedas, O conteúdo e O
+raio-x aparecem como índice contextual do método, acompanhado do capítulo atual
+e da posição na sequência.
+
+No desktop, o índice ocupa um rail vertical sticky ao lado da aula. No tablet,
+ele vira uma faixa compacta acima do conteúdo. No celular, os quatro capítulos
+formam cards horizontais pequenos, com a continuidade indicada pelo recorte do
+próximo card. O estado ativo usa superfície suave e raio de 10 px. O QA em Chrome
+real confirmou a troca do resumo e do `aria-current`, ausência de transbordamento
+horizontal e zero erros de página em 1440, 768 e 390 px. As evidências estão em
+`design-review/base-dashboard/t1e3/*-04-navegacao-metodo.png`.
