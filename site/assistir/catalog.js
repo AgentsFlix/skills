@@ -53,8 +53,10 @@
       };
       const bookmark = (series) =>
         `<button class="watch-bookmark watch-icon" data-save="${esc(series.slug)}" aria-label="${saved.includes(series.slug) ? "Remover" : "Adicionar"} ${esc(series.name)} ${saved.includes(series.slug) ? "da" : "à"} minha lista" aria-pressed="${saved.includes(series.slug)}">${icon(saved.includes(series.slug) ? "check" : "plus")}</button>`;
-      const metadata = (series) =>
-        series.seasons.some(s => s.atividades?.length) ? "Temporada 1 · Episódio interativo" : series.em_breve ? "Temporada 1 · Em breve" : `${series.ano ? esc(series.ano) + " · " : ""}${model.episodes(series).length} episódios`;
+      const metadata = (series) => {
+        const chapters=series.seasons.reduce((total,season)=>total+(season.atividades?.length||0),0);
+        return chapters ? `Temporada 1 · ${chapters} ${chapters===1?'capítulo interativo':'capítulos interativos'}` : series.em_breve ? "Temporada 1 · Em breve" : `${series.ano ? esc(series.ano) + " · " : ""}${model.episodes(series).length} episódios`;
+      };
       const cover = (series, large = false) => {
         const image = `<img src="${esc(large ? series.cover : series.cover_wide)}" alt="" ${series.cover_mobile ? 'width="1536" height="1024"' : ""} ${large ? 'fetchpriority="high"' : 'loading="lazy"'}>`;
         return series.cover_mobile

@@ -1188,6 +1188,14 @@
               "url": "hermes-em-operacao/t1e2/",
               "tipo": "simulacao",
               "partes": 9
+            },
+            {
+              "n": 3,
+              "t": "Método ECF: do diagnóstico ao dashboard",
+              "desc": "Entenda Creator, Expert e Founder, calcule seu ponto de partida com o Hermes e construa a Base ECF completa até o dashboard final.",
+              "url": "hermes-em-operacao/t1e3/",
+              "tipo": "simulacao",
+              "partes": 5
             }
           ]
         }

@@ -113,4 +113,47 @@ A distribuição passou a combinar dez pontos com a leitura explícita “4 de c
 
 ## Situação da distribuição editorial
 
-Creator, Expert e Founder usam a referência saudável de 4, 4 e 2 pontos, respectivamente. Os pontos preenchidos agora mostram a situação de cada perfil: azul quando o valor coincide com a referência, amarelo quando está a um ponto e vermelho quando se distancia dois ou mais. O marcador `⌃` fica sobre o ponto ideal, e o rótulo acessível informa situação e referência sem depender somente da cor.
+Creator, Expert e Founder usam a referência saudável de 4, 4 e 2 pontos, respectivamente. Os pontos preenchidos agora mostram a situação de cada perfil: azul quando o valor coincide com a referência, amarelo quando está a um ponto e vermelho quando se distancia dois ou mais. O marcador `⌃` fica sob o ponto ideal, e o rótulo acessível informa situação e referência sem depender somente da cor.
+
+## Maton AI na etapa Pesquisa
+
+`maton-operations` agora aparece como uma skill 2:3 ao lado de Pesquisa & Avatar,
+com rótulo Maton AI e link para a fonte externa fixada por commit. A antiga ficha
+textual de integração foi removida. O componente explicita que essas são as skills
+que o agente consulta ao executar o prompt. As capas fornecidas foram convertidas nas
+variantes desktop, mobile, wide e card e conferidas no Cloudflare Images. O QA
+local confirmou as duas capas lado a lado no navegador desktop; 99 testes foram
+aprovados, 1 foi ignorado e o check do site terminou com 0 erros. Nenhum deploy
+do site foi executado.
+
+## Onboarding em dois focos por etapa
+
+Cada uma das seis etapas agora começa destacando o item numerado do cabeçalho,
+com a primeira metade da explicação. “Continuar” move o destaque para a pergunta
+e as três figuras, onde aparece a orientação de escolha e o resultado esperado.
+Isso reduz o bloco de texto sobre os cards e explicita primeiro o papel de
+Negócio, Pesquisa, Público, Posicionamento, Voz ou Matéria-prima.
+O contorno ciano dos seis itens é desenhado para dentro do componente, evitando
+que o `overflow` horizontal do cabeçalho corte suas laterais no celular.
+Durante essa explicação específica, a faixa completa sobe acima do fundo escuro:
+o item atual permanece ciano e os outros cinco ficam parcialmente visíveis para
+comunicar que a pessoa está em uma sequência de seis etapas.
+
+## Capítulo 3 da Temporada 1
+
+O trabalho foi reunido em `/assistir/hermes-em-operacao/t1e3/` como uma jornada
+única de cinco partes: explicação do método, geração do prompt de coleta,
+diagnóstico, construção da Base ECF e dashboard final. O capítulo continua até
+a geração da Base de Conhecimento Social Media e as visões Plano, Estratégia e
+Biblioteca.
+
+O relatório do diagnóstico permanece local. A transição guarda apenas o resumo
+validado de Creator, Expert e Founder durante a sessão; assim que uma Base ECF
+existe, esse resumo entra no projeto e é removido do armazenamento temporário.
+O catálogo da série agora mostra dois capítulos interativos na Temporada 1 e
+identifica os materiais como “Capítulo 2” e “Capítulo 3”.
+
+QA em Chrome real cobriu 1440, 768 e 390 px, sem transbordamento horizontal,
+erros de JavaScript ou recursos locais ausentes. As nove capturas estão em
+`design-review/base-dashboard/t1e3/` e mostram método, diagnóstico e início da
+base em cada largura.
