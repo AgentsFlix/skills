@@ -202,3 +202,13 @@ arquivo demonstrativo e o botão de importação. QA em Chrome real confirmou o
 fluxo inteiro, dashboard, ausência de erros de página e ausência de overflow em
 1440, 768 e 390 px. As capturas estão em
 `design-review/base-dashboard/t1e3/*-06-exemplo-ficticio.png`.
+
+## Dashboard final com Base de Conhecimento fictícia
+
+A etapa de retorno da Base de Conhecimento Social Media também oferece um
+preenchimento fictício. O botão cria um Markdown válido com 12 seções, três
+papéis ECF e 18 pautas demonstrativas, valida o arquivo pelo mesmo parser do
+dashboard, salva-o no navegador e abre Plano, Estratégia e Biblioteca. A marca,
+as fontes e o status permanecem identificados como demonstração. QA em Chrome
+real validou o caminho completo em 1440, 768 e 390 px; as capturas estão em
+`design-review/base-dashboard/t1e3/*-07-conhecimento-ficticio.png`.
