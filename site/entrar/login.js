@@ -11,7 +11,10 @@ function show(name) {
 
 function signedIn(session) {
   byId("account-email").textContent = session.user.email || "Conta AgentFlix";
-  byId("continue-link").href = nextPath;
+  const continueLink = byId("continue-link");
+  const hasDestination = nextPath !== "/";
+  continueLink.href = hasDestination ? nextPath : "/conta/";
+  continueLink.textContent = hasDestination ? "Continuar na AgentFlix" : "Abrir minha conta";
   show("signed-in");
 }
 

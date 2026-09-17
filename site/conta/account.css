@@ -1,0 +1,37 @@
+.account-card { min-height: 610px; }
+
+#account-state h1 { margin-bottom: 10px; }
+
+#profile-form { gap: 10px; }
+
+#profile-form label:not(:first-child) { margin-top: 8px; }
+
+#email[readonly] {
+  color: var(--muted);
+  cursor: default;
+}
+
+.field-hint {
+  margin: -2px 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.form-status[data-tone="success"] { color: var(--accent-text); }
+
+.text-link {
+  min-height: 44px;
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.text-link:hover { color: var(--text); }
+
+@media (max-width: 600px) {
+  .account-card { min-height: 590px; }
+}
