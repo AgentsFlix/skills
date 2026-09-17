@@ -1644,6 +1644,9 @@ a {
   font-weight: 700;
 }
 .cb.extra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: auto;
   min-width: 44px;
   padding: 0 11px;
@@ -1651,6 +1654,11 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.42);
   border-radius: 999px;
   background: rgba(20, 20, 20, 0.76);
+}
+.cb.extra svg {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
 }
 .cb.extra .extra-label {
   font-size: 12px;
