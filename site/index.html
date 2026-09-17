@@ -96,7 +96,7 @@
   .count .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
 
   /* loja: conta, cadeado, conteúdo exclusivo, login, aviso */
-  .acct { padding: 8px 14px; background: transparent; border: 1px solid var(--line); border-radius: 4px; color: #d6d6d6; font-size: 11px; letter-spacing: normal; cursor: pointer; flex: 0 0 auto; }
+  .acct { min-height: 44px; padding: 8px 14px; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--line); border-radius: 4px; color: #d6d6d6; font-size: 11px; letter-spacing: normal; text-decoration: none; cursor: pointer; flex: 0 0 auto; }
   .acct:hover, .acct[data-logged="1"] { border-color: var(--accent); color: #fff; }
   .art .lock { position: absolute; top: 10px; right: 10px; z-index: 3; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: rgba(20,22,26,0.82); border: 1px solid rgba(255,255,255,0.18); font-size: 13px; }
   .exclusive { margin: 0 0 26px; padding: 16px; border: 1px solid var(--line); border-radius: 6px; background: rgba(var(--accent-rgb),0.06); }
@@ -420,6 +420,18 @@
 
 <div id="intro" role="dialog" aria-modal="true" aria-label="Abertura AgentFlix" hidden></div>
 
+<div id="app-loading" role="status" aria-live="polite" aria-label="Carregando AgentFlix">
+  <video class="app-loading-video" muted loop playsinline preload="none" aria-hidden="true"
+    data-desktop-src="brand/loading/agentflix-loading-desktop.mp4"
+    data-mobile-src="brand/loading/agentflix-loading-mobile.mp4"></video>
+  <div class="app-loading-shade" aria-hidden="true"></div>
+  <div class="app-loading-content">
+    <img src="brand/simbolo-branco.svg" alt="" width="44" height="44">
+    <p>Carregando sua seleção</p>
+    <span class="app-loading-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+  </div>
+</div>
+
 <div class="page" id="page">
   <header class="top">
     <a class="brand" data-act="home" aria-label="AgentFlix" aria-disabled="true" tabindex="-1">
@@ -441,7 +453,7 @@
       <input id="q" type="search" aria-label="Buscar skill, lenda ou gênero" placeholder="Buscar skill, lenda ou gênero" autocomplete="off" hidden>
     </div>
     <button class="count" data-act="chip" data-filter="Minha lista"><span id="listCount">Minha lista · 0</span></button>
-    <button class="acct" data-act="account" id="acctBtn" hidden>ENTRAR</button>
+    <a class="acct" id="acctBtn" href="/entrar/">ENTRAR</a>
   </header>
 
   <section id="discovery" hidden aria-label="Encontre uma skill"></section>
@@ -458,7 +470,6 @@
     <span>·</span>
     <span id="footTotal">…</span>
     <button class="tapbtn" data-act="copy" data-key="tap" data-text="" data-idle="COPIAR" data-done="COPIADO ✓" id="tapBtn"><span id="tapText">hermes skills tap add …</span><span class="cta-lbl" id="tapLbl">COPIAR</span></button>
-    <button class="replay" data-act="replay">REVER ABERTURA</button>
     <span>·</span>
     <a href="/privacidade.html">PRIVACIDADE</a>
   </footer>
@@ -573,6 +584,40 @@
   let introPhase = "off";   // abertura: off | playing | gate
 
   const $ = (id) => document.getElementById(id);
+  const appLoading = typeof document === "undefined" ? { hide() {}, show() {} } : (() => {
+    const root = $("app-loading"), video = root.querySelector("video"), message = root.querySelector("p");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const source = () => window.matchMedia("(max-width: 700px), (orientation: portrait)").matches ? video.dataset.mobileSrc : video.dataset.desktopSrc;
+    const show = (text = "Carregando sua seleção") => {
+      root.hidden = false;
+      root.classList.remove("is-leaving");
+      message.textContent = text;
+      document.body.setAttribute("aria-busy", "true");
+      if (reducedMotion.matches) return;
+      const src = source();
+      if (video.dataset.activeSrc !== src) {
+        video.dataset.activeSrc = src;
+        video.src = src;
+        video.load();
+      }
+      const play = video.play();
+      if (play) play.catch(() => {});
+    };
+    const hide = () => {
+      if (root.hidden) return;
+      document.body.removeAttribute("aria-busy");
+      root.classList.add("is-leaving");
+      window.setTimeout(() => {
+        root.hidden = true;
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+      }, 180);
+    };
+    show();
+    return { hide, show };
+  })();
+  if (typeof window !== "undefined") window.AgentFlixLoader = appLoading;
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const slugOf = (s) => s.name || (s.path || "").split("/")[1] || "";
   const cmpVer = (a, b) => { const x = a.split(".").map(Number), y = b.split(".").map(Number); for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) - (y[i] || 0); } return 0; };
@@ -1607,6 +1652,7 @@
 
   // ---------- boot ----------
   function showLoadError(msg) {
+    window.AgentFlixLoader?.hide();
     $("hero").className = "hero";
     $("catalog-stage").hidden = true;document.body.classList.add('choosing');
     $("discovery").hidden=false;
@@ -1621,14 +1667,8 @@
     }
     if (!cat) { showLoadError(lastErr && lastErr.message || "sem rede"); return; }
     try { const r = await fetch('vitrine.json', { cache: 'no-cache' }); if(r.ok) DISCOVERY_DATA = await r.json(); } catch(e) { /* Sem curadoria, a orientação deve ser recarregada. */ }
-    try { cat = {...cat, skills: await window.AgentFlixReader.catalogSkills(cat.skills)}; loadCatalog(cat); }
+    try { cat = {...cat, skills: await window.AgentFlixReader.catalogSkills(cat.skills)}; loadCatalog(cat); window.AgentFlixLoader?.hide(); }
     catch (e) { console.error(e); showLoadError("catálogo inválido: " + (e && e.message || e)); return; }
-    // Links de leitura abrem direto, sem vinheta nem gravação de onboarding.
-    if(state.view !== "reading") {
-      let seen = false;
-      try { seen = !!sessionStorage.getItem("agentflix-intro-seen"); sessionStorage.setItem("agentflix-intro-seen", "1"); } catch (e) {}
-      if (!seen && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) playIntro(false);
-    }
     initShop();   // só muda algo se a loja estiver ligada em /api/config
   })();
 })();
