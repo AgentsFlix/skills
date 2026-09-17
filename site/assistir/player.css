@@ -1192,26 +1192,97 @@ a {
 }
 .buybox .minis {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 10px;
   margin: 6px 0 12px;
 }
 .buybox .mini {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  min-width: 0;
+  padding: 0;
   margin: 0;
-}
-.buybox .mini iframe {
-  display: block;
-  width: 100%;
-  aspect-ratio: 9/16;
+  color: inherit;
+  text-align: left;
   border: 0;
   border-radius: 8px;
+}
+.buybox .mini-number {
+  display: none;
+}
+.buybox .mini-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  overflow: hidden;
   background: #000;
 }
-.buybox .mini figcaption {
-  margin-top: 6px;
+.buybox .mini-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.buybox .mini-thumb i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+.buybox .mini-thumb svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
+.buybox .mini-copy {
+  display: block;
+  min-width: 0;
+}
+.buybox .mini-copy b {
+  display: block;
   font-size: 12px;
   line-height: 1.4;
   color: #cfcfcf;
+}
+.buybox .mini-copy small {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--dim);
+}
+.buybox .mini:hover .mini-copy b,
+.buybox .mini:focus-visible .mini-copy b,
+.buybox .mini.on .mini-copy b {
+  color: #fff;
+}
+.buybox .mini:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+.buybox .mini.on .mini-thumb {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+#player.checkout.mini-playing .controls {
+  display: block !important;
+  left: 4%;
+  right: 40%;
+  bottom: 23%;
+  padding: 0 18px 12px;
+}
+#player.checkout.mini-playing #btn-next,
+#player.checkout.mini-playing #btn-buy,
+#player.checkout.mini-playing #btn-eps {
+  display: none;
 }
 .buybox .cmdbox {
   position: relative;
@@ -2068,6 +2139,42 @@ a {
   }
   .buybox h3 {
     font-size: 21px;
+  }
+  .buybox .minis {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 12px;
+  }
+  .buybox .mini {
+    grid-template-columns: 24px minmax(112px, 38%) minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .buybox .mini-number {
+    display: block;
+    color: var(--muted);
+    font-size: 18px;
+    text-align: center;
+  }
+  .buybox .mini-thumb {
+    border-radius: 7px;
+  }
+  .buybox .mini-copy b {
+    font-size: 14px;
+  }
+  #player.checkout.mini-playing .controls {
+    left: 5%;
+    right: 5%;
+    bottom: 62%;
+    padding: 0 8px 5px;
+  }
+  #player.checkout.mini-playing .mtitle,
+  #player.checkout.mini-playing .crow .m,
+  #player.checkout.mini-playing .crow .r {
+    display: none;
   }
   .controls {
     padding: 0 14px 12px;

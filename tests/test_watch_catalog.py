@@ -27,3 +27,10 @@ class WatchCatalog(unittest.TestCase):
             self.assertTrue(row['titulo'].strip())
             if 'genero' in row:
                 self.assertIsInstance(row['genero'], str)
+
+    def test_mini_episodes_use_the_main_player(self):
+        player = (ROOT / 'site/assistir/player.js').read_text()
+        self.assertIn('data-act="mini-video"', player)
+        self.assertIn('function playMiniVideo(i)', player)
+        self.assertIn('state.miniVideo?.uid || curEp().uid', player)
+        self.assertNotIn('<figure class="mini"><iframe', player)

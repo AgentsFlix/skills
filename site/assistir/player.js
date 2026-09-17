@@ -41,6 +41,7 @@
     season: 0,
     ep: 0,
     hls: null,
+    playingUid: null,
     uiTimer: null,
     drawer: false,
     pop: false,
@@ -60,6 +61,8 @@
     escolhaTimer: null,
     escolhaVista: {},
     pausou: {},
+    miniVideo: null,
+    miniResumeAt: null,
   };
   const video = $("video");
   const curEp = () => SERIE.seasons[state.season].eps[state.ep];
@@ -277,6 +280,7 @@
       state.hls.destroy();
       state.hls = null;
     }
+    state.playingUid = uid;
     $("err").hidden = true;
     $("spin").hidden = !autoplay;
     const onReady = () => {
@@ -314,7 +318,7 @@
   function resetOverlays() {
     $("postplay").hidden = true;
     $("preplay").hidden = true;
-    closeCheckout();
+    closeCheckout({ restoreMini: false });
     fecharEscolha();
     $("player").classList.remove("pp", "pre");
     clearInterval(state.ppTimer);
@@ -430,7 +434,7 @@
         : a.tipo === "passo"
           ? "Faça o passo"
           : a.tipo === "videos"
-            ? "Veja os vídeos ao lado"
+            ? "Escolha um mini episódio"
             : a.tipo === "link" && !a.indicacao
               ? "Abra o link ao lado"
               : "Escolha o plano";
@@ -439,18 +443,7 @@
       : `<i></i><span>${acao} quando quiser${a.pausar_em !== undefined ? `; o vídeo pausa em ${fmt(a.pausar_em)}` : ""}.</span>`;
     $("vidcap").hidden = false;
     if (a.tipo === "videos") {
-      // vídeos curtos ao lado (inserts de celular): o player pronto do Stream, um por clipe
-      const vids = (a.videos || [])
-        .map(
-          (v, i) =>
-            `<figure class="mini"><iframe src="https://${SERIE.customer}.cloudflarestream.com/${esc(v.uid)}/iframe?preload=metadata&muted=true&letterboxColor=%23000000" loading="lazy" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen title="${esc(v.label || "vídeo " + (i + 1))}"></iframe><figcaption>${i + 1}. ${esc(v.label || "")}</figcaption></figure>`,
-        )
-        .join("");
-      $("checkout").innerHTML =
-        `<div class="k">T${sN(state.season)}:E${eN(state.season, state.ep)} · ${fmt(c.t)} · VÍDEOS</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p><div class="minis">${vids}</div>
-      ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
-      <div class="psel-row" style="margin-top:18px"><button class="btn continuar" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
-      <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Pular este passo")} ▶</button>`;
+      renderVideoCheckout(k);
       $("checkout").hidden = false;
       return;
     }
@@ -496,18 +489,89 @@
     $("vidcap").innerHTML = `<i></i><span><b>Pausado.</b> ${msg}</span>`;
     $("vidcap").hidden = false;
   }
+  function clearMiniMode() {
+    state.miniVideo = null;
+    state.miniResumeAt = null;
+    $("player").classList.remove("mini-playing");
+  }
+  function restoreEpisodeVideo(startAt, autoplay = false) {
+    const e = curEp();
+    clearMiniMode();
+    $("ctl-title").textContent = SERIE.name;
+    $("ctl-ep").textContent = `T${sN(state.season)}:E${eN(state.season, state.ep)} ${e.t}`;
+    $("mtitle").innerHTML =
+      `<b>${esc(SERIE.name)}</b> · T${sN(state.season)}:E${eN(state.season, state.ep)} ${esc(e.t)}`;
+    video.poster = thumb(e.uid, 720);
+    paintMarks();
+    attach(e.uid, startAt, autoplay);
+  }
+  function renderVideoCheckout(k) {
+    const e = curEp();
+    const c = chapters(e)[k];
+    const a = c.acao;
+    const vids = (a.videos || [])
+      .map((v, i) => {
+        const active = state.miniVideo?.index === i;
+        const label = v.label || `Mini episódio ${i + 1}`;
+        return `<button type="button" class="mini ${active ? "on" : ""}" data-act="mini-video" data-i="${i}" aria-pressed="${active}" aria-label="Reproduzir ${i + 1}. ${esc(label)} no player principal"><span class="mini-number">${i + 1}</span><span class="mini-thumb"><img src="${thumb(v.uid, 360)}" alt="" loading="lazy"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></i></span><span class="mini-copy"><b>${esc(label)}</b><small>${active ? "Reproduzindo no player" : "Mini episódio"}</small></span></button>`;
+      })
+      .join("");
+    $("checkout").innerHTML =
+      `<div class="k">T${sN(state.season)}:E${eN(state.season, state.ep)} · ${fmt(c.t)} · VÍDEOS</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p><div class="minis">${vids}</div>
+    ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
+    <div class="psel-row" style="margin-top:18px"><button class="btn continuar" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
+    <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Pular este passo")} ▶</button>`;
+  }
+  function playMiniVideo(i) {
+    const k = state.checkout;
+    const a = k === null ? null : chapters(curEp())[k]?.acao;
+    const item = a?.tipo === "videos" ? a.videos?.[i] : null;
+    if (!item) return;
+    if (!state.miniVideo)
+      state.miniResumeAt = Math.min(video.currentTime || 0, curEp().d || Infinity);
+    state.miniVideo = {
+      uid: item.uid,
+      label: item.label || `Mini episódio ${i + 1}`,
+      index: i,
+    };
+    $("player").classList.add("mini-playing", "ui");
+    $("ctl-title").textContent = a.titulo || "Perguntas e respostas da turma";
+    $("ctl-ep").textContent = `${i + 1}. ${state.miniVideo.label}`;
+    $("mtitle").innerHTML = `<b>${esc(a.titulo || "Perguntas e respostas da turma")}</b> · ${i + 1}. ${esc(state.miniVideo.label)}`;
+    $("marks").innerHTML = "";
+    video.poster = thumb(item.uid, 720);
+    $("vidcap").innerHTML = `<i></i><span><b>Reproduzindo.</b> ${esc(state.miniVideo.label)} no player principal.</span>`;
+    $("vidcap").hidden = false;
+    renderVideoCheckout(k);
+    attach(item.uid, 0, true);
+    showUI(true);
+  }
   function continueCheckout() {
     const a = chapters(curEp())[state.checkout]?.acao;
-    closeCheckout();
-    if (a?.encerrar) { endOfEpisode(true); return; }
-    if (Number.isFinite(a?.continuar_em)) video.currentTime = a.continuar_em;
-    video.play().catch(() => {});
+    const resumeAt = Number.isFinite(a?.continuar_em)
+      ? a.continuar_em
+      : state.miniResumeAt;
+    const wasMini = !!state.miniVideo;
+    closeCheckout({ restoreMini: false });
+    if (a?.encerrar) {
+      endOfEpisode(true);
+      return;
+    }
+    if (wasMini) restoreEpisodeVideo(resumeAt || 0, true);
+    else {
+      if (Number.isFinite(a?.continuar_em)) video.currentTime = a.continuar_em;
+      video.play().catch(() => {});
+    }
   }
-  function closeCheckout() {
+  function closeCheckout({ restoreMini = true } = {}) {
+    const wasMini = !!state.miniVideo;
+    const resumeAt = state.miniResumeAt;
     state.checkout = null;
     $("player").classList.remove("checkout");
     $("checkout").hidden = true;
     $("vidcap").hidden = true;
+    if (wasMini && restoreMini) restoreEpisodeVideo(resumeAt || 0, false);
+    else if (wasMini) clearMiniMode();
   }
   async function copiarPrompt(k) {
     const e = curEp();
@@ -675,7 +739,12 @@
     }
   }
   function saveProgress(force) {
-    if (!SERIE) return;
+    if (
+      !SERIE ||
+      state.miniVideo ||
+      (state.playingUid && state.playingUid !== curEp().uid)
+    )
+      return;
     const now = Date.now();
     if (!force && now - state.lastSave < 4000) return;
     state.lastSave = now;
@@ -692,7 +761,10 @@
       return;
     }
     if (e.partes?.length && confirmed === true) store.set(`agentflix-finished-${e.uid}`, true);
-    store.set(progKey(e.uid), { t: video.duration || e.d, at: Date.now() });
+    store.set(progKey(e.uid), {
+      t: confirmed === true ? e.d : video.duration || e.d,
+      at: Date.now(),
+    });
     if (e.escolha && e.escolha.t === undefined) {
       abrirEscolha(e);
       return;
@@ -954,6 +1026,7 @@
   });
   video.addEventListener("timeupdate", () => {
     paint();
+    if (state.miniVideo) return;
     saveProgress(false);
     onChapter();
     onPausaAgendada();
@@ -962,13 +1035,26 @@
   // Check lesson boundaries for every displayed frame, including between timeupdate events.
   if (video.requestVideoFrameCallback) {
     const watchFrame = () => {
-      if (SERIE && curEp()?.ch?.some(c => c.acao?.fim_parte) && !video.paused) onChapter();
+      if (
+        SERIE &&
+        !state.miniVideo &&
+        curEp()?.ch?.some((c) => c.acao?.fim_parte) &&
+        !video.paused
+      )
+        onChapter();
       video.requestVideoFrameCallback(watchFrame);
     };
     video.requestVideoFrameCallback(watchFrame);
   }
   video.addEventListener("progress", paint);
-  video.addEventListener("ended", endOfEpisode);
+  video.addEventListener("ended", () => {
+    if (state.miniVideo) {
+      setPaused(true);
+      showUI(true);
+      return;
+    }
+    endOfEpisode();
+  });
   video.addEventListener("volumechange", () => {
     $("btn-mute").style.opacity = video.muted || video.volume === 0 ? 0.5 : 1;
   });
@@ -1039,7 +1125,7 @@
         openDrawer(false);
         return;
       }
-      if (state.checkout !== null || !$("preplay").hidden) return;
+      if ((state.checkout !== null && !state.miniVideo) || !$("preplay").hidden) return;
       toggle();
     } else if (a === "seek") seek(+el.dataset.d);
     else if (a === "mute") {
@@ -1074,13 +1160,13 @@
       if (state.checkout !== null) openCheckout(state.checkout);
     } else if (a === "ext") goExternal(el.dataset.url, +el.dataset.k);
     else if (a === "copiar-prompt") copiarPrompt(+el.dataset.k);
+    else if (a === "mini-video") playMiniVideo(+el.dataset.i);
     else if (a === "passo-feito") {
       const e = curEp();
       markDoneStore(e.uid, +el.dataset.k);
       paintMarks();
       window.clar?.("passo_feito", { serie: SERIE.slug });
-      closeCheckout();
-      video.play().catch(() => {});
+      continueCheckout();
     } else if (a === "checkout-skip") {
       continueCheckout();
     } else if (a === "checkout-continuar") {
@@ -1167,7 +1253,7 @@
     }
     if (ev.key === " ") {
       ev.preventDefault();
-      if (state.checkout !== null || !$("preplay").hidden) return;
+      if ((state.checkout !== null && !state.miniVideo) || !$("preplay").hidden) return;
       toggle();
     } else if (ev.key === "ArrowLeft") seek(-10);
     else if (ev.key === "ArrowRight") seek(10);
@@ -1209,7 +1295,7 @@
   rail.addEventListener("mousemove", (ev) => {
     const t = railT(ev.clientX);
     $("pv").style.left = (t / (video.duration || curEp().d)) * 100 + "%";
-    $("pv-img").src = thumb(curEp().uid, 180, t);
+    $("pv-img").src = thumb(state.miniVideo?.uid || curEp().uid, 180, t);
     $("pv-time").textContent = fmt(t);
     if (rail.classList.contains("drag")) {
       video.currentTime = t;
