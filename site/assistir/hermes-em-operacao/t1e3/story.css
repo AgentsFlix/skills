@@ -1,0 +1,58 @@
+/* The first lesson follows the author's story, with each image beside its context. */
+.story-chapters{margin-top:62px}
+.story-chapter{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:70px;align-items:center;margin:0 0 80px}
+.story-chapters .profile-story{border:0;border-radius:0;background:none;overflow:visible}
+.story-evidence{min-width:0}
+.story-chapters .photo-button{border:1px solid var(--line);border-radius:16px}
+.story-chapters .photo-button img{height:auto;max-height:none;width:100%;object-fit:contain}
+.evidence-caption{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted);margin-top:14px;flex-wrap:wrap}
+.evidence-caption b{font-weight:400;color:var(--text)}
+.story-narration h2,.story-turn h2,.expectation-chapter h2,.story-reach h2{font-size:clamp(28px,3.3vw,42px);letter-spacing:-1.3px;line-height:1.13;margin:12px 0 24px}
+.story-narration>p:not(.eyebrow):not(.source-note){font-size:18px;line-height:1.65;color:var(--muted);margin:18px 0;max-width:540px}
+.story-narration>p.story-emphasis{color:var(--text);font-size:22px;font-weight:600;margin-top:28px}
+.television-chapter{grid-template-columns:minmax(0,1fr) minmax(0,.75fr);padding:50px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.television-photo{max-width:350px;justify-self:center}
+.television-numbers{display:flex;gap:50px;margin:32px 0}
+.television-numbers strong{display:block;font-size:44px;line-height:1.2;letter-spacing:-1px;font-weight:600}
+.television-numbers span{display:block;color:var(--muted);font-size:14px;margin-top:5px}
+.story-narration blockquote{font-size:26px;line-height:1.4;letter-spacing:-.6px;border-left:2px solid var(--accent);margin:35px 0 24px;padding-left:24px;max-width:540px}
+.story-turn{margin:0 0 64px;text-align:center}
+.story-turn>p:not(.eyebrow){max-width:720px;margin:18px auto;font-size:18px;line-height:1.6;color:var(--muted)}
+.offer-attempts{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:30px auto;max-width:950px;text-align:left}
+.offer-attempts>div{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px 25px;border:1px solid var(--line);border-radius:16px;padding:26px 30px;background:var(--panel)}
+.offer-attempts>div>span:first-child{grid-column:1/-1;color:var(--muted);font-size:13px}
+.offer-attempts h3{font-size:21px;font-weight:600;margin:0}
+.offer-attempts .attempt-arrow{color:var(--muted);font-size:26px}
+.offer-attempts strong{grid-column:1/-1;font-size:25px;letter-spacing:-.5px;font-weight:600;margin-top:10px}
+.expectation-chapter{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;padding:30px 0 55px;margin-bottom:75px;border-bottom:1px solid var(--line)}
+.expectation-map>span{font-size:14px;color:var(--muted)}
+.expectation-map>div{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0 20px}
+.expectation-map b,.conversion-path span{padding:8px 16px;border:1px solid var(--line);border-radius:30px;font-size:16px;font-weight:400}
+.expectation-map p{font-size:20px;margin:0}
+.business-result{padding:22px 0;margin:24px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.business-result strong{display:block;color:var(--accent-text);font-size:clamp(38px,4.5vw,58px);font-weight:600;letter-spacing:-2px;line-height:1.2}
+.business-result>span{display:block;font-size:14px;color:var(--muted);margin-top:6px}
+.conversion-path{display:flex;gap:8px;flex-wrap:wrap}
+.conversion-path span{font-size:14px;padding:5px 12px}
+.story-reach{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin:0 0 70px;padding-top:45px;border-top:1px solid var(--line)}
+.story-reach>div>p:not(.eyebrow){color:var(--muted);font-size:16px;max-width:400px}
+.story-comparison>div+div{margin-top:25px}
+.story-comparison>div>div:first-child{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.story-comparison span{font-size:14px}
+.story-comparison strong{font-size:28px;font-weight:600;white-space:nowrap}
+.story-data-track{height:8px;background:#303030;border-radius:5px;margin:10px 0 8px;overflow:hidden}
+.story-data-track i{display:block;height:100%;background:#a5aaa9;border-radius:5px;min-width:3px}
+.story-comparison>div:last-child .story-data-track i{background:var(--accent)}
+.story-comparison small{color:var(--muted);font-size:13px}
+.story-trust{padding:55px 0 20px;margin:0}
+.story-trust h2{font-size:36px;margin:8px 0 24px}
+.trust-narrative{max-width:690px}
+.trust-narrative p{font-size:18px;line-height:1.65;color:var(--muted);margin:0 0 20px}
+.story-trust blockquote{max-width:720px;font-size:28px;line-height:1.4;letter-spacing:-.6px;margin:15px 0 0}
+.coins-bridge{max-width:810px;color:var(--muted);font-size:16px;line-height:1.6;margin:22px 0}
+.scenario-story p{font-size:16px;line-height:1.6;color:var(--muted);margin:0 0 14px}
+.scenario-story p:last-child{margin-bottom:0;color:var(--text)}
+.method .treatment-heading p{max-width:680px;line-height:1.6}
+@media(max-width:1050px){.story-chapter,.expectation-chapter,.story-reach{gap:35px}.story-narration>p:not(.eyebrow):not(.source-note){font-size:16px}.story-narration h2,.story-turn h2,.expectation-chapter h2,.story-reach h2{font-size:30px}.television-numbers{gap:25px}.television-numbers strong{font-size:36px}.offer-attempts h3{font-size:19px}.offer-attempts>div{padding:22px}.story-narration blockquote{font-size:23px}}
+@media(max-width:760px){.story-chapter{grid-template-columns:1fr;gap:25px;margin-bottom:50px}.story-evidence{max-width:520px;width:100%;justify-self:center}.story-chapters .photo-button{max-width:520px}.story-narration h2{font-size:32px}.story-narration>p:not(.eyebrow):not(.source-note){max-width:none}.television-chapter{grid-template-columns:1fr 1fr;gap:24px;padding:32px 0}.television-chapter .story-narration{grid-column:1/-1}.television-photo{grid-column:1/-1;width:100%;max-width:320px!important}.television-numbers{gap:40px}.expectation-chapter,.story-reach{grid-template-columns:1fr;gap:15px;margin-bottom:50px}.story-turn>p:not(.eyebrow){font-size:16px}.offer-attempts{gap:14px}.offer-attempts>div{padding:20px}.offer-attempts h3{font-size:18px}.offer-attempts strong{font-size:22px}.story-reach{padding-top:30px}.trust-narrative p{font-size:16px}.story-trust blockquote{font-size:25px}.story-trust h2{font-size:30px}}
+@media(max-width:560px){.story-chapters{margin-top:42px}.story-turn{text-align:left;margin-bottom:38px}.offer-attempts{grid-template-columns:1fr;margin:24px 0}.offer-attempts>div{grid-template-columns:1fr auto}.offer-attempts strong{margin-top:0}.expectation-chapter{padding:5px 0 35px;margin-bottom:42px}.expectation-map b{font-size:14px;padding:7px 13px}.story-comparison span{font-size:12px}.story-comparison strong{font-size:26px}.story-trust{padding-top:35px}.story-trust>.eyebrow{font-size:10px;max-width:290px}.story-narration blockquote{padding-left:18px}.television-numbers strong{font-size:36px}.evidence-caption{font-size:12px}}

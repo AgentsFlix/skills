@@ -161,6 +161,7 @@
     const re = SERIE.seasons[r.season].eps[r.ep];
     const p = !re || r.fresh ? 0 : prog(re);
     const nEps = SERIE.seasons.reduce((a, s) => a + s.eps.length, 0);
+    const nChapters = SERIE.seasons.reduce((a, s) => a + (s.atividades?.length || 0), 0);
     document.title = `${SERIE.name} · AgentFlix`;
     const responsiveCover = Boolean(SERIE.cover_mobile);
     $("tp-hero")
@@ -175,7 +176,7 @@
       ? `<source media="(max-width: 600px)" srcset="${esc(SERIE.cover_mobile)}" width="1024" height="1536"><img src="${esc(SERIE.cover)}" alt="" width="1536" height="1024" fetchpriority="high">`
       : "";
     $("tp-kick").textContent =
-      SERIE.seasons.some(s => s.atividades?.length) ? `${SERIE.ano} · Temporada 1 · Episódio interativo` : SERIE.em_breve ? `${SERIE.ano} · Temporada 1 · Em breve` : `${SERIE.badge} · ${SERIE.ano} · ${SERIE.seasons.length} temporadas disponíveis · ${nEps} episódios · HD`;
+      nChapters ? `${SERIE.ano} · Temporada 1 · ${nChapters} ${nChapters === 1 ? 'capítulo interativo' : 'capítulos interativos'}` : SERIE.em_breve ? `${SERIE.ano} · Temporada 1 · Em breve` : `${SERIE.badge} · ${SERIE.ano} · ${SERIE.seasons.length} temporadas disponíveis · ${nEps} episódios · HD`;
     $("tp-name").innerHTML =
       `${esc(SERIE.name)} <span>${esc(SERIE.sub)}</span>`;
     $("tp-resume-label").textContent =
@@ -220,7 +221,7 @@
   function renderMaterials() {
     const seasons = SERIE.seasons.filter(s => s.atividades?.length);
     $("tp-materials").innerHTML = seasons.length
-      ? seasons.map(s => `<section class="material-season"><h3>Temporada ${s.n}</h3><ul class="material-list">${s.atividades.map(e => `<li><a class="material-card" href="${esc(AgentFlixWatchModel.assetUrl(e.url))}"><svg class="material-folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M3 9h18"/></svg><span class="material-copy"><span class="material-kicker">Episódio ${e.n}${e.partes ? ` · ${e.partes} partes` : ""}</span><strong>${esc(e.t)}</strong><span class="material-description">${esc(e.desc)}</span></span><svg class="material-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a></li>`).join("")}</ul></section>`).join("")
+      ? seasons.map(s => `<section class="material-season"><h3>Temporada ${s.n}</h3><ul class="material-list">${s.atividades.map(e => `<li><a class="material-card" href="${esc(AgentFlixWatchModel.assetUrl(e.url))}"><svg class="material-folder" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/><path d="M3 9h18"/></svg><span class="material-copy"><span class="material-kicker">Capítulo ${e.n}${e.partes ? ` · ${e.partes} partes` : ""}</span><strong>${esc(e.t)}</strong><span class="material-description">${esc(e.desc)}</span></span><svg class="material-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a></li>`).join("")}</ul></section>`).join("")
       : '<p class="materials-empty">Os materiais desta série ainda não estão disponíveis.</p>';
   }
   function renderSeasonSel() {

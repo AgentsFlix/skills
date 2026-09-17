@@ -19,6 +19,8 @@ const data = JSON.parse(
 const upcoming = data.series.find(s => s.slug === "hermes-em-operacao");
 assert.ok(model.available(data).some(s => s === upcoming));
 assert.equal(model.episodes(upcoming).length, 1);
+assert.deepEqual(upcoming.seasons[0].atividades.map(item => item.n), [2, 3]);
+assert.equal(upcoming.seasons[0].atividades[1].url, 'hermes-em-operacao/t1e3/');
 assert.equal(model.episodeNumber(model.episodes(upcoming)[0].episode, 0), 2);
 assert.equal(model.continuing({series:[upcoming]}, () => null).length, 0);
 assert.equal(model.available({series:[{...upcoming, em_breve: false, seasons: [{n:1, eps:[]}]}]}).length, 0);
