@@ -91,6 +91,11 @@
   ],
   "redirects": [
     {
+      "source": "/aulas/hermes-em-operacao/t1/e3/",
+      "destination": "/assistir/hermes-em-operacao/t1e3/",
+      "permanent": true
+    },
+    {
       "source": "/aulas/hermes-em-operacao/t1/e3",
       "destination": "/assistir/hermes-em-operacao/t1e3/",
       "permanent": true
