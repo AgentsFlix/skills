@@ -30,7 +30,13 @@ class WatchCatalog(unittest.TestCase):
 
     def test_mini_episodes_use_the_main_player(self):
         player = (ROOT / 'site/assistir/player.js').read_text()
+        page = (ROOT / 'site/assistir/index.html').read_text()
+        css = (ROOT / 'site/assistir/player.css').read_text()
         self.assertIn('data-act="mini-video"', player)
         self.assertIn('function playMiniVideo(i)', player)
         self.assertIn('state.miniVideo?.uid || curEp().uid', player)
         self.assertNotIn('<figure class="mini"><iframe', player)
+        self.assertIn('id="btn-extra"', page)
+        self.assertIn('function openExtra()', player)
+        self.assertIn('data-act="extra-close"', player)
+        self.assertIn('grid-template-columns: 28px minmax(128px, 42%) minmax(0, 1fr)', css)

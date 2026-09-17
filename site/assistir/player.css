@@ -1192,24 +1192,29 @@ a {
 }
 .buybox .minis {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
-  margin: 6px 0 12px;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 12px 0;
 }
 .buybox .mini {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 7px;
+  grid-template-columns: 28px minmax(128px, 42%) minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
   min-width: 0;
-  padding: 0;
+  padding: 14px 0;
   margin: 0;
   color: inherit;
   text-align: left;
   border: 0;
-  border-radius: 8px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
 }
 .buybox .mini-number {
-  display: none;
+  display: block;
+  color: var(--muted);
+  font-size: 18px;
+  text-align: center;
 }
 .buybox .mini-thumb {
   position: relative;
@@ -1250,7 +1255,7 @@ a {
 }
 .buybox .mini-copy b {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
   color: #cfcfcf;
 }
@@ -1280,6 +1285,7 @@ a {
   padding: 0 18px 12px;
 }
 #player.checkout.mini-playing #btn-next,
+#player.checkout.mini-playing #btn-extra,
 #player.checkout.mini-playing #btn-buy,
 #player.checkout.mini-playing #btn-eps {
   display: none;
@@ -1636,6 +1642,34 @@ a {
   font-family: var(--sans);
   font-size: 14px;
   font-weight: 700;
+}
+.cb.extra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 44px;
+  padding: 0 11px;
+  gap: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.76);
+}
+.cb.extra svg {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+}
+.cb.extra .extra-label {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cb.extra .extra-short {
+  display: none;
+}
+.buybox .extra-return {
+  margin-top: 18px;
 }
 .cb.on::after {
   content: "";
@@ -2141,8 +2175,6 @@ a {
     font-size: 21px;
   }
   .buybox .minis {
-    grid-template-columns: 1fr;
-    gap: 0;
     margin-top: 12px;
   }
   .buybox .mini {
@@ -2199,6 +2231,15 @@ a {
   }
   .cb.hide-m {
     display: none;
+  }
+  .cb.extra {
+    padding-inline: 9px;
+  }
+  .cb.extra .extra-full {
+    display: none;
+  }
+  .cb.extra .extra-short {
+    display: inline;
   }
   .postplay {
     grid-template-columns: 1fr;
