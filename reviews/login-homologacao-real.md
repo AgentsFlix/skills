@@ -7,8 +7,7 @@ mágico real no domínio AgentFlix. A loja continua desligada.
 
 ## Origem
 
-- fonte: `AgentsFlix/agentsflix:apps/web`;
-- registro privado: `AgentsFlix/agentsflix#103`;
+- fonte: componente Web autoritativo do AgentFlix;
 - banco: migration de perfis aplicada e verificada no projeto Supabase AgentFlix.
 
 ## Escopo público
