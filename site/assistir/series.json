@@ -1178,6 +1178,145 @@
                 "alt": "Uma chef prepara um miojo ao lado da pergunta: O que um miojo tem a ver com automação? HERMES EM OPERAÇÃO, temporada 1, episódio 2.",
                 "approved": true
               }
+            },
+            {
+              "n": 3,
+              "aula": 3,
+              "t": "Construa o segundo cérebro da sua marca",
+              "d": 3100.04,
+              "uid": "87e758ae5a88f040dae6ea30eac6a59c",
+              "desc": "Entenda Creator, Expert e Founder, calcule seu ponto de partida com o Hermes e construa a Base ECF completa até o dashboard final.",
+              "share_url": "/aulas/hermes-em-operacao/t1/e3/",
+              "preview": {
+                "approved": true,
+                "title": "Construa o segundo cérebro da sua marca",
+                "description": "Entenda Creator, Expert e Founder, calcule seu ponto de partida com o Hermes e construa a Base ECF completa até o dashboard final.",
+                "image": "/assistir/hermes-em-operacao/aula-3/preview-whatsapp-v1.jpg",
+                "alt": "HERMES EM OPERAÇÃO. Construa o segundo cérebro da sua marca. Creator, Expert e Founder."
+              },
+              "partes": [
+                {
+                  "n": 1,
+                  "source_start": 524,
+                  "source_end": 3517,
+                  "start": 0,
+                  "end": 2993,
+                  "titulo": "O que a gente vai fazer hoje"
+                },
+                {
+                  "n": 2,
+                  "source_start": 3798,
+                  "source_end": 3811,
+                  "start": 2993,
+                  "end": 3006,
+                  "titulo": "Confira o diagnóstico ECF"
+                },
+                {
+                  "n": 3,
+                  "source_start": 4016,
+                  "source_end": 4110,
+                  "start": 3006,
+                  "end": 3100,
+                  "titulo": "Já tenho o relatório",
+                  "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e3/#metodo-4",
+                  "cta": "Já tenho o relatório"
+                }
+              ],
+              "ch": [
+                {
+                  "t": 0,
+                  "n": "O que a gente vai fazer hoje",
+                  "parte": 1
+                },
+                {
+                  "t": 2993,
+                  "n": "Confira o diagnóstico ECF",
+                  "parte": 2
+                },
+                {
+                  "t": 3005.95,
+                  "n": "Já tenho o relatório",
+                  "parte": 3,
+                  "acao": {
+                    "tipo": "link",
+                    "parar": true,
+                    "indicacao": false,
+                    "label": "Já tenho o relatório",
+                    "titulo": "Clique em Já tenho o relatório",
+                    "cta": "Abrir a tela do método ECF",
+                    "nota": "Use a tela citada na aula e continue o vídeo quando estiver pronto.",
+                    "opcoes": [
+                      {
+                        "label": "Já tenho o relatório",
+                        "url": "https://agentsflix.ai/assistir/hermes-em-operacao/t1e3/#metodo-4"
+                      }
+                    ],
+                    "continuar_em": 3006,
+                    "pular": "A tela já está aberta, continuar o vídeo"
+                  }
+                },
+                {
+                  "t": 3099.99,
+                  "n": "Perguntas e respostas",
+                  "acao": {
+                    "tipo": "videos",
+                    "parar": true,
+                    "encerrar": true,
+                    "humano": true,
+                    "label": "Perguntas e respostas",
+                    "titulo": "Perguntas e respostas da turma",
+                    "nota": "Escolha as dúvidas que ajudam no seu caso. Cada resposta é um mini episódio dentro desta aula.",
+                    "videos": [
+                      {
+                        "uid": "2e15772277fae5301efdeb2b0bcba95b",
+                        "label": "Como construir a Base ECF"
+                      },
+                      {
+                        "uid": "de2ed6c5d7f8ce3e8842bac839744959",
+                        "label": "Como visualizar, aprovar e publicar os conteúdos"
+                      },
+                      {
+                        "uid": "96e06054be2d726ce41197195c6d1edd",
+                        "label": "Um profile para cada cliente ou marca?"
+                      },
+                      {
+                        "uid": "51c32437b3c862f5f0b70f3b157d836e",
+                        "label": "Profile, bot e Telegram: qual é a diferença?"
+                      },
+                      {
+                        "uid": "49191f88ccd2af74eeec18795f89ba18",
+                        "label": "Como o profile default orquestra os outros?"
+                      },
+                      {
+                        "uid": "8a9e5671322eeaebcec1007d03cf7cac",
+                        "label": "Isso pode virar um serviço?"
+                      },
+                      {
+                        "uid": "69b435a745c502f46c2f158796fe97a2",
+                        "label": "Como separar sistemas, acessos e credenciais?"
+                      },
+                      {
+                        "uid": "95af2d0c3b8827165593ea100c6074c4",
+                        "label": "Como colocar credenciais no profile certo?"
+                      },
+                      {
+                        "uid": "fbb5ae8a21c4c34fa1b27beed6517587",
+                        "label": "Vale usar uma skill de documentação do Hermes?"
+                      },
+                      {
+                        "uid": "5ed64011e6bb36f482acb8aa6936640d",
+                        "label": "Como criar um novo profile na VPS?"
+                      },
+                      {
+                        "uid": "02c662f5799d46832c74300429464740",
+                        "label": "O que é o AgentFlix?"
+                      }
+                    ],
+                    "cta": "Concluir episódio",
+                    "pular": "Concluir sem assistir às perguntas"
+                  }
+                }
+              ]
             }
           ],
           "atividades": [
