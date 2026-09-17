@@ -18,10 +18,20 @@ const data = JSON.parse(
 );
 const upcoming = data.series.find(s => s.slug === "hermes-em-operacao");
 assert.ok(model.available(data).some(s => s === upcoming));
-assert.equal(model.episodes(upcoming).length, 1);
+assert.equal(model.episodes(upcoming).length, 2);
+assert.deepEqual(
+  Array.from(model.episodes(upcoming), ({ episode }, index) =>
+    model.episodeNumber(episode, index),
+  ),
+  [2, 3],
+);
 assert.deepEqual(upcoming.seasons[0].atividades.map(item => item.n), [2, 3]);
 assert.equal(upcoming.seasons[0].atividades[1].url, 'hermes-em-operacao/t1e3/');
 assert.equal(model.episodeNumber(model.episodes(upcoming)[0].episode, 0), 2);
+const operationEpisode = model.episodes(upcoming)[1].episode;
+assert.equal(operationEpisode.t, "Construa o segundo cérebro da sua marca");
+assert.equal(operationEpisode.ch.at(-1).acao.tipo, "videos");
+assert.equal(operationEpisode.ch.at(-1).acao.videos.length, 11);
 assert.equal(model.continuing({series:[upcoming]}, () => null).length, 0);
 assert.equal(model.available({series:[{...upcoming, em_breve: false, seasons: [{n:1, eps:[]}]}]}).length, 0);
 data.series = data.series.filter(s => s !== upcoming);
@@ -138,7 +148,17 @@ assert.equal(model.choiceTarget(numbered, {temporada: 1, episodio: 1}), null);
 
 const lateProgress = key => key === `agentflix-prog-${upcoming.seasons[0].eps[0].uid}` ? {t:2683, at:1} : null;
 assert.equal(resume(upcoming, lateProgress).fresh, false, "última parte não é concluída por atingir 95%");
-assert.equal(resume(upcoming, key => key.startsWith('agentflix-finished-') ? true : lateProgress(key)).finished, true);
+assert.deepEqual(
+  resume(upcoming, key => key.startsWith('agentflix-finished-') ? true : lateProgress(key)),
+  {season: 0, ep: 1, fresh: true},
+  "concluir T1E2 abre o novo T1E3",
+);
+const allOperationDone = key => {
+  if (key.startsWith('agentflix-finished-')) return true;
+  if (key === `agentflix-prog-${upcoming.seasons[0].eps[1].uid}`) return {t: 3100, at: 2};
+  return lateProgress(key);
+};
+assert.equal(resume(upcoming, allOperationDone).finished, true);
 
 const shared = {...numbered, slug: 'a-serie'};
 shared.seasons[0].eps[0].share_url = '/aulas/a-serie/t1/e2/';

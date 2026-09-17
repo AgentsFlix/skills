@@ -21,6 +21,18 @@ class LessonPagesTest(unittest.TestCase):
     def test_generated_pages_are_current(self):
         self.assertGreater(builder.build(ROOT, check=True), 0)
 
+    def test_t1e3_is_a_player_page_and_keeps_the_questions(self):
+        episode = next(item for item in self.season['eps'] if item.get('n') == 3)
+        self.assertEqual(episode['t'], 'Construa o segundo cérebro da sua marca')
+        self.assertEqual(episode['share_url'], '/aulas/hermes-em-operacao/t1/e3/')
+        self.assertEqual(episode['ch'][-1]['acao']['tipo'], 'videos')
+        self.assertEqual(len(episode['ch'][-1]['acao']['videos']), 11)
+
+        vercel = json.loads((ROOT / 'site/vercel.json').read_text())
+        redirected = {item['source'] for item in vercel.get('redirects', [])}
+        self.assertNotIn('/aulas/hermes-em-operacao/t1/e3', redirected)
+        self.assertNotIn('/aulas/hermes-em-operacao/t1/e3/', redirected)
+
     def test_new_video_requires_approved_preview(self):
         for changes in ({'preview': None}, {'preview': {'approved': False}}):
             with self.subTest(changes=changes):
