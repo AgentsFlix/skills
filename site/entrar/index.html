@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#141414">
+  <meta name="description" content="Entre na AgentFlix por um link seguro enviado ao seu e-mail.">
+  <title>Entrar | AgentFlix</title>
+  <link rel="icon" href="../brand/favicon-dark.ico">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <header class="login-header">
+    <a class="brand" href="/" aria-label="Voltar para a AgentFlix">
+      <img src="../brand/horizontal-transparente-dark.svg" alt="AgentFlix">
+    </a>
+    <a class="back" href="/">Voltar à vitrine</a>
+  </header>
+
+  <main class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+      <div class="eyebrow">SUA CONTA</div>
+
+      <div id="loading-state" class="state" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <p>Conferindo sua sessão…</p>
+      </div>
+
+      <div id="signed-out-state" class="state" hidden>
+        <h1 id="login-title">Entre sem senha</h1>
+        <p class="lead">A gente envia um link de acesso para o seu e-mail.</p>
+
+        <form id="login-form" novalidate>
+          <label for="email">Seu e-mail</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+          <button id="submit-button" type="submit">Enviar link de acesso</button>
+        </form>
+
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        <p class="fine-print">O link é pessoal. Não encaminhe para outra pessoa.</p>
+      </div>
+
+      <div id="sent-state" class="state" hidden>
+        <div class="success-mark" aria-hidden="true">✓</div>
+        <h1>Confira seu e-mail</h1>
+        <p class="lead">Enviamos o link de acesso para <strong id="sent-email"></strong>.</p>
+        <p class="hint">Abra o link neste navegador. Se não encontrar, confira o spam.</p>
+        <button id="send-again-button" class="secondary" type="button">Usar outro e-mail</button>
+      </div>
+
+      <div id="signed-in-state" class="state" hidden>
+        <div class="success-mark" aria-hidden="true">✓</div>
+        <h1>Você entrou</h1>
+        <p class="lead account-email" id="account-email"></p>
+        <a id="continue-link" class="primary-link" href="/">Continuar na AgentFlix</a>
+        <button id="sign-out-button" class="secondary" type="button">Sair desta conta</button>
+      </div>
+
+      <div id="unavailable-state" class="state" hidden>
+        <h1>Entrada indisponível agora</h1>
+        <p class="lead">A vitrine continua aberta. Tente entrar novamente daqui a pouco.</p>
+        <button id="retry-button" type="button">Tentar novamente</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="login-footer">
+    <span>AGENTFLIX · SKILLS PARA AGENTES</span>
+    <a href="/privacidade.html">Privacidade</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+  <script type="module" src="login.js"></script>
+</body>
+</html>
