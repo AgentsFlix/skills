@@ -86,7 +86,7 @@ for (const completed of [false,true]) for (const locked of [false,true]) {
   handler(event(true));assert.deepEqual(calls,[]);
   handler(event(false));assert.deepEqual(calls,['prevent','intro']);
 }
-// Boot must not display the opening animation or mark it seen for public reading.
+// Boot must not display an opening animation or mark it seen: the loader only follows catalog readiness.
 (async()=>{
   const boot = source.split('  // ---------- boot ----------')[1].split('  (async () => {')[1].split('\n})();\n</script>')[0];
   for (const view of ['reading','catalog']) {
@@ -97,7 +97,7 @@ for (const completed of [false,true]) for (const locked of [false,true]) {
       sessionStorage:{getItem:()=>null,setItem:(...args)=>writes.push(args)},
       loadCatalog(){},initShop(){},playIntro:()=>intros.push(true),showLoadError:message=>{throw Error(message);},console};
     vm.createContext(c);await vm.runInContext('(async()=>{'+boot,c);
-    assert.equal(intros.length,view==='reading'?0:1);assert.equal(writes.length,view==='reading'?0:1);
+    assert.equal(intros.length,0);assert.equal(writes.length,0);
   }
   console.log('PASS leitura pública: registro, acesso, instalador, pré-requisitos, retorno, recarga e abertura');
 })().catch(error=>{console.error(error);process.exitCode=1;});

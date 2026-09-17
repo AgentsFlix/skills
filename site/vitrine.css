@@ -8,7 +8,7 @@
 .onboarding-header-note{display:none}
 .choosing .top{position:relative;inset:auto;background:none;backdrop-filter:none;min-height:96px;padding:24px var(--gutter);gap:24px}
 .choosing .top .brand{pointer-events:none;cursor:default}
-.choosing .top #nav,.choosing #search,.choosing .count,.choosing #acctBtn,.choosing .top .spacer{display:none!important}
+.choosing .top #nav,.choosing #search,.choosing .count,.choosing .top .spacer{display:none!important}
 .choosing .onboarding-header-note{display:block;margin-left:auto;font-size:12px;color:var(--muted)}
 .choosing .foot{justify-content:center;margin-top:44px;border:0}
 .choosing .foot>*{display:none!important}
@@ -85,7 +85,7 @@
 #discovery{margin-top:24px}.doors{gap:12px}.door-body{padding:0 16px 18px;gap:10px}.door-title{font-size:20px}.door-description{font-size:13px}.door-label{font-size:10px}.choice-scene{aspect-ratio:4/3}
 }
 @media(max-width:600px){
-.choosing .top{min-height:76px;padding:20px}.choosing .top .brand .logo{height:28px}.choosing .onboarding-header-note{display:none}
+.choosing .top{min-height:76px;padding:20px}.choosing .top .brand .logo{height:28px}.choosing .onboarding-header-note{display:none}.choosing #acctBtn{margin-left:auto}
 #discovery{padding:0 20px;margin:14px auto 30px}.discovery-intro{margin-bottom:26px}.discovery-intro h1{font-size:31px}.discovery-intro p{font-size:14px}.discovery-intro .eyebrow{font-size:11px}
 .doors{grid-template-columns:1fr;gap:12px}.door{display:grid;grid-template-columns:104px 1fr;min-height:164px;align-items:stretch;border-radius:12px}
 .door .choice-scene{height:100%;aspect-ratio:auto}.door .choice-scene img{object-position:55% center}.door .choice-scene:after{inset:0;background:linear-gradient(90deg,transparent 25%,var(--panel))}
@@ -211,3 +211,19 @@
 .reading-skill-gate h2{font-size:clamp(22px,3vw,30px);line-height:1.2;margin:0 0 16px}
 .reading-skill-gate p{color:var(--muted);line-height:1.6;margin:0 0 24px}
 .reading-skill-locked .prerequisite-gate{padding:0}
+
+/* Carregamento do catálogo. O vídeo é progressivo e o gradiente continua útil sem vídeo. */
+#app-loading{position:fixed;inset:0;z-index:240;display:grid;place-items:center;overflow:hidden;background:#141414;color:#f5f5f1;opacity:1;transition:opacity 180ms ease}
+#app-loading[hidden]{display:none!important}
+#app-loading.is-leaving{opacity:0;pointer-events:none}
+.app-loading-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;filter:saturate(.78) brightness(.62)}
+.app-loading-shade{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(20,20,20,.12),rgba(20,20,20,.7) 72%),linear-gradient(90deg,rgba(20,20,20,.28),rgba(20,20,20,.1) 50%,rgba(20,20,20,.38))}
+.app-loading-content{position:relative;z-index:1;display:grid;justify-items:center;gap:14px;text-align:center;text-shadow:0 2px 18px rgba(0,0,0,.62)}
+.app-loading-content img{width:44px;height:44px;filter:drop-shadow(0 0 16px rgba(48,176,199,.34))}
+.app-loading-content p{margin:0;font:600 14px/1.35 var(--sans);letter-spacing:.01em}
+.app-loading-dots{display:flex;gap:7px;height:8px;align-items:center}
+.app-loading-dots i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:app-loading-pulse 1.15s ease-in-out infinite}
+.app-loading-dots i:nth-child(2){animation-delay:.14s}.app-loading-dots i:nth-child(3){animation-delay:.28s}
+@keyframes app-loading-pulse{0%,100%{opacity:.32;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+@media(max-width:700px){.app-loading-video{object-position:center}.app-loading-content{gap:12px}.app-loading-content p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){#app-loading{transition:none}.app-loading-video,.app-loading-dots{display:none}.app-loading-shade{background:radial-gradient(circle at 50% 45%,#1a2930,#141414 72%)}}
