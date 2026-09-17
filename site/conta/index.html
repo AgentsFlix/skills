@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#141414">
+  <meta name="description" content="Consulte e atualize os dados da sua conta AgentFlix.">
+  <title>Minha conta | AgentFlix</title>
+  <link rel="icon" href="../brand/favicon-dark.ico">
+  <link rel="stylesheet" href="../entrar/login.css">
+  <link rel="stylesheet" href="account.css">
+</head>
+<body>
+  <header class="login-header">
+    <a class="brand" href="/" aria-label="Voltar para a AgentFlix">
+      <img src="../brand/horizontal-transparente-dark.svg" alt="AgentFlix">
+    </a>
+    <a class="back" href="/">Voltar à vitrine</a>
+  </header>
+
+  <main class="login-shell">
+    <section class="login-card account-card" aria-label="Minha conta">
+      <div class="eyebrow">MINHA CONTA</div>
+
+      <div id="loading-state" class="state" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <p>Carregando seus dados…</p>
+      </div>
+
+      <div id="signed-out-state" class="state" hidden>
+        <h1>Entre para ver sua conta</h1>
+        <p class="lead">Seus dados ficam disponíveis depois que você acessa pelo link enviado ao seu e-mail.</p>
+        <a class="primary-link" href="/entrar/?next=%2Fconta%2F">Entrar na AgentFlix</a>
+      </div>
+
+      <div id="account-state" class="state" hidden>
+        <h1>Seus dados</h1>
+        <p class="lead">Mantenha suas informações de contato atualizadas.</p>
+
+        <form id="profile-form" novalidate>
+          <label for="email">E-mail de acesso</label>
+          <input id="email" name="email" type="email" autocomplete="email" readonly aria-readonly="true">
+          <p class="field-hint">Seu e-mail vem do acesso seguro e não pode ser alterado aqui.</p>
+
+          <label for="name">Nome</label>
+          <input id="name" name="name" type="text" autocomplete="name" maxlength="120" placeholder="Como a gente pode chamar você?">
+
+          <label for="phone">Telefone</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="(00) 00000-0000">
+
+          <button id="save-button" type="submit">Salvar alterações</button>
+        </form>
+
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        <button id="sign-out-button" class="secondary" type="button">Sair desta conta</button>
+      </div>
+
+      <div id="unavailable-state" class="state" hidden>
+        <h1>Não foi possível abrir sua conta</h1>
+        <p class="lead">Seus dados não foram alterados. Tente carregar novamente.</p>
+        <button id="retry-button" type="button">Tentar novamente</button>
+        <a class="text-link" href="/entrar/">Voltar para a entrada</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="login-footer">
+    <span>AGENTFLIX · SKILLS PARA AGENTES</span>
+    <a href="/privacidade.html">Privacidade</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+  <script type="module" src="account.js"></script>
+</body>
+</html>
