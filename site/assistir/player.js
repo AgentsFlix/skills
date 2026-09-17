@@ -63,6 +63,8 @@
     pausou: {},
     miniVideo: null,
     miniResumeAt: null,
+    checkoutPreview: false,
+    checkoutResumeAt: null,
   };
   const video = $("video");
   const curEp = () => SERIE.seasons[state.season].eps[state.ep];
@@ -127,6 +129,10 @@
 
   const eN = (si, ei) => AgentFlixWatchModel.episodeNumber(SERIE.seasons[si].eps[ei], ei);
   const chapters = (e) => e.ch || [];
+  const extraIdx = (e) =>
+    chapters(e).findIndex(
+      (c) => c.acao?.tipo === "videos" && c.acao?.encerrar === true,
+    );
   const chapterAt = (e, t) => {
     let k = -1;
     chapters(e).forEach((c, i) => {
@@ -345,6 +351,7 @@
     $("pi-ep").textContent = `T${sN(season)}:E${eN(season, ep)} · ${e.t}`;
     $("pi-desc").textContent = e.desc;
     $("btn-next").style.visibility = nextEp() ? "visible" : "hidden";
+    $("btn-extra").hidden = extraIdx(e) < 0;
     const bi = buyIdx(e);
     $("btn-buy").hidden = bi < 0;
     if (bi >= 0)
@@ -417,11 +424,15 @@
       : "";
     return `<div class="psel-lbl">PERÍODO</div><div class="psel-row"><div class="psel ${open ? "open" : ""}" data-psel="${kk}"><button class="psel-btn" data-act="psel-toggle" data-key="${kk}">${esc(cur.label)}<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>${menu}</div><button class="btn primary" data-act="ext" data-url="${esc(cur.url)}" data-k="${k}">${esc(a.cta || a.label)} · ${esc(cur.label)} ↗</button></div>`;
   }
-  function openCheckout(k, { pausar = true } = {}) {
+  function openCheckout(k, { pausar = true, preview = false } = {}) {
     window.clar?.("parada_compra", { serie: SERIE.slug });
     const e = curEp();
     const c = chapters(e)[k];
     const a = c.acao;
+    state.checkoutPreview = preview;
+    state.checkoutResumeAt = preview
+      ? Math.min(video.currentTime || 0, e.d || Infinity)
+      : null;
     if (pausar) video.pause();
     openDrawer(false);
     openPop(false);
@@ -516,11 +527,14 @@
         return `<button type="button" class="mini ${active ? "on" : ""}" data-act="mini-video" data-i="${i}" aria-pressed="${active}" aria-label="Reproduzir ${i + 1}. ${esc(label)} no player principal"><span class="mini-number">${i + 1}</span><span class="mini-thumb"><img src="${thumb(v.uid, 360)}" alt="" loading="lazy"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></i></span><span class="mini-copy"><b>${esc(label)}</b><small>${active ? "Reproduzindo no player" : "Mini episódio"}</small></span></button>`;
       })
       .join("");
-    $("checkout").innerHTML =
-      `<div class="k">T${sN(state.season)}:E${eN(state.season, state.ep)} · ${fmt(c.t)} · VÍDEOS</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p><div class="minis">${vids}</div>
-    ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
-    <div class="psel-row" style="margin-top:18px"><button class="btn continuar" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
+    const footer = state.checkoutPreview
+      ? `<div class="psel-row extra-return"><button class="btn continuar" data-act="extra-close">Voltar ao episódio ▶</button></div>`
+      : `<div class="psel-row" style="margin-top:18px"><button class="btn continuar" data-act="passo-feito" data-k="${k}">${esc(a.cta || "Feito, continuar o vídeo")} ▶</button></div>
     <button class="skipbtn" data-act="checkout-skip">${esc(a.pular || "Pular este passo")} ▶</button>`;
+    $("checkout").innerHTML =
+      `<div class="k">${state.checkoutPreview ? "CONTEÚDO EXTRA · " : ""}T${sN(state.season)}:E${eN(state.season, state.ep)} · ${fmt(c.t)} · VÍDEOS</div><h3>${esc(a.titulo || c.n)}</h3><p>${esc(a.nota || "")}</p><div class="minis">${vids}</div>
+    ${a.depois ? `<div class="steps"><div class="lbl">${esc(a.depois_lbl || "O QUE FAZER")}</div><ol>${a.depois.map((x) => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
+    ${footer}`;
   }
   function playMiniVideo(i) {
     const k = state.checkout;
@@ -563,10 +577,29 @@
       video.play().catch(() => {});
     }
   }
+  function openExtra() {
+    const k = extraIdx(curEp());
+    if (k < 0 || !$("preplay").hidden) return;
+    openCheckout(k, { preview: true });
+  }
+  function closeExtra() {
+    const resumeAt = Number.isFinite(state.checkoutResumeAt)
+      ? state.checkoutResumeAt
+      : state.miniResumeAt || 0;
+    const wasMini = !!state.miniVideo;
+    closeCheckout({ restoreMini: false });
+    if (wasMini) restoreEpisodeVideo(resumeAt, true);
+    else {
+      video.currentTime = resumeAt;
+      video.play().catch(() => {});
+    }
+  }
   function closeCheckout({ restoreMini = true } = {}) {
     const wasMini = !!state.miniVideo;
     const resumeAt = state.miniResumeAt;
     state.checkout = null;
+    state.checkoutPreview = false;
+    state.checkoutResumeAt = null;
     $("player").classList.remove("checkout");
     $("checkout").hidden = true;
     $("vidcap").hidden = true;
@@ -1141,6 +1174,8 @@
       state.lastChapter = -1;
       video.play().catch(() => {});
     } else if (a === "drawer") openDrawer();
+    else if (a === "extra") openExtra();
+    else if (a === "extra-close") closeExtra();
     else if (a === "dseason") {
       state.dseason = +el.dataset.i;
       renderDrawer();
