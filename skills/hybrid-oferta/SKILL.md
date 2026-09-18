@@ -1,7 +1,7 @@
 ---
 name: hybrid-oferta
 description: "O offerbook é o documento da oferta: o que entra, o que custa, por que vale mais que custa, quais objeções ela já responde. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

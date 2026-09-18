@@ -1,7 +1,7 @@
 ---
 name: hybrid-diagnostico
 description: "Antes de decidir o que fazer, saber onde o negócio dói. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"diagnostica o negócio [nome]\" ou \"diagnostica a oferta de [produto]\"."
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

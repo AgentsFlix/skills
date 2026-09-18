@@ -1,7 +1,7 @@
 ---
 name: copy-metodo-benson
 description: "Escreve copy pelo método de Jon Benson: Video Sales Letter, Persuasão ética, Ritmo controlado, Conexão emocional. Use quando pedirem 'como Benson', a vsl e a persuasão ética, ou uma peça nesse estilo."
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

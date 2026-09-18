@@ -6,7 +6,7 @@
 >
 > **Como usar.** ChatGPT: crie um Project, envie este arquivo em Files e cole nas instruções do projeto o texto
 > de ativação abaixo. Claude: envie como conhecimento do Project, ou cole tudo no chat. Qualquer chat: cole tudo.
-> Versão 0.4.4. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
+> Versão 0.4.5. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
 >
 > **Texto de ativação (cole nas instruções):** Acesse https://raw.githubusercontent.com/AgentsFlix/skills/main/skills/habitos-que-cabem/SKILL.md e leia a skill Hábitos que Cabem na Vida e as referências necessárias. Esta edição usa a referência main. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
 >
@@ -239,7 +239,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" init --version 0.4.4 --revision 1.1.2
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" init --version 0.4.5 --revision 1.1.2
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/habitos-que-cabem" audit
@@ -411,7 +411,7 @@ Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Ne
   "schema_version": 1,
   "contract_version": "1.0.0",
   "skill_id": "habitos-que-cabem",
-  "distribution_version": "0.4.4",
+  "distribution_version": "0.4.5",
   "content_revision": "1.1.2",
   "distribution_ref": "main"
 }
@@ -579,7 +579,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "origin": "human",
   "operation": "create",
   "result": "completed",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "content_revision": "1.1.2",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"

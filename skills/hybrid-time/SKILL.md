@@ -1,7 +1,7 @@
 ---
 name: hybrid-time
 description: "Estrutura de time que dá para ler: cada cadeira, o que ela entrega, a quem responde e o KPI que prova que está funcionando. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
