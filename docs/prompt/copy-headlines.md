@@ -6,7 +6,7 @@
 >
 > **Como usar.** ChatGPT: crie um Project, envie este arquivo em Files e cole nas instruções do projeto o texto
 > de ativação abaixo. Claude: envie como conhecimento do Project, ou cole tudo no chat. Qualquer chat: cole tudo.
-> Versão 0.4.3. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
+> Versão 0.4.4. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
 >
 > **Texto de ativação (cole nas instruções):** Você tem no arquivo `copy-headlines.md` uma skill chamada copy-headlines. Quando eu pedir algo como "gera headlines para [produto], benefício [x], público [y]", siga o `## Procedure` desse arquivo à risca, use as seções `Referência:` dele no lugar dos arquivos que ele cita, e termine pela `## Verification`. Se faltar informação, pergunte antes de escrever.
 
@@ -615,7 +615,7 @@ deliverables:
 
 ```yaml
 task_id: create-video-hook
-version: 2.0.0
+version: 2.0.1
 category: copy_creation
 complexity: advanced
 estimated_time: 30-60 min
@@ -703,6 +703,12 @@ required:
     description: Primary distribution platform
 
 optional:
+  variation_count:
+    type: integer
+    minimum: 1
+    default: 5
+    description: Number of hook variations to create. An explicit user quantity overrides the default.
+
   video_length:
     type: string
     description: Planned total video duration
@@ -1152,7 +1158,14 @@ Example: "90 days. $500,000. Zero paid ads. That's exactly what I'm showing you 
 
 #### Step 3.1: Write Multiple Variations
 
-For each video, create at least 5 hook variations:
+Resolve the variation quantity before writing:
+
+- If the user explicitly requests a positive integer, use it exactly, including quantities written in natural language.
+- If no quantity is requested, default to 5 variations.
+- If the quantity is ambiguous or invalid, ask one brief clarification before generating.
+- Do not reject or pad explicit quantities below five.
+
+For each video, create the resolved number of hook variations. The following five-part strategy is the default when no other quantity is requested:
 
 ```yaml
 VARIATION STRATEGY:
@@ -1429,7 +1442,7 @@ sections:
     description: Unique mechanism definition
 
   hook_variations:
-    count: 5 minimum per platform
+    count: Explicit user quantity; otherwise 5
     format: Full text with visual/audio direction
 
   visual_direction:
@@ -1618,10 +1631,11 @@ O que fazer agora
 |---------|------|---------|
 | 1.0 | 2024 | Initial task |
 | 2.0 | 2026-01-23 | Complete rewrite with research framework, platform-specific strategies, psychological triggers |
+| 2.0.1 | 2026-09-18 | Respect explicit variation quantities; default to five only when omitted |
 
 ---
 
-*Task Version: 2.0.0*
+*Task Version: 2.0.1*
 *Copy Framework v2.0 - Elite Copywriting Squad*
 *Research Source: docs/research/video-hook-methodology-research.md*
 

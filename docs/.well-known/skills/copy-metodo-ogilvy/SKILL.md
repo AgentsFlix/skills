@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
   author: José Carlos Amorim
-  version: 0.4.3
+  version: 0.4.4
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/copy-metodo-ogilvy
   tags: copy, copywriting, ogilvy, metodo, resposta-direta
