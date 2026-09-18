@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "name": "AgentFlix para agentes",
+  "verified_at": "2026-09-18",
+  "scope": "public",
+  "catalog_url": "https://agentsflix.ai/catalog.json",
+  "repository_url": "https://github.com/AgentsFlix/skills",
+  "prompt_url": "https://agentsflix.ai/para-agente/prompt.txt",
+  "policy": {
+    "source_of_truth": "O catálogo público informa os comandos e artefatos disponíveis para cada skill.",
+    "install_only_when_needed": true,
+    "install_all_by_default": false,
+    "private_repository_access": false,
+    "copy_commands_literally": true,
+    "require_independent_verification": true
+  },
+  "targets": [
+    {
+      "id": "hermes",
+      "label": "Hermes",
+      "kind": "terminal",
+      "install_field": "install_cmd",
+      "discovery_command": "hermes skills tap add AgentsFlix/skills",
+      "verification": "Confirme a skill na pasta ~/.hermes/skills e abra uma nova sessão."
+    },
+    {
+      "id": "codex",
+      "label": "Codex",
+      "kind": "terminal",
+      "install_field": "npx_codex",
+      "verification": "Confirme a skill em ~/.agents/skills e abra uma nova sessão."
+    },
+    {
+      "id": "claude-code",
+      "label": "Claude Code",
+      "kind": "terminal",
+      "install_field": "npx_claude_code",
+      "verification": "Confirme a skill no diretório informado pelo instalador e abra uma nova sessão."
+    },
+    {
+      "id": "chatgpt",
+      "label": "ChatGPT",
+      "kind": "upload_or_project",
+      "install_field": "zip_url",
+      "fallback_field": "prompt_url",
+      "verification": "Confirme que a skill aparece no produto ou que o arquivo colável foi anexado ao Project."
+    },
+    {
+      "id": "other",
+      "label": "Outros agentes",
+      "kind": "terminal",
+      "install_field": "npx_any",
+      "verification": "Confirme a pasta de destino informada pelo instalador e abra uma nova sessão."
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#141414">
+  <title>Para agente | AgentFlix</title>
+  <meta name="description" content="Um prompt para qualquer agente encontrar, instalar e usar o acervo público do AgentFlix.">
+  <link rel="canonical" href="https://agentsflix.ai/para-agente/">
+  <link rel="icon" href="../brand/favicon-dark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="../analytics.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="AgentFlix">
+      <img src="../brand/horizontal-transparente-dark.svg" alt="AgentFlix">
+    </a>
+    <nav class="audience-switch" aria-label="Experiência AgentFlix">
+      <a href="/">Para humano</a>
+      <a class="active" href="/para-agente/" aria-current="page">Para agente</a>
+    </nav>
+    <a class="catalog-link" href="/#inicio">Abrir catálogo</a>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">AGENTFLIX PARA AGENTES</p>
+      <h1 id="page-title">Um prompt.<br>Todo o acervo público.</h1>
+      <p class="lead">Envie um único texto. Seu agente lê o manifesto, encontra a skill certa e usa o formato de instalação compatível com o ambiente atual.</p>
+      <div class="source-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Fonte pública versionada no GitHub</span>
+        <span aria-hidden="true">·</span>
+        <span>Verificado em 18/09/2026</span>
+      </div>
+    </section>
+
+    <section class="step prompt-step" aria-labelledby="prompt-title">
+      <div class="step-heading">
+        <span class="step-number" aria-hidden="true">1</span>
+        <div>
+          <h2 id="prompt-title">Envie o prompt ao seu agente</h2>
+          <p>O agente descobre o ambiente antes de escolher como instalar.</p>
+        </div>
+        <button class="primary copy" type="button" data-copy="prompt" aria-describedby="copy-status">
+          <span>Copiar prompt do AgentFlix</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path></svg>
+        </button>
+      </div>
+      <pre class="prompt-box"><code id="agent-prompt">Quero usar o acervo público do AgentFlix nesta tarefa.
+
+Leia primeiro https://agentsflix.ai/para-agente/manifest.json e depois o catálogo indicado no campo catalog_url. Identifique o ambiente em que você está rodando e a skill mais adequada ao meu pedido. Explique em uma frase qual skill escolheu e por quê.
+
+Se o ambiente permitir instalação e eu já tiver autorizado mudanças locais, copie literalmente do catálogo o comando do campo indicado em install_field e execute somente a instalação necessária. Se o ambiente não permitir instalação, use prompt_url ou zip_url conforme a opção declarada no manifesto. Não invente comandos, não instale o catálogo inteiro por padrão e não solicite acesso ao repositório privado AgentsFlix/agentsflix.
+
+Depois da instalação, confirme por um caminho independente que o arquivo da skill existe no destino esperado. Só então use a skill, siga o Procedure e termine pela Verification. Se a instalação depender de autorização, login ou mudança fora do ambiente atual, pare nessa etapa e diga exatamente qual ação humana falta.</code></pre>
+      <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="step install-step" aria-labelledby="install-title">
+      <div class="step-heading">
+        <span class="step-number" aria-hidden="true">2</span>
+        <div>
+          <h2 id="install-title">O agente escolhe a rota compatível</h2>
+          <p>O catálogo continua sendo a fonte dos comandos. Esta tela só explica o caminho.</p>
+        </div>
+        <a class="secondary" href="manifest.json">Abrir manifesto</a>
+      </div>
+
+      <div class="target-layout">
+        <div class="target-tabs" role="tablist" aria-label="Escolha um agente">
+          <button type="button" role="tab" aria-selected="true" aria-controls="target-panel" data-target="codex">Codex</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="target-panel" data-target="claude-code" tabindex="-1">Claude Code</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="target-panel" data-target="hermes" tabindex="-1">Hermes</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="target-panel" data-target="chatgpt" tabindex="-1">ChatGPT</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="target-panel" data-target="other" tabindex="-1">Outros</button>
+        </div>
+        <div class="target-panel" id="target-panel" role="tabpanel" tabindex="0">
+          <p class="target-label" id="target-label">Codex</p>
+          <h3 id="target-title">Instalação por skill</h3>
+          <p id="target-description">O prompt escolhe a skill e copia o campo <code>npx_codex</code> do catálogo.</p>
+          <div class="field-row">
+            <span>Campo do catálogo</span>
+            <code id="target-field">npx_codex</code>
+          </div>
+          <p class="verification" id="target-verification">Confirme a skill em ~/.agents/skills e abra uma nova sessão.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contract" aria-labelledby="contract-title">
+      <div>
+        <p class="eyebrow">CONTRATO PÚBLICO</p>
+        <h2 id="contract-title">GitHub é a fonte. O instalador é uma ponte.</h2>
+      </div>
+      <ul>
+        <li><strong>Catálogo inteiro disponível.</strong><span>O agente encontra a skill relevante antes de instalar.</span></li>
+        <li><strong>Um comando por ambiente.</strong><span>O comando vem do catálogo e não é reescrito pela interface.</span></li>
+        <li><strong>Privado continua privado.</strong><span>O prompt não abre a base interna, credenciais ou dados de terceiros.</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span>AGENTFLIX · SKILLS PARA AGENTES</span>
+    <a href="https://github.com/AgentsFlix/skills">GitHub</a>
+    <a href="/privacidade.html">Privacidade</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
