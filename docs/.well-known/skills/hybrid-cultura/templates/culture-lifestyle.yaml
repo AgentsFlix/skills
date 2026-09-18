@@ -1,0 +1,24 @@
+metadata:
+  version: "1.0"
+  template_type: culture_lifestyle
+  status: INCOMPLETE
+  last_updated: null
+  owner: vision-chief
+  description: >
+    A extensão da cultura para além do trabalho.
+    Como viver os valores no dia a dia pessoal.
+
+lifestyle_philosophy: null    # O que significa "viver a cultura"
+
+legendary_vs_mediocre:
+  - dimension: null
+    legendary: null           # Como alguém lendário se comporta
+    mediocre: null            # Como alguém medíocre se comporta
+
+daily_practices: []           # Práticas diárias recomendadas
+
+cross_references:
+  depends_on:
+    - culture/values.yaml
+    - culture/pillars.yaml
+  feeds_into: []

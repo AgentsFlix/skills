@@ -1,0 +1,233 @@
+name: business-profile-pipeline
+version: 1.0.0
+owner: workspace-chief
+squad: hybrid-workspace
+description: |
+  Pipeline sequencial de 6 fases para elicitar e popular os 7 templates YAML
+  core de um negócio. Orquestrado pelo COO, delega para Vision Chief e CMO
+  conforme o domínio.
+id: business-profile-pipeline
+type: legacy
+triggers:
+  manual:
+    - command: "*setup-business-profile {slug}"
+      action: full_pipeline
+      task: setup-business-profile.md
+phases:
+  - id: phase_0
+    name: Pre-Flight
+    agent: workspace-chief
+    tasks:
+      - workspace-preflight (bootstrap + essentials validation)
+      - load-workspace-context
+      - add-business (if needed)
+      - scaffold-templates
+    gate:
+      condition: workspace preflight PASS and 16 YAML files exist in business directory
+      type: file_check
+    outputs:
+      - evidence/workspace-context-summary.yaml (if slug provided)
+  - id: phase_1
+    name: Formulário Básico
+    agent: workspace-chief
+    method: formulario
+    tasks:
+      - elicit-company-profile (partial - phases 1-2 only)
+    gate:
+      condition: company_essence.status == COMPLETE
+      type: section_check
+      target: company/company-profile.yaml
+    outputs:
+      - company/company-profile.yaml (partial)
+  - id: phase_2
+    name: Deep Dive Fundador
+    agent: vision-strategist
+    method: entrevista
+    tasks:
+      - elicit-founder-dna
+      - elicit-credentials
+    gate:
+      condition: completeness_percentage >= 85
+      type: completeness_check
+      target: company/founder-dna.yaml
+    outputs:
+      - company/founder-dna.yaml
+      - company/credentials.yaml
+  - id: phase_3
+    name: Empresa + Time
+    agent: workspace-chief
+    method: entrevista + formulario
+    tasks:
+      - elicit-company-profile (remaining phases 3-8)
+      - elicit-team-structure
+    gate:
+      condition: completeness_percentage >= 85
+      type: completeness_check
+      target: company/company-profile.yaml
+    outputs:
+      - company/company-profile.yaml (complete)
+      - operations/team-structure.yaml
+  - id: phase_4
+    name: ICP Completo
+    agent: cmo-architect
+    method: entrevista
+    tasks:
+      - elicit-icp-yaml
+    gate:
+      condition: completeness_percentage >= 85
+      type: completeness_check
+      target: company/icp.yaml
+    outputs:
+      - company/icp.yaml
+      - company/diagnosis.yaml (if filled during gate)
+  - id: phase_5
+    name: Brand + Pricing
+    agent: cmo-architect
+    method: entrevista + formulario
+    tasks:
+      - elicit-brand-yaml
+      - elicit-pricing-strategy
+    gate:
+      condition: completeness_percentage >= 85
+      type: completeness_check
+      target: company/brand.yaml
+    outputs:
+      - company/brand.yaml
+      - operations/pricing-strategy.yaml
+  - id: phase_6
+    name: Enriquecimento + Validação
+    agent: workspace-chief
+    method: sintetizado
+    tasks:
+      - cross-reference validation
+      - authority-story synthesis
+      - completeness report
+    gate:
+      condition: all 7 YAMLs >= 85%
+      type: aggregate_check
+    outputs:
+      - company/authority-story.yaml (synthesized)
+      - completeness-report.md
+dependencies:
+  tasks:
+    - load-workspace-context
+    - scaffold-templates
+    - elicit-company-profile
+    - elicit-founder-dna
+    - elicit-credentials
+    - elicit-team-structure
+    - elicit-icp-yaml
+    - elicit-brand-yaml
+    - elicit-pricing-strategy
+    - setup-business-profile
+  agents:
+    - workspace-chief
+    - vision-strategist
+    - cmo-architect
+config:
+  workspace_preflight:
+    required: true
+    bootstrap_script: (script do runtime de origem; não se aplica no Hermes)
+    essentials_validator: (script do runtime de origem; não se aplica no Hermes)
+  completeness_gate: 85
+  pause_resume: true
+  max_questions_per_session: 50
+  estimated_total_questions: 210
+  target_templates:
+    company:
+      - founder-dna.yaml
+      - credentials.yaml
+      - company-profile.yaml
+      - brand.yaml
+      - icp.yaml
+      - diagnosis.yaml
+    operations:
+      - team-structure.yaml
+      - pricing-strategy.yaml
+    synthesized:
+      - authority-story.yaml
+workflow:
+  id: business-profile-pipeline
+  name: business-profile-pipeline
+  version: 1.0.0
+  description: |
+    Pipeline sequencial de 6 fases para elicitar e popular os 7 templates YAML
+    core de um negócio. Orquestrado pelo COO, delega para Vision Chief e CMO
+    conforme o domínio.
+  type: legacy
+  sequence:
+    - step: phase-0
+      id: phase-0
+      phase: 1
+      phase_name: Pre-Flight
+      agent: workspace-chief
+      action: execute_pre-flight
+      outputs:
+        - evidence/workspace-context-summary.yaml (if slug provided)
+      next: phase-1
+    - step: phase-1
+      id: phase-1
+      phase: 2
+      phase_name: Formulário Básico
+      agent: workspace-chief
+      action: formulario
+      outputs:
+        - company/company-profile.yaml (partial)
+      next: phase-2
+    - step: phase-2
+      id: phase-2
+      phase: 3
+      phase_name: Deep Dive Fundador
+      agent: vision-strategist
+      action: entrevista
+      outputs:
+        - company/founder-dna.yaml
+        - company/credentials.yaml
+      next: phase-3
+    - step: phase-3
+      id: phase-3
+      phase: 4
+      phase_name: Empresa + Time
+      agent: workspace-chief
+      action: entrevista-formulario
+      outputs:
+        - company/company-profile.yaml (complete)
+        - operations/team-structure.yaml
+      next: phase-4
+    - step: phase-4
+      id: phase-4
+      phase: 5
+      phase_name: ICP Completo
+      agent: cmo-architect
+      action: entrevista
+      outputs:
+        - company/icp.yaml
+        - company/diagnosis.yaml (if filled during gate)
+      next: phase-5
+    - step: phase-5
+      id: phase-5
+      phase: 6
+      phase_name: Brand + Pricing
+      agent: cmo-architect
+      action: entrevista-formulario
+      outputs:
+        - company/brand.yaml
+        - operations/pricing-strategy.yaml
+      next: phase-6
+    - step: phase-6
+      id: phase-6
+      phase: 7
+      phase_name: Enriquecimento + Validação
+      agent: workspace-chief
+      action: sintetizado
+      outputs:
+        - company/authority-story.yaml (synthesized)
+        - completeness-report.md
+    - workflow_end:
+        id: complete
+        action: workflow_complete
+  handoff_prompts:
+    workspace-chief_to_vision-strategist: Handoff context from workspace-chief to vision-strategist. Preserve outputs, risks, and open decisions.
+    vision-strategist_to_workspace-chief: Handoff context from vision-strategist to workspace-chief. Preserve outputs, risks, and open decisions.
+    workspace-chief_to_cmo-architect: Handoff context from workspace-chief to cmo-architect. Preserve outputs, risks, and open decisions.
+    cmo-architect_to_workspace-chief: Handoff context from cmo-architect to workspace-chief. Preserve outputs, risks, and open decisions.

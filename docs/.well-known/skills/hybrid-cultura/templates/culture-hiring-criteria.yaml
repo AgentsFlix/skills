@@ -1,0 +1,36 @@
+metadata:
+  version: "1.0"
+  template_type: culture_hiring
+  status: INCOMPLETE
+  last_updated: null
+  owner: coo-orchestrator
+  description: >
+    Critérios de contratação e desligamento baseados em cultura.
+    Quem contratar, quem NÃO contratar, quando demitir.
+
+when_to_hire:
+  triggers: []                # Sinais de que é hora de contratar
+  principles: []              # Princípios de timing
+
+who_to_hire:
+  ideal_profile: null         # Perfil cultural ideal
+  green_flags: []             # Sinais positivos
+  must_haves: []              # Inegociáveis culturais
+
+who_not_to_hire:
+  anti_patterns: []           # Perfis que não se encaixam
+  red_flags: []               # Sinais de alerta na entrevista
+  common_mistakes: []         # Erros comuns de contratação
+
+when_to_fire:
+  triggers: []                # Sinais de que alguém precisa sair
+  process: null               # Como conduzir o desligamento
+  principles: []              # Princípios que guiam a decisão
+
+cross_references:
+  depends_on:
+    - culture/values.yaml
+    - culture/leadership-profile.yaml
+  feeds_into:
+    - hiring/hiring-playbook.yaml
+    - operations/team-structure.yaml

@@ -1,7 +1,7 @@
 ---
 name: copy-metodo-hormozi
 description: "Escreve copy pelo método de Alex Hormozi: Equação do valor, Grand Slam Offer, Garantias, Escassez e urgência. Use quando pedirem 'como Hormozi', ofertas irrecusáveis, ou uma peça nesse estilo."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

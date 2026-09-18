@@ -1,0 +1,202 @@
+---
+# KPI-SCORECARDS.YAML - Business Metrics Dashboard & North Star Framework
+# Purpose: Define and track the critical metrics that drive business decisions
+# Guardian: COO / Founder / Department Leads
+# Timing: FILL after monetization-strategy.yaml and conversion-funnel.yaml establish baseline metrics
+# Framework: North Star Metric + DOSSIER-METRICAS (41KB) + Scalable Company KPI System
+# Dependency: monetization-strategy.yaml (financial metrics), conversion-funnel.yaml (funnel metrics)
+
+metadata:
+  version: "1.0"
+  product_name: "FILL_THIS"
+  status: "TEMPLATE"
+  last_updated: "FILL_THIS"
+  owner: "COO / Founder"
+  framework: "North Star Metric + Scalable Company KPI System + DOSSIER-METRICAS"
+  notes: |
+    If you cannot measure it, you cannot improve it.
+    If you measure everything, you improve nothing.
+
+    The secret is RUTHLESS SELECTION — track the 5-7 metrics
+    that truly matter, ignore everything else.
+
+    North Star Metric: ONE metric that best captures the core value
+    your product delivers to customers. Everything else is a supporting metric.
+
+    RULE: Every metric must have an OWNER, a TARGET, and a CADENCE.
+    Metrics without ownership are decoration, not management tools.
+
+# ============================================================================
+# STEP 1: NORTH STAR METRIC
+# ============================================================================
+
+north_star:
+  metric_name: "FILL — Your North Star Metric (e.g., 'Monthly active customers achieving 3x ROI')"
+  definition: "FILL — Exact definition (how is this measured?)"
+  current_value: "FILL — Current value"
+  target_value: "FILL — Target value (30/60/90 day)"
+  owner: "FILL — Who owns this metric?"
+  why_this_metric: |
+    FILL — Why is this THE most important metric?
+    How does it connect to customer value AND business revenue?
+
+# ============================================================================
+# STEP 2: REVENUE METRICS
+# ============================================================================
+
+revenue_metrics:
+  mrr:
+    name: "Monthly Recurring Revenue"
+    current: "FILL — Current MRR"
+    target: "FILL — Target MRR"
+    owner: "FILL — Owner"
+    cadence: "FILL — Weekly / Monthly"
+
+  arr:
+    name: "Annual Recurring Revenue"
+    current: "FILL — Current ARR"
+    target: "FILL — Target ARR"
+    owner: "FILL — Owner"
+    cadence: "FILL — Monthly / Quarterly"
+
+  revenue_growth_rate:
+    name: "Revenue Growth Rate (%)"
+    current: "FILL — Current %"
+    target: "FILL — Target %"
+    owner: "FILL — Owner"
+    cadence: "FILL — Monthly"
+
+  ltv:
+    name: "Customer Lifetime Value"
+    current: "FILL — Current LTV"
+    target: "FILL — Target LTV"
+    owner: "FILL — Owner"
+    cadence: "FILL — Quarterly"
+
+# ============================================================================
+# STEP 3: ACQUISITION METRICS
+# ============================================================================
+
+acquisition_metrics:
+  cac:
+    name: "Customer Acquisition Cost"
+    current: "FILL — Current CAC"
+    target: "FILL — Target CAC"
+    owner: "FILL — Owner"
+    cadence: "FILL — Monthly"
+
+  ltv_cac_ratio:
+    name: "LTV:CAC Ratio"
+    current: "FILL — Current ratio"
+    target: "FILL — Target (minimum 3:1)"
+    owner: "FILL — Owner"
+    cadence: "FILL — Quarterly"
+
+  lead_velocity_rate:
+    name: "Lead Velocity Rate (% growth in qualified leads)"
+    current: "FILL — Current %"
+    target: "FILL — Target %"
+    owner: "FILL — Owner"
+    cadence: "FILL — Monthly"
+
+  conversion_rate:
+    name: "Sales Conversion Rate"
+    current: "FILL — Current %"
+    target: "FILL — Target %"
+    owner: "FILL — Owner"
+    cadence: "FILL — Weekly"
+
+# ============================================================================
+# STEP 4: RETENTION METRICS
+# ============================================================================
+
+retention_metrics:
+  churn_rate:
+    name: "Monthly Churn Rate"
+    current: "FILL — Current %"
+    target: "FILL — Target %"
+    owner: "FILL — Owner"
+    cadence: "FILL — Monthly"
+
+  retention_rate:
+    name: "Customer Retention Rate"
+    current: "FILL — Current %"
+    target: "FILL — Target %"
+    owner: "FILL — Owner"
+    cadence: "FILL — Monthly"
+
+  nps:
+    name: "Net Promoter Score"
+    current: "FILL — Current NPS"
+    target: "FILL — Target NPS"
+    owner: "FILL — Owner"
+    cadence: "FILL — Quarterly"
+
+# ============================================================================
+# STEP 5: OPERATIONAL METRICS
+# ============================================================================
+
+operational_metrics:
+  custom_metric_1:
+    name: "FILL — Operational metric relevant to your business"
+    current: "FILL — Current"
+    target: "FILL — Target"
+    owner: "FILL — Owner"
+    cadence: "FILL — Cadence"
+
+  custom_metric_2:
+    name: "FILL — Second operational metric"
+    current: "FILL — Current"
+    target: "FILL — Target"
+    owner: "FILL — Owner"
+    cadence: "FILL — Cadence"
+
+# ============================================================================
+# STEP 6: SCORECARD REVIEW CADENCE
+# ============================================================================
+
+review_cadence:
+  daily_standup: "FILL — Which 2-3 metrics are reviewed daily?"
+  weekly_review: "FILL — Which metrics are reviewed in the weekly meeting?"
+  monthly_deep_dive: "FILL — Full scorecard review — what gets analyzed?"
+  quarterly_strategic: "FILL — Quarterly strategic review — which metrics inform strategy?"
+
+  escalation_rules:
+    red_alert: "FILL — What metric value triggers an immediate action? (e.g., churn > 10%)"
+    yellow_warning: "FILL — What triggers a warning? (e.g., conversion rate drops 20%)"
+    green_healthy: "FILL — What range is considered healthy for each metric?"
+
+# ============================================================================
+# STEP 7: SCORING & DIAGNOSTIC
+# ============================================================================
+
+kpi_strength_score:
+  metric_selection: "FILL 1-10"
+  measurement_accuracy: "FILL 1-10"
+  ownership_clarity: "FILL 1-10"
+  action_connection: "FILL 1-10"
+
+  scoring_rubric:
+    range_1_3: "Too many or too few metrics, data is unreliable, no clear ownership, metrics do not drive action."
+    range_4_6: "Reasonable metric selection, data is mostly accurate, some ownership, metrics reviewed but rarely drive change."
+    range_7_8: "5-7 well-chosen metrics, accurate real-time data, clear ownership, metrics directly inform weekly decisions."
+    range_9_10: "North Star + 5-6 supporting metrics perfectly aligned, automated real-time dashboards, every metric has owner + target + escalation, data-driven culture."
+
+evidence:
+  data_points: "FILL — Historical metric trends"
+  sources: "FILL — List sources"
+
+diagnostic_summary:
+  overall_assessment: "FILL_THIS"
+  most_concerning_metric: "FILL — Which metric is furthest from target?"
+  recommended_actions: "FILL_THIS"
+
+cross_references:
+  depends_on:
+    - "monetization-strategy.yaml"
+    - "conversion-funnel.yaml"
+  feeds_into:
+    - "analytics.yaml"
+  related:
+    - "pricing-strategy.yaml"
+    - "commission-design.yaml"

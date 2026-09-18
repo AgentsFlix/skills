@@ -1,7 +1,7 @@
 ---
 name: copy-lancamento
 description: "Um lançamento é uma sequência com data, não um post com link. Use quando o pedido envolver lançamento, PLF, carrinho aberto, pré-lançamento, PLC, soap opera, funil de livro, seed launch, evergreen."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

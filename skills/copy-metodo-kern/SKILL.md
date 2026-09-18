@@ -1,7 +1,7 @@
 ---
 name: copy-metodo-kern
 description: "Escreve copy pelo método de Frank Kern: Mass Control, Autenticidade, Lançamento, Conteúdo que vende. Use quando pedirem 'como Kern', autenticidade que vende em massa, ou uma peça nesse estilo."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

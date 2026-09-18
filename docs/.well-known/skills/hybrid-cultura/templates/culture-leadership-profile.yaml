@@ -1,0 +1,38 @@
+metadata:
+  version: "1.0"
+  template_type: culture_leadership
+  status: INCOMPLETE
+  last_updated: null
+  owner: coo-orchestrator
+  description: >
+    Perfil de liderança esperado. O que se espera de líderes na empresa,
+    como lideram, e como se diferenciam de gestores comuns.
+
+leadership_philosophy: null   # Filosofia geral de liderança
+
+leader_expectations:
+  - expectation: null
+    description: null
+    example: null             # Exemplo concreto de como isso aparece
+
+leader_vs_manager:
+  leader_traits: []           # O que define um líder aqui
+  manager_traps: []           # Armadilhas de gestão que evitamos
+
+team_dynamics:
+  how_team_operates: null     # Como o time trabalha junto
+  rituals: []                 # Rituais internos (daily, weekly, retros)
+  communication_norms: []     # Normas de comunicação
+
+growth_philosophy:
+  scaling_principles: []      # Como crescer sem perder cultura
+  speed_vs_quality: null      # Como equilibrar velocidade e qualidade
+
+cross_references:
+  depends_on:
+    - culture/values.yaml
+    - culture/pillars.yaml
+    - company/founder-dna.yaml
+  feeds_into:
+    - culture/hiring-criteria.yaml
+    - operations/team-structure.yaml

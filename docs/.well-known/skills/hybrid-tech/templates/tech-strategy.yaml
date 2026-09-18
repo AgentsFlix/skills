@@ -1,0 +1,73 @@
+---
+# TECH/STRATEGY.YAML - Estrategia tecnologica por negocio
+# Purpose: Definir principios de arquitetura, trade-offs e roadmap tecnico.
+# Guardian: CTO
+# Timing: FILL ONCE - Revisar quando houver mudanca de estagio/escala.
+
+metadata:
+  version: "1.0"
+  company_name: "FILL_THIS"
+  product_name: "FILL_THIS"
+  status: "TEMPLATE"
+  last_updated: "FILL_THIS"
+  owner: "CTO"
+  notes: |
+    Template sem dados reais.
+    Preencher com decisoes estrategicas, nao implementacao tatica.
+
+strategy_context:
+  product_core: "FILL - web app, SaaS, API, mobile, etc"
+  current_scale:
+    users: "FILL"
+    requests_per_day: "FILL"
+    data_volume: "FILL"
+  projected_scale_24m:
+    users: "FILL"
+    requests_per_day: "FILL"
+    data_volume: "FILL"
+  key_constraints:
+    budget: "FILL"
+    timeline: "FILL"
+    team_capacity: "FILL"
+
+architecture_principles:
+  principle_1:
+    name: "FILL"
+    rationale: "FILL"
+    implications: "FILL"
+  principle_2:
+    name: "FILL"
+    rationale: "FILL"
+    implications: "FILL"
+  principle_3:
+    name: "FILL"
+    rationale: "FILL"
+    implications: "FILL"
+
+platform_decisions:
+  runtime: "FILL"
+  application_architecture: "FILL"
+  data_architecture: "FILL"
+  integration_strategy: "FILL"
+  buy_vs_build_policy: "FILL"
+
+security_and_reliability:
+  availability_target: "FILL"
+  compliance_requirements: []
+  key_risks: []
+  mitigation_strategy: []
+
+roadmap:
+  now_0_3m: []
+  next_3_6m: []
+  later_6_12m: []
+
+tradeoffs:
+  accepted: []
+  rejected: []
+
+cross_references:
+  related_templates:
+    - "tech/stack.yaml"
+    - "ai/strategy.yaml"
+    - "operations/team-structure.yaml"

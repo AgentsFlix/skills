@@ -1,0 +1,150 @@
+---
+# [COMPANY_NAME] - Offerbook (Grand Slam Offer Structure)
+# Template based on YOUR_FOUNDER' offerbook.yaml + Story Selling framework
+# Guardian: CMO
+# Required: 16 major sections, all FILL_THIS → COMPLETE
+
+metadata:
+  version: "1.0"
+  status: "INCOMPLETE"
+  last_updated: "FILL_THIS"
+  guardian: "FILL_THIS"
+  completeness_percentage: 0
+  product_name: FILL_THIS
+# ============================================================================
+# SECTION 1: POSITIONING
+# ============================================================================
+posicionamento:
+  oferta:
+    nome_produto: "FILL_THIS"
+    descricao_nome: |
+      FILL_THIS: Why this name? (noun + superlative structure)
+    promessa: |
+      FILL_THIS: Core promise to customer
+    unique_selling_proposition: |
+      FILL_THIS: What differentiates you from alternatives?
+    valor_ancoragem_e_bonus:
+      valor_ancoragem: "FILL_THIS: e.g., R$ X (suma de alternatives)"
+      preco_final: "FILL_THIS"
+      desconto_percentual: "FILL_THIS"
+      garantia: "FILL_THIS"
+      bonus_principal: "FILL_THIS"
+      status: "INCOMPLETE"
+  autoridade:
+    especialista: "FILL_THIS: Your name/credentials"
+    titulos_qualificacoes:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    resultados_somados:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    status: "INCOMPLETE"
+# ============================================================================
+# SECTION 2: AVATAR / CLIENTE IDEAL
+# ============================================================================
+avatar:
+  frase_que_define_icp: |
+    FILL_THIS: One sentence ICP (reference: icp.yaml)
+  a_dor_central:
+    superficial: "FILL_THIS"
+    real: "FILL_THIS"
+    profunda: "FILL_THIS"
+    status: "INCOMPLETE"
+  red_flags_quem_nao_queremos:
+    items:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    status: "INCOMPLETE"
+  green_flags_fit_perfeito:
+    items:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    status: "INCOMPLETE"
+# ============================================================================
+# SECTION 3-5: PROBLEMS, SOLUTION, EVIDENCE
+# ============================================================================
+problema_e_solucao:
+  problema_central: |
+    FILL_THIS: What is the core problem?
+  consequencias_se_nao_resolver:
+    items:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    status: "INCOMPLETE"
+  erros_padroes_de_tentativa:
+    items:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    status: "INCOMPLETE"
+  por_que_nao_funciona: |
+    FILL_THIS: Why traditional approaches fail
+  de_quem_e_a_culpa: |
+    FILL_THIS: It's not their fault, it's...
+solucao:
+  solucao_tecnica_contexto: |
+    FILL_THIS: How does your system work?
+  mecanismo_unico: |
+    FILL_THIS: What makes it unique?
+  objecoes:
+    maior_objecao: "FILL_THIS"
+    objecoes_menores:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    status: "INCOMPLETE"
+# ============================================================================
+# SECTION 6-8: PROOF, RESULTS, GUARANTEE
+# ============================================================================
+proof_and_results:
+  depoimentos:
+    pertencimento:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    qualidade_profundidade:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    transformacao:
+      - "FILL_THIS"
+      - "FILL_THIS"
+    status: "INCOMPLETE"
+  beneficios_diretos:
+    "30_dias": "FILL_THIS"
+    "60_dias": "FILL_THIS"
+    "90_dias": "FILL_THIS"
+    status: "INCOMPLETE"
+  garantia:
+    tipo: "FILL_THIS"
+    descricao: "FILL_THIS"
+    condicoes: "FILL_THIS"
+    status: "INCOMPLETE"
+# ============================================================================
+# SECTION 9-12: NARRATIVE STRUCTURE
+# ============================================================================
+narrativa:
+  ato_1_atencao: |
+    FILL_THIS: Hook that makes them stop
+  ato_2_boas_vindas: |
+    FILL_THIS: You're not alone...
+  ato_5_problema_mundo_atual: |
+    FILL_THIS: Paint the pain
+  ato_11_por_que_nossa_solucao: |
+    FILL_THIS: Unique mechanism explanation
+  ato_15_mundo_ideal: |
+    FILL_THIS: Paint the dream (6 months from now)
+  ato_18_cta: |
+    FILL_THIS: Call to action + urgency
+  status: "INCOMPLETE"
+# ============================================================================
+# VALIDATION
+# ============================================================================
+validation:
+  required_sections: 16
+  completed_sections: 0
+  completeness_percentage: 0
+  status: "INCOMPLETE"
+usage_instructions: |
+  1. Read: {pasta}/products/{product_slug}/offerbook.yaml (1400+ lines)
+  2. Use that as template, extract structure
+  3. Replace all FILL_THIS with YOUR offer details
+  4. Sections must flow: problem → solution → proof → narrative → CTA
+  5. Commit: "docs: complete offerbook.yaml for [company]"
+next_step: "Once complete, gather analytics data to validate all claims"

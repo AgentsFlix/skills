@@ -4,7 +4,7 @@
   "skills": [
     {
       "name": "copy-metodo-halbert",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-halbert/SKILL.md",
       "description": "Escreve copy pelo método de Gary Halbert: Pilha A / Pilha B, Multidão faminta, Carta pessoal, Coat of Arms, Boron Letters. Use quando pedirem 'como Halbert', cartas que fazem sacar a carteira, ou uma…",
       "row": "lendas",
@@ -55,7 +55,7 @@
     },
     {
       "name": "copy-metodo-ogilvy",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-ogilvy/SKILL.md",
       "description": "Escreve copy pelo método de David Ogilvy: Big Idea, Pesquisa primeiro, Copy longa, Imagem de marca, Headline factual. Use quando pedirem 'como Ogilvy', big idea, pesquisa e elegância, ou uma peça…",
       "row": "lendas",
@@ -106,7 +106,7 @@
     },
     {
       "name": "copy-metodo-schwartz",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-schwartz/SKILL.md",
       "description": "Escreve copy pelo método de Eugene Schwartz: Desejo de massa, 5 níveis de consciência, 5 estágios de sofisticação, Breakthrough Adverti. Use quando pedirem 'como Schwartz', desejo de massa e…",
       "row": "lendas",
@@ -157,7 +157,7 @@
     },
     {
       "name": "copy-metodo-hopkins",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-hopkins/SKILL.md",
       "description": "Escreve copy pelo método de Claude Hopkins: Publicidade científica, Reason why, Teste com cupom, Alegação preemptiva, Amostra grátis. Use quando pedirem 'como Hopkins', publicidade científica e o…",
       "row": "lendas",
@@ -208,7 +208,7 @@
     },
     {
       "name": "copy-metodo-kennedy",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-kennedy/SKILL.md",
       "description": "Escreve copy pelo método de Dan Kennedy: Urgência com prazo, No B.S., Magnetic Marketing, Oferta irresistível, Fechamento direto. Use quando pedirem 'como Kennedy', urgência e resposta direta, ou uma…",
       "row": "lendas",
@@ -259,7 +259,7 @@
     },
     {
       "name": "copy-metodo-bencivenga",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-bencivenga/SKILL.md",
       "description": "Escreve copy pelo método de Gary Bencivenga: Bullets e fascinações, Prova acima de promessa, Credibilidade, Curiosidade específica. Use quando pedirem 'como Bencivenga', bullets e fascinações, ou uma…",
       "row": "lendas",
@@ -309,7 +309,7 @@
     },
     {
       "name": "copy-metodo-sugarman",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-sugarman/SKILL.md",
       "description": "Escreve copy pelo método de Joe Sugarman: Escorregador, Gatilhos psicológicos, Storytelling, BluBlocker. Use quando pedirem 'como Sugarman', storytelling e gatilhos psicológicos, ou uma peça nesse…",
       "row": "lendas",
@@ -359,7 +359,7 @@
     },
     {
       "name": "copy-metodo-kern",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-kern/SKILL.md",
       "description": "Escreve copy pelo método de Frank Kern: Mass Control, Autenticidade, Lançamento, Conteúdo que vende. Use quando pedirem 'como Kern', autenticidade que vende em massa, ou uma peça nesse estilo.",
       "row": "lendas",
@@ -409,7 +409,7 @@
     },
     {
       "name": "copy-metodo-benson",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-benson/SKILL.md",
       "description": "Escreve copy pelo método de Jon Benson: Video Sales Letter, Persuasão ética, Ritmo controlado, Conexão emocional. Use quando pedirem 'como Benson', a vsl e a persuasão ética, ou uma peça nesse estilo.",
       "row": "lendas",
@@ -459,7 +459,7 @@
     },
     {
       "name": "copy-metodo-sethi",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-sethi/SKILL.md",
       "description": "Escreve copy pelo método de Ramit Sethi: Psicologia do comprador, E-mail como relação, Preço premium, I Will Teach You To Be Rich. Use quando pedirem 'como Sethi', psicologia, e-mail e premium, ou…",
       "row": "lendas",
@@ -509,7 +509,7 @@
     },
     {
       "name": "copy-metodo-hormozi",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-hormozi/SKILL.md",
       "description": "Escreve copy pelo método de Alex Hormozi: Equação do valor, Grand Slam Offer, Garantias, Escassez e urgência. Use quando pedirem 'como Hormozi', ofertas irrecusáveis, ou uma peça nesse estilo.",
       "row": "lendas",
@@ -559,7 +559,7 @@
     },
     {
       "name": "copy-metodo-koe",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-koe/SKILL.md",
       "description": "Escreve copy pelo método de Dan Koe: One-person business, Alavancagem, Produto digital, Conteúdo como funil. Use quando pedirem 'como Koe', negócio de uma pessoa e alavancagem, ou uma peça nesse…",
       "row": "lendas",
@@ -609,7 +609,7 @@
     },
     {
       "name": "copy-metodo-khayat",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-khayat/SKILL.md",
       "description": "Escreve copy pelo método de Amanda Khayat: Método Twenty Five, Estrutura invisível, 7 alavancas. Use quando pedirem 'como Khayat', criativos que batem controle, ou uma peça nesse estilo.",
       "row": "lendas",
@@ -658,7 +658,7 @@
     },
     {
       "name": "copy-metodo-brown",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-metodo-brown/SKILL.md",
       "description": "Escreve copy pelo método de Todd Brown: E5 Method, Big Idea, Unique Mechanism. Use quando pedirem 'como Brown', big idea e mecanismo único, ou uma peça nesse estilo.",
       "row": "lendas",
@@ -757,7 +757,7 @@
     },
     {
       "name": "copy-sales-page",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-sales-page/SKILL.md",
       "description": "Uma página de vendas longa não é um texto grande, é uma sequência de decisões pequenas até o botão. Use quando o pedido envolver página de vendas, sales page, landing page, carta de vendas longa…",
       "row": "objetivo",
@@ -806,7 +806,7 @@
     },
     {
       "name": "copy-oferta",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-oferta/SKILL.md",
       "description": "Antes do texto vem a oferta, e a maioria das páginas fracas tem uma oferta fraca por baixo. Use quando o pedido envolver oferta, stack, bônus, bump, upsell, downsell, página de obrigado, prova…",
       "row": "objetivo",
@@ -854,7 +854,7 @@
     },
     {
       "name": "copy-email",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-email/SKILL.md",
       "description": "Sequência de boas-vindas, e-mail diário, lançamento, cold e-mail, carrinho abandonado, lead que sumiu, martelo pré-call e newsletter. Use quando o pedido envolver e-mail, sequência, newsletter, cold…",
       "row": "objetivo",
@@ -903,7 +903,7 @@
     },
     {
       "name": "copy-anuncios",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-anuncios/SKILL.md",
       "description": "O anúncio tem três segundos para parar o dedo. Use quando o pedido envolver anúncio, ad copy, criativo, roteiro de anúncio, nativo, YouTube ads.",
       "row": "objetivo",
@@ -952,7 +952,7 @@
     },
     {
       "name": "copy-vsl-webinar",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-vsl-webinar/SKILL.md",
       "description": "Roteiro de VSL e de webinar, do gancho de abertura ao fechamento, com os pontos de tensão marcados no tempo. Use quando o pedido envolver VSL, roteiro de vídeo de vendas, webinar frio ou quente…",
       "row": "objetivo",
@@ -1000,7 +1000,7 @@
     },
     {
       "name": "copy-vendas-por-chamada",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-vendas-por-chamada/SKILL.md",
       "description": "Script de ligação, script de fechamento e os algoritmos de objeção: para cada \"vou pensar\", o que perguntar e o que dizer. Use quando o pedido envolver script de call, ligação de vendas, fechamento…",
       "row": "objetivo",
@@ -1048,7 +1048,7 @@
     },
     {
       "name": "copy-pesquisa-avatar",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-pesquisa-avatar/SKILL.md",
       "description": "Antes de escrever, saber o que a pessoa já diz para si mesma. Use quando o pedido envolver avatar, público, conversa mental, motivos, nível de consciência, sofisticação do mercado.",
       "row": "objetivo",
@@ -1096,7 +1096,7 @@
     },
     {
       "name": "copy-big-idea-lead-magnet",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-big-idea-lead-magnet/SKILL.md",
       "description": "Uma campanha inteira cabe em uma ideia. Use quando o pedido envolver big idea, ideia central, mecanismo único, RMBC, brief de campanha, lead magnet.",
       "row": "objetivo",
@@ -1144,7 +1144,7 @@
     },
     {
       "name": "copy-voz",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-voz/SKILL.md",
       "description": "Extrai o DNA de comunicação de uma pessoa: vocabulário, frases-assinatura, frameworks que ela repete, o jeito de abrir e fechar. Use quando o pedido envolver voz da marca, DNA de comunicação…",
       "row": "objetivo",
@@ -1191,7 +1191,7 @@
     },
     {
       "name": "copy-auditoria",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-auditoria/SKILL.md",
       "description": "A copy já existe e não está vendendo. Use quando o pedido envolver auditar copy, otimizar texto, comparar versões, split test, por que não vende.",
       "row": "objetivo",
@@ -1239,7 +1239,7 @@
     },
     {
       "name": "copy-pipeline",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-pipeline/SKILL.md",
       "description": "Da estratégia à peça pronta, em uma esteira só: define o ângulo, escolhe o formato, escreve e revisa, chamando as outras skills de copy na ordem certa. Use quando o pedido envolver campanha completa…",
       "row": "objetivo",
@@ -1292,7 +1292,7 @@
     },
     {
       "name": "copy-lancamento",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/copy-lancamento/SKILL.md",
       "description": "Um lançamento é uma sequência com data, não um post com link. Use quando o pedido envolver lançamento, PLF, carrinho aberto, pré-lançamento, PLC, soap opera, funil de livro, seed launch, evergreen.",
       "row": "objetivo",
@@ -1349,7 +1349,7 @@
     },
     {
       "name": "ops-rotear-tarefa",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ops-rotear-tarefa/SKILL.md",
       "description": "Toda tarefa que chega tem alguém do time para quem ela é natural e alguém para quem ela é tortura. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"roteia esta tarefa.",
       "row": "operacao",
@@ -1397,7 +1397,7 @@
     },
     {
       "name": "ops-briefing",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ops-briefing/SKILL.md",
       "description": "O mesmo briefing, escrito do jeito que cada pessoa lê: texto corrido para quem lê, checklist para quem executa, diagrama para quem enxerga. Usa o perfil do SEU time (zona de genialidade, Kolbe) como…",
       "row": "operacao",
@@ -1444,7 +1444,7 @@
     },
     {
       "name": "ops-revisao-semanal",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ops-revisao-semanal/SKILL.md",
       "description": "Toda sexta, quem operou na zona de genialidade e quem passou a semana fora dela. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"revisão da semana\" e cole ou aponte…",
       "row": "operacao",
@@ -1492,7 +1492,7 @@
     },
     {
       "name": "ops-avaliar-fit",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ops-avaliar-fit/SKILL.md",
       "description": "Um projeto novo bate na porta. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"avalia o fit deste projeto.",
       "row": "operacao",
@@ -1540,7 +1540,7 @@
     },
     {
       "name": "ads-gate-compliance",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ads-gate-compliance/SKILL.md",
       "description": "Confere um criativo de anúncio contra a régua de compliance da Meta antes de subir e devolve APROVADO ou REPROVADO com o ajuste exato. Use quando: gate, revisar criativo, anúncio reprovado, risco de…",
       "row": "trafego",
@@ -1587,7 +1587,7 @@
     },
     {
       "name": "ads-plano",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ads-plano/SKILL.md",
       "description": "Calcula CAC-alvo, CAC-teto, CPL e orçamento por fase antes do primeiro real, e entrega o briefing do produto para o motor. Use quando: plano de tráfego, quanto gastar, unit economics, vale anunciar.",
       "row": "trafego",
@@ -1634,7 +1634,7 @@
     },
     {
       "name": "ads-otimizar",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ads-otimizar/SKILL.md",
       "description": "Lê 7 dias da Graph API, calcula o CAC real por campanha e classifica: escalar, duplicar, manter, matar. Só leitura; a mutação é sua. Use quando: otimizar campanhas, o que pausar, leitura diária, CAC…",
       "row": "trafego",
@@ -1682,7 +1682,7 @@
     },
     {
       "name": "ads-pesquisa",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ads-pesquisa/SKILL.md",
       "description": "Campanha sem pesquisa é orçamento em teste cego. Só leitura e julgamento: não toca na conta de anúncios. Use quando: \"pesquisa para a campanha de [produto]\".",
       "row": "trafego",
@@ -1731,7 +1731,7 @@
     },
     {
       "name": "ads-criativos",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ads-criativos/SKILL.md",
       "description": "Com as métricas por criativo na mão, o agente separa o que venceu do que cansou: analisa os primeiros três segundos, encontra padrões entre os vencedores, detecta fadiga e propõe os próximos testes.…",
       "row": "trafego",
@@ -1780,7 +1780,7 @@
     },
     {
       "name": "ads-tracking",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/ads-tracking/SKILL.md",
       "description": "Se o pixel não conta, a otimização otimiza o nada. Só leitura e julgamento: não toca na conta de anúncios. Use quando: \"audita o tracking de [URL]\" e informe a plataforma e os eventos esperados.",
       "row": "trafego",
@@ -1829,7 +1829,7 @@
     },
     {
       "name": "hybrid-diagnostico",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-diagnostico/SKILL.md",
       "description": "Antes de decidir o que fazer, saber onde o negócio dói. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"diagnostica o negócio [nome]\" ou \"diagnostica a oferta de [produto]\".",
       "row": "hybrid",
@@ -1878,7 +1878,7 @@
     },
     {
       "name": "hybrid-proxima-acao",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-proxima-acao/SKILL.md",
       "description": "Empresário para na frente de dez gaps e vinte recomendações. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"qual a próxima ação para [negócio]\".",
       "row": "hybrid",
@@ -1926,7 +1926,7 @@
     },
     {
       "name": "hybrid-perfil",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-perfil/SKILL.md",
       "description": "O perfil completo da empresa em YAML: quem é, para quem existe, o que promete, que credenciais sustentam a promessa. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o perfil…",
       "row": "hybrid",
@@ -1975,7 +1975,7 @@
     },
     {
       "name": "hybrid-fundador",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-fundador/SKILL.md",
       "description": "O negócio herda o fundador: as crenças, o jeito de decidir, o que ele nunca faria. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"extrai meu DNA de fundador\".",
       "row": "hybrid",
@@ -2023,7 +2023,7 @@
     },
     {
       "name": "hybrid-icp",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-icp/SKILL.md",
       "description": "Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o ICP de [produto]\".",
       "row": "hybrid",
@@ -2072,7 +2072,7 @@
     },
     {
       "name": "hybrid-marca",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-marca/SKILL.md",
       "description": "A marca escrita antes de virar logo: o núcleo, as promessas que faz e as que não faz, a personalidade, o DNA de voz e os valores. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…",
       "row": "hybrid",
@@ -2121,7 +2121,7 @@
     },
     {
       "name": "hybrid-oferta",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-oferta/SKILL.md",
       "description": "O offerbook é o documento da oferta: o que entra, o que custa, por que vale mais que custa, quais objeções ela já responde. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o…",
       "row": "hybrid",
@@ -2170,7 +2170,7 @@
     },
     {
       "name": "hybrid-cultura",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-cultura/SKILL.md",
       "description": "Cultura é o que a empresa faz quando o dono não está olhando. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"documenta a cultura de [empresa]\".",
       "row": "hybrid",
@@ -2219,7 +2219,7 @@
     },
     {
       "name": "hybrid-time",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-time/SKILL.md",
       "description": "Estrutura de time que dá para ler: cada cadeira, o que ela entrega, a quem responde e o KPI que prova que está funcionando. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…",
       "row": "hybrid",
@@ -2267,7 +2267,7 @@
     },
     {
       "name": "hybrid-tech",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-tech/SKILL.md",
       "description": "O que roda hoje, o que deveria rodar, e onde a IA entra de verdade. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"mapeia a stack de [empresa]\" ou \"estratégia de IA para…",
       "row": "hybrid",
@@ -2316,7 +2316,7 @@
     },
     {
       "name": "hybrid-etl",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/hybrid-etl/SKILL.md",
       "description": "A empresa já escreveu sobre si mesma: site, PDFs, apresentações, posts. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"extrai tudo sobre [empresa] de [pasta ou site]\".",
       "row": "hybrid",
@@ -2365,7 +2365,7 @@
     },
     {
       "name": "sop-extrair",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/sop-extrair/SKILL.md",
       "description": "O processo existe na cabeça de quem faz. Use quando: \"extrai o SOP de [processo]\" e aponte a fonte (texto, arquivo, transcrição) ou peça a entrevista.",
       "row": "sop",
@@ -2413,7 +2413,7 @@
     },
     {
       "name": "sop-criar",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/sop-criar/SKILL.md",
       "description": "Escreve o procedimento duas vezes, de propósito: uma versão para pessoa, no padrão FDA/GMP, e uma para agente, em YAML ou JSON com estados, decisões e ferramentas. Use quando: \"escreve o SOP de…",
       "row": "sop",
@@ -2462,7 +2462,7 @@
     },
     {
       "name": "sop-auditar",
-      "version": "0.4.3",
+      "version": "0.4.4",
       "path": "skills/sop-auditar/SKILL.md",
       "description": "Um SOP pode existir e não servir. Use quando: \"audita este SOP\" (ou uma pasta inteira).",
       "row": "sop",
@@ -2519,7 +2519,8 @@
     "operacao": "Operação",
     "trafego": "Tráfego",
     "hybrid": "Negócios",
-    "sop": "Processos"
+    "sop": "Processos",
+    "hermes": "Hermes Agent"
   },
   "brand": "AGENTFLIX",
   "tagline": "Instale um método, não um prompt.",
@@ -2529,7 +2530,8 @@
     "trafego",
     "lendas",
     "hybrid",
-    "sop"
+    "sop",
+    "hermes"
   ],
   "wellknown": "https://agentsflix.github.io/skills",
   "featured": "copy-oferta",

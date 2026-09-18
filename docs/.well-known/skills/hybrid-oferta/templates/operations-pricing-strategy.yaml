@@ -1,0 +1,133 @@
+---
+# PRICING-STRATEGY.YAML - Strategic Pricing Architecture & Psychology
+# Purpose: Design your pricing strategy based on value, market position, and psychology
+# Guardian: Founder / CFO / CMO
+# Timing: FILL after market-validation.yaml and competitor-analysis.yaml — pricing is a STRATEGIC decision
+# Framework: Hormozi Grand Slam Pricing + DOSSIER-PRICING (42KB) + Value-Based Pricing Psychology
+# Dependency: market-validation.yaml (market size), competitor-analysis.yaml (competitive positioning)
+
+metadata:
+  version: "1.0"
+  product_name: "FILL_THIS"
+  status: "TEMPLATE"
+  last_updated: "FILL_THIS"
+  owner: "Founder / CFO"
+  framework: "Hormozi Grand Slam Pricing + Value-Based Pricing + DOSSIER-PRICING"
+  notes: |
+    Pricing is the single most impactful lever in your business.
+    A 1% price increase = 11% profit increase (on average).
+
+    Three pricing philosophies:
+    1. COST-PLUS: Price = Cost + Margin (least sophisticated)
+    2. MARKET-BASED: Price = What competitors charge ± adjustment
+    3. VALUE-BASED: Price = % of value delivered to customer (most profitable)
+
+    Hormozi's rule: "Charge based on VALUE, not cost.
+    If your product saves someone $100K, charging $10K is a steal."
+
+    RULE: Never compete on price. If your only advantage is being cheaper,
+    you do not have an advantage — you have a race to the bottom.
+
+# ============================================================================
+# STEP 1: PRICING FOUNDATION
+# ============================================================================
+
+pricing_foundation:
+  current_price: "FILL — Current price (if existing product)"
+  pricing_model: "FILL — One-time / Subscription / Usage-based / Tiered / Freemium"
+  pricing_philosophy: "FILL — Cost-plus / Market-based / Value-based"
+
+  value_delivered:
+    monetary_value: "FILL — How much money does your solution save or generate for the client?"
+    time_value: "FILL — How much time does it save?"
+    emotional_value: "FILL — What emotional transformation does it provide? (stress reduction, confidence, peace)"
+    total_quantified_value: "FILL — Total quantified value in currency"
+
+  price_to_value_ratio: "FILL — Your price as % of total value (Hormozi recommends: 10%)"
+
+# ============================================================================
+# STEP 2: PRICING PSYCHOLOGY
+# ============================================================================
+
+pricing_psychology:
+  charm_pricing: "FILL — Using .97 or .99 endings? (e.g., $997 vs $1,000)"
+  round_pricing: "FILL — Using round numbers for premium positioning? (e.g., $5,000)"
+  anchoring_strategy: "FILL — What higher price do you anchor against before revealing actual price?"
+
+  pain_of_paying:
+    reduction_method_1: "FILL — How do you reduce payment pain? (installments, annual discount, trial)"
+    reduction_method_2: "FILL — Second method"
+    reduction_method_3: "FILL — Third method"
+
+  price_framing:
+    daily_cost: "FILL — 'That is only $X per day' framing"
+    comparison: "FILL — 'Less than your daily [coffee/lunch/subscription]' framing"
+    investment_not_cost: "FILL — 'This is an investment that returns X' framing"
+
+# ============================================================================
+# STEP 3: COMPETITIVE PRICING POSITION
+# ============================================================================
+
+competitive_position:
+  market_price_range:
+    lowest_competitor: "FILL — Cheapest alternative and their price"
+    average_market_price: "FILL — Market average price"
+    premium_competitor: "FILL — Most expensive alternative and their price"
+
+  your_position: "FILL — Budget / Mid-market / Premium / Ultra-premium"
+  position_justification: |
+    FILL — Why this position? What do you offer that justifies this price point?
+    Reference solution-architecture.yaml unique mechanism.
+
+# ============================================================================
+# STEP 4: PRICING EXPERIMENTS
+# ============================================================================
+
+pricing_experiments:
+  experiment_1:
+    hypothesis: "FILL — What price change are you testing?"
+    method: "FILL — A/B test / Cohort test / Time-based test"
+    duration: "FILL — How long to run the test?"
+    success_metric: "FILL — What metric determines success? (revenue, conversion, LTV)"
+
+  experiment_2:
+    hypothesis: "FILL — Second experiment"
+    method: "FILL — Method"
+    duration: "FILL — Duration"
+    success_metric: "FILL — Metric"
+
+# ============================================================================
+# STEP 5: SCORING & DIAGNOSTIC
+# ============================================================================
+
+pricing_strength_score:
+  value_alignment: "FILL 1-10"
+  psychology_application: "FILL 1-10"
+  competitive_positioning: "FILL 1-10"
+  testing_rigor: "FILL 1-10"
+
+  scoring_rubric:
+    range_1_3: "Price is arbitrary, no value quantification, no psychology applied, no testing."
+    range_4_6: "Price based on competition, basic value awareness, some psychology, occasional testing."
+    range_7_8: "Value-based pricing with clear quantification, strategic psychology, strong competitive position, regular A/B testing."
+    range_9_10: "Mastery pricing — price represents fraction of value, psychology is seamless, owns a price category, continuous optimization with data."
+
+evidence:
+  data_points: "FILL — Revenue data at different price points, conversion rates, customer feedback on pricing"
+  sources: "FILL — List sources"
+
+diagnostic_summary:
+  overall_assessment: "FILL_THIS"
+  pricing_confidence: "FILL — How confident are you that your price is optimal? 1-10"
+  recommended_actions: "FILL_THIS"
+
+cross_references:
+  depends_on:
+    - "market-validation.yaml"
+    - "competitor-analysis.yaml"
+  feeds_into:
+    - "pricing-anchoring.yaml"
+    - "monetization-strategy.yaml"
+  related:
+    - "value-equation.yaml"
+    - "offerbook.yaml"

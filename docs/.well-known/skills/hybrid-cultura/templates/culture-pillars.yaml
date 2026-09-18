@@ -1,0 +1,42 @@
+metadata:
+  version: "1.0"
+  template_type: culture_pillars
+  status: INCOMPLETE
+  last_updated: null
+  owner: vision-chief
+  description: >
+    Pilares fundacionais da cultura. Framework proprietário que sustenta
+    tudo: valores, decisões, hiring, liderança. Cada empresa tem os seus.
+    Tipicamente 3-5 pilares que se conectam e reforçam mutuamente.
+
+pillars_intro: null           # Texto introdutório que conecta os pilares
+
+pillars:
+  - name: null
+    description: null         # O que esse pilar significa
+    why_it_matters: null      # Por que é fundamental
+    how_it_manifests: null    # Como aparece no dia a dia
+    connection_to_others: null # Como se conecta aos outros pilares
+
+  - name: null
+    description: null
+    why_it_matters: null
+    how_it_manifests: null
+    connection_to_others: null
+
+  - name: null
+    description: null
+    why_it_matters: null
+    how_it_manifests: null
+    connection_to_others: null
+
+# Frase que conecta todos os pilares
+unifying_statement: null
+
+cross_references:
+  depends_on:
+    - culture/manifesto.yaml
+    - culture/mission-vision-positioning.yaml
+  feeds_into:
+    - culture/values.yaml
+    - culture/commandments.yaml

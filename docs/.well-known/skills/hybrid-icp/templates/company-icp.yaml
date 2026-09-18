@@ -1,0 +1,192 @@
+# COMPANY ICP — Ideal Customer Profile (47 FIELDS)
+#
+# MANDATORY: Complete diagnosis.yaml FIRST
+# This template depends on diagnosed awareness level
+#
+# Author: @your-handle (discovered pattern from YOUR_PRODUCT)
+# Template Version: 1.0
+# Field Count: 47 required fields (all mandatory)
+
+metadata:
+  name: "Company Ideal Customer Profile"
+  version: "1.0"
+  template_type: "company-level"
+  required_for_governance: true
+  completeness_target: 0.85 # Cannot proceed below 85%
+  guardian: "CMO"
+  status: "INCOMPLETE"
+  # DIAGNOSIS GATE
+  depends_on_diagnosis: true
+  diagnosis_awareness_level: null # Will be pulled from diagnosis.yaml
+  required_fields_total: 47
+  completed_fields: 0
+  completeness_percentage: 0
+  last_updated: FILL_THIS
+  product_name: FILL_THIS
+# Core ICP Definition (3 fields)
+core_icp:
+  one_sentence_definition: null
+  # FILL THIS: Complete sentence defining ideal customer
+  # Example: "É o profissional experiente frustrado que reconhece que o problema é sistema, não informação"
+
+  icp_name: null
+  # FILL THIS: Archetype name (e.g., "The Stuck Constructor")
+
+  fit_percentage: null
+  # FILL THIS: How much of market is this ICP? (e.g., "Primary target, 80% of best customers")
+
+  status: "INCOMPLETE"
+# Demographics: Age (3 fields)
+demographics_age:
+  primary_range: null
+  secondary_range: null
+  median_age: null
+  status: "INCOMPLETE"
+# Demographics: Professional Experience (3 fields)
+demographics_experience:
+  years_in_field: null
+  background_type: null
+  career_progression: null
+  status: "INCOMPLETE"
+# Demographics: Education (3 fields)
+demographics_education:
+  minimum_level: null
+  percentage_with_postgrad: null
+  field_of_study_primary: null
+  status: "INCOMPLETE"
+# Demographics: Life Stage (3 fields)
+demographics_life_stage:
+  description: null
+  household_type: null
+  dependents_or_commitments: null
+  status: "INCOMPLETE"
+# Demographics: Mental State (3 fields)
+demographics_mindset:
+  primary_state: null
+  secondary_state: null
+  limiting_belief: null
+  status: "INCOMPLETE"
+# Demographics: Geography (2 fields)
+demographics_geography:
+  primary_market_percentage: null
+  secondary_markets: null
+  status: "INCOMPLETE"
+# Psychographics: Central Pain (3 fields)
+psychographics_central_pain:
+  what_they_say: null
+  what_they_mean: null
+  what_they_fear: null
+  status: "INCOMPLETE"
+# Psychographics: Core Beliefs (1 section, 5 beliefs)
+psychographics_beliefs:
+  belief_1: null
+  belief_2: null
+  belief_3: null
+  belief_4: null
+  belief_5: null
+  status: "INCOMPLETE"
+# Psychographics: Mindset (3 fields)
+psychographics_mental_state:
+  dominant_thought: null
+  secondary_thought: null
+  limiting_belief: null
+  status: "INCOMPLETE"
+# Psychographics: Consumption Pattern (3 fields)
+psychographics_consumption:
+  hours_per_week: null
+  ratio_consumption_to_action: null # e.g., "10:1 (consume 10h, act 1h)"
+  purchases_per_year: null
+  status: "INCOMPLETE"
+# Psychographics: Community Needs (4 booleans)
+psychographics_community:
+  seeks_validation: false
+  seeks_accountability: false
+  seeks_belonging: false
+  seeks_permission: false
+  status: "INCOMPLETE"
+# Pain Stack: Latent Pains (4 fields)
+pain_stack_latent:
+  pain_1: null
+  pain_2: null
+  pain_3: null
+  pain_4: null
+  status: "INCOMPLETE"
+# Pain Stack: Hidden Pains (10 fields)
+pain_stack_hidden:
+  pain_1: null
+  pain_2: null
+  pain_3: null
+  pain_4: null
+  pain_5: null
+  pain_6: null
+  pain_7: null
+  pain_8: null
+  pain_9: null
+  pain_10: null
+  status: "INCOMPLETE"
+# Pain Stack: Existential Pains (3 fields with percentages)
+pain_stack_existential:
+  pain_1: null
+  pain_1_prevalence_percentage: null
+  pain_2: null
+  pain_2_prevalence_percentage: null
+  pain_3: null
+  pain_3_prevalence_percentage: null
+  status: "INCOMPLETE"
+# Archetypes (5 archetypes × 3 fields each = 15 fields, but count as 5)
+archetypes:
+  archetype_1_name: null
+  archetype_1_percentage: null
+  archetype_1_core_issue: null
+  archetype_2_name: null
+  archetype_2_percentage: null
+  archetype_2_core_issue: null
+  archetype_3_name: null
+  archetype_3_percentage: null
+  archetype_3_core_issue: null
+  archetype_4_name: null
+  archetype_4_percentage: null
+  archetype_4_core_issue: null
+  archetype_5_name: null
+  archetype_5_percentage: null
+  archetype_5_core_issue: null
+  status: "INCOMPLETE"
+  validation_note: "5 archetypes must sum to 100%"
+# Motivations (2 sections, 5 triggers each)
+motivations_action_triggers:
+  trigger_1: null
+  trigger_2: null
+  trigger_3: null
+  trigger_4: null
+  trigger_5: null
+  status: "INCOMPLETE"
+motivations_paralysis_triggers:
+  trigger_1: null
+  trigger_2: null
+  trigger_3: null
+  trigger_4: null
+  trigger_5: null
+  status: "INCOMPLETE"
+# Red/Green Flags (2 sections)
+red_flags:
+  flag_1: null
+  flag_2: null
+  flag_3: null
+  flag_4: null
+  flag_5: null
+  status: "INCOMPLETE"
+green_flags:
+  flag_1: null
+  flag_2: null
+  flag_3: null
+  flag_4: null
+  flag_5: null
+  flag_6: null
+  flag_7: null
+  status: "INCOMPLETE"
+# Final Validation
+validation:
+  field_count: 47
+  completed: 0
+  completeness: 0
+  status: "INCOMPLETE"

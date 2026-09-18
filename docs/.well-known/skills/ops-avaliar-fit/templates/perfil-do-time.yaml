@@ -1,0 +1,21 @@
+# Perfil do time para as skills ops-*. Uma entrada por pessoa. Sem isso, a skill pergunta.
+# Copie para o caminho configurado em `ops.perfis_do_time` e preencha.
+time:
+  - nome: ""              # como a pessoa é chamada no dia a dia
+    papel: ""             # ex.: produto, arquitetura, vendas, atendimento
+    zona_genialidade: []  # o que ela faz melhor que qualquer um e ainda ganha energia (Hendricks)
+    zona_excelencia: []   # faz muito bem, mas drena
+    zona_incompetencia: [] # nunca rotear para ela; vetos
+    kolbe:                # 1 a 10, se souber (Kolbe A). Sem o teste, deixe vazio e descreva em `ritmo`
+      fato_finder: null
+      follow_thru: null
+      quick_start: null
+      implementor: null
+    ritmo: ""             # ex.: "sprint rápido, decide com pouco dado" ou "pesquisa profunda antes de responder"
+    formato_briefing: ""  # ex.: "CONTEXTO → PROBLEMA → RESULTADO → CRITÉRIOS, até 10 linhas, com exemplo visual"
+    ideal_semana:         # distribuição alvo do tempo, em % (Hendricks: genialidade alta, incompetência zero)
+      genialidade: 70
+      excelencia: 20
+      competencia: 10
+      incompetencia: 0
+    capacidade_livre_pct: null  # quanto da semana está disponível para trabalho novo

@@ -1,7 +1,7 @@
 ---
 name: hybrid-etl
 description: "A empresa já escreveu sobre si mesma: site, PDFs, apresentações, posts. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"extrai tudo sobre [empresa] de [pasta ou site]\"."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

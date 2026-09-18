@@ -1,0 +1,22 @@
+metadata:
+  version: "1.0"
+  template_type: culture_mantras
+  status: INCOMPLETE
+  last_updated: null
+  owner: vision-chief
+  description: >
+    Frases curtas e memoráveis que o time repete.
+    Mantras condensam cultura em linguagem tribal.
+
+mantras:
+  - text: null
+    context: null             # Quando esse mantra é invocado
+  - text: null
+    context: null
+
+cross_references:
+  depends_on:
+    - culture/manifesto.yaml
+    - culture/values.yaml
+  feeds_into:
+    - movement/system-mrd-doctrines.yaml

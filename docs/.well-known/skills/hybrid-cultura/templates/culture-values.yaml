@@ -1,0 +1,33 @@
+metadata:
+  version: "1.0"
+  template_type: culture_values
+  status: INCOMPLETE
+  last_updated: null
+  owner: vision-chief
+  description: >
+    Valores operacionais da cultura. Diferente dos brand values (externos),
+    estes são internos: guiam decisões, contratações e demissões.
+    Cada valor tem definição, perguntas-guia e referências.
+
+values_intro: null            # "Falar de valores é fácil. Difícil é vivenciá-los."
+
+values:
+  - name: null
+    definition: null          # O que esse valor significa em 2-3 frases
+    quote: null               # Citação que ancora o valor (opcional)
+    quote_author: null
+    guiding_questions: []     # 3-5 perguntas que ajudam a aplicar no dia a dia
+    references: []            # Livros, podcasts, artigos relacionados
+    legendary_behavior: null  # Como alguém que vive esse valor se comporta
+    mediocre_behavior: null   # Como alguém que NÃO vive esse valor se comporta
+
+closing_statement: null       # Frase de fechamento dos valores
+
+cross_references:
+  depends_on:
+    - culture/pillars.yaml
+    - culture/manifesto.yaml
+  feeds_into:
+    - culture/commandments.yaml
+    - culture/hiring-criteria.yaml
+    - culture/decision-frameworks.yaml

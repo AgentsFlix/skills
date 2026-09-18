@@ -1,0 +1,42 @@
+---
+metadata:
+  schema: "brand.brandbook"
+  version: "1.0.0"
+  status: "INCOMPLETE"
+  owner_role: "FILL_THIS"
+  last_updated: "FILL_THIS"
+  product_name: FILL_THIS
+identity:
+  brand_name: "FILL_THIS"
+  slug: "FILL_THIS"
+  naming_evolution:
+    - "FILL_THIS"
+    - "FILL_THIS"
+    - "FILL_THIS"
+core:
+  purpose: "FILL_THIS"
+  essence: "FILL_THIS"
+  trueline_primary: "FILL_THIS"
+  category: "FILL_THIS"
+  owned_word: "FILL_THIS"
+positioning:
+  primary_audience: "FILL_THIS"
+  enemy_core: "FILL_THIS"
+  value_claim: "FILL_THIS"
+archetype_mix:
+  magician: "FILL_THIS"
+  sage: "FILL_THIS"
+  explorer: "FILL_THIS"
+voice:
+  always_use:
+    - "FILL_THIS"
+    - "FILL_THIS"
+    - "FILL_THIS"
+  avoid_use:
+    - "FILL_THIS"
+    - "FILL_THIS"
+    - "FILL_THIS"
+references:
+  canonical_doc: "FILL_THIS"
+  strategic_source: "FILL_THIS"
+  domain_source: "FILL_THIS"

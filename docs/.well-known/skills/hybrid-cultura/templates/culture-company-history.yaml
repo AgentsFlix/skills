@@ -1,0 +1,39 @@
+metadata:
+  version: "1.0"
+  template_type: culture_history
+  status: INCOMPLETE
+  last_updated: null
+  owner: vision-chief
+  description: >
+    Timeline completa da empresa. Marcos, turning points, evolução.
+    A história é arma de cultura: mostra de onde viemos e para onde vamos.
+
+company_name: null
+founded_year: null
+founder_names: []
+
+timeline:
+  - year: null
+    event: null
+    significance: null        # Por que esse marco importa
+    proof: null               # Evidência (link, número, resultado)
+
+turning_points:
+  - moment: null
+    before: null              # Como era antes
+    after: null               # Como ficou depois
+    lesson: null              # O que aprendemos
+
+symbols_and_artifacts:
+  - name: null
+    type: null                # visual, verbal, ritual, artefato
+    meaning: null             # O que representa
+    origin: null              # De onde veio
+
+cross_references:
+  depends_on:
+    - company/company-profile.yaml
+    - company/founder-dna.yaml
+  feeds_into:
+    - culture/manifesto.yaml
+    - brand/brandbook.yaml

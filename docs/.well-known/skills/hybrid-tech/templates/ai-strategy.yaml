@@ -1,0 +1,64 @@
+---
+# AI/STRATEGY.YAML - Estrategia de IA por negocio
+# Purpose: Definir casos de uso, selecao de modelos e orquestracao de agentes.
+# Guardian: CAIO
+# Timing: Revisar quando objetivos de automacao mudarem.
+
+metadata:
+  version: "1.0"
+  company_name: "FILL_THIS"
+  product_name: "FILL_THIS"
+  status: "TEMPLATE"
+  last_updated: "FILL_THIS"
+  owner: "CAIO"
+  notes: |
+    Template sem dados reais.
+    Cobrir estrategia, governanca e operacao de IA do negocio.
+
+strategy_scope:
+  primary_objectives: []
+  target_capabilities: []
+  autonomy_level: "FILL - low, medium, high"
+  constraints:
+    budget_monthly: "FILL"
+    risk_tolerance: "FILL"
+    compliance: []
+
+model_policy:
+  preferred_provider: "FILL"
+  default_model: "FILL"
+  fallback_model: "FILL"
+  selection_rules:
+    complex_reasoning: "FILL"
+    high_volume: "FILL"
+    structured_output: "FILL"
+    multimodal: "FILL"
+
+agent_topology:
+  orchestration_pattern: "FILL"
+  specialist_squads: []
+  escalation_rules: []
+  human_in_the_loop: "FILL"
+
+operations:
+  prompting_standards: []
+  quality_assurance: []
+  logging_and_observability: "FILL"
+  incident_response: "FILL"
+  cost_controls: []
+
+use_cases:
+  priority_1:
+    name: "FILL"
+    success_metric: "FILL"
+    owner: "FILL"
+  priority_2:
+    name: "FILL"
+    success_metric: "FILL"
+    owner: "FILL"
+
+cross_references:
+  related_templates:
+    - "tech/strategy.yaml"
+    - "tech/stack.yaml"
+    - "operations/kpi-scorecards.yaml"

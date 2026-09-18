@@ -1,0 +1,32 @@
+metadata:
+  version: "1.0"
+  template_type: culture_mvp
+  status: INCOMPLETE
+  last_updated: null
+  owner: vision-chief
+  description: >
+    Missão, visão e posicionamento da empresa para uso interno.
+    Frases curtas e diretas que orientam decisões.
+
+mission:
+  statement: null             # Uma frase. "Para quê existimos?"
+  who_benefits: null          # Quem se beneficia
+  transformation: null        # Qual transformação causamos
+
+vision:
+  statement: null             # "Onde queremos chegar?"
+  time_horizon: null          # Em quanto tempo
+  proof_of_traction: null     # Evidência de que estamos no caminho
+
+positioning:
+  statement: null             # "Como o mercado nos vê?"
+  category: null              # Em qual categoria mental vivemos
+  differentiation: null       # O que nos separa de todos os outros
+
+cross_references:
+  depends_on:
+    - company/company-profile.yaml
+    - brand/brandbook.yaml
+  feeds_into:
+    - culture/pillars.yaml
+    - culture/values.yaml

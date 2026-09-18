@@ -1,0 +1,198 @@
+workflow:
+  id: etl-deep-pass-pipeline
+  name: "ETL Deep Pass Pipeline"
+  version: "1.0.0"
+  description: |
+    4-layer pipeline: local extract -> web scrape -> web research -> generate artifacts.
+    Enriches business workspace from ~55% to ~95% completeness.
+  type: pipeline
+  orchestrator: workspace-chief
+
+  sequence:
+    - step: preflight
+      id: preflight
+      phase: 1
+      phase_name: Pre-Flight
+      agent: workspace-chief
+      task: load-workspace-context
+      action: validate_slug_and_load_context
+      depends_on: []
+      outputs:
+        - evidence/completeness-manifest.yaml (baseline)
+        - evidence/etl-run-envelope.yaml (initialized)
+      next: local-extract
+      on_failure:
+        action: halt
+        message: "Business slug not found or workspace not bootstrapped."
+
+    - step: local-extract
+      id: local-extract
+      phase: 2
+      phase_name: Layer 1 - Local Extract
+      agent: workspace-chief
+      task: etl-local-extract
+      action: extract_from_local_sources
+      depends_on:
+        - preflight
+      checkpoint:
+        metric: completeness_percentage
+        threshold: 70
+        on_below: warn_and_continue
+      outputs:
+        - company/*.yaml (updated)
+        - operations/*.yaml (updated)
+        - evidence/source-registry.yaml
+        - evidence/completeness-manifest.yaml
+      next: web-scrape
+      on_failure:
+        action: halt
+        message: "Local extract failed. Check source files availability."
+
+    - step: web-scrape
+      id: web-scrape
+      phase: 3
+      phase_name: Layer 2 - Web Scrape
+      agent: workspace-chief
+      task: etl-web-scrape
+      action: scrape_website
+      depends_on:
+        - local-extract
+      skip_condition:
+        field: website_url
+        value: null
+        status: SKIPPED_NO_URL
+      outputs:
+        - brand/brand.yaml (design tokens)
+        - .firecrawl/{slug}/*.md
+        - evidence/etl-run-envelope.yaml (layer 2 metrics)
+      next: web-research
+      on_failure:
+        action: log_and_continue
+        message: "Web scrape failed. Continuing without web data."
+
+    - step: web-research
+      id: web-research
+      phase: 4
+      phase_name: Layer 3 - Web Research
+      agent: workspace-chief
+      task: etl-web-research
+      action: research_web_sources
+      depends_on:
+        - local-extract
+      checkpoint:
+        metric: verified_sources_count
+        threshold: 1
+        on_below: warn_and_continue
+      outputs:
+        - company/credentials.yaml (media coverage)
+        - company/proof.yaml (third-party evidence)
+        - company/testimonials.yaml (UGC)
+        - evidence/etl-run-envelope.yaml (layer 3 metrics)
+      next: generate-artifacts
+      on_failure:
+        action: log_and_continue
+        message: "Web research failed. Continuing with local data only."
+
+    - step: generate-artifacts
+      id: generate-artifacts
+      phase: 5
+      phase_name: Layer 4 - Generate Artifacts
+      agent: workspace-chief
+      task: etl-generate-artifacts
+      action: generate_consolidated_artifacts
+      depends_on:
+        - local-extract
+        - web-research
+      checkpoint:
+        metric: completeness_percentage
+        threshold: 85
+        on_below: warn_if_no_website
+      outputs:
+        - brand/brandbook.yaml
+        - brand/strategic-positioning.yaml
+        - company/proof.yaml (consolidated)
+        - company/testimonials.yaml (consolidated)
+        - company/narrative.yaml
+        - company/movement.yaml
+      next: quality-gate
+      on_failure:
+        action: halt
+        message: "Artifact generation failed. Review input data quality."
+
+    - step: quality-gate
+      id: quality-gate
+      phase: 6
+      phase_name: Quality Gate
+      agent: workspace-chief
+      checklist: etl-deep-pass-checklist
+      action: run_quality_checklist
+      depends_on:
+        - generate-artifacts
+      human_review: true
+      outputs:
+        - evidence/etl-run-envelope.yaml (final metrics)
+        - evidence/completeness-manifest.yaml (final)
+      on_failure:
+        action: report_gaps
+        message: "Quality gate did not pass. Review checklist for gaps."
+
+    - workflow_end:
+        id: complete
+        action: workflow_complete
+
+  handoff_prompts:
+    preflight_to_local_extract: |
+      Pre-flight complete. Slug validated, baseline completeness recorded.
+      Proceeding to Layer 1 local extract.
+    local_extract_to_web_scrape: |
+      Layer 1 complete. Website URL: {website_url}. Completeness: {completeness}%.
+      Proceeding to Layer 2 web scrape.
+    web_scrape_to_web_research: |
+      Layer 2 complete (or skipped). Design tokens extracted: {tokens_count}.
+      Proceeding to Layer 3 web research.
+    web_research_to_generate_artifacts: |
+      Layer 3 complete. Verified sources: {sources_count}. Claims tagged.
+      Proceeding to Layer 4 artifact generation.
+    generate_artifacts_to_quality_gate: |
+      Layer 4 complete. Artifacts generated: {artifacts_count}.
+      Proceeding to quality gate checklist.
+
+config:
+  completeness_gate: 85
+  completeness_gate_no_website: 75
+  pause_resume: true
+  max_layers: 4
+  target_templates:
+    company:
+      - company-profile.yaml
+      - founder-dna.yaml
+      - icp.yaml
+      - brand.yaml
+      - credentials.yaml
+      - offerbook.yaml
+      - proof.yaml
+      - testimonials.yaml
+      - narrative.yaml
+      - movement.yaml
+    brand:
+      - brandbook.yaml
+      - strategic-positioning.yaml
+    operations:
+      - pricing-strategy.yaml
+      - team-structure.yaml
+    evidence:
+      - completeness-manifest.yaml
+      - source-registry.yaml
+      - etl-run-envelope.yaml
+
+dependencies:
+  tasks:
+    - load-workspace-context
+    - etl-local-extract
+    - etl-web-scrape
+    - etl-web-research
+    - etl-generate-artifacts
+  checklists:
+    - etl-deep-pass-checklist
+  agents:
+    - workspace-chief

@@ -1,7 +1,7 @@
 ---
 name: copy-metodo-khayat
 description: "Escreve copy pelo método de Amanda Khayat: Método Twenty Five, Estrutura invisível, 7 alavancas. Use quando pedirem 'como Khayat', criativos que batem controle, ou uma peça nesse estilo."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

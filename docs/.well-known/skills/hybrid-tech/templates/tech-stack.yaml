@@ -1,0 +1,69 @@
+---
+# TECH/STACK.YAML - Stack operacional por negocio
+# Purpose: Consolidar stack, padroes de codigo e infraestrutura operacional.
+# Guardian: CIO
+# Timing: Atualizar sempre que stack/infra mudar.
+
+metadata:
+  version: "1.0"
+  company_name: "FILL_THIS"
+  product_name: "FILL_THIS"
+  status: "TEMPLATE"
+  last_updated: "FILL_THIS"
+  owner: "CIO"
+  notes: |
+    Template sem dados reais.
+    Centraliza implementacao operacional da estrategia definida em tech/strategy.yaml.
+
+stack:
+  backend:
+    language: "FILL"
+    framework: "FILL"
+    runtime: "FILL"
+  frontend:
+    framework: "FILL"
+    state_management: "FILL"
+    styling: "FILL"
+  data:
+    primary_database: "FILL"
+    cache: "FILL"
+    queue: "FILL"
+  developer_tooling:
+    package_manager: "FILL"
+    build_tool: "FILL"
+    monorepo_tool: "FILL"
+
+code_standards:
+  style_guide: "FILL"
+  linting: "FILL"
+  formatting: "FILL"
+  typing_policy: "FILL"
+  testing:
+    unit: "FILL"
+    integration: "FILL"
+    e2e: "FILL"
+    coverage_target: "FILL"
+  commit_convention: "FILL"
+
+infrastructure:
+  cloud_provider: "FILL"
+  environments:
+    dev: "FILL"
+    staging: "FILL"
+    production: "FILL"
+  cicd: "FILL"
+  deploy_strategy: "FILL"
+  secrets_management: "FILL"
+  observability:
+    logs: "FILL"
+    metrics: "FILL"
+    alerting: "FILL"
+
+integrations:
+  internal_services: []
+  external_dependencies: []
+
+cross_references:
+  related_templates:
+    - "tech/strategy.yaml"
+    - "ai/strategy.yaml"

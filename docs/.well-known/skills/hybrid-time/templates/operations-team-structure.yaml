@@ -1,0 +1,150 @@
+---
+# TEAM-STRUCTURE.YAML - Organizational Design & Role Architecture
+# Purpose: Design the team structure, roles, and reporting lines for scalable operations
+# Guardian: COO / Founder
+# Timing: FILL when scaling beyond founder + 1-2 people, or when restructuring
+# Framework: Scalable Company Org Design (105fw) + Cole Gordon Team Building
+# Dependency: kpi-scorecards.yaml (metrics that define role KPIs)
+
+metadata:
+  version: "1.0"
+  product_name: "FILL_THIS"
+  status: "TEMPLATE"
+  last_updated: "FILL_THIS"
+  owner: "COO / Founder"
+  framework: "Scalable Company Org Design + Cole Gordon Team Architecture"
+  notes: |
+    The org chart is not bureaucracy. It is CLARITY.
+
+    Every person needs to know three things:
+    1. WHAT they are responsible for (role)
+    2. HOW success is measured (KPIs)
+    3. WHO they report to (accountability)
+
+    Without this clarity, you get overlap, gaps, and confusion.
+
+    Cole Gordon's team building principle: Hire for the ROLE, not the TASK.
+    A role is a set of outcomes. A task is a set of activities.
+    Hire someone who can own outcomes, not someone who follows task lists.
+
+    RULE: Never hire for a role you cannot clearly define.
+    If you cannot write the role in this template, you are not ready to hire.
+
+# ============================================================================
+# STEP 1: CURRENT TEAM
+# ============================================================================
+
+current_team:
+  total_headcount: "FILL — Current team size"
+  roles_filled:
+    role_1:
+      title: "FILL — Role title"
+      person: "FILL — Name or 'Founder' if you do it yourself"
+      type: "FILL — Full-time / Part-time / Contractor / Founder"
+      kpis: "FILL — 2-3 KPIs this role owns"
+    role_2:
+      title: "FILL — Role title"
+      person: "FILL — Name"
+      type: "FILL — Employment type"
+      kpis: "FILL — KPIs"
+    role_3:
+      title: "FILL — Role title"
+      person: "FILL — Name"
+      type: "FILL — Employment type"
+      kpis: "FILL — KPIs"
+
+  founder_wearing_hats: |
+    FILL — List all roles the founder currently fills.
+    This reveals which roles to hire FIRST.
+    Prioritize hiring for the role that:
+    1. Takes the most founder time
+    2. Is NOT the founder's zone of genius
+    3. Has clear, measurable outputs
+
+# ============================================================================
+# STEP 2: IDEAL TEAM STRUCTURE
+# ============================================================================
+
+ideal_structure:
+  departments:
+    marketing:
+      lead: "FILL — Role title"
+      team_size: "FILL — Number of people needed"
+      key_roles: "FILL — List specific roles"
+      primary_kpi: "FILL — Department KPI"
+
+    sales:
+      lead: "FILL — Role title"
+      team_size: "FILL — Number needed"
+      key_roles: "FILL — Specific roles"
+      primary_kpi: "FILL — Department KPI"
+
+    delivery:
+      lead: "FILL — Role title"
+      team_size: "FILL — Number needed"
+      key_roles: "FILL — Specific roles"
+      primary_kpi: "FILL — Department KPI"
+
+    operations:
+      lead: "FILL — Role title"
+      team_size: "FILL — Number needed"
+      key_roles: "FILL — Specific roles"
+      primary_kpi: "FILL — Department KPI"
+
+# ============================================================================
+# STEP 3: HIRING PRIORITY
+# ============================================================================
+
+hiring_priority:
+  next_hire:
+    role: "FILL — What role to hire next"
+    reason: "FILL — Why this role first? (biggest bottleneck, highest ROI)"
+    timeline: "FILL — When to hire by"
+    budget: "FILL — Compensation budget"
+
+  second_hire:
+    role: "FILL — Second hire"
+    reason: "FILL — Why"
+    timeline: "FILL — When"
+    budget: "FILL — Budget"
+
+  third_hire:
+    role: "FILL — Third hire"
+    reason: "FILL — Why"
+    timeline: "FILL — When"
+    budget: "FILL — Budget"
+
+# ============================================================================
+# STEP 4: SCORING & DIAGNOSTIC
+# ============================================================================
+
+team_strength_score:
+  role_clarity: "FILL 1-10"
+  kpi_alignment: "FILL 1-10"
+  hiring_strategy: "FILL 1-10"
+  scalability: "FILL 1-10"
+
+  scoring_rubric:
+    range_1_3: "No defined roles, founder does everything, no KPIs, no hiring plan."
+    range_4_6: "Some roles defined, basic KPIs, hiring plan exists but is reactive."
+    range_7_8: "Clear roles with KPIs, strategic hiring priority, team can operate without founder for days."
+    range_9_10: "Department structure with leads, every role has KPIs and accountability, proactive hiring pipeline, business runs without founder."
+
+evidence:
+  data_points: "FILL — Team performance data, bottleneck analysis"
+  sources: "FILL — List sources"
+
+diagnostic_summary:
+  overall_assessment: "FILL_THIS"
+  biggest_bottleneck: "FILL — What role gap is causing the most problems?"
+  recommended_actions: "FILL_THIS"
+
+cross_references:
+  depends_on:
+    - "kpi-scorecards.yaml"
+  feeds_into:
+    - "hiring-playbook.yaml"
+    - "commission-design.yaml"
+  related:
+    - "ramp-plan.yaml"
+    - "interview-framework.yaml"

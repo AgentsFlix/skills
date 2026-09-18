@@ -1,0 +1,240 @@
+# COMPANY DIAGNOSIS — Market Awareness & Sophistication
+#
+# CRITICAL: This template must be completed FIRST
+# Everything downstream (ICP, brand, offerbook) depends on these 2 decisions
+#
+# Author: @your-handle
+# Template Version: 1.0
+# Status: TEMPLATE (generic, awaiting company-specific fill)
+metadata:
+  name: "Company Diagnosis"
+  version: "1.0"
+  template_type: "company-level"
+  description: "Eugene Schwartz 5-level framework × 5 sophistication stages"
+  required_for_governance: true
+  guardian: "CMO"
+  status: "INCOMPLETE"
+  created: "2026-02-14"
+  last_updated: FILL_THIS
+  product_name: FILL_THIS
+# =============================================================================
+
+# SECTION 1: MARKET AWARENESS LEVEL (Choose ONE: 1-5)
+
+# =============================================================================
+
+# This determines positioning strategy for EVERYTHING downstream
+market_awareness_level:
+  description: "How aware is the market of the problem + solution category?"
+  level_1_unaware:
+    label: "Completely Unaware"
+    characteristics:
+      - "Don't know problem exists"
+      - "No existing solutions considered"
+      - "Think problem is normal/inevitable"
+      - "Not looking for alternatives"
+      - "Passive about status quo"
+    copy_implications:
+      headline_type: "Problem revelation"
+      headline_length: "Long (15-20 words)"
+      focus_area: "Problem exists and hurts"
+      difficulty: "Highest (must educate)"
+      length: "Long-form (5000+ words)"
+      example_opening: "Did you realize... [PROBLEM] costs you..."
+    when_to_use: "Breakthrough markets, new categories, B2B transformation"
+    status: "INCOMPLETE"
+  level_2_problem_aware:
+    label: "Problem Aware"
+    characteristics:
+      - "Know problem exists"
+      - "Living with problem, not seeking solution"
+      - "Think problem is permanent"
+      - "Haven't considered solutions"
+      - "Skeptical solutions exist"
+    copy_implications:
+      headline_type: "Agitate the problem"
+      headline_length: "Medium (10-15 words)"
+      focus_area: "Problem pain + consequences"
+      difficulty: "High (must agitate)"
+      length: "Medium (2000-5000 words)"
+      example_opening: "If you're [PROBLEM], you know [PAIN]..."
+    when_to_use: "Market needs activation, awareness campaign"
+    status: "INCOMPLETE"
+  level_3_solution_aware:
+    label: "Solution Aware (Most Common)"
+    characteristics:
+      - "Know problem + solution exists"
+      - "Considering multiple solutions"
+      - "Comparing products"
+      - "Looking for best choice"
+      - "Price/value sensitive"
+    copy_implications:
+      headline_type: "Differentiation"
+      headline_length: "Short (8-12 words)"
+      focus_area: "Why us vs competitors"
+      difficulty: "Medium (must differentiate)"
+      length: "Short (500-2000 words)"
+      example_opening: "Tired of [COMPETITOR]? Try [UNIQUE MECHANISM]..."
+    when_to_use: "Mature markets, crowded space, comparison shoppers"
+    status: "INCOMPLETE"
+  level_4_product_aware:
+    label: "Product Aware"
+    characteristics:
+      - "Know our product exists"
+      - "Considering us specifically"
+      - "Evaluating fit + price"
+      - "Objection handling needed"
+      - "Close to buying decision"
+    copy_implications:
+      headline_type: "Social proof + results"
+      headline_length: "Short (5-8 words)"
+      focus_area: "Why they should buy now"
+      difficulty: "Low (overcome final objections)"
+      length: "Very short (100-500 words)"
+      example_opening: "[STAT]: [PROOF] clients switched to us because..."
+    when_to_use: "Retargeting, sales pages, existing audience"
+    status: "INCOMPLETE"
+  level_5_most_aware:
+    label: "Most Aware"
+    characteristics:
+      - "Know our product + competitors"
+      - "Ready to buy"
+      - "Just checking final details"
+      - "Price + logistics only"
+      - "No education needed"
+    copy_implications:
+      headline_type: "CTA only"
+      headline_length: "Ultra-short (2-4 words)"
+      focus_area: "Take action now"
+      difficulty: "None (remove friction)"
+      length: "Minimal (0-100 words)"
+      example_opening: "Ready? Start here → [BUTTON]"
+    when_to_use: "Existing members, email list, past customers"
+    status: "INCOMPLETE"
+  # CRITICAL DECISION
+  identified_level: null # 1, 2, 3, 4, or 5
+  confidence_in_assessment: null # 0-100%
+  reasoning: null # Why is market at this level?
+  status: "INCOMPLETE"
+# =============================================================================
+
+# SECTION 2: MARKET SOPHISTICATION STAGE (Choose ONE: 1-5)
+
+# =============================================================================
+
+# Combined with awareness level to determine copy mechanism
+market_sophistication_stage:
+  description: "How sophisticated is the market about solving this problem?"
+  stage_1_naive:
+    label: "Stage 1 — Naive/Uneducated"
+    characteristics:
+      - "Believe simple solutions exist"
+      - "One magic tactic will fix"
+      - "No understanding of systems"
+      - "Easily manipulated by promises"
+      - "Low barrier to belief"
+    copy_approach: "Simple solution narrative, magic bullet framing"
+    example_claim: "Earn $10K/month in 30 days guaranteed"
+    status: "INCOMPLETE"
+  stage_2_learning:
+    label: "Stage 2 — Learning"
+    characteristics:
+      - "Learning there's no magic"
+      - "Discovering systems needed"
+      - "Trying multiple tactics"
+      - "Beginning to understand complexity"
+      - "Still believe in silver bullets but open to process"
+    copy_approach: "Framework + system narrative, logical progression"
+    example_claim: "Using our 3-step system, most members hit $5K/month within 6 months"
+    status: "INCOMPLETE"
+  stage_3_experienced:
+    label: "Stage 3 — Experienced"
+    characteristics:
+      - "Know systems required"
+      - "Understand implementation difficulty"
+      - "Tried many approaches"
+      - "Respect the hard work"
+      - "Want shortcuts but realistic about them"
+    copy_approach: "Mechanism-focused narrative, system depth"
+    example_claim: "Our automation reduces implementation time from 6 months to 6 weeks"
+    status: "INCOMPLETE"
+  stage_4_master:
+    label: "Stage 4 — Master"
+    characteristics:
+      - "Built successful systems"
+      - "Know what works"
+      - "Judge offers on mechanism quality"
+      - "Want optimization, not basics"
+      - "High standards for proof"
+    copy_approach: "Technical depth, mechanism precision, advanced benefits"
+    example_claim: "Proprietary micro-segmentation increases conversion from 2.3% to 7.8%"
+    status: "INCOMPLETE"
+  stage_5_elite:
+    label: "Stage 5 — Elite"
+    characteristics:
+      - "Mastered domain"
+      - "Only learn from peers"
+      - "Want cutting-edge methods"
+      - "Judge by quantified ROI"
+      - "Zero tolerance for fluff"
+    copy_approach: "Peer authority, quantified mechanisms, elite community framing"
+    example_claim: "Join 47 founders building $100M+ companies using our method"
+    status: "INCOMPLETE"
+  # CRITICAL DECISION
+  identified_stage: null # 1, 2, 3, 4, or 5
+  confidence_in_assessment: null # 0-100%
+  reasoning: null # Why is market at this stage?
+  status: "INCOMPLETE"
+# =============================================================================
+
+# SECTION 3: STRATEGIC IMPLICATIONS
+
+# =============================================================================
+
+# This section auto-populates once level + stage are chosen
+strategic_implications:
+  description: "How awareness + sophistication determine positioning strategy"
+  awareness_level_selected: null
+  sophistication_stage_selected: null
+  messaging_strategy: null
+  # Auto-generated based on combination above
+
+  # Example: Level 3 + Stage 3 = "Experienced market comparing solutions"
+
+  #          Copy strategy: Differentiation + mechanism focus
+  headline_approach: null
+  body_copy_approach: null
+  proof_requirements: null
+  objection_handling: null
+  pricing_positioning: null
+  status: "INCOMPLETE"
+# =============================================================================
+
+# SECTION 4: VALIDATION
+
+# =============================================================================
+validation:
+  required_decisions:
+    - "identified_level (1-5)"
+    - "identified_stage (1-5)"
+  validation_checks:
+    - "Level and stage both selected (no null values)"
+    - "Confidence assessments provided"
+    - "Reasoning explains the assessment"
+  status: "INCOMPLETE"
+# =============================================================================
+
+# METADATA
+
+# =============================================================================
+metadata_final:
+  last_updated: null
+  updated_by: null
+  validated_by: null
+  validation_date: null
+  # This gates everything
+  completeness_percentage: 0
+  required_fields: 2 # Level + Stage
+  completed_fields: 0
+  status: "TEMPLATE"
+  next_step: "Once diagnosis complete, fill: icp.yaml, brand.yaml"

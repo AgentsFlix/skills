@@ -1,7 +1,7 @@
 ---
 name: ops-avaliar-fit
 description: "Um projeto novo bate na porta. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"avalia o fit deste projeto."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

@@ -1,0 +1,30 @@
+metadata:
+  version: "1.0"
+  template_type: culture_decisions
+  status: INCOMPLETE
+  last_updated: null
+  owner: coo-orchestrator
+  description: >
+    Frameworks para tomar decisões alinhadas à cultura.
+    Quando bate dúvida, qual framework usar?
+
+frameworks:
+  - name: null
+    description: null         # Como funciona
+    when_to_use: null         # Em que situação aplicar
+    steps: []                 # Passo a passo
+
+  - name: null
+    description: null
+    when_to_use: null
+    steps: []
+
+principles:                   # Princípios-guia de decisão
+  - name: null
+    description: null
+
+cross_references:
+  depends_on:
+    - culture/values.yaml
+    - culture/commandments.yaml
+  feeds_into: []

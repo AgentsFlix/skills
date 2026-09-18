@@ -1,0 +1,29 @@
+metadata:
+  version: "1.0"
+  template_type: culture_commandments
+  status: INCOMPLETE
+  last_updated: null
+  owner: vision-chief
+  description: >
+    Regras inegociáveis da cultura. Mandamentos que não mudam,
+    independente do contexto. Tipicamente 5-12 regras curtas e diretas.
+
+commandments_intro: null
+
+commandments:
+  - number: 1
+    title: null
+    description: null         # 1-2 frases explicando o mandamento
+  - number: 2
+    title: null
+    description: null
+  - number: 3
+    title: null
+    description: null
+
+cross_references:
+  depends_on:
+    - culture/values.yaml
+    - culture/manifesto.yaml
+  feeds_into:
+    - culture/decision-frameworks.yaml

@@ -1,0 +1,354 @@
+---
+# COMPANY-PROFILE.YAML - Quem você é como empresa
+# Purpose: Define a identidade, missão, valores e portfólio da empresa
+# Guardian: Founder / CEO / CMO
+# Timing: FILL ONCE - Update annually or when pivoting
+
+metadata:
+  version: "1.0"
+  company_name: "YOUR_COMPANY_NAME_HERE"
+  status: "INCOMPLETE"
+  last_updated: "FILL_THIS"
+  owner: "CEO or Founder"
+  notes: |
+    This file answers: "Who is YOUR_COMPANY as a company?"
+    Not about products. Not about customers.
+    About the INSTITUTION itself.
+  product_name: FILL_THIS
+# ============================================================================
+# SECTION 1: COMPANY FOUNDATION
+# ============================================================================
+company_essence:
+  # What is the company?
+  legal_name: "YOUR_LEGAL_COMPANY_NAME"
+  trade_name: "YOUR_BRAND_NAME_HERE"
+  year_founded: YYYY
+  headquarters: "CITY, COUNTRY"
+  # In one sentence (the institutional promise)
+  one_liner: |
+    Example: "YOUR_COMPANY transforms ambitious entrepreneurs into
+    systematic wealth creators through proven frameworks and elite mentorship."
+
+    Your version:
+    [YOUR ONE LINER HERE]
+  # The origin (why did you start this company?)
+  origin_story_short: |
+    Example: "YOUR_FOUNDER spent 15 years as a consultant watching brilliant
+    entrepreneurs fail due to poor systems. He created YOUR_COMPANY to
+    package and scale what worked."
+
+    Your version:
+    [WHY YOU STARTED THIS]
+# ============================================================================
+# SECTION 2: MISSION, VISION, VALUES
+# ============================================================================
+mission:
+  # What does the company DO?
+  statement: |
+    Example: "To democratize access to the systems and frameworks that
+    transform entrepreneurs from chaos to predictable growth."
+
+    Your version:
+    [YOUR MISSION]
+  # Who benefits?
+  who_benefits:
+    - "Ambitious entrepreneurs"
+    - "Example stakeholder 2"
+    - "Example stakeholder 3"
+  # What transformation happens?
+  transformation: |
+    Example: "From overwhelmed generalist → systematic specialist"
+
+    Your version:
+    [WHAT CHANGES FOR THEM]
+vision:
+  # Where does the company want to be in 5-10 years?
+  statement: |
+    Example: "A global standard for entrepreneurial education where systems
+    thinking is the default, not the exception."
+
+    Your version:
+    [YOUR VISION]
+  # Proof points you're moving toward vision
+  proof_of_traction:
+    - "1,000+ alumni"
+    - "Example metric"
+    - "Example metric"
+values:
+  # Core values (not marketing fluff - actual operating principles)
+  value_1:
+    name: "EXAMPLE: Systems Over Inspiration"
+    definition: "We teach frameworks that work, not motivational shortcuts"
+    how_you_live_it: "Every curriculum is battle-tested. We remove fluff."
+    contradiction_check: "What would violate this value?"
+  value_2:
+    name: "EXAMPLE: Proof First"
+    definition: "Claims are only valid if backed by real results"
+    how_you_live_it: "Case studies are authentic. We show failures too."
+    contradiction_check: "What would violate this value?"
+  value_3:
+    name: "EXAMPLE: [YOUR VALUE]"
+    definition: "[DEFINITION]"
+    how_you_live_it: "[HOW YOU LIVE IT]"
+    contradiction_check: "[CONTRADICTION CHECK]"
+# ============================================================================
+# SECTION 3: COMPANY POSITIONING
+# ============================================================================
+positioning:
+  # How is YOUR_COMPANY different from competitors?
+  target_market:
+    description: "Who is the company built for?"
+    example: "Ambitious entrepreneurs 25-50 with $100K-$10M businesses"
+    your_version: "[YOUR TARGET]"
+  unique_angle:
+    description: "What makes the company uniquely positioned?"
+    example: "The only education company founded by a consultant with 15 years in ops"
+    your_version: "[YOUR UNIQUE ANGLE]"
+  primary_promise:
+    description: "What does the company promise?"
+    example: "Transform your business from chaos to predictable growth using our proven systems"
+    your_version: "[YOUR PRIMARY PROMISE]"
+  credibility_foundation:
+    description: "Why should anyone believe you?"
+    points:
+      - "Founder has 15 years of real experience"
+      - "1,000+ success stories"
+      - "Example proof point"
+    your_version: "[YOUR CREDIBILITY FOUNDATION]"
+# ============================================================================
+# SECTION 4: PRODUCT PORTFOLIO
+# ============================================================================
+products:
+  # What does the company sell?
+  product_1:
+    name: "YOUR_PRODUCT"
+    type: "Membership / Community"
+    positioning: "For entrepreneurs ready to systematize their business"
+    annual_revenue_estimate: "$X"
+    status: "ACTIVE"
+    launch_date: "YYYY-MM"
+  product_2:
+    name: "[PRODUCT NAME]"
+    type: "[PRODUCT TYPE]"
+    positioning: "[POSITIONING]"
+    annual_revenue_estimate: "$X"
+    status: "ACTIVE / PLANNED"
+    launch_date: "YYYY-MM"
+  product_3:
+    name: "[PRODUCT NAME]"
+    type: "[PRODUCT TYPE]"
+    positioning: "[POSITIONING]"
+    annual_revenue_estimate: "$X"
+    status: "ACTIVE / PLANNED"
+    launch_date: "YYYY-MM"
+  total_revenue_estimate: "$X"
+  revenue_by_product:
+    "YOUR_PRODUCT": "X%"
+    "Product 2": "X%"
+    "Product 3": "X%"
+# ============================================================================
+# SECTION 5: TEAM STRUCTURE
+# ============================================================================
+leadership_team:
+  # Key people who give the company credibility
+  founder_1:
+    name: "YOUR_FOUNDER"
+    title: "Founder & Visionary"
+    role: "Strategy, Content, Teaching"
+    background_summary: "15 years in consulting and operations"
+    reference_file: "founder-dna.yaml"
+  founder_2:
+    name: "[CO-FOUNDER NAME]"
+    title: "[TITLE]"
+    role: "[ROLE]"
+    background_summary: "[SUMMARY]"
+    reference_file: "founder-dna.yaml"
+  key_team_member_1:
+    name: "[NAME]"
+    title: "[TITLE]"
+    role: "[ROLE]"
+    background_summary: "[SUMMARY]"
+    reference_file: "[OPTIONAL]"
+team_size:
+  total_headcount: X
+  core_team: X
+  extended_team: X
+  contractors: X
+# ============================================================================
+# SECTION 6: MARKET POSITION
+# ============================================================================
+market_analysis:
+  # Where does the company sit in the market?
+  total_addressable_market: "$X"
+  market_segment: "Entrepreneurial Education / Business Systems"
+  market_growth_rate: "X% YoY"
+  competitive_landscape:
+    main_competitors:
+      - "Competitor 1"
+      - "Competitor 2"
+      - "Competitor 3"
+    your_advantage: |
+      Example: "Founder is a practitioner, not just a teacher.
+      We teach what actually works, not theory."
+  market_timing:
+    why_now: |
+      Example: "Entrepreneurs are tired of motivational content.
+      They want systems that actually scale."
+    emerging_trend: "Systems thinking becoming mainstream in business education"
+# ============================================================================
+# SECTION 7: COMPANY STAGE & METRICS
+# ============================================================================
+stage:
+  current_stage: "SEED / GROWTH / SCALE / MATURE"
+  # SEED: Pre-product or <$100K ARR
+  # GROWTH: $100K-$1M ARR, finding product-market fit
+  # SCALE: $1M-$10M ARR, replicating model
+  # MATURE: >$10M ARR, optimizing margins
+key_metrics:
+  # What metrics define company health?
+  annual_revenue: "$X"
+  year_over_year_growth: "X%"
+  customer_count: "X"
+  customer_retention_rate: "X%"
+  net_revenue_retention: "X%"
+  average_customer_lifetime_value: "$X"
+  # Company-specific metrics
+  custom_metric_1:
+    name: "[METRIC NAME]"
+    current_value: "X"
+    target_value: "X"
+  custom_metric_2:
+    name: "[METRIC NAME]"
+    current_value: "X"
+    target_value: "X"
+# ============================================================================
+# SECTION 8: COMPANY VOICE & PERSONALITY
+# ============================================================================
+company_voice:
+  # How does YOUR_COMPANY communicate?
+  tone:
+    primary: "Strategic, no-nonsense, results-focused"
+    secondary: "Encouraging but realistic"
+    avoid: "Hype, motivational fluff, theoretical"
+  vocabulary:
+    signature_terms:
+      - "Systems"
+      - "Frameworks"
+      - "Proof"
+      - "Scale"
+    never_use:
+      - "Guru"
+      - "Secret"
+      - "Hack"
+  personality_archetype:
+    archetype: "The Mentor / The Strategist"
+    example: |
+      Example: "Experienced guide who has been in the trenches.
+      Tells you what works AND what doesn't. No BS."
+    your_version: "[YOUR ARCHETYPE]"
+communication_philosophy: |
+  Example: "We communicate like a mentor to someone ready to level up.
+  We assume intelligence. We show proof. We make systems simple."
+
+  Your version:
+  [YOUR PHILOSOPHY]
+# ============================================================================
+# SECTION 9: STRATEGIC PARTNERSHIPS
+# ============================================================================
+partnerships:
+  # Who do you work with?
+  partner_1:
+    name: "[PARTNER NAME]"
+    type: "DISTRIBUTION / TECHNOLOGY / CONTENT"
+    benefit: "[WHAT YOU GET]"
+    status: "ACTIVE / PLANNED"
+  partner_2:
+    name: "[PARTNER NAME]"
+    type: "[TYPE]"
+    benefit: "[WHAT YOU GET]"
+    status: "ACTIVE / PLANNED"
+# ============================================================================
+# SECTION 10: FUTURE ROADMAP (COMPANY LEVEL)
+# ============================================================================
+strategic_roadmap:
+  # Where is the company headed in next 12-24 months?
+  priority_1:
+    goal: "[GOAL]"
+    timeline: "2026 Q2-Q3"
+    impact: "[WHY THIS MATTERS]"
+  priority_2:
+    goal: "[GOAL]"
+    timeline: "2026 Q3-Q4"
+    impact: "[WHY THIS MATTERS]"
+  priority_3:
+    goal: "[GOAL]"
+    timeline: "2027 Q1-Q2"
+    impact: "[WHY THIS MATTERS]"
+# ============================================================================
+# SECTION 11: COMPANY NARRATIVE (FOR MARKETING)
+# ============================================================================
+brand_story:
+  # The story you tell about the company (for external use)
+  headline: |
+    Example: "From Consultant to Movement Builder: How YOUR_FOUNDER Created
+    the Systems Standard for Modern Entrepreneurs"
+  narrative_structure:
+    act_1_problem: |
+      Example: "YOUR_FOUNDER spent 15 years as a consultant watching brilliant
+      entrepreneurs fail. They had ideas, drive, passion — but no systems."
+    act_2_insight: |
+      Example: "He noticed a pattern: the entrepreneurs who succeeded had ONE thing
+      in common — they operated by proven systems, not guesswork."
+    act_3_solution: |
+      Example: "He created YOUR_COMPANY to package and teach those systems.
+      Not as theory. As battle-tested frameworks from real businesses."
+    act_4_impact: |
+      Example: "Today, 1,000+ entrepreneurs run systematic, predictable businesses
+      because they learned from someone who built them."
+# ============================================================================
+# SECTION 12: EXTERNAL REFERENCES
+# ============================================================================
+references:
+  # Files that reference this company-profile
+  products:
+    - "{pasta}/products/{product_slug}/"
+    - "{pasta}/[BUSINESS_SLUG]/products/[PRODUCT_SLUG]/"
+  founders:
+    - "founder-dna.yaml"
+  credentials:
+    - "credentials.yaml"
+  authority:
+    - "authority-story.yaml"
+# ============================================================================
+# CHECKLIST: COMPANY-PROFILE COMPLETENESS
+# ============================================================================
+completion_checklist:
+  - "[ ] Company essence filled (legal name, trade name, founding date)"
+  - "[ ] One-liner is compelling and differentiating"
+  - "[ ] Origin story explains WHY company exists"
+  - "[ ] Mission statement is clear and inspiring"
+  - "[ ] Values are lived, not posted"
+  - "[ ] Positioning is unique vs competitors"
+  - "[ ] Product portfolio is listed with revenue estimates"
+  - "[ ] Leadership team is documented"
+  - "[ ] Company voice is distinctive"
+  - "[ ] Strategic roadmap is clear"
+  - "[ ] Brand story is compelling"
+  - "[ ] All references (founders, credentials, products) are updated"
+# ============================================================================
+# TEMPLATE NOTES FOR USERS
+# ============================================================================
+template_notes: |
+  This file is company-level (not product-level).
+
+  DO NOT put product-specific info here.
+  ├─ Product positioning → businesses/[business_slug]/products/[name]/diagnosis.yaml
+  ├─ Avatar info → businesses/[business_slug]/products/[name]/icp.yaml
+  ├─ Offer details → businesses/[business_slug]/products/[name]/offerbook.yaml
+
+  DO put company-level info here:
+  ├─ Company mission (not product mission)
+  ├─ Founder background (not product-specific expertise)
+  ├─ Company values (not product benefits)
+
+  Fill once, update annually or when pivoting significantly.

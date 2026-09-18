@@ -1,0 +1,678 @@
+{
+  "skills": [
+    {
+      "name": "ads-criativos",
+      "description": "Com as métricas por criativo na mão, o agente separa o que venceu do que cansou: analisa os primeiros três segundos, encontra padrões entre os vencedores, detecta fadiga e propõe os próximos testes.…",
+      "files": [
+        "SKILL.md",
+        "references/analyze-creatives.md",
+        "references/data-knowledge-meta-ad_relevance_diagnostics.md",
+        "references/data-knowledge-meta-performance_fluctuations.md",
+        "templates/creative-brief.md",
+        "templates/performance-report.md"
+      ]
+    },
+    {
+      "name": "ads-gate-compliance",
+      "description": "Confere um criativo de anúncio contra a régua de compliance da Meta antes de subir e devolve APROVADO ou REPROVADO com o ajuste exato. Use quando: gate, revisar criativo, anúncio reprovado, risco de…",
+      "files": [
+        "SKILL.md",
+        "references/regras-da-meta.md"
+      ]
+    },
+    {
+      "name": "ads-otimizar",
+      "description": "Lê 7 dias da Graph API, calcula o CAC real por campanha e classifica: escalar, duplicar, manter, matar. Só leitura; a mutação é sua. Use quando: otimizar campanhas, o que pausar, leitura diária, CAC…",
+      "files": [
+        "SKILL.md",
+        "scripts/meta_api.py",
+        "scripts/otimizar.py",
+        "templates/briefing.yaml"
+      ]
+    },
+    {
+      "name": "ads-pesquisa",
+      "description": "Campanha sem pesquisa é orçamento em teste cego. Só leitura e julgamento: não toca na conta de anúncios. Use quando: \"pesquisa para a campanha de [produto]\".",
+      "files": [
+        "SKILL.md",
+        "references/data-industry-templates-agency.yaml",
+        "references/data-industry-templates-b2b-enterprise.yaml",
+        "references/data-industry-templates-ecommerce.yaml",
+        "references/data-industry-templates-finance.yaml",
+        "references/data-industry-templates-generic.yaml",
+        "references/data-industry-templates-healthcare.yaml",
+        "references/data-industry-templates-info-products.yaml",
+        "references/data-industry-templates-local-service.yaml",
+        "references/data-industry-templates-mobile-app.yaml",
+        "references/data-industry-templates-real-estate.yaml",
+        "references/data-industry-templates-saas.yaml",
+        "references/data-knowledge-meta-ad_auctions.md",
+        "references/data-knowledge-meta-ad_relevance_diagnostics.md",
+        "references/data-knowledge-meta-auction_overlap.md",
+        "references/data-knowledge-meta-bid_strategies.md",
+        "references/data-knowledge-meta-breakdown_effect.md",
+        "references/data-knowledge-meta-core_concepts.md",
+        "references/data-knowledge-meta-learning_phase.md",
+        "references/data-knowledge-meta-pacing.md",
+        "references/data-knowledge-meta-performance_fluctuations.md",
+        "references/run-research-protocol.md",
+        "templates/business-profile.yaml",
+        "templates/icp-profile.yaml",
+        "templates/product-card.yaml",
+        "templates/research-brief.md",
+        "templates/strategy.md"
+      ]
+    },
+    {
+      "name": "ads-plano",
+      "description": "Calcula CAC-alvo, CAC-teto, CPL e orçamento por fase antes do primeiro real, e entrega o briefing do produto para o motor. Use quando: plano de tráfego, quanto gastar, unit economics, vale anunciar.",
+      "files": [
+        "SKILL.md",
+        "references/unit-economics.md",
+        "templates/briefing.yaml"
+      ]
+    },
+    {
+      "name": "ads-tracking",
+      "description": "Se o pixel não conta, a otimização otimiza o nada. Só leitura e julgamento: não toca na conta de anúncios. Use quando: \"audita o tracking de [URL]\" e informe a plataforma e os eventos esperados.",
+      "files": [
+        "SKILL.md",
+        "references/audit-tracking.md",
+        "references/checklist-ban-prevention.md",
+        "templates/campaign-audit.md"
+      ]
+    },
+    {
+      "name": "copy-anuncios",
+      "description": "O anúncio tem três segundos para parar o dedo. Use quando o pedido envolver anúncio, ad copy, criativo, roteiro de anúncio, nativo, YouTube ads.",
+      "files": [
+        "SKILL.md",
+        "references/create-ad-copy.md",
+        "references/create-ad-script.md",
+        "references/create-native-ads.md",
+        "references/create-youtube-ads.md"
+      ]
+    },
+    {
+      "name": "copy-auditoria",
+      "description": "A copy já existe e não está vendendo. Use quando o pedido envolver auditar copy, otimizar texto, comparar versões, split test, por que não vende.",
+      "files": [
+        "SKILL.md",
+        "references/audit-copy-hopkins.md",
+        "references/blend.md",
+        "references/copy-debate.md",
+        "references/optimize-copy.md",
+        "references/qa-gate.md",
+        "references/review-copy.md",
+        "references/setup-split-test.md",
+        "references/simple-writing-audit.md"
+      ]
+    },
+    {
+      "name": "copy-big-idea-lead-magnet",
+      "description": "Uma campanha inteira cabe em uma ideia. Use quando o pedido envolver big idea, ideia central, mecanismo único, RMBC, brief de campanha, lead magnet.",
+      "files": [
+        "SKILL.md",
+        "references/build-authority-arsenal.md",
+        "references/campaign-planning-pack.md",
+        "references/create-big-idea.md",
+        "references/create-campaign-brief.md",
+        "references/create-lead-magnet.md",
+        "references/create-unique-mechanism.md",
+        "references/rmbc-method.md",
+        "templates/authority-arsenal-tmpl.yaml"
+      ]
+    },
+    {
+      "name": "copy-email",
+      "description": "Sequência de boas-vindas, e-mail diário, lançamento, cold e-mail, carrinho abandonado, lead que sumiu, martelo pré-call e newsletter. Use quando o pedido envolver e-mail, sequência, newsletter, cold…",
+      "files": [
+        "SKILL.md",
+        "references/create-abandoned-cart.md",
+        "references/create-cold-email.md",
+        "references/create-daily-email.md",
+        "references/create-email-sequence.md",
+        "references/create-ghosted-lead-recovery.md",
+        "references/create-launch-emails.md",
+        "references/create-newsletter.md",
+        "references/create-pre-call-hammer-sequence.md"
+      ]
+    },
+    {
+      "name": "copy-headlines",
+      "description": "Você entrega o produto, o benefício principal e para quem é. Use quando o pedido envolver headline, título, gancho, hook, bullets, chamada de abertura.",
+      "files": [
+        "SKILL.md",
+        "references/create-bullets.md",
+        "references/create-headlines.md",
+        "references/create-video-hook.md",
+        "references/write-lampropoulos-bullets.md"
+      ]
+    },
+    {
+      "name": "copy-lancamento",
+      "description": "Um lançamento é uma sequência com data, não um post com link. Use quando o pedido envolver lançamento, PLF, carrinho aberto, pré-lançamento, PLC, soap opera, funil de livro, seed launch, evergreen.",
+      "files": [
+        "SKILL.md",
+        "references/brunson-create-book-funnel.md",
+        "references/brunson.md",
+        "references/checklist-plf-todos.md",
+        "references/create-launch-sequence.md",
+        "references/create-soap-opera-sequence.md",
+        "references/plf-create-case-study.md",
+        "references/plf-create-evergreen-launch.md",
+        "references/plf-create-jv-launch.md",
+        "references/plf-create-launch-emails.md",
+        "references/plf-create-launch-stack.md",
+        "references/plf-create-live-launch.md",
+        "references/plf-create-open-cart-sequence.md",
+        "references/plf-create-plc-sequence.md",
+        "references/plf-create-preprelaunch.md",
+        "references/plf-create-sales-page-plf.md",
+        "references/plf-create-seed-launch.md",
+        "references/plf-diagnose-failed-launch.md",
+        "references/plf-evaluate-cpl.md",
+        "references/plf-map-mental-triggers.md",
+        "references/plf-plan-paid-traffic.md",
+        "references/plf.md",
+        "templates/plf-beat-analysis-tmpl.yaml",
+        "templates/plf-case-study-tmpl.md",
+        "templates/plf-cpl-evaluation-report-tmpl.md",
+        "templates/plf-email-subject-lines-tmpl.md",
+        "templates/plf-jv-swipe-tmpl.md",
+        "templates/plf-launch-stack-tmpl.md",
+        "templates/plf-launch-timeline-tmpl.md",
+        "templates/plf-objection-crusher-tmpl.md",
+        "templates/plf-open-cart-day1-tmpl.md",
+        "templates/plf-open-cart-final-tmpl.md",
+        "templates/plf-plc1-script-tmpl.md",
+        "templates/plf-plc2-script-tmpl.md",
+        "templates/plf-plc3-script-tmpl.md",
+        "templates/plf-preprelaunch-survey-tmpl.md",
+        "templates/plf-rubric-scores-tmpl.yaml",
+        "templates/plf-sales-page-blueprint-tmpl.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-bencivenga",
+      "description": "Escreve copy pelo método de Gary Bencivenga: Bullets e fascinações, Prova acima de promessa, Credibilidade, Curiosidade específica. Use quando pedirem 'como Bencivenga', bullets e fascinações, ou uma…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-bencivenga.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-benson",
+      "description": "Escreve copy pelo método de Jon Benson: Video Sales Letter, Persuasão ética, Ritmo controlado, Conexão emocional. Use quando pedirem 'como Benson', a vsl e a persuasão ética, ou uma peça nesse estilo.",
+      "files": [
+        "SKILL.md",
+        "references/metodo-benson.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-brown",
+      "description": "Escreve copy pelo método de Todd Brown: E5 Method, Big Idea, Unique Mechanism. Use quando pedirem 'como Brown', big idea e mecanismo único, ou uma peça nesse estilo.",
+      "files": [
+        "SKILL.md",
+        "references/metodo-brown.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-halbert",
+      "description": "Escreve copy pelo método de Gary Halbert: Pilha A / Pilha B, Multidão faminta, Carta pessoal, Coat of Arms, Boron Letters. Use quando pedirem 'como Halbert', cartas que fazem sacar a carteira, ou uma…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-halbert.md",
+        "references/write-visceral-copy.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-hopkins",
+      "description": "Escreve copy pelo método de Claude Hopkins: Publicidade científica, Reason why, Teste com cupom, Alegação preemptiva, Amostra grátis. Use quando pedirem 'como Hopkins', publicidade científica e o…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-hopkins.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-hormozi",
+      "description": "Escreve copy pelo método de Alex Hormozi: Equação do valor, Grand Slam Offer, Garantias, Escassez e urgência. Use quando pedirem 'como Hormozi', ofertas irrecusáveis, ou uma peça nesse estilo.",
+      "files": [
+        "SKILL.md",
+        "references/metodo-hormozi.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-kennedy",
+      "description": "Escreve copy pelo método de Dan Kennedy: Urgência com prazo, No B.S., Magnetic Marketing, Oferta irresistível, Fechamento direto. Use quando pedirem 'como Kennedy', urgência e resposta direta, ou uma…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-kennedy.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-kern",
+      "description": "Escreve copy pelo método de Frank Kern: Mass Control, Autenticidade, Lançamento, Conteúdo que vende. Use quando pedirem 'como Kern', autenticidade que vende em massa, ou uma peça nesse estilo.",
+      "files": [
+        "SKILL.md",
+        "references/metodo-kern.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-khayat",
+      "description": "Escreve copy pelo método de Amanda Khayat: Método Twenty Five, Estrutura invisível, 7 alavancas. Use quando pedirem 'como Khayat', criativos que batem controle, ou uma peça nesse estilo.",
+      "files": [
+        "SKILL.md",
+        "references/metodo-khayat.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-koe",
+      "description": "Escreve copy pelo método de Dan Koe: One-person business, Alavancagem, Produto digital, Conteúdo como funil. Use quando pedirem 'como Koe', negócio de uma pessoa e alavancagem, ou uma peça nesse…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-koe.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-ogilvy",
+      "description": "Escreve copy pelo método de David Ogilvy: Big Idea, Pesquisa primeiro, Copy longa, Imagem de marca, Headline factual. Use quando pedirem 'como Ogilvy', big idea, pesquisa e elegância, ou uma peça…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-ogilvy.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-schwartz",
+      "description": "Escreve copy pelo método de Eugene Schwartz: Desejo de massa, 5 níveis de consciência, 5 estágios de sofisticação, Breakthrough Adverti. Use quando pedirem 'como Schwartz', desejo de massa e…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-schwartz.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-sethi",
+      "description": "Escreve copy pelo método de Ramit Sethi: Psicologia do comprador, E-mail como relação, Preço premium, I Will Teach You To Be Rich. Use quando pedirem 'como Sethi', psicologia, e-mail e premium, ou…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-sethi.md"
+      ]
+    },
+    {
+      "name": "copy-metodo-sugarman",
+      "description": "Escreve copy pelo método de Joe Sugarman: Escorregador, Gatilhos psicológicos, Storytelling, BluBlocker. Use quando pedirem 'como Sugarman', storytelling e gatilhos psicológicos, ou uma peça nesse…",
+      "files": [
+        "SKILL.md",
+        "references/apply-sugarman-triggers.md",
+        "references/checklist-sugarman-30-triggers.md",
+        "references/metodo-sugarman.md"
+      ]
+    },
+    {
+      "name": "copy-oferta",
+      "description": "Antes do texto vem a oferta, e a maioria das páginas fracas tem uma oferta fraca por baixo. Use quando o pedido envolver oferta, stack, bônus, bump, upsell, downsell, página de obrigado, prova…",
+      "files": [
+        "SKILL.md",
+        "references/create-decision-matrix.md",
+        "references/create-downsell-page.md",
+        "references/create-offer.md",
+        "references/create-order-bump.md",
+        "references/create-proof-stack.md",
+        "references/create-thank-you-page.md",
+        "references/create-upsell-page.md",
+        "references/evaluate-offer.md"
+      ]
+    },
+    {
+      "name": "copy-pesquisa-avatar",
+      "description": "Antes de escrever, saber o que a pessoa já diz para si mesma. Use quando o pedido envolver avatar, público, conversa mental, motivos, nível de consciência, sofisticação do mercado.",
+      "files": [
+        "SKILL.md",
+        "references/analyze-mental-conversation.md",
+        "references/avatar-research.md",
+        "references/checklist-avatar-research-checklist.md",
+        "references/checklist-copysearch-checklist.md",
+        "references/copysearch.md",
+        "references/diagnose-awareness-level.md",
+        "references/diagnose-market-sophistication.md",
+        "references/map-6-primary-motives.md",
+        "templates/avatar-research-template.md",
+        "templates/copysearch-template.md"
+      ]
+    },
+    {
+      "name": "copy-pipeline",
+      "description": "Da estratégia à peça pronta, em uma esteira só: define o ângulo, escolhe o formato, escreve e revisa, chamando as outras skills de copy na ordem certa. Use quando o pedido envolver campanha completa…",
+      "files": [
+        "SKILL.md",
+        "references/checklist-copywriter-agent-creation-checklist.md",
+        "references/create-copywriter-agent.md",
+        "references/strategy-angle-selection.md",
+        "references/strategy-benefit-ladder.md",
+        "references/strategy-big-idea-generation.md",
+        "references/strategy-guarantee-formulation.md",
+        "references/strategy-hook-ideation.md",
+        "references/strategy-story-mining.md",
+        "references/strategy-unique-mechanism.md",
+        "references/strategy-value-stack.md",
+        "references/strategy.md",
+        "references/write-copy.md",
+        "templates/authority-arsenal-tmpl.yaml",
+        "templates/communication-dna-tmpl.yaml",
+        "templates/copywriter-agent-tmpl.yaml",
+        "templates/frameworks-extraction-tmpl.yaml",
+        "templates/objection-algorithms-tmpl.yaml",
+        "templates/signature-phrases-tmpl.yaml"
+      ]
+    },
+    {
+      "name": "copy-sales-page",
+      "description": "Uma página de vendas longa não é um texto grande, é uma sequência de decisões pequenas até o botão. Use quando o pedido envolver página de vendas, sales page, landing page, carta de vendas longa…",
+      "files": [
+        "SKILL.md",
+        "references/audit-landing-page.md",
+        "references/create-artifact-from-kb.md",
+        "references/create-landing-page.md",
+        "references/create-magalog.md",
+        "references/create-premium-lp-copy.md",
+        "references/create-sales-page.md"
+      ]
+    },
+    {
+      "name": "copy-vendas-por-chamada",
+      "description": "Script de ligação, script de fechamento e os algoritmos de objeção: para cada \"vou pensar\", o que perguntar e o que dizer. Use quando o pedido envolver script de call, ligação de vendas, fechamento…",
+      "files": [
+        "SKILL.md",
+        "references/create-call-script.md",
+        "references/create-close-script.md",
+        "references/create-objection-algorithms.md",
+        "templates/objection-algorithms-tmpl.yaml"
+      ]
+    },
+    {
+      "name": "copy-voz",
+      "description": "Extrai o DNA de comunicação de uma pessoa: vocabulário, frases-assinatura, frameworks que ela repete, o jeito de abrir e fechar. Use quando o pedido envolver voz da marca, DNA de comunicação…",
+      "files": [
+        "SKILL.md",
+        "references/checklist-copywriter-agent-creation-checklist.md",
+        "references/extract-communication-dna.md",
+        "references/extract-frameworks.md",
+        "references/extract-signature-phrases.md",
+        "templates/communication-dna-tmpl.yaml",
+        "templates/frameworks-extraction-tmpl.yaml",
+        "templates/signature-phrases-tmpl.yaml"
+      ]
+    },
+    {
+      "name": "copy-vsl-webinar",
+      "description": "Roteiro de VSL e de webinar, do gancho de abertura ao fechamento, com os pontos de tensão marcados no tempo. Use quando o pedido envolver VSL, roteiro de vídeo de vendas, webinar frio ou quente…",
+      "files": [
+        "SKILL.md",
+        "references/create-cold-webinar-script.md",
+        "references/create-warm-webinar-script.md",
+        "references/create-webinar-script.md",
+        "references/vsl-script.md"
+      ]
+    },
+    {
+      "name": "habitos-que-cabem",
+      "description": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.",
+      "files": [
+        "SKILL.md",
+        "references/ativacao.md",
+        "references/avaliacao-de-rotina.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "references/memoria-e-elicitacao.md",
+        "references/metodo-habitos.md",
+        "references/revisao-e-retomada.md",
+        "scripts/auditar.py",
+        "templates/cartao-do-habito.md",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json",
+        "templates/registro-de-pratica.md"
+      ]
+    },
+    {
+      "name": "hybrid-cultura",
+      "description": "Cultura é o que a empresa faz quando o dono não está olhando. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"documenta a cultura de [empresa]\".",
+      "files": [
+        "SKILL.md",
+        "references/elicit-culture.md",
+        "templates/culture-commandments.yaml",
+        "templates/culture-company-history.yaml",
+        "templates/culture-decision-frameworks.yaml",
+        "templates/culture-hiring-criteria.yaml",
+        "templates/culture-leadership-profile.yaml",
+        "templates/culture-lifestyle.yaml",
+        "templates/culture-manifesto.yaml",
+        "templates/culture-mantras.yaml",
+        "templates/culture-mission-vision-positioning.yaml",
+        "templates/culture-pillars.yaml",
+        "templates/culture-values.yaml"
+      ]
+    },
+    {
+      "name": "hybrid-diagnostico",
+      "description": "Antes de decidir o que fazer, saber onde o negócio dói. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"diagnostica o negócio [nome]\" ou \"diagnostica a oferta de [produto]\".",
+      "files": [
+        "SKILL.md",
+        "references/checklist-business-diagnostic-checklist.md",
+        "references/contexto-diagnose-authority.md",
+        "references/contexto-diagnose-business.md",
+        "references/contexto-diagnose-funnel.md",
+        "references/contexto-diagnose-movement.md",
+        "references/contexto-diagnose-offer.md",
+        "references/contexto-diagnose-operations.md",
+        "references/contexto-diagnose-retention.md",
+        "references/diagnose-business.md",
+        "references/diagnose-offer.md",
+        "references/growth-levers.md"
+      ]
+    },
+    {
+      "name": "hybrid-etl",
+      "description": "A empresa já escreveu sobre si mesma: site, PDFs, apresentações, posts. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"extrai tudo sobre [empresa] de [pasta ou site]\".",
+      "files": [
+        "SKILL.md",
+        "references/etl-deep-pass.md",
+        "references/etl-generate-artifacts.md",
+        "references/etl-local-extract.md",
+        "references/etl-web-research.md",
+        "references/etl-web-scrape.md",
+        "references/workflow-etl-deep-pass-pipeline.yaml"
+      ]
+    },
+    {
+      "name": "hybrid-fundador",
+      "description": "O negócio herda o fundador: as crenças, o jeito de decidir, o que ele nunca faria. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"extrai meu DNA de fundador\".",
+      "files": [
+        "SKILL.md",
+        "references/elicit-founder-dna.md",
+        "templates/company-founder-dna.yaml"
+      ]
+    },
+    {
+      "name": "hybrid-icp",
+      "description": "Quem é a pessoa que compra, em 47 campos: demografia, dor, desejo, objeções, linguagem, onde está. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o ICP de [produto]\".",
+      "files": [
+        "SKILL.md",
+        "references/elicit-icp-yaml.md",
+        "references/elicit-icp.md",
+        "templates/company-diagnosis.yaml",
+        "templates/company-icp.yaml"
+      ]
+    },
+    {
+      "name": "hybrid-marca",
+      "description": "A marca escrita antes de virar logo: o núcleo, as promessas que faz e as que não faz, a personalidade, o DNA de voz e os valores. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…",
+      "files": [
+        "SKILL.md",
+        "references/elicit-brand-yaml.md",
+        "templates/brand-brandbook.yaml",
+        "templates/brand-messaging-framework.yaml",
+        "templates/brand-positioning-statement.yaml"
+      ]
+    },
+    {
+      "name": "hybrid-oferta",
+      "description": "O offerbook é o documento da oferta: o que entra, o que custa, por que vale mais que custa, quais objeções ela já responde. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o…",
+      "files": [
+        "SKILL.md",
+        "references/contexto-diagnose-offer.md",
+        "references/diagnose-offer.md",
+        "references/elicit-pricing-strategy.md",
+        "templates/company-offerbook.yaml",
+        "templates/operations-pricing-strategy.yaml"
+      ]
+    },
+    {
+      "name": "hybrid-perfil",
+      "description": "O perfil completo da empresa em YAML: quem é, para quem existe, o que promete, que credenciais sustentam a promessa. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"monta o perfil…",
+      "files": [
+        "SKILL.md",
+        "references/elicit-company-profile.md",
+        "references/elicit-credentials.md",
+        "references/elicit-vision.md",
+        "references/setup-business-profile.md",
+        "references/workflow-business-profile-pipeline.yaml",
+        "templates/company-company-profile.yaml",
+        "templates/company-credentials.yaml",
+        "templates/culture-mission-vision-positioning.yaml"
+      ]
+    },
+    {
+      "name": "hybrid-proxima-acao",
+      "description": "Empresário para na frente de dez gaps e vinte recomendações. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"qual a próxima ação para [negócio]\".",
+      "files": [
+        "SKILL.md",
+        "references/next-best-action.md"
+      ]
+    },
+    {
+      "name": "hybrid-tech",
+      "description": "O que roda hoje, o que deveria rodar, e onde a IA entra de verdade. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"mapeia a stack de [empresa]\" ou \"estratégia de IA para…",
+      "files": [
+        "SKILL.md",
+        "references/elicit-ai-strategy.md",
+        "references/elicit-tech-stack.md",
+        "references/elicit-tech-strategy.md",
+        "templates/ai-strategy.yaml",
+        "templates/tech-stack.yaml",
+        "templates/tech-strategy.yaml"
+      ]
+    },
+    {
+      "name": "hybrid-time",
+      "description": "Estrutura de time que dá para ler: cada cadeira, o que ela entrega, a quem responde e o KPI que prova que está funcionando. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…",
+      "files": [
+        "SKILL.md",
+        "references/elicit-operations.md",
+        "references/elicit-team-structure.md",
+        "templates/operations-kpi-scorecards.yaml",
+        "templates/operations-team-structure.yaml"
+      ]
+    },
+    {
+      "name": "ops-avaliar-fit",
+      "description": "Um projeto novo bate na porta. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"avalia o fit deste projeto.",
+      "files": [
+        "SKILL.md",
+        "references/metodo-avaliar-fit.md",
+        "templates/perfil-do-time.yaml"
+      ]
+    },
+    {
+      "name": "ops-briefing",
+      "description": "O mesmo briefing, escrito do jeito que cada pessoa lê: texto corrido para quem lê, checklist para quem executa, diagrama para quem enxerga. Usa o perfil do SEU time (zona de genialidade, Kolbe) como…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-rotear.md",
+        "templates/perfil-do-time.yaml"
+      ]
+    },
+    {
+      "name": "ops-revisao-semanal",
+      "description": "Toda sexta, quem operou na zona de genialidade e quem passou a semana fora dela. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"revisão da semana\" e cole ou aponte…",
+      "files": [
+        "SKILL.md",
+        "references/metodo-revisao-semanal.md",
+        "templates/perfil-do-time.yaml"
+      ]
+    },
+    {
+      "name": "ops-rotear-tarefa",
+      "description": "Toda tarefa que chega tem alguém do time para quem ela é natural e alguém para quem ela é tortura. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"roteia esta tarefa.",
+      "files": [
+        "SKILL.md",
+        "references/metodo-rotear.md",
+        "templates/perfil-do-time.yaml"
+      ]
+    },
+    {
+      "name": "sop-auditar",
+      "description": "Um SOP pode existir e não servir. Use quando: \"audita este SOP\" (ou uma pasta inteira).",
+      "files": [
+        "SKILL.md",
+        "references/analyze-sop.md",
+        "references/audit-batch.md",
+        "references/audit-sop.md",
+        "references/benchmark-sop.md",
+        "references/certify-sop.md",
+        "references/checklist-14-point-crosby-checklist.md",
+        "references/checklist-sop-quality-checklist.md",
+        "references/compliance-check.md",
+        "references/data-sop-scoring-rubric.yaml",
+        "references/data-sop-standards-reference.yaml",
+        "references/data-verdict-thresholds.yaml",
+        "references/re-audit.md",
+        "templates/audit-report-template.md",
+        "templates/certification-template.md",
+        "templates/nonconformity-register-template.md",
+        "templates/sop-analysis-report-tmpl.md",
+        "templates/sop-scorecard-tmpl.md"
+      ]
+    },
+    {
+      "name": "sop-criar",
+      "description": "Escreve o procedimento duas vezes, de propósito: uma versão para pessoa, no padrão FDA/GMP, e uma para agente, em YAML ou JSON com estados, decisões e ferramentas. Use quando: \"escreve o SOP de…",
+      "files": [
+        "SKILL.md",
+        "references/checklist-sop-completeness-checklist.md",
+        "references/checklist-sop-ml-validation-checklist.md",
+        "references/checklist-stranger-test-checklist.md",
+        "references/convert-sop-format.md",
+        "references/create-checklist.md",
+        "references/create-sop-human.md",
+        "references/create-sop-ml.md",
+        "references/data-category-map.yaml",
+        "references/data-sop-ml-schema-examples.yaml",
+        "references/data-sop-ml-schema.yaml",
+        "templates/checklist-from-sop-tmpl.md",
+        "templates/decision-tree-template.yaml",
+        "templates/ml-sop-json-template.json",
+        "templates/ml-sop-yaml-template.yaml",
+        "templates/sop-human-tmpl.md",
+        "templates/sop-ml-tmpl.md",
+        "templates/state-machine-template.yaml",
+        "templates/tool-binding-template.yaml"
+      ]
+    },
+    {
+      "name": "sop-extrair",
+      "description": "O processo existe na cabeça de quem faz. Use quando: \"extrai o SOP de [processo]\" e aponte a fonte (texto, arquivo, transcrição) ou peça a entrevista.",
+      "files": [
+        "SKILL.md",
+        "references/checklist-extraction-completeness-checklist.md",
+        "references/data-category-map.yaml",
+        "references/data-confidence-levels.yaml",
+        "references/extract-from-video.md",
+        "references/extract-sop.md",
+        "references/structured-interview.md",
+        "templates/extraction-output-template.md"
+      ]
+    }
+  ]
+}

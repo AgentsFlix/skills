@@ -1,0 +1,41 @@
+metadata:
+  version: "1.0"
+  template_type: culture_manifesto
+  status: INCOMPLETE
+  last_updated: null
+  owner: vision-chief
+  description: >
+    Declaração central da cultura. O manifesto define a crença fundacional,
+    o antagonismo e a identidade tribal da empresa. Diferente do brand manifesto
+    (externo, para o mercado), este é interno: para quem faz parte.
+
+# A crença central que a empresa defende
+core_belief: null
+
+# O texto completo do manifesto
+manifesto_text: null
+
+# Versão em inglês (se aplicável)
+manifesto_text_en: null
+
+# Quem a empresa está chamando (identidade tribal)
+tribal_call:
+  who_we_call: null          # "os inconformados", "os rebeldes"
+  tribal_name: null           # "Lendários", "Builders"
+  tribal_identity: null       # O que significa ser membro
+
+# O antagonismo cultural (o que combatemos internamente)
+cultural_antagonism:
+  enemy: null                 # "mediocridade", "burocracia"
+  enemy_manifestations: []    # Como esse inimigo aparece no dia a dia
+
+# A promessa de transformação interna
+transformation_promise: null  # O que acontece com quem vive a cultura
+
+cross_references:
+  depends_on:
+    - brand/brandbook.yaml
+    - company/founder-dna.yaml
+  feeds_into:
+    - culture/commandments.yaml
+    - culture/mantras.yaml

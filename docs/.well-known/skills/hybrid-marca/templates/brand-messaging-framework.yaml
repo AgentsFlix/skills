@@ -1,0 +1,24 @@
+---
+metadata:
+  schema: "brand.messaging_framework"
+  version: "1.0.0"
+  status: "INCOMPLETE"
+  last_updated: FILL_THIS
+  product_name: FILL_THIS
+storybrand_sb7:
+  hero: "FILL_THIS"
+  problem: "FILL_THIS"
+  guide: "FILL_THIS"
+  plan: "FILL_THIS"
+  cta: "FILL_THIS"
+  success: "FILL_THIS"
+  failure_avoided: "FILL_THIS"
+messaging_pillars:
+  - "FILL_THIS"
+  - "FILL_THIS"
+  - "FILL_THIS"
+claims:
+  - claim: "FILL_THIS"
+    evidence: "FILL_THIS"
+references:
+  source_doc: "FILL_THIS"

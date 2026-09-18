@@ -1,0 +1,18 @@
+---
+metadata:
+  schema: "brand.positioning_statement"
+  version: "1.0.0"
+  status: "INCOMPLETE"
+  last_updated: FILL_THIS
+  product_name: FILL_THIS
+positioning:
+  category: "FILL_THIS"
+  frame_of_reference: "FILL_THIS"
+  claim: "FILL_THIS"
+  reasons_to_believe: []
+owned_word: "FILL_THIS"
+competitive_map:
+  direct_competitors: []
+  white_space: "FILL_THIS"
+references:
+  source_doc: "FILL_THIS"
