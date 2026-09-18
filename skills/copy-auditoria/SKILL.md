@@ -1,7 +1,7 @@
 ---
 name: copy-auditoria
 description: "A copy já existe e não está vendendo. Use quando o pedido envolver auditar copy, otimizar texto, comparar versões, split test, por que não vende."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

@@ -1,7 +1,7 @@
 ---
 name: ops-revisao-semanal
 description: "Toda sexta, quem operou na zona de genialidade e quem passou a semana fora dela. Usa o perfil do SEU time (zona de genialidade, Kolbe) como entrada. Use quando: \"revisão da semana\" e cole ou aponte…"
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

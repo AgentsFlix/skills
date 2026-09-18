@@ -1,7 +1,7 @@
 ---
 name: sop-extrair
 description: "O processo existe na cabeça de quem faz. Use quando: \"extrai o SOP de [processo]\" e aponte a fonte (texto, arquivo, transcrição) ou peça a entrevista."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

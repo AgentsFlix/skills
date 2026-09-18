@@ -1,7 +1,7 @@
 ---
 name: copy-metodo-brown
 description: "Escreve copy pelo método de Todd Brown: E5 Method, Big Idea, Unique Mechanism. Use quando pedirem 'como Brown', big idea e mecanismo único, ou uma peça nesse estilo."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

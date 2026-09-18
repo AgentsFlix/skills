@@ -1,7 +1,7 @@
 ---
 name: ads-tracking
 description: "Se o pixel não conta, a otimização otimiza o nada. Só leitura e julgamento: não toca na conta de anúncios. Use quando: \"audita o tracking de [URL]\" e informe a plataforma e os eventos esperados."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

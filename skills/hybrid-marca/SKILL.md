@@ -1,7 +1,7 @@
 ---
 name: hybrid-marca
 description: "A marca escrita antes de virar logo: o núcleo, as promessas que faz e as que não faz, a personalidade, o DNA de voz e os valores. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando…"
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

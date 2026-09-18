@@ -1,7 +1,7 @@
 ---
 name: copy-pipeline
 description: "Da estratégia à peça pronta, em uma esteira só: define o ângulo, escolhe o formato, escreve e revisa, chamando as outras skills de copy na ordem certa. Use quando o pedido envolver campanha completa…"
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

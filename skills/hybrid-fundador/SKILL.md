@@ -1,7 +1,7 @@
 ---
 name: hybrid-fundador
 description: "O negócio herda o fundador: as crenças, o jeito de decidir, o que ele nunca faria. Grava YAML na pasta do negócio (config hybrid.pasta). Use quando: \"extrai meu DNA de fundador\"."
-version: 0.4.3
+version: 0.4.4
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
