@@ -1,4 +1,4 @@
-.account-card { min-height: 610px; }
+.account-card { width: min(640px, 100%); min-height: 610px; }
 
 #account-state h1 { margin-bottom: 10px; }
 
@@ -20,6 +20,71 @@
 
 .form-status[data-tone="success"] { color: var(--accent-text); }
 
+.access-section {
+  margin-top: 28px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.access-heading h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.access-heading p,
+.access-status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.access-status { margin-top: 16px; }
+.access-status[data-tone="error"] { color: var(--danger); }
+
+.access-list {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.access-card {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #111;
+}
+
+.access-card h3 { margin: 0 0 5px; font-size: 16px; line-height: 1.3; }
+.access-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+
+.access-open,
+.access-retry {
+  min-height: 44px;
+  border-radius: 999px;
+  padding: 11px 17px;
+  background: var(--active);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.access-open { display: inline-flex; align-items: center; justify-content: center; }
+.access-open:hover, .access-retry:hover { background: #444; }
+.access-retry { margin-top: 14px; }
+
+.access-list[hidden],
+.access-retry[hidden] {
+  display: none;
+}
+
 .text-link {
   min-height: 44px;
   margin-top: 12px;
@@ -34,4 +99,6 @@
 
 @media (max-width: 600px) {
   .account-card { min-height: 590px; }
+  .access-card { grid-template-columns: 1fr; }
+  .access-open { width: 100%; }
 }

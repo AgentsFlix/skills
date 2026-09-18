@@ -23,6 +23,76 @@ function fillProfile(profile, user) {
   setStatus();
 }
 
+function setAccessStatus(message = "", tone = "") {
+  const status = byId("access-status");
+  status.textContent = message;
+  status.dataset.tone = tone;
+}
+
+function accessMeta(grant) {
+  if (!grant.expires_at) return "Acesso ativo";
+  const date = new Date(grant.expires_at);
+  if (Number.isNaN(date.getTime())) return "Acesso ativo";
+  return `Válido até ${new Intl.DateTimeFormat("pt-BR").format(date)}`;
+}
+
+function renderAccesses(grants, products) {
+  const list = byId("access-list");
+  list.replaceChildren();
+  const grantByProduct = new Map();
+  grants.forEach((grant) => {
+    if (!grantByProduct.has(grant.product_id)) grantByProduct.set(grant.product_id, grant);
+  });
+
+  products.forEach((product) => {
+    const card = document.createElement("article");
+    card.className = "access-card";
+    const copy = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = product.title;
+    const meta = document.createElement("p");
+    meta.textContent = accessMeta(grantByProduct.get(product.id) || {});
+    const link = document.createElement("a");
+    link.className = "access-open";
+    link.href = product.kind === "pass" ? "/" : `/acesso/?produto=${encodeURIComponent(product.id)}`;
+    link.textContent = product.kind === "pass" ? "Ver catálogo" : "Abrir conteúdo";
+    copy.append(title, meta);
+    card.append(copy, link);
+    list.append(card);
+  });
+
+  list.hidden = products.length === 0;
+  setAccessStatus(products.length ? "" : "Você ainda não tem conteúdos liberados nesta conta.");
+}
+
+async function loadAccesses() {
+  byId("access-list").hidden = true;
+  byId("access-retry-button").hidden = true;
+  setAccessStatus("Carregando seus acessos…");
+  try {
+    const { data: grants, error: grantsError } = await client.rpc("my_access");
+    if (grantsError) throw grantsError;
+    const productIds = [...new Set((grants || []).map((grant) => grant.product_id).filter(Boolean))];
+    if (productIds.length === 0) {
+      renderAccesses([], []);
+      return;
+    }
+
+    const { data: products, error: productsError } = await client
+      .from("products")
+      .select("id,title,kind,active")
+      .in("id", productIds)
+      .eq("active", true);
+    if (productsError) throw productsError;
+    const order = new Map(productIds.map((id, index) => [id, index]));
+    renderAccesses(grants || [], (products || []).sort((a, b) => order.get(a.id) - order.get(b.id)));
+  } catch (error) {
+    console.warn("AgentFlix access list unavailable", error);
+    setAccessStatus("Não foi possível carregar seus acessos.", "error");
+    byId("access-retry-button").hidden = false;
+  }
+}
+
 async function loadProfile(session) {
   const sequence = ++loadSequence;
   currentUser = session.user;
@@ -43,6 +113,7 @@ async function loadProfile(session) {
 
   fillProfile(data, session.user);
   show("account");
+  await loadAccesses();
 }
 
 async function loadConfig() {
@@ -129,6 +200,7 @@ byId("profile-form").addEventListener("submit", async (event) => {
 });
 
 byId("retry-button").addEventListener("click", () => window.location.reload());
+byId("access-retry-button").addEventListener("click", loadAccesses);
 byId("sign-out-button").addEventListener("click", async () => {
   const button = byId("sign-out-button");
   button.disabled = true;
