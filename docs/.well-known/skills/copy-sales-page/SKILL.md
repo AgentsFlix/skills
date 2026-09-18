@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
   author: José Carlos Amorim
-  version: 0.4.4
+  version: 0.4.5
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/copy-sales-page
   tags: copy, copywriting, copy, página-de-vendas
@@ -34,6 +34,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | audit landing page | `references/audit-landing-page.md` |
 | create magalog | `references/create-magalog.md` |
 | create artifact from kb | `references/create-artifact-from-kb.md` |
+
+
 
 ## Procedure
 

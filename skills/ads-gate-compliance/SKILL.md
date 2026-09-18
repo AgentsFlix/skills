@@ -1,7 +1,7 @@
 ---
 name: ads-gate-compliance
 description: "Confere um criativo de anúncio contra a régua de compliance da Meta antes de subir e devolve APROVADO ou REPROVADO com o ajuste exato. Use quando: gate, revisar criativo, anúncio reprovado, risco de…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

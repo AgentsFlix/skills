@@ -6,7 +6,7 @@
 >
 > **Como usar.** ChatGPT: crie um Project, envie este arquivo em Files e cole nas instruções do projeto o texto
 > de ativação abaixo. Claude: envie como conhecimento do Project, ou cole tudo no chat. Qualquer chat: cole tudo.
-> Versão 0.4.4. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
+> Versão 0.4.5. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
 >
 > **Texto de ativação (cole nas instruções):** Você tem no arquivo `copy-headlines.md` uma skill chamada copy-headlines. Quando eu pedir algo como "gera headlines para [produto], benefício [x], público [y]", siga o `## Procedure` desse arquivo à risca, use as seções `Referência:` dele no lugar dos arquivos que ele cita, e termine pela `## Verification`. Se faltar informação, pergunte antes de escrever.
 
@@ -32,6 +32,17 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create video hook | `references/create-video-hook.md` |
 | create bullets | `references/create-bullets.md` |
 | write lampropoulos bullets | `references/write-lampropoulos-bullets.md` |
+
+
+## Quantity Contract for Video Hooks
+
+Quando a sub-tarefa for `create video hook`, resolva a quantidade antes de escrever:
+
+- Se o usuário pedir uma quantidade positiva explícita, entregue exatamente essa quantidade.
+- Se o usuário não informar quantidade, entregue exatamente 5 variações.
+- Conte as variações antes de responder; não complete nem reduza a quantidade resolvida.
+- A menção genérica a dez manchetes na apresentação descreve `create headlines` e não se aplica a `create video hook`.
+
 
 ## Procedure
 

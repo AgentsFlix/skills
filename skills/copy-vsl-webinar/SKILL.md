@@ -1,7 +1,7 @@
 ---
 name: copy-vsl-webinar
 description: "Roteiro de VSL e de webinar, do gancho de abertura ao fechamento, com os pontos de tensão marcados no tempo. Use quando o pedido envolver VSL, roteiro de vídeo de vendas, webinar frio ou quente…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
@@ -31,6 +31,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create webinar script | `references/create-webinar-script.md` |
 | create cold webinar script | `references/create-cold-webinar-script.md` |
 | create warm webinar script | `references/create-warm-webinar-script.md` |
+
+
 
 ## Procedure
 

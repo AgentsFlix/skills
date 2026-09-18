@@ -1,7 +1,7 @@
 ---
 name: copy-metodo-kennedy
 description: "Escreve copy pelo método de Dan Kennedy: Urgência com prazo, No B.S., Magnetic Marketing, Oferta irresistível, Fechamento direto. Use quando pedirem 'como Kennedy', urgência e resposta direta, ou uma…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

@@ -1,7 +1,7 @@
 ---
 name: copy-metodo-schwartz
 description: "Escreve copy pelo método de Eugene Schwartz: Desejo de massa, 5 níveis de consciência, 5 estágios de sofisticação, Breakthrough Adverti. Use quando pedirem 'como Schwartz', desejo de massa e…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

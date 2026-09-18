@@ -1,7 +1,7 @@
 ---
 name: copy-email
 description: "Sequência de boas-vindas, e-mail diário, lançamento, cold e-mail, carrinho abandonado, lead que sumiu, martelo pré-call e newsletter. Use quando o pedido envolver e-mail, sequência, newsletter, cold…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
@@ -35,6 +35,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create ghosted lead recovery | `references/create-ghosted-lead-recovery.md` |
 | create pre call hammer sequence | `references/create-pre-call-hammer-sequence.md` |
 | create newsletter | `references/create-newsletter.md` |
+
+
 
 ## Procedure
 

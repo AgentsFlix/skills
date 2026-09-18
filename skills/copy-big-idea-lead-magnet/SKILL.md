@@ -1,7 +1,7 @@
 ---
 name: copy-big-idea-lead-magnet
 description: "Uma campanha inteira cabe em uma ideia. Use quando o pedido envolver big idea, ideia central, mecanismo único, RMBC, brief de campanha, lead magnet."
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
@@ -34,6 +34,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create unique mechanism | `references/create-unique-mechanism.md` |
 | create campaign brief | `references/create-campaign-brief.md` |
 | campaign planning pack | `references/campaign-planning-pack.md` |
+
+
 
 ## Procedure
 

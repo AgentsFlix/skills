@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
   author: José Carlos Amorim
-  version: 0.4.4
+  version: 0.4.5
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/copy-voz
   tags: copy, copywriting, voz, marca-pessoal
@@ -31,6 +31,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | extract communication dna | `references/extract-communication-dna.md` |
 | extract signature phrases | `references/extract-signature-phrases.md` |
 | extract frameworks | `references/extract-frameworks.md` |
+
+
 
 ## Procedure
 

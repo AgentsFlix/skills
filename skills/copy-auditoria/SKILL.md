@@ -1,7 +1,7 @@
 ---
 name: copy-auditoria
 description: "A copy já existe e não está vendendo. Use quando o pedido envolver auditar copy, otimizar texto, comparar versões, split test, por que não vende."
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
@@ -35,6 +35,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | simple writing audit | `references/simple-writing-audit.md` |
 | setup split test | `references/setup-split-test.md` |
 | qa gate | `references/qa-gate.md` |
+
+
 
 ## Procedure
 

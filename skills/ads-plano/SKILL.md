@@ -1,7 +1,7 @@
 ---
 name: ads-plano
 description: "Calcula CAC-alvo, CAC-teto, CPL e orçamento por fase antes do primeiro real, e entrega o briefing do produto para o motor. Use quando: plano de tráfego, quanto gastar, unit economics, vale anunciar."
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

@@ -5,7 +5,7 @@ license: MIT
 compatibility: 'Requer: web, terminal. Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.'
 metadata:
   author: José Carlos Amorim
-  version: 0.4.4
+  version: 0.4.5
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/hybrid-etl
   tags: hybrid-workspace, negocio, elicitacao, yaml

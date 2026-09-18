@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
   author: José Carlos Amorim
-  version: 0.4.4
+  version: 0.4.5
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/copy-vendas-por-chamada
   tags: copy, copywriting, vendas, script
@@ -31,6 +31,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create call script | `references/create-call-script.md` |
 | create close script | `references/create-close-script.md` |
 | create objection algorithms | `references/create-objection-algorithms.md` |
+
+
 
 ## Procedure
 

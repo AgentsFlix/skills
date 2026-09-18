@@ -26,18 +26,37 @@ class CopyHeadlinesQuantityDistributionTest(unittest.TestCase):
                 self.assertIn(OUTPUT_TEXT, text)
                 self.assertNotIn("create at least 5 hook variations", text)
 
-    def test_catalog_points_copy_headlines_to_release_v044(self):
+    def test_main_skill_resolves_video_hook_quantity(self):
+        skill = (ROOT / "skills/copy-headlines/SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("## Quantity Contract for Video Hooks", skill)
+        self.assertIn(
+            "Se o usuário pedir uma quantidade positiva explícita, entregue exatamente essa quantidade",
+            skill,
+        )
+        self.assertIn(
+            "Se o usuário não informar quantidade, entregue exatamente 5 variações",
+            skill,
+        )
+        self.assertIn(
+            "dez manchetes na apresentação descreve `create headlines`",
+            skill,
+        )
+
+    def test_catalog_points_copy_headlines_to_current_release(self):
         for path in [ROOT / "catalog.json", ROOT / "docs/catalog.json"]:
             with self.subTest(path=path.relative_to(ROOT)):
                 catalog = json.loads(path.read_text(encoding="utf-8"))
-                self.assertEqual(catalog["version"], "0.4.4")
+                version = catalog["version"]
                 skill = next(
                     item for item in catalog["skills"]
                     if item["name"] == "copy-headlines"
                 )
-                self.assertEqual(skill["version"], "0.4.4")
-                self.assertIn("/v0.4.4/skills/copy-headlines/", skill["install_url"])
-                self.assertIn("/v0.4.4/skills/copy-headlines/", skill["install_cmd"])
+                self.assertEqual(skill["version"], version)
+                expected = f"/v{version}/skills/copy-headlines/"
+                self.assertIn(expected, skill["install_url"])
+                self.assertIn(expected, skill["install_cmd"])
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 ---
 name: copy-vendas-por-chamada
 description: "Script de ligação, script de fechamento e os algoritmos de objeção: para cada \"vou pensar\", o que perguntar e o que dizer. Use quando o pedido envolver script de call, ligação de vendas, fechamento…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
@@ -30,6 +30,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create call script | `references/create-call-script.md` |
 | create close script | `references/create-close-script.md` |
 | create objection algorithms | `references/create-objection-algorithms.md` |
+
+
 
 ## Procedure
 

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
   author: José Carlos Amorim
-  version: 0.4.4
+  version: 0.4.5
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/copy-headlines
   tags: copy, copywriting, copy, headlines
@@ -32,6 +32,17 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create video hook | `references/create-video-hook.md` |
 | create bullets | `references/create-bullets.md` |
 | write lampropoulos bullets | `references/write-lampropoulos-bullets.md` |
+
+
+## Quantity Contract for Video Hooks
+
+Quando a sub-tarefa for `create video hook`, resolva a quantidade antes de escrever:
+
+- Se o usuário pedir uma quantidade positiva explícita, entregue exatamente essa quantidade.
+- Se o usuário não informar quantidade, entregue exatamente 5 variações.
+- Conte as variações antes de responder; não complete nem reduza a quantidade resolvida.
+- A menção genérica a dez manchetes na apresentação descreve `create headlines` e não se aplica a `create video hook`.
+
 
 ## Procedure
 

@@ -1,7 +1,7 @@
 ---
 name: habitos-que-cabem
 description: Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.
-version: 0.4.4
+version: 0.4.5
 author: José Carlos Amorim
 license: MIT
 metadata:

@@ -1,7 +1,7 @@
 ---
 name: copy-sales-page
 description: "Uma página de vendas longa não é um texto grande, é uma sequência de decisões pequenas até o botão. Use quando o pedido envolver página de vendas, sales page, landing page, carta de vendas longa…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
@@ -33,6 +33,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | audit landing page | `references/audit-landing-page.md` |
 | create magalog | `references/create-magalog.md` |
 | create artifact from kb | `references/create-artifact-from-kb.md` |
+
+
 
 ## Procedure
 

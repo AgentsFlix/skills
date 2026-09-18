@@ -5,7 +5,7 @@ license: MIT
 compatibility: 'Requer: terminal. Antes de usar, defina no ambiente: META_AUTH. No Hermes roda agendada; em outros agentes, sob demanda. Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.'
 metadata:
   author: José Carlos Amorim
-  version: 0.4.4
+  version: 0.4.5
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/ads-otimizar
   tags: trafego-pago, meta-ads, otimizacao, graph-api, blueprint

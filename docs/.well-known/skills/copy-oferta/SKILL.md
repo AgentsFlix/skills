@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
   author: José Carlos Amorim
-  version: 0.4.4
+  version: 0.4.5
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/copy-oferta
   tags: copy, copywriting, oferta, estratégia
@@ -36,6 +36,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create thank you page | `references/create-thank-you-page.md` |
 | create proof stack | `references/create-proof-stack.md` |
 | create decision matrix | `references/create-decision-matrix.md` |
+
+
 
 ## Procedure
 

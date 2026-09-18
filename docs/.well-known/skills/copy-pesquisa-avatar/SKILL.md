@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
   author: José Carlos Amorim
-  version: 0.4.4
+  version: 0.4.5
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/copy-pesquisa-avatar
   tags: copy, copywriting, pesquisa, avatar
@@ -34,6 +34,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | diagnose market sophistication | `references/diagnose-market-sophistication.md` |
 | copysearch | `references/copysearch.md` |
 | diagnose awareness level | `references/diagnose-awareness-level.md` |
+
+
 
 ## Procedure
 

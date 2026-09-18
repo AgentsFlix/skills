@@ -1,7 +1,7 @@
 ---
 name: copy-pipeline
 description: "Da estratégia à peça pronta, em uma esteira só: define o ângulo, escolhe o formato, escreve e revisa, chamando as outras skills de copy na ordem certa. Use quando o pedido envolver campanha completa…"
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
@@ -30,6 +30,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | write copy | `references/write-copy.md` |
 | strategy | `references/strategy.md` |
 | create copywriter agent | `references/create-copywriter-agent.md` |
+
+
 
 ## Procedure
 

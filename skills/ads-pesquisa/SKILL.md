@@ -1,7 +1,7 @@
 ---
 name: ads-pesquisa
 description: "Campanha sem pesquisa é orçamento em teste cego. Só leitura e julgamento: não toca na conta de anúncios. Use quando: \"pesquisa para a campanha de [produto]\"."
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]

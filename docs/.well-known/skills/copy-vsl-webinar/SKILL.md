@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.
 metadata:
   author: José Carlos Amorim
-  version: 0.4.4
+  version: 0.4.5
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/main/skills/copy-vsl-webinar
   tags: copy, copywriting, copy, vídeo
@@ -32,6 +32,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create webinar script | `references/create-webinar-script.md` |
 | create cold webinar script | `references/create-cold-webinar-script.md` |
 | create warm webinar script | `references/create-warm-webinar-script.md` |
+
+
 
 ## Procedure
 

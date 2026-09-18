@@ -1,7 +1,7 @@
 ---
 name: copy-anuncios
 description: "O anúncio tem três segundos para parar o dedo. Use quando o pedido envolver anúncio, ad copy, criativo, roteiro de anúncio, nativo, YouTube ads."
-version: 0.4.4
+version: 0.4.5
 author: "José Carlos Amorim"
 license: MIT
 platforms: [linux, macos, windows]
@@ -31,6 +31,8 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create ad script | `references/create-ad-script.md` |
 | create native ads | `references/create-native-ads.md` |
 | create youtube ads | `references/create-youtube-ads.md` |
+
+
 
 ## Procedure
 
