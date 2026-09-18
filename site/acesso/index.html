@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#141414">
+  <meta name="description" content="Conteúdo protegido da sua conta AgentFlix.">
+  <title>Conteúdo protegido | AgentFlix</title>
+  <link rel="icon" href="../brand/favicon-dark.ico">
+  <link rel="stylesheet" href="../entrar/login.css">
+  <link rel="stylesheet" href="access.css">
+</head>
+<body>
+  <header class="login-header">
+    <a class="brand" href="/" aria-label="Voltar para a AgentFlix">
+      <img src="../brand/horizontal-transparente-dark.svg" alt="AgentFlix">
+    </a>
+    <a class="back" href="/conta/">Minha conta</a>
+  </header>
+
+  <main class="login-shell">
+    <section class="login-card protected-card" aria-label="Conteúdo protegido">
+      <div class="eyebrow">CONTEÚDO PROTEGIDO</div>
+
+      <div id="loading-state" class="state" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <p>Conferindo seu acesso…</p>
+      </div>
+
+      <div id="signed-out-state" class="state" hidden>
+        <h1>Entre para continuar</h1>
+        <p class="lead">A gente precisa conferir o acesso vinculado à sua conta.</p>
+        <a id="login-link" class="primary-link" href="/entrar/">Entrar na AgentFlix</a>
+      </div>
+
+      <div id="denied-state" class="state" hidden>
+        <h1>Este conteúdo não está liberado</h1>
+        <p class="lead">Sua conta está ativa, mas não possui acesso a este conteúdo.</p>
+        <a class="primary-link" href="/conta/">Ver meus acessos</a>
+      </div>
+
+      <div id="content-state" class="state" hidden>
+        <h1 id="content-title"></h1>
+        <p id="content-description" class="lead"></p>
+        <div id="video-list" class="video-list" aria-label="Conteúdos disponíveis"></div>
+        <p id="content-status" class="content-status" role="status" aria-live="polite"></p>
+        <div id="player-shell" class="player-shell" hidden>
+          <iframe id="protected-player" title="Player do conteúdo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div id="unavailable-state" class="state" hidden>
+        <h1>Conteúdo indisponível agora</h1>
+        <p class="lead">Seu acesso não foi alterado. Tente carregar novamente.</p>
+        <button id="retry-button" type="button">Tentar novamente</button>
+        <a class="text-link" href="/conta/">Voltar para Minha conta</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="login-footer">
+    <span>AGENTFLIX · SKILLS PARA AGENTES</span>
+    <a href="/privacidade.html">Privacidade</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+  <script type="module" src="access.js"></script>
+</body>
+</html>
