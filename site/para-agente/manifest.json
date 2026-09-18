@@ -5,7 +5,10 @@
   "scope": "public",
   "catalog_url": "https://agentsflix.ai/catalog.json",
   "repository_url": "https://github.com/AgentsFlix/skills",
+  "page_url": "https://agentsflix.ai/para-agente/",
+  "manifest_url": "https://agentsflix.ai/para-agente/manifest.json",
   "prompt_url": "https://agentsflix.ai/para-agente/prompt.txt",
+  "llms_url": "https://agentsflix.ai/llms.txt",
   "policy": {
     "source_of_truth": "O catálogo público informa os comandos e artefatos disponíveis para cada skill.",
     "install_only_when_needed": true,
