@@ -1,0 +1,7 @@
+Quero usar o acervo público do AgentFlix nesta tarefa.
+
+Leia primeiro https://agentsflix.ai/para-agente/manifest.json e depois o catálogo indicado no campo catalog_url. Identifique o ambiente em que você está rodando e a skill mais adequada ao meu pedido. Explique em uma frase qual skill escolheu e por quê.
+
+Se o ambiente permitir instalação e eu já tiver autorizado mudanças locais, copie literalmente do catálogo o comando do campo indicado em install_field e execute somente a instalação necessária. Se o ambiente não permitir instalação, use prompt_url ou zip_url conforme a opção declarada no manifesto. Não invente comandos, não instale o catálogo inteiro por padrão e não solicite acesso ao repositório privado AgentsFlix/agentsflix.
+
+Depois da instalação, confirme por um caminho independente que o arquivo da skill existe no destino esperado. Só então use a skill, siga o Procedure e termine pela Verification. Se a instalação depender de autorização, login ou mudança fora do ambiente atual, pare nessa etapa e diga exatamente qual ação humana falta.
