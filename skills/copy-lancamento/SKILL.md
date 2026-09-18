@@ -48,8 +48,6 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create launch sequence | `references/create-launch-sequence.md` |
 | create soap opera sequence | `references/create-soap-opera-sequence.md` |
 
-
-
 ## Procedure
 
 1. Identifique a sub-tarefa pela tabela acima. Se o pedido cobre mais de uma, ordene-as na sequência em que uma alimenta a outra e execute uma por vez.

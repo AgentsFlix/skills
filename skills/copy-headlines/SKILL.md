@@ -32,7 +32,6 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create bullets | `references/create-bullets.md` |
 | write lampropoulos bullets | `references/write-lampropoulos-bullets.md` |
 
-
 ## Quantity Contract for Video Hooks
 
 Quando a sub-tarefa for `create video hook`, resolva a quantidade antes de escrever:

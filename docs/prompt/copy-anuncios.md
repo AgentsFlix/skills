@@ -33,8 +33,6 @@ Cada sub-tarefa é uma referência com `Inputs`, fórmulas, `Output Format` e `Q
 | create native ads | `references/create-native-ads.md` |
 | create youtube ads | `references/create-youtube-ads.md` |
 
-
-
 ## Procedure
 
 1. Identifique a sub-tarefa pela tabela acima. Se o pedido cobre mais de uma, ordene-as na sequência em que uma alimenta a outra e execute uma por vez.
