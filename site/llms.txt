@@ -1,0 +1,11 @@
+# AgentFlix
+
+> Catálogo público de skills e materiais para agentes. Verificado em 2026-09-18.
+
+- [Página Para agente](https://agentsflix.ai/para-agente/): explica o escopo público e oferece o prompt universal.
+- [Manifesto público](https://agentsflix.ai/para-agente/manifest.json): declara a política e os campos de instalação por ambiente.
+- [Catálogo de skills](https://agentsflix.ai/catalog.json): lista as skills e os artefatos públicos disponíveis.
+- [Prompt universal](https://agentsflix.ai/para-agente/prompt.txt): texto colável para escolher, instalar e verificar uma skill.
+- [Repositório público](https://github.com/AgentsFlix/skills): contém os artefatos versionados distribuídos pelo AgentFlix.
+
+Este índice contém somente recursos públicos. O manifesto é a fonte para descoberta; o catálogo é a fonte dos comandos e artefatos de cada skill.

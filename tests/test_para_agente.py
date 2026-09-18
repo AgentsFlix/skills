@@ -34,6 +34,12 @@ class ParaAgenteTests(unittest.TestCase):
         self.assertEqual(manifest["scope"], "public")
         self.assertFalse(manifest["policy"]["private_repository_access"])
         self.assertFalse(manifest["policy"]["install_all_by_default"])
+        self.assertEqual(manifest["llms_url"], "https://agentsflix.ai/llms.txt")
+        self.assertEqual(manifest["page_url"], "https://agentsflix.ai/para-agente/")
+        self.assertEqual(
+            manifest["manifest_url"],
+            "https://agentsflix.ai/para-agente/manifest.json",
+        )
         targets = {target["id"]: target for target in manifest["targets"]}
         self.assertEqual(
             {target["install_field"] for target in targets.values()},
@@ -52,7 +58,24 @@ class ParaAgenteTests(unittest.TestCase):
         self.assertIn('role="status" aria-live="polite"', page)
         self.assertIn('<h1 id="page-title">', page)
         self.assertIn('href="manifest.json"', page)
+        self.assertIn("Se você é um agente de pesquisa, indexação ou execução", page)
+        self.assertIn('href="https://agentsflix.ai/llms.txt"', page)
         self.assertNotIn("<iframe", page)
+
+    def test_llms_index_lists_only_public_canonical_routes(self):
+        manifest = json.loads((AGENT / "manifest.json").read_text())
+        llms = (SITE / "llms.txt").read_text()
+        self.assertIn(manifest["verified_at"], llms)
+        for field in (
+            "page_url",
+            "manifest_url",
+            "catalog_url",
+            "repository_url",
+            "prompt_url",
+        ):
+            self.assertIn(manifest[field], llms)
+        self.assertNotIn("AgentsFlix/agentsflix", llms)
+        self.assertNotIn("/Users/", llms)
 
 
 if __name__ == "__main__":
