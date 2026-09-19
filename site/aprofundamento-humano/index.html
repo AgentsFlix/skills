@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../design-system/tokens.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -58,12 +59,15 @@
           <p class="eyebrow">Biblioteca de assessments</p>
           <h2 id="catalog-title">Um mapa diferente para cada pergunta</h2>
         </div>
-        <p>Seis caminhos para observar seus padrões. Escolha uma pergunta que faça sentido para o seu momento e leve a reflexão para a prática.</p>
+        <div class="catalog-summary">
+          <p>Seis caminhos para observar seus padrões. Escolha uma pergunta que faça sentido para o seu momento e leve a reflexão para a prática.</p>
+          <p class="catalog-availability"><strong>6</strong> assessments disponíveis</p>
+        </div>
       </div>
 
       <div class="assessment-grid">
         <article class="assessment-card assessment-card-featured">
-          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">01</span></div>
+          <div class="card-topline"><span class="status status-ready">Comece por aqui</span><span class="card-index">01</span></div>
           <div class="card-symbol" aria-hidden="true">D<span>I</span><span>S</span><span>C</span></div>
           <h3>Perfil DISC</h3>
           <p>Observe tendências de ritmo, comunicação, estabilidade e relação com regras e detalhes.</p>
@@ -71,7 +75,7 @@
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">02</span></div>
+          <div class="card-topline"><span class="card-index">02</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">APRENDER</div>
           <h3>Modos de aprendizagem</h3>
           <p>Uma reflexão inspirada no framework de Richard Elmore sobre como você aprende e produz mudança.</p>
@@ -79,7 +83,7 @@
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">03</span></div>
+          <div class="card-topline"><span class="card-index">03</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">AGIR</div>
           <h3>Modo de agir</h3>
           <p>Como você tende a iniciar, organizar, improvisar e sustentar uma ação quando existe liberdade de escolha.</p>
@@ -87,7 +91,7 @@
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">04</span></div>
+          <div class="card-topline"><span class="card-index">04</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">5 TRAÇOS</div>
           <h3>Big Five</h3>
           <p>Um retrato dimensional de cinco grandes traços de personalidade, sem encaixar você em um único tipo.</p>
@@ -95,7 +99,7 @@
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">05</span></div>
+          <div class="card-topline"><span class="card-index">05</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">9 MOTIVOS</div>
           <h3>Eneagrama</h3>
           <p>Uma lente sobre motivações, estratégias recorrentes e possíveis pontos cegos.</p>
@@ -103,7 +107,7 @@
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">06</span></div>
+          <div class="card-topline"><span class="card-index">06</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">PREFERÊNCIAS</div>
           <h3>Preferências de Jung</h3>
           <p>Explore os quatro pares de preferências popularizados pelo MBTI em um exercício autoral de percepção e decisão.</p>
@@ -141,10 +145,10 @@
         </div>
 
         <ol class="progress" aria-label="Progresso do assessment">
-          <li data-progress="most"><span>01</span> Mais</li>
-          <li data-progress="least"><span>02</span> Menos</li>
-          <li data-progress="somewhat"><span>03</span> Pouco</li>
-          <li data-progress="result"><span>04</span> Resultado</li>
+          <li data-progress="most"><span class="progress-number">01</span><span class="progress-label">Mais</span></li>
+          <li data-progress="least"><span class="progress-number">02</span><span class="progress-label">Menos</span></li>
+          <li data-progress="somewhat"><span class="progress-number">03</span><span class="progress-label">Pouco</span></li>
+          <li data-progress="result"><span class="progress-number">04</span><span class="progress-label">Resultado</span></li>
         </ol>
 
         <p class="round-help" id="round-help">Em cada pergunta, marque a alternativa que tem MAIS a ver com você do que todas as outras.</p>
