@@ -20,6 +20,28 @@
 
 .form-status[data-tone="success"] { color: var(--accent-text); }
 
+.admin-access-link {
+  min-height: 74px;
+  margin-top: 22px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid #35636c;
+  border-radius: 14px;
+  background: #142126;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.admin-access-link:hover { border-color: var(--accent-text); background: #182a30; }
+.admin-access-link strong,
+.admin-access-link small { display: block; }
+.admin-access-link strong { font-size: 15px; }
+.admin-access-link small { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.admin-access-link > span:last-child { color: var(--accent-text); font-size: 22px; }
+
 .access-section {
   margin-top: 28px;
   padding-top: 26px;

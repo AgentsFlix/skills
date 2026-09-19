@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#141414">
+  <meta name="description" content="Administre acessos da AgentFlix com histórico auditável.">
+  <title>Acessos | Administração AgentFlix</title>
+  <link rel="icon" href="../../brand/favicon-dark.ico">
+  <link rel="stylesheet" href="../../entrar/login.css">
+  <link rel="stylesheet" href="admin-access.css">
+</head>
+<body>
+  <header class="login-header">
+    <a class="brand" href="/" aria-label="Voltar para a AgentFlix">
+      <img src="../../brand/horizontal-transparente-dark.svg" alt="AgentFlix">
+    </a>
+    <a class="back" href="/conta/">Minha conta</a>
+  </header>
+
+  <main class="admin-shell">
+    <section class="admin-card" aria-label="Painel administrativo de acessos">
+      <div class="eyebrow">ADMINISTRAÇÃO</div>
+
+      <div id="loading-state" class="state centered" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <p>Conferindo sua permissão…</p>
+      </div>
+
+      <div id="signed-out-state" class="state centered" hidden>
+        <h1>Entre como administrador</h1>
+        <p class="lead">O painel só abre depois do acesso seguro por e-mail.</p>
+        <a class="primary-link" href="/entrar/?next=%2Fadmin%2Facessos%2F">Entrar na AgentFlix</a>
+      </div>
+
+      <div id="forbidden-state" class="state centered" hidden>
+        <h1>Acesso restrito</h1>
+        <p class="lead">Esta conta não tem permissão administrativa.</p>
+        <a class="primary-link" href="/conta/">Voltar à minha conta</a>
+      </div>
+
+      <div id="admin-state" class="state" hidden>
+        <div class="admin-intro">
+          <div>
+            <h1>Acessos</h1>
+            <p class="lead">Localize uma pessoa e ajuste apenas concessões manuais.</p>
+          </div>
+          <span class="secure-badge">AUDITÁVEL</span>
+        </div>
+
+        <form id="search-form" class="search-form" role="search">
+          <label for="user-search">Nome ou e-mail</label>
+          <div class="search-row">
+            <input id="user-search" name="busca" type="search" maxlength="120" autocomplete="off" placeholder="exemplo@agentsflix.ai">
+            <button id="search-button" type="submit">Buscar</button>
+          </div>
+        </form>
+        <p id="search-status" class="panel-status" role="status" aria-live="polite"></p>
+        <div id="user-results" class="user-results" aria-label="Usuários encontrados"></div>
+
+        <section id="user-detail" class="user-detail" hidden aria-labelledby="selected-user-name">
+          <div class="detail-header">
+            <div>
+              <span class="section-label">CONTA SELECIONADA</span>
+              <h2 id="selected-user-name"></h2>
+              <p id="selected-user-email"></p>
+            </div>
+            <span id="selected-user-role" class="role-badge"></span>
+          </div>
+
+          <section class="detail-section" aria-labelledby="products-title">
+            <div class="section-heading">
+              <div>
+                <h3 id="products-title">Produtos e acessos</h3>
+                <p>Data vazia significa acesso sem vencimento.</p>
+              </div>
+              <button id="refresh-button" class="quiet-button" type="button">Atualizar</button>
+            </div>
+            <p id="action-status" class="panel-status" role="status" aria-live="polite"></p>
+            <div id="product-list" class="product-list"></div>
+          </section>
+
+          <section class="detail-section history-section" aria-labelledby="history-title">
+            <div class="section-heading">
+              <div>
+                <h3 id="history-title">Histórico</h3>
+                <p>Concessões e revogações manuais desta conta.</p>
+              </div>
+            </div>
+            <div id="history-list" class="history-list"></div>
+          </section>
+        </section>
+      </div>
+
+      <div id="unavailable-state" class="state centered" hidden>
+        <h1>Painel indisponível</h1>
+        <p class="lead">Nenhum acesso foi alterado. Tente carregar novamente.</p>
+        <button id="retry-button" type="button">Tentar novamente</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="login-footer">
+    <span>AGENTFLIX · ÁREA RESTRITA</span>
+    <a href="/privacidade.html">Privacidade</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+  <script type="module" src="admin-access.js"></script>
+</body>
+</html>
