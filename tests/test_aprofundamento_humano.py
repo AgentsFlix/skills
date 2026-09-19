@@ -17,7 +17,8 @@ class AprofundamentoHumanoTests(unittest.TestCase):
         self.assertGreaterEqual(home.count('href="/aprofundamento-humano/"'), 2)
         self.assertIn('aria-current="page">Aprofundamento humano</a>', page)
         self.assertNotIn('src="../analytics.js"', page)
-        self.assertEqual(page.count("Disponível"), 6)
+        self.assertIn("6</strong> assessments disponíveis", page)
+        self.assertEqual(page.count("Comece por aqui"), 1)
 
     def test_catalog_exposes_the_six_available_assessments(self):
         page = (AREA / "index.html").read_text()
@@ -34,6 +35,18 @@ class AprofundamentoHumanoTests(unittest.TestCase):
             self.assertIn(f'href="#{target}"', page)
         self.assertIn("Não é diagnóstico psicológico", page)
         self.assertIn("Só neste navegador", page)
+
+    def test_area_consumes_shared_tokens_without_forking_them(self):
+        page = (AREA / "index.html").read_text()
+        styles = (AREA / "styles.css").read_text()
+        shared = '../design-system/tokens.css'
+
+        self.assertIn(f'href="{shared}"', page)
+        self.assertLess(page.index(f'href="{shared}"'), page.index('href="styles.css"'))
+        self.assertTrue((SITE / "design-system" / "tokens.css").is_file())
+        self.assertNotRegex(styles, r"--af-[a-z0-9-]+\s*:")
+        for token in ("--af-bg", "--af-text", "--af-panel", "--af-brand", "--af-target"):
+            self.assertIn(f"var({token})", styles)
 
     def test_disc_keeps_the_three_round_scoring_contract(self):
         result = self.run_model(

@@ -1,0 +1,67 @@
+/* Fonte única web v0.2. Valores preservados; ver design/CONTRATO-WEB.md. */
+:root {
+  --af-bg: #141414;
+  --af-panel: #181818;
+  --af-surface: #202020;
+  --af-active: #333333;
+  --af-text: #f5f5f1;
+  --af-muted: #b3b3b3;
+  --af-line: rgba(255, 255, 255, .16);
+  --af-brand: #30b0c7;
+  --af-link: #5fc9dc;
+  --af-on-brand: #14161a;
+  --af-primary: #fff;
+  --af-on-primary: #141414;
+  --af-danger: #ffb4ab;
+  --af-warning: #e5bc48;
+  --af-continue: #e07a4f;
+  --af-backdrop: rgba(0, 0, 0, .78);
+  --af-sans: Archivo, Helvetica, Arial, sans-serif;
+  --af-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --af-text-xs: 12px;
+  --af-text-sm: 14px;
+  --af-text-md: 16px;
+  --af-text-lg: 20px;
+  --af-title: clamp(28px, 3vw, 42px);
+  --af-line-height: 1.5;
+  --af-space-1: 4px;
+  --af-space-2: 8px;
+  --af-space-3: 12px;
+  --af-space-4: 16px;
+  --af-space-5: 20px;
+  --af-space-6: 24px;
+  --af-space-8: 32px;
+  --af-space-10: 40px;
+  --af-space-12: 48px;
+  --af-space-16: 64px;
+  --af-radius-field: 8px;
+  --af-radius-card: 12px;
+  --af-radius-dialog: 14px;
+  --af-radius-choice: 16px;
+  --af-radius-hero: 24px;
+  --af-radius-action: 999px;
+  --af-target: 44px;
+  --af-gutter: clamp(20px, 3vw, 64px);
+  --af-focus-width: 2px;
+  --af-focus-offset: 4px;
+  --af-motion-fast: 160ms;
+  --af-motion-enter: 220ms;
+  --af-hover-intent: 300ms;
+  --af-hover-exit-delay: 120ms;
+  --af-shadow: 0 24px 64px rgba(0, 0, 0, .35);
+}
+
+/* Variante existente do leitor. Não é um segundo tema global. */
+.af-reader[data-theme="paper"] {
+  color-scheme: light;
+  --af-bg: #f5f0e6;
+  --af-panel: #f5f0e6;
+  --af-text: #2d2923;
+  --af-muted: #6b6256;
+  --af-line: #463d3033;
+  --af-link: #17636b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --af-motion-fast: 0ms; --af-motion-enter: 0ms; }
+}

@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-09-19T22:48:33.913Z",
+  "viewports": {
+    "390": {
+      "checks": {
+        "horizontalOverflow": false,
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "undersized": [],
+        "sharedTokenBg": "#141414",
+        "localStorageKeys": [],
+        "sessionStorageKeys": []
+      },
+      "focusStyle": {
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "boxShadow": "none"
+      }
+    },
+    "768": {
+      "checks": {
+        "horizontalOverflow": false,
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "undersized": [],
+        "sharedTokenBg": "#141414",
+        "localStorageKeys": [],
+        "sessionStorageKeys": []
+      },
+      "focusStyle": {
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "boxShadow": "none"
+      }
+    },
+    "1440": {
+      "checks": {
+        "horizontalOverflow": false,
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "undersized": [],
+        "sharedTokenBg": "#141414",
+        "localStorageKeys": [],
+        "sessionStorageKeys": []
+      },
+      "focusStyle": {
+        "outlineStyle": "solid",
+        "outlineWidth": "2px",
+        "boxShadow": "none"
+      }
+    }
+  },
+  "diagnostics": {
+    "pageErrors": [],
+    "failedRequests": [],
+    "httpErrors": []
+  },
+  "disc": {
+    "resultTitle": "Sua tendência principal é Dominância",
+    "scoreCards": 4,
+    "storedOnlyInSession": true
+  },
+  "bigFive": {
+    "scoreCards": 5,
+    "storedOnlyInSession": true
+  },
+  "learning": {
+    "rankingSummaryRows": 4,
+    "nextEnabled": true,
+    "storedOnlyInSession": true
+  },
+  "failures": [],
+  "passed": true
+}
