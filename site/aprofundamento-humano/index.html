@@ -13,7 +13,6 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://agentsflix.ai/aprofundamento-humano/">
   <link rel="icon" href="../brand/favicon-dark.svg" type="image/svg+xml">
-  <script src="../analytics.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
@@ -53,13 +52,13 @@
       </div>
     </section>
 
-    <section class="catalog" aria-labelledby="catalog-title">
+    <section class="catalog" id="catalogo" aria-labelledby="catalog-title">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Biblioteca de assessments</p>
           <h2 id="catalog-title">Um mapa diferente para cada pergunta</h2>
         </div>
-        <p>Começamos pelo comportamento observável. Os próximos instrumentos entram depois de pesquisa, revisão e adaptação responsável.</p>
+        <p>Seis caminhos para observar seus padrões. Escolha uma pergunta que faça sentido para o seu momento e leve a reflexão para a prática.</p>
       </div>
 
       <div class="assessment-grid">
@@ -72,38 +71,43 @@
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status">Em pesquisa</span><span class="card-index">02</span></div>
+          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">02</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">APRENDER</div>
           <h3>Modos de aprendizagem</h3>
           <p>Uma reflexão inspirada no framework de Richard Elmore sobre como você aprende e produz mudança.</p>
+          <a href="#aprendizagem">Fazer assessment <span aria-hidden="true">→</span></a>
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status">Em pesquisa</span><span class="card-index">03</span></div>
+          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">03</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">AGIR</div>
           <h3>Modo de agir</h3>
           <p>Como você tende a iniciar, organizar, improvisar e sustentar uma ação quando existe liberdade de escolha.</p>
+          <a href="#acao">Fazer assessment <span aria-hidden="true">→</span></a>
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status">Em pesquisa</span><span class="card-index">04</span></div>
+          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">04</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">5 TRAÇOS</div>
           <h3>Big Five</h3>
           <p>Um retrato dimensional de cinco grandes traços de personalidade, sem encaixar você em um único tipo.</p>
+          <a href="#big-five">Fazer assessment <span aria-hidden="true">→</span></a>
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status">Em pesquisa</span><span class="card-index">05</span></div>
+          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">05</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">9 MOTIVOS</div>
           <h3>Eneagrama</h3>
           <p>Uma lente sobre motivações, estratégias recorrentes e possíveis pontos cegos.</p>
+          <a href="#eneagrama">Fazer assessment <span aria-hidden="true">→</span></a>
         </article>
 
         <article class="assessment-card">
-          <div class="card-topline"><span class="status">Em avaliação</span><span class="card-index">06</span></div>
+          <div class="card-topline"><span class="status status-ready">Disponível</span><span class="card-index">06</span></div>
           <div class="card-symbol card-symbol-word" aria-hidden="true">PREFERÊNCIAS</div>
-          <h3>MBTI</h3>
-          <p>Preferências de percepção e decisão. A versão pública depende de avaliação de licenciamento e validade.</p>
+          <h3>Preferências de Jung</h3>
+          <p>Explore os quatro pares de preferências popularizados pelo MBTI em um exercício autoral de percepção e decisão.</p>
+          <a href="#jung">Fazer assessment <span aria-hidden="true">→</span></a>
         </article>
       </div>
     </section>
@@ -174,6 +178,9 @@
       </div>
     </section>
 
+    <section class="disc-shell assessment-shell" id="assessment-hub" aria-labelledby="assessment-title" hidden></section>
+    <noscript><p class="notice">Ative o JavaScript para responder aos assessments. As respostas e o cálculo acontecem neste navegador.</p></noscript>
+
     <section class="principles" aria-labelledby="principles-title">
       <p class="eyebrow">Como esta área funciona</p>
       <h2 id="principles-title">Leitura responsável, sempre</h2>
@@ -193,5 +200,9 @@
   <script src="disc-data.js"></script>
   <script src="disc-model.js"></script>
   <script src="disc.js"></script>
+  <script src="learning-data.js"></script>
+  <script src="assessments-data.js"></script>
+  <script src="assessments-model.js"></script>
+  <script src="assessments.js"></script>
 </body>
 </html>
