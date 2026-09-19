@@ -450,6 +450,7 @@
       <a href="#op">Operação</a>
       <a href="#ads">Tráfego</a>
       <a href="#lenda">Lendas</a>
+      <a href="/aprofundamento-humano/">Aprofundamento</a>
     </nav>
     <span class="onboarding-header-note">Sua próxima descoberta começa aqui</span>
     <a class="onboarding-reading" href="#ler" data-discover-reading>Ler livremente</a>
@@ -728,7 +729,7 @@
     });
     document.body.classList.add("discovery-enabled");
     CHIPS = ["Tudo", "Minha lista"];
-    $("nav").innerHTML = '<a href="#inicio" data-discover-home>Início</a><a href="#guide" data-discover-guide>Como escolher</a><a href="#chips" data-discover-catalog>Catálogo</a><a href="/assistir/">Assistir</a><a href="#ler" data-discover-reading>Ler</a>';
+    $("nav").innerHTML = '<a href="#inicio" data-discover-home>Início</a><a href="#guide" data-discover-guide>Como escolher</a><a href="#chips" data-discover-catalog>Catálogo</a><a href="/assistir/">Assistir</a><a href="#ler" data-discover-reading>Ler</a><a href="/aprofundamento-humano/">Aprofundamento</a>';
     ROW_DEFS = DISCOVERY ? [...TOP_ROWS, ...DISCOVERY.rows] : buildRows(cat);
     heroSlug = (pinnedHero() || nextHero() || ALL[0] || {}).slug || null;
     if (!DISCOVERY) startHeroRotation();
