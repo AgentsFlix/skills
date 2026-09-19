@@ -16,10 +16,10 @@ class AprofundamentoHumanoTests(unittest.TestCase):
 
         self.assertGreaterEqual(home.count('href="/aprofundamento-humano/"'), 2)
         self.assertIn('aria-current="page">Aprofundamento humano</a>', page)
-        self.assertIn('<script src="../analytics.js"></script>', page)
-        self.assertEqual(page.count("Disponível"), 1)
+        self.assertNotIn('src="../analytics.js"', page)
+        self.assertEqual(page.count("Disponível"), 6)
 
-    def test_catalog_is_honest_about_available_and_future_assessments(self):
+    def test_catalog_exposes_the_six_available_assessments(self):
         page = (AREA / "index.html").read_text()
         for name in (
             "Perfil DISC",
@@ -30,7 +30,8 @@ class AprofundamentoHumanoTests(unittest.TestCase):
             "MBTI",
         ):
             self.assertIn(name, page)
-        self.assertIn("Em avaliação", page)
+        for target in ("disc", "aprendizagem", "acao", "big-five", "eneagrama", "jung"):
+            self.assertIn(f'href="#{target}"', page)
         self.assertIn("Não é diagnóstico psicológico", page)
         self.assertIn("Só neste navegador", page)
 
