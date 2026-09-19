@@ -41,6 +41,13 @@
       "verification": "Confirme a skill no diretório informado pelo instalador e abra uma nova sessão."
     },
     {
+      "id": "research",
+      "label": "Pesquisa / sem terminal",
+      "kind": "read_only",
+      "artifact_field": "prompt_url",
+      "verification": "Confirme que abriu e leu o artefato, localizou Procedure e Verification e mantenha installed=false. Se não puder abrir, entregue a URL para handoff e pare."
+    },
+    {
       "id": "chatgpt",
       "label": "ChatGPT",
       "kind": "upload_or_project",

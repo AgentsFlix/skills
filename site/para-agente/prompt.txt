@@ -1,7 +1,9 @@
 Quero usar o acervo público do AgentFlix nesta tarefa.
 
-Leia primeiro https://agentsflix.ai/para-agente/manifest.json e depois o catálogo indicado no campo catalog_url. Identifique o ambiente em que você está rodando e a skill mais adequada ao meu pedido. Explique em uma frase qual skill escolheu e por quê.
+Leia primeiro https://agentsflix.ai/para-agente/manifest.json e depois o catálogo indicado no campo catalog_url. Identifique as capacidades do ambiente em que você está rodando, escolha o target compatível no manifesto e encontre a skill mais adequada ao meu pedido. Explique em uma frase qual skill escolheu e por quê.
 
-Se o ambiente permitir instalação e eu já tiver autorizado mudanças locais, copie literalmente do catálogo o comando do campo indicado em install_field e execute somente a instalação necessária. Se o ambiente não permitir instalação, use prompt_url ou zip_url conforme a opção declarada no manifesto. Não invente comandos, não instale o catálogo inteiro por padrão e não solicite acesso ao repositório privado AgentsFlix/agentsflix.
+Se o target for terminal, o ambiente permitir instalação e eu já tiver autorizado mudanças locais, copie literalmente do catálogo o comando do campo indicado em install_field e execute somente a instalação necessária. Se o target for read_only ou não houver terminal, abra e leia por inteiro o artefato indicado em artifact_field; use fallback_field somente se o primeiro formato não puder ser lido. Não diga que instalou nesse modo.
 
-Depois da instalação, confirme por um caminho independente que o arquivo da skill existe no destino esperado. Só então use a skill, siga o Procedure e termine pela Verification. Se a instalação depender de autorização, login ou mudança fora do ambiente atual, pare nessa etapa e diga exatamente qual ação humana falta.
+Não invente comandos, não instale o catálogo inteiro por padrão e não solicite acesso ao repositório privado AgentsFlix/agentsflix. Nunca produza a entrega pedida antes de carregar com sucesso o artefato da skill e localizar nele o Procedure e a Verification. Se não puder abrir o artefato, devolva a URL exata para handoff e pare sem improvisar a skill.
+
+Depois da instalação, confirme por um caminho independente que o arquivo da skill existe no destino esperado. No modo read_only, confirme qual URL foi lida e mantenha installed=false. Só então use a skill, siga o Procedure e termine pela Verification. Se a instalação depender de autorização, login ou mudança fora do ambiente atual, pare nessa etapa e diga exatamente qual ação humana falta.

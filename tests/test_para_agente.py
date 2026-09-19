@@ -25,6 +25,9 @@ class ParaAgenteTests(unittest.TestCase):
         downloadable = (AGENT / "prompt.txt").read_text().strip()
         self.assertEqual(visible, downloadable)
         self.assertIn("https://agentsflix.ai/para-agente/manifest.json", visible)
+        self.assertIn("target for read_only", visible)
+        self.assertIn("installed=false", visible)
+        self.assertIn("pare sem improvisar a skill", visible)
         self.assertNotIn("/Users/", visible)
         self.assertNotIn("credentials", visible.lower())
 
@@ -41,8 +44,13 @@ class ParaAgenteTests(unittest.TestCase):
             "https://agentsflix.ai/para-agente/manifest.json",
         )
         targets = {target["id"]: target for target in manifest["targets"]}
+        install_targets = {
+            target["install_field"]
+            for target in targets.values()
+            if "install_field" in target
+        }
         self.assertEqual(
-            {target["install_field"] for target in targets.values()},
+            install_targets,
             {"install_cmd", "npx_codex", "npx_claude_code", "zip_url", "npx_any"},
         )
         self.assertEqual(targets["chatgpt"]["fallback_field"], "prompt_url")
@@ -50,17 +58,32 @@ class ParaAgenteTests(unittest.TestCase):
             targets["hermes"]["discovery_command"],
             "hermes skills tap add AgentsFlix/skills",
         )
+        self.assertEqual(targets["research"]["kind"], "read_only")
+        self.assertEqual(targets["research"]["artifact_field"], "prompt_url")
+        self.assertNotIn("fallback_field", targets["research"])
 
     def test_agent_page_has_static_content_and_accessible_controls(self):
         page = (AGENT / "index.html").read_text()
         self.assertIn('role="tablist"', page)
-        self.assertEqual(page.count('role="tab"'), 5)
+        self.assertEqual(page.count('role="tab"'), 6)
         self.assertIn('role="status" aria-live="polite"', page)
         self.assertIn('<h1 id="page-title">', page)
         self.assertIn('href="manifest.json"', page)
-        self.assertIn("Se você é um agente de pesquisa, indexação ou execução", page)
+        self.assertIn("Caso você seja um agente de pesquisa, indexação ou execução", page)
+        self.assertIn('data-target="research"', page)
         self.assertIn('href="https://agentsflix.ai/llms.txt"', page)
         self.assertNotIn("<iframe", page)
+
+    def test_research_tab_and_copy_fallback_do_not_claim_unverified_actions(self):
+        script = (AGENT / "app.js").read_text()
+        self.assertIn(
+            'research: { label: "Pesquisa / sem terminal", kind: "read_only"',
+            script,
+        )
+        self.assertIn('target.kind === "read_only"', script)
+        self.assertIn("entrega a URL para handoff e para sem improvisar", script)
+        self.assertIn('copied = document.execCommand("copy")', script)
+        self.assertIn("Não foi possível copiar automaticamente", script)
 
     def test_llms_index_lists_only_public_canonical_routes(self):
         manifest = json.loads((AGENT / "manifest.json").read_text())

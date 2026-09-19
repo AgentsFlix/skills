@@ -38,7 +38,7 @@
         <span aria-hidden="true">·</span>
         <span>Verificado em 18/09/2026</span>
       </div>
-      <p class="agent-discovery"><strong>Se você é um agente de pesquisa, indexação ou execução,</strong> o ponto de entrada público é o <a href="https://agentsflix.ai/para-agente/manifest.json">manifesto do AgentFlix</a>. O <a href="https://agentsflix.ai/llms.txt">índice llms.txt</a> lista as rotas públicas disponíveis.</p>
+      <p class="agent-discovery"><strong>Caso você seja um agente de pesquisa, indexação ou execução,</strong> o ponto de entrada público é o <a href="https://agentsflix.ai/para-agente/manifest.json">manifesto do AgentFlix</a>. O <a href="https://agentsflix.ai/llms.txt">índice llms.txt</a> lista as rotas públicas disponíveis. Sem terminal, leia o artefato indicado no manifesto ou entregue a URL para handoff; não improvise a skill.</p>
     </section>
 
     <section class="step prompt-step" aria-labelledby="prompt-title">
@@ -55,11 +55,13 @@
       </div>
       <pre class="prompt-box"><code id="agent-prompt">Quero usar o acervo público do AgentFlix nesta tarefa.
 
-Leia primeiro https://agentsflix.ai/para-agente/manifest.json e depois o catálogo indicado no campo catalog_url. Identifique o ambiente em que você está rodando e a skill mais adequada ao meu pedido. Explique em uma frase qual skill escolheu e por quê.
+Leia primeiro https://agentsflix.ai/para-agente/manifest.json e depois o catálogo indicado no campo catalog_url. Identifique as capacidades do ambiente em que você está rodando, escolha o target compatível no manifesto e encontre a skill mais adequada ao meu pedido. Explique em uma frase qual skill escolheu e por quê.
 
-Se o ambiente permitir instalação e eu já tiver autorizado mudanças locais, copie literalmente do catálogo o comando do campo indicado em install_field e execute somente a instalação necessária. Se o ambiente não permitir instalação, use prompt_url ou zip_url conforme a opção declarada no manifesto. Não invente comandos, não instale o catálogo inteiro por padrão e não solicite acesso ao repositório privado AgentsFlix/agentsflix.
+Se o target for terminal, o ambiente permitir instalação e eu já tiver autorizado mudanças locais, copie literalmente do catálogo o comando do campo indicado em install_field e execute somente a instalação necessária. Se o target for read_only ou não houver terminal, abra e leia por inteiro o artefato indicado em artifact_field; use fallback_field somente se o primeiro formato não puder ser lido. Não diga que instalou nesse modo.
 
-Depois da instalação, confirme por um caminho independente que o arquivo da skill existe no destino esperado. Só então use a skill, siga o Procedure e termine pela Verification. Se a instalação depender de autorização, login ou mudança fora do ambiente atual, pare nessa etapa e diga exatamente qual ação humana falta.</code></pre>
+Não invente comandos, não instale o catálogo inteiro por padrão e não solicite acesso ao repositório privado AgentsFlix/agentsflix. Nunca produza a entrega pedida antes de carregar com sucesso o artefato da skill e localizar nele o Procedure e a Verification. Se não puder abrir o artefato, devolva a URL exata para handoff e pare sem improvisar a skill.
+
+Depois da instalação, confirme por um caminho independente que o arquivo da skill existe no destino esperado. No modo read_only, confirme qual URL foi lida e mantenha installed=false. Só então use a skill, siga o Procedure e termine pela Verification. Se a instalação depender de autorização, login ou mudança fora do ambiente atual, pare nessa etapa e diga exatamente qual ação humana falta.</code></pre>
       <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
     </section>
 
@@ -78,6 +80,7 @@ Depois da instalação, confirme por um caminho independente que o arquivo da sk
           <button type="button" role="tab" aria-selected="true" aria-controls="target-panel" data-target="codex">Codex</button>
           <button type="button" role="tab" aria-selected="false" aria-controls="target-panel" data-target="claude-code" tabindex="-1">Claude Code</button>
           <button type="button" role="tab" aria-selected="false" aria-controls="target-panel" data-target="hermes" tabindex="-1">Hermes</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="target-panel" data-target="research" tabindex="-1">Pesquisa</button>
           <button type="button" role="tab" aria-selected="false" aria-controls="target-panel" data-target="chatgpt" tabindex="-1">ChatGPT</button>
           <button type="button" role="tab" aria-selected="false" aria-controls="target-panel" data-target="other" tabindex="-1">Outros</button>
         </div>
