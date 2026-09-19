@@ -20,6 +20,7 @@ function fillProfile(profile, user) {
   byId("email").value = profile.email || user.email || "";
   byId("name").value = profile.name || "";
   byId("phone").value = profile.phone || "";
+  byId("admin-access-link").hidden = profile.role !== "admin";
   setStatus();
 }
 
@@ -100,7 +101,7 @@ async function loadProfile(session) {
 
   const { data, error } = await client
     .from("profiles")
-    .select("name,email,phone")
+    .select("name,email,phone,role")
     .eq("id", session.user.id)
     .single();
 
@@ -178,7 +179,7 @@ byId("profile-form").addEventListener("submit", async (event) => {
       .from("profiles")
       .update({ name: result.name, phone: result.phone })
       .eq("id", currentUser.id)
-      .select("name,email,phone")
+      .select("name,email,phone,role")
       .single();
     if (error) throw error;
     fillProfile(data, currentUser);
