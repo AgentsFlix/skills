@@ -7,10 +7,15 @@
     "node": "24.x"
   },
   "scripts": {
-    "build": "node scripts/build-identifier.mjs"
+    "build": "node scripts/build-identifier.mjs",
+    "build:icons": "node design-system/build-icons.mjs",
+    "check:icons": "node design-system/build-icons.mjs --check"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.0",
     "stripe": "^18.0.0"
+  },
+  "devDependencies": {
+    "@tabler/icons": "3.47.0"
   }
 }
