@@ -204,13 +204,13 @@ h1 {
 .assessment-gallery .af-spatial-card { overflow: hidden; }
 .assessment-gallery .af-spatial-card[data-position="front"] { border-color: color-mix(in srgb, var(--af-link) 42%, var(--af-line)); }
 .assessment-gallery .af-spatial-cover::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 58%, color-mix(in srgb, var(--af-panel) 36%, transparent));
+  content: none;
 }
-.assessment-gallery .af-spatial-cover img { object-fit: cover; }
+.assessment-gallery .af-spatial-cover img {
+  object-fit: cover;
+  mix-blend-mode: normal;
+  opacity: 1;
+}
 .assessment-gallery .af-spatial-status { min-height: 24px; }
 .assessment-gallery .af-spatial-details h3 { margin-bottom: var(--af-space-3); }
 .assessment-card-description {
