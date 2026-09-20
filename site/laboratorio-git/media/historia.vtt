@@ -1,0 +1,259 @@
+WEBVTT
+
+1
+00:00:00.750 --> 00:00:01.930
+Imagina a Lia.
+
+2
+00:00:02.150 --> 00:00:05.170
+Ela gosta da casa onde mora, mas
+quer transformar um
+
+3
+00:00:05.170 --> 00:00:06.830
+espaço livre numa academia.
+
+4
+00:00:07.270 --> 00:00:10.670
+Tem lugar para os equipamentos, uma
+janela boa e uma
+
+5
+00:00:10.670 --> 00:00:12.550
+porta que talvez precise mudar.
+
+6
+00:00:12.830 --> 00:00:13.970
+A casa já funciona.
+
+7
+00:00:14.350 --> 00:00:17.250
+A ideia é melhorar uma parte, sem
+perder o resto.
+
+8
+00:00:17.590 --> 00:00:20.090
+Lia é uma personagem da nossa
+história.
+
+9
+00:00:20.490 --> 00:00:24.050
+O problema que ela vai encontrar,
+provavelmente, você conhece.
+
+10
+00:00:25.117 --> 00:00:28.697
+Ela abre a planta no computador, faz
+a primeira mudança
+
+11
+00:00:28.697 --> 00:00:33.137
+e salva. O arquivo ganha um nome
+tranquilizador: casa final.
+
+12
+00:00:33.417 --> 00:00:36.237
+Só que a porta abre bem onde ficaria
+o aparelho
+
+13
+00:00:36.237 --> 00:00:40.117
+de exercício. Lia muda a porta e
+salva outra cópia:
+
+14
+00:00:40.217 --> 00:00:42.117
+casa final, agora vai.
+
+15
+00:00:42.377 --> 00:00:45.037
+Aí alguém lembra que falta espaço
+para circular.
+
+16
+00:00:45.517 --> 00:00:47.057
+Surge mais um arquivo.
+
+17
+00:00:47.217 --> 00:00:51.077
+E, com ele, uma dúvida: qual dessas
+versões é a
+
+18
+00:00:51.077 --> 00:00:51.577
+certa?
+
+19
+00:00:52.850 --> 00:00:54.710
+Olha estas duas plantas.
+
+20
+00:00:54.790 --> 00:00:56.910
+Numa, a porta está aqui.
+
+21
+00:00:57.130 --> 00:00:58.830
+Na outra, está ali.
+
+22
+00:00:59.030 --> 00:01:01.850
+Se você só olhar o nome do arquivo,
+não descobre
+
+23
+00:01:01.850 --> 00:01:02.890
+por que ela mudou.
+
+24
+00:01:03.150 --> 00:01:04.270
+Foi uma escolha melhor?
+
+25
+00:01:04.530 --> 00:01:06.890
+Uma experiência? Alguém voltou
+atrás?
+
+26
+00:01:07.350 --> 00:01:11.570
+Agora imagina receber uma dessas
+cópias por mensagem enquanto outra
+
+27
+00:01:11.570 --> 00:01:14.370
+pessoa continua trabalhando numa
+versão diferente.
+
+28
+00:01:14.850 --> 00:01:17.150
+O problema já não é desenhar a
+academia.
+
+29
+00:01:17.410 --> 00:01:19.750
+É entender o caminho que o projeto
+tomou.
+
+30
+00:01:20.817 --> 00:01:23.937
+Lia não precisa inventar um nome
+mais comprido.
+
+31
+00:01:24.017 --> 00:01:26.257
+Precisa de uma memória organizada.
+
+32
+00:01:26.437 --> 00:01:30.237
+Um jeito de reconhecer cada estado
+do projeto, comparar o
+
+33
+00:01:30.237 --> 00:01:33.077
+que mudou e consultar o que existia
+antes.
+
+34
+00:01:33.317 --> 00:01:36.377
+Essa organização tem um nome:
+versionamento.
+
+35
+00:01:36.637 --> 00:01:39.937
+É como acompanhar as etapas de uma
+reforma no caderno,
+
+36
+00:01:39.937 --> 00:01:42.137
+só que ligado aos arquivos de
+verdade.
+
+37
+00:01:42.497 --> 00:01:45.817
+Você pode avançar sem fazer o ontem
+desaparecer a cada
+
+38
+00:01:45.817 --> 00:01:46.937
+vez que salva.
+
+39
+00:01:48.050 --> 00:01:51.150
+Uma ferramenta feita para trabalhar
+com essa história se chama
+
+40
+00:01:51.150 --> 00:01:55.130
+Git. Ela ajuda a registrar versões e
+a combinar mudanças
+
+41
+00:01:55.130 --> 00:01:59.370
+no projeto. Mas tem um limite
+importante: estamos falando dos
+
+42
+00:01:59.370 --> 00:02:01.510
+arquivos que descrevem a casa.
+
+43
+00:02:01.910 --> 00:02:04.850
+O Git não desfaz uma parede de
+verdade e não
+
+44
+00:02:04.850 --> 00:02:09.030
+recupera, por mágica, qualquer coisa
+que você esqueceu de guardar.
+
+45
+00:02:09.290 --> 00:02:12.530
+Nossa casa é uma maneira de enxergar
+um problema que
+
+46
+00:02:12.530 --> 00:02:16.950
+também existe em sites, aplicativos
+e muitos outros trabalhos.
+
+47
+00:02:18.083 --> 00:02:21.903
+Ao longo desta história, a gente vai
+guardar etapas, experimentar
+
+48
+00:02:21.903 --> 00:02:25.443
+ideias diferentes e descobrir quando
+uma mudança está realmente
+
+49
+00:02:25.443 --> 00:02:27.323
+pronta para chegar aos outros.
+
+50
+00:02:27.463 --> 00:02:30.623
+Sem precisar começar por uma tela
+cheia de comandos.
+
+51
+00:02:30.803 --> 00:02:34.163
+Por enquanto, leve uma pergunta: se
+eu mudar de ideia
+
+52
+00:02:34.163 --> 00:02:36.823
+amanhã, consigo entender o que fiz
+hoje?
+
+53
+00:02:37.083 --> 00:02:40.863
+No próximo capítulo, abra duas
+versões da planta e compare.
+
+54
+00:02:41.243 --> 00:02:44.723
+A primeira conquista é essa:
+enxergar a mudança, em vez
+
+55
+00:02:44.723 --> 00:02:46.403
+de confiar na palavra final.

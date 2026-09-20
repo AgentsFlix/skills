@@ -1,0 +1,349 @@
+WEBVTT
+
+1
+00:00:00.750 --> 00:00:04.110
+Lia começou querendo uma academia
+sem bagunçar o resto da
+
+2
+00:00:04.110 --> 00:00:07.990
+casa. Agora troca a planta por uma
+página do AgentFlix.
+
+3
+00:00:08.310 --> 00:00:12.110
+Você quer melhorar alguma coisa que
+já funciona, experimentar sem
+
+4
+00:00:12.110 --> 00:00:15.850
+misturar trabalhos e saber o que
+realmente chegou aos alunos.
+
+5
+00:00:16.110 --> 00:00:19.710
+O vocabulário técnico continua o
+mesmo, mas você já tem
+
+6
+00:00:19.710 --> 00:00:23.450
+uma referência. A bancada vira uma
+pasta de arquivos.
+
+7
+00:00:23.650 --> 00:00:26.010
+O histórico continua guardando
+etapas.
+
+8
+00:00:26.110 --> 00:00:28.950
+E a ideia da reforma vira uma tarefa
+de melhoria.
+
+9
+00:00:29.983 --> 00:00:34.063
+Vamos imaginar três pedidos:
+melhorar as legendas do player,
+
+10
+00:00:34.283 --> 00:00:37.663
+experimentar uma busca de aulas e
+ajustar a experiência no
+
+11
+00:00:37.663 --> 00:00:41.103
+iPhone. Cada um pode ter uma branch
+com nome claro.
+
+12
+00:00:41.343 --> 00:00:45.123
+Esses são exemplos simulados, não
+mudanças que estamos dizendo ter
+
+13
+00:00:45.123 --> 00:00:49.163
+publicado. Repara que o nome ajuda a
+identificar a intenção,
+
+14
+00:00:49.283 --> 00:00:51.683
+mas não prova que a tarefa está
+pronta.
+
+15
+00:00:51.923 --> 00:00:54.803
+O que mostra a evolução são os
+registros e o
+
+16
+00:00:54.803 --> 00:00:55.883
+estado do trabalho.
+
+17
+00:00:57.117 --> 00:01:00.557
+Como você viu na casa, essas
+branches poderiam se revezar
+
+18
+00:01:00.557 --> 00:01:04.797
+numa pasta. Para manter duas abertas
+em paralelo, poderiam usar
+
+19
+00:01:04.797 --> 00:01:07.237
+duas worktrees com branches
+diferentes.
+
+20
+00:01:07.477 --> 00:01:10.257
+Só que uma equipe também define sua
+organização.
+
+21
+00:01:10.597 --> 00:01:14.717
+No fluxo deste projeto AgentFlix, a
+convenção é uma tarefa,
+
+22
+00:01:14.797 --> 00:01:17.477
+uma branch e uma worktree por
+entrega.
+
+23
+00:01:17.597 --> 00:01:20.217
+Isso é uma escolha de trabalho da
+equipe, não uma
+
+24
+00:01:20.217 --> 00:01:22.497
+lei que limita o Git a uma única
+forma de
+
+25
+00:01:22.497 --> 00:01:22.977
+uso.
+
+26
+00:01:24.150 --> 00:01:27.450
+Imagine que o agente diga: terminei
+as legendas e fiz
+
+27
+00:01:27.450 --> 00:01:30.430
+o commit. Você já sabe que vale
+perguntar em qual
+
+28
+00:01:30.430 --> 00:01:33.830
+branch, o que mudou e quais testes
+passaram.
+
+29
+00:01:33.970 --> 00:01:37.070
+Se ele disser que abriu um PR, a
+pergunta muda:
+
+30
+00:01:37.110 --> 00:01:38.530
+o que falta revisar?
+
+31
+00:01:38.710 --> 00:01:41.770
+Se disser que fez o merge, ainda
+vale confirmar se
+
+32
+00:01:41.770 --> 00:01:45.450
+houve publicação. Você não está
+dificultando o trabalho.
+
+33
+00:01:45.630 --> 00:01:49.050
+Está deixando o estado da entrega
+compreensível, para não tomar
+
+34
+00:01:49.050 --> 00:01:51.830
+uma proposta como se fosse o
+resultado final.
+
+35
+00:01:53.083 --> 00:01:56.863
+Para uma mudança no celular, uma
+prévia grande no computador
+
+36
+00:01:56.863 --> 00:01:58.723
+pode não responder tudo.
+
+37
+00:01:58.923 --> 00:02:02.043
+Peça para conferir a experiência no
+tamanho de uso e
+
+38
+00:02:02.043 --> 00:02:04.203
+saber o que foi realmente testado.
+
+39
+00:02:04.423 --> 00:02:07.583
+Simular a largura de um iPhone no
+navegador não é
+
+40
+00:02:07.583 --> 00:02:10.703
+exatamente o mesmo que testar no
+aparelho e no Safari.
+
+41
+00:02:11.103 --> 00:02:14.823
+Do mesmo jeito, passar num teste
+automático não significa que
+
+42
+00:02:14.823 --> 00:02:16.943
+alguém revisou cada detalhe visual.
+
+43
+00:02:17.283 --> 00:02:20.903
+Uma boa entrega deixa esses limites
+claros, sem transformar
+
+44
+00:02:20.903 --> 00:02:21.703
+incerteza em certeza.
+
+45
+00:02:23.750 --> 00:02:27.750
+Na página deste capítulo, existe um
+pedido pronto para copiar.
+
+46
+00:02:27.910 --> 00:02:30.750
+Ele começa orientando o agente a
+conferir o estado do
+
+47
+00:02:30.750 --> 00:02:33.250
+projeto e seguir o fluxo da equipe.
+
+48
+00:02:33.350 --> 00:02:37.570
+Depois pede isolamento da tarefa,
+preservação do trabalho existente
+
+49
+00:02:37.570 --> 00:02:39.450
+e uma prévia testada.
+
+50
+00:02:39.710 --> 00:02:44.310
+Por fim, pede um relato claro sobre
+registro, envio, proposta,
+
+51
+00:02:44.450 --> 00:02:46.210
+integração e publicação.
+
+52
+00:02:46.510 --> 00:02:50.090
+O texto também deixa um limite
+explícito: não publicar nem
+
+53
+00:02:50.090 --> 00:02:51.810
+integrar sem sua autorização.
+
+54
+00:02:51.810 --> 00:02:54.770
+Você decide quando essa etapa deve
+acontecer.
+
+55
+00:02:56.183 --> 00:02:59.843
+Você pode usar esse pedido numa
+melhoria pequena que consiga
+
+56
+00:02:59.843 --> 00:03:01.443
+reconhecer e conferir.
+
+57
+00:03:01.603 --> 00:03:04.583
+Não precisa começar com uma reforma
+do site inteiro.
+
+58
+00:03:04.903 --> 00:03:08.183
+O objetivo é acompanhar uma entrega
+real e perceber a
+
+59
+00:03:08.183 --> 00:03:12.843
+diferença entre está na pasta, está
+registrado, foi enviado, está
+
+60
+00:03:12.843 --> 00:03:16.183
+em revisão, entrou na main e foi
+colocado no ar.
+
+61
+00:03:16.363 --> 00:03:20.083
+Se uma dessas informações estiver
+faltando, agora você tem uma
+
+62
+00:03:20.083 --> 00:03:22.503
+pergunta concreta para fazer ao
+agente.
+
+63
+00:03:23.650 --> 00:03:25.950
+Volta à casa da Lia uma última vez.
+
+64
+00:03:26.170 --> 00:03:29.190
+A ideia não virou realidade só
+porque ganhou um nome.
+
+65
+00:03:29.390 --> 00:03:33.410
+Foi preciso trabalhar, guardar
+etapas, comparar, resolver dúvidas e
+
+66
+00:03:33.410 --> 00:03:37.010
+entregar. Com arquivos de um
+projeto, você agora consegue
+
+67
+00:03:37.010 --> 00:03:39.550
+acompanhar esse caminho sem saber
+programar.
+
+68
+00:03:39.890 --> 00:03:43.610
+Se branch e worktree ainda
+embolarem, volte à oficina e
+
+69
+00:03:43.610 --> 00:03:45.230
+troque o plano numa bancada.
+
+70
+00:03:45.390 --> 00:03:46.850
+O nome da linha muda.
+
+71
+00:03:46.930 --> 00:03:48.370
+A pasta pode continuar.
+
+72
+00:03:48.750 --> 00:03:51.890
+Às vezes, entender uma ação vale
+mais do que decorar
+
+73
+00:03:51.890 --> 00:03:53.030
+dez definições.

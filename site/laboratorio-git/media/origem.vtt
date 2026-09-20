@@ -1,0 +1,328 @@
+WEBVTT
+
+1
+00:00:00.750 --> 00:00:03.470
+Lia perdeu o fio das versões de uma
+planta.
+
+2
+00:00:03.470 --> 00:00:06.770
+Parece um problema da nossa época,
+com arquivos chegando de
+
+3
+00:00:06.770 --> 00:00:11.070
+todo lado. Mas gente que construía
+programas já esbarrava nisso
+
+4
+00:00:11.070 --> 00:00:12.430
+muito antes do GitHub.
+
+5
+00:00:12.810 --> 00:00:14.250
+Quem mudou? Quando?
+
+6
+00:00:14.550 --> 00:00:17.390
+Por quê? E como consultar o estado
+anterior?
+
+7
+00:00:17.750 --> 00:00:21.010
+Para entender de onde vieram as
+ferramentas, vamos sair um
+
+8
+00:00:21.010 --> 00:00:24.750
+instante da nossa casa inventada e
+visitar uma história real.
+
+9
+00:00:25.983 --> 00:00:29.383
+Em mil novecentos e setenta e dois,
+Marc Rochkind trabalhava
+
+10
+00:00:29.383 --> 00:00:30.323
+no Bell Labs.
+
+11
+00:00:30.483 --> 00:00:34.263
+A equipe precisava organizar melhor
+o desenvolvimento de programas.
+
+12
+00:00:34.403 --> 00:00:37.563
+No relato que publicou décadas
+depois, ele conta que uma
+
+13
+00:00:37.563 --> 00:00:41.483
+orientação da chefia foi descendo
+pela organização até chegar a
+
+14
+00:00:41.483 --> 00:00:42.683
+ele e a um colega.
+
+15
+00:00:42.923 --> 00:00:45.203
+Os dois começaram a pensar na
+solução.
+
+16
+00:00:45.363 --> 00:00:47.543
+O colega foi promovido para a
+gestão.
+
+17
+00:00:47.663 --> 00:00:49.743
+Rochkind continuou com a construção.
+
+18
+00:00:50.850 --> 00:00:55.450
+Em alguns meses, surgiu o SCCS, um
+sistema para acompanhar
+
+19
+00:00:55.450 --> 00:00:58.780
+versões. Seu artigo de apresentação
+saiu em mil novecentos e
+
+20
+00:00:58.780 --> 00:00:59.330
+setenta e cinco.
+
+21
+00:01:00.310 --> 00:01:03.690
+O detalhe da promoção é curioso
+porque aproxima essa história
+
+22
+00:01:03.690 --> 00:01:07.270
+da vida real: ferramentas
+importantes também nascem no meio de
+
+23
+00:01:07.270 --> 00:01:11.150
+tarefas, mudanças de equipe e
+problemas bem práticos.
+
+24
+00:01:11.370 --> 00:01:14.570
+Não precisamos chamar aquilo de
+primeiro sistema de todos os
+
+25
+00:01:14.570 --> 00:01:19.230
+tempos. Basta perceber que a
+necessidade já existia muito antes
+
+26
+00:01:19.230 --> 00:01:20.470
+dos sites de hoje.
+
+27
+00:01:21.550 --> 00:01:23.130
+Agora pula para dois mil e cinco.
+
+28
+00:01:23.730 --> 00:01:27.490
+A comunidade que desenvolvia o Linux
+usava uma ferramenta chamada
+
+29
+00:01:27.490 --> 00:01:31.750
+BitKeeper. Uma ruptura na relação
+com a empresa responsável encerrou
+
+30
+00:01:31.750 --> 00:01:34.350
+o acesso gratuito usado pela
+comunidade.
+
+31
+00:01:34.450 --> 00:01:36.250
+Era preciso outra solução.
+
+32
+00:01:36.590 --> 00:01:40.070
+Linus Torvalds e outros
+desenvolvedores passaram a trabalhar
+
+33
+00:01:40.070 --> 00:01:41.430
+no que se tornou o Git.
+
+34
+00:01:41.750 --> 00:01:45.530
+A busca envolvia velocidade e
+colaboração com o histórico também
+
+35
+00:01:45.530 --> 00:01:49.210
+disponível nas cópias locais, não
+apenas num ponto central.
+
+36
+00:01:50.450 --> 00:01:53.270
+Você talvez encontre a história de
+que o Git foi
+
+37
+00:01:53.270 --> 00:01:54.590
+feito em dez dias.
+
+38
+00:01:54.870 --> 00:01:58.430
+Na entrevista dos vinte anos da
+ferramenta, o próprio Linus
+
+39
+00:01:58.430 --> 00:01:59.670
+explicou a nuance.
+
+40
+00:01:59.950 --> 00:02:03.010
+Foram cerca de dez dias até poder
+usá-lo no trabalho
+
+41
+00:02:03.010 --> 00:02:06.370
+do Linux. Mas ele já vinha pensando
+nas ideias havia
+
+42
+00:02:06.370 --> 00:02:10.730
+meses. É bem diferente de imaginar a
+ferramenta completa, como
+
+43
+00:02:10.730 --> 00:02:14.350
+existe hoje, surgindo pronta num fim
+de semana comprido.
+
+44
+00:02:15.450 --> 00:02:18.210
+E tem uma parte que você pode
+conferir.
+
+45
+00:02:18.430 --> 00:02:21.330
+Em sete de abril de dois mil e
+cinco, o
+
+46
+00:02:21.330 --> 00:02:23.970
+Git já registrava sua própria
+primeira versão.
+
+47
+00:02:24.290 --> 00:02:26.150
+O registro continua acessível.
+
+48
+00:02:26.290 --> 00:02:29.870
+No arquivo de apresentação, até o
+nome recebia explicações
+
+49
+00:02:29.870 --> 00:02:33.010
+bem-humoradas, dependendo do humor
+de quem usasse.
+
+50
+00:02:33.330 --> 00:02:37.110
+A ferramenta nasceu séria na função,
+mas não solene no
+
+51
+00:02:37.110 --> 00:02:38.510
+jeito de se apresentar.
+
+52
+00:02:38.730 --> 00:02:42.010
+A tela que mostramos é uma consulta
+atual desse registro
+
+53
+00:02:42.010 --> 00:02:44.910
+histórico, não uma captura feita
+naquele dia.
+
+54
+00:02:46.117 --> 00:02:49.347
+Três anos depois, em dez de abril de
+dois mil
+
+55
+00:02:49.347 --> 00:02:52.277
+e oito, veio o anúncio de lançamento
+do GitHub.
+
+56
+00:02:52.637 --> 00:02:54.337
+Agora observe a ordem.
+
+57
+00:02:54.537 --> 00:02:57.937
+A necessidade de controlar versões
+já era antiga.
+
+58
+00:02:58.137 --> 00:03:01.617
+O Git apareceu depois, como uma
+ferramenta para trabalhar com
+
+59
+00:03:01.617 --> 00:03:03.177
+a história dos projetos.
+
+60
+00:03:03.517 --> 00:03:06.817
+O GitHub surgiu como uma plataforma
+que usa Git e
+
+61
+00:03:06.817 --> 00:03:08.417
+facilita a colaboração.
+
+62
+00:03:08.617 --> 00:03:11.457
+Uma coisa não é apenas o nome
+comprido da outra.
+
+63
+00:03:12.617 --> 00:03:15.617
+Você não precisa decorar essas datas
+para continuar.
+
+64
+00:03:15.937 --> 00:03:19.557
+Elas servem para separar ideias que
+os nomes parecidos costumam
+
+65
+00:03:19.557 --> 00:03:23.917
+misturar. Se quiser, explore os
+documentos deste capítulo e abra
+
+66
+00:03:23.917 --> 00:03:25.577
+o primeiro registro do Git.
+
+67
+00:03:25.717 --> 00:03:28.777
+Na próxima parte, a gente volta para
+a Lia e
+
+68
+00:03:28.777 --> 00:03:31.777
+coloca as duas coisas lado a lado: o
+trabalho no
+
+69
+00:03:31.777 --> 00:03:34.277
+computador e a colaboração pela
+internet.

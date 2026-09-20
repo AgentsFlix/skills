@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#141414">
+  <meta name="description" content="Uma casa, várias ideias. Aprenda Git, GitHub, branches e worktrees com histórias, ilustrações e reformas simuladas. Sem precisar programar.">
+  <title>Casa Git · Uma casa, várias ideias · AgentFlix</title>
+  <link rel="icon" href="assets/agentflix.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="course.css">
+  <link rel="stylesheet" href="videos.css">
+  <script src="model.js" defer></script>
+  <script src="content.js" defer></script>
+  <script src="course.js" defer></script>
+  <script src="videos.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <a href="/aprender/" class="brand" aria-label="AgentFlix · voltar para Aprender"><img src="assets/agentflix.svg" width="161" height="32" alt="AgentFlix"></a>
+    <span class="series">TECNOLOGIA SEM JARGÃO <span> / </span> CASA GIT</span>
+    <button class="text-button" id="glossary-open">Dicionário <span aria-hidden="true">↗</span></button>
+  </header>
+  <div class="course-top"><span>UMA JORNADA PARA QUEM NÃO PROGRAMA</span><span id="progress-label">Seu caminho começa aqui</span></div>
+  <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+  <div class="layout">
+    <aside class="rail" aria-label="Seu percurso">
+      <div class="rail-title"><span class="eyebrow">NESTA JORNADA</span><p>Uma casa.<br>Várias ideias.</p></div>
+      <button id="chapters-toggle" class="mobile-menu" aria-expanded="false" aria-controls="chapter-nav">Capítulos <span>＋</span></button>
+      <nav id="chapter-nav" aria-label="Capítulos da jornada"></nav>
+      <div class="rail-bottom"><span class="tiny-dot"></span><span id="save-label">Progresso salvo neste navegador</span></div>
+    </aside>
+    <main id="conteudo" tabindex="-1"><div id="chapter-content"></div><nav class="chapter-footer" aria-label="Continuar a jornada"><button id="previous" class="text-button">← Anterior</button><span id="chapter-counter"></span><button id="next" class="primary">Continuar <span aria-hidden="true">→</span></button></nav></main>
+  </div>
+  <footer class="site-footer"><span>AgentFlix · Aprenda fazendo.</span><span>Simulação educativa. Nenhuma ação altera seu GitHub.</span><button class="text-button" id="credits-open">Fontes e créditos ↗</button></footer>
+  <div id="live-message" class="sr-only" role="status" aria-live="polite"></div>
+  <dialog id="modal"><button id="modal-close" class="close" aria-label="Fechar janela">×</button><div id="modal-content"></div></dialog>
+  <noscript><p>O Casa Git precisa de JavaScript para as simulações. Ative-o no navegador. Nenhuma conta ou instalação é necessária.</p></noscript>
+</body>
+</html>
