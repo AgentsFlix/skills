@@ -57,6 +57,7 @@ class AprofundamentoHumanoTests(unittest.TestCase):
 
     def test_each_assessment_has_its_own_descriptive_generated_art(self):
         page = (AREA / "index.html").read_text()
+        styles = (AREA / "styles.css").read_text()
         assets = {
             "disc": "Pessoa escolhendo uma direção entre quatro possibilidades",
             "aprendizagem": "Pessoa conectando peças de um caminho de aprendizagem",
@@ -72,6 +73,9 @@ class AprofundamentoHumanoTests(unittest.TestCase):
                 self.assertIn(f'alt="{alt}"', page)
                 self.assertTrue((AREA / "assets" / f"{slug}.webp").is_file())
         self.assertNotIn('../onboarding/', page)
+        self.assertIn(".assessment-gallery .af-spatial-cover::after {\n  content: none;\n}", styles)
+        self.assertIn("mix-blend-mode: normal;", styles)
+        self.assertIn("opacity: 1;", styles)
 
     def test_area_consumes_shared_tokens_without_forking_them(self):
         page = (AREA / "index.html").read_text()
