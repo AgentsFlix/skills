@@ -15,8 +15,10 @@
     questionList: document.getElementById("question-list"),
     roundKicker: document.getElementById("round-kicker"),
     roundTitle: document.getElementById("round-title"),
-    roundHelp: document.getElementById("round-help"),
+    roundHelpShell: document.getElementById("round-help"),
+    roundHelp: document.getElementById("round-help-copy"),
     answeredCount: document.getElementById("answered-count"),
+    questionProgress: document.getElementById("question-progress"),
     formMessage: document.getElementById("form-message"),
     previous: document.getElementById("previous-round"),
     next: document.getElementById("next-round"),
@@ -31,8 +33,14 @@
 
   let state = loadState();
 
+  function setButtonText(button, text) {
+    const textNode = Array.from(button.childNodes).find(function (child) { return child.nodeType === Node.TEXT_NODE; });
+    if (textNode) textNode.textContent = text + " ";
+    else button.prepend(document.createTextNode(text + " "));
+  }
+
   function emptyState() {
-    return { started: false, roundIndex: 0, answers: {}, result: null };
+    return { started: false, roundIndex: 0, questionIndex: 0, answers: {}, result: null };
   }
 
   function loadState() {
@@ -40,6 +48,7 @@
       const saved = JSON.parse(sessionStorage.getItem(storageKey));
       if (!saved || typeof saved !== "object" || typeof saved.answers !== "object") return emptyState();
       saved.roundIndex = Math.max(0, Math.min(2, Number(saved.roundIndex) || 0));
+      saved.questionIndex = Math.max(0, Math.min(data.questions.length - 1, Number(saved.questionIndex) || 0));
       return Object.assign(emptyState(), saved);
     } catch (_) {
       return emptyState();
@@ -78,8 +87,15 @@
     const number = document.createElement("span");
     number.className = "question-number";
     number.textContent = String(questionIndex + 1).padStart(2, "0");
-    legend.append(number, document.createTextNode(question.text));
-    fieldset.appendChild(legend);
+    const questionText = document.createElement("strong");
+    questionText.className = "question-copy";
+    questionText.tabIndex = -1;
+    questionText.textContent = question.text;
+    const instruction = document.createElement("span");
+    instruction.className = "question-instruction";
+    instruction.textContent = "Selecione apenas uma alternativa";
+    legend.append(number, questionText);
+    fieldset.append(legend, instruction);
 
     const choices = document.createElement("div");
     choices.className = "choice-list";
@@ -87,6 +103,7 @@
     question.options.forEach(function (option, choiceIndex) {
       const label = document.createElement("label");
       label.className = "choice";
+      label.dataset.choice = String(choiceIndex);
 
       const input = document.createElement("input");
       input.type = "radio";
@@ -98,9 +115,18 @@
         selectChoice(questionIndex, roundId, choiceIndex);
       });
 
-      const text = document.createElement("span");
+      const text = document.createElement("strong");
+      text.className = "choice-copy";
       text.textContent = option;
-      label.append(input, text);
+      const marker = document.createElement("span");
+      marker.className = "choice-marker";
+      marker.setAttribute("aria-hidden", "true");
+      marker.textContent = String.fromCharCode(65 + choiceIndex);
+      const selectedIcon = document.createElement("af-icon");
+      selectedIcon.className = "choice-state-icon";
+      selectedIcon.setAttribute("name", "success");
+      selectedIcon.setAttribute("aria-hidden", "true");
+      label.append(input, marker, text, selectedIcon);
       choices.appendChild(label);
     });
 
@@ -120,20 +146,15 @@
     updateCompletion();
   }
 
-  function completedCount(roundId) {
-    return data.questions.filter(function (_, index) {
-      const answer = state.answers[index];
-      return answer && Number.isInteger(answer[roundId]);
-    }).length;
-  }
-
   function updateCompletion() {
     const round = data.rounds[state.roundIndex];
-    const count = completedCount(round.id);
-    const complete = model.isRoundComplete(data.questions, state.answers, round.id);
-    elements.answeredCount.textContent = count + " de " + data.questions.length + " respondidas";
-    elements.next.disabled = !complete;
-    elements.formMessage.textContent = complete ? "Rodada completa. Você pode avançar." : "";
+    const answer = state.answers[state.questionIndex];
+    const answered = Boolean(answer && Number.isInteger(answer[round.id]));
+    elements.answeredCount.textContent = "Questão " + String(state.questionIndex + 1).padStart(2, "0") + " de " + String(data.questions.length).padStart(2, "0");
+    elements.questionProgress.value = state.questionIndex + 1;
+    elements.questionProgress.textContent = (state.questionIndex + 1) + " de " + data.questions.length;
+    elements.next.disabled = !answered;
+    elements.formMessage.textContent = "";
   }
 
   function updateProgress(activeId) {
@@ -148,59 +169,98 @@
     });
   }
 
+  function renderRoundHelp(round) {
+    const emphasis = round.emphasis;
+    const emphasisIndex = emphasis ? round.help.indexOf(emphasis) : -1;
+    elements.roundHelpShell.dataset.tone = round.id;
+    elements.roundHelp.className = "round-help-copy";
+    if (emphasisIndex < 0) {
+      elements.roundHelp.textContent = round.help;
+      return;
+    }
+
+    const keyword = document.createElement("strong");
+    keyword.className = "round-help-emphasis";
+    keyword.textContent = emphasis;
+    elements.roundHelp.replaceChildren(
+      document.createTextNode(round.help.slice(0, emphasisIndex)),
+      keyword,
+      document.createTextNode(round.help.slice(emphasisIndex + emphasis.length))
+    );
+  }
+
   function renderRound() {
     const round = data.rounds[state.roundIndex];
+    const question = data.questions[state.questionIndex];
     elements.roundKicker.textContent = "Rodada " + (state.roundIndex + 1) + " de " + data.rounds.length;
     elements.roundTitle.textContent = round.title;
-    elements.roundHelp.textContent = round.help;
-    elements.previous.hidden = state.roundIndex === 0;
-    elements.next.textContent = state.roundIndex === data.rounds.length - 1 ? "Calcular meu perfil" : "Próxima rodada";
+    renderRoundHelp(round);
+    elements.quiz.dataset.round = round.id;
+    elements.previous.hidden = state.roundIndex === 0 && state.questionIndex === 0;
+    const isLastQuestion = state.questionIndex === data.questions.length - 1;
+    const isLastRound = state.roundIndex === data.rounds.length - 1;
+    setButtonText(elements.next, isLastQuestion ? (isLastRound ? "Calcular meu perfil" : "Próxima rodada") : "Continuar");
     elements.formMessage.textContent = "";
-    elements.questionList.replaceChildren();
-    data.questions.forEach(function (question, index) {
-      elements.questionList.appendChild(createQuestion(question, index, round.id));
-    });
+    const renderedQuestion = createQuestion(question, state.questionIndex, round.id);
+    elements.questionList.replaceChildren(renderedQuestion);
+    renderedQuestion.querySelector(".question-instruction").after(elements.roundHelpShell);
     updateProgress(round.id);
     updateCompletion();
-    elements.roundTitle.focus({ preventScroll: true });
+    elements.questionList.querySelector(".question-copy").focus({ preventScroll: true });
   }
 
   function nextRound(event) {
     event.preventDefault();
     const round = data.rounds[state.roundIndex];
+    const answer = state.answers[state.questionIndex];
+    if (!answer || !Number.isInteger(answer[round.id])) {
+      elements.formMessage.textContent = "Escolha uma alternativa para continuar.";
+      return;
+    }
+
+    if (state.questionIndex < data.questions.length - 1) {
+      state.questionIndex += 1;
+      saveState();
+      renderRound();
+      return;
+    }
+
     if (!model.isRoundComplete(data.questions, state.answers, round.id)) {
-      elements.formMessage.textContent = "Responda às dez perguntas para continuar.";
-      const missing = data.questions.findIndex(function (_, index) {
+      state.questionIndex = data.questions.findIndex(function (_, index) {
         return !state.answers[index] || !Number.isInteger(state.answers[index][round.id]);
       });
-      const fieldset = elements.questionList.querySelector('[data-question="' + missing + '"]');
-      if (fieldset) fieldset.scrollIntoView({ behavior: "smooth", block: "center" });
+      saveState();
+      renderRound();
       return;
     }
 
     if (state.roundIndex < data.rounds.length - 1) {
       state.roundIndex += 1;
+      state.questionIndex = 0;
       saveState();
       renderRound();
       scrollToShell();
       return;
     }
-    showResult();
+    showResult(true);
   }
 
   function previousRound() {
-    if (state.roundIndex === 0) return;
-    state.roundIndex -= 1;
+    if (state.questionIndex > 0) state.questionIndex -= 1;
+    else if (state.roundIndex > 0) {
+      state.roundIndex -= 1;
+      state.questionIndex = data.questions.length - 1;
+    } else return;
     saveState();
     renderRound();
-    scrollToShell();
   }
 
-  function showResult() {
+  function showResult(completed = false) {
     const scores = model.score(data.questions, state.answers, data.weights);
     const primary = model.primary(scores);
     const profile = data.profiles[primary];
     state.result = { scores: scores, primary: primary };
+    window.AgentFlixAgentPrompt.ensure(state, window.AgentFlixAgentPrompt.disc(data, scores), state.answers, completed);
     saveState();
 
     elements.quiz.hidden = true;
@@ -245,6 +305,11 @@
     updateProgress("result");
     elements.resultTitle.focus({ preventScroll: true });
     scrollToShell();
+    if (completed) openAgentPrompt();
+  }
+
+  function openAgentPrompt() {
+    window.AgentFlixAgentPromptUI.open(state.agentRecord, document.getElementById("disc-agent-prompt"));
   }
 
   function resultText() {
@@ -283,7 +348,7 @@
     elements.result.hidden = true;
     elements.quiz.hidden = true;
     elements.intro.hidden = false;
-    elements.start.textContent = "Iniciar assessment";
+    setButtonText(elements.start, "Iniciar assessment");
     document.getElementById("disc-title").setAttribute("tabindex", "-1");
     document.getElementById("disc-title").focus({ preventScroll: true });
     scrollToShell();
@@ -293,11 +358,12 @@
   elements.form.addEventListener("submit", nextRound);
   elements.previous.addEventListener("click", previousRound);
   elements.copy.addEventListener("click", copyResult);
+  document.getElementById("disc-agent-prompt").addEventListener("click", openAgentPrompt);
   elements.restart.addEventListener("click", restartAssessment);
 
   if (state.result && state.result.scores && state.result.primary) {
     showResult();
   } else if (state.started) {
-    elements.start.textContent = "Continuar assessment";
+    setButtonText(elements.start, "Continuar assessment");
   }
 })();

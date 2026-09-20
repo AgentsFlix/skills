@@ -89,9 +89,9 @@
     questions: Object.freeze(questions),
     profiles: Object.freeze(profiles),
     rounds: Object.freeze([
-      { id: "most", label: "Mais", title: "Escolha o que tem mais a ver com você", help: "Escolha a opção que tem MAIS a ver com você do que todas as outras." },
-      { id: "least", label: "Menos", title: "Agora escolha o que menos parece com você", help: "Escolha a opção que MENOS tem a ver com você em relação a todas as outras." },
-      { id: "somewhat", label: "Pouco", title: "Por fim, escolha o que tem pouco a ver", help: "Escolha a opção que tem POUCO a ver com você em relação a outra." }
+      { id: "most", label: "Mais", title: "Escolha o que tem mais a ver com você", help: "Escolha a opção que tem MAIS a ver com você do que todas as outras.", emphasis: "MAIS" },
+      { id: "least", label: "Menos", title: "Agora escolha o que menos parece com você", help: "Escolha a opção que MENOS tem a ver com você em relação a todas as outras.", emphasis: "MENOS" },
+      { id: "somewhat", label: "Pouco", title: "Por fim, escolha o que tem pouco a ver", help: "Escolha a opção que tem POUCO a ver com você em relação a outra.", emphasis: "POUCO" }
     ]),
     weights: Object.freeze({ most: 5, least: 0, somewhat: 2, unselected: 3 })
   });

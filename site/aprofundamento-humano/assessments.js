@@ -2,6 +2,7 @@
   "use strict";
   const catalog = window.AgentFlixAssessments;
   const model = window.AgentFlixAssessmentModel;
+  const icons = window.AgentFlixIcons;
   const hub = document.getElementById("assessment-hub");
   const disc = document.getElementById("disc");
   const labels = ["Nada parecido comigo", "Pouco parecido comigo", "Em parte parecido comigo", "Bastante parecido comigo", "Muito parecido comigo"];
@@ -20,6 +21,26 @@
     element.type = "button";
     element.addEventListener("click", action);
     return element;
+  }
+  function icon(name, className) {
+    return icons.create(name, className ? { className } : undefined);
+  }
+  function iconText(tag, className, iconName, text) {
+    const element = node(tag, className);
+    element.append(icon(iconName), node("span", "", text));
+    return element;
+  }
+  function visualFact(label, value, caption, iconName, tone) {
+    const row = node("div", "fact-card");
+    row.dataset.icon = tone;
+    const mark = node("span", "fact-icon");
+    mark.setAttribute("aria-hidden", "true");
+    mark.append(icon(iconName));
+    const term = node("dt", "", label);
+    const description = node("dd");
+    description.append(node("strong", "", value), node("span", "", caption));
+    row.append(mark, term, description);
+    return row;
   }
   function key() { return "agentflix-assessment-" + test.id + "-v" + test.version; }
   function fresh() {
@@ -53,7 +74,8 @@
     details.append(node("summary", "", "Sobre este assessment e suas fontes"));
     details.append(node("p", "", test.note), node("p", "", test.metric));
     test.sources.forEach(source => {
-      const link = node("a", "source-link", source.title + " ↗");
+      const link = node("a", "source-link");
+      link.append(document.createTextNode(source.title + " "), icon("external"));
       link.href = source.url;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
@@ -67,7 +89,8 @@
   function shell(kicker, title) {
     hub.replaceChildren();
     const content = node("div", "assessment-content");
-    const back = node("a", "back-catalog", "← Biblioteca de assessments");
+    const back = node("a", "back-catalog");
+    back.append(icon("previous"), document.createTextNode(" Biblioteca de assessments"));
     back.href = "#catalogo";
     const heading = node("h2", "", title);
     heading.id = "assessment-title";
@@ -78,14 +101,48 @@
   }
   function renderIntro() {
     const content = shell("Assessment " + test.number, test.title);
-    content.append(node("p", "result-lede", test.intro));
-    const facts = node("dl", "disc-facts");
-    [["Tempo", test.time], ["Estrutura", test.items.length + " perguntas"], ["Resultado", "Leitura e prática"]].forEach(([label, value]) => {
-      const row = node("div"); row.append(node("dt", "", label), node("dd", "", value)); facts.append(row);
+    const overview = node("div", "assessment-overview");
+    const copy = node("div", "assessment-overview-copy");
+    copy.append(content.querySelector(".eyebrow"), content.querySelector("h2"));
+    const promise = node("p", "assessment-promise");
+    promise.append(node("strong", "", test.why));
+    copy.append(promise, node("p", "assessment-empathy", test.intro));
+    const outcomes = node("ul", "assessment-outcomes");
+    outcomes.setAttribute("aria-label", "O que este assessment pode ajudar a perceber");
+    ["activity", "anticipate", "support"].forEach((iconName, index) => {
+      const item = node("li");
+      const mark = node("span", "outcome-icon");
+      mark.setAttribute("aria-hidden", "true");
+      mark.append(icon(iconName));
+      item.append(mark, document.createTextNode(test.benefits[index]));
+      outcomes.append(item);
     });
-    content.append(facts, node("p", "notice", test.note));
-    content.append(button("Iniciar " + test.title, () => { state.screen = "quiz"; save(); render(); }, "primary"));
-    storageNote(content); sources(content);
+    copy.append(outcomes);
+
+    const art = node("figure", "assessment-overview-art");
+    const image = node("img");
+    image.src = "assets/" + test.id + ".webp";
+    image.alt = "Ilustração do assessment " + test.title;
+    image.width = 1536;
+    image.height = 1024;
+    const caption = node("figcaption");
+    caption.append(node("strong", "", "Você não cabe em um rótulo."), node("span", "", "Use o mapa para escolher com mais consciência."));
+    art.append(image, caption);
+    overview.append(copy, art);
+
+    const facts = node("dl", "disc-facts visual-facts");
+    const time = test.time.split(" ");
+    facts.append(
+      visualFact("Tempo", time[0], time.slice(1).join(" ") || "minutos", "duration", "time"),
+      visualFact("Estrutura", String(test.items.length).padStart(2, "0"), test.kind === "ranking" ? "perguntas guiadas" : "afirmações", "structure", "structure"),
+      visualFact("Privacidade", "100%", "neste navegador", "privacy", "privacy")
+    );
+
+    const actions = node("div", "intro-actions");
+    actions.append(button(test.cta, () => { state.screen = "quiz"; save(); render(); }, "primary"));
+    content.append(overview, facts, actions);
+    storageNote(actions);
+    sources(actions);
   }
   function progress(content) {
     const answered = state.answers.filter(a => model.validAnswer(test, a)).length;
@@ -97,7 +154,12 @@
     row.append(meter); content.append(row);
   }
   function go(page) { state.page = page; save(); render(); }
-  function complete() { model.score(test, state.answers); state.screen = "result"; save(); render(); }
+  function complete() {
+    const result = model.score(test, state.answers);
+    window.AgentFlixAgentPrompt.ensure(state, window.AgentFlixAgentPrompt.assessment(test, result, model), state.answers, true);
+    state.screen = "result"; save(); render();
+    window.AgentFlixAgentPromptUI.open(state.agentRecord, hub.querySelector(".agent-prompt-launch"));
+  }
   function actions(content, isComplete) {
     const row = node("div", "quiz-actions");
     row.append(button(state.page ? "Voltar" : "Introdução", () => {
@@ -122,18 +184,19 @@
     const end = Math.min(start + 5, test.items.length);
     const content = shell(test.title + " · página " + (state.page + 1) + " de " + pages(), "Como você se reconhece?");
     progress(content);
-    content.append(node("p", "round-help", "Escolha uma resposta para cada afirmação. Considere como você costuma ser hoje, mesmo quando a resposta não parece ideal."));
+    content.append(iconText("p", "round-help", "information", "Escolha uma resposta para cada afirmação. Considere como você costuma ser hoje, mesmo quando a resposta não parece ideal."));
     const list = node("div", "question-list");
     const isComplete = () => state.answers.slice(start, end).every(a => model.validAnswer(test, a));
     test.items.slice(start, end).forEach((item, offset) => {
       const index = start + offset;
       const field = node("fieldset", "question");
       const legend = node("legend");
-      legend.append(node("span", "question-number", String(index + 1).padStart(2, "0")), document.createTextNode(item.text));
+      legend.append(node("span", "question-number", String(index + 1).padStart(2, "0")), node("strong", "question-copy", item.text));
       field.append(legend);
       const choices = node("div", "likert-choices");
       labels.forEach((label, i) => {
         const choice = node("label", "choice likert-choice");
+        choice.dataset.scale = String(i + 1);
         const input = node("input"); input.type = "radio"; input.name = test.id + "-q" + index; input.value = i + 1;
         input.checked = state.answers[index] === i + 1;
         input.addEventListener("change", () => {
@@ -144,7 +207,9 @@
           content.querySelector(".assessment-progress p").textContent = count + " de " + test.items.length + " perguntas respondidas";
           if (!storageAvailable) content.querySelector(".session-note").textContent = "A retomada está indisponível. Copie seu resultado antes de sair desta página.";
         });
-        choice.append(input, node("span", "", label)); choices.append(choice);
+        const marker = node("span", "choice-marker", String(i + 1));
+        marker.setAttribute("aria-hidden", "true");
+        choice.append(input, marker, node("strong", "choice-copy", label)); choices.append(choice);
       });
       field.append(choices); list.append(field);
     });
@@ -158,13 +223,13 @@
     if (order.length < 3) {
       const prompt = node("p", "ranking-prompt", stages[order.length]);
       prompt.setAttribute("role", "status");
-      content.append(prompt, node("p", "round-help", "Escolha uma afirmação. As já escolhidas saem desta etapa. Você poderá conferir a ordenação antes de continuar."));
+      content.append(prompt, iconText("p", "round-help", "information", "Escolha uma afirmação. As já escolhidas saem desta etapa. Você poderá conferir a ordenação antes de continuar."));
       const choices = node("div", "ranking-choices");
       question.statements.forEach((statement, index) => {
         if (order.includes(index)) return;
         const choice = node("button", "ranking-choice"); choice.type = "button";
         choice.dataset.choice = index;
-        choice.append(node("strong", "", statement.text), node("span", "", "Exemplo: " + statement.example));
+        choice.append(node("span", "ranking-choice-marker", String.fromCharCode(65 + index)), node("strong", "", statement.text), node("span", "", "Exemplo: " + statement.example));
         choice.addEventListener("click", () => { order.push(index); save(); render(); });
         choices.append(choice);
       });
@@ -183,6 +248,8 @@
   }
   function renderResult() {
     const result = model.score(test, state.answers);
+    window.AgentFlixAgentPrompt.ensure(state, window.AgentFlixAgentPrompt.assessment(test, result, model), state.answers);
+    save();
     const content = shell("Seu mapa · " + test.title, "O que suas respostas mostram");
     content.append(node("p", "result-lede", model.summary(test, result)), node("p", "metric-note", test.metric));
     const scores = node("div", "assessment-scores");
@@ -206,6 +273,14 @@
       scores.append(card);
     });
     content.append(scores);
+    const bridge = node("div", "agent-result-bridge");
+    const bridgeCopy = node("div");
+    bridgeCopy.append(node("h3", "", "Seu mapa pode virar uma conversa melhor."), node("p", "", "Leve seu resultado e orientações de colaboração para o seu agente pessoal."));
+    const launch = button("Levar para meu agente", () => window.AgentFlixAgentPromptUI.open(state.agentRecord, launch), "primary");
+    launch.classList.add("agent-prompt-launch");
+    launch.append(icon("next"));
+    bridge.append(icon("support"), bridgeCopy, launch);
+    content.append(bridge);
     const row = node("div", "result-actions");
     const status = node("p", "copy-status"); status.setAttribute("role", "status");
     const fallback = node("textarea", "copy-fallback"); fallback.hidden = true; fallback.readOnly = true;
@@ -214,7 +289,7 @@
       const text = model.report(test, result);
       try { await navigator.clipboard.writeText(text); status.textContent = "Resultado copiado."; }
       catch (_) { fallback.hidden = false; fallback.value = text; fallback.focus(); fallback.select(); status.textContent = "Selecione e copie o texto abaixo."; }
-    }, "primary"));
+    }, "secondary"));
     row.append(button("Revisar respostas", () => { state.screen = "quiz"; state.page = 0; save(); render(); }));
     const reset = node("div", "reset-confirm"); reset.hidden = true;
     reset.append(node("p", "", "Apagar as respostas deste assessment e começar de novo?"));

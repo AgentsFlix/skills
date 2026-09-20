@@ -26,6 +26,9 @@
     aprendizagem: {
       id: "aprendizagem", version: 1, number: "02", title: "Modos de aprendizagem", kind: "ranking", time: "5–7 min",
       intro: "Sete perguntas sobre o que significa aprender. Em cada uma, você ordena quatro afirmações por eliminação, considerando o que pensa hoje.",
+      why: "Você consome aulas, ferramentas e referências, mas parte desse conhecimento não muda sua prática. Isso pode parecer falta de disciplina quando, muitas vezes, é um desencontro entre o contexto, o tipo de participação e o modo como você transforma curiosidade em experiência.",
+      benefits: ["Escolher contextos melhores", "Levar conteúdo para a prática", "Parar de culpar sua capacidade"],
+      cta: "Quero entender como aprendo",
       note: "Adaptação autoral do framework de Richard Elmore, associado ao curso Leaders of Learning de Harvard. O mapa ajuda a refletir sobre contextos de aprendizagem; não determina um estilo fixo ou o melhor método de ensino para você.",
       metric: "Os valores mostram a pontuação de cada modo em relação ao seu máximo de 63 pontos. São escalas separadas: as quatro porcentagens não somam 100%.",
       sources: [{ title: "Richard Elmore · Leaders of Learning", url: "https://www.harvardonline.harvard.edu/course/leaders-learning" }],
@@ -35,6 +38,9 @@
     acao: {
       id: "acao", version: 1, number: "03", title: "Modo de agir", kind: "likert", time: "4–6 min",
       intro: "Pense em situações em que você pode escolher como trabalhar. As 24 afirmações exploram como você busca informações, organiza, experimenta e torna ideias concretas.",
+      why: "Você sabe o que precisa fazer, mas pode ficar preso entre pesquisar mais, organizar melhor, testar outra ideia ou começar a construir. Este mapa mostra onde sua energia entra naturalmente — e qual etapa costuma cobrar um esforço que ninguém vê.",
+      benefits: ["Destravar o começo", "Definir o que já é suficiente", "Concluir com menos desgaste"],
+      cta: "Quero destravar meu modo de agir",
       note: "Exercício autoral AgentFlix de reflexão sobre ação, inspirado na ideia de conação. Não é o Kolbe A Index e não reproduz seus escores ou questionário. Cada extremo descreve uma maneira possível de agir.",
       metric: "Cada dimensão vai de 0 a 100 e descreve a direção das suas respostas entre dois polos. Não é percentil, medida de competência ou código Kolbe.",
       sources: [{ title: "Referência conceitual · Kolbe A Index", url: "https://www.kolbe.com/kolbe-a-index/" }],
@@ -82,6 +88,9 @@
     "big-five": {
       id: "big-five", version: 1, number: "04", title: "Big Five", kind: "likert", time: "7–10 min",
       intro: "Descreva como você geralmente é hoje, e não como gostaria de ser. Responda às 50 afirmações considerando seu comportamento em diferentes situações.",
+      why: "Talvez você se cobre por não ser sempre sociável, disciplinado, tranquilo, cooperativo e criativo ao mesmo tempo. O Big Five troca esse julgamento impossível por dimensões: um retrato mais honesto para desenhar ambientes, acordos e rotinas que combinem com você.",
+      benefits: ["Trocar julgamento por nuance", "Reconhecer padrões recorrentes", "Desenhar um ambiente melhor"],
+      cta: "Quero enxergar meus padrões",
       note: "Itens de domínio público do IPIP Big-Five Factor Markers, em tradução de trabalho para português feita para esta experiência. A tradução não foi validada em uma amostra brasileira. O resultado é descritivo, sem comparação com a população.",
       metric: "Cada fator tem 10 itens, soma de 10 a 50 e média de 1 a 5, com correção dos itens invertidos. A barra de 0 a 100 representa apenas a posição nessa escala; não é percentil nem probabilidade.",
       sources: [{ title: "IPIP · 50 itens abertos", url: "https://ipip.ori.org/New_IPIP-50-item-scale.htm" }, { title: "IPIP · chave de pontuação", url: "https://ipip.ori.org/newBigFive5broadKey.htm" }],
@@ -104,6 +113,9 @@
     eneagrama: {
       id: "eneagrama", version: 1, number: "05", title: "Eneagrama", kind: "likert", time: "6–8 min",
       intro: "Responda às 36 afirmações pensando no que costuma motivar suas escolhas, inclusive quando ninguém está observando. Mais de uma motivação pode aparecer com força.",
+      why: "Você muda a estratégia, mas reencontra o mesmo desconforto: medo de errar, decepcionar, fracassar, perder apoio, autonomia ou paz. O Eneagrama ajuda a observar a necessidade por trás da reação — antes que o piloto automático escolha por você.",
+      benefits: ["Perceber gatilhos", "Separar necessidade de estratégia", "Escolher com mais consciência"],
+      cta: "Quero investigar minhas motivações",
       note: "Questionário autoral de reflexão sobre as nove motivações do Eneagrama. Não é RHETI, não possui validação psicométrica e não determina tipo, asa ou diagnóstico. Use as afinidades para examinar situações reais.",
       metric: "Cada motivação reúne quatro respostas e recebe uma média de 1 a 5. A barra traduz essa média para 0–100. As dimensões são independentes; proximidade entre escores merece leitura conjunta.",
       sources: [{ title: "Referência · The Enneagram Institute", url: "https://www.enneagraminstitute.com/how-the-enneagram-system-works/" }],
@@ -133,6 +145,9 @@
     jung: {
       id: "jung", version: 1, number: "06", title: "Preferências de Jung", kind: "likert", time: "5–7 min",
       intro: "Explore quatro pares de preferências: interação e recolhimento, informação concreta e possibilidades, critérios de decisão e organização do cotidiano. São 32 afirmações sobre o que costuma ser mais natural para você.",
+      why: "Você pode estar tentando pensar em voz alta quando precisa de silêncio, decidir rápido quando precisa comparar valores ou manter tudo aberto quando uma definição traria alívio. Este mapa dá linguagem para diferenças que costumam ser confundidas com resistência, frieza ou desorganização.",
+      benefits: ["Respeitar sua energia", "Comunicar diferenças", "Equilibrar decisões"],
+      cta: "Quero entender minhas preferências",
       note: "Exercício autoral inspirado nas preferências de Jung popularizadas pelo MBTI. Não é o instrumento MBTI oficial nem uma avaliação validada. As letras resumem respostas desta sessão, sem medir habilidade ou definir sua identidade.",
       metric: "Cada par tem oito itens e dois polos. O ponto central representa equilíbrio nas respostas; X indica empate. Valores próximos ao centro devem ser lidos como uma preferência pouco diferenciada, sem estimativa de certeza.",
       sources: [{ title: "Myers & Briggs Foundation · entender as preferências", url: "https://myersbriggs.org/my-mbti-personality-type/my-mbti-results/home.htm" }],

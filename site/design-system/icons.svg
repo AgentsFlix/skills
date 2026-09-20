@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:none">
+  <!-- Generated from Tabler Icons 3.47.0 (MIT). Do not edit by hand. -->
+  <symbol id="af-icon-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 12h4l3 8l4 -16l3 8h4" />
+  </symbol>
+  <symbol id="af-icon-anticipate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+    <path d="M19 7a2 2 0 1 0 0 -4a2 2 0 0 0 0 4" />
+    <path d="M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5" />
+  </symbol>
+  <symbol id="af-icon-support" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" />
+  </symbol>
+  <symbol id="af-icon-duration" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+    <path d="M12 7v5l3 3" />
+  </symbol>
+  <symbol id="af-icon-structure" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 5h8" />
+    <path d="M13 9h5" />
+    <path d="M13 15h8" />
+    <path d="M13 19h5" />
+    <path d="M3 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" />
+    <path d="M3 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" />
+  </symbol>
+  <symbol id="af-icon-privacy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" />
+    <path d="M11 11a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+    <path d="M12 12l0 2.5" />
+  </symbol>
+  <symbol id="af-icon-previous" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12l14 0" />
+    <path d="M5 12l6 6" />
+    <path d="M5 12l6 -6" />
+  </symbol>
+  <symbol id="af-icon-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12l14 0" />
+    <path d="M13 18l6 -6" />
+    <path d="M13 6l6 6" />
+  </symbol>
+  <symbol id="af-icon-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 5l0 14" />
+    <path d="M18 13l-6 6" />
+    <path d="M6 13l6 6" />
+  </symbol>
+  <symbol id="af-icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+    <path d="M11 13l9 -9" />
+    <path d="M15 4h5v5" />
+  </symbol>
+  <symbol id="af-icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" />
+    <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+  </symbol>
+  <symbol id="af-icon-restart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+  </symbol>
+  <symbol id="af-icon-guide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12" />
+    <path d="M19 16h-12a2 2 0 0 0 -2 2" />
+    <path d="M9 8h6" />
+  </symbol>
+  <symbol id="af-icon-information" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+    <path d="M12 9h.01" />
+    <path d="M11 12h1v4h1" />
+  </symbol>
+  <symbol id="af-icon-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12l5 5l10 -10" />
+  </symbol>
+  <symbol id="af-icon-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 9v4" />
+    <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0" />
+    <path d="M12 16h.01" />
+  </symbol>
+</svg>

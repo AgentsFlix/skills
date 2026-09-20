@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "library": {
+    "name": "Tabler Icons",
+    "package": "@tabler/icons",
+    "version": "3.47.0",
+    "license": "MIT",
+    "license_file": "TABLER-LICENSE.txt",
+    "source": "https://github.com/tabler/tabler-icons"
+  },
+  "style": {
+    "grid": 24,
+    "stroke_width": 2,
+    "linecap": "round",
+    "linejoin": "round"
+  },
+  "icons": [
+    {"name": "activity", "source": "activity", "purpose": "ritmo, comportamento ou atividade"},
+    {"name": "anticipate", "source": "route", "purpose": "antecipar caminhos e atritos"},
+    {"name": "support", "source": "message-circle", "purpose": "conversa, apoio e comunicação"},
+    {"name": "duration", "source": "clock", "purpose": "tempo e duração"},
+    {"name": "structure", "source": "list-details", "purpose": "estrutura, etapas e composição"},
+    {"name": "privacy", "source": "shield-lock", "purpose": "privacidade e proteção"},
+    {"name": "previous", "source": "arrow-left", "purpose": "navegação para trás"},
+    {"name": "next", "source": "arrow-right", "purpose": "navegação e avanço"},
+    {"name": "down", "source": "arrow-down", "purpose": "navegação para conteúdo abaixo"},
+    {"name": "external", "source": "external-link", "purpose": "link externo"},
+    {"name": "copy", "source": "copy", "purpose": "copiar conteúdo"},
+    {"name": "restart", "source": "refresh", "purpose": "reiniciar uma experiência"},
+    {"name": "guide", "source": "book-2", "purpose": "orientação e método"},
+    {"name": "information", "source": "info-circle", "purpose": "ajuda contextual"},
+    {"name": "success", "source": "check", "purpose": "confirmação e sucesso"},
+    {"name": "warning", "source": "alert-triangle", "purpose": "atenção e aviso"}
+  ]
+}
