@@ -1,5 +1,7 @@
 # Exportação pública · Aprofundamento humano
 
+PR público: https://github.com/AgentsFlix/skills/pull/120
+
 ## Objetivo
 
 Publicar no site AgentFlix o Aprofundamento humano e o prompt portátil de
