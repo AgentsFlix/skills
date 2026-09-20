@@ -1,0 +1,185 @@
+{
+  "generatedAt": "2026-09-20T02:38:30.154Z",
+  "baselineUrl": "http://127.0.0.1:8846/aprofundamento-humano/",
+  "candidateUrl": "http://127.0.0.1:8847/aprofundamento-humano/",
+  "viewports": {
+    "390": {
+      "overflow": false,
+      "images": [
+        {
+          "src": "assets/disc.webp",
+          "alt": "Pessoa escolhendo uma direção entre quatro possibilidades",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/aprendizagem.webp",
+          "alt": "Pessoa conectando peças de um caminho de aprendizagem",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/acao.webp",
+          "alt": "Pessoa dando o primeiro passo entre blocos",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/big-five.webp",
+          "alt": "Pessoa observando cinco dimensões em equilíbrio",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/eneagrama.webp",
+          "alt": "Pessoa refletindo sobre nove peças conectadas",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/jung.webp",
+          "alt": "Pessoa abrindo duas perspectivas complementares",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    "768": {
+      "overflow": false,
+      "images": [
+        {
+          "src": "assets/disc.webp",
+          "alt": "Pessoa escolhendo uma direção entre quatro possibilidades",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/aprendizagem.webp",
+          "alt": "Pessoa conectando peças de um caminho de aprendizagem",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/acao.webp",
+          "alt": "Pessoa dando o primeiro passo entre blocos",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/big-five.webp",
+          "alt": "Pessoa observando cinco dimensões em equilíbrio",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/eneagrama.webp",
+          "alt": "Pessoa refletindo sobre nove peças conectadas",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/jung.webp",
+          "alt": "Pessoa abrindo duas perspectivas complementares",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    "1440": {
+      "overflow": false,
+      "images": [
+        {
+          "src": "assets/disc.webp",
+          "alt": "Pessoa escolhendo uma direção entre quatro possibilidades",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/aprendizagem.webp",
+          "alt": "Pessoa conectando peças de um caminho de aprendizagem",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/acao.webp",
+          "alt": "Pessoa dando o primeiro passo entre blocos",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/big-five.webp",
+          "alt": "Pessoa observando cinco dimensões em equilíbrio",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/eneagrama.webp",
+          "alt": "Pessoa refletindo sobre nove peças conectadas",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "src": "assets/jung.webp",
+          "alt": "Pessoa abrindo duas perspectivas complementares",
+          "complete": true,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    }
+  },
+  "pageErrors": [],
+  "failedRequests": [],
+  "httpErrors": [],
+  "cards": [
+    {
+      "title": "Perfil DISC",
+      "src": "assets/disc.webp",
+      "alt": "Pessoa escolhendo uma direção entre quatro possibilidades"
+    },
+    {
+      "title": "Modos de aprendizagem",
+      "src": "assets/aprendizagem.webp",
+      "alt": "Pessoa conectando peças de um caminho de aprendizagem"
+    },
+    {
+      "title": "Modo de agir",
+      "src": "assets/acao.webp",
+      "alt": "Pessoa dando o primeiro passo entre blocos"
+    },
+    {
+      "title": "Big Five",
+      "src": "assets/big-five.webp",
+      "alt": "Pessoa observando cinco dimensões em equilíbrio"
+    },
+    {
+      "title": "Eneagrama",
+      "src": "assets/eneagrama.webp",
+      "alt": "Pessoa refletindo sobre nove peças conectadas"
+    },
+    {
+      "title": "Preferências de Jung",
+      "src": "assets/jung.webp",
+      "alt": "Pessoa abrindo duas perspectivas complementares"
+    }
+  ],
+  "failures": [],
+  "passed": true
+}
