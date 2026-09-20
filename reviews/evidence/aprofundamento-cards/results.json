@@ -1,0 +1,102 @@
+{
+  "generatedAt": "2026-09-20T01:02:12.892Z",
+  "baselineUrl": "http://127.0.0.1:8846/aprofundamento-humano/",
+  "candidateUrl": "http://127.0.0.1:8847/aprofundamento-humano/",
+  "viewports": {
+    "390": {
+      "horizontalOverflow": false,
+      "undersized": [],
+      "stageContainsFront": true,
+      "cards": 6,
+      "visibleCards": 3,
+      "visibleActions": 1,
+      "activeTitle": "Perfil DISC",
+      "position": "1 de 6",
+      "localStorageKeys": [],
+      "sharedToken": "#141414"
+    },
+    "768": {
+      "horizontalOverflow": false,
+      "undersized": [],
+      "stageContainsFront": true,
+      "cards": 6,
+      "visibleCards": 3,
+      "visibleActions": 1,
+      "activeTitle": "Perfil DISC",
+      "position": "1 de 6",
+      "localStorageKeys": [],
+      "sharedToken": "#141414"
+    },
+    "1440": {
+      "horizontalOverflow": false,
+      "undersized": [],
+      "stageContainsFront": true,
+      "cards": 6,
+      "visibleCards": 3,
+      "visibleActions": 1,
+      "activeTitle": "Perfil DISC",
+      "position": "1 de 6",
+      "localStorageKeys": [],
+      "sharedToken": "#141414"
+    }
+  },
+  "pageErrors": [],
+  "failedRequests": [],
+  "httpErrors": [],
+  "analyticsRequests": [],
+  "allCards": [
+    {
+      "active": "Perfil DISC",
+      "position": "1 de 6",
+      "visibleActions": 1
+    },
+    {
+      "active": "Modos de aprendizagem",
+      "position": "2 de 6",
+      "visibleActions": 1
+    },
+    {
+      "active": "Modo de agir",
+      "position": "3 de 6",
+      "visibleActions": 1
+    },
+    {
+      "active": "Big Five",
+      "position": "4 de 6",
+      "visibleActions": 1
+    },
+    {
+      "active": "Eneagrama",
+      "position": "5 de 6",
+      "visibleActions": 1
+    },
+    {
+      "active": "Preferências de Jung",
+      "position": "6 de 6",
+      "visibleActions": 1
+    }
+  ],
+  "afterRight": {
+    "title": "Modos de aprendizagem",
+    "focus": "catalog-choice-1"
+  },
+  "afterEnd": {
+    "title": "Preferências de Jung",
+    "focus": "catalog-choice-5"
+  },
+  "afterHome": {
+    "title": "Perfil DISC",
+    "focus": "catalog-choice-0"
+  },
+  "sideCard": {
+    "title": "Modos de aprendizagem",
+    "focus": "catalog-open-1"
+  },
+  "hashRoute": {
+    "title": "Big Five",
+    "hubVisible": true
+  },
+  "reducedMotion": "0s",
+  "failures": [],
+  "passed": true
+}

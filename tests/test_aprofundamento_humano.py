@@ -36,6 +36,25 @@ class AprofundamentoHumanoTests(unittest.TestCase):
         self.assertIn("Não é diagnóstico psicológico", page)
         self.assertIn("Só neste navegador", page)
 
+    def test_catalog_reuses_the_approved_manual_spatial_gallery(self):
+        page = (AREA / "index.html").read_text()
+        catalog = (AREA / "catalog.js").read_text()
+        approved = '../design-system/approved.css'
+
+        self.assertIn(f'href="{approved}"', page)
+        self.assertGreater(page.index(f'href="{approved}"'), page.index('href="styles.css"'))
+        self.assertTrue((SITE / "design-system" / "approved.css").is_file())
+        self.assertEqual(page.count('class="af-spatial-card assessment-card"'), 6)
+        self.assertEqual(page.count('class="af-spatial-preview"'), 6)
+        self.assertIn('class="af-gallery-controls"', page)
+        self.assertIn('aria-roledescription="galeria de assessments"', page)
+        self.assertIn('aria-live="polite"', page)
+        self.assertIn('event.key === "Home"', catalog)
+        self.assertIn('event.key === "End"', catalog)
+        self.assertIn('"ArrowLeft", "ArrowRight"', catalog)
+        self.assertNotIn("setInterval", catalog)
+        self.assertNotIn("setTimeout", catalog)
+
     def test_area_consumes_shared_tokens_without_forking_them(self):
         page = (AREA / "index.html").read_text()
         styles = (AREA / "styles.css").read_text()

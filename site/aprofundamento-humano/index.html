@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
   <link rel="stylesheet" href="../design-system/tokens.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../design-system/approved.css">
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -53,7 +54,7 @@
       </div>
     </section>
 
-    <section class="catalog" id="catalogo" aria-labelledby="catalog-title">
+    <section class="catalog assessment-gallery af-gallery" id="catalogo" aria-labelledby="catalog-title" aria-roledescription="galeria de assessments">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Biblioteca de assessments</p>
@@ -65,55 +66,101 @@
         </div>
       </div>
 
-      <div class="assessment-grid">
-        <article class="assessment-card assessment-card-featured">
-          <div class="card-topline"><span class="status status-ready">Comece por aqui</span><span class="card-index">01</span></div>
-          <div class="card-symbol" aria-hidden="true">D<span>I</span><span>S</span><span>C</span></div>
-          <h3>Perfil DISC</h3>
-          <p>Observe tendências de ritmo, comunicação, estabilidade e relação com regras e detalhes.</p>
-          <a href="#disc">Fazer assessment <span aria-hidden="true">→</span></a>
+      <div class="af-gallery-choices" role="group" aria-label="Escolher assessment">
+        <button type="button" data-preview="0" id="catalog-choice-0" aria-label="Selecionar assessment 1: Perfil DISC">DISC</button>
+        <button type="button" data-preview="1" id="catalog-choice-1" aria-label="Selecionar assessment 2: Modos de aprendizagem">Aprender</button>
+        <button type="button" data-preview="2" id="catalog-choice-2" aria-label="Selecionar assessment 3: Modo de agir">Agir</button>
+        <button type="button" data-preview="3" id="catalog-choice-3" aria-label="Selecionar assessment 4: Big Five">Big Five</button>
+        <button type="button" data-preview="4" id="catalog-choice-4" aria-label="Selecionar assessment 5: Eneagrama">Eneagrama</button>
+        <button type="button" data-preview="5" id="catalog-choice-5" aria-label="Selecionar assessment 6: Preferências de Jung">Jung</button>
+      </div>
+
+      <div class="af-spatial-stage" data-catalog-stage>
+        <article class="af-spatial-card assessment-card" data-card="0">
+          <div class="af-spatial-content">
+            <div class="af-spatial-cover" data-art="resolver"><img src="../onboarding/resolver-v1.webp" alt="" width="960" height="640"></div>
+            <div class="af-spatial-details">
+              <p class="af-spatial-status"><span class="af-spatial-status-dot" aria-hidden="true"></span> Comece por aqui</p>
+              <h3>Perfil DISC</h3>
+              <p class="assessment-card-description">Observe tendências de ritmo, comunicação, estabilidade e relação com regras e detalhes.</p>
+              <a class="button button-primary af-button" id="catalog-open-0" href="#disc">Fazer assessment <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <button class="af-spatial-preview" type="button" data-preview="0" aria-label="Selecionar assessment 1: Perfil DISC"></button>
         </article>
 
-        <article class="assessment-card">
-          <div class="card-topline"><span class="card-index">02</span></div>
-          <div class="card-symbol card-symbol-word" aria-hidden="true">APRENDER</div>
-          <h3>Modos de aprendizagem</h3>
-          <p>Uma reflexão inspirada no framework de Richard Elmore sobre como você aprende e produz mudança.</p>
-          <a href="#aprendizagem">Fazer assessment <span aria-hidden="true">→</span></a>
+        <article class="af-spatial-card assessment-card" data-card="1">
+          <div class="af-spatial-content">
+            <div class="af-spatial-cover" data-art="caminho"><img src="../onboarding/caminho-v1.webp" alt="" width="960" height="640"></div>
+            <div class="af-spatial-details">
+              <p class="af-spatial-status">Assessment 02</p>
+              <h3>Modos de aprendizagem</h3>
+              <p class="assessment-card-description">Uma reflexão inspirada no framework de Richard Elmore sobre como você aprende e produz mudança.</p>
+              <a class="button button-primary af-button" id="catalog-open-1" href="#aprendizagem">Fazer assessment <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <button class="af-spatial-preview" type="button" data-preview="1" aria-label="Selecionar assessment 2: Modos de aprendizagem"></button>
         </article>
 
-        <article class="assessment-card">
-          <div class="card-topline"><span class="card-index">03</span></div>
-          <div class="card-symbol card-symbol-word" aria-hidden="true">AGIR</div>
-          <h3>Modo de agir</h3>
-          <p>Como você tende a iniciar, organizar, improvisar e sustentar uma ação quando existe liberdade de escolha.</p>
-          <a href="#acao">Fazer assessment <span aria-hidden="true">→</span></a>
+        <article class="af-spatial-card assessment-card" data-card="2">
+          <div class="af-spatial-content">
+            <div class="af-spatial-cover" data-art="base"><img src="../onboarding/base-v1.webp" alt="" width="960" height="640"></div>
+            <div class="af-spatial-details">
+              <p class="af-spatial-status">Assessment 03</p>
+              <h3>Modo de agir</h3>
+              <p class="assessment-card-description">Como você tende a iniciar, organizar, improvisar e sustentar uma ação quando existe liberdade de escolha.</p>
+              <a class="button button-primary af-button" id="catalog-open-2" href="#acao">Fazer assessment <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <button class="af-spatial-preview" type="button" data-preview="2" aria-label="Selecionar assessment 3: Modo de agir"></button>
         </article>
 
-        <article class="assessment-card">
-          <div class="card-topline"><span class="card-index">04</span></div>
-          <div class="card-symbol card-symbol-word" aria-hidden="true">5 TRAÇOS</div>
-          <h3>Big Five</h3>
-          <p>Um retrato dimensional de cinco grandes traços de personalidade, sem encaixar você em um único tipo.</p>
-          <a href="#big-five">Fazer assessment <span aria-hidden="true">→</span></a>
+        <article class="af-spatial-card assessment-card" data-card="3">
+          <div class="af-spatial-content">
+            <div class="af-spatial-cover" data-art="resolver"><img src="../onboarding/resolver-v1.webp" alt="" width="960" height="640"></div>
+            <div class="af-spatial-details">
+              <p class="af-spatial-status">Assessment 04</p>
+              <h3>Big Five</h3>
+              <p class="assessment-card-description">Um retrato dimensional de cinco grandes traços de personalidade, sem encaixar você em um único tipo.</p>
+              <a class="button button-primary af-button" id="catalog-open-3" href="#big-five">Fazer assessment <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <button class="af-spatial-preview" type="button" data-preview="3" aria-label="Selecionar assessment 4: Big Five"></button>
         </article>
 
-        <article class="assessment-card">
-          <div class="card-topline"><span class="card-index">05</span></div>
-          <div class="card-symbol card-symbol-word" aria-hidden="true">9 MOTIVOS</div>
-          <h3>Eneagrama</h3>
-          <p>Uma lente sobre motivações, estratégias recorrentes e possíveis pontos cegos.</p>
-          <a href="#eneagrama">Fazer assessment <span aria-hidden="true">→</span></a>
+        <article class="af-spatial-card assessment-card" data-card="4">
+          <div class="af-spatial-content">
+            <div class="af-spatial-cover" data-art="base"><img src="../onboarding/base-v1.webp" alt="" width="960" height="640"></div>
+            <div class="af-spatial-details">
+              <p class="af-spatial-status">Assessment 05</p>
+              <h3>Eneagrama</h3>
+              <p class="assessment-card-description">Uma lente sobre motivações, estratégias recorrentes e possíveis pontos cegos.</p>
+              <a class="button button-primary af-button" id="catalog-open-4" href="#eneagrama">Fazer assessment <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <button class="af-spatial-preview" type="button" data-preview="4" aria-label="Selecionar assessment 5: Eneagrama"></button>
         </article>
 
-        <article class="assessment-card">
-          <div class="card-topline"><span class="card-index">06</span></div>
-          <div class="card-symbol card-symbol-word" aria-hidden="true">PREFERÊNCIAS</div>
-          <h3>Preferências de Jung</h3>
-          <p>Explore os quatro pares de preferências popularizados pelo MBTI em um exercício autoral de percepção e decisão.</p>
-          <a href="#jung">Fazer assessment <span aria-hidden="true">→</span></a>
+        <article class="af-spatial-card assessment-card" data-card="5">
+          <div class="af-spatial-content">
+            <div class="af-spatial-cover" data-art="caminho"><img src="../onboarding/caminho-v1.webp" alt="" width="960" height="640"></div>
+            <div class="af-spatial-details">
+              <p class="af-spatial-status">Assessment 06</p>
+              <h3>Preferências de Jung</h3>
+              <p class="assessment-card-description">Explore os quatro pares de preferências popularizados pelo MBTI em um exercício autoral de percepção e decisão.</p>
+              <a class="button button-primary af-button" id="catalog-open-5" href="#jung">Fazer assessment <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <button class="af-spatial-preview" type="button" data-preview="5" aria-label="Selecionar assessment 6: Preferências de Jung"></button>
         </article>
       </div>
+
+      <div class="af-gallery-controls" role="group" aria-label="Navegar pelos assessments">
+        <button class="button button-outline af-button af-button--icon af-gallery-previous" type="button" data-shift="-1" aria-label="Assessment anterior"><span aria-hidden="true">→</span></button>
+        <span class="af-gallery-position" id="catalog-position" aria-live="off">1 de 6</span>
+        <button class="button button-outline af-button af-button--icon" type="button" data-shift="1" aria-label="Próximo assessment"><span aria-hidden="true">→</span></button>
+      </div>
+      <p class="sr-only" id="catalog-announcement" aria-live="polite"></p>
     </section>
 
     <section class="disc-shell" id="disc" aria-labelledby="disc-title">
@@ -204,6 +251,7 @@
   <script src="disc-data.js"></script>
   <script src="disc-model.js"></script>
   <script src="disc.js"></script>
+  <script src="catalog.js"></script>
   <script src="learning-data.js"></script>
   <script src="assessments-data.js"></script>
   <script src="assessments-model.js"></script>
