@@ -1,0 +1,78 @@
+{
+  "version": "v9",
+  "customer": "customer-7o8y5tffw1185pu3",
+  "chapters": [
+    {
+      "id": "historia",
+      "title": "A reforma de Lia",
+      "duration": 168,
+      "uid": "7f3449285729496496dab65087b2a36b",
+      "sha256": "09d5473eca974b713b5543c3cd6998cd955dd4257847de88d573dac4176e9ecc",
+      "poster": "media/historia.jpg",
+      "captions": "media/historia.vtt"
+    },
+    {
+      "id": "memoria",
+      "title": "Um projeto com memória",
+      "duration": 220.4,
+      "uid": "d2cb5881ef28c94d6fa1850614894852",
+      "sha256": "efdb0e9a035582989280de72436cfa745c2ea5d2723ac3fbd0743400e3b60db6",
+      "poster": "media/memoria.jpg",
+      "captions": "media/memoria.vtt"
+    },
+    {
+      "id": "origem",
+      "title": "Antes do GitHub",
+      "duration": 216.066667,
+      "uid": "7af63a65de68053f90fe39d03dc97574",
+      "sha256": "eaf037a52809f78b474c46db6d4920e1cd2c91ecef025eaa715943e347e70bd2",
+      "poster": "media/origem.jpg",
+      "captions": "media/origem.vtt"
+    },
+    {
+      "id": "github",
+      "title": "Git não é GitHub",
+      "duration": 226,
+      "uid": "268a0ababbe23d0165a073acc61e5daa",
+      "sha256": "25a87c3872bcd994d6e141e16160e902487b696328767c13c1fac5eb1f3f16bc",
+      "poster": "media/github.jpg",
+      "captions": "media/github.vtt"
+    },
+    {
+      "id": "planos",
+      "title": "Planos e bancadas",
+      "duration": 345.7,
+      "uid": "ef6c1f89b361766a06f37c6041eebed3",
+      "sha256": "bf035389b5887b1381bdf15d2b9b255c5cf5f4717a254099cd899d55d7cd0b10",
+      "poster": "media/planos.jpg",
+      "captions": "media/planos.vtt"
+    },
+    {
+      "id": "fluxo",
+      "title": "Do rascunho à entrega",
+      "duration": 281.433333,
+      "uid": "fa25f3ecb3cec7289ce7e8fbcb622491",
+      "sha256": "b8d313f480e47872d28f30b31d998e0bcbbfd5a3784c4f3601072882eb300679",
+      "poster": "media/fluxo.jpg",
+      "captions": "media/fluxo.vtt"
+    },
+    {
+      "id": "oficina",
+      "title": "A oficina de reformas",
+      "duration": 314.966667,
+      "uid": "c4a6e3fe2eb50565c16361a708e7b7a6",
+      "sha256": "a3ef2ecb15012dfa0384af34217fa0699aca5934960953ac43ba37e1abfe5167",
+      "poster": "media/oficina.jpg",
+      "captions": "media/oficina.vtt"
+    },
+    {
+      "id": "agentflix",
+      "title": "Da casa para o AgentFlix",
+      "duration": 234.733333,
+      "uid": "f152e922296a1debb557459dbe6a8ede",
+      "sha256": "5511ee101b0a363771856ef6f061fbf178327c15712af34ffae0eac8456798d7",
+      "poster": "media/agentflix.jpg",
+      "captions": "media/agentflix.vtt"
+    }
+  ]
+}

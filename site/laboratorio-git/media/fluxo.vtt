@@ -1,0 +1,432 @@
+WEBVTT
+
+1
+00:00:00.750 --> 00:00:04.410
+Lia recebe uma mensagem: a mudança
+está pronta.
+
+2
+00:00:04.570 --> 00:00:07.630
+Só que essa frase pode esconder
+várias situações.
+
+3
+00:00:07.950 --> 00:00:09.950
+O desenho ficou pronto na pasta?
+
+4
+00:00:10.090 --> 00:00:11.850
+Foi registrado no histórico?
+
+5
+00:00:12.170 --> 00:00:13.630
+A equipe já recebeu?
+
+6
+00:00:13.850 --> 00:00:15.870
+A mudança entrou na versão
+principal?
+
+7
+00:00:16.210 --> 00:00:18.350
+Ou já está funcionando para quem
+usa?
+
+8
+00:00:18.630 --> 00:00:22.410
+Vamos acompanhar uma única reforma e
+observar o que muda
+
+9
+00:00:22.410 --> 00:00:23.410
+em cada etapa.
+
+10
+00:00:23.630 --> 00:00:27.210
+Assim, quando um agente disser
+pronto, você vai saber qual
+
+11
+00:00:27.210 --> 00:00:28.990
+pergunta ainda precisa fazer.
+
+12
+00:00:30.217 --> 00:00:33.217
+Primeiro, Lia muda a planta na
+branch da academia.
+
+13
+00:00:33.437 --> 00:00:35.057
+Esse é o trabalho em andamento.
+
+14
+00:00:35.217 --> 00:00:38.357
+Depois prepara o que quer registrar
+e faz um commit.
+
+15
+00:00:38.617 --> 00:00:41.677
+Agora existe uma etapa identificada
+no histórico local.
+
+16
+00:00:42.037 --> 00:00:44.177
+A main ainda não recebeu essa
+mudança.
+
+17
+00:00:44.357 --> 00:00:45.957
+E o público não recebeu nada.
+
+18
+00:00:46.417 --> 00:00:49.717
+Um commit responde à pergunta: qual
+estado do projeto foi
+
+19
+00:00:49.717 --> 00:00:53.417
+registrado? Ele não responde sozinho
+se a mudança foi testada
+
+20
+00:00:53.417 --> 00:00:55.357
+ou se funciona como deveria.
+
+21
+00:00:56.417 --> 00:00:59.037
+Lia faz o envio para o remoto, o
+push que
+
+22
+00:00:59.037 --> 00:01:00.157
+a gente já conheceu.
+
+23
+00:01:00.377 --> 00:01:03.597
+A equipe agora pode acessar a branch
+enviada, conforme as
+
+24
+00:01:03.597 --> 00:01:04.777
+permissões do projeto.
+
+25
+00:01:05.037 --> 00:01:08.197
+Mas colocar a proposta ao alcance
+dos outros não significa
+
+26
+00:01:08.197 --> 00:01:10.097
+adotá-la como versão principal.
+
+27
+00:01:10.357 --> 00:01:13.017
+Pense numa planta que chegou à mesa
+de revisão.
+
+28
+00:01:13.237 --> 00:01:16.617
+Ela está disponível para olhar,
+comparar e discutir.
+
+29
+00:01:16.757 --> 00:01:19.997
+Ainda falta decidir se aquelas
+mudanças devem fazer parte da
+
+30
+00:01:19.997 --> 00:01:21.277
+referência da equipe.
+
+31
+00:01:22.350 --> 00:01:26.290
+Para abrir essa conversa, Lia cria
+uma proposta de integração.
+
+32
+00:01:26.470 --> 00:01:30.070
+No GitHub, ela se chama pull
+request, ou PR.
+
+33
+00:01:30.470 --> 00:01:33.890
+É um lugar para ver diferenças,
+discutir a mudança e
+
+34
+00:01:33.890 --> 00:01:38.230
+acompanhar verificações. A proposta
+aponta de uma branch para outra.
+
+35
+00:01:38.410 --> 00:01:40.770
+Neste exemplo, da academia para a
+main.
+
+36
+00:01:41.050 --> 00:01:43.730
+Abrir o PR não significa que alguém
+aprovou.
+
+37
+00:01:43.890 --> 00:01:47.050
+É o começo de uma avaliação, não um
+certificado de
+
+38
+00:01:47.050 --> 00:01:48.310
+que está tudo certo.
+
+39
+00:01:49.617 --> 00:01:52.897
+Na revisão, alguém percebe que a
+porta ainda atrapalha a
+
+40
+00:01:52.897 --> 00:01:56.857
+circulação. A equipe não precisa
+aceitar a mudança só porque
+
+41
+00:01:56.857 --> 00:01:58.297
+a proposta já existe.
+
+42
+00:01:58.617 --> 00:02:02.157
+Lia corrige o desenho, registra
+outra etapa e envia a
+
+43
+00:02:02.157 --> 00:02:06.277
+atualização. A conversa continua
+sobre a proposta atualizada.
+
+44
+00:02:06.577 --> 00:02:10.737
+Verificar também faz parte do
+trabalho: olhar o resultado, testar
+
+45
+00:02:10.737 --> 00:02:13.817
+o que precisa funcionar e conferir
+se a mudança atende
+
+46
+00:02:13.817 --> 00:02:17.977
+ao pedido. Um sinal verde automático
+ajuda, mas não responde
+
+47
+00:02:17.977 --> 00:02:19.317
+a todas as perguntas.
+
+48
+00:02:20.383 --> 00:02:23.583
+Depois da revisão, a mudança pode
+ser aprovada.
+
+49
+00:02:23.763 --> 00:02:27.643
+Mas o aceite e a integração
+continuam sendo coisas diferentes.
+
+50
+00:02:28.063 --> 00:02:31.063
+A ação de combinar as linhas de
+trabalho é chamada
+
+51
+00:02:31.063 --> 00:02:34.823
+merge. No nosso exemplo, ela leva a
+mudança da academia
+
+52
+00:02:34.823 --> 00:02:35.703
+para a main.
+
+53
+00:02:36.083 --> 00:02:39.443
+É nessa hora que a versão principal
+passa a incluir
+
+54
+00:02:39.443 --> 00:02:43.143
+a reforma. Não basta arrastar uma
+etiqueta de aprovado.
+
+55
+00:02:43.363 --> 00:02:47.123
+A integração precisa acontecer de
+fato, e o resultado precisa
+
+56
+00:02:47.123 --> 00:02:48.223
+ser conferido.
+
+57
+00:02:49.283 --> 00:02:52.283
+Agora imagina que esses arquivos
+fossem de um site.
+
+58
+00:02:52.543 --> 00:02:54.863
+A main tem a mudança, mas o site que
+as
+
+59
+00:02:54.863 --> 00:02:58.463
+pessoas estão usando ainda pode
+estar com uma versão anterior.
+
+60
+00:02:58.843 --> 00:03:01.883
+Colocar uma versão para funcionar no
+ambiente de uso é
+
+61
+00:03:01.883 --> 00:03:04.183
+outra operação, chamada deploy.
+
+62
+00:03:04.483 --> 00:03:07.763
+Na nossa casa, a entrega ao morador
+ajuda a visualizar
+
+63
+00:03:07.763 --> 00:03:11.783
+essa diferença. No software, o
+resultado precisa chegar ao ambiente
+
+64
+00:03:11.783 --> 00:03:14.983
+certo, onde o usuário realmente
+acessa o produto.
+
+65
+00:03:16.317 --> 00:03:19.377
+Uma equipe pode configurar a
+publicação para começar
+
+66
+00:03:19.377 --> 00:03:21.777
+automaticamente depois de uma
+integração.
+
+67
+00:03:21.997 --> 00:03:25.337
+Mesmo assim, continuam existindo
+dois acontecimentos.
+
+68
+00:03:25.517 --> 00:03:28.117
+Um deles pode dar certo e o outro
+falhar.
+
+69
+00:03:28.297 --> 00:03:30.577
+Por isso, feito o merge não é sempre
+a mesma
+
+70
+00:03:30.577 --> 00:03:31.937
+coisa que publicado.
+
+71
+00:03:32.197 --> 00:03:35.277
+Para confirmar a entrega, procure a
+versão que chegou ao
+
+72
+00:03:35.277 --> 00:03:38.477
+ambiente de uso e abra o endereço
+correspondente.
+
+73
+00:03:38.637 --> 00:03:42.117
+A resposta precisa mostrar o
+resultado, não apenas o nome
+
+74
+00:03:42.117 --> 00:03:42.997
+de uma etapa.
+
+75
+00:03:44.117 --> 00:03:47.857
+Se o agente disser fiz o commit,
+pergunte: em qual
+
+76
+00:03:47.857 --> 00:03:49.877
+branch e o que foi testado?
+
+77
+00:03:49.877 --> 00:03:54.257
+Se disser abri o PR, pergunte: o que
+falta revisar?
+
+78
+00:03:54.337 --> 00:03:58.017
+Se disser fiz o merge, pergunte:
+essa versão já está
+
+79
+00:03:58.017 --> 00:04:00.537
+publicada e onde posso conferir?
+
+80
+00:04:00.717 --> 00:04:04.317
+Você não precisa transformar toda
+conversa numa lista enorme.
+
+81
+00:04:04.517 --> 00:04:07.877
+Precisa distinguir o que foi
+concluído do que ainda falta.
+
+82
+00:04:08.137 --> 00:04:11.377
+Uma resposta clara economiza o
+trabalho de adivinhar.
+
+83
+00:04:12.483 --> 00:04:17.243
+Agora percorra o caminho com os
+olhos: alterar, registrar, enviar,
+
+84
+00:04:17.423 --> 00:04:21.263
+propor, revisar, integrar e colocar
+em uso.
+
+85
+00:04:21.423 --> 00:04:24.003
+A mudança é a mesma, mas o estado
+dela não
+
+86
+00:04:24.003 --> 00:04:27.703
+é. Na atividade abaixo, toque em
+cada ação e observe
+
+87
+00:04:27.703 --> 00:04:29.263
+o que ainda não aconteceu.
+
+88
+00:04:29.523 --> 00:04:32.003
+Este é o fluxo da equipe da nossa
+história.
+
+89
+00:04:32.383 --> 00:04:35.643
+Outras equipes podem organizar o
+trabalho de outro jeito.
+
+90
+00:04:36.003 --> 00:04:39.143
+O que continua importante é não
+confundir uma etapa com
+
+91
+00:04:39.143 --> 00:04:39.683
+a seguinte.
