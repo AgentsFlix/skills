@@ -489,6 +489,7 @@
 <div id="auth" hidden></div>
 <div id="toast"  role="status" hidden></div>
 
+<script src="memory.js"></script>
 <script src="vitrine-state.js"></script>
 <script src="vitrine-visit.js"></script>
 <script src="vitrine.js"></script>
@@ -1669,6 +1670,7 @@
     $("footTotal").textContent = "catálogo indisponível";
   }
   (async () => {
+    await window.AgentFlixMemory.start();
     let cat = null, lastErr = null;
     for (const url of CATALOG_URLS) {
       try { const r = await fetch(url, { cache: "no-cache" }); if (!r.ok) throw new Error("HTTP " + r.status); cat = await r.json(); if (cat && Array.isArray(cat.skills)) break; cat = null; }

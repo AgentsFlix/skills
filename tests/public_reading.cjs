@@ -93,7 +93,7 @@ for (const completed of [false,true]) for (const locked of [false,true]) {
     const writes=[],intros=[];
     const c={CATALOG_URLS:['catalog.json'],DISCOVERY_DATA:null,state:{view},
       fetch:async()=>({ok:true,json:async()=>({skills:[]})}),
-      window:{AgentFlixReader:{catalogSkills:async s=>s},matchMedia:()=>({matches:false})},
+      window:{AgentFlixMemory:{start:async()=>{}},AgentFlixReader:{catalogSkills:async s=>s},matchMedia:()=>({matches:false})},
       sessionStorage:{getItem:()=>null,setItem:(...args)=>writes.push(args)},
       loadCatalog(){},initShop(){},playIntro:()=>intros.push(true),showLoadError:message=>{throw Error(message);},console};
     vm.createContext(c);await vm.runInContext('(async()=>{'+boot,c);
