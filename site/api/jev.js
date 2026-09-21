@@ -31,15 +31,53 @@ function validateCriteria(type, criteria) {
     }
   }
   if (type === "score") {
-    if (!Array.isArray(criteria) || criteria.length < 2 || criteria.length > MAX_CRITERIA) return `score precisa de 2 a ${MAX_CRITERIA} níveis`;
+    if (!Array.isArray(criteria) || criteria.length < 2 || criteria.length > 10) return "score precisa de 2 a 10 níveis";
     if (criteria.some(value => typeof value !== "string" || !value.trim() || value.length > 500)) return "cada nível de score precisa ser um texto curto";
   }
   if (type === "noul" && criteria !== undefined) {
-    if (!plainObject(criteria) || typeof criteria.true !== "string" || typeof criteria.false !== "string") {
+    if (!plainObject(criteria) || Object.keys(criteria).length !== 2 ||
+        [criteria.true, criteria.false].some(value => typeof value !== "string" || !value.trim() || value.length > 500)) {
       return "criteria de noul precisa descrever true e false";
     }
   }
   return null;
+}
+
+const unitNumber = value => typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 1;
+const sameKeys = (object, expected) => plainObject(object) && Object.keys(object).length === expected.length && expected.every(key => Object.hasOwn(object, key));
+
+// Falha fechada: respostas ausentes, fora da escala ou de outra pergunta não acionam políticas.
+export function validateDecisions(answers, questions) {
+  if (!sameKeys(answers, Object.keys(questions))) return { error: "O JEV devolveu perguntas ausentes ou inesperadas." };
+  const clean = [];
+  for (const [id, question] of Object.entries(questions)) {
+    const answer = answers[id];
+    if (!plainObject(answer) || answer.type !== question.type) return { error: "O JEV devolveu um tipo de resposta inesperado." };
+    if (question.type === "noul") {
+      if (!unitNumber(answer.noul)) return { error: "O JEV devolveu uma probabilidade inválida." };
+      clean.push([id, { type: "noul", noul: answer.noul }]);
+      continue;
+    }
+    const keys = question.type === "choice" ? Object.keys(question.criteria) : question.criteria.map((_, i) => String(i));
+    if (!unitNumber(answer.confidence) || !sameKeys(answer.probabilities, keys) ||
+        Object.values(answer.probabilities).some(value => !unitNumber(value)) ||
+        Math.abs(Object.values(answer.probabilities).reduce((sum, value) => sum + value, 0) - 1) > .021) {
+      return { error: "O JEV devolveu uma distribuição ou confidence inválida." };
+    }
+    if (question.type === "choice") {
+      if (typeof answer.choice !== "string" || !keys.includes(answer.choice) ||
+          answer.probabilities[answer.choice] + .011 < Math.max(...Object.values(answer.probabilities))) {
+        return { error: "O JEV devolveu uma escolha incompatível com as opções." };
+      }
+      clean.push([id, { type: "choice", choice: answer.choice, probabilities: answer.probabilities, confidence: answer.confidence }]);
+    } else {
+      if (typeof answer.score !== "number" || !Number.isFinite(answer.score) || answer.score < 0 || answer.score > keys.length - 1) {
+        return { error: "O JEV devolveu uma nota fora da escala." };
+      }
+      clean.push([id, { type: "score", score: answer.score, probabilities: answer.probabilities, confidence: answer.confidence }]);
+    }
+  }
+  return { value: Object.fromEntries(clean) };
 }
 
 export function validatePlaygroundPayload(payload) {
@@ -115,10 +153,12 @@ export async function POST(request) {
   }
   if (!upstream.ok) return json({ error: `O Jev recusou esta requisição (${upstream.status}).` }, upstream.status === 429 ? 429 : 502);
   if (!plainObject(result) || !plainObject(result.answers)) return json({ error: "O Jev respondeu sem decisões tipadas." }, 502);
+  const decisions = validateDecisions(result.answers, validated.value.questions);
+  if (decisions.error) return json({ error: decisions.error }, 502);
 
   return json({
     model: typeof result.model === "string" ? result.model : JEV_MODEL,
-    answers: result.answers,
+    answers: decisions.value,
     ...(plainObject(result.usage) ? { usage: result.usage } : {}),
   });
 }
