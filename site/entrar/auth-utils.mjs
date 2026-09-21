@@ -20,7 +20,7 @@ export function magicLinkRedirect(origin, nextPath) {
 export function authErrorMessage(error) {
   const message = String(error?.message || "").toLowerCase();
   if (message.includes("rate") || message.includes("security purposes")) {
-    return "Espere um pouco antes de pedir outro link.";
+    return "Aguarde 60 segundos antes de pedir outro link.";
   }
   if (message.includes("email") || message.includes("invalid")) {
     return "Confira o e-mail informado e tente novamente.";
