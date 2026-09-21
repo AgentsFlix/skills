@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#141414">
+  <meta name="description" content="Mude o contexto e as perguntas para ver o Jev tomar uma decisão tipada, com probabilidades, em um laboratório inspirado em uma escola de magia.">
+  <title>O Chapéu Decide · Laboratório Jev · AgentFlix</title>
+  <link rel="icon" href="/brand/simbolo-branco.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#playground">Pular para o laboratório</a>
+  <header class="site-header">
+    <a class="brand" href="/aprender/" aria-label="AgentFlix · voltar para Aprender">
+      <img src="/brand/horizontal-transparente-dark.svg" width="170" height="34" alt="AgentFlix">
+    </a>
+    <p>TECNOLOGIA SEM JARGÃO <span aria-hidden="true">/</span> LABORATÓRIO JEV</p>
+    <a class="quiet-link" href="/aprender/">Outras jornadas <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">Uma decisão, não uma resposta escrita</p>
+      <h1 id="page-title">O Chapéu não adivinha.<br>Ele decide dentro das opções.</h1>
+      <p>Escolha um personagem, altere qualquer detalhe dos JSONs e consulte o Jev. O resultado abaixo vem da requisição real — contexto e pergunta diferentes podem produzir outra casa.</p>
+      <ol class="explanation" aria-label="Como o Jev funciona neste laboratório">
+        <li><span>1</span><strong>Estado</strong><small>O que o modelo sabe</small></li>
+        <li><span>2</span><strong>Pergunta tipada</strong><small>Quais respostas são permitidas</small></li>
+        <li><span>3</span><strong>Decisão</strong><small>Escolha, probabilidades e confiança</small></li>
+      </ol>
+    </section>
+
+    <section id="playground" class="playground" aria-labelledby="playground-title">
+      <h2 id="playground-title" class="sr-only">Playground interativo do Jev</h2>
+
+      <aside class="character-panel" aria-labelledby="characters-title">
+        <div class="panel-heading">
+          <p class="step">01 · ESTADO INICIAL</p>
+          <h3 id="characters-title">Escolha um personagem</h3>
+          <p>O cartão troca o JSON. Depois, você pode editar tudo.</p>
+        </div>
+        <div class="character-list" role="group" aria-label="Personagens de exemplo">
+          <button type="button" class="character-card" data-character="hermione" aria-pressed="true">
+            <span class="portrait portrait-hermione" aria-hidden="true">HG</span>
+            <span><strong>Hermione Granger</strong><small>Conhecimento, método e coragem</small></span>
+          </button>
+          <button type="button" class="character-card" data-character="harry" aria-pressed="false">
+            <span class="portrait portrait-harry" aria-hidden="true">HP</span>
+            <span><strong>Harry Potter</strong><small>Instinto, lealdade e ação</small></span>
+          </button>
+          <button type="button" class="character-card" data-character="ron" aria-pressed="false">
+            <span class="portrait portrait-ron" aria-hidden="true">RW</span>
+            <span><strong>Ron Weasley</strong><small>Companheirismo e bravura</small></span>
+          </button>
+          <button type="button" class="character-card" data-character="draco" aria-pressed="false">
+            <span class="portrait portrait-draco" aria-hidden="true">DM</span>
+            <span><strong>Draco Malfoy</strong><small>Ambição, influência e estratégia</small></span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="editor-column">
+        <section class="code-panel" aria-labelledby="state-title">
+          <div class="code-heading">
+            <div><p class="step">02 · O QUE O JEV SABE</p><h3 id="state-title">State</h3></div>
+            <span id="state-validity" class="validity" role="status">JSON válido</span>
+          </div>
+          <label class="sr-only" for="state-json">JSON com o estado do personagem</label>
+          <textarea id="state-json" class="code-editor" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="state-help state-validity"></textarea>
+          <p id="state-help" class="code-help">Mude personalidade, fatos ou a ação decisiva.</p>
+        </section>
+
+        <section class="code-panel" aria-labelledby="questions-title">
+          <div class="code-heading">
+            <div><p class="step">03 · O QUE O JEV DECIDE</p><h3 id="questions-title">Questions</h3></div>
+            <span id="questions-validity" class="validity" role="status">JSON válido</span>
+          </div>
+          <label class="sr-only" for="questions-json">JSON com as perguntas tipadas</label>
+          <textarea id="questions-json" class="code-editor questions-editor" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="questions-help questions-validity"></textarea>
+          <p id="questions-help" class="code-help">Experimente mudar as casas, os critérios ou a instrução.</p>
+        </section>
+      </div>
+
+      <aside class="decision-panel" aria-labelledby="decision-title">
+        <div class="hat-stage" aria-hidden="true">
+          <svg viewBox="0 0 240 176" role="img">
+            <path class="hat-crown" fill="#70422d" stroke="#be8051" d="M75 122c9-25 13-57 25-88 4-11 15-18 22-5 11 21 20 29 37 43 12 10 16 31 6 50H75Z"/>
+            <path class="hat-fold" fill="#4d2c22" d="M103 41c17 25 37 33 52 41-18 1-31 7-43 20 4-21 2-40-9-61Z"/>
+            <path class="hat-face" fill="none" stroke="#2d1711" d="M99 99c7-5 14-5 20 1m20-1c7-5 14-4 20 2m-44 18c10 8 22 9 34 1"/>
+            <path class="hat-brim" fill="#70422d" stroke="#be8051" d="M31 125c26-10 53-13 79-7 28 7 57 5 88 14 15 4 14 15-2 18-42 9-116 9-158-2-20-5-23-17-7-23Z"/>
+          </svg>
+        </div>
+        <div class="decision-heading">
+          <p class="step">04 · DECISÃO REAL</p>
+          <h3 id="decision-title">Consulte o Chapéu</h3>
+          <p>O navegador envia os dois JSONs ao servidor. A chave do OpenRouter nunca sai de lá.</p>
+        </div>
+        <button type="button" class="run-button" id="run-request">
+          <span>Executar com Jev</span><span aria-hidden="true">→</span>
+        </button>
+        <p id="request-status" class="request-status" role="status" aria-live="polite">Pronto para decidir.</p>
+
+        <section id="result" class="result" aria-labelledby="result-title">
+          <div class="result-empty">
+            <span aria-hidden="true">✦</span>
+            <h4 id="result-title">O resultado aparecerá aqui</h4>
+            <p>Troque um detalhe, execute novamente e compare as probabilidades.</p>
+          </div>
+        </section>
+
+        <details class="technical-details">
+          <summary>O que fica fixo nesta experiência?</summary>
+          <dl>
+            <div><dt>Modelo</dt><dd><code>typesafe/jev-1.13</code></dd></div>
+            <div><dt>Saída</dt><dd>Decisões tipadas</dd></div>
+            <div><dt>Geração de texto</dt><dd>Não acontece</dd></div>
+          </dl>
+        </details>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <span>AgentFlix · Aprenda fazendo.</span>
+    <span>Experiência educativa inspirada em um universo de escola de magia. Sem afiliação oficial.</span>
+  </footer>
+  <noscript><p class="noscript">Este laboratório precisa de JavaScript para editar o JSON e consultar o Jev.</p></noscript>
+</body>
+</html>
