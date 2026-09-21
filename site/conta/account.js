@@ -55,8 +55,12 @@ function renderAccesses(grants, products) {
     meta.textContent = accessMeta(grantByProduct.get(product.id) || {});
     const link = document.createElement("a");
     link.className = "access-open";
-    link.href = product.kind === "pass" ? "/" : `/acesso/?produto=${encodeURIComponent(product.id)}`;
-    link.textContent = product.kind === "pass" ? "Ver catálogo" : "Abrir conteúdo";
+    link.href = product.kind === "pass"
+      ? "/"
+      : product.id === "assistir"
+        ? "/assistir/"
+        : `/acesso/?produto=${encodeURIComponent(product.id)}`;
+    link.textContent = product.kind === "pass" ? "Ver catálogo" : product.id === "assistir" ? "Abrir Assistir" : "Abrir conteúdo";
     copy.append(title, meta);
     card.append(copy, link);
     list.append(card);
