@@ -3,18 +3,20 @@
     hermione: {
       personagem: {
         nome: "Hermione Granger",
+        casa_confirmada: "Grifinória",
         caracteristicas: [
-          "busca conhecimento com disciplina e rigor",
-          "resolve problemas por pesquisa e lógica",
-          "é curiosa, criativa e intelectualmente independente",
-          "defende os amigos mesmo quando isso traz risco"
+          "usa conhecimento como ferramenta para proteger outras pessoas",
+          "age mesmo quando está com medo e corre risco pessoal",
+          "questiona regras quando elas impedem fazer o que considera certo",
+          "defende os amigos diante do perigo"
         ],
-        acao_decisiva: "Pesquisou intensamente uma ameaça, encontrou uma solução que os outros não perceberam e a aplicou para proteger seus amigos."
+        acao_decisiva: "Entrou em uma situação perigosa e aplicou o que havia pesquisado para proteger seus amigos, mesmo sabendo que poderia ser ferida."
       }
     },
     harry: {
       personagem: {
         nome: "Harry Potter",
+        casa_confirmada: "Grifinória",
         caracteristicas: [
           "age por instinto quando alguém está em perigo",
           "valoriza lealdade e amizade acima de reconhecimento",
@@ -27,18 +29,20 @@
     ron: {
       personagem: {
         nome: "Ron Weasley",
+        casa_confirmada: "Grifinória",
         caracteristicas: [
-          "é profundamente leal aos amigos e à família",
+          "enfrenta perigos mesmo quando está inseguro ou com medo",
           "age com coragem quando alguém que ama está em perigo",
-          "mantém compromisso com o grupo mesmo em condições difíceis",
-          "prefere cooperação a protagonismo"
+          "aceita se sacrificar para que os amigos possam avançar",
+          "retorna à luta depois de reconhecer os próprios erros"
         ],
-        acao_decisiva: "Voltou para ajudar os amigos em uma missão perigosa e enfrentou um medo pessoal para permanecer ao lado deles."
+        acao_decisiva: "Escolheu ocupar a posição mais perigosa de um confronto para abrir caminho aos amigos, mesmo esperando ser derrubado."
       }
     },
     draco: {
       personagem: {
         nome: "Draco Malfoy",
+        casa_confirmada: "Sonserina",
         caracteristicas: [
           "valoriza status, influência e reconhecimento",
           "pensa estrategicamente antes de agir",
@@ -53,7 +57,7 @@
   const defaultQuestions = {
     casa_hogwarts: {
       type: "choice",
-      instructions: "Qual casa de Hogwarts melhor representa a qualidade predominante do personagem? Considere em conjunto as características e a ação decisiva. Quando houver traços de mais de uma casa, escolha o traço mais distintivo e recorrente.",
+      instructions: "Qual casa de Hogwarts corresponde ao personagem descrito? Use primeiro fatos explícitos do estado, como casa_confirmada. Se esse campo não existir, infira pelas características e pela ação decisiva. Não escolha uma casa apenas por um traço isolado.",
       criteria: {
         "Grifinória": "Coragem, ousadia e disposição para agir diante do perigo.",
         "Lufa-Lufa": "Lealdade, justiça, dedicação e espírito de equipe.",
@@ -65,6 +69,10 @@
 
   const stateEditor = document.querySelector('#state-json');
   const questionsEditor = document.querySelector('#questions-json');
+  const editorHighlights = new Map([
+    [stateEditor, document.querySelector('#state-highlight')],
+    [questionsEditor, document.querySelector('#questions-highlight')]
+  ]);
   const stateValidity = document.querySelector('#state-validity');
   const questionsValidity = document.querySelector('#questions-validity');
   const runButton = document.querySelector('#run-request');
@@ -73,6 +81,41 @@
   let controller = null;
 
   const pretty = value => JSON.stringify(value, null, 2);
+  const escapeHtml = value => value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+
+  const highlightJson = value => {
+    const token = /"(?:\\.|[^"\\])*"(?=\s*:)|"(?:\\.|[^"\\])*"|\b(?:true|false|null)\b|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?|[{}[\],:]/g;
+    let output = '';
+    let cursor = 0;
+    for (const match of value.matchAll(token)) {
+      output += escapeHtml(value.slice(cursor, match.index));
+      const text = match[0];
+      let kind = 'punctuation';
+      if (text.startsWith('"')) kind = /^\s*:/.test(value.slice(match.index + text.length)) ? 'key' : 'string';
+      else if (/^-?\d/.test(text)) kind = 'number';
+      else if (/^(?:true|false|null)$/.test(text)) kind = 'literal';
+      output += `<span class="json-${kind}">${escapeHtml(text)}</span>`;
+      cursor = match.index + text.length;
+    }
+    output += escapeHtml(value.slice(cursor));
+    return output || ' ';
+  };
+
+  const renderHighlight = editor => {
+    const layer = editorHighlights.get(editor);
+    const code = layer.querySelector('code');
+    code.innerHTML = highlightJson(editor.value) + (editor.value.endsWith('\n') ? '\n ' : '');
+    code.style.transform = `translate(${-editor.scrollLeft}px, ${-editor.scrollTop}px)`;
+  };
+
+  const setEditorValue = (editor, value) => {
+    editor.value = pretty(value);
+    renderHighlight(editor);
+  };
+
   const parse = (editor, validity, label) => {
     try {
       const value = JSON.parse(editor.value);
@@ -183,7 +226,7 @@
   document.querySelectorAll('[data-character]').forEach(button => {
     button.addEventListener('click', () => {
       document.querySelectorAll('[data-character]').forEach(candidate => candidate.setAttribute('aria-pressed', String(candidate === button)));
-      stateEditor.value = pretty(characters[button.dataset.character]);
+      setEditorValue(stateEditor, characters[button.dataset.character]);
       validate();
       emptyResult('O estado mudou. Execute novamente para comparar as probabilidades.');
       requestStatus.textContent = 'Estado atualizado. Pronto para decidir.';
@@ -191,7 +234,13 @@
     });
   });
 
-  [stateEditor, questionsEditor].forEach(editor => editor.addEventListener('input', validate));
+  [stateEditor, questionsEditor].forEach(editor => {
+    editor.addEventListener('input', () => {
+      renderHighlight(editor);
+      validate();
+    });
+    editor.addEventListener('scroll', () => renderHighlight(editor));
+  });
 
   runButton.addEventListener('click', async () => {
     const { state, questions } = validate();
@@ -229,7 +278,7 @@
     }
   });
 
-  stateEditor.value = pretty(characters.hermione);
-  questionsEditor.value = pretty(defaultQuestions);
+  setEditorValue(stateEditor, characters.hermione);
+  setEditorValue(questionsEditor, defaultQuestions);
   validate();
 })();

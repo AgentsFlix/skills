@@ -26,12 +26,35 @@ class JevPlaygroundTests(unittest.TestCase):
 
     def test_browser_sends_the_edited_json_to_the_server(self):
         script = (LAB / "app.js").read_text(encoding="utf-8")
-        self.assertIn("stateEditor.value = pretty(characters", script)
-        self.assertIn("questionsEditor.value = pretty(defaultQuestions)", script)
+        self.assertIn("setEditorValue(stateEditor, characters", script)
+        self.assertIn("setEditorValue(questionsEditor, defaultQuestions)", script)
         self.assertIn("body: JSON.stringify({ state, questions })", script)
         self.assertIn("fetch('/api/jev'", script)
         self.assertNotIn("mockResponse", script)
         self.assertNotIn("fakeResponse", script)
+
+    def test_examples_have_the_canonical_houses_and_readable_json(self):
+        page = (LAB / "index.html").read_text(encoding="utf-8")
+        script = (LAB / "app.js").read_text(encoding="utf-8")
+        styles = (LAB / "styles.css").read_text(encoding="utf-8")
+
+        self.assertEqual(script.count('casa_confirmada: "Grifinória"'), 3)
+        self.assertEqual(script.count('casa_confirmada: "Sonserina"'), 1)
+        self.assertEqual(page.count('class="code-highlight" aria-hidden="true"'), 2)
+        self.assertEqual(page.count("Campo variável"), 2)
+        self.assertEqual(page.count("Valor preenchido"), 2)
+        self.assertIn("const highlightJson", script)
+        self.assertIn(".json-key { color: var(--af-link); }", styles)
+        self.assertIn(".json-string { color: var(--af-warning); }", styles)
+
+    def test_character_cards_use_distinct_customized_dicebear_vectors(self):
+        page = (LAB / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(page.count("https://api.dicebear.com/10.x/avataaars/svg?"), 4)
+        for initials in (">HG<", ">HP<", ">RW<", ">DM<"):
+            self.assertNotIn(initials, page)
+        for feature in ("topVariant=bigHair", "accessoriesVariant=round", "hairColor=c93305", "hairColor=e8e1e1"):
+            self.assertIn(feature, page)
+        self.assertIn("DiceBear Avataaars", page)
 
     def test_proxy_uses_the_fixed_jev_decisions_contract_without_exposing_the_key(self):
         program = r"""
