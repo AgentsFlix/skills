@@ -27,7 +27,7 @@
     <section class="intro" aria-labelledby="page-title">
       <p class="eyebrow">Uma decisão, não uma resposta escrita</p>
       <h1 id="page-title">O Chapéu não adivinha.<br>Ele decide dentro das opções.</h1>
-      <p>Escolha um personagem, altere qualquer detalhe dos JSONs e consulte o Jev. O resultado abaixo vem da requisição real — contexto e pergunta diferentes podem produzir outra casa.</p>
+      <p>Escolha um personagem, altere os campos e consulte o Jev. Cada campo mostra seu tipo — o formato que organiza o dado — e toda mudança influencia a requisição real.</p>
       <ol class="explanation" aria-label="Como o Jev funciona neste laboratório">
         <li><span>1</span><strong>Estado</strong><small>O que o modelo sabe</small></li>
         <li><span>2</span><strong>Pergunta tipada</strong><small>Quais respostas são permitidas</small></li>
@@ -42,7 +42,7 @@
         <div class="panel-heading">
           <p class="step">01 · ESTADO INICIAL</p>
           <h3 id="characters-title">Escolha um personagem</h3>
-          <p>O cartão troca o JSON. Depois, você pode editar tudo.</p>
+          <p>O cartão preenche os campos. Depois, você pode editar tudo.</p>
         </div>
         <div class="character-list" role="group" aria-label="Personagens de exemplo">
           <button type="button" class="character-card" data-character="hermione" aria-pressed="true">
@@ -65,32 +65,67 @@
       </aside>
 
       <div class="editor-column">
-        <section class="code-panel" aria-labelledby="state-title">
-          <div class="code-heading">
-            <div><p class="step">02 · O QUE O JEV SABE</p><h3 id="state-title">State</h3></div>
-            <span id="state-validity" class="validity" role="status">JSON válido</span>
+        <section class="form-panel" aria-labelledby="state-title">
+          <div class="form-heading">
+            <div><p class="step">02 · O QUE O JEV SABE</p><h3 id="state-title">Dados do personagem</h3></div>
+            <span id="state-validity" class="validity" role="status">Campos prontos</span>
           </div>
-          <div class="syntax-legend" aria-label="Cores do JSON"><span><i class="legend-key" aria-hidden="true"></i>Campo variável</span><span><i class="legend-value" aria-hidden="true"></i>Valor preenchido</span></div>
-          <label class="sr-only" for="state-json">JSON com o estado do personagem</label>
-          <div class="code-editor-shell">
-            <pre id="state-highlight" class="code-highlight" aria-hidden="true"><code></code></pre>
-            <textarea id="state-json" class="code-editor" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="state-help state-validity"></textarea>
-          </div>
-          <p id="state-help" class="code-help">Mude personalidade, fatos ou a ação decisiva.</p>
+          <p class="type-intro"><strong>Tipagem</strong> é o formato combinado para cada dado. Ela impede que nome, lista e ação se misturem.</p>
+          <form id="state-form" class="field-stack" novalidate>
+            <div class="field-group">
+              <div class="field-heading"><label for="character-name">Nome</label><span class="type-chip">texto</span></div>
+              <input id="character-name" name="character-name" type="text" autocomplete="off" required aria-describedby="name-help">
+              <p id="name-help" class="field-help">Um único valor escrito.</p>
+            </div>
+
+            <fieldset class="field-group">
+              <legend><span>Características</span><span class="type-chip">lista de textos</span></legend>
+              <p class="field-help">Quatro itens separados, todos do mesmo tipo.</p>
+              <div id="characteristics-list" class="repeater-list">
+                <label><span>1</span><input class="characteristic-input" type="text" autocomplete="off" required aria-label="Característica 1"></label>
+                <label><span>2</span><input class="characteristic-input" type="text" autocomplete="off" required aria-label="Característica 2"></label>
+                <label><span>3</span><input class="characteristic-input" type="text" autocomplete="off" required aria-label="Característica 3"></label>
+                <label><span>4</span><input class="characteristic-input" type="text" autocomplete="off" required aria-label="Característica 4"></label>
+              </div>
+            </fieldset>
+
+            <div class="field-group">
+              <div class="field-heading"><label for="decisive-action">Ação decisiva</label><span class="type-chip">texto longo</span></div>
+              <textarea id="decisive-action" name="decisive-action" rows="4" required aria-describedby="action-help"></textarea>
+              <p id="action-help" class="field-help">A escolha concreta feita sob pressão.</p>
+            </div>
+          </form>
         </section>
 
-        <section class="code-panel" aria-labelledby="questions-title">
-          <div class="code-heading">
-            <div><p class="step">03 · O QUE O JEV DECIDE</p><h3 id="questions-title">Questions</h3></div>
-            <span id="questions-validity" class="validity" role="status">JSON válido</span>
+        <section class="form-panel" aria-labelledby="questions-title">
+          <div class="form-heading">
+            <div><p class="step">03 · O QUE O JEV DECIDE</p><h3 id="questions-title">Pergunta tipada</h3></div>
+            <span id="questions-validity" class="validity" role="status">Campos prontos</span>
           </div>
-          <div class="syntax-legend" aria-label="Cores do JSON"><span><i class="legend-key" aria-hidden="true"></i>Campo variável</span><span><i class="legend-value" aria-hidden="true"></i>Valor preenchido</span></div>
-          <label class="sr-only" for="questions-json">JSON com as perguntas tipadas</label>
-          <div class="code-editor-shell questions-shell">
-            <pre id="questions-highlight" class="code-highlight" aria-hidden="true"><code></code></pre>
-            <textarea id="questions-json" class="code-editor questions-editor" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="questions-help questions-validity"></textarea>
-          </div>
-          <p id="questions-help" class="code-help">Experimente mudar as casas, os critérios ou a instrução.</p>
+          <form id="questions-form" class="field-stack" novalidate>
+            <div class="field-group">
+              <div class="field-heading"><span id="response-format-label">Formato da resposta</span><span class="type-chip">choice</span></div>
+              <div class="readonly-field" role="textbox" aria-readonly="true" aria-labelledby="response-format-label">Uma escolha entre opções definidas</div>
+              <p class="field-help">O tipo <code>choice</code> obriga o modelo a decidir dentro da lista.</p>
+            </div>
+
+            <div class="field-group">
+              <div class="field-heading"><label for="question-instructions">Instrução</label><span class="type-chip">texto longo</span></div>
+              <textarea id="question-instructions" name="question-instructions" rows="5" required aria-describedby="instructions-help"></textarea>
+              <p id="instructions-help" class="field-help">Explica como comparar os dados, sem antecipar a resposta.</p>
+            </div>
+
+            <fieldset class="field-group criteria-group">
+              <legend><span>Opções e critérios</span><span class="type-chip">mapa: texto → texto</span></legend>
+              <p class="field-help">Cada nome de opção aponta para a descrição usada na decisão.</p>
+              <div id="criteria-list" class="criteria-list">
+                <div class="criterion-row"><label>Opção 1<input class="criterion-name" type="text" required></label><label>Critério<textarea class="criterion-description" rows="2" required></textarea></label></div>
+                <div class="criterion-row"><label>Opção 2<input class="criterion-name" type="text" required></label><label>Critério<textarea class="criterion-description" rows="2" required></textarea></label></div>
+                <div class="criterion-row"><label>Opção 3<input class="criterion-name" type="text" required></label><label>Critério<textarea class="criterion-description" rows="2" required></textarea></label></div>
+                <div class="criterion-row"><label>Opção 4<input class="criterion-name" type="text" required></label><label>Critério<textarea class="criterion-description" rows="2" required></textarea></label></div>
+              </div>
+            </fieldset>
+          </form>
         </section>
       </div>
 
@@ -106,7 +141,7 @@
         <div class="decision-heading">
           <p class="step">04 · DECISÃO REAL</p>
           <h3 id="decision-title">Consulte o Chapéu</h3>
-          <p>O navegador envia os dois JSONs ao servidor. A chave do OpenRouter nunca sai de lá.</p>
+          <p>O navegador organiza os campos e os envia ao servidor. A chave do OpenRouter nunca sai de lá.</p>
         </div>
         <button type="button" class="run-button" id="run-request">
           <span>Executar com Jev</span><span aria-hidden="true">→</span>
@@ -138,6 +173,6 @@
     <span>AgentFlix · Aprenda fazendo.</span>
     <span>Experiência educativa inspirada em um universo de escola de magia. Sem afiliação oficial.</span>
   </footer>
-  <noscript><p class="noscript">Este laboratório precisa de JavaScript para editar o JSON e consultar o Jev.</p></noscript>
+  <noscript><p class="noscript">Este laboratório precisa de JavaScript para preencher os campos e consultar o Jev.</p></noscript>
 </body>
 </html>

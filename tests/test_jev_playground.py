@@ -10,42 +10,51 @@ LAB = SITE / "laboratorio-jev"
 
 
 class JevPlaygroundTests(unittest.TestCase):
-    def test_public_page_has_real_editable_inputs_and_collection_entry(self):
+    def test_public_page_has_typed_fields_and_collection_entry(self):
         page = (LAB / "index.html").read_text(encoding="utf-8")
         learn = (SITE / "aprender" / "index.html").read_text(encoding="utf-8")
 
-        self.assertIn('id="state-json"', page)
-        self.assertIn('id="questions-json"', page)
+        for field in (
+            'id="character-name"',
+            'id="decisive-action"',
+            'id="question-instructions"',
+            'id="criteria-list"',
+        ):
+            self.assertIn(field, page)
+        for type_label in ("texto", "lista de textos", "texto longo", "choice", "mapa: texto → texto"):
+            self.assertIn(type_label, page)
         self.assertIn('id="run-request"', page)
         self.assertIn('aria-live="polite"', page)
         self.assertIn('typesafe/jev-1.13', page)
+        self.assertNotIn('id="state-json"', page)
+        self.assertNotIn('id="questions-json"', page)
         self.assertNotIn("OPENROUTER_API_KEY", page)
         self.assertNotIn("<iframe", page)
         self.assertIn('href="/laboratorio-jev/"', learn)
-        self.assertIn("JSON editável · Jev real via OpenRouter", learn)
+        self.assertIn("Campos tipados · Jev real via OpenRouter", learn)
 
-    def test_browser_sends_the_edited_json_to_the_server(self):
+    def test_browser_builds_state_and_questions_from_the_edited_fields(self):
         script = (LAB / "app.js").read_text(encoding="utf-8")
-        self.assertIn("setEditorValue(stateEditor, characters", script)
-        self.assertIn("setEditorValue(questionsEditor, defaultQuestions)", script)
+        self.assertIn("fillState(characters[button.dataset.character])", script)
+        self.assertIn("const collectState", script)
+        self.assertIn("const collectQuestions", script)
         self.assertIn("body: JSON.stringify({ state, questions })", script)
         self.assertIn("fetch('/api/jev'", script)
         self.assertNotIn("mockResponse", script)
         self.assertNotIn("fakeResponse", script)
 
-    def test_examples_have_the_canonical_houses_and_readable_json(self):
+    def test_examples_do_not_send_a_canonical_house_and_selection_stays_visible(self):
         page = (LAB / "index.html").read_text(encoding="utf-8")
         script = (LAB / "app.js").read_text(encoding="utf-8")
         styles = (LAB / "styles.css").read_text(encoding="utf-8")
 
-        self.assertEqual(script.count('casa_confirmada: "Grifinória"'), 3)
-        self.assertEqual(script.count('casa_confirmada: "Sonserina"'), 1)
-        self.assertEqual(page.count('class="code-highlight" aria-hidden="true"'), 2)
-        self.assertEqual(page.count("Campo variável"), 2)
-        self.assertEqual(page.count("Valor preenchido"), 2)
-        self.assertIn("const highlightJson", script)
-        self.assertIn(".json-key { color: var(--af-link); }", styles)
-        self.assertIn(".json-string { color: var(--af-warning); }", styles)
+        self.assertNotIn("casa_confirmada", script)
+        self.assertNotIn("resposta_correta", script)
+        self.assertNotIn("expectedHouse", script)
+        self.assertNotIn('class="code-highlight"', page)
+        self.assertNotIn("-webkit-text-fill-color: transparent", styles)
+        self.assertIn("input::selection, textarea::selection", styles)
+        self.assertIn("Dê mais peso às escolhas feitas sob risco, medo ou pressão", script)
 
     def test_character_cards_use_distinct_customized_dicebear_vectors(self):
         page = (LAB / "index.html").read_text(encoding="utf-8")
