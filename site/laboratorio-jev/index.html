@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <script src="app.js" type="module"></script>
 </head>
 <body>
   <a class="skip" href="#playground">Pular para o laboratório</a>
@@ -25,14 +25,16 @@
 
   <main>
     <section class="intro" aria-labelledby="page-title">
-      <p class="eyebrow">Uma decisão, não uma resposta escrita</p>
-      <h1 id="page-title">O Chapéu não adivinha.<br>Ele decide dentro das opções.</h1>
-      <p>Escolha um personagem, altere os campos e consulte o Jev. Cada campo mostra seu tipo — o formato que organiza o dado — e toda mudança influencia a requisição real.</p>
-      <ol class="explanation" aria-label="Como o Jev funciona neste laboratório">
-        <li><span>1</span><strong>Estado</strong><small>O que o modelo sabe</small></li>
-        <li><span>2</span><strong>Pergunta tipada</strong><small>Quais respostas são permitidas</small></li>
-        <li><span>3</span><strong>Decisão</strong><small>Escolha, probabilidades e confiança</small></li>
-      </ol>
+      <p class="eyebrow">01 / UM PROBLEMA CONCRETO</p>
+      <h1 id="page-title">Hermione estuda muito.<br>Isso basta para escolher sua casa?</h1>
+      <p>Ela também enfrenta o perigo para proteger os amigos. O Chapéu precisa comparar evidências — e sua escola precisa decidir o que fazer quando a resposta não é clara.</p>
+      <p class="intro-note">No universo de Harry Potter, Hermione, Harry e Ron são da Grifinória; Draco, da Sonserina. Aqui, não enviamos esse gabarito. Classificamos a descrição que você fornecer, não a casa oficial.</p>
+      <nav class="journey" aria-label="Etapas da experiência">
+        <a href="#playground">Experimente <span aria-hidden="true">↓</span></a>
+        <a href="#responsabilidades">Entenda as três partes</a>
+        <a href="#comparacao">Compare as ferramentas</a>
+        <a href="#youtube">Aplique no YouTube</a>
+      </nav>
     </section>
 
     <section id="playground" class="playground" aria-labelledby="playground-title">
@@ -40,9 +42,9 @@
 
       <aside class="character-panel" aria-labelledby="characters-title">
         <div class="panel-heading">
-          <p class="step">01 · ESTADO INICIAL</p>
+          <p class="step">02 / EXPERIMENTE</p>
           <h3 id="characters-title">Escolha um personagem</h3>
-          <p>O cartão preenche os campos. Depois, você pode editar tudo.</p>
+          <p>Escolha uma ficha. Mude uma coisa por vez e execute novamente.</p>
         </div>
         <div class="character-list" role="group" aria-label="Personagens de exemplo">
           <button type="button" class="character-card" data-character="hermione" aria-pressed="true">
@@ -67,63 +69,69 @@
       <div class="editor-column">
         <section class="form-panel" aria-labelledby="state-title">
           <div class="form-heading">
-            <div><p class="step">02 · O QUE O JEV SABE</p><h3 id="state-title">Dados do personagem</h3></div>
+            <div><p class="step">A · SEU CÓDIGO FORNECE</p><h3 id="state-title">O estado</h3></div>
             <span id="state-validity" class="validity" role="status">Campos prontos</span>
           </div>
-          <p class="type-intro"><strong>Tipagem</strong> é o formato combinado para cada dado. Ela impede que nome, lista e ação se misturem.</p>
+          <p class="type-intro"><strong>Estado (state)</strong> é a informação desta rodada. Tipagem é o formato combinado: um texto, uma lista ou um número.</p>
           <form id="state-form" class="field-stack" novalidate>
             <div class="field-group">
               <div class="field-heading"><label for="character-name">Nome</label><span class="type-chip">texto</span></div>
-              <input id="character-name" name="character-name" type="text" autocomplete="off" required aria-describedby="name-help">
+              <input id="character-name" name="character-name" type="text" maxlength="120" autocomplete="off" required aria-describedby="name-help">
               <p id="name-help" class="field-help">Um único valor escrito.</p>
             </div>
 
             <fieldset class="field-group">
               <legend><span>Características</span><span class="type-chip">lista de textos</span></legend>
-              <p class="field-help">Quatro itens separados, todos do mesmo tipo.</p>
+              <p class="field-help">Cada item é um texto. Edite os comportamentos, não uma resposta desejada.</p>
               <div id="characteristics-list" class="repeater-list">
-                <label><span>1</span><input class="characteristic-input" type="text" autocomplete="off" required aria-label="Característica 1"></label>
-                <label><span>2</span><input class="characteristic-input" type="text" autocomplete="off" required aria-label="Característica 2"></label>
-                <label><span>3</span><input class="characteristic-input" type="text" autocomplete="off" required aria-label="Característica 3"></label>
-                <label><span>4</span><input class="characteristic-input" type="text" autocomplete="off" required aria-label="Característica 4"></label>
+                <label><span>1</span><textarea class="characteristic-input" rows="2" required aria-label="Característica 1"></textarea></label>
+                <label><span>2</span><textarea class="characteristic-input" rows="2" required aria-label="Característica 2"></textarea></label>
+                <label><span>3</span><textarea class="characteristic-input" rows="2" required aria-label="Característica 3"></textarea></label>
+                <label><span>4</span><textarea class="characteristic-input" rows="2" required aria-label="Característica 4"></textarea></label>
               </div>
             </fieldset>
 
             <div class="field-group">
               <div class="field-heading"><label for="decisive-action">Ação decisiva</label><span class="type-chip">texto longo</span></div>
-              <textarea id="decisive-action" name="decisive-action" rows="4" required aria-describedby="action-help"></textarea>
+              <textarea id="decisive-action" name="decisive-action" rows="4" maxlength="1200" required aria-describedby="action-help"></textarea>
               <p id="action-help" class="field-help">A escolha concreta feita sob pressão.</p>
             </div>
           </form>
+          <div class="experiment-actions">
+            <button type="button" id="experiment-intellect" class="secondary-button">Testar: só estudo, sem risco</button>
+            <button type="button" id="experiment-ambiguous" class="secondary-button">Testar: pistas divididas</button>
+            <button type="button" id="reset-state" class="text-button">Restaurar ficha</button>
+            <p class="field-help">Os testes trocam os dados; pistas divididas também anonimiza o nome. Execute, depois mova os limiares. Nenhuma resposta é pré-definida.</p>
+          </div>
         </section>
 
         <section class="form-panel" aria-labelledby="questions-title">
           <div class="form-heading">
-            <div><p class="step">03 · O QUE O JEV DECIDE</p><h3 id="questions-title">Pergunta tipada</h3></div>
+            <div><p class="step">B · SEU CÓDIGO DEFINE</p><h3 id="questions-title">A pergunta</h3></div>
             <span id="questions-validity" class="validity" role="status">Campos prontos</span>
           </div>
           <form id="questions-form" class="field-stack" novalidate>
             <div class="field-group">
-              <div class="field-heading"><span id="response-format-label">Formato da resposta</span><span class="type-chip">choice</span></div>
-              <div class="readonly-field" role="textbox" aria-readonly="true" aria-labelledby="response-format-label">Uma escolha entre opções definidas</div>
-              <p class="field-help">O tipo <code>choice</code> obriga o modelo a decidir dentro da lista.</p>
+              <div class="field-heading"><label for="question-type">O que você quer saber?</label><span class="type-chip">tipo de saída</span></div>
+              <select id="question-type" aria-describedby="type-help">
+                <option value="choice">Escolher uma casa · choice</option>
+                <option value="noul">Há coragem? · noul</option>
+                <option value="score">Quanto risco assumiu? · score</option>
+              </select>
+              <p id="type-help" class="field-help"></p>
             </div>
 
             <div class="field-group">
               <div class="field-heading"><label for="question-instructions">Instrução</label><span class="type-chip">texto longo</span></div>
-              <textarea id="question-instructions" name="question-instructions" rows="5" required aria-describedby="instructions-help"></textarea>
+              <textarea id="question-instructions" name="question-instructions" rows="5" maxlength="2000" required aria-describedby="instructions-help"></textarea>
               <p id="instructions-help" class="field-help">Explica como comparar os dados, sem antecipar a resposta.</p>
             </div>
 
             <fieldset class="field-group criteria-group">
-              <legend><span>Opções e critérios</span><span class="type-chip">mapa: texto → texto</span></legend>
-              <p class="field-help">Cada nome de opção aponta para a descrição usada na decisão.</p>
-              <div id="criteria-list" class="criteria-list">
-                <div class="criterion-row"><label>Opção 1<input class="criterion-name" type="text" required></label><label>Critério<textarea class="criterion-description" rows="2" required></textarea></label></div>
-                <div class="criterion-row"><label>Opção 2<input class="criterion-name" type="text" required></label><label>Critério<textarea class="criterion-description" rows="2" required></textarea></label></div>
-                <div class="criterion-row"><label>Opção 3<input class="criterion-name" type="text" required></label><label>Critério<textarea class="criterion-description" rows="2" required></textarea></label></div>
-                <div class="criterion-row"><label>Opção 4<input class="criterion-name" type="text" required></label><label>Critério<textarea class="criterion-description" rows="2" required></textarea></label></div>
-              </div>
+              <legend><span>Opções e critérios</span><span id="criteria-type" class="type-chip">mapa: texto → texto</span></legend>
+              <p id="criteria-help" class="field-help"></p>
+              <div id="criteria-list" class="criteria-list"></div>
+              <button type="button" id="add-criterion" class="text-button">+ Adicionar opção</button>
             </fieldset>
           </form>
         </section>
@@ -139,16 +147,16 @@
           </svg>
         </div>
         <div class="decision-heading">
-          <p class="step">04 · DECISÃO REAL</p>
+          <p class="step">C · O JEV DISTRIBUI</p>
           <h3 id="decision-title">Consulte o Chapéu</h3>
-          <p>O navegador organiza os campos e os envia ao servidor. A chave do OpenRouter nunca sai de lá.</p>
+          <p>Uma consulta real, via OpenRouter. Sem respostas simuladas.</p>
         </div>
         <button type="button" class="run-button" id="run-request">
           <span>Executar com Jev</span><span aria-hidden="true">→</span>
         </button>
         <p id="request-status" class="request-status" role="status" aria-live="polite">Pronto para decidir.</p>
 
-        <section id="result" class="result" aria-labelledby="result-title">
+        <section id="result" class="result" aria-label="Resultado do JEV">
           <div class="result-empty">
             <span aria-hidden="true">✦</span>
             <h4 id="result-title">O resultado aparecerá aqui</h4>
@@ -156,17 +164,91 @@
           </div>
         </section>
 
+        <section class="policy" aria-labelledby="policy-title">
+          <p class="step">D · SEU PRODUTO AGE</p>
+          <h3 id="policy-title">Qual sinal é suficiente?</h3>
+          <p class="field-help">Limiares didáticos, não calibrados. A comparação usa valores completos, antes do arredondamento visual. Mover não faz outra chamada ao JEV.</p>
+          <label for="review-threshold">Pedir revisão a partir de <output id="review-value" for="review-threshold">40%</output></label>
+          <input id="review-threshold" type="range" min="0" max="99" value="40" step="1">
+          <label for="accept-threshold">Aceitar a partir de <output id="accept-value" for="accept-threshold">80%</output></label>
+          <input id="accept-threshold" type="range" min="1" max="100" value="80" step="1">
+          <p id="policy-ranges" class="field-help"></p>
+          <div id="policy-result" class="policy-result" role="status" aria-live="polite">Execute para aplicar a política.</div>
+          <p class="field-help">Aceitar = usar a classificação. Revisar = conferir com uma pessoa. Escalar = buscar mais contexto ou outra análise. Nada é executado fora deste laboratório.</p>
+        </section>
+        <details class="technical-details">
+          <summary>Comparar as duas últimas execuções</summary>
+          <div id="run-history"><p>Nenhuma execução concluída.</p></div>
+        </details>
+
         <details class="technical-details">
           <summary>O que fica fixo nesta experiência?</summary>
           <dl>
             <div><dt>Modelo</dt><dd><code>typesafe/jev-1.13</code></dd></div>
             <div><dt>Saída</dt><dd>Decisões tipadas</dd></div>
-            <div><dt>Geração de texto</dt><dd>Não acontece</dd></div>
+            <div><dt>Geração de texto</dt><dd>Não acontece no JEV</dd></div>
+            <div><dt>Credencial</dt><dd>Somente no servidor</dd></div>
             <div><dt>Avatares</dt><dd><a href="https://www.dicebear.com/styles/avataaars/" rel="noreferrer">DiceBear Avataaars</a></dd></div>
           </dl>
         </details>
       </aside>
     </section>
+
+    <section id="responsabilidades" class="lesson-section" aria-labelledby="responsibilities-title">
+      <p class="eyebrow">03 / SEPARE AS RESPONSABILIDADES</p>
+      <h2 id="responsibilities-title">O modelo decide. A política é sua.</h2>
+      <div class="responsibility-flow">
+        <article><span class="flow-number">1</span><h3>Seu código oferece</h3><p>Estado, pergunta tipada e critérios. Ele delimita o que pode ser respondido.</p><p id="flow-input" class="live-fact"></p></article>
+        <article><span class="flow-number">2</span><h3>O JEV distribui</h3><p>Probabilidades entre as respostas permitidas. Choice e score também retornam confidence.</p><p id="flow-model" class="live-fact">Aguardando uma consulta real.</p></article>
+        <article><span class="flow-number">3</span><h3>Seu produto escolhe</h3><p>Compara o sinal aos limiares e encaminha: aceitar, revisar ou escalar.</p><p id="flow-policy" class="live-fact">A ação não vem pronta do modelo.</p></article>
+      </div>
+      <aside class="confidence-note"><h3>90% de confidence não significa 90% de acerto.</h3><p>Confidence resume a distribuição do modelo. Não é o mesmo que a probabilidade da opção vencedora e não prova que a resposta está certa. Antes de automatizar algo real, teste a política com exemplos revisados por pessoas, incluindo erros e casos ambíguos.</p><p>Em <code>noul</code>, o retorno é a probabilidade de “sim”, sem um campo confidence. Neste laboratório, usamos separadamente a probabilidade da resposta mais provável como sinal de política. Ela não é uma confidence inventada.</p></aside>
+      <details class="technical-details payload-details"><summary>Ver os dados que os campos enviam</summary><p>Somente estado e perguntas. O limiar fica no produto. As cores distinguem nomes dos campos e valores preenchidos.</p><pre id="payload-preview" aria-label="Prévia somente leitura da requisição"></pre></details>
+    </section>
+
+    <section id="comparacao" class="lesson-section" aria-labelledby="comparison-title">
+      <p class="eyebrow">04 / ESCOLHA A FERRAMENTA</p>
+      <h2 id="comparison-title">Às vezes, o melhor JEV é nenhum.</h2>
+      <p class="section-lead">Structured Output é uma forma de restringir a saída de um LLM, não um modelo separado. E uma regra exata não precisa de inteligência artificial.</p>
+      <label class="comparison-label" for="comparison-scenario">Qual problema você precisa resolver?</label>
+      <select id="comparison-scenario">
+        <option value="triage">Encaminhar comentários com linguagem variada</option>
+        <option value="write">Escrever uma resposta acolhedora</option>
+        <option value="extract">Extrair assunto e resumo num formato fixo</option>
+        <option value="exact">Verificar se o texto ultrapassa 500 caracteres</option>
+      </select>
+      <div id="comparison-cards" class="comparison-grid"></div>
+      <p class="field-help">Comparação de capacidades, não um teste de velocidade, custo ou acurácia. Nenhuma chamada a um LLM é feita nesta seção. Um classificador treinado simples é outra opção quando há exemplos rotulados e desempenho validado para um problema estável.</p>
+    </section>
+
+    <section id="youtube" class="lesson-section" aria-labelledby="youtube-title">
+      <p class="eyebrow">05 / DO CHAPÉU À VIDA REAL</p>
+      <h2 id="youtube-title">De qual ajuda este comentário precisa?</h2>
+      <p class="section-lead">“É só um prompt?”, “Preciso programar?”, “Posso confiar?” A triagem ajuda a organizar a próxima explicação. Ela não lê a mente de ninguém.</p>
+      <div class="youtube-layout">
+        <div class="youtube-input">
+          <p class="field-help">Exemplos fictícios, inspirados nas dúvidas da pesquisa. Não são citações nem dados de frequência.</p>
+          <div id="comment-presets" class="preset-row" role="group" aria-label="Comentários de exemplo">
+            <button type="button" class="secondary-button" data-comment="practical">Quero usar</button>
+            <button type="button" class="secondary-button" data-comment="skeptical">É só um prompt?</button>
+            <button type="button" class="secondary-button" data-comment="mixed">Dúvida + receio</button>
+          </div>
+          <label for="youtube-comment" class="field-heading">Comentário <span class="type-chip">texto</span></label>
+          <textarea id="youtube-comment" rows="5" maxlength="1600" required aria-describedby="comment-privacy"></textarea>
+          <p id="comment-privacy" class="field-help">Não cole nomes, contatos ou dados sensíveis. Só ao executar, o texto é enviado ao JEV via OpenRouter. Este laboratório não salva um histórico persistente.</p>
+          <p class="field-help"><strong>Três perguntas independentes:</strong> assunto predominante (choice), pedido de explicação (noul) e receio expresso (noul). Dúvida e receio podem coexistir.</p>
+          <details class="technical-details"><summary>Ver e editar perguntas e critérios da triagem</summary><div id="youtube-questions"></div></details>
+          <button type="button" id="run-youtube" class="run-button"><span>Triar com JEV</span><span aria-hidden="true">→</span></button>
+          <p id="youtube-status" class="request-status" role="status" aria-live="polite">Escolha um exemplo para começar.</p>
+        </div>
+        <div>
+          <div id="youtube-result" class="result" aria-label="Resultado da triagem"><div class="result-empty"><h3>Uma fila, não uma resposta automática.</h3><p>A classificação e os sinais aparecerão aqui. Nenhum comentário será publicado ou removido.</p></div></div>
+          <div id="youtube-policy" class="policy-result" role="status" aria-live="polite">A triagem usa os dois limiares do laboratório acima.</div>
+          <div class="rule-example"><h3>Uma regra simples, rodando aqui</h3><code>Contém “?” → marcar como pergunta</code><p id="rule-result"></p><p class="field-help">“Explique como instalar” pede ajuda sem “?”. “Mais uma revolução?” pode ser retórica. A regra segue o caractere; interpretar a intenção exige outra abordagem.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="sources" aria-label="Documentação e limites"><h2>Para conferir por dentro</h2><p><a href="https://docs.typesafe.ai/primitives">Tipos do JEV</a> · <a href="https://docs.typesafe.ai/confidence">Confidence</a> · <a href="https://docs.typesafe.ai/model-jaggedness/jev-1.13">Limitações do JEV 1.13</a> · <a href="https://openrouter.ai/docs/guides/features/structured-outputs">Structured Outputs no OpenRouter</a></p><p>O cenário mágico é uma analogia. Um bom teste também precisa de dados reais, erros conhecidos e revisão humana.</p></section>
   </main>
 
   <footer>
