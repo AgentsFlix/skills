@@ -8,7 +8,10 @@ let products = [];
 let entitlements = [];
 let users = [];
 
-const productKindLabel = (kind) => ({ pass: "Passe", content: "Acervo" }[kind] || "Skill");
+function productKindLabel(product) {
+  if (product.product_id.startsWith("assistir:")) return "Série";
+  return ({ pass: "Passe", content: "Acervo" }[product.kind] || "Skill");
+}
 
 function show(name) {
   states.forEach((state) => { byId(`${state}-state`).hidden = state !== name; });
@@ -143,7 +146,7 @@ function renderProducts() {
     const detail = document.createElement("p");
     detail.textContent = active.length
       ? active.map((item) => `${sourceLabel(item.source)} · ${formatDate(item.expires_at)}`).join(" | ")
-      : `${productKindLabel(product.kind)} · sem acesso direto ativo`;
+      : `${productKindLabel(product)} · sem acesso direto ativo`;
     const badge = document.createElement("span");
     badge.className = "access-badge";
     badge.dataset.active = String(active.length > 0);
