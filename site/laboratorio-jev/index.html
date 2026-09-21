@@ -46,19 +46,19 @@
         </div>
         <div class="character-list" role="group" aria-label="Personagens de exemplo">
           <button type="button" class="character-card" data-character="hermione" aria-pressed="true">
-            <span class="portrait portrait-hermione" aria-hidden="true">HG</span>
+            <img class="portrait" src="https://api.dicebear.com/10.x/avataaars/svg?seed=HermioneGranger&amp;topVariant=bigHair&amp;hairColor=724133&amp;facialHairProbability=0&amp;accessoriesProbability=0&amp;clothesVariant=blazerAndSweater&amp;clothesColor=ae0001&amp;backgroundColor=202020" width="52" height="52" alt="" aria-hidden="true">
             <span><strong>Hermione Granger</strong><small>Conhecimento, método e coragem</small></span>
           </button>
           <button type="button" class="character-card" data-character="harry" aria-pressed="false">
-            <span class="portrait portrait-harry" aria-hidden="true">HP</span>
+            <img class="portrait" src="https://api.dicebear.com/10.x/avataaars/svg?seed=HarryPotter&amp;topVariant=shortWaved&amp;hairColor=2c1b18&amp;facialHairProbability=0&amp;accessoriesProbability=100&amp;accessoriesVariant=round&amp;clothesVariant=blazerAndSweater&amp;clothesColor=ae0001&amp;backgroundColor=202020" width="52" height="52" alt="" aria-hidden="true">
             <span><strong>Harry Potter</strong><small>Instinto, lealdade e ação</small></span>
           </button>
           <button type="button" class="character-card" data-character="ron" aria-pressed="false">
-            <span class="portrait portrait-ron" aria-hidden="true">RW</span>
+            <img class="portrait" src="https://api.dicebear.com/10.x/avataaars/svg?seed=RonWeasley&amp;topVariant=shortFlat&amp;hairColor=c93305&amp;facialHairProbability=0&amp;accessoriesProbability=0&amp;clothesVariant=collarAndSweater&amp;clothesColor=ae0001&amp;backgroundColor=202020" width="52" height="52" alt="" aria-hidden="true" loading="lazy">
             <span><strong>Ron Weasley</strong><small>Companheirismo e bravura</small></span>
           </button>
           <button type="button" class="character-card" data-character="draco" aria-pressed="false">
-            <span class="portrait portrait-draco" aria-hidden="true">DM</span>
+            <img class="portrait" src="https://api.dicebear.com/10.x/avataaars/svg?seed=DracoMalfoy&amp;topVariant=theCaesarAndSidePart&amp;hairColor=e8e1e1&amp;facialHairProbability=0&amp;accessoriesProbability=0&amp;clothesVariant=blazerAndSweater&amp;clothesColor=1a472a&amp;backgroundColor=202020" width="52" height="52" alt="" aria-hidden="true" loading="lazy">
             <span><strong>Draco Malfoy</strong><small>Ambição, influência e estratégia</small></span>
           </button>
         </div>
@@ -70,8 +70,12 @@
             <div><p class="step">02 · O QUE O JEV SABE</p><h3 id="state-title">State</h3></div>
             <span id="state-validity" class="validity" role="status">JSON válido</span>
           </div>
+          <div class="syntax-legend" aria-label="Cores do JSON"><span><i class="legend-key" aria-hidden="true"></i>Campo variável</span><span><i class="legend-value" aria-hidden="true"></i>Valor preenchido</span></div>
           <label class="sr-only" for="state-json">JSON com o estado do personagem</label>
-          <textarea id="state-json" class="code-editor" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="state-help state-validity"></textarea>
+          <div class="code-editor-shell">
+            <pre id="state-highlight" class="code-highlight" aria-hidden="true"><code></code></pre>
+            <textarea id="state-json" class="code-editor" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="state-help state-validity"></textarea>
+          </div>
           <p id="state-help" class="code-help">Mude personalidade, fatos ou a ação decisiva.</p>
         </section>
 
@@ -80,8 +84,12 @@
             <div><p class="step">03 · O QUE O JEV DECIDE</p><h3 id="questions-title">Questions</h3></div>
             <span id="questions-validity" class="validity" role="status">JSON válido</span>
           </div>
+          <div class="syntax-legend" aria-label="Cores do JSON"><span><i class="legend-key" aria-hidden="true"></i>Campo variável</span><span><i class="legend-value" aria-hidden="true"></i>Valor preenchido</span></div>
           <label class="sr-only" for="questions-json">JSON com as perguntas tipadas</label>
-          <textarea id="questions-json" class="code-editor questions-editor" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="questions-help questions-validity"></textarea>
+          <div class="code-editor-shell questions-shell">
+            <pre id="questions-highlight" class="code-highlight" aria-hidden="true"><code></code></pre>
+            <textarea id="questions-json" class="code-editor questions-editor" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="questions-help questions-validity"></textarea>
+          </div>
           <p id="questions-help" class="code-help">Experimente mudar as casas, os critérios ou a instrução.</p>
         </section>
       </div>
@@ -119,6 +127,7 @@
             <div><dt>Modelo</dt><dd><code>typesafe/jev-1.13</code></dd></div>
             <div><dt>Saída</dt><dd>Decisões tipadas</dd></div>
             <div><dt>Geração de texto</dt><dd>Não acontece</dd></div>
+            <div><dt>Avatares</dt><dd><a href="https://www.dicebear.com/styles/avataaars/" rel="noreferrer">DiceBear Avataaars</a></dd></div>
           </dl>
         </details>
       </aside>
