@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">O Chapéu Decide</title>
+  <desc id="desc">Um chapéu mágico diante de dois painéis de código, representando uma decisão feita a partir de estado e perguntas tipadas.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#242021"/><stop offset="1" stop-color="#111"/></linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f3ead4"/><stop offset="1" stop-color="#cfc2a8"/></linearGradient>
+    <linearGradient id="hat" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a06943"/><stop offset="1" stop-color="#4b291e"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="24" stdDeviation="25" flood-opacity=".48"/></filter>
+  </defs>
+  <rect width="1024" height="1024" rx="72" fill="url(#bg)"/>
+  <circle cx="512" cy="390" r="330" fill="#6c3545" opacity=".16"/>
+  <g fill="#d7b45e" opacity=".8"><circle cx="150" cy="176" r="7"/><circle cx="835" cy="176" r="5"/><circle cx="878" cy="384" r="8"/><circle cx="204" cy="448" r="5"/><path d="m764 265 8 18 19 8-19 8-8 19-8-19-19-8 19-8 8-18Z"/></g>
+  <g filter="url(#shadow)">
+    <g transform="translate(74 468) rotate(-4 225 185)">
+      <rect width="450" height="370" rx="28" fill="url(#paper)"/>
+      <rect x="38" y="38" width="124" height="18" rx="9" fill="#8a7355" opacity=".55"/>
+      <g fill="#624d39" opacity=".68"><rect x="38" y="92" width="334" height="13" rx="6"/><rect x="66" y="126" width="300" height="13" rx="6"/><rect x="66" y="160" width="245" height="13" rx="6"/><rect x="66" y="194" width="318" height="13" rx="6"/><rect x="38" y="245" width="280" height="13" rx="6"/><rect x="66" y="279" width="324" height="13" rx="6"/></g>
+      <g fill="#6c3545" font-family="monospace" font-size="24" font-weight="700"><text x="38" y="112">{</text><text x="38" y="214">}</text></g>
+    </g>
+    <g transform="translate(510 480) rotate(4 220 180)">
+      <rect width="440" height="360" rx="28" fill="#171717" stroke="#d7b45e" stroke-opacity=".32" stroke-width="3"/>
+      <g fill="#d7b45e" opacity=".7"><rect x="40" y="46" width="142" height="14" rx="7"/><rect x="40" y="93" width="302" height="12" rx="6"/><rect x="68" y="127" width="262" height="12" rx="6"/><rect x="68" y="161" width="300" height="12" rx="6"/></g>
+      <g transform="translate(40 218)"><rect width="360" height="62" rx="16" fill="#262626"/><circle cx="32" cy="31" r="10" fill="#d7b45e"/><rect x="58" y="22" width="190" height="18" rx="9" fill="#eee5d0" opacity=".84"/><text x="316" y="39" fill="#d7b45e" font-family="monospace" font-size="24" text-anchor="middle">84%</text></g>
+    </g>
+    <g transform="translate(326 155)">
+      <path d="M157 359c20-55 29-124 55-193 10-23 33-39 49-10 23 46 42 62 78 93 25 21 35 66 14 110H157Z" fill="url(#hat)" stroke="#bd8052" stroke-width="8" stroke-linejoin="round"/>
+      <path d="M216 182c35 52 78 70 109 87-38 2-66 15-91 42 9-44 4-85-18-129Z" fill="#3d2119" opacity=".85"/>
+      <path d="M207 311c14-11 29-11 42 2m41-1c15-10 31-8 42 3m-92 38c21 17 47 19 72 2" fill="none" stroke="#28130e" stroke-width="12" stroke-linecap="round"/>
+      <path d="M66 365c55-22 112-27 166-14 60 15 121 11 187 29 33 9 30 32-4 39-89 19-244 20-333-3-42-11-49-37-16-51Z" fill="url(#hat)" stroke="#bd8052" stroke-width="8" stroke-linejoin="round"/>
+    </g>
+  </g>
+  <text x="512" y="916" fill="#f3ead4" font-family="Arial,sans-serif" font-size="52" font-weight="700" text-anchor="middle">O CHAPÉU DECIDE</text>
+  <text x="512" y="960" fill="#b9aa90" font-family="Arial,sans-serif" font-size="25" text-anchor="middle">STATE + QUESTIONS → DECISÃO TIPADA</text>
+</svg>
