@@ -33,9 +33,10 @@ O preset de pistas divididas permite comparar a probabilidade vencedora com conf
 os limiares sobre a mesma resposta. [Exemplo real](../design-review/jev-jornada-pratica/live-ambiguous.png).
 
 Os 16 testes de contrato/política/proxy da origem passaram, assim como os checks de Web e design.
-Baseline da distribuição: 147 testes (1 ignorado), site sem erros de compilação, 52 skills validadas,
-scanner sem bloqueios, build sem drift em docs/catalog. Repetição após exportação e publicação
-serão confirmadas no PR após execução.
+Distribuição após exportação: 149 testes (1 ignorado), site sem erros de compilação, 52 skills
+validadas, scanner sem bloqueios e build sem drift em docs/catalog. O teste do proxy foi atualizado
+para incluir o tipo explícito do contrato real, e dois testes comportamentais de política e resposta
+inválida foram adicionados. Publicação será confirmada separadamente no PR.
 
 ## Limites
 

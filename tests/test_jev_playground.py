@@ -74,7 +74,7 @@ class JevPlaygroundTests(unittest.TestCase):
             captured = {url, authorization: options.headers.authorization, body: options.body};
             return new Response(JSON.stringify({
               model: 'typesafe/jev-1.13',
-              answers: {casa_hogwarts: {choice: 'Corvinal', confidence: .91, probabilities: {Corvinal: .91, Grifinoria: .09}}},
+              answers: {casa_hogwarts: {type: 'choice', choice: 'Corvinal', confidence: .91, probabilities: {Corvinal: .91, Grifinoria: .09}}},
               usage: {input_tokens: 42},
               internal: 'nao deve sair'
             }), {status: 200, headers: {'content-type': 'application/json'}});
@@ -118,6 +118,51 @@ class JevPlaygroundTests(unittest.TestCase):
                 text=True,
             )
             self.assertEqual(completed.returncode, 0, completed.stderr)
+
+    def test_typed_fields_and_policy_boundaries_are_executable(self):
+        program = r"""
+          import assert from 'node:assert/strict';
+          import {buildQuestion,applyPolicy,policySignal,ambiguousState,youtubeDefaults,simpleRule} from './site/laboratorio-jev/app.js';
+          const rows=[{name:'A',description:'Uma'},{name:'B',description:'Outra'}];
+          assert.deepEqual(buildQuestion('score','Quanto?',rows).criteria,['Uma','Outra']);
+          assert.deepEqual(buildQuestion('noul','Existe?',rows).criteria,{true:'Uma',false:'Outra'});
+          assert.throws(()=>buildQuestion('choice','Escolha',[rows[0],rows[0]]));
+          assert.throws(()=>buildQuestion('score','Quanto?',Array(11).fill(rows[0])));
+          for(const [confidence,action] of [[.39999,'Escalar'],[.4,'Pedir revisão'],[.79999,'Pedir revisão'],[.8,'Aceitar']]) {
+            assert.equal(applyPolicy({type:'choice',confidence},.4,.8).action,action);
+          }
+          assert.equal(applyPolicy(null,.4,.8).action,'Aguardar');
+          assert.equal(applyPolicy({type:'choice',confidence:'0.9'},.4,.8).action,'Aguardar');
+          assert.equal(policySignal({type:'noul',noul:.1}).value,.9);
+          assert.match(policySignal({type:'noul',noul:.1}).label,/não é confidence/);
+          assert.equal(applyPolicy({type:'score',score:3,confidence:.2},.4,.8).action,'Escalar');
+          assert.deepEqual(Object.keys(ambiguousState.personagem).sort(),['acao_decisiva','caracteristicas','nome']);
+          assert.equal(youtubeDefaults.pede_explicacao.type,'noul');
+          assert.equal(youtubeDefaults.expressa_receio.type,'noul');
+          assert.equal(simpleRule('Explique como instalar'),false);
+        """
+        completed = subprocess.run(["node", "--input-type=module", "--eval", program], cwd=ROOT, capture_output=True, text=True)
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+
+    def test_upstream_must_match_question_types_options_and_ranges(self):
+        program = r"""
+          import assert from 'node:assert/strict';
+          import {validateDecisions,POST} from './site/api/jev.js';
+          const questions={q:{type:'choice',instructions:'Escolha',criteria:{A:'Uma',B:'Outra'}}};
+          const answer={type:'choice',choice:'A',probabilities:{A:.6,B:.4},confidence:.4};
+          assert.ok(validateDecisions({q:answer},questions).value);
+          assert.ok(validateDecisions({},questions).error);
+          assert.ok(validateDecisions({q:{...answer,type:'noul'}},questions).error);
+          assert.ok(validateDecisions({q:{...answer,confidence:null}},questions).error);
+          assert.ok(validateDecisions({q:{...answer,probabilities:{A:2,B:-1}}},questions).error);
+          assert.ok(validateDecisions({q:{...answer,choice:'C'}},questions).error);
+          process.env.OPENROUTER_API_KEY='x'.repeat(32);
+          globalThis.fetch=async()=>new Response(JSON.stringify({answers:{q:{...answer,type:'score'}}}));
+          const response=await POST(new Request('https://example.com/api/jev',{method:'POST',body:JSON.stringify({state:{},questions})}));
+          assert.equal(response.status,502);
+        """
+        completed = subprocess.run(["node", "--input-type=module", "--eval", program], cwd=ROOT, capture_output=True, text=True)
+        self.assertEqual(completed.returncode, 0, completed.stderr)
 
 
 if __name__ == "__main__":
