@@ -2,8 +2,10 @@
 (() => {
   "use strict";
 
-  const PRODUCT_ID = "assistir";
+  const CATALOG_PRODUCT_ID = "assistir";
+  const SERIES_PRODUCT_PREFIX = `${CATALOG_PRODUCT_ID}:`;
   const tokenCache = new Map();
+  const accessScope = { catalog: false, series: new Set() };
   let client = null;
   let session = null;
 
@@ -42,6 +44,36 @@
   function nextPath() {
     const path = `${location.pathname}${location.search}${location.hash}`;
     return path.startsWith("/") ? path : "/assistir/";
+  }
+
+  function requestedSeriesSlug() {
+    const url = new URL(location.href);
+    const fromQuery = url.pathname.replace(/\/$/, "") === "/assistir" ? url.searchParams.get("s") : null;
+    const fromPath = /^\/(?:assistir|aulas)\/([a-z0-9]+(?:-[a-z0-9]+)*)\//.exec(url.pathname)?.[1];
+    const slug = fromQuery || fromPath;
+    return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug || "") ? slug : null;
+  }
+
+  function allowsSeries(slug) {
+    return accessScope.catalog || accessScope.series.has(slug);
+  }
+
+  async function resolveAccessScope() {
+    const { data: catalogAllowed, error: catalogError } = await client.rpc("has_access", {
+      p_product_id: CATALOG_PRODUCT_ID,
+    });
+    if (catalogError) throw catalogError;
+    accessScope.catalog = catalogAllowed === true;
+    if (accessScope.catalog) return true;
+
+    const { data: rights, error: rightsError } = await client.rpc("my_access");
+    if (rightsError) throw rightsError;
+    for (const right of rights || []) {
+      if (typeof right?.product_id === "string" && right.product_id.startsWith(SERIES_PRODUCT_PREFIX)) {
+        accessScope.series.add(right.product_id.slice(SERIES_PRODUCT_PREFIX.length));
+      }
+    }
+    return accessScope.series.size > 0;
   }
 
   function hideWatchSurface() {
@@ -84,13 +116,19 @@
         );
         return false;
       }
-      const { data: allowed, error } = await client.rpc("has_access", { p_product_id: PRODUCT_ID });
-      if (error) throw error;
-      if (allowed !== true) {
+      if (!(await resolveAccessScope())) {
         showState(
           "Seu acesso ainda não está liberado",
           "Se você já é aluno, entre com o mesmo e-mail usado na compra. Para ajuda, fale com o suporte.",
           '<a class="watch-button secondary" href="/conta/">Ir para minha conta</a>',
+        );
+        return false;
+      }
+      if (!allowsSeries(requestedSeriesSlug()) && requestedSeriesSlug()) {
+        showState(
+          "Esta série ainda não está liberada",
+          "Seu acesso atual não inclui esta série. Para ajuda, fale com o suporte.",
+          '<a class="watch-button secondary" href="/assistir/">Ver minhas séries</a>',
         );
         return false;
       }
@@ -140,6 +178,7 @@
 
   window.AgentFlixWatchAccess = Object.freeze({
     ready: authorize(),
+    allowsSeries,
     prefetch,
     cachedToken: (uid) => tokenCache.get(uid)?.token || null,
     tokenFor,

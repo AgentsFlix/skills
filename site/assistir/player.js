@@ -1524,6 +1524,9 @@
         for (const key of ["cover", "cover_wide", "cover_mobile"])
           if (series[key]) series[key] = AgentFlixWatchModel.assetUrl(series[key]);
       }
+      data.series = data.series.filter((series) =>
+        window.AgentFlixWatchAccess.allowsSeries(series.slug),
+      );
       const streamUids = data.series.flatMap((series) =>
         series.seasons.flatMap((season) =>
           (season.eps || []).flatMap((episode) =>

@@ -117,6 +117,8 @@ body { min-height: 100vh; }
 .expiry-field label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 12px; font-weight: 700; }
 .expiry-field input { min-height: 44px; padding: 10px 12px; }
 .product-actions button { width: auto; min-width: 132px; min-height: 44px; margin: 0; padding: 10px 16px; }
+.grant-button { background: var(--af-brand); color: var(--af-on-brand); }
+.grant-button:hover { background: var(--af-link); }
 .revoke-button { background: #352020; color: #ffc4c4; }
 .revoke-button:hover { background: #482626; }
 
