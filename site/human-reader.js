@@ -85,7 +85,7 @@
         const hidden = root.hidden;
         root.outerHTML = shell;
         root = panel.querySelector('#human-reader'); root.hidden = hidden;
-        bindReader(root, data, contentURL, scrollToReading, signal);
+        bindReader(root, data, contentURL, scrollToReading, signal, slug);
         bindPreferences(root, scroller, signal);
         sharing?.addButton(root.querySelector('.reading-toolbar'));
         root.querySelector('.legal').textContent = data.disclaimer;
@@ -98,10 +98,29 @@
     }
     load();
   }
-  function bindReader(root, data, contentURL, scrollToReading, signal) {
+  function bindReader(root, data, contentURL, scrollToReading, signal, slug) {
     const $ = id => root.querySelector('#hr-' + id);
-    let index = 0;
-    const choices = new Map(), checked = new Set();
+    const progressKey = `agentflix-reading-progress-v1:${slug}`;
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(progressKey) || 'null'); } catch { saved = null; }
+    let index = Number.isInteger(saved?.chapter) && saved.chapter >= 0 && saved.chapter < data.chapters.length ? saved.chapter : 0;
+    const choices = new Map(Object.entries(saved?.choices || {}).filter(([, value]) => Number.isInteger(value)));
+    const checked = new Set(Array.isArray(saved?.checked) ? saved.checked.filter(value => typeof value === 'string') : []);
+    let completed = saved?.completed === true;
+    function saveProgress() {
+      completed = completed || index === data.chapters.length - 1;
+      try {
+        localStorage.setItem(progressKey, JSON.stringify({
+          version: 1,
+          chapter: index,
+          total: data.chapters.length,
+          completed,
+          choices: Object.fromEntries(choices),
+          checked: [...checked],
+          updatedAt: new Date().toISOString()
+        }));
+      } catch { /* A leitura continua mesmo sem armazenamento. */ }
+    }
 const detail=i=>`<div class="detail"><span class="direction">${esc(i.direction||i.tag||'')}</span><h4>${esc(i.question||i.title)}</h4><p>${esc(i.text)}</p>${i.example?`<p class="example">${esc(i.example)}</p>`:''}${i.avoid?`<p class="avoid">Evite: ${esc(i.avoid)}</p>`:''}</div>`;
 const sourceList=()=>`<div class="source-list">${data.sources.map(s=>`<div><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a><p>${esc(s.note)}</p></div>`).join('')}</div>`;
 const sourceLinks=ids=>ids.map(id=>{const s=data.sources.find(s=>s.id===id);return `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`}).join('');
@@ -124,7 +143,7 @@ case 'prompt':body=`<div class="prompt"><p>${esc(b.text)}</p><button data-copy="
 case 'checklist':body=`<div class="checklist">${b.items.map((i,n)=>`<label><input type="checkbox" data-check="${k}-${n}" ${checked.has(k+'-'+n)?'checked':''}><span>${esc(i)}</span></label>`).join('')}</div>`;break;
 case 'sources':body=`<p>${esc(b.text)}</p>${sourceList()}`;break;
 default:throw Error('Bloco desconhecido: '+b.type)}return `<section class="block ${['callout','narrative','case_study','equation_bridge'].includes(b.type)?esc(b.type):''}">${b.eyebrow?`<p class="eyebrow">${esc(b.eyebrow)}</p>`:''}${title}${body}</section>`;}
-function show(n,focus=false){if(!Number.isInteger(n)||n<0||n>=data.chapters.length)return;index=n;const c=data.chapters[n];root.querySelector('.reading').classList.toggle('editorial',c.tone==='editorial');$('nav').innerHTML=data.chapters.map((c,i)=>`<button data-chapter="${i}" ${i===n?'aria-current="step"':''}><span>${String(i+1).padStart(2,'0')}</span>${esc(c.label)}</button>`).join('');$('chapter-label').textContent=data.method+' · '+c.label;$('position').textContent=`${n+1} de ${data.chapters.length}`;$('chapter-title').textContent=c.title;$('intro').textContent=c.intro;$('blocks').innerHTML=c.blocks.map(block).join('');$('citations').innerHTML=c.sources.map(id=>{const s=data.sources.find(s=>s.id===id);return `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.label)} ↗</a>`}).join('');$('prev').disabled=n===0;$('next').disabled=n===data.chapters.length-1;$('next').textContent=n<data.chapters.length-1?data.chapters[n+1].label+' →':'Leitura concluída';if(focus){$('chapter-title').focus({preventScroll:true});scrollToReading()}}
+function show(n,focus=false){if(!Number.isInteger(n)||n<0||n>=data.chapters.length)return;index=n;const c=data.chapters[n];root.querySelector('.reading').classList.toggle('editorial',c.tone==='editorial');$('nav').innerHTML=data.chapters.map((c,i)=>`<button data-chapter="${i}" ${i===n?'aria-current="step"':''}><span>${String(i+1).padStart(2,'0')}</span>${esc(c.label)}</button>`).join('');$('chapter-label').textContent=data.method+' · '+c.label;$('position').textContent=`${n+1} de ${data.chapters.length}`;$('chapter-title').textContent=c.title;$('intro').textContent=c.intro;$('blocks').innerHTML=c.blocks.map(block).join('');$('citations').innerHTML=c.sources.map(id=>{const s=data.sources.find(s=>s.id===id);return `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.label)} ↗</a>`}).join('');$('prev').disabled=n===0;$('next').disabled=n===data.chapters.length-1;$('next').textContent=n<data.chapters.length-1?data.chapters[n+1].label+' →':'Leitura concluída';saveProgress();if(focus){$('chapter-title').focus({preventScroll:true});scrollToReading()}}
 async function copy(text,btn){try{await navigator.clipboard.writeText(text);btn.textContent='Copiado ✓';$('status').textContent='Texto copiado.'}catch{$('status').textContent='Selecione o texto e copie. A cópia automática não está disponível.'}}
 
     root.addEventListener('click', event => {
@@ -134,16 +153,17 @@ async function copy(text,btn){try{await navigator.clipboard.writeText(text);btn.
       if(option) {
         const k = +option.dataset.choice, n = +option.dataset.item;
         choices.set(index + '-' + k, n);
+        saveProgress();
         root.querySelectorAll(`[data-choice="${k}"]`).forEach(button => button.setAttribute('aria-pressed', String(+button.dataset.item === n)));
         $('detail-' + k).innerHTML = detail(data.chapters[index].blocks[k].items[n]);
       }
       const copyButton = event.target.closest('[data-copy]');
       if(copyButton) copy(data.chapters[index].blocks[+copyButton.dataset.copy].text, copyButton);
     }, {signal});
-    root.addEventListener('change', event => { if(event.target.matches('[data-check]')) { const k = event.target.dataset.check; event.target.checked ? checked.add(k) : checked.delete(k); } }, {signal});
+    root.addEventListener('change', event => { if(event.target.matches('[data-check]')) { const k = event.target.dataset.check; event.target.checked ? checked.add(k) : checked.delete(k); saveProgress(); } }, {signal});
     $('prev').addEventListener('click', () => show(index - 1, true), {signal});
     $('next').addEventListener('click', () => show(index + 1, true), {signal});
-    show(0);
+    show(index);
   }
 function bindPreferences(root, scroller, signal) {
   const $ = id => root.querySelector('#hr-' + id);

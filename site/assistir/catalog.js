@@ -200,7 +200,7 @@
                 .episodes(featured)
                 .map((item) => episodeCard(featured, item)),
             ) : "") +
-            '<footer class="watch-footer"><span>AgentFlix</span><p>O progresso e a sua lista ficam neste navegador.</p><a href="/privacidade.html">Privacidade</a></footer>';
+            `<footer class="watch-footer"><span>AgentFlix</span><p>${window.AgentFlixMemory?.status.available ? "O progresso e a sua lista estão sincronizados com sua conta." : "O progresso e a sua lista ficam neste navegador."}</p><a href="/privacidade.html">Privacidade</a></footer>`;
         }
         bindImages();
         root.querySelectorAll(".watch-rail").forEach((rail) =>
@@ -276,8 +276,8 @@
             });
             status.textContent = persisted
               ? selected
-                ? "Série adicionada à sua lista."
-                : "Série removida da sua lista."
+                ? `Série adicionada à sua lista${window.AgentFlixMemory?.status.available ? " e à sua conta" : ""}.`
+                : `Série removida da sua lista${window.AgentFlixMemory?.status.available ? " e da sua conta" : ""}.`
               : "Sua lista vale nesta visita. Não foi possível salvar no navegador.";
             if (listOnly) {
               render();

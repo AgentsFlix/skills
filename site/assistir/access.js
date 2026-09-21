@@ -30,6 +30,17 @@
     });
   }
 
+  function loadMemory() {
+    if (window.AgentFlixMemory?.connect) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "/memory.js";
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.append(script);
+    });
+  }
+
   async function config() {
     const response = await fetch("/api/config", {
       cache: "no-store",
@@ -102,12 +113,13 @@
 
   async function authorize() {
     try {
-      await loadSupabase();
+      await Promise.all([loadSupabase(), loadMemory()]);
       const publicConfig = await config();
       client = window.supabase.createClient(publicConfig.supabaseUrl, publicConfig.supabaseAnonKey);
       const result = await client.auth.getSession();
       session = result.data?.session || null;
       if (!session?.user) {
+        window.AgentFlixMemory.clearSignedOut();
         const login = `/entrar/?next=${encodeURIComponent(nextPath())}`;
         showState(
           "Entre para assistir",
@@ -115,6 +127,27 @@
           `<a class="watch-button primary" href="${login}">Entrar na AgentFlix</a>`,
         );
         return false;
+      }
+      const memory = await window.AgentFlixMemory.connect(client, session.user);
+      const reloadKey = `agentflix-memory-reload:${session.user.id}:${location.pathname}`;
+      if (memory.changed && !document.getElementById("watch-catalog")) {
+        let reloading = false;
+        try {
+          reloading = sessionStorage.getItem(reloadKey) === "1";
+          if (!reloading) sessionStorage.setItem(reloadKey, "1");
+        } catch {
+          // Sem sessionStorage, a página continua com o estado local e sincroniza no próximo acesso.
+        }
+        if (!reloading) {
+          location.reload();
+          return await new Promise(() => {});
+        }
+      } else {
+        try {
+          sessionStorage.removeItem(reloadKey);
+        } catch {
+          // Nada a limpar quando o navegador bloqueia sessionStorage.
+        }
       }
       if (!(await resolveAccessScope())) {
         showState(
