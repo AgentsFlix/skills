@@ -65,14 +65,22 @@
     miniResumeAt: null,
     checkoutPreview: false,
     checkoutResumeAt: null,
+    streamRequest: 0,
   };
   const video = $("video");
   const curEp = () => SERIE.seasons[state.season].eps[state.ep];
   // uid conserva o progresso; stream_uid permite substituir a mídia da mesma edição.
   const mediaUid = (uid) => SERIE.seasons.flatMap(s => s.eps || []).find(e => e.uid === uid)?.stream_uid || uid;
-  const base = (uid) => `https://${SERIE.customer}.cloudflarestream.com/${mediaUid(uid)}`;
-  const thumb = (uid, h = 270, t) =>
-    `${base(uid)}/thumbnails/thumbnail.jpg?height=${h}${t !== undefined ? `&time=${Math.max(0, Math.floor(t))}s` : ""}`;
+  const base = (uid) => {
+    const token = window.AgentFlixWatchAccess?.cachedToken(mediaUid(uid));
+    return token ? `https://${SERIE.customer}.cloudflarestream.com/${token}` : "";
+  };
+  const thumb = (uid, h = 270, t) => {
+    const streamBase = base(uid);
+    return streamBase
+      ? `${streamBase}/thumbnails/thumbnail.jpg?height=${h}${t !== undefined ? `&time=${Math.max(0, Math.floor(t))}s` : ""}`
+      : "";
+  };
   const progKey = (uid) => `agentflix-prog-${uid}`;
   const prog = (e) => {
     const p = store.get(progKey(e.uid), null);
@@ -280,15 +288,25 @@
   }
 
   // ---------- player ----------
-  function attach(uid, startAt, autoplay) {
-    const src = `${base(uid)}/manifest/video.m3u8`;
+  async function attach(uid, startAt, autoplay) {
+    const requestId = ++state.streamRequest;
+    state.playingUid = uid;
     if (state.hls) {
       state.hls.destroy();
       state.hls = null;
     }
-    state.playingUid = uid;
     $("err").hidden = true;
     $("spin").hidden = !autoplay;
+    let token;
+    try {
+      token = await window.AgentFlixWatchAccess.tokenFor(mediaUid(uid));
+    } catch {
+      if (requestId === state.streamRequest)
+        showErr("Não foi possível liberar este vídeo agora. Recarregue a página; se continuar, avise o Zé com o número do episódio.");
+      return;
+    }
+    if (requestId !== state.streamRequest) return;
+    const src = `https://${SERIE.customer}.cloudflarestream.com/${token}/manifest/video.m3u8`;
     const onReady = () => {
       if (startAt > 0 && startAt < (video.duration || Infinity) - 3)
         video.currentTime = startAt;
@@ -1406,6 +1424,7 @@
   // ---------- navegação entre acervo, ficha e player ----------
   let catalog = null;
   function releaseVideo() {
+    state.streamRequest += 1;
     saveProgress(true);
     video.pause();
     resetOverlays();
@@ -1505,6 +1524,14 @@
         for (const key of ["cover", "cover_wide", "cover_mobile"])
           if (series[key]) series[key] = AgentFlixWatchModel.assetUrl(series[key]);
       }
+      const streamUids = data.series.flatMap((series) =>
+        series.seasons.flatMap((season) =>
+          (season.eps || []).flatMap((episode) =>
+            [episode.uid, episode.stream_uid].filter(Boolean),
+          ),
+        ),
+      );
+      await window.AgentFlixWatchAccess.prefetch(streamUids);
       SERIES = data.series;
       catalog = AgentFlixWatchCatalog.create(data, {
         read: store.get,
@@ -1536,5 +1563,9 @@
     catalog.reset();
     showCatalog({ push: true, focus: true });
   });
-  loadCatalog();
+  async function start() {
+    const allowed = await window.AgentFlixWatchAccess?.ready;
+    if (allowed) loadCatalog();
+  }
+  start();
 })();

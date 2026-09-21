@@ -8,6 +8,8 @@ let products = [];
 let entitlements = [];
 let users = [];
 
+const productKindLabel = (kind) => ({ pass: "Passe", content: "Acervo" }[kind] || "Skill");
+
 function show(name) {
   states.forEach((state) => { byId(`${state}-state`).hidden = state !== name; });
 }
@@ -141,7 +143,7 @@ function renderProducts() {
     const detail = document.createElement("p");
     detail.textContent = active.length
       ? active.map((item) => `${sourceLabel(item.source)} · ${formatDate(item.expires_at)}`).join(" | ")
-      : `${product.kind === "pass" ? "Passe" : "Skill"} · sem acesso direto ativo`;
+      : `${productKindLabel(product.kind)} · sem acesso direto ativo`;
     const badge = document.createElement("span");
     badge.className = "access-badge";
     badge.dataset.active = String(active.length > 0);
