@@ -1,6 +1,8 @@
 .has-human-reader .modal-actions { flex-wrap:wrap; }
 .reading-share-trigger { display:inline-flex; gap:9px; align-items:center; justify-content:center; min-height:44px; border:1px solid var(--line); border-radius:999px; padding:12px 18px; color:var(--text); background:var(--panel); font:600 15px var(--sans); cursor:pointer; }
-#human-reader .reading-toolbar { justify-content:space-between; gap:12px; }
+#human-reader .reading-toolbar { justify-content:flex-start; gap:12px; }
+#human-reader .reading-toolbar .reading-settings { order:2; margin-left:auto; }
+#human-reader .reading-toolbar .reading-share-trigger { order:1; }
 #human-reader .reading-share-trigger { color:var(--reader-ink,var(--text)); font-size:14px; padding:8px 14px; }
 .reading-share { width:min(480px, calc(100% - 32px)); max-height:calc(100dvh - 32px); margin:auto; padding:24px; border:1px solid var(--line); border-radius:var(--radius-modal); background:var(--panel); color:var(--text); font:16px/1.5 var(--sans); overscroll-behavior:contain; }
 .reading-share::backdrop { background:rgb(0 0 0 / .78); }

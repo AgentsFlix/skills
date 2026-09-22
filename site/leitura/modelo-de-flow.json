@@ -1,0 +1,1065 @@
+{
+  "schemaVersion": "1.0",
+  "slug": "modelo-de-flow",
+  "title": "Deixa eu adivinhar: você é alguém que...",
+  "subtitle": "Tem ideias demais para o tempo que existe, e uma régua alta demais para chamar qualquer coisa de pronta.",
+  "method": "MODELO DE FLOW",
+  "author": "José Carlos Amorim",
+  "disclaimer": "Experiências de José Carlos Amorim combinadas com reflexões dirigidas ao leitor e com o Modelo de Flow. Rascunho editorial para revisão do autor. Os estados são referências para pensar uma tarefa, não diagnósticos ou promessas de desempenho. Os prompts orientam uma conversa com o agente escolhido; esta página não acessa suas memórias.",
+  "chapters": [
+    {
+      "id": "mapa",
+      "label": "O mapa",
+      "title": "Deixa eu adivinhar: você é alguém que...",
+      "intro": "Tem ideias demais para o tempo que existe, e uma régua alta demais para chamar qualquer coisa de pronta.",
+      "blocks": [
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/01-muitas-ideias.png",
+          "alt": "Muitas ideias. Pouco tempo. Régua alta. Uma ideia se ramifica em muitas possibilidades, atravessa um intervalo de tempo limitado e encontra uma régua de pronto muito alta.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "title": "Você enxerga tudo o que uma ideia poderia se tornar.",
+          "paragraphs": [
+            "Você olha para uma ideia simples e já enxerga o texto, o desenho, o método, a ferramenta. Alguém vê uma postagem. Você vê tudo o que poderia nascer dela."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/02-uma-ideia-um-mundo.png",
+          "alt": "De uma ideia nasce um mundo. Uma postagem segue por dois caminhos: alguém vê apenas a postagem; você vê texto, método, desenho, ferramenta e sistema.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Quando se interessa, aprende com uma intensidade difícil de explicar. O problema é que cada resposta abre outras dez perguntas. Você começa querendo resolver uma coisa e, quando percebe, está construindo um mundo ao redor dela.",
+            "Você queria terminar. Mas agora sabe de uma coisa que deixaria o resultado melhor. E depois de outra. Enquanto alguém publica uma versão que você jamais chamaria de pronta, a sua continua esperando mais uma revisão."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/03-voce-queria-terminar.png",
+          "alt": "Você queria terminar. O caminho de fazer, melhorar, revisar, ajustar e polir se enrola em ciclos antes de alcançar publicar.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez o que mais doa não seja o trabalho que falta. Seja olhar para tanto esforço e ainda sentir que você está devendo. Você sabe o quanto se dedicou. Só não sabe explicar por que essa dedicação nem sempre vira a entrega que imaginou.",
+            "Há uma distância cansativa entre tudo o que você consegue enxergar e aquilo que consegue colocar no mundo. E, às vezes, a pessoa que mais exige que você atravesse essa distância é você mesmo."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/04-entre-ver-e-colocar-no-mundo.png",
+          "alt": "Entre ver e colocar no mundo. Uma pessoa sob cobrança atravessa uma ponte entre a montanha de possibilidades que enxerga e uma entrega concreta ao mundo.",
+          "caption": ""
+        },
+        {
+          "type": "callout",
+          "title": "Se você se identificou, talvez esse texto seja tudo que você procurou a vida toda.",
+          "text": "Não porque um mapa vá resolver sua vida, mas porque ele pode dar nome a uma tensão que você vinha tentando resolver apenas se cobrando mais."
+        },
+        {
+          "type": "narrative",
+          "title": "Esta própria página passou por esse processo",
+          "paragraphs": [
+            "Eu reconheço essa tensão no meu próprio trabalho. Esta página começou com uma imagem que encontrei no Pinterest. Entendi a lógica de cara, achei fascinante, mas achei a imagem poluída. Levei para o ChatGPT deixá-la mais compreensível. Depois, separei os estados em um carrossel. Trouxe para o Codex adaptar à nossa identidade visual. E cheguei aqui, lapidando a escrita dentro de um sistema web."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/05-processo-da-pagina.png",
+          "alt": "Esta página passou por esse processo. Sequência da referência encontrada, clareza com ChatGPT, carrossel, identidade visual com Codex e lapidação da escrita no sistema web.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Eu poderia ter usado aquela primeira referência para fazer uma postagem. Mas, para mim, compreender foi só o começo. Logo apareceu outra pergunta: como fazer outra pessoa compreender também?",
+            "Chamo isso de meta engenharia. Construir a engenharia que vai construir a engenharia. É como cuidar das células-tronco do que vem depois: compreender padrões, transformá-los em método, simplificar a escrita e diminuir a fricção no formato."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/06-meta-engenharia.png",
+          "alt": "Meta engenharia. Padrões entram em uma máquina de meta engenharia e dão origem a método, escrita, formato, ferramenta e menos fricção.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "É uma das coisas que me colocam em Flow. E é também um processo no qual preciso me policiar para não transformar uma ideia boa em uma entrega que nunca termina."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/07-flow-e-entrega.png",
+          "alt": "Isso coloca você em flow. Compreender, estruturar e simplificar conduzem ao flow, mas refinar demais cria um nó de lapidação sem fim antes de entregar.",
+          "caption": ""
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/modelo-flow.webp",
+          "alt": "Diagrama do Modelo de Flow: sete estados distribuídos entre os eixos Desafio e Habilidade, com Flow destacado em ciano.",
+          "caption": "O mapa não dá uma nota. Ele ajuda a localizar o próximo ajuste."
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "O mapa me interessa porque muda a pergunta. Em vez de perguntar apenas por que não estou rendendo, posso olhar para o encontro entre o que esta tarefa exige e o que consigo fazer agora."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/08-mapa-muda-a-pergunta.png",
+          "alt": "O mapa muda a pergunta. Uma pessoa sai de por que não estou rendendo para comparar o que a tarefa exige com o que consegue fazer agora.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Quando a exigência fica grande demais para a habilidade disponível, a experiência pode se aproximar da ansiedade. Quando consigo fazer muito mais do que a tarefa pede, pode faltar envolvimento. Flow pode surgir quando desafio e habilidade se encontram em um nível elevado, com condições para me concentrar e perceber o que está acontecendo."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/09-desafio-habilidade.png",
+          "alt": "Desafio e habilidade. Quando o desafio é maior que a habilidade, há ansiedade; quando se aproximam, pode haver Flow; quando a habilidade é maior, há pouco envolvimento.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Mas habilidade não é energia infinita. Uma tarefa também tem prazo, sentido, contexto e um corpo que se cansa. A próxima decisão pode ser aprender, ajustar o desafio ou simplesmente parar. O mapa descreve uma relação com a tarefa. Não decide quem você é."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/mapa/10-mapa-nao-conhece-tudo.png",
+          "alt": "O mapa não conhece tudo. Prazo, sentido, contexto e corpo ou energia se somam à tarefa e à capacidade disponível, apontando para aprender, ajustar o desafio ou parar.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Nos próximos capítulos, vou cruzar esse mapa com o que vivo ao construir. Ao final de cada um, você poderá levar sua própria situação para um agente que conheça sua história. Não para receber mais um plano bonito, mas para conversar sobre um passo que caiba na sua vida."
+          ]
+        }
+      ],
+      "sources": [
+        "mihaly-flow"
+      ]
+    },
+    {
+      "id": "ansiedade",
+      "label": "Ansiedade",
+      "title": "Você precisa entregar antes de sentir que sabe o suficiente.",
+      "intro": "A pressão tem prazo. A sua sensação de domínio, nem sempre.",
+      "blocks": [
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ansiedade/01-prazo-e-dominio.png",
+          "alt": "Você precisa entregar antes de sentir que sabe o suficiente. O prazo chega antes da sensação de domínio e a entrega acontece enquanto ainda existe uma lacuna percebida.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Neste momento, meu hiperfoco está em explicar o JEV. O tema é novo, é desafiador, e eu ainda não o domino como gostaria. Ao mesmo tempo, produzo conteúdo de IA com curadoria. O timing importa. Não posso esperar indefinidamente para transformar o assunto em algo compreensível.",
+            "Não é só uma questão de estudar mais hoje. Há um domínio que vai sendo construído usando, voltando amanhã, dormindo e aprendendo com projetos. Eu gostaria de atravessar esse processo inteiro antes de ensinar. Mas a velocidade que o tema pede não espera a minha régua se dar por satisfeita."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ansiedade/02-profundidade-e-tempo.png",
+          "alt": "Aprender com profundidade e chegar a tempo. O timing segue uma janela, enquanto o domínio amadurece ao usar, voltar no dia seguinte, dormir e aprender com projetos.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez você conheça essa cobrança. Uma apresentação chegando, um projeto assumido, uma oportunidade que parece não poder esperar. Por fora, existe uma entrega. Por dentro, existe a pergunta: como vou dar conta disso se ainda não sei o suficiente?"
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ansiedade/03-entrega-e-insuficiencia.png",
+          "alt": "Por fora, entrega. Por dentro, insuficiência. Apresentação, projeto e oportunidade se unem em uma entrega visível, enquanto a pessoa ainda sente a lacuna e pergunta como vai dar conta.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "No meu caso, há uma tensão real entre aprender com profundidade e chegar a tempo. Não quero fingir que sei o que ainda não sei. Também não quero transformar a espera por domínio completo em uma condição impossível para começar.",
+            "É aí que este estado deixa de ser só uma palavra no gráfico. Qual parte do desafio exige uma habilidade que ainda preciso construir? E qual parte cresceu porque eu acrescentei exigências que ninguém colocou ali? Separar essas duas coisas pode devolver um pouco de clareza."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ansiedade/04-exigencia-real-e-acrescentada.png",
+          "alt": "Exigência real e exigência acrescentada. O que a tarefa realmente exige se separa de perfeição, domínio completo, aprofundamento além do necessário e padrão extra não solicitado, permitindo construir habilidade, reduzir exigência ou descansar.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Se a energia acabou, reduzir ou descansar também precisa continuar sendo uma opção."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/01-ansiedade.webp",
+          "alt": "Pessoa diante de um bloco de tarefa grande e uma rota em ciano que representa o aumento de habilidade.",
+          "caption": "Próxima etapa: ativação. Torne a entrada menor antes de aumentar a cobrança."
+        },
+        {
+          "type": "agent_prompt",
+          "state": "Ansiedade",
+          "title": "Converse com um agente que já conhece você",
+          "description": "Traga a tarefa que está pesando. O agente vai buscar contexto sobre ela e ajudar você a separar exigência real, lacuna de habilidade e pressão que pode ser reduzida.",
+          "fields": [
+            {
+              "id": "situation",
+              "label": "Que assunto, tema ou ação tem gerado ansiedade em você atualmente?",
+              "placeholder": "Ex.: preciso apresentar uma proposta sobre um assunto que ainda estou aprendendo.",
+              "required": true
+            },
+            {
+              "id": "demand",
+              "label": "O que precisa ser entregue, para quem e até quando?",
+              "placeholder": "Diferencie o que foi pedido do que você está exigindo de si.",
+              "required": false
+            },
+            {
+              "id": "obstacle",
+              "label": "O que você já consegue fazer e em que parte ainda trava?",
+              "placeholder": "Pode ser uma dúvida, uma etapa, falta de prática ou de apoio.",
+              "required": false
+            },
+            {
+              "id": "capacity",
+              "label": "Quanto tempo e energia você tem para lidar com isso agora?",
+              "placeholder": "Inclua limites ou necessidade de descanso.",
+              "required": false
+            }
+          ],
+          "guidance": [
+            "Localize memórias sobre a situação citada e sobre entregas semelhantes. Separe exigência externa, exigência que eu acrescentei e habilidades que demonstrei. Não transforme pressão ou cansaço automaticamente em falta de competência.",
+            "Identifique a menor parte concreta em que falta clareza, prática, apoio ou uma decisão. Confira se prazo e resultado informado são reais ou suposições; se não informei, não invente.",
+            "Se há energia e uma lacuna treinável, proponha uma tentativa pequena com exemplo, ensaio ou feedback. Busque passar da ameaça difusa a uma tarefa compreensível, sem exigir domínio de todo o assunto.",
+            "Se a exigência supera o que cabe agora, proponha reduzir escopo, renegociar ou pedir apoio. Se a necessidade é recuperação, considere descanso ou uma atividade menos exigente. Não chame qualquer alívio de Flow nem force avançar.",
+            "Combine um resultado suficiente para a tentativa e um limite de parada. Depois de meu retorno, avalie comigo se a tarefa ficou mais clara ou se precisamos diminuir a exigência."
+          ]
+        }
+      ],
+      "sources": [
+        "diane-flow"
+      ]
+    },
+    {
+      "id": "ativacao",
+      "label": "Ativação",
+      "title": "Você já entrou no assunto. Agora precisa não sair dele a cada descoberta.",
+      "intro": "Nem tudo o que fascina você precisa entrar nesta entrega.",
+      "blocks": [
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ativacao/01-fascinio-e-entrega.png",
+          "alt": "Nem tudo o que fascina precisa entrar nesta entrega. Uma pessoa segue em direção à entrega enquanto paisagens, riachos, um tema bonito e outro assunto interessante chamam para desvios.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Durante a meta engenharia, eu me apaixono pelos temas que aparecem no caminho. É como construir uma estrada em um trajeto cheio de paisagens, riachos e belezas dignas de atenção. Não falta motivo para parar.",
+            "Ao estudar o JEV, surgem assuntos como tipagem, saídas estruturadas e o funcionamento dos modelos de linguagem. Todos merecem atenção. Mas o objetivo deste momento não é dominar cada ramificação. É tornar o conceito compreensível enquanto ele ainda está em pauta. Preciso dizer não a coisas que genuinamente quero conhecer."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ativacao/02-permanecer-no-assunto.png",
+          "alt": "Você já entrou no assunto. Agora precisa não sair dele a cada descoberta. Tipagem, saídas estruturadas e modelos aparecem como caminhos que podem afastar do objetivo de tornar o conceito compreensível agora.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez, para você, a parte difícil também não seja começar. É permanecer depois que o começo revela outras possibilidades. Você já avançou o bastante para enxergar mais. E esse ganho, que deveria ajudar a entrega, passa a disputar atenção com ela."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ativacao/03-enxergar-mais.png",
+          "alt": "Você avançou o bastante para enxergar mais. Antes há foco claro na entrega; depois, novas ideias, caminhos, ramificações e demandas disputam atenção.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Eu estou acostumado a ser iniciante. Posso começar de novo várias vezes num ano, num mês e até num dia. Isso me dá abertura para aprender. Não elimina, porém, a necessidade de praticar justamente a parte que ainda não ficou firme.",
+            "Na ativação, o desafio ainda puxa. A pergunta que quero levar comigo é se o próximo movimento vai me dar mais capacidade para esta tarefa ou apenas mais um assunto fascinante. Não preciso deixar de ser curioso. Preciso conseguir escolher onde minha curiosidade vai trabalhar agora."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ativacao/04-capacidade-ou-fascinio.png",
+          "alt": "O próximo movimento aumenta capacidade para esta tarefa ou só abre outro fascínio? Praticar, simplificar e esclarecer geram mais domínio e progresso; novo assunto, nova ramificação e curiosidade sem função agora ampliam a dispersão.",
+          "caption": ""
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/02-ativacao.webp",
+          "alt": "Pessoa subindo blocos pequenos em direção a um percurso ciano que indica Flow.",
+          "caption": "Próxima etapa: Flow. Proteja a execução e aproxime o feedback."
+        },
+        {
+          "type": "agent_prompt",
+          "state": "Ativação",
+          "title": "Converse com um agente que já conhece você",
+          "description": "Você já começou. Use o que seu agente sabe sobre você para escolher a prática que sustenta esta entrega, sem abrir mais cinco caminhos.",
+          "fields": [
+            {
+              "id": "situation",
+              "label": "Em que tarefa você já começou a avançar, mas ainda sente dificuldade?",
+              "placeholder": "Nomeie a entrega atual, não todos os assuntos relacionados.",
+              "required": true
+            },
+            {
+              "id": "progress",
+              "label": "O que você já tentou e que resultado ou feedback recebeu?",
+              "placeholder": "Pode ser um teste que funcionou parcialmente ou uma dúvida que persistiu.",
+              "required": false
+            },
+            {
+              "id": "focus",
+              "label": "O que ainda falta aprender para esta entrega e o que está desviando sua atenção?",
+              "placeholder": "Separe o necessário das descobertas que podem esperar.",
+              "required": false
+            },
+            {
+              "id": "capacity",
+              "label": "Que tempo, energia e limite de entrega você tem agora?",
+              "placeholder": "Inclua o que seria suficiente nesta etapa.",
+              "required": false
+            }
+          ],
+          "guidance": [
+            "Procure memórias da tarefa e de tentativas anteriores. Reconheça progresso com evidência concreta, sem presumir que interesse ou estudo equivalem a execução.",
+            "Compare o resultado pretendido com o que já consigo fazer. Identifique uma habilidade específica que falta estabilizar, em vez de recomendar aprender todo o domínio.",
+            "Diferencie uma descoberta necessária de uma ramificação fascinante que pode esperar. Sugira estacioná-la na conversa, sem criar arquivos ou tarefas sem minha autorização.",
+            "Proponha uma repetição ou teste pequeno com feedback próximo e critério de suficiente. Preserve a exigência que ainda cabe e evite aumentar simultaneamente escopo, velocidade e complexidade.",
+            "Após a tentativa, confira se ficou mais fluido. Se a pressão ou o cansaço aumentaram, reduza a tarefa; se ficou fácil e relevante, discuta um ajuste. Não presuma passagem automática para Flow."
+          ]
+        }
+      ],
+      "sources": [
+        "diane-flow"
+      ]
+    },
+    {
+      "id": "flow",
+      "label": "Flow",
+      "title": "Você está fazendo algo difícil. E quer continuar ali.",
+      "intro": "Há momentos em que a complexidade deixa de afastar e começa a envolver.",
+      "blocks": [
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/flow/01-complexidade-envolve.png",
+          "alt": "A complexidade deixa de afastar e começa a envolver quando existe capacidade suficiente para trabalhar nela.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Quando paro para transformar um assunto complexo em algo que qualquer pessoa possa entender, entro em um dos meus estados de Flow. Não porque seja fácil. Meta engenharia é justamente uma das coisas mais complexas que faço, e tenho habilidade para trabalhar nessa complexidade.",
+            "Enquanto escrevo sobre este modelo, fico imaginando: \"Será que isso está facilitando e vai ajudar alguém realmente? Como será o resultado da pessoa que conseguir aplicar esse princípio na vida dela?\"",
+            "Essa pergunta dá sentido ao esforço. Não estou apenas tentando produzir um texto correto. Estou procurando uma forma de fazer uma ideia ganhar vida na compreensão de outra pessoa."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/flow/02-ideia-ganha-vida.png",
+          "alt": "Fazer uma ideia ganhar vida na compreensão de outra pessoa: compreender, traduzir, simplificar e dar forma até que o outro entenda.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Eu poderia pedir para a IA escrever e fazer tudo. Mas, neste espaço, quero ser eu mesmo. Quero que tenha meu DNA, meu tempo, meu Flow. As ferramentas participam. O que estou tentando dizer precisa continuar sendo meu."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/flow/03-ferramentas-e-voz.png",
+          "alt": "As ferramentas participam. IA, pesquisa, escrita, código e design ajudam a expressão, enquanto a voz e a autoria permanecem da pessoa.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez você reconheça esse encontro em outra atividade. Uma conversa, um problema, um trabalho manual. Algo exige bastante de você, mas existe capacidade suficiente para responder, perceber o resultado e continuar. O interesse não está apenas em acabar. Está também em fazer.",
+            "O cuidado é não usar essa experiência como uma cobrança nova. Nem toda sessão precisa ser assim. E gostar muito do que estou fazendo não torna meu tempo inesgotável. Quero conseguir me envolver sem perder a possibilidade de sair."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/flow/04-envolver-se-e-sair.png",
+          "alt": "Quero conseguir me envolver sem perder a possibilidade de sair. Flow não precisa virar aprisionamento.",
+          "caption": ""
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/03-flow.webp",
+          "alt": "Pessoa em equilíbrio entre dois blocos identificados como Desafio e Habilidade, com ponto de Flow em ciano.",
+          "caption": "Flow é uma consequência possível do equilíbrio, não um troféu que você precisa segurar."
+        },
+        {
+          "type": "agent_prompt",
+          "state": "Flow",
+          "title": "Converse com um agente que já conhece você",
+          "description": "Descreva o que está envolvendo você. A conversa deve ajudar a preservar as condições que funcionam e uma saída que respeite seus limites.",
+          "fields": [
+            {
+              "id": "situation",
+              "label": "Em que atividade você está se sentindo envolvido de verdade?",
+              "placeholder": "O que você está fazendo, concretamente?",
+              "required": true
+            },
+            {
+              "id": "conditions",
+              "label": "O que parece estar ajudando essa experiência a acontecer?",
+              "placeholder": "Ex.: clareza, ambiente, feedback, dificuldade ou sentido pessoal.",
+              "required": false
+            },
+            {
+              "id": "result",
+              "label": "Que resultado você quer deixar pronto nesta sessão?",
+              "placeholder": "O que permitiria encerrar sem acrescentar mais uma exigência?",
+              "required": false
+            },
+            {
+              "id": "limits",
+              "label": "Que horário, necessidade ou compromisso não pode ser esquecido?",
+              "placeholder": "Inclua descanso, alimentação ou outro limite que queira preservar.",
+              "required": false
+            }
+          ],
+          "guidance": [
+            "Consulte memórias da atividade, das condições que já funcionaram e dos limites que eu escolhi. Trate meu relato como experiência percebida, não como uma certificação de Flow.",
+            "Ajude a nomear o que dá sentido ao esforço e qual resultado cabe nesta sessão. Não substitua minha intenção por uma meta de produtividade.",
+            "Se estou envolvido e a situação está funcionando, não me interrompa com uma longa investigação. Confirme uma condição a preservar e um ponto de encerramento.",
+            "Só sugira aumentar o desafio se eu relatar que ficou fácil e quiser continuar. Se aparecer sobrecarga, cansaço ou conflito de prioridade, proponha ajuste ou saída.",
+            "Ao terminar, ajude a identificar brevemente o que foi útil para outra ocasião, sem prometer reproduzir o estado nem registrar em memória automaticamente."
+          ]
+        }
+      ],
+      "sources": [
+        "diane-flow",
+        "gary-flow-good",
+        "mihaly-flow"
+      ]
+    },
+    {
+      "id": "apatia",
+      "label": "Apatia",
+      "title": "Você olha para a tarefa e não encontra por onde entrar.",
+      "intro": "Às vezes, a cobrança aumenta justamente quando falta uma primeira conexão.",
+      "blocks": [
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/apatia/01-sem-entrada.png",
+          "alt": "Você olha para a tarefa e não encontra por onde entrar. A cobrança, o prazo, a expectativa e a autocrítica aumentam enquanto falta um ponto de entrada.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Quando descrevo minha facilidade para aprender, existe uma condição importante: quando me interesso por algo. O interesse aparece no meu relato antes do mergulho. Não seria honesto pegar a intensidade que sinto em meta engenharia e exigir a mesma resposta diante de qualquer tarefa.",
+            "A imagem que encontrei no Pinterest me deu essa entrada. Compreendi a lógica, achei fascinante e vi uma possibilidade de torná-la mais clara. Havia alguma coisa ali que eu queria fazer existir."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/apatia/02-interesse-antes-do-mergulho.png",
+          "alt": "O interesse aparece antes do mergulho. Uma imagem encontrada gera interesse, compreensão da lógica e vontade de tornar algo mais claro antes da imersão.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Mas talvez a tarefa que está na sua frente não tenha oferecido nada parecido. Você sabe que deveria começar. Abre, olha, fecha. Não encontra vontade nem percebe uma habilidade na qual possa se apoiar. E acaba traduzindo essa experiência em uma acusação contra si mesmo."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/apatia/03-abre-olha-fecha.png",
+          "alt": "Abre, olha, fecha. Dificuldade de entrar na tarefa não é automaticamente um problema de caráter; a experiência não é uma acusação.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "No mapa, apatia é o nome da região de baixo desafio e baixa habilidade. Na vida real, só esse nome não explica o que está acontecendo. Falta uma entrada compreensível? A tarefa não faz sentido para você? Ou você está sem energia para se envolver, mesmo com algo importante?",
+            "Não quero emprestar minha intensidade para aumentar sua culpa. Quero ajudar você a descobrir o que tornaria um primeiro contato possível. Talvez uma versão pequena mostre alguma resposta. Talvez a resposta honesta seja que, hoje, você precisa se recuperar antes de exigir mais de si."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/apatia/04-entrada-sentido-energia.png",
+          "alt": "O que está faltando: entrada, sentido ou energia? Um exemplo, primeiro passo visível ou versão pequena podem criar entrada; recuperar ou pausar podem ser a resposta quando falta energia.",
+          "caption": ""
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/04-apatia.webp",
+          "alt": "Pessoa avançando por quatro blocos baixos com uma rota ciano em pequenos passos.",
+          "caption": "Próxima etapa: tédio. Crie uma entrada pequena e um retorno visível."
+        },
+        {
+          "type": "agent_prompt",
+          "state": "Apatia",
+          "title": "Converse com um agente que já conhece você",
+          "description": "Comece pela tarefa que não encontra entrada. Seu agente deve investigar o que falta antes de pedir mais esforço.",
+          "fields": [
+            {
+              "id": "situation",
+              "label": "Que tarefa ou área da vida está sem interesse ou movimento para você?",
+              "placeholder": "Ex.: abro o projeto, mas não sei por onde começar.",
+              "required": true
+            },
+            {
+              "id": "meaning",
+              "label": "Por que essa tarefa está na sua vida?",
+              "placeholder": "Você a escolheu, alguém pediu ou ainda não sabe por que importa?",
+              "required": false
+            },
+            {
+              "id": "energy",
+              "label": "Como está sua energia e de que descanso ou apoio você precisa?",
+              "placeholder": "Conte apenas o que achar relevante para escolher um próximo passo.",
+              "required": false
+            },
+            {
+              "id": "entry",
+              "label": "Existe alguma parte pequena que você já sabe fazer ou chegou a tentar?",
+              "placeholder": "Pode ser uma referência, uma experiência anterior ou nenhuma ainda.",
+              "required": false
+            }
+          ],
+          "guidance": [
+            "Busque memórias de interesses, objetivos e experiências relacionadas. Não use rótulos sobre minha personalidade como explicação automática para a falta de movimento.",
+            "Investigue se falta clareza, habilidade inicial, sentido, condições ou energia. Apatia no mapa é uma hipótese de baixo desafio e baixa habilidade, não um diagnóstico nem prova de preguiça.",
+            "Se a tarefa tem sentido e há energia, escolha um contato pequeno que possa dar uma resposta observável: um exemplo, um primeiro teste ou uma parte simples. Não proponha elevar a cobrança de saída.",
+            "Se o problema parece ser exaustão, falta de apoio ou uma tarefa sem sentido, considere recuperação, ajuda, esclarecimento ou questionar a prioridade antes de prescrever prática.",
+            "Depois do primeiro contato, pergunte o que mudou no interesse, na compreensão e na energia. Não imponha uma passagem por Tédio ou qualquer sequência obrigatória."
+          ]
+        }
+      ],
+      "sources": [
+        "gary-flow-good"
+      ]
+    },
+    {
+      "id": "tedio",
+      "label": "Tédio",
+      "title": "O próximo assunto parece vivo. Este já perdeu a graça.",
+      "intro": "Mas perder a novidade não é a mesma coisa que terminar de aprender.",
+      "blocks": [
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/tedio/01-proximo-assunto.png",
+          "alt": "O próximo assunto parece vivo. Este já perdeu a graça. O assunto atual parece menos empolgante enquanto um novo assunto chama pela novidade.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Eu reconheço em mim a síndrome da nova ideia. Combino áreas, enxergo conexões e logo aparece algo que parece incrível. Como aprendo rápido quando estou interessado, aprender também pode virar entretenimento. Há sempre mais uma descoberta capaz de ocupar o lugar da aplicação."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/tedio/02-aprender-entretenimento.png",
+          "alt": "Aprender também pode virar entretenimento. Descobrir e aprender em ciclos ocupa o lugar de aplicar, testar e chegar a um resultado.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Foi por isso que uma imagem sobre quatro loops me chamou atenção: melhorar sem publicar, começar sem finalizar, pensar sem agir e aprender sem aplicar. Ela estava em inglês. Ao compreendê-la, já quis traduzi-la, acrescentar elementos e facilitar a compreensão de outras pessoas. Até um aviso sobre esses loops virou uma nova criação."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/tedio/03-quatro-loops.png",
+          "alt": "Quatro loops que parecem avanço: melhorar sem publicar, começar sem finalizar, pensar sem agir e aprender sem aplicar.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Não acho que toda melhoria seja fuga. Esta página existe porque eu fui além da primeira imagem. Mas preciso me perguntar quando estou tornando uma ideia mais útil e quando estou apenas renovando o prazer de começar.",
+            "Talvez você diga que está entediado porque a tarefa ficou fácil. Pode ser. Também pode ser que tenha acabado a parte de descobrir e chegado a parte de repetir, testar ou terminar. A sensação de novidade foi embora antes de a habilidade se provar na prática."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/tedio/04-repetir-testar-terminar.png",
+          "alt": "A descoberta acabou. Agora é repetir, testar ou terminar. A novidade dá lugar à prática, que constrói habilidade.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Se você já domina o que faz, uma variação com sentido pode devolver desafio. Se ainda não consegue produzir o resultado sem ajuda, talvez o próximo passo seja aplicar o que aprendeu, não abrir outra pesquisa. E há tarefas que podem continuar simples. Você não precisa reinventá-las para merecer concluí-las."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/05-tedio.webp",
+          "alt": "Pessoa descansando perto de uma tarefa fácil e uma rota ciano que avança em direção a desafios mais adequados.",
+          "caption": "Próxima etapa possível: relaxamento. Ganhe fluidez sem transformar repetição em anestesia."
+        },
+        {
+          "type": "agent_prompt",
+          "state": "Tédio",
+          "title": "Converse com um agente que já conhece você",
+          "description": "Ajude seu agente a distinguir uma tarefa realmente dominada de uma tarefa que apenas perdeu a novidade.",
+          "fields": [
+            {
+              "id": "situation",
+              "label": "Que atividade ficou repetitiva, fácil ou sem graça?",
+              "placeholder": "Nomeie a tarefa e a parte em que você perde o interesse.",
+              "required": true
+            },
+            {
+              "id": "mastery",
+              "label": "O que você consegue entregar nela hoje, sem ajuda?",
+              "placeholder": "Dê um exemplo real ou diga o que ainda não testou.",
+              "required": false
+            },
+            {
+              "id": "novelty",
+              "label": "Que outra ideia está chamando sua atenção, e o que ficou pendente aqui?",
+              "placeholder": "Não precisa abandonar a ideia nova para contar.",
+              "required": false
+            },
+            {
+              "id": "direction",
+              "label": "Que resultado ainda importa e quanto tempo e energia você quer investir?",
+              "placeholder": "Também vale dizer que não quer aprofundar esta atividade.",
+              "required": false
+            }
+          ],
+          "guidance": [
+            "Consulte memórias de resultados, projetos interrompidos e interesses relacionados, sem concluir que toda novidade é fuga ou que todo tédio é domínio.",
+            "Compare habilidade demonstrada com a exigência atual. Diferencie repetição já dominada de conhecimento apenas consumido e de uma entrega que perdeu a novidade antes de ser concluída.",
+            "Se falta aplicação, proponha um pequeno resultado usando o que já aprendi antes de buscar mais conteúdo. Se a habilidade está comprovada, avalie comigo uma variação útil do desafio.",
+            "Se a atividade não merece mais investimento, aceite uma conclusão simples, manutenção ou mudança deliberada de prioridade. Não transforme uma tarefa banal em um projeto para eliminar o tédio.",
+            "Escolha uma ação com evidência de conclusão e um limite. Deixe outras ideias registradas apenas na conversa, se eu quiser, e aguarde o resultado antes de sugerir o passo seguinte."
+          ]
+        }
+      ],
+      "sources": [
+        "mihaly-flow"
+      ]
+    },
+    {
+      "id": "relaxamento",
+      "label": "Relaxamento",
+      "title": "Você consegue fazer. Precisa mesmo transformar isso em algo maior?",
+      "intro": "Nem toda folga é um problema esperando uma nova exigência.",
+      "blocks": [
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/relaxamento/01-transformar-em-algo-maior.png",
+          "alt": "Você consegue fazer. Precisa mesmo transformar isso em algo maior? Poder ampliar não significa precisar ampliar.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Quando vi a imagem do Modelo de Flow, entendi de cara. A referência já me comunicava a ideia. Eu poderia ter parado ali ou feito uma postagem. Mas não consegui: vi poluição visual, possibilidades de explicar melhor, um carrossel e, depois, este sistema."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/relaxamento/02-abriu-possibilidades.png",
+          "alt": "Entendi a ideia. Mas isso abriu mais possibilidades. Uma referência se torna clareza, carrossel, identidade visual e sistema web.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Isso conta algo sobre como eu trabalho. O ponto em que uma coisa já é compreensível para mim não costuma encerrar o processo. Ele abre a pergunta sobre tudo o que eu ainda poderia fazer por ela.",
+            "Eu gosto dessa disposição. É dela que nasce parte do cuidado com quem vai ler. Mas o fato de enxergar uma possibilidade não me obriga a executá-la. Ter capacidade para acrescentar mais não prova que aquele acréscimo precisa existir agora."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/relaxamento/03-possibilidade-nao-obriga.png",
+          "alt": "Ver uma possibilidade não me obriga a executá-la. A escolha entre expandir e manter simples depende de a possibilidade precisar existir agora.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez você também estranhe quando alguma coisa fica tranquila. Como se a ausência de dificuldade fosse sinal de que está desperdiçando potencial. Logo aparece uma meta maior, um novo detalhe, uma maneira de tornar exigente o que finalmente estava sob controle.",
+            "No mapa, relaxamento aparece quando a habilidade é alta em relação a um desafio baixo. Não precisa ser uma sala de espera para o próximo esforço. Se você quer crescer naquela atividade e tem energia, pode escolher uma dificuldade nova. Se quer desfrutar do que aprendeu ou recuperar fôlego, isso também é uma escolha. O desconforto não é a única prova de que algo tem valor."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/relaxamento/04-nao-sala-de-espera.png",
+          "alt": "Relaxamento não precisa ser sala de espera para o próximo esforço. É possível crescer, desfrutar ou recuperar; o desconforto não é a única prova de valor.",
+          "caption": ""
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/06-relaxamento.webp",
+          "alt": "Pessoa confortável diante de uma tarefa concluída e uma rota ciano em direção a uma bandeira em um bloco mais alto.",
+          "caption": "Próxima etapa possível: controle. Acrescente uma exigência que tenha sentido."
+        },
+        {
+          "type": "agent_prompt",
+          "state": "Relaxamento",
+          "title": "Converse com um agente que já conhece você",
+          "description": "Você não precisa sair do conforto só porque pode. Use a conversa para escolher entre desfrutar, recuperar energia e buscar um desafio com sentido.",
+          "fields": [
+            {
+              "id": "situation",
+              "label": "Em que atividade você sente facilidade e tranquilidade hoje?",
+              "placeholder": "Onde sua capacidade parece maior do que a exigência?",
+              "required": true
+            },
+            {
+              "id": "choice",
+              "label": "Você quer descansar, manter como está ou experimentar um desafio?",
+              "placeholder": "Também vale responder: ainda não sei.",
+              "required": false
+            },
+            {
+              "id": "reason",
+              "label": "O que está fazendo você considerar uma mudança?",
+              "placeholder": "Um desejo seu, um resultado importante ou pressão para fazer mais?",
+              "required": false
+            },
+            {
+              "id": "capacity",
+              "label": "Que tempo, energia e limites você quer preservar?",
+              "placeholder": "O que não vale sacrificar por uma dificuldade nova?",
+              "required": false
+            }
+          ],
+          "guidance": [
+            "Procure memórias da atividade, do aprendizado que me trouxe até aqui e de períodos de esforço que possam tornar a recuperação importante.",
+            "Confirme se a facilidade vem de habilidade consolidada e o que eu quero neste momento. Não trate tranquilidade como desperdício de potencial.",
+            "Se escolhi descansar ou manter, ajude a proteger essa escolha com uma condição concreta ou um limite para novas demandas. Esse pode ser o resultado suficiente da conversa.",
+            "Se quero crescer e tenho condições, proponha uma única dificuldade ligada a um resultado que me importe. Busque uma experiência de controle com desafio manejável, não uma escalada obrigatória até Flow.",
+            "Combine como perceber se a mudança trouxe envolvimento ou apenas pressão. Preserve a possibilidade de recuar, parar e não acrescentar nada."
+          ]
+        }
+      ],
+      "sources": [
+        "gary-flow-good"
+      ]
+    },
+    {
+      "id": "controle",
+      "label": "Controle",
+      "title": "Você sabe fazer tanta coisa que acaba pedindo tudo a si mesmo.",
+      "intro": "A possibilidade de assumir mais um papel não vem acompanhada de mais horas no dia.",
+      "blocks": [
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/controle/01-pedindo-tudo.png",
+          "alt": "Você sabe fazer tanta coisa que acaba pedindo tudo a si mesmo. Ser capaz de fazer muito não multiplica o dia.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Neste trabalho, estou sendo escritor, designer, desenvolvedor web, pesquisador e alguém preocupado com didática. Eu digo que nós somos o que for necessário ser porque reconheço essa adaptabilidade no meu jeito de construir.",
+            "Também reconheço a síntese: juntar áreas e fazer nascer algo da combinação. E a disposição para aprender de novo, mesmo depois de já ter sido iniciante tantas vezes. Essas capacidades me permitem olhar para um texto e imaginar o desenho, ou olhar para o desenho e imaginar um sistema."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/controle/02-texto-desenho-sistema.png",
+          "alt": "Texto, desenho, sistema. A habilidade de traduzir uma linguagem na outra cria síntese entre áreas.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Elas aparecem concretamente nesta página. Eu não queria apenas trocar cores. Queria uma sequência que fizesse sentido, imagens que ajudassem a entender e um formato que diminuísse a distância entre a ideia e quem vai usá-la.",
+            "Mas você percebe o que acontece quando cada habilidade disponível se transforma em mais uma obrigação? A entrega deixa de pedir só aquilo que precisa. Passa a pedir tudo o que você consegue imaginar."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/controle/03-habilidade-obrigacao.png",
+          "alt": "Quando cada habilidade vira mais uma obrigação. A entrega real não precisa pedir tudo o que você consegue imaginar.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez você domine a tarefa e sinta que ainda existe espaço para avançar. Esse é um bom ponto para escolher um desafio que importe. Escolher, não acumular. Uma exigência a mais pode aprofundar o trabalho. Várias ao mesmo tempo podem tirar a clareza que permitia fazê-lo bem."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/controle/04-escolher-nao-acumular.png",
+          "alt": "Escolher, não acumular. Um desafio aprofunda; vários desafios ao mesmo tempo tiram clareza.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Quero preservar o gosto de criar sem usar minha adaptabilidade como argumento para ignorar meus limites. Ser capaz de mudar de papel não significa precisar ocupar todos eles em cada projeto."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/07-controle.webp",
+          "alt": "Pessoa caminhando de um bloco estável para uma meta mais alta, acompanhada de uma rota ciano.",
+          "caption": "Próxima etapa: Flow. Eleve uma variável e mantenha o retorno perto."
+        },
+        {
+          "type": "agent_prompt",
+          "state": "Controle",
+          "title": "Converse com um agente que já conhece você",
+          "description": "Você já tem recursos. A questão é escolher qual exigência merece entrar, sem transformar todas as suas habilidades em obrigações.",
+          "fields": [
+            {
+              "id": "situation",
+              "label": "Que tarefa você já domina e sente que poderia aprofundar?",
+              "placeholder": "Escolha uma atividade concreta.",
+              "required": true
+            },
+            {
+              "id": "evidence",
+              "label": "Que resultado mostra esse domínio, e onde ainda existe dificuldade?",
+              "placeholder": "Conte um exemplo, um feedback ou um limite que já percebeu.",
+              "required": false
+            },
+            {
+              "id": "growth",
+              "label": "O que você gostaria de conseguir que ainda não consegue nessa tarefa?",
+              "placeholder": "Qual ganho teria sentido para você ou para quem recebe a entrega?",
+              "required": false
+            },
+            {
+              "id": "boundary",
+              "label": "Quanto pode investir e o que não aceita sacrificar?",
+              "placeholder": "Inclua prazo, energia, escopo e forma de receber feedback, se houver.",
+              "required": false
+            }
+          ],
+          "guidance": [
+            "Busque evidências de domínio em memórias e no relato atual. Separe ter muitas habilidades de conseguir sustentar todas simultaneamente neste projeto.",
+            "Confira qual crescimento tem sentido para mim. Não acrescente novos papéis, entregas ou metas apenas porque tenho capacidade para imaginá-los.",
+            "Escolha comigo uma única variável para elevar: dificuldade, autonomia, precisão ou outra pertinente. Não aumente tudo junto nem invente um prazo mais apertado.",
+            "Proponha um teste reversível, um resultado observável, uma fonte de feedback disponível e um limite de esforço. Mantenha o desafio próximo da habilidade demonstrada.",
+            "Depois do teste, avalie envolvimento, qualidade e custo. Se houve sobrecarga, reduza; se houve folga e eu quiser, discuta outro ajuste. Não prometa Flow como recompensa automática."
+          ]
+        }
+      ],
+      "sources": [
+        "diane-flow",
+        "gary-flow-good"
+      ]
+    },
+    {
+      "id": "ajuste",
+      "label": "Ajuste contínuo",
+      "title": "A sua régua melhora o trabalho. E quem cuida de você enquanto isso?",
+      "intro": "O mesmo critério pode ser um elixir e um veneno.",
+      "blocks": [
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Eu não tenho uma régua muito clara para terminar. Geralmente construo uma régua própria, muito alta. Depois de várias iterações, olho a escrita, a compreensão lógica, os desenhos, os fluxogramas. Às vezes, construo até um sistema para guiar a jornada de ensino.",
+            "Reconheço que cheguei quando leio e sinto: \"É exatamente isso que eu penso, sinto ou imagino\". Se o resultado mexe comigo, me faz pensar, questionar e querer melhorar, aparece a sensação de terminei."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ajuste/01-reconheco-no-entreguei.png",
+          "alt": "Quando eu me reconheço no que entreguei, aparece a sensação de cheguei. Terminar também pode ser reconhecer-se no resultado.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "É um elixir porque minha exigência ajuda a elevar o nível do que produzo. E é um veneno porque alcançar esse ponto pode ser desgastante e exaustivo. Não quero fingir que encontrei uma fórmula capaz de eliminar essa contradição."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ajuste/02-elixir-e-veneno.png",
+          "alt": "A mesma régua pode ser elixir e veneno. O critério eleva o trabalho, mas pode desgastar quem trabalha.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez a sua régua tenha outro nome. Você quer se reconhecer no que entrega. Quer sentir orgulho, fazer algo útil, não colocar no mundo uma versão que pareça estranha a você. O problema começa quando esse cuidado deixa de ter um limite que você consegue enxergar.",
+            "Depois de percorrer o mapa, não quero trocar uma cobrança por outra: agora, além de entregar, ter de entrar em Flow. Quero olhar para o trabalho em movimento. O que ficou mais difícil? O que já aprendi? Ainda estou melhorando a compreensão de alguém ou só acrescentando outra possibilidade?"
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ajuste/03-flow-nao-obrigacao.png",
+          "alt": "Flow não pode virar mais uma obrigação. O mapa serve para orientar, não para cobrar outro desempenho.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Os dois caminhos do desenho não precisam virar uma escada obrigatória. Posso construir habilidade quando o desafio está grande, escolher um desafio significativo quando sobra capacidade, ou reduzir o que estou pedindo de mim. O ajuste precisa conversar com o momento, não apenas com o meu potencial."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/ajuste/04-ajuste-e-momento.png",
+          "alt": "O ajuste precisa conversar com o momento. Tempo e energia disponíveis ajudam a decidir entre construir habilidade, aumentar o desafio ou reduzir a exigência.",
+          "caption": ""
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Para mim, a pergunta continua sendo como fazer uma ideia chegar de verdade a outra pessoa. Para você, talvez exista outra. O próximo passo não precisa resolver toda a distância entre o que você imagina e o que consegue entregar. Precisa ser um passo que você reconheça como seu, com um ponto em que possa dizer: por agora, foi suficiente."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "flow/assets/08-ajuste.webp",
+          "alt": "Dois percursos de pessoas em direção ao mesmo ponto de Flow, um pelo aumento de habilidade e outro pelo aumento de desafio.",
+          "caption": "Regra-mestre: ajuste a tarefa; o estado é uma consequência possível."
+        },
+        {
+          "type": "agent_prompt",
+          "state": "Ajuste contínuo",
+          "title": "Converse com um agente que já conhece você",
+          "description": "Traga um projeto em andamento. Seu agente vai ajudar a comparar o que está acontecendo com a régua que você está usando para continuar ou terminar.",
+          "fields": [
+            {
+              "id": "situation",
+              "label": "Que projeto ou tarefa você quer reavaliar agora?",
+              "placeholder": "Em que ponto ele está e o que você está tentando entregar?",
+              "required": true
+            },
+            {
+              "id": "change",
+              "label": "O que mudou desde que começou, e qual repetição tem prendido você?",
+              "placeholder": "Ex.: escopo cresceu, ficou fácil, só pesquiso, reviso sem terminar.",
+              "required": false
+            },
+            {
+              "id": "enough",
+              "label": "O que faria você reconhecer que, por agora, está suficiente?",
+              "placeholder": "Inclua o resultado para quem recebe e o que precisa reconhecer como seu.",
+              "required": false
+            },
+            {
+              "id": "reality",
+              "label": "Quais prazos, recursos e limites de energia existem hoje?",
+              "placeholder": "Diferencie compromisso real de uma expectativa sua.",
+              "required": false
+            }
+          ],
+          "guidance": [
+            "Este é um momento de síntese, não um oitavo estado psicológico. Consulte memórias do projeto para comparar intenção inicial, mudanças de escopo, tentativas e resultados com meu relato atual.",
+            "Ajude a distinguir exigência, habilidade disponível, energia e sentido. Identifique como hipótese o estado mais útil para compreender a tarefa; não me encaixe à força nem imponha uma sequência.",
+            "Observe, com exemplos e sem julgamento, se melhorar, começar novas ideias, pensar ou aprender está ajudando a entrega ou substituindo a execução. Não chame esses padrões de doenças.",
+            "Se o desafio supera a habilidade, considere prática específica, apoio ou redução. Se há capacidade e falta desafio significativo, considere uma variação. Se falta energia ou a entrega já cumpre a finalidade, considere parar.",
+            "Ajude-me a traduzir minha régua pessoal em um sinal observável de suficiente, sem apagar minha autoria. Separe o que ainda muda a compreensão ou utilidade do resultado do que pode ficar para outra versão.",
+            "Escolha UMA decisão ou ação para agora e combine um momento ou condição para reavaliar. Não abra um novo sistema de produtividade, plano extenso ou projeto sem eu pedir."
+          ]
+        }
+      ],
+      "sources": [
+        "diane-flow",
+        "gary-flow-good",
+        "mihaly-flow"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "diane-flow",
+      "label": "TEDxNaperville · Losing yourself in flow state",
+      "url": "https://www.youtube.com/watch?v=ookkfdGMHeM",
+      "note": "Fonte TEDx sobre reconhecer experiências de flow e desenhar condições para elas. Comentários públicos acessíveis foram usados apenas como pesquisa editorial privada, não como depoimentos."
+    },
+    {
+      "id": "gary-flow-good",
+      "label": "TEDxUniversity of Northern Iowa · Flow for Good",
+      "url": "https://www.youtube.com/watch?v=pFd2_m1WJb8",
+      "note": "Fonte TEDx que amplia flow de desempenho individual para atenção, sentido e contribuição."
+    },
+    {
+      "id": "mihaly-flow",
+      "label": "TED · Flow, the secret to happiness",
+      "url": "https://www.youtube.com/watch?v=fXIeFJCqsPs",
+      "note": "Apresentação de Mihaly Csikszentmihalyi usada como referência fundacional. A leitura não trata flow como garantia de felicidade."
+    }
+  ]
+}

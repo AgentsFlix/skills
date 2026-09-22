@@ -107,6 +107,10 @@
     const choices = new Map(Object.entries(saved?.choices || {}).filter(([, value]) => Number.isInteger(value)));
     const checked = new Set(Array.isArray(saved?.checked) ? saved.checked.filter(value => typeof value === 'string') : []);
     let completed = saved?.completed === true;
+    const agentPrompts = window.AgentFlixReaderPrompt?.bind(root, key => {
+      const [chapter, block] = key.split('-').map(Number);
+      return data.chapters[chapter].blocks[block];
+    }, signal);
     function saveProgress() {
       completed = completed || index === data.chapters.length - 1;
       try {
@@ -140,6 +144,7 @@ case 'flow':body=`<div class="flow">${b.items.map((i,n)=>`<button data-choice="$
 case 'cards':body=`<div class="cards">${b.items.map(i=>`<div class="smallcard"><h4>${esc(i.title)}</h4><p>${esc(i.text)}</p></div>`).join('')}</div>`;break;
 case 'steps':body=`<ol class="steps">${b.items.map(i=>`<li><h4>${esc(i.title)}</h4><p>${esc(i.text)}</p></li>`).join('')}</ol>`;break;
 case 'prompt':body=`<div class="prompt"><p>${esc(b.text)}</p><button data-copy="${k}">Copiar primeiro pedido</button></div><p class="caption">${esc(b.note)}</p>`;break;
+case 'agent_prompt':body=agentPrompts.render(b, index+'-'+k);break;
 case 'checklist':body=`<div class="checklist">${b.items.map((i,n)=>`<label><input type="checkbox" data-check="${k}-${n}" ${checked.has(k+'-'+n)?'checked':''}><span>${esc(i)}</span></label>`).join('')}</div>`;break;
 case 'sources':body=`<p>${esc(b.text)}</p>${sourceList()}`;break;
 default:throw Error('Bloco desconhecido: '+b.type)}return `<section class="block ${['callout','narrative','case_study','equation_bridge'].includes(b.type)?esc(b.type):''}">${b.eyebrow?`<p class="eyebrow">${esc(b.eyebrow)}</p>`:''}${title}${body}</section>`;}
