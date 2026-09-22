@@ -65,6 +65,24 @@ class JevPlaygroundTests(unittest.TestCase):
             self.assertIn(feature, page)
         self.assertIn("DiceBear Avataaars", page)
 
+    def test_responsibility_flow_uses_three_accessible_traced_illustrations(self):
+        page = (LAB / "index.html").read_text(encoding="utf-8")
+        assets = LAB / "assets" / "responsabilidades"
+        expected = (
+            "01-codigo-oferece.svg",
+            "02-jev-distribui.svg",
+            "03-produto-escolhe.svg",
+        )
+        self.assertEqual(page.count('class="flow-illustration"'), 3)
+        for name in expected:
+            self.assertIn(f'assets/responsabilidades/{name}', page)
+            content = (assets / name).read_text(encoding="utf-8")
+            self.assertIn("<path", content)
+            self.assertNotIn("<image", content)
+            self.assertNotIn("<foreignObject", content)
+            self.assertNotIn("<script", content)
+        self.assertIn('aria-label="Confidence é diferente de acerto real"', page)
+
     def test_proxy_uses_the_fixed_jev_decisions_contract_without_exposing_the_key(self):
         program = r"""
           import { POST, JEV_MODEL, OPENROUTER_DECISIONS_ENDPOINT } from './site/api/jev.js';

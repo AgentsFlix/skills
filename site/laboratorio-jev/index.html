@@ -220,11 +220,31 @@
       <p class="eyebrow">03 / SEPARE AS RESPONSABILIDADES</p>
       <h2 id="responsibilities-title">O modelo decide. A política é sua.</h2>
       <div class="responsibility-flow">
-        <article><span class="flow-number">1</span><h3>Seu código oferece</h3><p>Estado, pergunta tipada e critérios. Ele delimita o que pode ser respondido.</p><p id="flow-input" class="live-fact"></p></article>
-        <article><span class="flow-number">2</span><h3>O JEV distribui</h3><p>Probabilidades entre as respostas permitidas. Choice e score também retornam confidence.</p><p id="flow-model" class="live-fact">Aguardando uma consulta real.</p></article>
-        <article><span class="flow-number">3</span><h3>Seu produto escolhe</h3><p>Compara o sinal aos limiares e encaminha: aceitar, revisar ou escalar.</p><p id="flow-policy" class="live-fact">A ação não vem pronta do modelo.</p></article>
+        <article>
+          <header class="flow-heading"><span class="flow-number">1</span><div><h3>Seu código oferece</h3><p>Estado, pergunta tipada e critérios. Ele delimita o que pode ser respondido.</p></div></header>
+          <img class="flow-illustration" src="assets/responsabilidades/01-codigo-oferece.svg" width="1448" height="1086" loading="lazy" alt="Pessoa organiza quatro opções ao lado de uma ficha de contexto.">
+          <p id="flow-input" class="live-fact"></p>
+        </article>
+        <article>
+          <header class="flow-heading"><span class="flow-number">2</span><div><h3>O JEV distribui</h3><p>Probabilidades entre as respostas permitidas. Choice e score também retornam confidence.</p></div></header>
+          <img class="flow-illustration" src="assets/responsabilidades/02-jev-distribui.svg" width="1448" height="1086" loading="lazy" alt="Um classificador distribui uma entrada entre quatro barras de probabilidade.">
+          <p id="flow-model" class="live-fact">Aguardando uma consulta real.</p>
+        </article>
+        <article>
+          <header class="flow-heading"><span class="flow-number">3</span><div><h3>Seu produto escolhe</h3><p>Compara o sinal aos limiares e encaminha: aceitar, revisar ou escalar.</p></div></header>
+          <img class="flow-illustration" src="assets/responsabilidades/03-produto-escolhe.svg" width="1448" height="1086" loading="lazy" alt="Um sinal se divide em aceitar, revisar e encaminhar para uma pessoa.">
+          <p id="flow-policy" class="live-fact">A ação não vem pronta do modelo.</p>
+        </article>
       </div>
-      <aside class="confidence-note"><h3>90% de confidence não significa 90% de acerto.</h3><p>Confidence resume a distribuição do modelo. Não é o mesmo que a probabilidade da opção vencedora e não prova que a resposta está certa. Antes de automatizar algo real, teste a política com exemplos revisados por pessoas, incluindo erros e casos ambíguos.</p><p>Em <code>noul</code>, o retorno é a probabilidade de “sim”, sem um campo confidence. Neste laboratório, usamos separadamente a probabilidade da resposta mais provável como sinal de política. Ela não é uma confidence inventada.</p></aside>
+      <aside class="confidence-note">
+        <div class="confidence-callout" aria-hidden="true"><strong>90%</strong><span>confidence</span></div>
+        <div class="confidence-copy"><h3>90% de confidence não significa 90% de acerto.</h3><p>Confidence resume a distribuição do modelo. Não é o mesmo que a probabilidade da opção vencedora e não prova que a resposta está certa. Antes de automatizar algo real, teste a política com exemplos revisados por pessoas, incluindo erros e casos ambíguos.</p><p>Em <code>noul</code>, o retorno é a probabilidade de “sim”, sem um campo confidence. Neste laboratório, usamos separadamente a probabilidade da resposta mais provável como sinal de política. Ela não é uma confidence inventada.</p></div>
+        <div class="confidence-contrast" aria-label="Confidence é diferente de acerto real">
+          <div><strong>Confidence</strong><span>É um sinal do modelo.</span></div>
+          <b aria-hidden="true">≠</b>
+          <div><strong>Acerto real</strong><span>Depende do caso, dos dados e da avaliação.</span></div>
+        </div>
+      </aside>
       <details class="technical-details payload-details"><summary>Ver os dados que os campos enviam</summary><p>Somente estado e perguntas. O limiar fica no produto. As cores distinguem nomes dos campos e valores preenchidos.</p><pre id="payload-preview" aria-label="Prévia somente leitura da requisição"></pre></details>
     </section>
 
