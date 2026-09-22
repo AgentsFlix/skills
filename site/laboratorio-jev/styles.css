@@ -1,6 +1,7 @@
 @import url('/design-system/tokens.css');
 
 :root { color-scheme: dark; }
+[hidden] { display: none !important; }
 
 * { box-sizing: border-box; }
 html { background: var(--af-bg); scroll-behavior: smooth; }
@@ -263,6 +264,52 @@ pre { max-height: 420px; overflow: auto; white-space: pre-wrap; overflow-wrap: a
 .sources { margin-top: var(--af-space-16); padding-top: var(--af-space-6); border-top: 1px solid var(--af-line); color: var(--af-muted); font-size: var(--af-text-sm); }
 .sources h2 { font-size: var(--af-text-lg); }
 .sources a { display: inline-block; padding-block: var(--af-space-3); text-underline-offset: 5px; }
+.editor-toolbar { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: var(--af-space-4); flex-wrap: wrap; }
+.editor-toolbar p { margin-bottom: 0; }
+#json-mode { grid-column: 1 / -1; min-width: 0; }
+.json-editor { position: relative; height: 620px; max-height: 70vh; overflow: hidden; border: 1px solid var(--af-line); border-radius: var(--af-radius-field); background: var(--af-bg); }
+.json-editor pre, .json-editor textarea { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; margin: 0; padding: var(--af-space-4); border: 0; border-radius: var(--af-radius-field); font: var(--af-text-sm)/var(--af-line-height) var(--af-mono); white-space: pre; overflow: auto; tab-size: 2; }
+.json-editor pre { pointer-events: none; color: var(--af-muted); }
+.json-editor textarea { color: transparent; caret-color: var(--af-text); background: transparent; resize: none; }
+.json-editor textarea::selection { background: color-mix(in srgb, var(--af-brand) 38%, transparent); color: var(--af-text); }
+.json-editor textarea:focus-visible { outline-offset: calc(-1 * var(--af-focus-width)); }
+.state-steps { padding-left: var(--af-space-5); color: var(--af-muted); }
+.state-steps li { padding-bottom: var(--af-space-3); }
+.state-steps strong { color: var(--af-text); }
+.comparison-case { margin: var(--af-space-5) 0; padding: var(--af-space-6); background: var(--af-surface); border-radius: var(--af-radius-card); }
+.comparison-case h3 { margin-top: 0; }
+.comparison-case blockquote { margin: var(--af-space-5) 0; font-size: var(--af-text-lg); }
+.source-link { display: inline-block; color: var(--af-link); font-size: var(--af-text-sm); padding: var(--af-space-4) 0; overflow-wrap: anywhere; }
+.rule-toggle { display: flex; align-items: center; gap: var(--af-space-2); font-size: var(--af-text-sm); }
+.rule-toggle input { width: var(--af-target); min-height: var(--af-target); accent-color: var(--af-brand); }
+.corpus-note { padding: var(--af-space-4); border-radius: var(--af-radius-field); background: var(--af-surface); color: var(--af-muted); }
+.batch-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--af-space-3); }
+.batch-toolbar .run-button { width: auto; margin: 0; }
+#batch-progress { width: 100%; height: var(--af-space-3); accent-color: var(--af-brand); }
+.batch-layout { grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr); gap: var(--af-space-5); align-items: start; margin-top: var(--af-space-8); }
+.batch-column { min-width: 0; padding: var(--af-space-5); background: var(--af-panel); border-radius: var(--af-radius-card); }
+.batch-column > h3 { margin-top: 0; font-size: var(--af-text-lg); }
+.batch-column > label { display: block; margin: var(--af-space-3) 0 var(--af-space-2); font-size: var(--af-text-sm); }
+.batch-column input:not([type="checkbox"]), .batch-column textarea, .batch-column select { width: 100%; min-width: 0; min-height: var(--af-target); padding: var(--af-space-3); color: var(--af-text); background: var(--af-bg); border: 1px solid var(--af-line); border-radius: var(--af-radius-field); }
+.comment-list, .batch-results { display: grid; gap: var(--af-space-2); max-height: 590px; overflow-y: auto; margin-top: var(--af-space-4); padding: var(--af-space-1); }
+.comment-card, .result-row { display: grid; gap: var(--af-space-2); text-align: left; padding: var(--af-space-4); border: 0; border-radius: var(--af-radius-field); background: var(--af-surface); cursor: pointer; overflow-wrap: anywhere; min-height: var(--af-target); }
+.comment-card strong, .result-row strong { font-size: var(--af-text-sm); }
+.comment-card small, .result-row small { color: var(--af-muted); }
+.comment-excerpt { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--af-text-sm); color: var(--af-muted); }
+.comment-card[aria-pressed="true"], .result-row[aria-pressed="true"] { background: color-mix(in srgb, var(--af-brand) 17%, var(--af-surface)); }
+.list-pagination { display: flex; align-items: center; justify-content: space-between; font-size: var(--af-text-sm); }
+.batch-column .youtube-question { border: 0; padding: 0; }
+.batch-column .youtube-question h3 { font-size: var(--af-text-sm); }
+.batch-column .youtube-question summary { padding: var(--af-space-3) 0; cursor: pointer; min-height: var(--af-target); }
+.batch-column .youtube-question summary span { display: block; color: var(--af-muted); font-size: var(--af-text-sm); margin-top: var(--af-space-2); }
+.batch-column .youtube-question > label { display: grid; gap: var(--af-space-2); margin-block: var(--af-space-4); }
+.batch-column .criteria-list { gap: var(--af-space-2); }
+.batch-policy-controls { display: grid; gap: var(--af-space-2); margin-top: var(--af-space-6); }
+.batch-policy-controls label { font-size: var(--af-text-sm); }
+.batch-footer { display: flex; align-items: start; gap: var(--af-space-6); margin-top: var(--af-space-5); }
+.batch-footer p { flex: 1; margin: 0; }
+@media (max-width: 1000px) { .batch-layout { grid-template-columns: minmax(0,1fr); } .comment-list, .batch-results { max-height: 420px; } }
+@media (max-width: 480px) { .batch-toolbar > button { width: 100%; } .batch-column { padding: var(--af-space-4); } .batch-footer { flex-direction: column; } .editor-toolbar > button { width: 100%; } }
 @media (max-width: 1180px) {
   .playground { grid-template-columns: minmax(0, 1fr); }
   .character-panel, .decision-panel { grid-column: auto; grid-row: auto; }

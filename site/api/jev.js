@@ -142,16 +142,16 @@ export async function POST(request) {
       signal: AbortSignal.timeout(20_000),
     });
   } catch {
-    return json({ error: "O Jev não respondeu a tempo. Tente novamente." }, 504);
+    return json({ error: "O Jev não respondeu a tempo. Tente novamente.", retryable: true }, 504);
   }
 
   let result;
+  if (!upstream.ok) return json({ error: `O Jev recusou esta requisição (${upstream.status}).`, retryable: [408, 429].includes(upstream.status) || upstream.status >= 500 }, upstream.status === 429 ? 429 : 502);
   try {
     result = await upstream.json();
   } catch {
-    return json({ error: "O Jev respondeu em um formato inesperado." }, 502);
+    return json({ error: "O Jev respondeu em um formato inesperado.", retryable: false }, 502);
   }
-  if (!upstream.ok) return json({ error: `O Jev recusou esta requisição (${upstream.status}).` }, upstream.status === 429 ? 429 : 502);
   if (!plainObject(result) || !plainObject(result.answers)) return json({ error: "O Jev respondeu sem decisões tipadas." }, 502);
   const decisions = validateDecisions(result.answers, validated.value.questions);
   if (decisions.error) return json({ error: decisions.error }, 502);
