@@ -49,11 +49,12 @@ vm.runInNewContext(fs.readFileSync('site/human-reader.js','utf8'),context);
 const reader=context.window.AgentFlixReader;
 const original={name:'habitos-que-cabem',chat_cmd:'COMANDO OFICIAL',reading_only:false};
 const all=await reader.catalogSkills([{name:'copy-metodo-hormozi'},original]);
-assert.equal(all.length,2);assert.equal(all[1].chat_cmd,'COMANDO OFICIAL');assert.equal(all[1].reading_only,false);
-assert(reader.supports('habitos-que-cabem'));assert(reader.supports('copy-metodo-hormozi'));
+assert.equal(all.length,3);assert.equal(all[1].chat_cmd,'COMANDO OFICIAL');assert.equal(all[1].reading_only,false);
+assert(reader.supports('modelo-de-flow'));assert(reader.supports('habitos-que-cabem'));assert(reader.supports('copy-metodo-hormozi'));
 assert(!reader.supports('constructor'));
 const fallback=await reader.catalogSkills([{name:'copy-metodo-hormozi'}]);
-assert.equal(fallback.length,2);assert(fallback[1].reading_only);assert(fallback[1].chat_cmd);
+assert.equal(fallback.length,3);assert(fallback.slice(1).every(skill=>skill.reading_only));
+assert(fallback.some(skill=>skill.name==='modelo-de-flow'));assert(fallback.some(skill=>skill.name==='habitos-que-cabem'&&skill.chat_cmd));
 })().catch(e=>{console.error(e);process.exitCode=1});
 '''
         subprocess.run(['node','-e',script],cwd=ROOT,check=True,capture_output=True,text=True)

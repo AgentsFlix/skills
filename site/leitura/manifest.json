@@ -2,6 +2,54 @@
   "schemaVersion": 1,
   "readings": [
     {
+      "slug": "modelo-de-flow",
+      "reader": "leitura/modelo-de-flow.json",
+      "cover": "/leitura/flow/assets/capa-flow.webp",
+      "share": {
+        "title": "Precisa ser difícil e exigir muita habilidade, senão você não faz, leia:",
+        "description": "Uma leitura visual para perceber o estado atual e ajustar desafio ou habilidade no próximo passo.",
+        "image": "/leitura/assets/previews/flow-v1.jpg",
+        "alt": "Flow: equilíbrio entre desafio e habilidade.",
+        "preview_image": "/leitura/assets/previews/flow-v1.jpg",
+        "revision": 1
+      },
+      "fallback": {
+        "name": "modelo-de-flow",
+        "title": "FLOW",
+        "title_netflix": "MODELO DE FLOW",
+        "subtitle": "Equilíbrio entre desafio e habilidade",
+        "row": "base",
+        "description": "Uma leitura visual para perceber o estado atual e ajustar desafio ou habilidade no próximo passo.",
+        "reading_only": true,
+        "publication_status": "Leitura privada em preparação",
+        "painel": {
+          "tamanho": "Uma leitura visual em nove partes",
+          "requer": "Uma tarefa real para observar",
+          "ano": "2026",
+          "como_usar": "Leia o mapa, identifique o estado que mais descreve a tarefa e escolha o próximo ajuste possível.",
+          "esta_skill_e": [
+            "Observar o estado atual",
+            "Ajustar habilidade ou desafio",
+            "Reavaliar o próximo passo"
+          ],
+          "elenco": [
+            "Ansiedade",
+            "Ativação",
+            "Flow",
+            "Apatia",
+            "Tédio",
+            "Relaxamento",
+            "Controle"
+          ],
+          "generos": [
+            "Aprendizagem",
+            "Leitura"
+          ],
+          "sinopse": "Flow não é um estado fixo. É o ajuste contínuo entre o que a tarefa pede e o que você já consegue sustentar."
+        }
+      }
+    },
+    {
       "slug": "copy-metodo-hormozi",
       "reader": "leitura/copy-metodo-hormozi.json",
       "share": {
