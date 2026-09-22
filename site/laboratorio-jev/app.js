@@ -1,3 +1,7 @@
+import { validateEditorPayload, highlightJson } from './json-mode.js';
+import { mountTriage } from './triage.js';
+import { mountComparison } from './comparison.js';
+
 export const characters = {
     hermione: {
       personagem: {
@@ -149,7 +153,7 @@ export function answerLabel(answer) {
 }
 const toDraft = q => ({
   type: q.type, instructions: q.instructions,
-  rows: q.type === 'score' ? q.criteria.map((description, i) => ({ name: String(i), description })) : Object.entries(q.criteria).map(([name, description]) => ({ name, description }))
+  rows: q.type === 'score' ? q.criteria.map((description, i) => ({ name: String(i), description })) : (q.type === 'noul' ? ['true', 'false'].map(name => [name, q.criteria[name]]) : Object.entries(q.criteria)).map(([name, description]) => ({ name, description }))
 });
 
 function mountPlayground() {
@@ -163,6 +167,7 @@ function mountPlayground() {
   const percent = value => new Intl.NumberFormat('pt-BR', { style: 'percent', maximumFractionDigits: 1 }).format(value);
   const states = { hat: { revision: 0, busy: false, controller: null, last: null }, youtube: { revision: 0, busy: false, controller: null, last: null } };
   let selectedCharacter = 'hermione', currentType = 'choice', runCount = 0;
+  let jsonMode = false, jsonEditing = false, jsonError = '', lastValidJson = '', triage = null;
   const history = [];
   const drafts = Object.fromEntries(Object.entries(questionPresets).map(([id, q]) => [id, toDraft(q)]));
   const form = $('#questions-form'), stateForm = $('#state-form'), criteriaList = $('#criteria-list');
@@ -210,6 +215,12 @@ function mountPlayground() {
   const collectQuestions = () => ({ decisao: buildQuestion(currentType, $('#question-instructions').value, readRows(criteriaList)) });
   function fillState(state) {
     $('#character-name').value = state.personagem.nome;
+    const list = $('#characteristics-list'); list.replaceChildren();
+    state.personagem.caracteristicas.forEach((value, index) => {
+      const label = make('label'), input = make('textarea', 'characteristic-input');
+      input.rows = 2; input.required = true; input.setAttribute('aria-label', 'Característica ' + (index + 1));
+      label.append(make('span', '', String(index + 1)), input); list.append(label);
+    });
     document.querySelectorAll('.characteristic-input').forEach((input, index) => { input.value = state.personagem.caracteristicas[index]; input.maxLength = 400; });
     $('#decisive-action').value = state.personagem.acao_decisiva;
   }
@@ -233,10 +244,16 @@ function mountPlayground() {
     try { questions = collectQuestions(); } catch (e) { error ||= e.message; }
     $('#questions-validity').textContent = questions ? 'Campos prontos' : 'Revise os critérios';
     $('#questions-validity').classList.toggle('is-invalid', !questions);
+    error ||= jsonError;
     $('#run-request').disabled = Boolean(error) || states.hat.busy;
     $('#run-request').querySelector('span').textContent = states.hat.busy ? 'Consultando o JEV…' : 'Executar com JEV';
     $('#flow-input').textContent = questions ? currentType + ' · ' + Object.keys(questions.decisao.criteria).length + ' critérios · ' + state.personagem.nome : 'Há campos para revisar antes de enviar.';
     renderJson($('#payload-preview'), { state, questions: questions || 'Preencha os critérios para ver a requisição.' });
+    if (!jsonEditing && !jsonError) {
+      $('#request-json').value = JSON.stringify({state, questions: questions || {decisao:{type:currentType,instructions:$('#question-instructions').value,criteria:{}}}}, null, 2);
+      highlightJson($('#json-highlight'), $('#request-json').value);
+      if (!error) lastValidJson = $('#request-json').value;
+    }
     return { error, state, questions };
   }
   function empty(container, title, message) { const box = make('div', 'result-empty'); box.append(make('h3', '', title), make('p', '', message)); container.replaceChildren(box); }
@@ -292,6 +309,7 @@ function mountPlayground() {
     const route = Object.hasOwn(routes, answer?.choice) ? routes[answer.choice] : 'Conferir a categoria e definir o encaminhamento.';
     const yt = applyPolicy(answer, review, accept);
     renderPolicy($('#youtube-policy'), answer, yt.action === 'Aceitar' ? 'Fila sugerida: ' + route : 'Não encaminhar automaticamente. Conferir texto e contexto.');
+    triage?.refresh();
   }
   async function run(which, state, questions) {
     const slot = states[which], revision = slot.revision, controller = new AbortController();
@@ -364,6 +382,7 @@ function mountPlayground() {
     fillState(state); invalidate('hat');
   });
   $('#reset-state').addEventListener('click', () => { fillState(characters[selectedCharacter]); invalidate('hat'); });
+  $('#blank-state').addEventListener('click', () => { fillState({personagem:{nome:'',caracteristicas:['','','',''],acao_decisiva:''}}); invalidate('hat'); $('#character-name').focus(); });
   $('#experiment-ambiguous').addEventListener('click', () => { fillState(ambiguousState); invalidate('hat'); });
   $('#run-request').addEventListener('click', () => { const values = validateHat(); if (!values.error) run('hat', values.state, values.questions); });
   for (const id of ['review-threshold', 'accept-threshold']) $('#' + id).addEventListener('input', () => {
@@ -372,16 +391,56 @@ function mountPlayground() {
     updatePolicies();
   });
 
+  $('#toggle-json').addEventListener('click', () => {
+    if (jsonMode && jsonError) { $('#json-status').textContent = 'Corrija o JSON ou restaure a última versão válida antes de voltar aos campos.'; $('#request-json').focus(); return; }
+    jsonMode = !jsonMode;
+    $('#json-mode').hidden = !jsonMode;
+    document.querySelectorAll('.editor-column > .form-panel:not(#json-mode)').forEach(panel => { panel.hidden = jsonMode; });
+    $('#toggle-json').setAttribute('aria-expanded', String(jsonMode));
+    $('#toggle-json').textContent = jsonMode ? 'Mostrar campos' : 'Mostrar modo JSON';
+    if (jsonMode) $('#request-json').focus();
+  });
+  function editJson() {
+    const text = $('#request-json').value; jsonEditing = true;
+    highlightJson($('#json-highlight'), text);
+    try {
+      const payload = validateEditorPayload(JSON.parse(text), buildQuestion);
+      jsonError = ''; fillState(payload.state); currentType = payload.questions.decisao.type;
+      drafts[currentType] = toDraft(payload.questions.decisao); $('#question-type').value = currentType; showQuestion();
+      lastValidJson = text; $('#json-status').textContent = 'JSON válido. Os campos foram sincronizados; execute para consultar o JEV.';
+    } catch (error) {
+      jsonError = error instanceof SyntaxError ? 'JSON incompleto: confira aspas, vírgulas e chaves. A última ficha válida foi preservada.' : error.message;
+      $('#json-status').textContent = jsonError;
+    }
+    $('#request-json').setAttribute('aria-invalid', String(Boolean(jsonError)));
+    $('#json-status').classList.toggle('is-error', Boolean(jsonError));
+    invalidate('hat'); jsonEditing = false;
+  }
+  $('#request-json').addEventListener('input', editJson);
+  $('#request-json').addEventListener('scroll', () => { $('#json-highlight').scrollTop = $('#request-json').scrollTop; $('#json-highlight').scrollLeft = $('#request-json').scrollLeft; });
+  $('#restore-json').addEventListener('click', () => { $('#request-json').value = lastValidJson; editJson(); $('#request-json').focus(); });
+
   const youtubeEditors = {};
   for (const [id, question] of Object.entries(youtubeDefaults)) {
-    const group = make('section', 'youtube-question');
-    group.append(make('h3', '', ({ assunto: 'Assunto predominante · choice', pede_explicacao: 'Pedido de explicação · noul', expressa_receio: 'Receio expresso · noul' }[id])));
+    const group = make('details', 'youtube-question');
+    const summary = make('summary', '', ({ assunto: 'Assunto predominante · choice', pede_explicacao: 'Pedido de explicação · noul', expressa_receio: 'Receio expresso · noul' }[id]));
+    summary.append(make('span', '', id === 'assunto' ? 'Uma categoria entre as opções que você definir. Abra para editar.' : id === 'pede_explicacao' ? 'Probabilidade de pedir ajuda, mesmo sem “?”.' : 'Probabilidade de expressar receio no texto. Não inferimos emoções ocultas.'));
+    group.append(summary);
     const label = make('label', '', 'Instrução'), input = make('textarea');
     input.value = question.instructions; input.rows = 3; input.required = true; input.maxLength = 2000; label.append(input); group.append(label);
     const criteria = make('div', 'criteria-list'); renderCriteria(criteria, toDraft(question), 'youtube-' + id); group.append(criteria);
     $('#youtube-questions').append(group); youtubeEditors[id] = { input, criteria, type: question.type };
   }
   function youtubeQuestions() { return Object.fromEntries(Object.entries(youtubeEditors).map(([id, editor]) => [id, buildQuestion(editor.type, editor.input.value, readRows(editor.criteria))])); }
+  function setYoutubeQuestions(values = youtubeDefaults) {
+    if (!values || Object.keys(values).length !== Object.keys(youtubeDefaults).length) throw Error('Rubrica incompatível.');
+    for (const [id, base] of Object.entries(youtubeDefaults)) {
+      const q = values[id];
+      if (!q || q.type !== base.type || typeof q.instructions !== 'string' || !q.criteria || Array.isArray(q.criteria) || Object.values(q.criteria).some(value => typeof value !== 'string')) throw Error('Rubrica incompatível.');
+      buildQuestion(q.type, q.instructions, toDraft(q).rows);
+    }
+    for (const [id, q] of Object.entries(values)) { youtubeEditors[id].input.value = q.instructions; renderCriteria(youtubeEditors[id].criteria, toDraft(q), 'youtube-' + id); }
+  }
   function validateYoutube() {
     let error = '';
     if (!$('#youtube-comment').value.trim() || !$('#youtube-comment').checkValidity()) error = 'Preencha um comentário com até 1.600 caracteres.';
@@ -392,30 +451,10 @@ function mountPlayground() {
     if (error) { $('#youtube-status').textContent = error; $('#youtube-status').classList.add('is-error'); }
     return !error;
   }
-  function refreshCommentPreset() { document.querySelectorAll('[data-comment]').forEach(button => button.setAttribute('aria-pressed', String(commentExamples[button.dataset.comment] === $('#youtube-comment').value))); }
-  document.querySelectorAll('[data-comment]').forEach(button => button.addEventListener('click', () => { $('#youtube-comment').value = commentExamples[button.dataset.comment]; refreshCommentPreset(); invalidate('youtube'); }));
-  $('#youtube-comment').addEventListener('input', () => { refreshCommentPreset(); invalidate('youtube'); });
-  $('#youtube-questions').addEventListener('input', () => invalidate('youtube'));
-  $('#run-youtube').addEventListener('click', () => { if (validateYoutube()) run('youtube', { video: { titulo: 'Como usar JEV para decisões tipadas' }, comentario: { texto: $('#youtube-comment').value.trim() } }, youtubeQuestions()); });
-
-  const comparisons = [
-    { title: 'JEV', tag: 'Decisão tipada', text: 'Compara o estado aos critérios e devolve decisões com probabilidades.', good: 'Categorias finitas, ambiguidade e política de revisão.', bad: 'Não escreve a resposta ao comentário. Exige avaliar a qualidade da classificação.', best: 'triage' },
-    { title: 'LLM · texto livre', tag: 'Geração de linguagem', text: 'Produz explicações, respostas e resumos em linguagem natural.', good: 'Escrever uma resposta adaptada à pessoa e ao contexto.', bad: 'Texto livre exige interpretação para virar uma decisão automática.', best: 'write' },
-    { title: 'LLM + Structured Output', tag: 'Saída sob um esquema', text: 'Um LLM compatível responde no formato definido, por exemplo assunto + resumo.', good: 'Extração e geração com campos fixos para o sistema consumir.', bad: 'Formato correto não garante conteúdo correto nem probabilidades calibradas.', best: 'extract' },
-    { title: 'Regra simples', tag: 'Condição exata', text: 'Seu código verifica uma condição explícita, sem consultar um modelo.', good: 'Limites de caracteres, campos obrigatórios e regras estáveis.', bad: 'Uma regra de palavras ou pontuação não compreende contexto e ironia.', best: 'exact' }
-  ];
-  function renderComparison() {
-    const scenario = $('#comparison-scenario').value, container = $('#comparison-cards'); container.replaceChildren();
-    comparisons.forEach(item => {
-      const card = make('article', 'comparison-card'), best = item.best === scenario; card.dataset.recommended = String(best);
-      card.append(make('p', 'comparison-fit', best ? 'PONTO DE PARTIDA PARA ESTE CASO' : item.tag), make('h3', '', item.title), make('p', '', item.text));
-      const list = make('dl');
-      for (const [label, value] of [['Quando ajuda', item.good], ['Onde não basta', item.bad]]) list.append(make('dt', '', label), make('dd', '', value));
-      card.append(list); container.append(card);
-    });
-  }
-  $('#comparison-scenario').addEventListener('change', renderComparison);
-  fillState(characters.hermione); showQuestion(); validateHat(); updatePolicies(); renderComparison();
-  $('#youtube-comment').value = commentExamples.practical; refreshCommentPreset(); validateYoutube();
+  fillState(characters.hermione); showQuestion(); validateHat(); updatePolicies();
+  triage = mountTriage({make,questions:youtubeQuestions,setQuestions:setYoutubeQuestions,renderAnswer,renderJson,applyPolicy,thresholds,onThresholds:(review,accept)=>{
+    $('#review-threshold').value=review; $('#accept-threshold').value=accept; updatePolicies();
+  }});
+  mountComparison(make);
 }
 if (typeof document !== 'undefined') mountPlayground();
