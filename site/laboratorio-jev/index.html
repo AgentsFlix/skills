@@ -67,12 +67,34 @@
       </aside>
 
       <div class="editor-column">
+        <div class="editor-toolbar">
+          <div><strong>Uma ficha, duas formas de editar</strong><p class="field-help">Os campos e o JSON enviam os mesmos dados.</p></div>
+          <button type="button" id="toggle-json" class="secondary-button" aria-expanded="false" aria-controls="json-mode">Mostrar modo JSON</button>
+        </div>
+        <section id="json-mode" class="form-panel" hidden aria-labelledby="json-title">
+          <h3 id="json-title">Estado + pergunta, por dentro</h3>
+          <p id="json-help" class="field-help">Azul: nomes dos campos. Amarelo: textos preenchidos. O tipo define o formato, não se a informação é verdadeira. Edite; uma versão válida sincroniza os campos. Os limiares não vão para o modelo.</p>
+          <label class="field-heading" for="request-json">Requisição editável</label>
+          <div class="json-editor"><pre id="json-highlight" aria-hidden="true"></pre><textarea id="request-json" spellcheck="false" autocomplete="off" autocapitalize="off" wrap="off" aria-describedby="json-help json-status"></textarea></div>
+          <p id="json-status" class="request-status" role="status" aria-live="polite">JSON pronto.</p>
+          <button type="button" id="restore-json" class="text-button">Restaurar último JSON válido</button>
+        </section>
         <section class="form-panel" aria-labelledby="state-title">
           <div class="form-heading">
             <div><p class="step">A · SEU CÓDIGO FORNECE</p><h3 id="state-title">O estado</h3></div>
             <span id="state-validity" class="validity" role="status">Campos prontos</span>
           </div>
           <p class="type-intro"><strong>Estado (state)</strong> é a informação desta rodada. Tipagem é o formato combinado: um texto, uma lista ou um número.</p>
+          <details class="technical-details state-guide"><summary>Como se cria um estado?</summary>
+            <ol class="state-steps">
+              <li><strong>Escolha os fatos.</strong> O que o Chapéu precisa saber? Comportamentos e uma ação concreta; não a casa desejada.</li>
+              <li><strong>Dê nome aos campos.</strong> <code>nome</code>, <code>caracteristicas</code> e <code>acao_decisiva</code> organizam essa ficha.</li>
+              <li><strong>Combine os tipos.</strong> Nome é texto. Características são uma lista de textos. Em outro problema, idade poderia ser número e autorização, verdadeiro/falso.</li>
+              <li><strong>Preencha e envie.</strong> Os valores podem vir de um formulário, mensagem ou banco de dados. Aqui vêm dos campos abaixo. Não é preciso treinar um modelo para montar esse objeto.</li>
+            </ol>
+            <p class="field-help">Neste laboratório, o estado é um objeto chamado <code>personagem</code>. Isso é uma escolha do nosso código, não uma estrutura universal exigida pelo JEV.</p>
+            <button type="button" id="blank-state" class="secondary-button">Montar uma ficha do zero</button>
+          </details>
           <form id="state-form" class="field-stack" novalidate>
             <div class="field-group">
               <div class="field-heading"><label for="character-name">Nome</label><span class="type-chip">texto</span></div>
@@ -212,41 +234,63 @@
       <p class="section-lead">Structured Output é uma forma de restringir a saída de um LLM, não um modelo separado. E uma regra exata não precisa de inteligência artificial.</p>
       <label class="comparison-label" for="comparison-scenario">Qual problema você precisa resolver?</label>
       <select id="comparison-scenario">
-        <option value="triage">Encaminhar comentários com linguagem variada</option>
-        <option value="write">Escrever uma resposta acolhedora</option>
-        <option value="extract">Extrair assunto e resumo num formato fixo</option>
-        <option value="exact">Verificar se o texto ultrapassa 500 caracteres</option>
+        <option value="triage">Encaminhar uma carta à equipe certa de Hogwarts</option>
+        <option value="write">Escrever uma resposta acolhedora ao aluno</option>
+        <option value="extract">Transformar a carta em uma ficha de atendimento</option>
+        <option value="exact">Conferir autorização e idade para uma visita</option>
       </select>
+      <article id="comparison-case" class="comparison-case"></article>
       <div id="comparison-cards" class="comparison-grid"></div>
       <p class="field-help">Comparação de capacidades, não um teste de velocidade, custo ou acurácia. Nenhuma chamada a um LLM é feita nesta seção. Um classificador treinado simples é outra opção quando há exemplos rotulados e desempenho validado para um problema estável.</p>
+      <p class="field-help">Um LLM com saída estruturada também pode classificar entre opções. JEV não é a única forma de fazer triagem: compare qualidade, custo e latência no seu conjunto de casos. Se uma regra conhecida resolve ou um classificador validado já atende, a troca pode não compensar.</p>
     </section>
 
     <section id="youtube" class="lesson-section" aria-labelledby="youtube-title">
       <p class="eyebrow">05 / DO CHAPÉU À VIDA REAL</p>
-      <h2 id="youtube-title">De qual ajuda este comentário precisa?</h2>
+      <h2 id="youtube-title">500 comentários. Por onde você começa?</h2>
       <p class="section-lead">“É só um prompt?”, “Preciso programar?”, “Posso confiar?” A triagem ajuda a organizar a próxima explicação. Ela não lê a mente de ninguém.</p>
-      <div class="youtube-layout">
-        <div class="youtube-input">
-          <p class="field-help">Exemplos fictícios, inspirados nas dúvidas da pesquisa. Não são citações nem dados de frequência.</p>
-          <div id="comment-presets" class="preset-row" role="group" aria-label="Comentários de exemplo">
-            <button type="button" class="secondary-button" data-comment="practical">Quero usar</button>
-            <button type="button" class="secondary-button" data-comment="skeptical">É só um prompt?</button>
-            <button type="button" class="secondary-button" data-comment="mixed">Dúvida + receio</button>
-          </div>
-          <label for="youtube-comment" class="field-heading">Comentário <span class="type-chip">texto</span></label>
-          <textarea id="youtube-comment" rows="5" maxlength="1600" required aria-describedby="comment-privacy"></textarea>
-          <p id="comment-privacy" class="field-help">Não cole nomes, contatos ou dados sensíveis. Só ao executar, o texto é enviado ao JEV via OpenRouter. Este laboratório não salva um histórico persistente.</p>
-          <p class="field-help"><strong>Três perguntas independentes:</strong> assunto predominante (choice), pedido de explicação (noul) e receio expresso (noul). Dúvida e receio podem coexistir.</p>
-          <details class="technical-details"><summary>Ver e editar perguntas e critérios da triagem</summary><div id="youtube-questions"></div></details>
-          <button type="button" id="run-youtube" class="run-button"><span>Triar com JEV</span><span aria-hidden="true">→</span></button>
-          <p id="youtube-status" class="request-status" role="status" aria-live="polite">Escolha um exemplo para começar.</p>
-        </div>
-        <div>
-          <div id="youtube-result" class="result" aria-label="Resultado da triagem"><div class="result-empty"><h3>Uma fila, não uma resposta automática.</h3><p>A classificação e os sinais aparecerão aqui. Nenhum comentário será publicado ou removido.</p></div></div>
-          <div id="youtube-policy" class="policy-result" role="status" aria-live="polite">A triagem usa os dois limiares do laboratório acima.</div>
-          <div class="rule-example"><h3>Uma regra simples, rodando aqui</h3><code>Contém “?” → marcar como pergunta</code><p id="rule-result"></p><p class="field-help">“Explique como instalar” pede ajuda sem “?”. “Mais uma revolução?” pode ser retórica. A regra segue o caractere; interpretar a intenção exige outra abordagem.</p></div>
-        </div>
+      <p class="corpus-note">500 comentários sintéticos, com nomes fictícios. Combinamos 50 falas demonstrativas e 10 contextos. Inspirados em dúvidas da pesquisa, não são citações, depoimentos nem uma amostra de frequência do público.</p>
+      <div class="batch-toolbar">
+        <button type="button" id="batch-pilot" class="run-button">Testar 6 comentários</button>
+        <button type="button" id="batch-run" class="secondary-button">Processar os 500</button>
+        <button type="button" id="batch-pause" class="secondary-button" disabled>Pausar fila</button>
+        <button type="button" id="batch-retry" class="secondary-button" disabled>Repetir falhas temporárias</button>
       </div>
+      <p id="youtube-status" class="request-status" role="status" aria-live="polite">Nenhuma chamada feita. Comece pelo piloto.</p>
+      <progress id="batch-progress" value="0" max="500" aria-label="Comentários com resposta válida">0 de 500</progress>
+      <p id="batch-accounting" class="field-help"></p>
+      <p id="batch-storage" class="field-help">Progresso salvo somente nesta aba. Recarregar permite retomar; fechar a aba pode apagar. Nada é publicado, removido ou respondido no YouTube.</p>
+      <div class="youtube-layout batch-layout">
+        <section class="batch-column" aria-labelledby="batch-state-title">
+          <p class="step">A · ESTADO</p><h3 id="batch-state-title">A caixa de comentários</h3>
+          <label for="comment-search">Buscar texto, nome ou ID</label><input id="comment-search" type="search" autocomplete="off">
+          <label for="comment-filter">Filtrar a fila</label><select id="comment-filter"><option value="all">Todos os 500</option><option value="pending">Pendentes</option><option value="running">Em processamento</option><option value="done">Concluídos</option><option value="error">Com erro</option><option value="Aceitar">Aceitar</option><option value="Pedir revisão">Pedir revisão</option><option value="Escalar">Escalar</option></select>
+          <div id="comment-list" class="comment-list" role="group" aria-label="Comentários: selecione para inspecionar"></div>
+          <div class="list-pagination"><button type="button" id="comments-prev" class="text-button">Anterior</button><span id="comments-page"></span><button type="button" id="comments-next" class="text-button">Próxima</button></div>
+          <details class="technical-details" open><summary id="selected-comment-title">Comentário selecionado</summary>
+            <label for="youtube-comment">Texto enviado <span class="type-chip">texto</span></label><textarea id="youtube-comment" rows="5" maxlength="1600" required aria-describedby="comment-privacy"></textarea>
+            <p id="comment-privacy" class="field-help">Não cole nomes, contatos ou dados sensíveis. Nome fictício e ID ficam no navegador; só o texto e o tema do vídeo são enviados. Editar um texto ou a rubrica inicia uma nova rodada e invalida os resultados desta fila.</p>
+            <details class="technical-details"><summary>Ver o estado deste comentário</summary><pre id="comment-state-preview"></pre></details>
+          </details>
+        </section>
+        <section class="batch-column" aria-labelledby="batch-code-title">
+          <p class="step">B · SEU CÓDIGO DEFINE</p><h3 id="batch-code-title">As mesmas perguntas, uma pessoa por vez</h3>
+          <p class="field-help">O código mantém o vínculo pelo ID. Cada chamada recebe só um comentário e três perguntas independentes, não os 500 textos juntos. Abra uma pergunta para editar a instrução e os critérios.</p>
+          <div id="youtube-questions"></div>
+          <div class="batch-policy-controls"><h4>A política fica no produto</h4><label for="batch-review">Revisar a partir de (%)</label><input id="batch-review" type="number" min="0" max="99" value="40"><label for="batch-accept">Aceitar a partir de (%)</label><input id="batch-accept" type="number" min="1" max="100" value="80"><p class="field-help">Mesmos limiares do Chapéu. Mudar atualiza as ações sem chamar o modelo. Confidence não é taxa de acerto.</p></div>
+          <div class="rule-example"><h4>Regra simples para comparar</h4><code>Contém “?” → marcar como pergunta</code><p id="rule-result"></p><p class="field-help">“Explique como instalar” pede ajuda sem “?”. A regra segue o caractere, não a intenção.</p></div>
+        </section>
+        <section class="batch-column" aria-labelledby="batch-results-title">
+          <p class="step">C · JEV</p><h3 id="batch-results-title">Respostas reais, comentário a comentário</h3>
+          <p id="batch-summary" class="field-help"></p><div id="batch-results" class="batch-results" role="group" aria-label="Resultados da página atual"></div>
+          <h4 id="selected-result-title">Inspecione um comentário</h4>
+          <button type="button" id="run-youtube" class="secondary-button">Processar só este comentário</button>
+          <div id="youtube-result" class="result" aria-label="Resultado da triagem"><div class="result-empty"><h3>Uma fila, não uma resposta automática.</h3><p>Nenhum resultado até consultar o JEV.</p></div></div>
+          <div id="youtube-policy" class="policy-result" role="status" aria-live="polite">Aguardando resultado.</div>
+        </section>
+      </div>
+      <div class="batch-footer"><p class="field-help">Até 2 chamadas simultâneas, uma por comentário. Pausar deixa terminar as que já começaram. Falhas pausam a fila; repetição é manual, até 3 tentativas por item. Timeout pode ter sido cobrado mesmo sem resposta. Progresso mede respostas válidas, não acertos.</p><button type="button" id="batch-clear" class="text-button">Apagar progresso e restaurar exemplos</button></div>
+      <p class="field-help">Experimente revisar C012 (receio sobre privacidade) e C035 (elogio, sem dúvida). Os sinais combinam com o que está escrito? Um formato válido ou uma confidence alta não substitui essa conferência.</p>
     </section>
     <section class="sources" aria-label="Documentação e limites"><h2>Para conferir por dentro</h2><p><a href="https://docs.typesafe.ai/primitives">Tipos do JEV</a> · <a href="https://docs.typesafe.ai/confidence">Confidence</a> · <a href="https://docs.typesafe.ai/model-jaggedness/jev-1.13">Limitações do JEV 1.13</a> · <a href="https://openrouter.ai/docs/guides/features/structured-outputs">Structured Outputs no OpenRouter</a></p><p>O cenário mágico é uma analogia. Um bom teste também precisa de dados reais, erros conhecidos e revisão humana.</p></section>
   </main>
