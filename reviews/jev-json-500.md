@@ -18,4 +18,6 @@ Teste real: 500/500 respostas válidas, zero falhas; isso não é taxa de acerto
 As capturas de UI/erros usam respostas de teste; a captura live-full contém resultados reais.
 Corpus sintético não é pesquisa representativa nem reprodução de comentários públicos.
 
-Checks públicos e publicação serão confirmados no PR após execução.
+Checks locais: 149 testes (1 skip), check_site, validate_skills e scanner de 52 skills
+passaram. Scanner executado em Python 3.11; os demais checks usam o runtime do projeto.
+Publicação será confirmada no PR após merge e verificação funcional.
