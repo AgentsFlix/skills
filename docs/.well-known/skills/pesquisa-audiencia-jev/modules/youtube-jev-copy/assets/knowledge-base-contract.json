@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "status": "draft",
+  "brief": {"topic":null,"audience":null,"intended_use":null},
+  "coverage": {"sources_selected":null,"sources_completed":null,"comments_received":null,"unique_comments":null,"classified":null,"reviewed":null,"pending":null,"limitations":[]},
+  "method": {"model":null,"questions_hashes":[],"policy_hash":null,"semantic_validation":null,"timings_seconds":{},"cost":null},
+  "findings": [],
+  "finding_shape": {"id":"finding_id","kind":"textual_observation_or_editorial_interpretation_or_hypothesis","theme":null,"claim":null,"evidence_ids":[],"counterevidence_ids":[],"sample_count":null,"denominator":null,"limitations":[]},
+  "references": [],
+  "reference_shape": {"comment_id":null,"role":"anchor_or_obstacle_or_desire_or_attempt_or_counterpoint","evidence_quote_original":null,"translation_pt_br":null,"interpretation":null,"supporting_span":null,"why_use":null,"cannot_infer":[],"exposure_review_status":"pending"},
+  "copy_inputs": {"situations":[],"tensions":[],"desires":[],"objections":[],"attempts":[],"vocabulary":[],"possible_angles":[],"unsupported_promises":[]},
+  "traceability_audit": {"all_ids_exist":false,"all_quotes_match":false,"inferences_labeled":false},
+  "note": "This is a template, not extracted evidence. Remove *_shape documentation keys when filling. Keep private provenance separately."
+}

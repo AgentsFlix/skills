@@ -1,0 +1,5 @@
+# Python 3.10+ is required. The JevCloud client uses the standard library.
+# YouTube collection. Record the installed version in each collection receipt.
+yt-dlp
+# Optional AgentFlix lifecycle/audit runtime distributed with the package.
+PyYAML

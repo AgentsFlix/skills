@@ -1,0 +1,10 @@
+{
+  "component_id": "belief-01",
+  "function": "belief",
+  "claim": "O tempo já investido pode se transformar numa prisão psicológica.",
+  "medium": "newsletter",
+  "audience": "profissionais frustrados e multipotenciais",
+  "before": "",
+  "after": "Apresentar o recomeço como nova oportunidade.",
+  "restrictions": ["sem diagnóstico", "sem universalizar"]
+}
