@@ -724,7 +724,7 @@
     return true;
   }
 
-  function loadCatalog(cat) {
+  function loadCatalog(cat, authenticated = false) {
     sharedReading = document.documentElement.dataset.sharedReading || "";
     if (location.hash && hashSlug() !== sharedReading) sharedReading = "";
     CAT = cat;
@@ -736,6 +736,7 @@
     BY = Object.create(null); ALL.forEach((s) => { BY[s.slug] = s; });
     if (!DISCOVERY_DATA || !window.AgentFlixDiscovery || !window.AgentFlixJourney) throw Error("orientação indisponível");
     DISCOVERY = window.AgentFlixDiscovery.create(DISCOVERY_DATA, BY, {
+      authenticated,
       filter() { hidePreview(); state.filter = "Tudo"; state.q = ""; $("q").value = ""; renderChips(); renderCatalog(); },
       enter() {
         if (resumeReadingSkill()) return;
@@ -1692,7 +1693,7 @@
     $("footTotal").textContent = "catálogo indisponível";
   }
   (async () => {
-    await window.AgentFlixMemory.start();
+    const accountMemory = await window.AgentFlixMemory.start();
     let cat = null, lastErr = null;
     for (const url of CATALOG_URLS) {
       try { const r = await fetch(url, { cache: "no-cache" }); if (!r.ok) throw new Error("HTTP " + r.status); cat = await r.json(); if (cat && Array.isArray(cat.skills)) break; cat = null; }
@@ -1700,7 +1701,7 @@
     }
     if (!cat) { showLoadError(lastErr && lastErr.message || "sem rede"); return; }
     try { const r = await fetch('vitrine.json', { cache: 'no-cache' }); if(r.ok) DISCOVERY_DATA = await r.json(); } catch(e) { /* Sem curadoria, a orientação deve ser recarregada. */ }
-    try { cat = {...cat, skills: await window.AgentFlixReader.catalogSkills(cat.skills)}; loadCatalog(cat); window.AgentFlixLoader?.hide(); }
+    try { cat = {...cat, skills: await window.AgentFlixReader.catalogSkills(cat.skills)}; loadCatalog(cat, accountMemory.signedIn === true); window.AgentFlixLoader?.hide(); }
     catch (e) { console.error(e); showLoadError("catálogo inválido: " + (e && e.message || e)); return; }
     initShop();   // só muda algo se a loja estiver ligada em /api/config
   })();
