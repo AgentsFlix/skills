@@ -48,7 +48,8 @@ def strict_frontmatter(fm: dict, slug: str, version: str) -> dict:
     if h.get("config"):
         meta["config"] = "; ".join(f"{c['key']}: {c['description']}" for c in h["config"])
     return {"name": fm["name"], "description": desc, "license": fm.get("license", "MIT"),
-            "compatibility": " ".join(compat)[:500], "metadata": {k: v for k, v in meta.items() if v}}
+            "compatibility": (fm.get("compatibility") or " ".join(compat))[:500],
+            "metadata": {k: v for k, v in meta.items() if v}}
 
 def dump_fm(d: dict) -> str:
     return "---\n" + yaml.safe_dump(d, allow_unicode=True, sort_keys=False, width=1000).strip() + "\n---\n"
@@ -128,8 +129,24 @@ def build_prompt(slug: str, fm: dict, body: str, files: list[str], version: str,
     return doc, act, truncated
 
 # ───────────── principal ─────────────
+def distribution_entries(cat: dict) -> dict[str, tuple[dict, str]]:
+    """Pacotes autorais têm versão própria; skills mantêm a versão do catálogo."""
+    entries = {}
+    for collection in ("skills", "packages"):
+        for entry in cat.get(collection, []):
+            slug = entry["name"]
+            if slug in entries:
+                raise ValueError("Nome repetido no catálogo: " + slug)
+            version = entry["version"] if collection == "packages" else cat["version"]
+            if not isinstance(version, str) or not version:
+                raise ValueError("Versão inválida no catálogo: " + slug)
+            entries[slug] = (entry, version)
+    return entries
+
+
 def main() -> None:
-    cat = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8")); version = cat["version"]
+    cat = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
+    entries = distribution_entries(cat)
     for d in (DIST, WK, PROMPT, DOCS / "packages"):
         if d.exists(): shutil.rmtree(d)
         d.mkdir(parents=True)
@@ -137,6 +154,7 @@ def main() -> None:
     index, n = [], 0
     for d in sorted(p for p in SKILLS.iterdir() if (p / "SKILL.md").exists()):
         slug = d.name; fm, body = split((d / "SKILL.md").read_text(encoding="utf-8"))
+        entry, version = entries.get(slug, (None, cat["version"]))
         files = referenced_files(body)
         # portable: cópia da pasta com SKILL.md reescrito
         pd = DIST / slug; shutil.copytree(d, pd, ignore=shutil.ignore_patterns(".*", "__pycache__"))
@@ -154,7 +172,6 @@ def main() -> None:
         index.append({"name": slug, "description": strict_frontmatter(fm, slug, version)["description"],
                       "files": sorted(str(f.relative_to(pd)) for f in pd.rglob("*") if f.is_file())})
         # colável
-        entry = next((s for s in cat["skills"] if s["name"] == slug), None)
         doc, act, truncated = build_prompt(slug, fm, body, files, version, act=(entry or {}).get("activation_prompt", ""))
         if entry is not None:
             entry["prompt_truncated"] = truncated
