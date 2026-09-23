@@ -343,12 +343,27 @@
     return startPromise;
   }
 
+  async function signOut() {
+    if (!client || !userId) return false;
+    const { error } = await client.auth.signOut();
+    if (error) return false;
+    clearOwnedCache();
+    client = null;
+    userId = null;
+    connectPromise = null;
+    startPromise = null;
+    status.signedIn = false;
+    status.available = false;
+    return true;
+  }
+
   installCapture();
   return Object.freeze({
     categoryOf,
     clearSignedOut: clearOwnedCache,
     connect,
     flush,
+    signOut,
     start,
     status,
   });
