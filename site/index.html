@@ -99,6 +99,12 @@
   /* loja: conta, cadeado, conteúdo exclusivo, login, aviso */
   .acct { min-height: 44px; padding: 8px 14px; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--line); border-radius: 4px; color: #d6d6d6; font-size: 11px; letter-spacing: normal; text-decoration: none; cursor: pointer; flex: 0 0 auto; }
   .acct:hover, .acct[data-logged="1"] { border-color: var(--accent); color: #fff; }
+  .account-entry { position: relative; display: flex; align-items: center; flex: 0 0 auto; }
+  .account-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 80; min-width: 206px; padding: 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); box-shadow: 0 16px 40px rgba(0,0,0,.38); }
+  .account-menu a, .account-menu button { display: flex; width: 100%; min-height: 44px; align-items: center; padding: 10px 12px; border: 0; border-radius: 6px; background: none; color: var(--text); font: inherit; font-size: 13px; text-align: left; text-decoration: none; cursor: pointer; }
+  .account-menu a:hover, .account-menu button:hover, .account-menu a:focus-visible, .account-menu button:focus-visible { background: var(--active); }
+  .account-menu p { margin: 6px 12px; color: var(--muted); font-size: 12px; }
+  header.top:has(.account-menu:not([hidden])) { overflow: visible; }
   .art .lock { position: absolute; top: 10px; right: 10px; z-index: 3; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: rgba(20,22,26,0.82); border: 1px solid rgba(255,255,255,0.18); font-size: 13px; }
   .exclusive { margin: 0 0 26px; padding: 16px; border: 1px solid var(--line); border-radius: 6px; background: rgba(var(--accent-rgb),0.06); }
   .exclusive .player { display: none; aspect-ratio: 16 / 9; background: #000; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; margin: 12px 0; }
@@ -478,7 +484,15 @@
       <input id="q" type="search" aria-label="Buscar skill, lenda ou gênero" placeholder="Buscar skill, lenda ou gênero" autocomplete="off" hidden>
     </div>
     <button class="count" data-act="chip" data-filter="Minha lista"><span id="listCount">Minha lista · 0</span></button>
-    <a class="acct" id="acctBtn" href="/entrar/">ENTRAR</a>
+    <div class="account-entry" id="accountEntry">
+      <a class="acct" id="acctBtn" href="/entrar/">ENTRAR</a>
+      <button class="acct" id="accountMenuToggle" type="button" aria-expanded="false" aria-controls="accountMenu" data-logged="1" hidden>MINHA CONTA</button>
+      <div class="account-menu" id="accountMenu" aria-label="Opções da conta" hidden>
+        <a href="/conta/">Editar informações</a>
+        <button id="signOutBtn" type="button">Sair</button>
+        <p id="accountMenuStatus" role="status" hidden></p>
+      </div>
+    </div>
   </header>
 
   <section id="discovery" hidden aria-label="Encontre uma skill"></section>
@@ -1551,6 +1565,41 @@
   // A skill continua gratuita; o que se vende é o conteúdo exclusivo (vídeos e extras) por item ou pelo Passe.
   // Tudo aqui só liga quando /api/config diz storeEnabled; até lá a página é exatamente a de sempre.
   const shop = { on: false, cfg: null, sb: null, user: null, access: new Set(), prices: Object.create(null), videos: Object.create(null) };
+  function closeAccountMenu() {
+    $("accountMenu").hidden = true;
+    $("accountMenuToggle").setAttribute("aria-expanded", "false");
+  }
+  function renderAccountStatus(signedIn) {
+    $("acctBtn").hidden = signedIn;
+    $("accountMenuToggle").hidden = !signedIn;
+    closeAccountMenu();
+  }
+  $("accountMenuToggle").addEventListener("click", () => {
+    const menu = $("accountMenu");
+    menu.hidden = !menu.hidden;
+    $("accountMenuToggle").setAttribute("aria-expanded", String(!menu.hidden));
+  });
+  document.addEventListener("click", (event) => {
+    if (!$("accountEntry").contains(event.target)) closeAccountMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || $("accountMenu").hidden) return;
+    closeAccountMenu();
+    $("accountMenuToggle").focus();
+  });
+  $("signOutBtn").addEventListener("click", async () => {
+    const button = $("signOutBtn");
+    button.disabled = true;
+    $("accountMenuStatus").hidden = true;
+    try {
+      if (!(await window.AgentFlixMemory.signOut())) throw Error("sign out failed");
+      window.location.assign("/entrar/");
+    } catch {
+      $("accountMenuStatus").textContent = "Não foi possível sair. Tente novamente.";
+      $("accountMenuStatus").hidden = false;
+      button.disabled = false;
+    }
+  });
   const money = (cents, cur = "brl") => new Intl.NumberFormat("pt-BR", { style: "currency", currency: String(cur).toUpperCase() }).format(cents / 100);
   const loadScript = (src) => new Promise((ok, err) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = err; document.head.appendChild(s); });
   const anonId = () => { try { let a = localStorage.getItem("agentflix-anon"); if (!a) { a = crypto.randomUUID(); localStorage.setItem("agentflix-anon", a); } return a; } catch (e) { return null; } };
@@ -1572,7 +1621,7 @@
       shop.sb.auth.onAuthStateChange((ev, session) => {
         setUser(session ? session.user : null).then(() => { if (ev === "SIGNED_IN" && session) resume(session.user); });
       });
-      shop.on = true; $("acctBtn").hidden = false;
+      shop.on = true;
       await loadShopCatalog();
       if (ALL.length) { renderCatalog(); if (state.open) renderModal(); }   // preços e vídeos chegaram: pinta cadeados e o bloco
       const { data } = await shop.sb.auth.getSession();
@@ -1592,7 +1641,7 @@
   async function setUser(u) {
     shop.user = u; shop.access = new Set();
     if (u) { const { data } = await shop.sb.rpc("my_access"); (data || []).forEach((r) => shop.access.add(r.product_id)); }
-    const b = $("acctBtn"); b.textContent = u ? "MINHA CONTA" : "ENTRAR"; if (u) b.dataset.logged = "1"; else delete b.dataset.logged;
+    renderAccountStatus(Boolean(u));
     if (ALL.length) { renderCatalog(); if (state.open) renderModal(); }
   }
   async function authed(path, opts = {}) {
@@ -1694,6 +1743,7 @@
   }
   (async () => {
     const accountMemory = await window.AgentFlixMemory.start();
+    renderAccountStatus(accountMemory.signedIn === true);
     let cat = null, lastErr = null;
     for (const url of CATALOG_URLS) {
       try { const r = await fetch(url, { cache: "no-cache" }); if (!r.ok) throw new Error("HTTP " + r.status); cat = await r.json(); if (cat && Array.isArray(cat.skills)) break; cat = null; }

@@ -90,15 +90,16 @@ for (const completed of [false,true]) for (const locked of [false,true]) {
 (async()=>{
   const boot = source.split('  // ---------- boot ----------')[1].split('  (async () => {')[1].split('\n})();\n</script>')[0];
   for (const view of ['reading','catalog']) for (const signedIn of [false,true]) {
-    const writes=[],intros=[],catalogCalls=[];
+    const writes=[],intros=[],catalogCalls=[],accountStates=[];
     const c={CATALOG_URLS:['catalog.json'],DISCOVERY_DATA:null,state:{view},
       fetch:async()=>({ok:true,json:async()=>({skills:[]})}),
       window:{AgentFlixMemory:{start:async()=>({signedIn})},AgentFlixReader:{catalogSkills:async s=>s},matchMedia:()=>({matches:false})},
       sessionStorage:{getItem:()=>null,setItem:(...args)=>writes.push(args)},
-      loadCatalog:(catalog,authenticated)=>catalogCalls.push(authenticated),initShop(){},playIntro:()=>intros.push(true),showLoadError:message=>{throw Error(message);},console};
+      loadCatalog:(catalog,authenticated)=>catalogCalls.push(authenticated),renderAccountStatus:value=>accountStates.push(value),initShop(){},playIntro:()=>intros.push(true),showLoadError:message=>{throw Error(message);},console};
     vm.createContext(c);await vm.runInContext('(async()=>{'+boot,c);
     assert.equal(intros.length,0);assert.equal(writes.length,0);
     assert.deepEqual(catalogCalls,[signedIn]);
+    assert.deepEqual(accountStates,[signedIn]);
   }
   console.log('PASS leitura pública: registro, acesso, instalador, pré-requisitos, retorno, recarga e abertura');
 })().catch(error=>{console.error(error);process.exitCode=1;});

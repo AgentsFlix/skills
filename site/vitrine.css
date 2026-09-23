@@ -12,6 +12,7 @@
 .onboarding-header-note{display:none}
 .choosing .top{position:relative;inset:auto;background:none;backdrop-filter:none;min-height:96px;padding:24px var(--gutter);gap:24px}
 .choosing .top .brand{pointer-events:none;cursor:default}
+.choosing .account-entry{margin-left:auto}
 .choosing .top #nav,.choosing #search,.choosing .count,.choosing .top .spacer{display:none!important}
 .choosing .onboarding-header-note{display:block;margin-left:auto;font-size:12px;color:var(--muted)}
 .choosing .foot{justify-content:center;margin-top:44px;border:0}
@@ -89,7 +90,7 @@
 #discovery{margin-top:24px}.doors{gap:12px}.door-body{padding:0 16px 18px;gap:10px}.door-title{font-size:20px}.door-description{font-size:13px}.door-label{font-size:10px}.choice-scene{aspect-ratio:4/3}
 }
 @media(max-width:600px){
-.choosing .top{min-height:76px;padding:20px}.choosing .top .brand .logo{height:28px}.choosing .onboarding-header-note{display:none}.choosing #acctBtn{margin-left:auto}.audience-switch{order:6;width:100%}.audience-switch a{flex:1}
+.choosing .top{min-height:76px;padding:20px}.choosing .top .brand .logo{height:28px}.choosing .onboarding-header-note{display:none}.audience-switch{order:6;width:100%}.audience-switch a{flex:1}
 #discovery{padding:0 20px;margin:14px auto 30px}.discovery-intro{margin-bottom:26px}.discovery-intro h1{font-size:31px}.discovery-intro p{font-size:14px}.discovery-intro .eyebrow{font-size:11px}
 .doors{grid-template-columns:1fr;gap:12px}.door{display:grid;grid-template-columns:104px 1fr;min-height:164px;align-items:stretch;border-radius:12px}
 .door .choice-scene{height:100%;aspect-ratio:auto}.door .choice-scene img{object-position:55% center}.door .choice-scene:after{inset:0;background:linear-gradient(90deg,transparent 25%,var(--panel))}
@@ -208,7 +209,7 @@
 .choosing .onboarding-reading{display:inline-flex;margin-left:auto}
 .choosing .onboarding-header-note{margin-left:auto}
 .intro-reading{display:inline-flex;min-height:44px;align-items:center;color:var(--text);font-size:14px;margin-top:18px}
-.public-reading .count,.public-reading #acctBtn,.public-reading .tapbtn,.public-reading .replay{display:none!important}
+.public-reading .count,.public-reading .account-entry,.public-reading .tapbtn,.public-reading .replay{display:none!important}
 .reading-skill-locked{display:block!important}
 .reading-skill-locked[hidden]{display:none!important}
 .reading-skill-gate{max-width:640px}
