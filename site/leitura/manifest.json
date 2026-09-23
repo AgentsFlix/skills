@@ -4,14 +4,15 @@
     {
       "slug": "modelo-de-flow",
       "reader": "leitura/modelo-de-flow.json",
-      "cover": "/leitura/flow/assets/capa-flow.webp",
+      "cover": "/leitura/assets/editorial/flow-v1.webp",
       "share": {
         "title": "Precisa ser difícil e exigir muita habilidade, senão você não faz, leia:",
         "description": "Uma leitura visual para perceber o estado atual e ajustar desafio ou habilidade no próximo passo.",
-        "image": "/leitura/assets/previews/flow-v1.jpg",
+        "image": "/leitura/assets/editorial/flow-illustrated-v1.jpg",
         "alt": "Flow: equilíbrio entre desafio e habilidade.",
-        "preview_image": "/leitura/assets/previews/flow-v1.jpg",
-        "revision": 1
+        "preview_image": "/leitura/assets/editorial/flow-illustrated-v1.jpg",
+        "derive_from_cover": true,
+        "revision": 2
       },
       "fallback": {
         "name": "modelo-de-flow",
@@ -52,19 +53,21 @@
     {
       "slug": "copy-metodo-hormozi",
       "reader": "leitura/copy-metodo-hormozi.json",
+      "cover": "/leitura/assets/editorial/hormozi-v1.webp",
       "share": {
         "title": "Uma oferta que faz sentido antes do desconto.",
         "description": "Entenda como resultado, confiança, tempo e esforço mudam a maneira de apresentar o que você vende.",
-        "image": "/leitura/assets/capa-hormozi.jpg",
+        "image": "/leitura/assets/editorial/hormozi-illustrated-v1.jpg",
         "alt": "Hormozi: o empreendedor que criava ofertas irresistíveis.",
-        "preview_image": "/leitura/assets/previews/hormozi-v2.jpg",
-        "revision": 2
+        "preview_image": "/leitura/assets/editorial/hormozi-illustrated-v1.jpg",
+        "derive_from_cover": true,
+        "revision": 3
       }
     },
     {
       "slug": "habitos-que-cabem",
       "reader": "leitura/habitos-que-cabem.json",
-      "cover": "/leitura/dia-22/assets/capa-dia-22.png",
+      "cover": "/leitura/assets/editorial/dia-22-v1.webp",
       "fallback": {
         "name": "habitos-que-cabem",
         "title": "Atomic Habits",
@@ -105,10 +108,41 @@
       "share": {
         "title": "No dia 22, continuou horrível.",
         "description": "Eu acordei às 2h da manhã durante 21 dias para criar o hábito de ler. No dia 22, continuou horrível. Parei.",
-        "image": "/leitura/dia-22/assets/capa-dia-22.png",
+        "image": "/leitura/assets/editorial/dia-22-illustrated-v1.jpg",
         "alt": "Dia 22: o jornalista que acordou às 2h por 21 dias e descobriu que repetir não basta.",
-        "preview_image": "/leitura/assets/previews/dia-22-v2.jpg",
-        "revision": 2
+        "preview_image": "/leitura/assets/editorial/dia-22-illustrated-v1.jpg",
+        "derive_from_cover": true,
+        "revision": 3
+      }
+    },
+    {
+      "slug": "tempo-que-voce-ainda-nao-gastou",
+      "reader": "leitura/tempo-que-voce-ainda-nao-gastou.json",
+      "cover": "/leitura/tempo-que-voce-ainda-nao-gastou/capa-v1.webp",
+      "format": "essay",
+      "share": {
+        "title": "O tempo que você ainda não gastou",
+        "description": "Há tempo que você lamenta ter perdido. Há tempo que ainda não gastou. Este último merece ser considerado por aquilo que pode tornar possível.",
+        "image": "/leitura/assets/previews/tempo-que-voce-ainda-nao-gastou-v1.jpg",
+        "preview_image": "/leitura/assets/previews/tempo-que-voce-ainda-nao-gastou-v1.jpg",
+        "alt": "José reflete diante de caminhos passados e caminhos futuros.",
+        "revision": 1
+      },
+      "fallback": {
+        "name": "tempo-que-voce-ainda-nao-gastou",
+        "title": "O tempo que você ainda não gastou",
+        "title_netflix": "O TEMPO QUE VOCÊ AINDA NÃO GASTOU",
+        "subtitle": "Talvez você tenha cumprido o combinado.",
+        "row": "base",
+        "description": "O que já foi gasto merece uma avaliação honesta. O que ainda será gasto merece uma escolha.",
+        "reading_only": true,
+        "editorial_only": true,
+        "painel": {
+          "tamanho": "Leitura contínua",
+          "requer": "nenhuma",
+          "ano": "2026",
+          "generos": ["Leitura", "Carreira"]
+        }
       }
     }
   ]

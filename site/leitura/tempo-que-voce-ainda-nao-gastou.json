@@ -1,0 +1,424 @@
+{
+  "schemaVersion": "1.0",
+  "slug": "tempo-que-voce-ainda-nao-gastou",
+  "title": "O tempo que você ainda não gastou",
+  "subtitle": "",
+  "method": "PARA O HUMANO",
+  "author": "José Carlos Amorim",
+  "disclaimer": "",
+  "format": "essay",
+  "chapters": [
+    {
+      "id": "texto",
+      "label": "Leitura",
+      "title": "O tempo que você ainda não gastou",
+      "intro": "",
+      "tone": "essay",
+      "sources": [],
+      "blocks": [
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez você tenha cumprido o combinado."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Escolheu uma faculdade, atravessou as provas, conseguiu o diploma, encontrou trabalho. Fez o que parecia necessário para que, em algum momento, pudesse parar de se perguntar o que seria quando crescesse."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Só que a pergunta continuou. Agora ela aparece depois do expediente, acompanhada de outra: como é possível ter feito tanta coisa para chegar a um lugar do qual você quer sair?"
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "tempo-que-voce-ainda-nao-gastou/assets/caminhos-aprovado.png",
+          "alt": "Do nascimento até hoje, muitos caminhos de vida já ficaram para trás. A partir de hoje, novos caminhos se abrem.",
+          "caption": "",
+          "presentation": "paths"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Se você se reconhece nisso, vale olhar com algum cuidado para a escolha que está tentando defender."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Aos dezessete anos, gostar de um assunto pode parecer uma razão suficiente para escolher uma profissão. Animais, desenho, computadores, literatura. Há algo ali que chama a atenção, e um curso oferece um nome organizado para esse interesse. Você consegue explicar o plano. Consegue preencher uma inscrição. Consegue responder à família."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "O cotidiano do trabalho ainda está por vir."
+          ],
+          "tone": "turn"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Existe uma distância entre gostar de arquitetura e gostar de atender clientes, negociar alterações e cumprir prazos. Entre se interessar pela saúde e querer passar os dias realizando as tarefas de uma profissão da saúde. A afinidade com o tema é uma informação. A convivência com o trabalho traz outras."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "tempo-que-voce-ainda-nao-gastou/assets/interesse-e-rotina-diagrama.png",
+          "alt": "Um livro de arquitetura leva a um curso; a linha segue, faz uma volta diante das tarefas cotidianas e chega à mesa de trabalho.",
+          "caption": "",
+          "presentation": "diagram",
+          "captionParts": [
+            "O assunto",
+            "O curso",
+            "O trabalho"
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Na base de relatos que deu origem a esta edição, uma pessoa contou que escolheu Veterinária aos dezessete anos porque gostava de animais. No quinto semestre, já sentia que estava no caminho errado. Continuou porque havia entrado numa universidade pública e não queria desperdiçar a oportunidade. Aos vinte e seis, formada, escreveu que estava tentando recomeçar."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "A oportunidade era real. O desencontro também."
+          ],
+          "tone": "turn"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Uma escolha pode ter sido compreensível com o que você sabia e, depois, precisar de revisão. Isso fica difícil de admitir quando revisar o caminho parece exigir uma condenação de quem o escolheu. Você precisa reconhecer um limite da decisão antiga e acaba colocando a própria inteligência em julgamento."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez seja possível fazer uma pergunta mais precisa: o que você sabe hoje sobre esse trabalho que não tinha como saber ao preencher aquela inscrição?"
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "O problema ganha outra camada quando os anos investidos entram na conversa."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "“comecei então tenho que terminar mesmo sabendo que não quero trabalhar com isso”, escreveu outra pessoa, ainda cursando Arquitetura."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "A frase explica de onde vem a obrigação: do fato de ter começado. O desejo de exercer a profissão já não aparece como motivo para chegar ao fim."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Terminar um curso pode fazer sentido por várias razões. Pode abrir uma possibilidade concreta, atender a um requisito, ampliar escolhas. Mas essas razões precisam ser examinadas no presente. Ter dedicado quatro anos a algo, por si só, não informa o que um quinto ano vai trazer."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "É aí que o tempo perdido pode começar a cobrar mais tempo."
+          ],
+          "tone": "turn"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Imagine olhar para trás e perceber que continuou durante anos porque já tinha continuado durante anos. Cada período acrescenta peso à mesma justificativa. A permanência se torna uma maneira de adiar a pergunta sobre o valor da permanência."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Reconhecer isso não devolve o que passou. E a frase “nada foi perdido” pode ser um consolo ruim para quem sabe exatamente do que abriu mão. Houve dinheiro, esforço, cansaço. Talvez tenha havido uma vontade deixada de lado. Algumas possibilidades realmente se fecharam."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Você pode lamentar esses custos sem transformar o restante da sua vida numa tentativa de provar que eles valeram a pena."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "O que já foi gasto merece uma avaliação honesta. O que ainda será gasto merece uma escolha. Misturar essas duas coisas faz o futuro assumir uma dívida que ele talvez nunca consiga quitar: obrigar uma experiência frustrante a ganhar sentido pela insistência."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "tempo-que-voce-ainda-nao-gastou/assets/tempo-ja-gasto.png",
+          "alt": "Linhas do passado chegam ao presente; uma linha ciano segue adiante sem apagar o caminho percorrido.",
+          "caption": "",
+          "presentation": "diagram"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Até aqui, porém, falta a parte que torna qualquer conselho sobre recomeço difícil de ouvir: o salário continua necessário."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Uma pessoa da engenharia descreveu um trabalho que pagava razoavelmente bem, mas no qual não se sentia feliz. Queria uma atividade mais conectada a pessoas. A mãe havia se aposentado; naquele momento, a renda da casa dependia praticamente de quem escreveu o comentário."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Seria muito conveniente chamar isso de medo de mudar. Também seria uma leitura incompleta."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Existe uma responsabilidade ali. Há uma diferença entre continuar porque você precisa dessa renda hoje e continuar porque sente que deve fidelidade à escolha feita anos atrás. As duas razões podem morar na mesma pessoa. Separá-las não faz a dificuldade desaparecer, mas permite entender o que precisa ser resolvido."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "A necessidade da renda pede condições concretas para qualquer mudança. Já a obrigação de justificar o passado merece ser questionada. Uma frase motivacional não paga a primeira. Um salário, por necessário que seja, não responde sozinho à segunda."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "É possível reconhecer: este trabalho sustenta minha vida neste momento, e eu gostaria de investigar outras maneiras de trabalhar. As duas partes da frase podem ser verdadeiras ao mesmo tempo."
+          ],
+          "tone": "turn"
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "tempo-que-voce-ainda-nao-gastou/assets/renda-e-investigacao.png",
+          "alt": "Uma estrutura de trabalho permanece apoiada enquanto uma pequena rota ciano explora uma possibilidade e retorna.",
+          "caption": "",
+          "presentation": "diagram"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Isso importa porque, quando toda curiosidade vira uma ameaça de demissão, fica difícil permitir a própria curiosidade. Pensar numa área diferente parece significar colocar a família em risco. A investigação fica presa ao tamanho da ruptura que talvez venha depois."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Uma conversa sobre a rotina de outra profissão não tem o mesmo compromisso de uma nova graduação. Experimentar uma tarefa, quando há condições para isso, não exige abandonar imediatamente a ocupação atual. Entre imaginar uma vida diferente e passar a depender dela existem coisas que ainda podem ser conhecidas."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Pode ser que hoje não haja espaço nem para um projeto paralelo. Exaustão, cuidado com outras pessoas e falta de recursos também ocupam o tempo. Admitir esse limite é mais honesto do que acrescentar à frustração a cobrança de construir uma segunda carreira nas horas que sobraram."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Ainda assim, existe valor em nomear o que acontece: precisar permanecer agora não decide, por si só, tudo o que você vai querer depois."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Há também um receio que sobrevive mesmo quando aparece alguma margem para mudar: e se o próximo interesse acabar?"
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Esse medo apareceu com muita clareza num comentário sobre multipotencialidade. A pessoa se reconhecia na ideia de ter vários interesses, havia deixado Engenharia depois de cinco anos sem concluir o curso e queria seguir a relojoaria. Junto da vontade vinha o pânico de perder o interesse novamente."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Encontrar um nome para a própria experiência pode trazer alívio. A pergunta sobre o trabalho continua exigindo uma resposta: como sustentar uma atividade por tempo suficiente para construir alguma coisa, sabendo que outras também vão chamar sua atenção?"
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Se essa é a sua questão, prometer que a próxima paixão será definitiva seria repetir uma exigência antiga. Você estaria tentando obter, antes da experiência, uma certeza que a experiência ainda precisa testar."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Uma forma de examinar o novo interesse é chegar mais perto de sua parte menos imaginada."
+          ],
+          "tone": "turn"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Considere alguém que quer escrever. Há o prazer de ter ideias e há o trabalho de revisar uma página que parecia boa ontem. Há quem queira dar aulas e ainda precise descobrir como se sente preparando uma explicação, repetindo-a de outro jeito e acompanhando a dificuldade de outra pessoa. Esses são exemplos possíveis de contato com o trabalho, não testes infalíveis de vocação."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "O detalhe importa porque a pergunta “eu gosto disso?” permite respostas muito amplas. Gostar de ler sobre um assunto, praticá-lo ocasionalmente, estudá-lo a fundo e receber para entregar um resultado são relações diferentes com a mesma coisa."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Você pode descobrir que quer manter um interesse na sua vida sem transformá-lo em fonte de renda. Pode encontrar uma atividade da qual gosta, mas não nas condições disponíveis. Pode perceber que tolera certas dificuldades porque o trabalho, no conjunto, lhe interessa."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Ter vários interesses permite levantar várias hipóteses. Escolher uma para conhecer melhor, durante um período delimitado, não exige uma promessa sobre quem você será para sempre. Exige disposição para encontrar algo além do entusiasmo inicial."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "E o que acontece com tudo o que você já aprendeu?"
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Um dos relatos guarda uma contradição reveladora. Depois de cursar Cinema e descobrir que não gostava do curso, uma pessoa começou a escrever livros. Ao falar do diploma, chamou-o de inútil e acrescentou, entre parênteses, que o conhecimento ajudava todos os dias."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez o diploma não tivesse levado à vida esperada. Parte do aprendizado, segundo o próprio relato, ainda encontrava uso. As duas avaliações cabiam na mesma frase."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Vale guardar essa distinção antes de chamar toda mudança de “começar do zero”. Ao sair de uma atividade, você pode perder posição, familiaridade e reconhecimento. Pode precisar aprender coisas básicas enquanto pessoas da sua idade parecem muito adiantadas. Esses custos não são pequenos. Mas eles também não descrevem, sozinhos, tudo o que você leva."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Uma arquiteta que queria Artes Visuais contou que estava migrando para o desenho 3D de construções e jardins. Seu comentário não permite concluir que a transição deu certo financeiramente ou resolveu a frustração. Ele mostra algo mais limitado e útil: a possibilidade que ela estava construindo tinha pontos de contato com o que já conhecia."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Isso não obriga ninguém a procurar uma utilidade para cada ano vivido. Haverá conhecimentos que você não vai usar. Haverá tarefas que preferirá deixar para trás. O passado pode oferecer recursos sem precisar fornecer a justificativa de todas as próximas decisões."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez parte do trabalho de recomeçar seja justamente essa avaliação: reconhecer o que pode acompanhar você, o que precisa aprender e o que já não deseja carregar. Ela é mais trabalhosa do que anunciar uma vida nova. Também permite enxergar mudanças menores que uma substituição completa de identidade."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "tempo-que-voce-ainda-nao-gastou/assets/o-que-acompanha.png",
+          "alt": "De uma rota anterior, alguns recursos seguem para outra; outros permanecem onde estavam.",
+          "caption": "",
+          "presentation": "diagram"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Uma investigação pode, inclusive, levar você de volta."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Alguém que havia deixado Engenharia contou que passou um período editando vídeos e, mais tarde, voltou a estudar programação. Encontrou mais prazer no estudo do que sentia na universidade e disse que planejava retomar o curso. O comentário termina num plano. Não sabemos o que aconteceu depois."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Mesmo com esse limite, há algo relevante no percurso: voltar a uma atividade depois de outras experiências pode trazer uma informação que você não tinha quando saiu. Investigar outro caminho não precisa produzir uma história de ruptura para ter valor."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Se você está tentando decidir o resto da vida de uma vez, talvez valha diminuir o tamanho da decisão até que ela possa ensinar alguma coisa."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Escolha uma dúvida concreta sobre uma possibilidade que lhe interessa. Algo como: conheço as tarefas dessa profissão ou conheço principalmente a imagem que fiz dela? Há alguma atividade próxima do que já sei fazer? O que eu precisaria descobrir antes de assumir um compromisso maior?"
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Depois, procure uma forma de contato compatível com suas condições: conversar com alguém sobre a rotina real, observar um trabalho quando isso for possível, realizar uma pequena tarefa que não exija investimento significativo. Defina o que pretende descobrir e um momento para rever o que encontrou. O resultado pode ser vontade de continuar, necessidade de adaptar a ideia ou desinteresse. Todos dizem mais sobre aquela possibilidade do que a obrigação de acertar para sempre."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Talvez você saia dessa investigação ainda sem saber qual profissão deseja. Mas consiga formular melhor o que não funciona na atual. Talvez perceba que quer mudar de ambiente, de função, de relação com o trabalho. Talvez continue querendo uma mudança grande e passe a entender melhor o que ela exigiria."
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Olhe de novo para o ponto marcado como “hoje” na imagem. Os caminhos à direita representam possibilidades, não garantias. Alguns exigirão recursos que você ainda não tem. Outros deixarão de interessar quando forem vistos de perto. A imagem não consegue decidir isso por você."
+          ]
+        },
+        {
+          "type": "media",
+          "kind": "image",
+          "src": "tempo-que-voce-ainda-nao-gastou/assets/caminhos-aprovado.png",
+          "alt": "A imagem do início, revista: o ponto hoje separa caminhos passados de possibilidades futuras.",
+          "caption": "",
+          "presentation": "paths"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Ela consegue lembrar que o desenho ainda não está completo."
+          ],
+          "tone": "turn"
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Você pode precisar continuar no mesmo trabalho amanhã. Isso não impede que passe a fazer uma pergunta diferente sobre ele: o que, nas minhas condições de hoje, justifica a minha próxima escolha?"
+          ]
+        },
+        {
+          "type": "narrative",
+          "paragraphs": [
+            "Há tempo que você lamenta ter perdido. Há tempo que ainda não gastou. Este último merece ser considerado por aquilo que pode tornar possível."
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": []
+}

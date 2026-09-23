@@ -58,7 +58,7 @@ class ReadingShares(unittest.TestCase):
         template = (ROOT/'site/index.html').read_text()
         entries = json.loads((ROOT/'site/leitura/manifest.json').read_text())['readings']
         entry = copy.deepcopy(next(r for r in entries if r['slug'] == 'habitos-que-cabem'))
-        entry['share']['preview_image'] = entry['share']['image']
+        entry['share']['preview_image'] = '/leitura/dia-22/assets/capa-dia-22.png'
         with self.assertRaisesRegex(ValueError, 'menos de 300 KB'):
             render(template, entry, ROOT/'site')
         entry = entries[0]

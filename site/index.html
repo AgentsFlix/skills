@@ -26,6 +26,7 @@
 <link rel="icon" href="brand/favicon-dark.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
 <link rel="preload" href="catalog.json" as="fetch" crossorigin>
+<link rel="stylesheet" href="design-system/tokens.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
@@ -391,6 +392,23 @@
     .tapbtn { margin-left: 0; }
     #intro .skip { bottom: 20px; right: 20px; }
   }
+  /* Cenas editoriais locais: mostrar a composição inteira, sem texto sobre ela. */
+  .panel .top.editorial-cover.has-cover { padding: 0; }
+  .panel .top.editorial-cover .pcover {
+    position: relative; inset: auto; display: block;
+    width: 100%; height: auto; object-fit: contain;
+    mask-image: none; -webkit-mask-image: none;
+  }
+  .panel .top.editorial-cover .tinfo { padding: var(--af-space-6); }
+  .hero.editorial-cover.has-cover {
+    min-height: 0; padding: 0; flex-direction: column; align-items: stretch;
+  }
+  .hero.editorial-cover .hero-pic { position: relative; inset: auto; display: block; }
+  .hero.editorial-cover .hero-cover {
+    position: relative; display: block; width: 100%; height: auto; object-fit: contain;
+  }
+  .hero.editorial-cover .shade { display: none; }
+  .hero.editorial-cover .inner { padding: var(--af-space-6); }
   @media (prefers-reduced-motion: reduce) {
     .cmdbox::before { animation: none; }
     #intro .enter, #intro .grain { animation: none; }
@@ -649,7 +667,8 @@
       title, name, sub, syn,
       proc: p.tamanho || "", req: p.requer || "nenhuma", ano: p.ano || "", since: s.since || "",
       how: p.como_usar || "", cast, gen, traits,
-      readingOnly: !!s.reading_only, readingCover: s.reading_cover || "", publicationStatus: s.publication_status || "",
+      readingOnly: !!s.reading_only, editorialOnly: !!s.editorial_only,
+      readingCover: s.reading_cover || "", publicationStatus: s.publication_status || "",
       runtimeOnly: !!s.runtime_only, activation: s.activation_prompt || "",
       promptTruncated: Array.isArray(s.prompt_truncated) ? s.prompt_truncated : [],
       badge: c.badge,
@@ -667,6 +686,7 @@
   function targetInfo(s, id) {
     const targets = s.readingOnly ? TARGETS.filter(x => s.cmdFor[x.id]) : TARGETS;
     const t = targets.find((x) => x.id === id) || targets[0];
+    if (!t) return { t: null, value: "", note: "", hint: "" };
     const value = s.cmdFor[t.id] || s.cmdFor["Hermes CLI"] || "";
     let note = s.runtimeOnly && t.runtimeNote ? t.runtimeNote : "";
     if (t.id === "ChatGPT Project" && s.promptTruncated.length) note = `Versão colável incompleta: ${s.promptTruncated.length} arquivo(s) ficaram só no zip (${s.promptTruncated.join(", ")}).`;
@@ -803,7 +823,7 @@
     const s = heroFor(); if (!s) return;
     const { value } = targetInfo(s, state.target);
     const el = $("hero");
-    el.className = "hero has-cover";   // parte do pressuposto de capa (todas terão); sem capa, o onerror devolve o gradiente
+    el.className = `hero has-cover${s.readingCover ? ' editorial-cover' : ''}`;   // sem capa, o onerror devolve o gradiente
     el.innerHTML = `
       <div class="bg"></div><div class="lines"></div>
       ${heroCover(s)}
@@ -975,8 +995,9 @@
     const m = $("modal");
     if (!s) { DISCOVERY?.cancel(); m.hidden = true; m.innerHTML = ""; document.body.style.overflow = ""; return; }
     const reading = isReading(s.slug);
-    const skillReady = !!DISCOVERY?.completed && !DISCOVERY.locked(s.slug);
-    const skillGate = !DISCOVERY?.completed
+    const editorial = reading && s.editorialOnly;
+    const skillReady = !editorial && !!DISCOVERY?.completed && !DISCOVERY.locked(s.slug);
+    const skillGate = editorial ? "" : !DISCOVERY?.completed
       ? `<section class="reading-skill-gate"><h2>Leve esta skill para o seu agente</h2><p>A leitura é livre. Para usar a skill, escolha seu caminho e veja por onde começar.</p><button class="guide-primary" data-act="reading-onboarding" data-slug="${esc(s.slug)}">Escolher meu caminho</button></section>`
       : !skillReady ? DISCOVERY.gate(s) : "";
     if (!reading && !skillReady) {
@@ -987,13 +1008,14 @@
     m.innerHTML = `
       <div class="overlay" data-act="close">
         <div class="panel ${window.AgentFlixReader?.supports(s.slug) ? 'has-human-reader' : ''}" data-act="stop" role="dialog" aria-modal="true" aria-label="${esc(s.name)}">
-          <div class="top has-cover" data-cover-host>
+          <div class="top has-cover${s.readingCover ? ' editorial-cover' : ''}" data-cover-host>
             <div class="tint" style="background:radial-gradient(100% 130% at 80% 0%, ${s.tint} 0%, rgba(0,0,0,0) 70%)"></div>
             <div class="lines"></div>
             ${coverImg(s, "pcover", "desktop", { eager: true, hostOff: true })}
             <div class="bign">${s.n}</div>
             <button class="close" data-act="close" aria-label="fechar">✕</button>
             <div class="tinfo">
+              ${editorial ? '<div class="modal-actions" hidden></div>' : `
               <div class="kick">${esc(CATS[s.cat].chip)} · ${esc(s.proc)}${s.req !== "nenhuma" ? ` · Requer: ${esc(s.req)}` : ""}</div>
               <h3>${esc(s.title)}</h3>
               <p class="name">${esc(s.name)}</p>
@@ -1006,10 +1028,11 @@
                 </div>
                 <p class="installation-feedback" role="status"></p>
               </div>
+              `}
             </div>
           </div>
           <div class="body ${skillReady ? '' : 'reading-skill-locked'}">
-            ${skillReady ? `<div>
+            ${editorial ? '' : skillReady ? `<div>
               <div class="synopsis"><p class="syn" id="skill-syn">${esc(s.syn)}</p><button class="syn-toggle" data-act="synopsis" aria-expanded="false" aria-controls="skill-syn" hidden>Ler sinopse completa</button></div>
               ${s.badge === "LENDA" ? `<p class="legal">Skill independente: reúne o método publicado em livros, cursos e entrevistas do autor. Sem afiliação nem endosso dele.</p>` : ""}
               ${exclusiveHtml(s)}
@@ -1246,7 +1269,7 @@
     return `${artHtml(s, coverImg(s, "cover", "wide", { eager: true }))}
       <div class="pv-body">
         <div class="pv-actions">
-          <button class="pv-play" data-act="open" data-slug="${esc(s.slug)}" title="${state.view === 'reading' ? 'Ler método' : 'Ver detalhes'}" aria-label="${state.view === 'reading' ? 'Ler método' : 'Ver detalhes'}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l4 4v14H4V3zM8 11h8M8 15h8"/></svg></button>
+          <button class="pv-play" data-act="open" data-slug="${esc(s.slug)}" title="${s.editorialOnly ? 'Ler texto' : state.view === 'reading' ? 'Ler método' : 'Ver detalhes'}" aria-label="${s.editorialOnly ? 'Ler texto' : state.view === 'reading' ? 'Ler método' : 'Ver detalhes'}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l4 4v14H4V3zM8 11h8M8 15h8"/></svg></button>
           <button class="pv-round pv-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" title="Minha lista" aria-label="${s.inList ? "Remover da minha lista" : "Adicionar à minha lista"}" aria-pressed="${s.inList}">${listIcon(s.inList)}</button>
           <button class="pv-round pv-more" data-act="open" data-slug="${esc(s.slug)}" title="Mais informações" aria-label="Mais informações"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
         </div>
