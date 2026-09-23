@@ -359,6 +359,13 @@
         "sop-extrair"
       ],
       "nota": "SOP para humano e SOP para agente."
+    },
+    "pesquisa-audiencia-jev": {
+      "fileira": "comece",
+      "colecao": null,
+      "passo": 11,
+      "antes": [],
+      "nota": "Pesquise comentários com JevCloud, organize evidências rastreáveis e prepare escrita quando solicitada, a partir do YouTube ou de um corpus existente."
     }
   },
   "colecoes": {

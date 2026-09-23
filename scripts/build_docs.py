@@ -132,14 +132,14 @@ def build_prompt(slug: str, fm: dict, body: str, files: list[str], version: str,
 
 # ───────────── principal ─────────────
 def distribution_entries(cat: dict) -> dict[str, tuple[dict, str]]:
-    """Pacotes autorais têm versão própria; skills mantêm a versão do catálogo."""
+    """Distribuições autorais mantêm sua versão após virar card visível."""
     entries = {}
     for collection in ("skills", "packages"):
         for entry in cat.get(collection, []):
             slug = entry["name"]
             if slug in entries:
                 raise ValueError("Nome repetido no catálogo: " + slug)
-            version = entry["version"] if collection == "packages" else cat["version"]
+            version = entry["version"] if collection == "packages" or entry.get("distribution_ref") else cat["version"]
             if not isinstance(version, str) or not version:
                 raise ValueError("Versão inválida no catálogo: " + slug)
             entries[slug] = (entry, version)
@@ -159,7 +159,8 @@ def write_integrity(directory: Path, version: str) -> None:
 def main() -> None:
     cat = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
     entries = distribution_entries(cat)
-    package_names = {entry["name"] for entry in cat.get("packages", [])}
+    authored_names = {entry["name"] for entry in cat.get("packages", [])}
+    authored_names.update(entry["name"] for entry in cat.get("skills", []) if entry.get("distribution_ref"))
     for d in (DIST, WK, PROMPT, DOCS / "packages"):
         if d.exists(): shutil.rmtree(d)
         d.mkdir(parents=True)
@@ -172,7 +173,7 @@ def main() -> None:
         # portable: cópia da pasta com SKILL.md reescrito
         pd = DIST / slug; shutil.copytree(d, pd, ignore=shutil.ignore_patterns(".*", "__pycache__", "*.pyc", "*.pyo"))
         (pd / "SKILL.md").write_text(dump_fm(strict_frontmatter(fm, slug, version)) + adapt_body(body), encoding="utf-8")
-        if slug in package_names:
+        if slug in authored_names:
             write_integrity(pd, version)
         with zipfile.ZipFile(DIST / f"{slug}.zip", "w", zipfile.ZIP_DEFLATED) as z:
             for f in sorted(pd.rglob("*")):
