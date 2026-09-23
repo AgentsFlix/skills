@@ -6,5 +6,5 @@ Esta entrega exporta somente a vitrine, o login e a memória Web a partir da fon
 
 - Fonte privada: [AgentsFlix/agentsflix PR #189](https://github.com/AgentsFlix/agentsflix/pull/189).
 - PR público: [AgentsFlix/skills PR #135](https://github.com/AgentsFlix/skills/pull/135).
-- Testes previstos: `python3 -m unittest discover -s tests`, `python3 scripts/check_site.py`, `python3 scripts/agent_work.py check`, além dos checks do PR.
+- Testes locais aprovados: `python3 -m unittest discover -s tests` (161 testes, 1 ignorado), `python3 scripts/check_site.py` e `python3 scripts/agent_work.py check`. CI e deploy ainda a confirmar.
 - Homologação complementar: concluir o onboarding com duas contas e conferir retorno em desktop e celular.
