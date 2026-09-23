@@ -17,6 +17,7 @@
     ["agentflix-ecf-base-v2", "exercise"],
     ["agentflix-casa-git-premium-v1", "exercise"],
     ["agentflix-target", "preference"],
+    ["agentflix-visit-v1", "preference"],
   ]);
   const prefixes = [
     ["agentflix-prog-", "video"],

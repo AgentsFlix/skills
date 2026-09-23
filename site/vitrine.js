@@ -14,7 +14,8 @@
       const journey = window.AgentFlixJourney(data, Object.keys(by), {getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)});
       let door = null, trail = ['inicio'], result = null, completeOnboarding = false;
       let kind = null, answers = [];
-      const visit = window.AgentFlixVisit(data, {getItem:key=>sessionStorage.getItem(key),setItem:(key,value)=>sessionStorage.setItem(key,value),removeItem:key=>sessionStorage.removeItem(key)});
+      const visitStorage = hooks.authenticated ? localStorage : sessionStorage;
+      const visit = window.AgentFlixVisit(data, {getItem:key=>visitStorage.getItem(key),setItem:(key,value)=>visitStorage.setItem(key,value),removeItem:key=>visitStorage.removeItem(key)});
       const restored = visit.load();
       if (restored) ({door,trail,result,kind,answers,completed:completeOnboarding} = restored);
       const event = (name, tags) => window.clar?.(name,{porta:kind,objetivo:result?.skill,...tags});
@@ -108,7 +109,7 @@
         });
         $('guide').querySelector('[data-guide-reset]').addEventListener('click',toggleGuide);
         $('guide').querySelector('[data-enter-selection]')?.addEventListener('click',()=>{
-          completeOnboarding=true;saveVisit();event('onboarding_concluido');$('discovery').hidden=true;hooks.filter();renderRecommendation();scroll($('recommendation'));titleFocus($('recommendation'));hooks.enter();
+          completeOnboarding=true;saveVisit();if(hooks.authenticated)window.AgentFlixMemory?.flush();event('onboarding_concluido');$('discovery').hidden=true;hooks.filter();renderRecommendation();scroll($('recommendation'));titleFocus($('recommendation'));hooks.enter();
         });
       }
       function status(s) {

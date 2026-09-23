@@ -4,18 +4,21 @@ const byId = (id) => document.getElementById(id);
 const states = ["loading", "signed-out", "sent", "signed-in", "unavailable"];
 const nextPath = safeNextPath(new URLSearchParams(window.location.search).get("next"));
 let client = null;
+let redirecting = false;
 
 function show(name) {
   states.forEach((state) => { byId(`${state}-state`).hidden = state !== name; });
 }
 
 function signedIn(session) {
+  if (redirecting) return;
   byId("account-email").textContent = session.user.email || "Conta AgentFlix";
   const continueLink = byId("continue-link");
-  const hasDestination = nextPath !== "/";
-  continueLink.href = hasDestination ? nextPath : "/conta/";
-  continueLink.textContent = hasDestination ? "Continuar na AgentFlix" : "Abrir minha conta";
+  continueLink.href = nextPath;
+  continueLink.textContent = "Continuar na AgentFlix";
   show("signed-in");
+  redirecting = true;
+  window.location.replace(nextPath);
 }
 
 function signedOut() {
