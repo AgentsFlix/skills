@@ -481,14 +481,28 @@ Os comentários fornecem experiência e linguagem; o agente desenvolve o racioc�
 
 ## Seleção por componente e redação contínua
 
+Os comandos partem da raiz instalada do pacote. Para preparar `--candidates`, use os IDs selecionados
+em `candidates.json` para recuperar as linhas correspondentes do `corpus.jsonl` original e salve o
+pré-filtro como JSONL. As fichas do seletor usam `comment_original_private` e não são entrada direta
+do cambiador. Para `--evidence`, salve uma única linha escolhida como objeto JSON com `id` e `comment`.
+Mantenha a proveniência separada. Os argumentos completos aparecem em `--help` de cada comando.
+
 1. Defina componentes com função explícita, por exemplo reconhecimento, distinção, objeção, consequência ou aplicação. Inclua em cada `component` a tese global, movimento esperado no leitor, contexto anterior/posterior e restrições de voz.
 2. Faça pré-filtro determinístico para 8–30 candidatos. Não envie milhares de comentários a cada tecla. Priorize aderência temática, privacidade permitida e contribuição distinta.
-3. Gere a Passagem A com `scripts/prepare_turn.py evidence`. JEV escolhe um `evidence_id` ou `none`. Não force correspondência.
+3. Gere a Passagem A com `python3 modules/jev-copy-cambiador/scripts/prepare_turn.py evidence`. JEV escolhe um `evidence_id` ou `none`. Não force correspondência.
 4. Se vier `none` ou confiança baixa, registre a incerteza. Busque outra evidência para uma atribuição pessoal; uma pergunta ou interpretação autoral pode continuar, identificada como tal. Acrescente fontes complementares ou contraditórias quando necessárias, distinguindo escolhas JEV de curadoria do agente.
-5. Gere a Passagem B com `scripts/prepare_turn.py persona`, já contendo o comentário escolhido. JEV escolhe um método ou `neutral`. Questions irmãs são independentes: nunca tente fazer essas duas decisões na mesma chamada.
+5. Gere a Passagem B com `python3 modules/jev-copy-cambiador/scripts/prepare_turn.py persona`, já contendo o comentário escolhido. JEV escolhe um método ou `neutral`. Questions irmãs são independentes: nunca tente fazer essas duas decisões na mesma chamada.
 6. Carregue apenas o método escolhido em `references/personas.md` e `assets/personas.json`, ambos incluídos neste módulo. Aplique o método, não uma imitação da voz, bordões ou identidade do copywriter.
-7. Redija a peça como um argumento contínuo. Releia transições, referências e repetições após compor os trechos. O leitor não precisa ver a troca de métodos nem cada comentário. Registre o mapa separado e rode `scripts/audit_grounding.py` contra o corpus; ele verifica vínculos e campos, não verdade nem qualidade literária.
+7. Redija a peça como um argumento contínuo. Releia transições, referências e repetições após compor os trechos. O leitor não precisa ver a troca de métodos nem cada comentário. Registre o mapa separado e rode `python3 modules/jev-copy-cambiador/scripts/audit_grounding.py` contra o corpus; ele verifica vínculos e campos, não verdade nem qualidade literária.
 8. Para publicação, faça revisão humana. JEV é heurística de seleção, não certificado de verdade nem substituto de julgamento editorial.
+
+O helper transmite apenas `id`, `comment`, `context`, `language` e `kind` das evidências. Metadados de
+autor, URLs, proveniência e outros campos ficam no corpus privado. Revise também o próprio texto:
+a allowlist de campos não anonimiza relatos. O componente aceita os campos textuais do contrato
+editorial, `component_id`, `function`, `claim`, `medium`, `audience`, `before`, `after` e uma lista textual
+`restrictions`. Escreva esses campos como texto, sem objetos de perfil ou metadados aninhados.
+O helper valida o estado completo antes de salvar. Se exceder o limite, reduza o número de candidatos
+ou faça um recorte editorial explícito e rastreável; nunca trunque evidência silenciosamente.
 
 ## Modos de lastro
 
@@ -923,7 +937,7 @@ Mostrar uma síntese curta do contrato. Se já há pedido para executar, seguir 
 
 Aplicar `jev-operar` e seu cliente compartilhado: provider `jevcloud_direct`, modelo fixado `jev-1.13.0`, endpoint e credencial conforme [o contrato da API](../jev-operar/references/api-contract.md). Fazer piloto contrastante e revisão estratificada de comentários reais. Começar com uma unidade por request; todas as perguntas relacionadas compartilham essa unidade. Alvo explícito em `instructions`; os IDs de Questions não são lidos pelo modelo.
 
-Para seleção editorial, executar `jev-cerne/scripts/select_comments.py` com `corpus.jsonl` e os critérios adaptados. Plano primeiro, depois `--execute --max-requests N` compatível com o escopo já autorizado. Preservar checkpoints por lote, respostas completas, provider/endpoint, versão/rubrica e hashes. Repetir só falhas transitórias; parar em erro de credencial/schema sem descartar progresso. `--resume` na classificação exige a mesma rota/modelo/rubrica e corpus. Preserve rodadas OpenRouter antigas e use novo diretório para rodadas JevCloud; a coleta preservada pode ser reutilizada como entrada, sem migrar os checkpoints JEV nem repetir a coleta por perder memória.
+Para seleção editorial, executar `python3 modules/jev-cerne/scripts/select_comments.py` com `corpus.jsonl` e os critérios adaptados. Plano primeiro, depois `--execute --max-requests N` compatível com o escopo já autorizado. Preservar checkpoints por lote, respostas completas, provider/endpoint, versão/rubrica e hashes. Repetir só falhas transitórias; parar em erro de credencial/schema sem descartar progresso. `--resume` na classificação exige a mesma rota/modelo/rubrica e corpus. Preserve rodadas OpenRouter antigas e use novo diretório para rodadas JevCloud; a coleta preservada pode ser reutilizada como entrada, sem migrar os checkpoints JEV nem repetir a coleta por perder memória.
 
 JEV classifica e pontua. Para “extração” de texto, usar trechos literais localizados pelo agente/código e, se útil, uma Choice JEV entre spans enumerados com opção `none`. Uma resposta tipada não gera justificativas, frases profundas ou citações. Não pedir uma biografia oculta ao modelo.
 
@@ -935,7 +949,7 @@ Organizar o conteúdo em situações, tensões, dores explicitadas, desejos, obj
 
 Entregar seleção recomendada (âncora + complementos), fichas com trechos curtos/original/tradução, justificativas de uso, e ângulos de escrita sustentados. Corpus e proveniência ficam privados; uma versão compartilhável remove identificadores, links de pessoas e histórias reidentificáveis. Não publicar comentários como prova social ou depoimento do produto.
 
-Rodar `scripts/audit_knowledge.py --corpus /caminho/corpus.jsonl --knowledge /caminho/base-conhecimento.json` para conferir IDs e trechos. Complementar com leitura: cada tradução é marcada, cada inferência aponta evidência ou é explicitamente hipótese. O teste mecânico não atesta o significado. Fazer inventário de recebidos, únicos, classificados, revisados, excluídos e pendentes; citar cobertura, rubrica e duração medida de cada etapa. Base sem essa auditoria é rascunho, não pesquisa concluída.
+Rodar `python3 modules/youtube-jev-copy/scripts/audit_knowledge.py --corpus /caminho/corpus.jsonl --knowledge /caminho/base-conhecimento.json` para conferir IDs e trechos. Complementar com leitura: cada tradução é marcada, cada inferência aponta evidência ou é explicitamente hipótese. O teste mecânico não atesta o significado. Fazer inventário de recebidos, únicos, classificados, revisados, excluídos e pendentes; citar cobertura, rubrica e duração medida de cada etapa. Base sem essa auditoria é rascunho, não pesquisa concluída.
 
 ## Limite de rastreabilidade
 
@@ -1877,7 +1891,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
     "modules/jev-cerne/assets/triage.json": "c5e4628d2c60eb58a3f186b7282626989962414d997c77d604516591dd659361",
     "modules/jev-cerne/references/criterios.md": "5a9e914090a29c46d592e196c93b4b8e7568395198ab57ecbe83a9eb47d9bf56",
     "modules/jev-cerne/scripts/select_comments.py": "d7cb43fe455d73d844f5c67a1c28304181868c36da84cd3a7176324b352e5abc",
-    "modules/jev-copy-cambiador/GUIDE.md": "3648ccf55159d1c4c3cd0aef3652ffbb4679867d6057730d7debea55afd4c6ee",
+    "modules/jev-copy-cambiador/GUIDE.md": "e2fc5838c071eff4e16fe13815a03b4210e2f84b8dfbf08a141694dcbfee2628",
     "modules/jev-copy-cambiador/assets/personas.json": "fbc20d0323b23ba9efc1158a0bfcc7a74daef5c2e88c20340f31bd9dd184bd03",
     "modules/jev-copy-cambiador/assets/synthetic-component.json": "972c978aaec27c890fb401fe6968474b280857e798b1dc07faa7cbce93864991",
     "modules/jev-copy-cambiador/assets/synthetic-corpus.jsonl": "64d2cdf8b6c0c497204f2dc19561556e6d01b77ee7773679cae62aca3fd210b6",
@@ -1885,12 +1899,12 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
     "modules/jev-copy-cambiador/references/jev-contract.md": "a8272a893ffb2c69fb57d3428d0c88637a9cfff0dda37de39a14a54cf90f9cd6",
     "modules/jev-copy-cambiador/references/personas.md": "117177eef50754c6e91f379f0bcbd614d1a72cbfe3360728a1af1f1f1e296976",
     "modules/jev-copy-cambiador/scripts/audit_grounding.py": "3b5b04712887478d9d9dd81c61f266767568247edd482b3750f0c0cdd29c4edd",
-    "modules/jev-copy-cambiador/scripts/prepare_turn.py": "1f1af5d880113a9e8d11a209d66f3bf4ea3ba68c7ba9419841038a553a545b63",
+    "modules/jev-copy-cambiador/scripts/prepare_turn.py": "a16e84f1830ce7559d501707c120efa72c6f266dbe92718c1c6187e8663e8841",
     "modules/jev-operar/GUIDE.md": "beb31d43700e05a114f09e9f50ee72a932bc05a190dbaec91a43e97ed816c363",
     "modules/jev-operar/references/api-contract.md": "41a90030bd1abe052a1bab9ba2f2e745af6b0e42dc4fae30e72e4dee08fe707e",
     "modules/jev-operar/scripts/jev_client.py": "65003b524df229c5d03b14e20bb982a07736262f223b1b69f2750189bce13522",
     "modules/jev-operar/scripts/smoke.py": "f05f94b46457712a1906af8ea99453a6ed6b0a3c282283b8c41e6cb7f29fd3f7",
-    "modules/youtube-jev-copy/GUIDE.md": "cc53e016b46910433ab60c159fc52f6c240a5112caf700a850b6cdfa96dbbc2e",
+    "modules/youtube-jev-copy/GUIDE.md": "c3d6df17c87c9834b26b7eb51c2738b7696595c91e30899d9482bd76dcee6f2d",
     "modules/youtube-jev-copy/assets/extraction-contract.json": "1925d8b6dabfe95067a84a0cd4598b14a6362af45715970762a7190125357760",
     "modules/youtube-jev-copy/assets/knowledge-base-contract.json": "081ed0a958c0d2572e331f51cc3fcfe644607ebb1df761b48b2c32249cd16ef7",
     "modules/youtube-jev-copy/assets/knowledge-base-template.md": "bf8bcc74c1b34c1b4a70f2ba0e6fab542fbb6b85731bd865fce8dc1b26892c5e",

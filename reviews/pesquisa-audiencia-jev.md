@@ -15,10 +15,25 @@ Escopo: pacote, `scripts/build_docs.py`, `tests/test_jev_package.py`, catálogo,
 distribuições em `docs/` e descoberta em `site/para-agente/manifest.json` e `prompt.txt`.
 Os arquivos de operação em `docs/operacao/` não pertencem a esta entrega.
 
-Validação inicial: 6 testes do gerador com fixtures sintéticas, 10 testes do hub e
-2 testes da distribuição existente de hábitos passaram. Os testes cobrem versão,
-compatibilidade, ativação, ZIP completo, idempotência e preservação dos legados.
+O pacote reúne quatro módulos sob uma entrada, sem preferências pessoais ou corpus
+real. A credencial permanece em arquivo privado, com caminho XDG ou `--credential`.
+O onboarding orienta a obter a chave da própria pessoa no JevCloud e validá-la sem
+exibir seu valor. Execução requer terminal e Python 3.10+; chat sem terminal pode
+conduzir o briefing e precisa declarar as etapas que não executou.
 
-A exportação do pacote, validação completa e integração estão pendentes nesta
-etapa. A tag `pesquisa-audiencia-jev-v1.0.0` e sua release só serão criadas a partir
-do commit integrado e validado. Nenhuma chave ou corpus acompanha a distribuição.
+Validação final local, com Python 3.12: 162 testes passaram, incluindo 10 testes do
+pacote e gerador. `check_site.py` e `validate_skills.py` passaram. O scanner Hermes
+pinado v2026.8.27, trust community, aprovou as 53 skills; o pacote recebeu `safe`,
+com cinco observações médias de subprocessos locais e links relativos internos.
+Nenhum scanner ou regra de segurança foi reduzido.
+
+O build é idempotente. ZIP e distribuição portátil têm os mesmos arquivos e bytes;
+fonte e portátil possuem manifestos próprios para seus respectivos `SKILL.md`.
+Os testes conferem versão, compatibilidade, autor, ativação, hashes, módulos e ausência
+de histórico local. A versão do catálogo e as 51 entradas de `catalog.skills` foram
+preservadas integralmente. A verificação de escopo do helper passou.
+
+A integração depende da conclusão da fonte autorizada. A tag
+`pesquisa-audiencia-jev-v1.0.0` e sua release só serão criadas a partir do commit
+integrado e validado. Estes checks locais não comprovam autenticação real de um
+novo usuário nem equivalem a calibração semântica de uma pesquisa.

@@ -30,14 +30,28 @@ Os comentários fornecem experiência e linguagem; o agente desenvolve o racioc�
 
 ## Seleção por componente e redação contínua
 
+Os comandos partem da raiz instalada do pacote. Para preparar `--candidates`, use os IDs selecionados
+em `candidates.json` para recuperar as linhas correspondentes do `corpus.jsonl` original e salve o
+pré-filtro como JSONL. As fichas do seletor usam `comment_original_private` e não são entrada direta
+do cambiador. Para `--evidence`, salve uma única linha escolhida como objeto JSON com `id` e `comment`.
+Mantenha a proveniência separada. Os argumentos completos aparecem em `--help` de cada comando.
+
 1. Defina componentes com função explícita, por exemplo reconhecimento, distinção, objeção, consequência ou aplicação. Inclua em cada `component` a tese global, movimento esperado no leitor, contexto anterior/posterior e restrições de voz.
 2. Faça pré-filtro determinístico para 8–30 candidatos. Não envie milhares de comentários a cada tecla. Priorize aderência temática, privacidade permitida e contribuição distinta.
-3. Gere a Passagem A com `scripts/prepare_turn.py evidence`. JEV escolhe um `evidence_id` ou `none`. Não force correspondência.
+3. Gere a Passagem A com `python3 modules/jev-copy-cambiador/scripts/prepare_turn.py evidence`. JEV escolhe um `evidence_id` ou `none`. Não force correspondência.
 4. Se vier `none` ou confiança baixa, registre a incerteza. Busque outra evidência para uma atribuição pessoal; uma pergunta ou interpretação autoral pode continuar, identificada como tal. Acrescente fontes complementares ou contraditórias quando necessárias, distinguindo escolhas JEV de curadoria do agente.
-5. Gere a Passagem B com `scripts/prepare_turn.py persona`, já contendo o comentário escolhido. JEV escolhe um método ou `neutral`. Questions irmãs são independentes: nunca tente fazer essas duas decisões na mesma chamada.
+5. Gere a Passagem B com `python3 modules/jev-copy-cambiador/scripts/prepare_turn.py persona`, já contendo o comentário escolhido. JEV escolhe um método ou `neutral`. Questions irmãs são independentes: nunca tente fazer essas duas decisões na mesma chamada.
 6. Carregue apenas o método escolhido em `references/personas.md` e `assets/personas.json`, ambos incluídos neste módulo. Aplique o método, não uma imitação da voz, bordões ou identidade do copywriter.
-7. Redija a peça como um argumento contínuo. Releia transições, referências e repetições após compor os trechos. O leitor não precisa ver a troca de métodos nem cada comentário. Registre o mapa separado e rode `scripts/audit_grounding.py` contra o corpus; ele verifica vínculos e campos, não verdade nem qualidade literária.
+7. Redija a peça como um argumento contínuo. Releia transições, referências e repetições após compor os trechos. O leitor não precisa ver a troca de métodos nem cada comentário. Registre o mapa separado e rode `python3 modules/jev-copy-cambiador/scripts/audit_grounding.py` contra o corpus; ele verifica vínculos e campos, não verdade nem qualidade literária.
 8. Para publicação, faça revisão humana. JEV é heurística de seleção, não certificado de verdade nem substituto de julgamento editorial.
+
+O helper transmite apenas `id`, `comment`, `context`, `language` e `kind` das evidências. Metadados de
+autor, URLs, proveniência e outros campos ficam no corpus privado. Revise também o próprio texto:
+a allowlist de campos não anonimiza relatos. O componente aceita os campos textuais do contrato
+editorial, `component_id`, `function`, `claim`, `medium`, `audience`, `before`, `after` e uma lista textual
+`restrictions`. Escreva esses campos como texto, sem objetos de perfil ou metadados aninhados.
+O helper valida o estado completo antes de salvar. Se exceder o limite, reduza o número de candidatos
+ou faça um recorte editorial explícito e rastreável; nunca trunque evidência silenciosamente.
 
 ## Modos de lastro
 

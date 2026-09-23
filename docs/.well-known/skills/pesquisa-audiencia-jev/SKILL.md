@@ -4,9 +4,11 @@ description: Pesquise uma audiência no YouTube ou analise um corpus existente c
 license: MIT
 compatibility: Requires a terminal, Python 3.10+, network access and private storage; yt-dlp for YouTube collection. Each user supplies their own JevCloud key in a local private file.
 metadata:
+  author: AgentFlix
   version: 1.0.0
   hub: https://agentsflix.ai
   source: https://github.com/AgentsFlix/skills/tree/pesquisa-audiencia-jev-v1.0.0/skills/pesquisa-audiencia-jev
+  tags: pesquisa, audiencia, youtube, jev, evidencias, escrita
   contract_version: 1.0.0
   content_revision: 1.0.0
   distribution_ref: pesquisa-audiencia-jev-v1.0.0
