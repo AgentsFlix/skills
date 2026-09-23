@@ -342,6 +342,110 @@ nav.main [data-discover-reading][aria-current="page"] { color: var(--text); bord
 #human-reader .reader-media img, #human-reader .reader-media video { display:block; max-width:100%; width:100%; max-height:600px; object-fit:contain; border-radius:12px; }
 #human-reader .reader-media figcaption, #human-reader .reader-gallery figcaption { font-size:calc(12px * var(--reader-scale,1)); color:var(--muted); margin-top:12px; }
 #human-reader .reader-media figcaption:empty { display:none; }
+
+/* Ensaio contínuo: usa a ficha e o leitor comum, sem navegação por capítulos. */
+#modal .panel.editorial-essay .top.has-cover {
+  min-height: 0;
+  padding: 0;
+}
+#modal .panel.editorial-essay .top .pcover {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1672 / 941;
+  object-fit: cover;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+#modal .panel.editorial-essay .top .close { z-index: 2; }
+#modal .panel.editorial-essay .top .tinfo { display: none; }
+#human-reader[data-reader-format="essay"] {
+  --reader-base: #e8e5dc;
+  --reader-prose: #1d1b18;
+  --reader-muted: #4b4843;
+  --text: #1d1b18;
+  --muted: #4b4843;
+  --line: #c5c1b4;
+  background-image:
+    radial-gradient(circle, rgba(45,41,35,.045) .5px, transparent .8px),
+    radial-gradient(circle, rgba(255,255,255,.27) .6px, transparent .9px);
+  background-size: 5px 5px, 7px 7px;
+}
+#human-reader[data-reader-format="essay"] .reading-toolbar { top: 0; }
+#human-reader[data-reader-format="essay"] .reader-layout { display: block; }
+#human-reader[data-reader-format="essay"] .chapters,
+#human-reader[data-reader-format="essay"] .chapter-meta,
+#human-reader[data-reader-format="essay"] .intro:empty,
+#human-reader[data-reader-format="essay"] .pagination { display: none; }
+#human-reader[data-reader-format="essay"] .reading {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 96px) clamp(20px, 4vw, 64px) 96px;
+  font-family: Georgia, 'Times New Roman', serif;
+  overflow-wrap: normal;
+}
+#human-reader[data-reader-format="essay"] #hr-chapter-title {
+  max-width: 40rem;
+  margin: 0 auto 52px;
+  padding-bottom: 34px;
+  border-bottom: 1px solid var(--line);
+  font-size: calc(clamp(48px, 6vw, 82px) * var(--reader-scale,1));
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  font-weight: 400;
+}
+#human-reader[data-reader-format="essay"] .block.narrative {
+  max-width: 40rem;
+  margin: 0 auto 1.65em;
+}
+#human-reader[data-reader-format="essay"] .narrative p {
+  margin: 0;
+  color: var(--reader-prose);
+  font-size: calc(clamp(18px, 1.35vw, 21px) * var(--reader-scale,1));
+  line-height: 1.7;
+}
+#human-reader[data-reader-format="essay"] .block.narrative:first-child p {
+  font-size: calc(clamp(23px, 2vw, 28px) * var(--reader-scale,1));
+  line-height: 1.5;
+}
+#human-reader[data-reader-format="essay"] .block.essay-turn {
+  margin-top: 3.3em;
+  margin-bottom: 3.3em;
+}
+#human-reader[data-reader-format="essay"] .essay-turn p {
+  font-size: calc(clamp(22px, 2vw, 27px) * var(--reader-scale,1));
+  line-height: 1.45;
+}
+#human-reader[data-reader-format="essay"] .block.essay-media {
+  margin: 72px auto 80px;
+}
+#human-reader[data-reader-format="essay"] .reader-media img {
+  max-height: none;
+  border-radius: 0;
+}
+#human-reader[data-reader-format="essay"] .essay-paths img { mix-blend-mode: darken; }
+#human-reader[data-reader-format="essay"] .reader-media figcaption {
+  font: 600 calc(12px * var(--reader-scale,1))/1.5 var(--sans);
+  text-align: center;
+}
+#human-reader[data-reader-format="essay"] .reader-media figcaption.caption-parts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+#human-reader[data-reader-format="essay"] footer {
+  max-width: 40rem;
+  margin: 80px auto 0;
+}
+@media (max-width:600px) {
+  #human-reader[data-reader-format="essay"] .reading { padding: 52px 20px 70px; }
+  #human-reader[data-reader-format="essay"] #hr-chapter-title {
+    font-size: calc(48px * var(--reader-scale,1));
+    margin-bottom: 42px;
+  }
+  #human-reader[data-reader-format="essay"] .block.essay-media { margin: 56px -20px 64px; }
+}
 #human-reader .reader-gallery>div { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
 #human-reader .reader-gallery figure { margin:0; }
 #human-reader .reader-gallery img { width:100%; }

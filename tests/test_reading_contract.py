@@ -22,7 +22,12 @@ class ReadingContract(unittest.TestCase):
         for entry in manifest['readings']:
             path=ROOT/'site'/entry['reader'];data=json.loads(path.read_text())
             self.assertEqual(data['slug'],entry['slug'])
-            self.assertTrue(data['chapters']); self.assertTrue(data['disclaimer'])
+            self.assertTrue(data['chapters'])
+            if entry.get('format') == 'essay':
+                self.assertEqual(data['format'], 'essay')
+                self.assertEqual(data['disclaimer'], '')
+            else:
+                self.assertTrue(data['disclaimer'])
             ids={s['id'] for s in data['sources']}
             for chapter in data['chapters']:
                 self.assertTrue(set(chapter['sources'])<=ids)
@@ -49,11 +54,12 @@ vm.runInNewContext(fs.readFileSync('site/human-reader.js','utf8'),context);
 const reader=context.window.AgentFlixReader;
 const original={name:'habitos-que-cabem',chat_cmd:'COMANDO OFICIAL',reading_only:false};
 const all=await reader.catalogSkills([{name:'copy-metodo-hormozi'},original]);
-assert.equal(all.length,3);assert.equal(all[1].chat_cmd,'COMANDO OFICIAL');assert.equal(all[1].reading_only,false);
+assert.equal(all.length,manifest.readings.length);assert.equal(all[1].chat_cmd,'COMANDO OFICIAL');assert.equal(all[1].reading_only,false);
 assert(reader.supports('modelo-de-flow'));assert(reader.supports('habitos-que-cabem'));assert(reader.supports('copy-metodo-hormozi'));
+assert(reader.supports('tempo-que-voce-ainda-nao-gastou'));
 assert(!reader.supports('constructor'));
 const fallback=await reader.catalogSkills([{name:'copy-metodo-hormozi'}]);
-assert.equal(fallback.length,3);assert(fallback.slice(1).every(skill=>skill.reading_only));
+assert.equal(fallback.length,manifest.readings.length);assert(fallback.slice(1).every(skill=>skill.reading_only));
 assert(fallback.some(skill=>skill.name==='modelo-de-flow'));assert(fallback.some(skill=>skill.name==='habitos-que-cabem'&&skill.chat_cmd));
 })().catch(e=>{console.error(e);process.exitCode=1});
 '''

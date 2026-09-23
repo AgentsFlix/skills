@@ -2,6 +2,7 @@
 (() => {
   let READINGS = Object.create(null);
   let SHARES = Object.create(null);
+  let FORMATS = Object.create(null);
   async function catalogSkills(skills) {
     const response = await fetch('leitura/manifest.json', {cache:'no-cache'});
     if(!response.ok) throw Error('Registro de leituras indisponível');
@@ -9,11 +10,13 @@
     if(manifest.schemaVersion !== 1 || !Array.isArray(manifest.readings)) throw Error('Registro de leituras inválido');
     READINGS = Object.create(null);
     SHARES = Object.create(null);
+    FORMATS = Object.create(null);
     const result = skills.map(s => ({...s}));
     for(const entry of manifest.readings) {
       if(!/^[a-z0-9-]+$/.test(entry.slug) || !/^leitura\/[a-z0-9-]+\.json$/.test(entry.reader) || READINGS[entry.slug]) throw Error('Leitura inválida ou duplicada');
       READINGS[entry.slug] = entry.reader;
       SHARES[entry.slug] = entry.share;
+      FORMATS[entry.slug] = entry.format === 'essay' ? 'essay' : 'standard';
       let skill = result.find(s => (s.name || s.slug) === entry.slug);
       if(!skill && entry.fallback) { skill = {...entry.fallback}; result.push(skill); }
       if(!skill) throw Error('Leitura sem skill: ' + entry.slug);
@@ -26,27 +29,36 @@
   let active = null;
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[char]));
   const shell = '<section id="human-reader" role="tabpanel" aria-labelledby="reader-tab-human"><div class="reading-toolbar"><div class="reading-settings"><button type="button" id="hr-reading-toggle" aria-expanded="false" aria-controls="hr-reading-options"><span aria-hidden="true">Aa</span><span>Leitura</span></button><div id="hr-reading-options" role="region" aria-label="Preferências de leitura" hidden><div class="settings-heading"><strong>Conforto de leitura</strong><button type="button" id="hr-reading-dismiss" aria-label="Fechar ajustes de leitura">×</button></div><fieldset><legend>Tamanho do texto</legend><div class="text-size-control"><button type="button" id="hr-text-smaller" aria-label="Diminuir texto">A−</button><output id="hr-text-size" aria-live="polite">Padrão</output><button type="button" id="hr-text-larger" aria-label="Aumentar texto">A+</button></div></fieldset><fieldset><legend>Aparência</legend><div class="theme-options"><button type="button" data-reading-theme="dark" aria-pressed="true"><span class="theme-swatch swatch-dark" aria-hidden="true">Aa</span><span>Escuro</span><span class="theme-check" aria-hidden="true">✓</span></button><button type="button" data-reading-theme="paper" aria-pressed="false"><span class="theme-swatch swatch-paper" aria-hidden="true">Aa</span><span>Papel</span><span class="theme-check" aria-hidden="true">✓</span></button></div></fieldset><p id="hr-reading-storage" role="status" hidden></p></div></div></div><div class="reader-layout"><nav class="chapters" aria-label="Capítulos"><div class="chapters-inner"><span class="eyebrow">GUIA DO MÉTODO</span><div id="hr-nav"></div><p>Leia na ordem ou vá direto à sua dúvida.</p></div></nav><div class="reading"><div class="chapter-meta"><span id="hr-chapter-label"></span><span id="hr-position"></span></div><h2 id="hr-chapter-title" tabindex="-1"></h2><p class="intro" id="hr-intro"></p><div id="hr-blocks"></div><footer><div id="hr-citations"></div><p class="legal">Skill independente, baseada no método publicado. Sem afiliação nem endosso de Alex Hormozi.</p><div class="pagination"><button id="hr-prev">← Anterior</button><button id="hr-next">Próximo →</button></div></footer><p class="reader-status" id="hr-status" role="status"></p></div></div></section>';
-  function unmount() { active?.controller.abort(); active?.resize.disconnect(); active = null; }
+  function unmount() { active?.controller.abort(); active?.resize?.disconnect(); active = null; }
   function mount(panel, slug) {
     if (!Object.hasOwn(READINGS, slug)) return;
+    const essay = FORMATS[slug] === 'essay';
     const controller = new AbortController(), { signal } = controller;
     const body = panel.querySelector('.body'), scroller = panel.closest('.overlay');
     const sharing = window.AgentFlixReadingShare?.mount(panel, slug, SHARES[slug], signal);
     scroller.classList.add('reader-overlay');
-    const tabs = document.createElement('div');
-    tabs.className = 'reader-tabs'; tabs.setAttribute('role', 'tablist'); tabs.setAttribute('aria-label', 'Conteúdo da skill');
-    tabs.innerHTML = '<button id="reader-tab-human" role="tab" aria-selected="true" aria-controls="human-reader">Para o humano</button><button id="reader-tab-skill" role="tab" aria-selected="false" aria-controls="reader-skill" tabindex="-1">Usar a skill</button>';
-    body.before(tabs);
-    body.id = 'reader-skill'; body.setAttribute('role','tabpanel'); body.setAttribute('aria-labelledby','reader-tab-skill'); body.hidden = true;
-    tabs.insertAdjacentHTML('afterend', '<section id="human-reader" role="tabpanel" aria-labelledby="reader-tab-human" aria-busy="true"><p class="reader-message" role="status">Carregando leitura…</p></section>');
+    let tabs = null;
+    if (essay) {
+      panel.classList.add('editorial-essay');
+      body.hidden = true;
+      body.insertAdjacentHTML('afterend', '<section id="human-reader" role="region" aria-label="Leitura" aria-busy="true"><p class="reader-message" role="status">Carregando leitura…</p></section>');
+    } else {
+      tabs = document.createElement('div');
+      tabs.className = 'reader-tabs'; tabs.setAttribute('role', 'tablist'); tabs.setAttribute('aria-label', 'Conteúdo da skill');
+      tabs.innerHTML = '<button id="reader-tab-human" role="tab" aria-selected="true" aria-controls="human-reader">Para o humano</button><button id="reader-tab-skill" role="tab" aria-selected="false" aria-controls="reader-skill" tabindex="-1">Usar a skill</button>';
+      body.before(tabs);
+      body.id = 'reader-skill'; body.setAttribute('role','tabpanel'); body.setAttribute('aria-labelledby','reader-tab-skill'); body.hidden = true;
+      tabs.insertAdjacentHTML('afterend', '<section id="human-reader" role="tabpanel" aria-labelledby="reader-tab-human" aria-busy="true"><p class="reader-message" role="status">Carregando leitura…</p></section>');
+    }
     let root = panel.querySelector('#human-reader');
     const contentURL = new URL(READINGS[slug], document.baseURI);
-    const scrollToReading = () => scroller.scrollBy({ top: root.getBoundingClientRect().top - scroller.getBoundingClientRect().top - tabs.offsetHeight, behavior: 'instant' });
+    const scrollToReading = () => scroller.scrollBy({ top: root.getBoundingClientRect().top - scroller.getBoundingClientRect().top - (tabs?.offsetHeight || 0), behavior: 'instant' });
     const closePreferences = () => {
       const options = root.querySelector('#hr-reading-options');
       if(options) { options.hidden = true; root.querySelector('#hr-reading-toggle').setAttribute('aria-expanded','false'); }
     };
     function select(name, scroll = true) {
+      if(essay) return;
       closePreferences();
       const wasReading = !root.hidden;
       const positions = instance.positions;
@@ -60,17 +72,19 @@
       if(name === 'skill') window.dispatchEvent(new Event('resize'));
       if(scroll) scroller.scrollTop = positions[name] ?? tabStart;
     }
-    const resize = new ResizeObserver(() => panel.style.setProperty('--reader-tabs-height', tabs.offsetHeight + 'px'));
-    resize.observe(tabs);
+    const resize = tabs ? new ResizeObserver(() => panel.style.setProperty('--reader-tabs-height', tabs.offsetHeight + 'px')) : null;
+    if(tabs) resize.observe(tabs);
     const instance = { controller, resize, select, positions: {} };
     active = instance;
-    tabs.addEventListener('click', event => { const button = event.target.closest('[role="tab"]'); if(button) select(button.id === 'reader-tab-human' ? 'human' : 'skill'); }, {signal});
-    tabs.addEventListener('keydown', event => {
-      if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
-      event.preventDefault();
-      const name = event.key === 'Home' ? 'human' : event.key === 'End' ? 'skill' : root.hidden ? 'human' : 'skill';
-      select(name); tabs.querySelector('#reader-tab-' + name).focus({preventScroll:true});
-    }, {signal});
+    if(tabs) {
+      tabs.addEventListener('click', event => { const button = event.target.closest('[role="tab"]'); if(button) select(button.id === 'reader-tab-human' ? 'human' : 'skill'); }, {signal});
+      tabs.addEventListener('keydown', event => {
+        if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+        event.preventDefault();
+        const name = event.key === 'Home' ? 'human' : event.key === 'End' ? 'skill' : root.hidden ? 'human' : 'skill';
+        select(name); tabs.querySelector('#reader-tab-' + name).focus({preventScroll:true});
+      }, {signal});
+    }
     async function load() {
       root.setAttribute('aria-busy','true');
       try {
@@ -85,10 +99,18 @@
         const hidden = root.hidden;
         root.outerHTML = shell;
         root = panel.querySelector('#human-reader'); root.hidden = hidden;
+        if(essay) {
+          root.setAttribute('role', 'region');
+          root.removeAttribute('aria-labelledby');
+          root.setAttribute('aria-label', 'Leitura');
+          root.dataset.readerFormat = 'essay';
+        }
         bindReader(root, data, contentURL, scrollToReading, signal, slug);
-        bindPreferences(root, scroller, signal);
+        bindPreferences(root, scroller, signal, {fixedPaper: essay});
         sharing?.addButton(root.querySelector('.reading-toolbar'));
-        root.querySelector('.legal').textContent = data.disclaimer;
+        const legal = root.querySelector('.legal');
+        legal.textContent = data.disclaimer;
+        legal.hidden = !data.disclaimer;
         cache.set(slug, data);
       } catch(error) {
         if(signal.aborted || !root.isConnected) return;
@@ -112,7 +134,7 @@
       return data.chapters[chapter].blocks[block];
     }, signal);
     function saveProgress() {
-      completed = completed || index === data.chapters.length - 1;
+      completed = completed || (data.format !== 'essay' && index === data.chapters.length - 1);
       try {
         localStorage.setItem(progressKey, JSON.stringify({
           version: 1,
@@ -130,7 +152,7 @@ const sourceList=()=>`<div class="source-list">${data.sources.map(s=>`<div><a hr
 const sourceLinks=ids=>ids.map(id=>{const s=data.sources.find(s=>s.id===id);return `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`}).join('');
 function block(b,k){const title=b.title?`<h3>${esc(b.title)}</h3>`:'';let body='';const active=choices.get(index+'-'+k)||0;
 switch(b.type){
-case 'media':body=`<figure class="reader-media">${b.kind==='video'?`<video controls playsinline preload="none" poster="${esc(new URL(b.poster,contentURL).href)}" aria-label="${esc(b.alt)}"><source src="${esc(new URL(b.src,contentURL).href)}" type="video/mp4"></video>`:`<img src="${esc(new URL(b.src,contentURL).href)}" alt="${esc(b.alt)}" loading="lazy">`}<figcaption>${esc(b.caption)}</figcaption></figure>`;break;
+case 'media':body=`<figure class="reader-media">${b.kind==='video'?`<video controls playsinline preload="none" poster="${esc(new URL(b.poster,contentURL).href)}" aria-label="${esc(b.alt)}"><source src="${esc(new URL(b.src,contentURL).href)}" type="video/mp4"></video>`:`<img src="${esc(new URL(b.src,contentURL).href)}" alt="${esc(b.alt)}" loading="lazy">`}<figcaption${b.captionParts?' class="caption-parts"':''}>${b.captionParts?b.captionParts.map(part=>`<span>${esc(part)}</span>`).join(''):esc(b.caption)}</figcaption></figure>`;break;
 case 'gallery':body=`<figure class="reader-gallery"><div>${b.items.map(i=>`<figure><img src="${esc(new URL(i.src,contentURL).href)}" alt="${esc(i.alt)}" loading="lazy"><figcaption>${esc(i.caption)}</figcaption></figure>`).join('')}</div><figcaption>${esc(b.caption)}</figcaption></figure>`;break;
 case 'metaphor':body=`<div class="reader-metaphor" role="img" aria-label="${esc(b.alt)}"><div aria-hidden="true">▰━━▰　　▰━━▰</div><h4>${esc(b.title)}</h4><p>${esc(b.text)}</p><p class="caption">${esc(b.note)}</p></div>`;break;
 case 'narrative':body=b.paragraphs.map(p=>`<p>${esc(p)}</p>`).join('');break;
@@ -147,7 +169,7 @@ case 'prompt':body=`<div class="prompt"><p>${esc(b.text)}</p><button data-copy="
 case 'agent_prompt':body=agentPrompts.render(b, index+'-'+k);break;
 case 'checklist':body=`<div class="checklist">${b.items.map((i,n)=>`<label><input type="checkbox" data-check="${k}-${n}" ${checked.has(k+'-'+n)?'checked':''}><span>${esc(i)}</span></label>`).join('')}</div>`;break;
 case 'sources':body=`<p>${esc(b.text)}</p>${sourceList()}`;break;
-default:throw Error('Bloco desconhecido: '+b.type)}return `<section class="block ${['callout','narrative','case_study','equation_bridge'].includes(b.type)?esc(b.type):''}">${b.eyebrow?`<p class="eyebrow">${esc(b.eyebrow)}</p>`:''}${title}${body}</section>`;}
+default:throw Error('Bloco desconhecido: '+b.type)}return `<section class="block ${['callout','narrative','case_study','equation_bridge'].includes(b.type)?esc(b.type):''} ${b.type==='media'?'essay-media':''} ${b.tone==='turn'?'essay-turn':''} ${b.presentation==='paths'?'essay-paths':''}">${b.eyebrow?`<p class="eyebrow">${esc(b.eyebrow)}</p>`:''}${title}${body}</section>`;}
 function show(n,focus=false){if(!Number.isInteger(n)||n<0||n>=data.chapters.length)return;index=n;const c=data.chapters[n];root.querySelector('.reading').classList.toggle('editorial',c.tone==='editorial');$('nav').innerHTML=data.chapters.map((c,i)=>`<button data-chapter="${i}" ${i===n?'aria-current="step"':''}><span>${String(i+1).padStart(2,'0')}</span>${esc(c.label)}</button>`).join('');$('chapter-label').textContent=data.method+' · '+c.label;$('position').textContent=`${n+1} de ${data.chapters.length}`;$('chapter-title').textContent=c.title;$('intro').textContent=c.intro;$('blocks').innerHTML=c.blocks.map(block).join('');$('citations').innerHTML=c.sources.map(id=>{const s=data.sources.find(s=>s.id===id);return `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.label)} ↗</a>`}).join('');$('prev').disabled=n===0;$('next').disabled=n===data.chapters.length-1;$('next').textContent=n<data.chapters.length-1?data.chapters[n+1].label+' →':'Leitura concluída';saveProgress();if(focus){$('chapter-title').focus({preventScroll:true});scrollToReading()}}
 async function copy(text,btn){try{await navigator.clipboard.writeText(text);btn.textContent='Copiado ✓';$('status').textContent='Texto copiado.'}catch{$('status').textContent='Selecione o texto e copie. A cópia automática não está disponível.'}}
 
@@ -170,7 +192,7 @@ async function copy(text,btn){try{await navigator.clipboard.writeText(text);btn.
     $('next').addEventListener('click', () => show(index + 1, true), {signal});
     show(index);
   }
-function bindPreferences(root, scroller, signal) {
+function bindPreferences(root, scroller, signal, {fixedPaper = false} = {}) {
   const $ = id => root.querySelector('#hr-' + id);
   const listen = (target, name, fn) => target.addEventListener(name, fn, { signal });
   const KEY = 'agentflix-reading-v1';
@@ -182,6 +204,7 @@ function bindPreferences(root, scroller, signal) {
   const larger = $('text-larger');
   const status = $('reading-storage');
   const themes = [...panel.querySelectorAll('[data-reading-theme]')];
+  if(fixedPaper) panel.querySelector('.theme-options').closest('fieldset').hidden = true;
   const normalize = value => ({
     theme: value?.theme === 'paper' ? 'paper' : 'dark',
     size: Number.isInteger(value?.size) && value.size >= 0 && value.size < SIZES.length ? value.size : 1
@@ -190,7 +213,7 @@ function bindPreferences(root, scroller, signal) {
   try { prefs = normalize(JSON.parse(localStorage.getItem(KEY))); } catch { /* O padrão funciona sem armazenamento. */ }
 
   function apply() {
-    root.dataset.readingTheme = prefs.theme;
+    root.dataset.readingTheme = fixedPaper ? 'paper' : prefs.theme;
     root.dataset.readingSize = String(prefs.size);
     root.style.setProperty('--reader-scale', SIZES[prefs.size]);
     themes.forEach(button => button.setAttribute('aria-pressed', button.dataset.readingTheme === prefs.theme));
