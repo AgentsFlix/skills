@@ -5,7 +5,7 @@
 - Provider: `jevcloud_direct`.
 - Endpoint: `POST https://api.typesafe.ai/v1/systemone`.
 - Modelo fixado: `jev-1.13.0`; não substituir silenciosamente por `jev-latest`.
-- Autenticação: Bearer com a chave do campo `JEV_API_KEY=`. O cliente resolve `--credential`, depois `AGENTFLIX_JEV_CREDENTIAL_FILE`, depois `$XDG_CONFIG_HOME/agentflix/jevcloud.env` ou `~/.config/agentflix/jevcloud.env`. Ler apenas no cliente para autenticação; nunca imprimir nem copiar o valor para documentos, logs ou URLs.
+- Autenticação: Bearer com a chave do campo `JEV_API_KEY=`. O cliente resolve `--credential`, depois `$XDG_CONFIG_HOME/agentflix/jevcloud.env` ou `~/.config/agentflix/jevcloud.env`. Ler apenas no cliente para autenticação; nunca imprimir nem copiar o valor para documentos, logs ou URLs.
 - Cliente compartilhado: [scripts/jev_client.py](../scripts/jev_client.py). A CLI mantém `--input`, `--questions`, `--output`, `--execute`, `--max-requests` e `--resume`.
 
 ## Fontes e limites de validade

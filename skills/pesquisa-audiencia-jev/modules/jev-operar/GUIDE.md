@@ -33,11 +33,11 @@ As respostas completas, confiança, distribuições, uso informado e tempos fica
 
 ## Credencial
 
-Ler apenas para autenticação o campo `JEV_API_KEY=` do arquivo configurado: `--credential`, depois `AGENTFLIX_JEV_CREDENTIAL_FILE`, depois `$XDG_CONFIG_HOME/agentflix/jevcloud.env` ou `~/.config/agentflix/jevcloud.env` quando XDG não estiver definido. É a chave própria do JevCloud, enviada como Bearer; não usar credencial OpenRouter como fallback. Nunca imprimir o valor, enviar no chat, colocar em URL ou copiar para a skill. Se faltar, abrir o arquivo em editor local para o usuário preencher. Preservar conteúdo e formatação existentes; usar backup temporário somente se modificar um arquivo já existente e remover essa cópia após validação sem valor. Não usar `source` para executar um arquivo de credenciais.
+Ler apenas para autenticação o campo `JEV_API_KEY=` do arquivo configurado: `--credential`, depois `$XDG_CONFIG_HOME/agentflix/jevcloud.env` ou `~/.config/agentflix/jevcloud.env` quando XDG não estiver definido. É a chave própria do JevCloud, enviada como Bearer; não usar credencial OpenRouter como fallback. Nunca imprimir o valor, enviar no chat, colocar em URL ou copiar para a skill. Se faltar, abrir o arquivo em editor local para o usuário preencher. Preservar conteúdo e formatação existentes; usar backup temporário somente se modificar um arquivo já existente e remover essa cópia após validação sem valor. Não usar `source` para executar um arquivo de credenciais.
 
 ## Verificar e entregar
 
-Para testar os helpers localmente, a partir da raiz do pacote: `python3 modules/jev-operar/scripts/test_pipeline.py -v`. Para um teste real limitado da integração: `python3 modules/jev-operar/scripts/smoke.py --execute --output /caminho/privado/novo-smoke.json` (cinco chamadas, três exemplos sintéticos; não calibra a rubrica editorial). Omitir `--execute` mostra o plano.
+Para conferir os arquivos instalados, a partir da raiz do pacote: `python3 scripts/integrity.py`. Para um teste real limitado da integração: `python3 modules/jev-operar/scripts/smoke.py --execute --output /caminho/privado/novo-smoke.json` (cinco chamadas, três exemplos sintéticos; não calibra a rubrica editorial). Omitir `--execute` mostra o plano.
 
 - Verifique tipos, conjunto exato de respostas, ranges finitos e distribuições. Falhas de credencial ou schema interrompem; somente timeout, 408, 429 e 5xx recebem até três tentativas. Timeout pode ter sido cobrado; não prometer exatamente uma cobrança.
 - Julgamentos que dependem de outros exigem outro passe com respostas anteriores no estado. Perguntas no mesmo request não leem respostas irmãs.

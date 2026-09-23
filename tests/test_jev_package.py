@@ -126,6 +126,13 @@ class IndependentPackageBuildTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Identidade/versão diverge"):
             self.build()
 
+    def test_spec_metadata_author_and_tags_survive_conversion(self):
+        fm = {"name": SLUG, "description": "Pesquisa de audiência rastreável.",
+              "metadata": {"author": "AgentFlix", "tags": "pesquisa, jev"}}
+        converted = build_docs.strict_frontmatter(fm, SLUG, "1.0.0")
+        self.assertEqual(converted["metadata"]["author"], "AgentFlix")
+        self.assertEqual(converted["metadata"]["tags"], "pesquisa, jev")
+
     def test_integrity_hashes_final_portable_bytes_and_excludes_caches(self):
         self.add_package()
         package = self.skills / SLUG
@@ -155,6 +162,67 @@ class IndependentPackageBuildTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Nome repetido"):
             self.build()
         self.assertEqual((self.wk / "legacy/SKILL.md").read_bytes(), preserved)
+
+
+class PublishedJevPackageTests(unittest.TestCase):
+    def test_pinned_identity_runtime_and_activation_match_catalog(self):
+        catalog = json.loads((ROOT / "catalog.json").read_text())
+        entry = next(item for item in catalog["packages"] if item["name"] == SLUG)
+        self.assertNotIn(SLUG, [item["name"] for item in catalog["skills"]])
+        self.assertEqual(entry["version"], "1.0.0")
+        self.assertTrue(entry["runtime_only"])
+        self.assertTrue(entry["discovery_only"])
+        package = ROOT / "skills" / SLUG
+        identity = json.loads((package / "references/identidade.json").read_text())
+        self.assertEqual(identity["distribution_version"], entry["version"])
+        self.assertEqual(identity["distribution_ref"], SLUG + "-v1.0.0")
+        activation = (package / "references/ativacao.md").read_text().strip()
+        self.assertEqual(entry["activation_prompt"], activation)
+        self.assertEqual(entry["chat_cmd"], activation)
+        for field in ("install_url", "github_url", "prompt_url", "zip_url"):
+            self.assertIn("/" + identity["distribution_ref"] + "/", entry[field])
+        portable = ROOT / "docs/.well-known/skills" / SLUG
+        source_fm, _ = build_docs.split((package / "SKILL.md").read_text())
+        portable_fm, _ = build_docs.split((portable / "SKILL.md").read_text())
+        self.assertEqual(portable_fm["compatibility"], source_fm["compatibility"])
+        self.assertEqual(portable_fm["metadata"]["version"], entry["version"])
+        self.assertEqual(portable_fm["metadata"]["author"], "AgentFlix")
+        self.assertEqual(portable_fm["metadata"]["tags"], source_fm["metadata"]["tags"])
+        self.assertIn("terminal", portable_fm["compatibility"])
+
+    def test_real_zip_is_complete_and_manifests_hash_each_distribution(self):
+        package = ROOT / "skills" / SLUG
+        portable = ROOT / "docs/.well-known/skills" / SLUG
+        with ZipFile(ROOT / "docs/packages" / (SLUG + ".zip")) as archive:
+            expected = {SLUG + "/" + p.relative_to(portable).as_posix(): p.read_bytes()
+                        for p in portable.rglob("*") if p.is_file()}
+            self.assertEqual(set(archive.namelist()), set(expected))
+            for name, content in expected.items():
+                self.assertEqual(archive.read(name), content, name)
+        for directory in (package, portable):
+            manifest = json.loads((directory / "integrity.json").read_text())
+            expected = {p.relative_to(directory).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                        for p in directory.rglob("*") if p.is_file() and p.name != "integrity.json"}
+            self.assertEqual(manifest["files"], expected)
+            self.assertEqual(manifest["version"], "1.0.0")
+            self.assertEqual(manifest["algorithm"], "sha256")
+        self.assertNotEqual(json.loads((package / "integrity.json").read_text())["files"]["SKILL.md"],
+                            json.loads((portable / "integrity.json").read_text())["files"]["SKILL.md"])
+
+    def test_modules_are_included_with_one_entrypoint_and_no_local_history(self):
+        for directory in (ROOT / "skills" / SLUG, ROOT / "docs/.well-known/skills" / SLUG):
+            self.assertEqual(list(directory.rglob("SKILL.md")), [directory / "SKILL.md"])
+            for module in ("jev-operar", "jev-cerne", "jev-copy-cambiador", "youtube-jev-copy"):
+                self.assertTrue((directory / "modules" / module / "GUIDE.md").is_file())
+            for path in directory.rglob("*"):
+                self.assertNotEqual(path.name, "__pycache__")
+                self.assertNotEqual(path.name, "persona-sources.json")
+                self.assertFalse(path.name.startswith("experience-"))
+                if path.is_file():
+                    self.assertFalse(path.name.startswith("test_"), path)
+                    content = path.read_text(encoding="utf-8")
+                    self.assertNotIn("/Users/", content, path)
+                    self.assertNotIn(".codex/skills", content, path)
 
 
 if __name__ == "__main__":

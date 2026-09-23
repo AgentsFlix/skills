@@ -26,7 +26,8 @@ PROMPT_CAP = 250_000  # chars; acima disso a versão colável para e aponta para
 
 # ───────────── frontmatter estrito ─────────────
 def strict_frontmatter(fm: dict, slug: str, version: str) -> dict:
-    h = (fm.get("metadata") or {}).get("hermes") or {}
+    original_meta = fm.get("metadata") or {}
+    h = original_meta.get("hermes") or {}
     desc = cap200(fm["description"])
     compat = []
     if h.get("requires_toolsets"): compat.append("Requer: " + ", ".join(h["requires_toolsets"]) + ".")
@@ -34,9 +35,10 @@ def strict_frontmatter(fm: dict, slug: str, version: str) -> dict:
         compat.append("Antes de usar, defina no ambiente: " + ", ".join(e["name"] for e in fm["required_environment_variables"]) + ".")
     if h.get("blueprint"): compat.append("No Hermes roda agendada; em outros agentes, sob demanda.")
     compat.append("Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.")
-    meta = {"author": str(fm.get("author", "")), "version": version, "hub": HUB_URL,
+    meta = {"author": str(fm.get("author", original_meta.get("author", ""))), "version": version, "hub": HUB_URL,
             "source": f"https://github.com/{REPO_SLUG}/tree/main/skills/{slug}",
-            "tags": ", ".join(h.get("tags", [])), "related": ", ".join(h.get("related_skills", []))}
+            "tags": ", ".join(h["tags"]) if "tags" in h else str(original_meta.get("tags", "")),
+            "related": ", ".join(h.get("related_skills", []))}
     identity_path = SKILLS / slug / "references/identidade.json"
     if identity_path.exists():
         identity = json.loads(identity_path.read_text())

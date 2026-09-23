@@ -20,9 +20,6 @@ PROVIDER = "jevcloud_direct"
 
 def default_credential_path():
     """Resolve the user's credential location without reading credentials."""
-    explicit = os.environ.get("AGENTFLIX_JEV_CREDENTIAL_FILE")
-    if explicit:
-        return Path(explicit).expanduser()
     config_root = os.environ.get("XDG_CONFIG_HOME")
     root = Path(config_root).expanduser() if config_root else Path.home() / ".config"
     return root / "agentflix/jevcloud.env"

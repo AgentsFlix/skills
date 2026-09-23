@@ -39,7 +39,7 @@ O campo é `JEV_API_KEY=` em um arquivo de texto privado. Caminho padrão:
 ```
 
 Com `XDG_CONFIG_HOME` definido, o padrão é `$XDG_CONFIG_HOME/agentflix/jevcloud.env`.
-`AGENTFLIX_JEV_CREDENTIAL_FILE` permite indicar outro arquivo de credencial. Essa variável contém um caminho,
+`--credential` permite indicar outro arquivo de credencial em cada comando. O argumento contém um caminho,
 nunca o valor da chave. Os módulos usam a mesma resolução. Prefira arquivo fora da instalação, do repositório
 e de pastas sincronizadas/compartilhadas. Não copie credenciais de outra pessoa nem use outro provedor como fallback.
 
@@ -49,7 +49,7 @@ e de pastas sincronizadas/compartilhadas. Não copie credenciais de outra pessoa
 Os comandos abaixo incluem essa opção para realizar a ação já autorizada. Todos aceitam `--credential`
 para indicar explicitamente um arquivo privado; o argumento é o caminho, nunca a chave.
 Essa opção vale somente para a chamada atual. Ao usar um caminho próprio, repita `--credential` nos comandos
-do cliente/seletor ou configure `AGENTFLIX_JEV_CREDENTIAL_FILE` para compartilhar a escolha entre os módulos.
+do cliente/seletor e do smoke para compartilhar a escolha entre os módulos.
 
 1. Rode `python3 scripts/setup.py verify`. Se já houver uma configuração válida, reaproveite-a.
    A verificação local não autentica na API.

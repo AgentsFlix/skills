@@ -18,7 +18,7 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use esta entrada para conduzir a pesquisa de audiência com JEV sem exigir que eu escolha módulos, canais ou Questions. Recupere tema, público/contexto e uso; faça no máximo três perguntas iniciais, cada pergunta aberta com seu exemplo contextualizado. Um corpus existente permite pular coleta; uma base auditada permite começar pela escrita solicitada. TEDx é uma preferência configurável. Confira o terminal e execute python3 scripts/setup.py doctor a partir do pacote instalado antes das etapas executáveis. Reaproveite minha configuração JevCloud; se faltar, oriente-me a criar minha própria chave em https://console.typesafe.ai/keys, prepare o arquivo privado com python3 scripts/setup.py prepare --execute e abra-o com python3 scripts/setup.py open-editor --execute. Nunca peça a chave no chat. Valide sem mostrar valores com python3 scripts/setup.py verify e use python3 scripts/setup.py probe --execute para testar uma chamada pequena quando a etapa JEV estiver autorizada. O arquivo padrão é ~/.config/agentflix/jevcloud.env, respeita XDG_CONFIG_HOME e pode ser substituído por AGENTFLIX_JEV_CREDENTIAL_FILE; o campo é JEV_API_KEY=. Os scripts exigem Python 3.10+ e terminal. Sem as ferramentas necessárias, entregue o briefing e declare quais etapas não executou. Faça piloto, preserve respostas e evidências privadas, audite a base e entregue cobertura/limitações. Escrita é opcional e vem com mapa separado; publicação e agendamento têm autorização própria. JEV seleciona e classifica; o agente escreve.
+> Use esta entrada para conduzir a pesquisa de audiência com JEV sem exigir que eu escolha módulos, canais ou Questions. Recupere tema, público/contexto e uso; faça no máximo três perguntas iniciais, cada pergunta aberta com seu exemplo contextualizado. Um corpus existente permite pular coleta; uma base auditada permite começar pela escrita solicitada. TEDx é uma preferência configurável. Confira o terminal e execute python3 scripts/setup.py doctor a partir do pacote instalado antes das etapas executáveis. Reaproveite minha configuração JevCloud; se faltar, oriente-me a criar minha própria chave em https://console.typesafe.ai/keys, prepare o arquivo privado com python3 scripts/setup.py prepare --execute e abra-o com python3 scripts/setup.py open-editor --execute. Nunca peça a chave no chat. Valide sem mostrar valores com python3 scripts/setup.py verify e use python3 scripts/setup.py probe --execute para testar uma chamada pequena quando a etapa JEV estiver autorizada. O arquivo padrão é ~/.config/agentflix/jevcloud.env, respeita XDG_CONFIG_HOME e pode ser substituído por --credential em cada comando; o campo é JEV_API_KEY=. Os scripts exigem Python 3.10+ e terminal. Sem as ferramentas necessárias, entregue o briefing e declare quais etapas não executou. Faça piloto, preserve respostas e evidências privadas, audite a base e entregue cobertura/limitações. Escrita é opcional e vem com mapa separado; publicação e agendamento têm autorização própria. JEV seleciona e classifica; o agente escreve.
 
 ---
 
@@ -158,12 +158,10 @@ Avalie sempre: vale sugerir, não vale ou depende de informação, com motivo. P
 - `modules/jev-copy-cambiador/references/personas.md`
 - `modules/jev-copy-cambiador/scripts/audit_grounding.py`
 - `modules/jev-copy-cambiador/scripts/prepare_turn.py`
-- `modules/jev-copy-cambiador/scripts/test_pipeline.py`
 - `modules/jev-operar/GUIDE.md`
 - `modules/jev-operar/references/api-contract.md`
 - `modules/jev-operar/scripts/jev_client.py`
 - `modules/jev-operar/scripts/smoke.py`
-- `modules/jev-operar/scripts/test_pipeline.py`
 - `modules/youtube-jev-copy/GUIDE.md`
 - `modules/youtube-jev-copy/assets/extraction-contract.json`
 - `modules/youtube-jev-copy/assets/knowledge-base-contract.json`
@@ -635,7 +633,7 @@ Entregue `newsletter.md` limpo, `mapa-editorial.json` com fontes/métodos/claims
 
 ## Integração compartilhada
 
-Use [jev-operar/scripts/jev_client.py](../../jev-operar/scripts/jev_client.py) para executar os arquivos de entrada e Questions gerados por `prepare_turn.py`. A rota vigente é `jevcloud_direct`, `POST https://api.typesafe.ai/v1/systemone`, com modelo fixado `jev-1.13.0`. A chave própria usa o campo `JEV_API_KEY=` no arquivo resolvido pelo cliente (`--credential`, `AGENTFLIX_JEV_CREDENTIAL_FILE`, configuração XDG ou `~/.config/agentflix/jevcloud.env`); somente o cliente a lê para autenticação, sem imprimir o valor. O [contrato central](../../jev-operar/references/api-contract.md) governa credencial, retries e validação.
+Use [jev-operar/scripts/jev_client.py](../../jev-operar/scripts/jev_client.py) para executar os arquivos de entrada e Questions gerados por `prepare_turn.py`. A rota vigente é `jevcloud_direct`, `POST https://api.typesafe.ai/v1/systemone`, com modelo fixado `jev-1.13.0`. A chave própria usa o campo `JEV_API_KEY=` no arquivo resolvido pelo cliente (`--credential`, configuração XDG ou `~/.config/agentflix/jevcloud.env`); somente o cliente a lê para autenticação, sem imprimir o valor. O [contrato central](../../jev-operar/references/api-contract.md) governa credencial, retries e validação.
 
 A CLI continua usando `--input`, `--questions`, `--output` e, para execução autorizada, `--execute --max-requests N`. Retome com `--resume` apenas a mesma rota/modelo/rubrica e os mesmos dados. Rodadas/checkpoints históricos OpenRouter permanecem preservados; uma rodada JevCloud começa em novo diretório, sem migração silenciosa.
 
@@ -768,11 +766,11 @@ As respostas completas, confiança, distribuições, uso informado e tempos fica
 
 ## Credencial
 
-Ler apenas para autenticação o campo `JEV_API_KEY=` do arquivo configurado: `--credential`, depois `AGENTFLIX_JEV_CREDENTIAL_FILE`, depois `$XDG_CONFIG_HOME/agentflix/jevcloud.env` ou `~/.config/agentflix/jevcloud.env` quando XDG não estiver definido. É a chave própria do JevCloud, enviada como Bearer; não usar credencial OpenRouter como fallback. Nunca imprimir o valor, enviar no chat, colocar em URL ou copiar para a skill. Se faltar, abrir o arquivo em editor local para o usuário preencher. Preservar conteúdo e formatação existentes; usar backup temporário somente se modificar um arquivo já existente e remover essa cópia após validação sem valor. Não usar `source` para executar um arquivo de credenciais.
+Ler apenas para autenticação o campo `JEV_API_KEY=` do arquivo configurado: `--credential`, depois `$XDG_CONFIG_HOME/agentflix/jevcloud.env` ou `~/.config/agentflix/jevcloud.env` quando XDG não estiver definido. É a chave própria do JevCloud, enviada como Bearer; não usar credencial OpenRouter como fallback. Nunca imprimir o valor, enviar no chat, colocar em URL ou copiar para a skill. Se faltar, abrir o arquivo em editor local para o usuário preencher. Preservar conteúdo e formatação existentes; usar backup temporário somente se modificar um arquivo já existente e remover essa cópia após validação sem valor. Não usar `source` para executar um arquivo de credenciais.
 
 ## Verificar e entregar
 
-Para testar os helpers localmente, a partir da raiz do pacote: `python3 modules/jev-operar/scripts/test_pipeline.py -v`. Para um teste real limitado da integração: `python3 modules/jev-operar/scripts/smoke.py --execute --output /caminho/privado/novo-smoke.json` (cinco chamadas, três exemplos sintéticos; não calibra a rubrica editorial). Omitir `--execute` mostra o plano.
+Para conferir os arquivos instalados, a partir da raiz do pacote: `python3 scripts/integrity.py`. Para um teste real limitado da integração: `python3 modules/jev-operar/scripts/smoke.py --execute --output /caminho/privado/novo-smoke.json` (cinco chamadas, três exemplos sintéticos; não calibra a rubrica editorial). Omitir `--execute` mostra o plano.
 
 - Verifique tipos, conjunto exato de respostas, ranges finitos e distribuições. Falhas de credencial ou schema interrompem; somente timeout, 408, 429 e 5xx recebem até três tentativas. Timeout pode ter sido cobrado; não prometer exatamente uma cobrança.
 - Julgamentos que dependem de outros exigem outro passe com respostas anteriores no estado. Perguntas no mesmo request não leem respostas irmãs.
@@ -798,7 +796,7 @@ Para testar os helpers localmente, a partir da raiz do pacote: `python3 modules/
 - Provider: `jevcloud_direct`.
 - Endpoint: `POST https://api.typesafe.ai/v1/systemone`.
 - Modelo fixado: `jev-1.13.0`; não substituir silenciosamente por `jev-latest`.
-- Autenticação: Bearer com a chave do campo `JEV_API_KEY=`. O cliente resolve `--credential`, depois `AGENTFLIX_JEV_CREDENTIAL_FILE`, depois `$XDG_CONFIG_HOME/agentflix/jevcloud.env` ou `~/.config/agentflix/jevcloud.env`. Ler apenas no cliente para autenticação; nunca imprimir nem copiar o valor para documentos, logs ou URLs.
+- Autenticação: Bearer com a chave do campo `JEV_API_KEY=`. O cliente resolve `--credential`, depois `$XDG_CONFIG_HOME/agentflix/jevcloud.env` ou `~/.config/agentflix/jevcloud.env`. Ler apenas no cliente para autenticação; nunca imprimir nem copiar o valor para documentos, logs ou URLs.
 - Cliente compartilhado: [scripts/jev_client.py](../scripts/jev_client.py). A CLI mantém `--input`, `--questions`, `--output`, `--execute`, `--max-requests` e `--resume`.
 
 ## Fontes e limites de validade
@@ -1270,7 +1268,7 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use esta entrada para conduzir a pesquisa de audiência com JEV sem exigir que eu escolha módulos, canais ou Questions. Recupere tema, público/contexto e uso; faça no máximo três perguntas iniciais, cada pergunta aberta com seu exemplo contextualizado. Um corpus existente permite pular coleta; uma base auditada permite começar pela escrita solicitada. TEDx é uma preferência configurável. Confira o terminal e execute python3 scripts/setup.py doctor a partir do pacote instalado antes das etapas executáveis. Reaproveite minha configuração JevCloud; se faltar, oriente-me a criar minha própria chave em https://console.typesafe.ai/keys, prepare o arquivo privado com python3 scripts/setup.py prepare --execute e abra-o com python3 scripts/setup.py open-editor --execute. Nunca peça a chave no chat. Valide sem mostrar valores com python3 scripts/setup.py verify e use python3 scripts/setup.py probe --execute para testar uma chamada pequena quando a etapa JEV estiver autorizada. O arquivo padrão é ~/.config/agentflix/jevcloud.env, respeita XDG_CONFIG_HOME e pode ser substituído por AGENTFLIX_JEV_CREDENTIAL_FILE; o campo é JEV_API_KEY=. Os scripts exigem Python 3.10+ e terminal. Sem as ferramentas necessárias, entregue o briefing e declare quais etapas não executou. Faça piloto, preserve respostas e evidências privadas, audite a base e entregue cobertura/limitações. Escrita é opcional e vem com mapa separado; publicação e agendamento têm autorização própria. JEV seleciona e classifica; o agente escreve.
+Use esta entrada para conduzir a pesquisa de audiência com JEV sem exigir que eu escolha módulos, canais ou Questions. Recupere tema, público/contexto e uso; faça no máximo três perguntas iniciais, cada pergunta aberta com seu exemplo contextualizado. Um corpus existente permite pular coleta; uma base auditada permite começar pela escrita solicitada. TEDx é uma preferência configurável. Confira o terminal e execute python3 scripts/setup.py doctor a partir do pacote instalado antes das etapas executáveis. Reaproveite minha configuração JevCloud; se faltar, oriente-me a criar minha própria chave em https://console.typesafe.ai/keys, prepare o arquivo privado com python3 scripts/setup.py prepare --execute e abra-o com python3 scripts/setup.py open-editor --execute. Nunca peça a chave no chat. Valide sem mostrar valores com python3 scripts/setup.py verify e use python3 scripts/setup.py probe --execute para testar uma chamada pequena quando a etapa JEV estiver autorizada. O arquivo padrão é ~/.config/agentflix/jevcloud.env, respeita XDG_CONFIG_HOME e pode ser substituído por --credential em cada comando; o campo é JEV_API_KEY=. Os scripts exigem Python 3.10+ e terminal. Sem as ferramentas necessárias, entregue o briefing e declare quais etapas não executou. Faça piloto, preserve respostas e evidências privadas, audite a base e entregue cobertura/limitações. Escrita é opcional e vem com mapa separado; publicação e agendamento têm autorização própria. JEV seleciona e classifica; o agente escreve.
 
 
 ---
@@ -1418,7 +1416,7 @@ Antes de aceitar o onboarding, execute estes três percursos com arquivos sinté
 | Cenário | Percurso e resultado esperado |
 |---|---|
 | Chave ausente | `doctor` identifica ausência; plano não grava; `prepare --execute` cria campo vazio privado; aguarda salvamento no editor; `verify` não alega autenticação; probe real é uma etapa separada. Repita com arquivo já existente e campo vazio, conferindo privacidade antes de colar. Ao cancelar, `clean-backup --execute` remove somente backup/recibo reconhecidos. |
-| Chave existente | Reaproveita bytes e comentários sem nova solicitação. Confere precedência: `--credential`, `AGENTFLIX_JEV_CREDENTIAL_FILE`, depois XDG/padrão. A escolha por CLI deve ser repetida ou compartilhada por variável de caminho. Nenhum comando imprime valor e a API só é chamada na etapa autorizada. |
+| Chave existente | Reaproveita bytes e comentários sem nova solicitação. Confere precedência: `--credential`, depois XDG/padrão. A escolha por CLI deve ser repetida em cada comando. Nenhum comando imprime valor e a API só é chamada na etapa autorizada. |
 | Somente leitura | `doctor` e planos não alteram arquivos nem chamam rede. Não executar `prepare`, editor, probe ou limpeza como parte de uma consulta apenas de diagnóstico. Para credencial segura montada somente para leitura, verificar separadamente a compatibilidade de `verify`; falha de permissão não significa chave inválida. |
 
 - Memória suficiente: reaproveitar contexto e avançar sem entrevista redundante.
@@ -1602,7 +1600,7 @@ O campo é `JEV_API_KEY=` em um arquivo de texto privado. Caminho padrão:
 ```
 
 Com `XDG_CONFIG_HOME` definido, o padrão é `$XDG_CONFIG_HOME/agentflix/jevcloud.env`.
-`AGENTFLIX_JEV_CREDENTIAL_FILE` permite indicar outro arquivo de credencial. Essa variável contém um caminho,
+`--credential` permite indicar outro arquivo de credencial em cada comando. O argumento contém um caminho,
 nunca o valor da chave. Os módulos usam a mesma resolução. Prefira arquivo fora da instalação, do repositório
 e de pastas sincronizadas/compartilhadas. Não copie credenciais de outra pessoa nem use outro provedor como fallback.
 
@@ -1612,7 +1610,7 @@ e de pastas sincronizadas/compartilhadas. Não copie credenciais de outra pessoa
 Os comandos abaixo incluem essa opção para realizar a ação já autorizada. Todos aceitam `--credential`
 para indicar explicitamente um arquivo privado; o argumento é o caminho, nunca a chave.
 Essa opção vale somente para a chamada atual. Ao usar um caminho próprio, repita `--credential` nos comandos
-do cliente/seletor ou configure `AGENTFLIX_JEV_CREDENTIAL_FILE` para compartilhar a escolha entre os módulos.
+do cliente/seletor e do smoke para compartilhar a escolha entre os módulos.
 
 1. Rode `python3 scripts/setup.py verify`. Se já houver uma configuração válida, reaproveite-a.
    A verificação local não autentica na API.
@@ -1870,7 +1868,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "algorithm": "sha256",
   "files": {
     "LICENSE": "6244738960f2a27905404edf750104381130189da33464d197b46c300126a48d",
-    "SKILL.md": "a20b49b21b85582426012476cf4904146dae95240c1132d7b3c086ae0ffcd3fd",
+    "SKILL.md": "11eaa742f8bbf0a2ff56c29bc8e519a505afe36a8d10b5bb1d77ba15aadb23f0",
     "modules/jev-cerne/GUIDE.md": "d98e9c17ed4fde7bf974350d5564e6af2b9810301e0de05b9fd13b4798460927",
     "modules/jev-cerne/assets/depth.json": "09cc36e7ac188c1f0adb52b357bb6475773dbb99b075b36bce00c9db95daea68",
     "modules/jev-cerne/assets/dossie-template.md": "0b5f1a8e63bf1d991dd973f302c7114d5d3d06b1923b54e583bed552020d8c64",
@@ -1884,16 +1882,14 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
     "modules/jev-copy-cambiador/assets/synthetic-component.json": "972c978aaec27c890fb401fe6968474b280857e798b1dc07faa7cbce93864991",
     "modules/jev-copy-cambiador/assets/synthetic-corpus.jsonl": "64d2cdf8b6c0c497204f2dc19561556e6d01b77ee7773679cae62aca3fd210b6",
     "modules/jev-copy-cambiador/references/escrita-profunda.md": "2c2f41fe3e9cfddaea704999d3390ebcc4ef64e9e4e0579adf498754fa63f4d1",
-    "modules/jev-copy-cambiador/references/jev-contract.md": "10172a71d4d8a1c11d66ade2199a91597d63052d207d31d3d6a0998b8ffa999a",
+    "modules/jev-copy-cambiador/references/jev-contract.md": "a8272a893ffb2c69fb57d3428d0c88637a9cfff0dda37de39a14a54cf90f9cd6",
     "modules/jev-copy-cambiador/references/personas.md": "117177eef50754c6e91f379f0bcbd614d1a72cbfe3360728a1af1f1f1e296976",
     "modules/jev-copy-cambiador/scripts/audit_grounding.py": "3b5b04712887478d9d9dd81c61f266767568247edd482b3750f0c0cdd29c4edd",
     "modules/jev-copy-cambiador/scripts/prepare_turn.py": "1f1af5d880113a9e8d11a209d66f3bf4ea3ba68c7ba9419841038a553a545b63",
-    "modules/jev-copy-cambiador/scripts/test_pipeline.py": "806eacf2dc6c1fff8cd72f71b18dafa50450dfd825c6ea009152764845c5ce12",
-    "modules/jev-operar/GUIDE.md": "86b7901f2e183ddccd4aab694641034165dbd1babd457fe7df2e09075584f85e",
-    "modules/jev-operar/references/api-contract.md": "239ad5a7fd49c8a3b344758a8e5b4de3648dd689664855449055e43aa31a11ee",
-    "modules/jev-operar/scripts/jev_client.py": "ea42a37551f6beb7dec118a07ca0dc0cc655b98e3245d88050784beaf28118cb",
+    "modules/jev-operar/GUIDE.md": "beb31d43700e05a114f09e9f50ee72a932bc05a190dbaec91a43e97ed816c363",
+    "modules/jev-operar/references/api-contract.md": "41a90030bd1abe052a1bab9ba2f2e745af6b0e42dc4fae30e72e4dee08fe707e",
+    "modules/jev-operar/scripts/jev_client.py": "65003b524df229c5d03b14e20bb982a07736262f223b1b69f2750189bce13522",
     "modules/jev-operar/scripts/smoke.py": "f05f94b46457712a1906af8ea99453a6ed6b0a3c282283b8c41e6cb7f29fd3f7",
-    "modules/jev-operar/scripts/test_pipeline.py": "ab56a7f4548d41efd95fc9cead370615e9afd0f299343c4ea72468d5e5955962",
     "modules/youtube-jev-copy/GUIDE.md": "cc53e016b46910433ab60c159fc52f6c240a5112caf700a850b6cdfa96dbbc2e",
     "modules/youtube-jev-copy/assets/extraction-contract.json": "1925d8b6dabfe95067a84a0cd4598b14a6362af45715970762a7190125357760",
     "modules/youtube-jev-copy/assets/knowledge-base-contract.json": "081ed0a958c0d2572e331f51cc3fcfe644607ebb1df761b48b2c32249cd16ef7",
@@ -1903,18 +1899,18 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
     "modules/youtube-jev-copy/references/extracao.md": "5b139376f340f4ca38c7600de1b10fac732257b7c23387bd2c29ceee4700c973",
     "modules/youtube-jev-copy/scripts/audit_knowledge.py": "2f4effca025e42abee0550536e78e5434850f3e42e242b97a1f943ab30e4cdfb",
     "modules/youtube-jev-copy/scripts/collect.py": "1f0b1ba977abf650681712095f4ade869528a51dd1433d26ee1bdbd36dcd9495",
-    "references/ativacao.md": "884754bdc844a289716acbf6ccff59ec03de33625b87a4040c8a0015e25429c2",
+    "references/ativacao.md": "5bc18656d5a50b2e5239b14ec5aa05d990008ffdeb7fecd1351236923705e7cb",
     "references/ciclo-de-vida.md": "53bc13603789b2ce6334590e3d029fae77c4441890db4bfafe0c4a0637c3ecb0",
-    "references/compatibilidade-e-atualizacao.md": "b616a9a2a284ca6fbccf19fa5b9ea51629a65067b871b8950124957026f40c05",
+    "references/compatibilidade-e-atualizacao.md": "28208dbaf3ad3235eadf3f5b29f011873127ac031becb81a6a8ff25e53038989",
     "references/conhecimento.okf.md": "755e9644c333e1f66c65e5bf3bcbcde9e0b80e1f4ce08708f9ed868abd856fb9",
     "references/contrato-agentflix.md": "2137cd2f1e4e627a271e1ccffd9874d4a209537cbb107825ca1e424d4787ceff",
     "references/identidade.json": "f6cf1092925d09c607d2b338aa7d45e8fe63848fdd871a968746da961b2e8821",
-    "references/onboarding.md": "52637a9180875c02eacdbdb861381c867bdd87295e7df1cea22f0519ffb35268",
+    "references/onboarding.md": "1a67218ca606fe947bdd3fa0df9d767997016564ce097ff0b1dab1d9d8ab753b",
     "references/pesquisa-e-evidencias.md": "26e8b5286f574cc4fa99750d68ad58055cc79efcb8180c4f31faa2f7071e4aef",
     "requirements.txt": "ba06068b0eb3040d5d2e000e3ef61eec1040704de425ac8ecd7682961e605b4d",
     "scripts/auditar.py": "d97f7f9b48b862bedc0999d20a20223055c80e8f70f0adba6088ea8a81f52f40",
     "scripts/integrity.py": "45fa682134c73b9a3da4f2f31269de5cd6cb14b09f38d67df539f0be04f3895c",
-    "scripts/setup.py": "f80922fa3fb4dedccbbf4a233ff45118b65eab3340035b3aab4c968d8dd0fa3d",
+    "scripts/setup.py": "ea94dc3d04a3e13c6364c0c820f737f1012109a3ae56011259bb1571f652c898",
     "templates/estado-da-skill.md": "f7ed2c43ce7d75fdde38bad95e2d46e4aabdf7fd22879455c4ab53e7f37433a7",
     "templates/evento-de-uso.json": "7608c42fd035d08b5a70d79846e33d6ddd84a5ff62ee4d2a261eb375b1cb8089"
   }
@@ -1928,10 +1924,8 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
 - `modules/jev-cerne/scripts/select_comments.py (script: só no zip)`
 - `modules/jev-copy-cambiador/scripts/audit_grounding.py (script: só no zip)`
 - `modules/jev-copy-cambiador/scripts/prepare_turn.py (script: só no zip)`
-- `modules/jev-copy-cambiador/scripts/test_pipeline.py (script: só no zip)`
 - `modules/jev-operar/scripts/jev_client.py (script: só no zip)`
 - `modules/jev-operar/scripts/smoke.py (script: só no zip)`
-- `modules/jev-operar/scripts/test_pipeline.py (script: só no zip)`
 - `modules/youtube-jev-copy/scripts/audit_knowledge.py (script: só no zip)`
 - `modules/youtube-jev-copy/scripts/collect.py (script: só no zip)`
 - `scripts/auditar.py (script: só no zip)`

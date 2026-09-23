@@ -7,7 +7,6 @@ import json
 import os
 from pathlib import Path
 import re
-import shlex
 import shutil
 import subprocess
 import sys
@@ -123,8 +122,6 @@ def open_editor(path, execute=False):
         command = ["open", "-e", str(path.absolute())]
     elif os.name == "nt":
         command = ["notepad.exe", str(path.absolute())]
-    elif os.environ.get("EDITOR"):
-        command = shlex.split(os.environ["EDITOR"]) + [str(path.absolute())]
     else:
         command = ["xdg-open", str(path.absolute())]
     subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

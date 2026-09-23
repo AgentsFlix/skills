@@ -27,7 +27,7 @@ Antes de aceitar o onboarding, execute estes três percursos com arquivos sinté
 | Cenário | Percurso e resultado esperado |
 |---|---|
 | Chave ausente | `doctor` identifica ausência; plano não grava; `prepare --execute` cria campo vazio privado; aguarda salvamento no editor; `verify` não alega autenticação; probe real é uma etapa separada. Repita com arquivo já existente e campo vazio, conferindo privacidade antes de colar. Ao cancelar, `clean-backup --execute` remove somente backup/recibo reconhecidos. |
-| Chave existente | Reaproveita bytes e comentários sem nova solicitação. Confere precedência: `--credential`, `AGENTFLIX_JEV_CREDENTIAL_FILE`, depois XDG/padrão. A escolha por CLI deve ser repetida ou compartilhada por variável de caminho. Nenhum comando imprime valor e a API só é chamada na etapa autorizada. |
+| Chave existente | Reaproveita bytes e comentários sem nova solicitação. Confere precedência: `--credential`, depois XDG/padrão. A escolha por CLI deve ser repetida em cada comando. Nenhum comando imprime valor e a API só é chamada na etapa autorizada. |
 | Somente leitura | `doctor` e planos não alteram arquivos nem chamam rede. Não executar `prepare`, editor, probe ou limpeza como parte de uma consulta apenas de diagnóstico. Para credencial segura montada somente para leitura, verificar separadamente a compatibilidade de `verify`; falha de permissão não significa chave inválida. |
 
 - Memória suficiente: reaproveitar contexto e avançar sem entrevista redundante.

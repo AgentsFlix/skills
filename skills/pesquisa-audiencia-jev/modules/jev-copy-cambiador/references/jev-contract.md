@@ -2,7 +2,7 @@
 
 ## Integração compartilhada
 
-Use [jev-operar/scripts/jev_client.py](../../jev-operar/scripts/jev_client.py) para executar os arquivos de entrada e Questions gerados por `prepare_turn.py`. A rota vigente é `jevcloud_direct`, `POST https://api.typesafe.ai/v1/systemone`, com modelo fixado `jev-1.13.0`. A chave própria usa o campo `JEV_API_KEY=` no arquivo resolvido pelo cliente (`--credential`, `AGENTFLIX_JEV_CREDENTIAL_FILE`, configuração XDG ou `~/.config/agentflix/jevcloud.env`); somente o cliente a lê para autenticação, sem imprimir o valor. O [contrato central](../../jev-operar/references/api-contract.md) governa credencial, retries e validação.
+Use [jev-operar/scripts/jev_client.py](../../jev-operar/scripts/jev_client.py) para executar os arquivos de entrada e Questions gerados por `prepare_turn.py`. A rota vigente é `jevcloud_direct`, `POST https://api.typesafe.ai/v1/systemone`, com modelo fixado `jev-1.13.0`. A chave própria usa o campo `JEV_API_KEY=` no arquivo resolvido pelo cliente (`--credential`, configuração XDG ou `~/.config/agentflix/jevcloud.env`); somente o cliente a lê para autenticação, sem imprimir o valor. O [contrato central](../../jev-operar/references/api-contract.md) governa credencial, retries e validação.
 
 A CLI continua usando `--input`, `--questions`, `--output` e, para execução autorizada, `--execute --max-requests N`. Retome com `--resume` apenas a mesma rota/modelo/rubrica e os mesmos dados. Rodadas/checkpoints históricos OpenRouter permanecem preservados; uma rodada JevCloud começa em novo diretório, sem migração silenciosa.
 
