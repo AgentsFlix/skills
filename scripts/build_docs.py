@@ -11,7 +11,7 @@ Só stdlib + PyYAML. Idempotente. Rode depois de mudar qualquer skill.
 """
 from __future__ import annotations
 
-import io, json, re, shutil, zipfile
+import hashlib, io, json, re, shutil, zipfile
 from pathlib import Path
 
 import yaml
@@ -144,9 +144,20 @@ def distribution_entries(cat: dict) -> dict[str, tuple[dict, str]]:
     return entries
 
 
+def write_integrity(directory: Path, version: str) -> None:
+    """Hash the final portable bytes, including its rewritten SKILL.md."""
+    files = {path.relative_to(directory).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+             for path in sorted(directory.rglob("*"))
+             if path.is_file() and path != directory / "integrity.json"
+             and "__pycache__" not in path.parts and path.suffix not in (".pyc", ".pyo")}
+    manifest = {"schema_version": 1, "version": version, "algorithm": "sha256", "files": files}
+    (directory / "integrity.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     cat = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
     entries = distribution_entries(cat)
+    package_names = {entry["name"] for entry in cat.get("packages", [])}
     for d in (DIST, WK, PROMPT, DOCS / "packages"):
         if d.exists(): shutil.rmtree(d)
         d.mkdir(parents=True)
@@ -157,8 +168,10 @@ def main() -> None:
         entry, version = entries.get(slug, (None, cat["version"]))
         files = referenced_files(body)
         # portable: cópia da pasta com SKILL.md reescrito
-        pd = DIST / slug; shutil.copytree(d, pd, ignore=shutil.ignore_patterns(".*", "__pycache__"))
+        pd = DIST / slug; shutil.copytree(d, pd, ignore=shutil.ignore_patterns(".*", "__pycache__", "*.pyc", "*.pyo"))
         (pd / "SKILL.md").write_text(dump_fm(strict_frontmatter(fm, slug, version)) + adapt_body(body), encoding="utf-8")
+        if slug in package_names:
+            write_integrity(pd, version)
         with zipfile.ZipFile(DIST / f"{slug}.zip", "w", zipfile.ZIP_DEFLATED) as z:
             for f in sorted(pd.rglob("*")):
                 if not f.is_file(): continue

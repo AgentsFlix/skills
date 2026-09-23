@@ -1,6 +1,7 @@
 """Independent package releases retain their runtime and complete portable files."""
 import contextlib
 import copy
+import hashlib
 import importlib.util
 import io
 import json
@@ -124,6 +125,28 @@ class IndependentPackageBuildTests(unittest.TestCase):
         self.catalog["packages"][0]["version"] = "1.0.1"
         with self.assertRaisesRegex(ValueError, "Identidade/versão diverge"):
             self.build()
+
+    def test_integrity_hashes_final_portable_bytes_and_excludes_caches(self):
+        self.add_package()
+        package = self.skills / SLUG
+        (package / "integrity.json").write_text('{"stale": true}')
+        cache = package / "modules/jev-operar/scripts/__pycache__"
+        cache.mkdir()
+        (cache / "client.pyc").write_bytes(b"cache")
+        (package / "leftover.pyc").write_bytes(b"cache")
+        self.build()
+        manifest = json.loads((self.wk / SLUG / "integrity.json").read_text())
+        self.assertEqual(manifest["schema_version"], 1)
+        self.assertEqual(manifest["version"], "1.0.0")
+        self.assertEqual(manifest["algorithm"], "sha256")
+        expected = {p.relative_to(self.wk / SLUG).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in (self.wk / SLUG).rglob("*")
+                    if p.is_file() and p.name != "integrity.json"}
+        self.assertEqual(manifest["files"], expected)
+        self.assertNotIn("integrity.json", manifest["files"])
+        self.assertFalse(any("__pycache__" in name or name.endswith(".pyc") for name in expected))
+        original_hash = hashlib.sha256((package / "SKILL.md").read_bytes()).hexdigest()
+        self.assertNotEqual(manifest["files"]["SKILL.md"], original_hash)
 
     def test_duplicate_name_across_collections_fails_before_deleting_output(self):
         self.build()
