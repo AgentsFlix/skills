@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "status": "initial_heuristic_not_empirically_calibrated",
+  "yes": 0.7,
+  "review": 0.4,
+  "min_index": 55,
+  "min_core_score": 1.5,
+  "min_core_confidence": 0.25,
+  "core_dimensions": ["specificity", "tension", "stakes"],
+  "weights": {"specificity":0.2,"tension":0.25,"stakes":0.25,"desired_future":0.15,"temporal_bridge":0.1,"voice":0.05}
+}

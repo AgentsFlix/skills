@@ -11,7 +11,7 @@ Só stdlib + PyYAML. Idempotente. Rode depois de mudar qualquer skill.
 """
 from __future__ import annotations
 
-import io, json, re, shutil, zipfile
+import hashlib, io, json, re, shutil, zipfile
 from pathlib import Path
 
 import yaml
@@ -26,7 +26,8 @@ PROMPT_CAP = 250_000  # chars; acima disso a versão colável para e aponta para
 
 # ───────────── frontmatter estrito ─────────────
 def strict_frontmatter(fm: dict, slug: str, version: str) -> dict:
-    h = (fm.get("metadata") or {}).get("hermes") or {}
+    original_meta = fm.get("metadata") or {}
+    h = original_meta.get("hermes") or {}
     desc = cap200(fm["description"])
     compat = []
     if h.get("requires_toolsets"): compat.append("Requer: " + ", ".join(h["requires_toolsets"]) + ".")
@@ -34,9 +35,10 @@ def strict_frontmatter(fm: dict, slug: str, version: str) -> dict:
         compat.append("Antes de usar, defina no ambiente: " + ", ".join(e["name"] for e in fm["required_environment_variables"]) + ".")
     if h.get("blueprint"): compat.append("No Hermes roda agendada; em outros agentes, sob demanda.")
     compat.append("Agent Skills (agentskills.io). Funciona em Claude, ChatGPT, Codex, Cursor, Copilot e agentes compatíveis.")
-    meta = {"author": str(fm.get("author", "")), "version": version, "hub": HUB_URL,
+    meta = {"author": str(fm.get("author", original_meta.get("author", ""))), "version": version, "hub": HUB_URL,
             "source": f"https://github.com/{REPO_SLUG}/tree/main/skills/{slug}",
-            "tags": ", ".join(h.get("tags", [])), "related": ", ".join(h.get("related_skills", []))}
+            "tags": ", ".join(h["tags"]) if "tags" in h else str(original_meta.get("tags", "")),
+            "related": ", ".join(h.get("related_skills", []))}
     identity_path = SKILLS / slug / "references/identidade.json"
     if identity_path.exists():
         identity = json.loads(identity_path.read_text())
@@ -48,7 +50,8 @@ def strict_frontmatter(fm: dict, slug: str, version: str) -> dict:
     if h.get("config"):
         meta["config"] = "; ".join(f"{c['key']}: {c['description']}" for c in h["config"])
     return {"name": fm["name"], "description": desc, "license": fm.get("license", "MIT"),
-            "compatibility": " ".join(compat)[:500], "metadata": {k: v for k, v in meta.items() if v}}
+            "compatibility": (fm.get("compatibility") or " ".join(compat))[:500],
+            "metadata": {k: v for k, v in meta.items() if v}}
 
 def dump_fm(d: dict) -> str:
     return "---\n" + yaml.safe_dump(d, allow_unicode=True, sort_keys=False, width=1000).strip() + "\n---\n"
@@ -128,8 +131,35 @@ def build_prompt(slug: str, fm: dict, body: str, files: list[str], version: str,
     return doc, act, truncated
 
 # ───────────── principal ─────────────
+def distribution_entries(cat: dict) -> dict[str, tuple[dict, str]]:
+    """Pacotes autorais têm versão própria; skills mantêm a versão do catálogo."""
+    entries = {}
+    for collection in ("skills", "packages"):
+        for entry in cat.get(collection, []):
+            slug = entry["name"]
+            if slug in entries:
+                raise ValueError("Nome repetido no catálogo: " + slug)
+            version = entry["version"] if collection == "packages" else cat["version"]
+            if not isinstance(version, str) or not version:
+                raise ValueError("Versão inválida no catálogo: " + slug)
+            entries[slug] = (entry, version)
+    return entries
+
+
+def write_integrity(directory: Path, version: str) -> None:
+    """Hash the final portable bytes, including its rewritten SKILL.md."""
+    files = {path.relative_to(directory).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+             for path in sorted(directory.rglob("*"))
+             if path.is_file() and path != directory / "integrity.json"
+             and "__pycache__" not in path.parts and path.suffix not in (".pyc", ".pyo")}
+    manifest = {"schema_version": 1, "version": version, "algorithm": "sha256", "files": files}
+    (directory / "integrity.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def main() -> None:
-    cat = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8")); version = cat["version"]
+    cat = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
+    entries = distribution_entries(cat)
+    package_names = {entry["name"] for entry in cat.get("packages", [])}
     for d in (DIST, WK, PROMPT, DOCS / "packages"):
         if d.exists(): shutil.rmtree(d)
         d.mkdir(parents=True)
@@ -137,10 +167,13 @@ def main() -> None:
     index, n = [], 0
     for d in sorted(p for p in SKILLS.iterdir() if (p / "SKILL.md").exists()):
         slug = d.name; fm, body = split((d / "SKILL.md").read_text(encoding="utf-8"))
+        entry, version = entries.get(slug, (None, cat["version"]))
         files = referenced_files(body)
         # portable: cópia da pasta com SKILL.md reescrito
-        pd = DIST / slug; shutil.copytree(d, pd, ignore=shutil.ignore_patterns(".*", "__pycache__"))
+        pd = DIST / slug; shutil.copytree(d, pd, ignore=shutil.ignore_patterns(".*", "__pycache__", "*.pyc", "*.pyo"))
         (pd / "SKILL.md").write_text(dump_fm(strict_frontmatter(fm, slug, version)) + adapt_body(body), encoding="utf-8")
+        if slug in package_names:
+            write_integrity(pd, version)
         with zipfile.ZipFile(DIST / f"{slug}.zip", "w", zipfile.ZIP_DEFLATED) as z:
             for f in sorted(pd.rglob("*")):
                 if not f.is_file(): continue
@@ -154,7 +187,6 @@ def main() -> None:
         index.append({"name": slug, "description": strict_frontmatter(fm, slug, version)["description"],
                       "files": sorted(str(f.relative_to(pd)) for f in pd.rglob("*") if f.is_file())})
         # colável
-        entry = next((s for s in cat["skills"] if s["name"] == slug), None)
         doc, act, truncated = build_prompt(slug, fm, body, files, version, act=(entry or {}).get("activation_prompt", ""))
         if entry is not None:
             entry["prompt_truncated"] = truncated

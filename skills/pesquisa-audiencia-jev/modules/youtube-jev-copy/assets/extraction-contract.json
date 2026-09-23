@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "status": "template_requires_topic_and_pilot",
+  "topic": null,
+  "audience": null,
+  "research_question": null,
+  "provider": "jevcloud_direct",
+  "endpoint": "https://api.typesafe.ai/v1/systemone",
+  "model": "jev-1.13.0",
+  "unit": "one_comment_with_parent_context_if_needed",
+  "discovery_priority": [
+    "topic_relevance",
+    "diverse_perspectives",
+    "counterevidence"
+  ],
+  "collection": {
+    "scope": "all_publicly_retrievable_in_selected_videos",
+    "sort": "new",
+    "comment_cap": null,
+    "include_replies": true
+  },
+  "passes": [
+    {
+      "name": "triage",
+      "questions_file": null,
+      "questions_sha256": null
+    },
+    {
+      "name": "depth",
+      "questions_file": null,
+      "questions_sha256": null
+    }
+  ],
+  "policy_file": null,
+  "pilot": {
+    "integration_status": "pending",
+    "semantic_status": "pending",
+    "reviewed_ids": [],
+    "disagreements": []
+  },
+  "source_manifest": null,
+  "corpus_sha256": null,
+  "output": [
+    "coverage.json",
+    "corpus.jsonl",
+    "provenance.jsonl",
+    "extraction-contract.json",
+    "evidence.jsonl",
+    "base-conhecimento.json",
+    "base-conhecimento.md"
+  ],
+  "retention": "private_minimized_evidence_until_selection_and_audit_are_complete"
+}

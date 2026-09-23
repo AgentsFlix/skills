@@ -1,0 +1,6 @@
+{
+  "relevant": {"type": "noul", "instructions": "Does the comment explicitly concern pain or consequences of the past, or expectations, fear, hope or choices about the person's future? Generic praise for the video alone is not relevant."},
+  "lived": {"type": "noul", "instructions": "Does the commenter describe an experience, emotion, behavior or wish of their own or someone close, rather than only praise, generic advice, a quotation or an abstract claim? Judge the text, not whether the story is true."},
+  "needs_context": {"type": "noul", "instructions": "Is an absent referent or missing parent message necessary to understand this comment's personal situation? If the provided context resolves it, answer no. A self-contained reply does not need context just because it is a reply."},
+  "exposure_review": {"type": "noul", "instructions": "Does using this individual story in public require privacy review because it includes direct identifiers, an identifiable rare event, an acute personal crisis, explicit abuse or violence, or sensitive medical information? Ordinary regret, fear, insecurity or sadness alone are not sufficient. Do not infer a diagnosis."}
+}

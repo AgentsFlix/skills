@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "name": "AgentFlix para agentes",
-  "verified_at": "2026-09-18",
+  "verified_at": "2026-09-23",
   "scope": "public",
   "catalog_url": "https://agentsflix.ai/catalog.json",
   "repository_url": "https://github.com/AgentsFlix/skills",
@@ -15,7 +15,8 @@
     "install_all_by_default": false,
     "private_repository_access": false,
     "copy_commands_literally": true,
-    "require_independent_verification": true
+    "require_independent_verification": true,
+    "runtime_only_requires_terminal": true
   },
   "targets": [
     {
@@ -62,5 +63,9 @@
       "install_field": "npx_any",
       "verification": "Confirme a pasta de destino informada pelo instalador e abra uma nova sessão."
     }
+  ],
+  "catalog_collections": [
+    "skills",
+    "packages"
   ]
 }
