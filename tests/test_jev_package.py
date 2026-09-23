@@ -120,6 +120,21 @@ class IndependentPackageBuildTests(unittest.TestCase):
                  for p in self.docs.rglob("*") if p.is_file()}
         self.assertEqual(before, after)
 
+    def test_visible_card_keeps_independent_package_version_and_artifacts(self):
+        self.add_package()
+        self.build()
+        portable = (self.wk / SLUG / "SKILL.md").read_bytes()
+        archive = (self.docs / "packages" / (SLUG + ".zip")).read_bytes()
+        entry = self.catalog["packages"].pop()
+        entry.update({"distribution_ref": SLUG + "-v1.0.0", "row": "objetivo", "discovery_only": False})
+        self.catalog["skills"].append(entry)
+        self.build()
+        self.assertEqual((self.wk / SLUG / "SKILL.md").read_bytes(), portable)
+        self.assertEqual((self.docs / "packages" / (SLUG + ".zip")).read_bytes(), archive)
+        self.assertEqual(json.loads((self.wk / SLUG / "integrity.json").read_text())["version"], "1.0.0")
+        self.assertEqual(self.catalog["skills"][-1]["version"], "1.0.0")
+        self.assertFalse(self.catalog.get("packages"))
+
     def test_mismatched_package_identity_fails(self):
         self.add_package()
         self.catalog["packages"][0]["version"] = "1.0.1"
@@ -167,11 +182,12 @@ class IndependentPackageBuildTests(unittest.TestCase):
 class PublishedJevPackageTests(unittest.TestCase):
     def test_pinned_identity_runtime_and_activation_match_catalog(self):
         catalog = json.loads((ROOT / "catalog.json").read_text())
-        entry = next(item for item in catalog["packages"] if item["name"] == SLUG)
-        self.assertNotIn(SLUG, [item["name"] for item in catalog["skills"]])
+        entry = next(item for item in catalog["skills"] if item["name"] == SLUG)
+        self.assertNotIn(SLUG, [item["name"] for item in catalog.get("packages", [])])
         self.assertEqual(entry["version"], "1.0.0")
         self.assertTrue(entry["runtime_only"])
-        self.assertTrue(entry["discovery_only"])
+        self.assertFalse(entry["discovery_only"])
+        self.assertEqual(entry["row"], "objetivo")
         package = ROOT / "skills" / SLUG
         identity = json.loads((package / "references/identidade.json").read_text())
         self.assertEqual(identity["distribution_version"], entry["version"])
