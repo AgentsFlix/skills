@@ -123,6 +123,8 @@ def build_prompt(slug: str, fm: dict, body: str, files: list[str], version: str,
         if not str(p).startswith(str(base) + "/"): left.append(rel + " (fora da skill: ignorado)"); continue
         if not p.exists(): continue
         if rel.endswith((".py", ".zip", ".png", ".jpg")): left.append(rel + " (script: só no zip)"); continue
+        if rel.endswith((".jpeg", ".webp", ".ico", ".icns", ".ttf", ".otf", ".woff", ".woff2", ".mp3", ".mp4", ".wav")):
+            left.append(rel + " (arquivo: só no zip)"); continue
         chunk = f"\n\n---\n\n## Referência: {rel}\n\n" + prune(p.read_text(encoding="utf-8", errors="replace"), rel)
         if len(doc) + len(chunk) > PROMPT_CAP: left.append(rel); truncated.append(rel); continue
         doc += chunk

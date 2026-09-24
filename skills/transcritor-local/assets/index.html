@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transcritor | AgentFlix</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/agentflix-mark.svg">
+  <style>
+    @font-face { font-family: Archivo; src: url('/assets/archivo-regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
+    @font-face { font-family: Archivo; src: url('/assets/archivo-bold.ttf') format('truetype'); font-style: normal; font-weight: 700 900; font-display: swap; }
+    :root { color-scheme: dark; font-family: Archivo, Helvetica, Arial, sans-serif; background: #141414; color: #f5f5f1; --bg: #141414; --panel: #181818; --surface: #202020; --text: #f5f5f1; --muted: #b3b3b3; --line: rgba(255,255,255,.16); --brand: #30b0c7; --link: #5fc9dc; --on-brand: #14161a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; padding: 0 24px 48px; background: radial-gradient(ellipse 70% 450px at 85% -90px, rgba(48,176,199,.13), transparent 72%), var(--bg); }
+    body::before { content: ''; display: block; height: 3px; margin: 0 -24px; background: linear-gradient(90deg, var(--brand), rgba(48,176,199,.18) 68%, transparent); }
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: .48; }
+    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, .dropzone:focus-within { outline: 2px solid var(--link); outline-offset: 4px; }
+    a { color: var(--link); }
+    .shell { width: min(1040px, 100%); margin: 0 auto; }
+    .hero { padding: 37px 0 34px; }
+    .brand-link { display: inline-flex; align-items: center; width: fit-content; padding: 5px 0; text-decoration: none; }
+    .brand-logo { display: block; width: 168px; height: auto; }
+    .hero-copy { margin-top: 41px; }
+    .eyebrow { margin: 0 0 12px; color: var(--link); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { margin: 0 0 12px; font-size: clamp(36px, 5vw, 55px); line-height: 1.05; letter-spacing: -.04em; }
+    .lead { max-width: 690px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.5; }
+    .stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; min-width: 0; }
+    .card { min-width: 0; padding: clamp(22px, 3vw, 30px); border: 1px solid var(--line); border-radius: 12px; background: var(--panel); box-shadow: 0 24px 64px rgba(0,0,0,.18); }
+    .card-head { display: flex; align-items: flex-start; gap: 17px; }
+    .card-head > div { min-width: 0; flex: 1; }
+    .number { flex: 0 0 auto; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(48,176,199,.13); color: var(--link); font-size: 13px; font-weight: 700; }
+    .card-title { margin: 2px 0 5px; font-size: 21px; line-height: 1.2; letter-spacing: -.02em; }
+    .card-desc { margin: 0; color: var(--muted); line-height: 1.5; }
+    .badge { margin-left: auto; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; color: var(--muted); background: var(--surface); font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .badge.ready { border-color: rgba(48,176,199,.4); background: rgba(48,176,199,.12); color: var(--link); }
+    .badge.waiting { border-color: rgba(229,188,72,.4); background: rgba(229,188,72,.1); color: #e5bc48; }
+    .badge.error { border-color: rgba(255,180,171,.4); background: rgba(255,180,171,.1); color: #ffb4ab; }
+    .auth-body { margin: 22px 0 0 53px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px; border: 1px solid var(--brand); border-radius: 999px; background: var(--brand); color: var(--on-brand); font-size: 14px; font-weight: 700; line-height: 1.25; text-align: center; text-decoration: none; transition: background 160ms, border-color 160ms, transform 160ms; }
+    .button:hover:not(:disabled) { background: var(--link); border-color: var(--link); transform: translateY(-1px); }
+    .button.secondary { border-color: var(--line); background: var(--surface); color: var(--text); }
+    .button.secondary:hover:not(:disabled) { border-color: var(--link); background: #292e30; }
+    .button.ghost { border-color: transparent; background: transparent; color: var(--link); }
+    .button.ghost:hover:not(:disabled) { border-color: var(--line); background: var(--surface); }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .helper { margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .auth-message { min-height: 20px; margin: 13px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .steps { display: grid; gap: 15px; padding: 0; margin: 0; list-style: none; counter-reset: step; }
+    .steps li { display: grid; grid-template-columns: 29px minmax(0,1fr); gap: 12px; align-items: start; counter-increment: step; }
+    .steps li::before { content: counter(step); display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid rgba(48,176,199,.35); border-radius: 50%; color: var(--link); font-size: 13px; font-weight: 700; }
+    .steps strong { display: block; margin: 4px 0 8px; }
+    .steps p { margin: 7px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .code-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .code { display: inline-block; min-width: 170px; padding: 11px 14px; border: 1px solid var(--line); border-radius: 8px; background: #111; color: var(--text); font: 700 19px/1.2 ui-monospace, Menlo, monospace; letter-spacing: .05em; }
+    .dropzone { display: grid; justify-items: center; gap: 8px; min-width: 0; margin-top: 23px; padding: 26px 16px; border: 1px dashed rgba(95,201,220,.55); border-radius: 12px; background: #111719; text-align: center; cursor: pointer; transition: border-color 160ms, background 160ms; }
+    .dropzone:hover { border-color: var(--link); background: #162024; }
+    .dropzone strong { color: var(--text); font-size: 16px; }
+    .dropzone span { color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+    .dropzone input { width: min(360px,100%); min-width: 0; margin-top: 7px; color: var(--muted); font-size: 13px; }
+    .dropzone input::file-selector-button { margin-right: 12px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); font: inherit; cursor: pointer; }
+    .process { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 18px; margin-top: 18px; }
+    .process .button { min-width: 160px; }
+    .status { min-height: 21px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .output { width: 100%; min-height: 280px; margin: 20px 0 15px; padding: 18px; resize: vertical; border: 1px solid var(--line); border-radius: 8px; color: var(--text); background: #111; font: 15px/1.6 Archivo, Helvetica, Arial, sans-serif; }
+    .footnote { margin: 0; padding: 20px 2px 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .footer { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 35px; padding: 20px 2px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .footer p { margin: 0; }
+    .footer a { font-weight: 700; text-underline-offset: 3px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 600px) { body { padding: 0 16px 32px; } body::before { margin: 0 -16px; } .hero { padding: 22px 0 28px; } .brand-logo { width: 145px; } .hero-copy { margin-top: 33px; } .lead { font-size: 15px; } .card { padding: 20px 16px; } .card-head { gap: 11px; flex-wrap: wrap; } .card-head > div { flex-basis: calc(100% - 48px); } .number { width: 34px; height: 34px; } .card-title { font-size: 19px; } .badge { margin-left: 45px; } .auth-body { margin-left: 0; } .actions .button { width: 100%; } .steps .button { width: auto; } .code { min-width: 0; } .process { align-items: stretch; } .process .button { width: 100%; } .footer { margin-top: 28px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0ms !important; animation-duration: 0ms !important; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <a class="brand-link" href="https://agentsflix.ai/" target="_blank" rel="noopener noreferrer" aria-label="Acessar AgentFlix"><img class="brand-logo" src="/assets/agentflix-logo.svg" alt="AgentFlix"></a>
+      <div class="hero-copy"><p class="eyebrow">SKILL DO AGENTFLIX · APP LOCAL</p>
+      <h1>Transcritor</h1>
+      <p class="lead">Transforme áudio ou vídeo em texto. O reconhecimento roda neste computador; apenas o texto segue para revisão com GPT-5.6 Luna.</p></div>
+    </header>
+    <div class="stack">
+      <section class="card" aria-labelledby="authTitle">
+        <div class="card-head"><span class="number" aria-hidden="true">01</span><div><h2 class="card-title" id="authTitle">Conecte sua conta</h2><p class="card-desc">Use sua conta do ChatGPT para revisar a transcrição.</p></div><span id="authBadge" class="badge">Verificando</span></div>
+        <div class="auth-body">
+          <div id="authIdle" hidden><button id="login" class="button">Gerar código de acesso</button><p class="helper">O código é criado pelo Codex neste computador. Você confirma o acesso no site da OpenAI.</p></div>
+          <div id="authSteps" hidden>
+            <ol class="steps">
+              <li><div><strong>Abra a página de autorização</strong><a class="button secondary" href="https://auth.openai.com/codex/device" target="_blank" rel="noopener noreferrer">Abrir página de login ↗</a></div></li>
+              <li><div><strong>Cole o código gerado</strong><div class="code-row"><output id="deviceCode" class="code" aria-label="Código de acesso">Gerando…</output><button id="copyCode" class="button secondary" disabled>Copiar código</button></div><p>O código expira em cerca de 15 minutos. Use somente o código que você gerou aqui.</p></div></li>
+              <li><div><strong>Confirme e volte a esta aba</strong><p>Quando a autorização terminar, esta tela ficará pronta automaticamente.</p></div></li>
+            </ol>
+          </div>
+          <div id="authReady" hidden><div class="actions"><span>Conta conectada. Pronto para transcrever.</span><button id="relogin" class="button ghost">Trocar conta</button></div></div>
+          <p id="authMessage" class="auth-message" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+      <section class="card" aria-labelledby="uploadTitle">
+        <div class="card-head"><span class="number" aria-hidden="true">02</span><div><h2 class="card-title" id="uploadTitle">Escolha seu arquivo</h2><p class="card-desc">Áudio ou vídeo do computador. A mídia fica local durante o processamento.</p></div></div>
+        <label class="dropzone" for="file"><strong>Selecione um áudio ou vídeo</strong><span id="fileName">MP3, M4A, WAV, MP4, MOV e outros formatos comuns</span><input id="file" type="file" accept="audio/*,video/*,.mkv,.avi,.m4v"></label>
+        <div class="process"><button id="start" class="button" disabled>Transcrever arquivo</button><p id="status" class="status" role="status" aria-live="polite">Conecte sua conta e escolha um arquivo para começar.</p></div>
+      </section>
+      <section id="resultCard" class="card" aria-labelledby="resultTitle" hidden>
+        <div class="card-head"><span class="number" aria-hidden="true">03</span><div><h2 class="card-title" id="resultTitle">Sua transcrição</h2><p class="card-desc">Confira o texto, depois copie ou baixe em Markdown.</p></div></div>
+        <textarea id="result" class="output" aria-label="Transcrição" spellcheck="false"></textarea>
+        <div class="actions"><button id="copy" class="button secondary">Copiar texto</button><button id="download" class="button secondary">Baixar .md</button></div>
+      </section>
+    </div>
+    <p class="footnote">A mídia temporária é apagada após a transcrição. Revise nomes próprios e trechos incertos antes de publicar.</p>
+    <footer class="footer"><p>Transcritor criado com skill do <a href="https://agentsflix.ai/" target="_blank" rel="noopener noreferrer">AgentFlix ↗</a></p><p>Processamento local no seu computador</p></footer>
+  </main>
+  <script>
+    const token = __TOKEN__;
+    const $ = id => document.getElementById(id);
+    let filename = 'transcricao.md';
+    let connected = false;
+    let busy = false;
+    let copiedCode = false;
+    async function api(path, options = {}) {
+      const response = await fetch(path, {...options, headers: {'X-Local-Token': token, ...options.headers}});
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Erro local');
+      return data;
+    }
+    function updateStart() { $('start').disabled = !connected || !$('file').files.length || busy; }
+    function renderLogin(data) {
+      const phase = data.phase || 'idle';
+      connected = phase === 'ready';
+      $('authBadge').textContent = {idle: 'Pendente', waiting: 'Aguardando', ready: 'Conectado', error: 'Atenção'}[phase] || 'Pendente';
+      $('authBadge').className = 'badge ' + phase;
+      $('authIdle').hidden = phase !== 'idle' && phase !== 'error';
+      $('authSteps').hidden = phase !== 'waiting';
+      $('authReady').hidden = phase !== 'ready';
+      $('login').textContent = phase === 'error' ? 'Gerar outro código' : 'Gerar código de acesso';
+      $('deviceCode').textContent = data.code || 'Gerando…';
+      $('copyCode').disabled = !data.code;
+      $('authMessage').textContent = phase === 'waiting' && copiedCode ? 'Código copiado. Cole na página de autorização.' : (data.message || '');
+      if (!connected && !busy) $('status').textContent = 'Conecte sua conta e escolha um arquivo para começar.';
+      if (connected && !$('file').files.length && !busy) $('status').textContent = 'Escolha um arquivo para começar.';
+      updateStart();
+      if (data.running) setTimeout(pollLogin, 1200);
+    }
+    async function pollLogin() {
+      try { renderLogin(await api('/api/login')); }
+      catch (error) { $('authMessage').textContent = error.message; }
+    }
+    async function startLogin() {
+      copiedCode = false;
+      try { await api('/api/login', {method: 'POST'}); await pollLogin(); }
+      catch (error) { $('authMessage').textContent = error.message; }
+    }
+    async function pollJob() {
+      try {
+        const data = await api('/api/status');
+        $('status').textContent = data.state === 'error' ? data.error : data.status;
+        if (data.state === 'done') {
+          busy = false;
+          filename = data.filename;
+          $('result').value = data.text;
+          $('resultCard').hidden = false;
+          updateStart();
+        } else if (data.state === 'error') { busy = false; updateStart(); }
+        else setTimeout(pollJob, 1000);
+      } catch (error) { busy = false; $('status').textContent = error.message; updateStart(); }
+    }
+    $('login').addEventListener('click', startLogin);
+    $('relogin').addEventListener('click', startLogin);
+    $('file').addEventListener('change', () => { $('fileName').textContent = $('file').files[0]?.name || 'Selecione um arquivo'; updateStart(); });
+    $('start').addEventListener('click', async () => {
+      const file = $('file').files[0];
+      if (!file) return;
+      busy = true;
+      updateStart();
+      $('resultCard').hidden = true;
+      $('status').textContent = 'Enviando arquivo ao processo local…';
+      try {
+        await api('/api/transcribe', {method: 'POST', headers: {'X-Filename': encodeURIComponent(file.name), 'Content-Type': 'application/octet-stream'}, body: file});
+        pollJob();
+      } catch (error) { busy = false; $('status').textContent = error.message; updateStart(); }
+    });
+    $('copyCode').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText($('deviceCode').textContent); copiedCode = true; $('authMessage').textContent = 'Código copiado. Cole na página de autorização.'; }
+      catch { $('authMessage').textContent = 'Selecione o código acima e copie manualmente.'; }
+    });
+    $('copy').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText($('result').value); $('status').textContent = 'Transcrição copiada.'; }
+      catch { $('result').focus(); $('result').select(); $('status').textContent = 'Texto selecionado. Use ' + (/Win/i.test(navigator.platform) ? 'Ctrl+C' : '⌘C') + ' para copiar.'; }
+    });
+    $('download').addEventListener('click', async () => {
+      if (window.pywebview?.api?.save_markdown) {
+        try {
+          const saved = await window.pywebview.api.save_markdown($('result').value, filename);
+          if (saved) $('status').textContent = 'Transcrição salva em Downloads: ' + saved;
+        } catch (error) { $('status').textContent = 'Não foi possível salvar o arquivo .md.'; }
+        return;
+      }
+      const blob = new Blob([$('result').value], {type: 'text/markdown;charset=utf-8'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    });
+    document.querySelectorAll('a[target="_blank"]').forEach(link => link.addEventListener('click', event => {
+      if (window.pywebview?.api?.open_url) {
+        event.preventDefault();
+        window.pywebview.api.open_url(link.href);
+      }
+    }));
+    pollLogin();
+  </script>
+</body>
+</html>
