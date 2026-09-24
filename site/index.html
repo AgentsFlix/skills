@@ -1037,14 +1037,14 @@
               <h3>${esc(s.title)}</h3>
               <p class="name">${esc(s.name)}</p>
               <p class="sub">${esc(s.sub)}</p>
-              ${installable ? `<div class="modal-installation" data-install-area>
+              <div class="modal-installation" data-install-area>
                 <div class="modal-actions">
-                  <button class="btn-install" data-act="install-focus">${skillReady ? 'Instalar em…' : 'Usar a skill'}</button>
-                  ${skillReady ? DISCOVERY.installationButton(s) : ''}
+                  ${installable ? `<button class="btn-install" data-act="install-focus">${skillReady ? 'Instalar em…' : 'Usar a skill'}</button>` : ''}
+                  ${installable && skillReady ? DISCOVERY.installationButton(s) : ''}
                   <button class="modal-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" aria-label="${s.inList ? 'Remover da minha lista' : 'Adicionar à minha lista'}" aria-pressed="${s.inList}">${listLabel(s)}</button>
                 </div>
                 <p class="installation-feedback" role="status"></p>
-              </div>` : ''}
+              </div>
               `}
             </div>
           </div>

@@ -987,6 +987,7 @@
   // bloco "instalar em": o único pedaço do modal que muda quando o alvo muda
   function installHtml(s) {
     const { t, value, note, hint } = targetInfo(s, state.target);
+    if (!t) return '';
     const kindLabel = t.kind === "file" ? "Arquivo" : t.kind === "link" ? "Link" : "Comando";
     const extra = t.kind === "file" && value ? `<a href="${esc(value)}">Baixar .zip ↓</a>`
                 : t.kind === "link" && value ? `<a href="${esc(value)}" target="_blank" rel="noopener">Abrir colável ↗</a>` : "";
@@ -1013,6 +1014,7 @@
     if (!s) { DISCOVERY?.cancel(); m.hidden = true; m.innerHTML = ""; document.body.style.overflow = ""; return; }
     const reading = isReading(s.slug);
     const editorial = reading && s.editorialOnly;
+    const installable = !s.readingOnly || TARGETS.some(target => s.cmdFor[target.id]);
     const skillReady = !editorial && !!DISCOVERY?.completed && !DISCOVERY.locked(s.slug);
     const skillGate = editorial ? "" : !DISCOVERY?.completed
       ? `<section class="reading-skill-gate"><h2>Leve esta skill para o seu agente</h2><p>A leitura é livre. Para usar a skill, escolha seu caminho e veja por onde começar.</p><button class="guide-primary" data-act="reading-onboarding" data-slug="${esc(s.slug)}">Escolher meu caminho</button></section>`
@@ -1039,8 +1041,8 @@
               <p class="sub">${esc(s.sub)}</p>
               <div class="modal-installation" data-install-area>
                 <div class="modal-actions">
-                  <button class="btn-install" data-act="install-focus">${skillReady ? 'Instalar em…' : 'Usar a skill'}</button>
-                  ${skillReady ? DISCOVERY.installationButton(s) : ''}
+                  ${installable ? `<button class="btn-install" data-act="install-focus">${skillReady ? 'Instalar em…' : 'Usar a skill'}</button>` : ''}
+                  ${installable && skillReady ? DISCOVERY.installationButton(s) : ''}
                   <button class="modal-list ${s.inList ? "on" : ""}" data-act="toggle" data-slug="${esc(s.slug)}" aria-label="${s.inList ? 'Remover da minha lista' : 'Adicionar à minha lista'}" aria-pressed="${s.inList}">${listLabel(s)}</button>
                 </div>
                 <p class="installation-feedback" role="status"></p>
@@ -1057,8 +1059,8 @@
               <div class="lbl">Como usar</div>
               <p class="how">${esc(s.how)}</p>
               ${DISCOVERY ? DISCOVERY.extras(s) : ''}
-              <div class="install">${installHtml(s)}</div>
-              ${DISCOVERY ? DISCOVERY.installation(s) : ''}
+              ${installable ? `<div class="install">${installHtml(s)}</div>` : ''}
+              ${installable && DISCOVERY ? DISCOVERY.installation(s) : ''}
               ${s.cast.length ? `<div class="lbl mb10">Elenco</div><div class="tags">${s.cast.map((c) => `<span class="cast">${esc(c)}</span>`).join("")}</div>` : ""}
               ${s.gen.length ? `<div class="lbl mb10">Gêneros</div><div class="tags last">${s.gen.map((g) => `<span class="gen">${esc(g)}</span>`).join("")}</div>` : ""}
             </div>
