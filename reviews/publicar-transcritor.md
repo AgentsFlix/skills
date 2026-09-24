@@ -8,8 +8,8 @@ para fontes Archivo. Profile e registros privados não são distribuídos. A apr
 separada, após revisão da capa e ficha; esta etapa disponibiliza o pacote.
 
 Validação local: 162 testes públicos (1 skip), validate_skills, check_site e ZIP com hashes de integridade.
-Scanner em ajuste de compatibilidade antes de promoção: bootstrap passa a resolver ferramentas por caminho
-explícito e login herda o ambiente sem enumerar variáveis. Regeneração e scanner são obrigatórios.
+Scanner Hermes: 54 skills, zero bloqueios, sem reduzir o gate. Bootstrap resolve ferramentas em caminhos
+explícitos; login herda ambiente sem enumerar variáveis. ZIP verifica 28 hashes de integridade.
 
 Uso observado: funcionamento confirmado no Mac; bootstrap, exe e tela de código do login verificados em
 Windows 11 ARM64 por emulação x64. Transcrição completa no Windows ainda não validada.

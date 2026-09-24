@@ -28,9 +28,10 @@ def sha1(path):
     return digest.hexdigest()
 
 
-def refresh_path():
+def tool_path(name):
     paths = ["/opt/homebrew/bin", "/usr/local/bin", "/Applications/ChatGPT.app/Contents/Resources"]
-    os.environ["PATH"] = os.pathsep.join(paths + [os.environ.get("PATH", "")])
+    search_path = os.pathsep.join(paths + [os.environ.get("PATH", "")])
+    return shutil.which(name, path=search_path)
 
 
 def model_ready():
@@ -48,19 +49,18 @@ def model_ready():
 
 
 def report():
-    refresh_path()
     mac = sys.platform == "darwin"
     python = sys.version_info >= (3, 9)
     arch = platform.machine() in ("arm64", "x86_64")
-    brew = bool(shutil.which("brew"))
-    ffmpeg = bool(shutil.which("ffmpeg"))
-    whisper = bool(shutil.which("whisper-cli"))
-    codex = bool(shutil.which("codex"))
-    swift = bool(shutil.which("swiftc"))
+    brew = bool(tool_path("brew"))
+    ffmpeg = bool(tool_path("ffmpeg"))
+    whisper = bool(tool_path("whisper-cli"))
+    codex = bool(tool_path("codex"))
+    swift = bool(tool_path("swiftc"))
     model = model_ready()
     device_auth = False
     if codex:
-        help_text = subprocess.run(["codex", "login", "--help"], capture_output=True, text=True, timeout=20)
+        help_text = subprocess.run([tool_path("codex"), "login", "--help"], capture_output=True, text=True, timeout=20)
         device_auth = help_text.returncode == 0 and "--device-auth" in help_text.stdout
     checks = [("macOS", mac), ("CPU compatível", arch), ("Python 3.9+", python),
               ("Homebrew", brew), ("ffmpeg", ffmpeg), ("whisper-cli", whisper),
@@ -72,12 +72,11 @@ def report():
 
 
 def ensure(install=False):
-    refresh_path()
     if sys.platform != "darwin" or platform.machine() not in ("arm64", "x86_64"):
         raise RuntimeError("Este app requer um Mac Intel ou Apple Silicon.")
     if sys.version_info < (3, 9):
         raise RuntimeError("Python 3.9 ou superior é necessário.")
-    brew = shutil.which("brew")
+    brew = tool_path("brew")
     if not brew:
         if not install:
             raise RuntimeError("Homebrew ausente. Execute o bootstrap com --install.")
@@ -86,24 +85,21 @@ def ensure(install=False):
             script = Path(directory) / "install-homebrew.sh"
             urllib.request.urlretrieve(HOMEBREW_URL, script)
             subprocess.run(["/bin/bash", str(script)], check=True)
-        refresh_path()
-        brew = shutil.which("brew")
+        brew = tool_path("brew")
         if not brew:
             raise RuntimeError("Homebrew não ficou disponível após a instalação.")
     for tool, package in (("ffmpeg", "ffmpeg"), ("whisper-cli", "whisper-cpp")):
-        if not shutil.which(tool):
+        if not tool_path(tool):
             if not install:
                 raise RuntimeError(f"{tool} ausente. Execute o bootstrap com --install.")
             print(f"Instalando {package}…", flush=True)
             subprocess.run([brew, "install", package], check=True)
-            refresh_path()
-    if not shutil.which("codex"):
+    if not tool_path("codex"):
         if not install:
             raise RuntimeError("Codex CLI ausente. Execute o bootstrap com --install.")
         print("Instalando Codex CLI…", flush=True)
         subprocess.run([brew, "install", "--cask", "codex"], check=True)
-        refresh_path()
-    if not shutil.which("swiftc"):
+    if not tool_path("swiftc"):
         if install:
             subprocess.run(["xcode-select", "--install"], check=False)
         raise RuntimeError("Compilador Swift ausente. Conclua a instalação das Command Line Tools do macOS e execute o bootstrap novamente.")

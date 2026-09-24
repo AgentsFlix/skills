@@ -258,9 +258,8 @@ def serve(open_browser=True, on_ready=None):
                     login.update(running=True, phase="waiting", code="", message="Gerando código de acesso…")
                 def login_worker():
                     try:
-                        environment = dict(os.environ, NO_COLOR="1", TERM="dumb", CLICOLOR="0")
                         process = subprocess.Popen([tool_path("codex"), "login", "--device-auth"], stdout=subprocess.PIPE,
-                                                   stderr=subprocess.STDOUT, text=True, bufsize=1, env=environment, **background_process_options())
+                                                   stderr=subprocess.STDOUT, text=True, bufsize=1, **background_process_options())
                         for line in process.stdout:
                             code = code_from_login_line(line)
                             if code:
