@@ -7,11 +7,11 @@ metadata:
   author: AgentFlix
   version: 1.0.0
   hub: https://agentsflix.ai
-  source: https://github.com/AgentsFlix/skills/tree/criar-profile-hermes-v1.0.0/skills/criar-profile-hermes
+  source: https://github.com/AgentsFlix/skills/tree/codex/criar-profile-hermes/skills/criar-profile-hermes
   tags: hermes, profile, onboarding, codex, telegram
   contract_version: 1.0.0
   content_revision: 1.0.0
-  distribution_ref: criar-profile-hermes-v1.0.0
+  distribution_ref: codex/criar-profile-hermes
 ---
 
 # Criar um profile Hermes
