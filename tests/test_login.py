@@ -17,6 +17,9 @@ class LoginTests(unittest.TestCase):
         self.assertIn('id="social-status"', page)
         self.assertIn('id="social-actions"', page)
         self.assertIn("mesmo e-mail cadastrado", page)
+        self.assertLess(page.index('id="login-form"'), page.index('id="login-divider"'))
+        self.assertLess(page.index('id="login-divider"'), page.index('id="social-actions"'))
+        self.assertIn("ou continue com", page)
         self.assertNotIn("SUPABASE_SERVICE_ROLE_KEY", page)
 
     def test_scripts_are_valid_and_public_provider_status_fails_closed(self):

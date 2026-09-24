@@ -236,9 +236,6 @@ button:disabled { cursor: wait; opacity: .6; }
   border-top: 1px solid var(--line);
 }
 
-.social-actions + .form-status { margin-top: var(--af-space-2); }
-.social-actions + .form-status:empty { min-height: 0; }
-
 .form-status {
   min-height: 22px;
   margin: var(--af-space-3) 0 0;
@@ -246,6 +243,8 @@ button:disabled { cursor: wait; opacity: .6; }
   font-size: 13px;
   line-height: var(--af-line-height);
 }
+
+.form-status:empty { min-height: 0; margin: 0; }
 
 .fine-print, .hint {
   color: var(--muted);

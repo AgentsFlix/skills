@@ -34,6 +34,14 @@
         <h1 id="login-title">Entre sem senha</h1>
         <p id="login-lead" class="lead">A gente envia um link de acesso para o seu e-mail.</p>
 
+        <form id="login-form" novalidate>
+          <label for="email">Seu e-mail</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+          <button id="submit-button" type="submit">Enviar link de acesso</button>
+        </form>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+
+        <p id="login-divider" class="login-divider" hidden><span>ou continue com</span></p>
         <div id="social-actions" class="social-actions" role="group" aria-label="Entrar com uma conta existente" hidden>
           <button class="af-button social-button social-button--google" data-provider="google" type="button" hidden>
             <img class="social-button__icon" src="https://developers.google.com/static/identity/images/g-logo.png" width="24" height="24" alt="" aria-hidden="true" referrerpolicy="no-referrer">
@@ -45,15 +53,6 @@
           </button>
         </div>
         <p id="social-status" class="form-status" role="status" aria-live="polite"></p>
-        <p id="login-divider" class="login-divider" hidden><span>ou receba um link por e-mail</span></p>
-
-        <form id="login-form" novalidate>
-          <label for="email">Seu e-mail</label>
-          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="voce@exemplo.com" required>
-          <button id="submit-button" type="submit">Enviar link de acesso</button>
-        </form>
-
-        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
         <p class="fine-print">Para manter seus acessos, use o mesmo e-mail cadastrado na AgentFlix. O link é pessoal; não o encaminhe.</p>
       </div>
 
