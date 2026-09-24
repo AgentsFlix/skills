@@ -38,15 +38,21 @@
         <p class="lead">Mantenha suas informações de contato atualizadas.</p>
 
         <form id="profile-form" novalidate>
-          <label for="email">E-mail de acesso</label>
-          <input id="email" name="email" type="email" autocomplete="email" readonly aria-readonly="true">
-          <p class="field-hint">Seu e-mail vem do acesso seguro e não pode ser alterado aqui.</p>
+          <div class="profile-field">
+            <label for="email">E-mail de acesso</label>
+            <input id="email" name="email" type="email" autocomplete="email" readonly aria-readonly="true">
+            <p class="field-hint">Seu e-mail vem do acesso seguro e não pode ser alterado aqui.</p>
+          </div>
 
-          <label for="name">Nome</label>
-          <input id="name" name="name" type="text" autocomplete="name" maxlength="120" placeholder="Como a gente pode chamar você?">
+          <div class="profile-field">
+            <label for="name">Nome</label>
+            <input id="name" name="name" type="text" autocomplete="name" maxlength="120" placeholder="Como a gente pode chamar você?">
+          </div>
 
-          <label for="phone">Telefone</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="(00) 00000-0000">
+          <div class="profile-field">
+            <label for="phone">Telefone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="(00) 00000-0000">
+          </div>
 
           <button id="save-button" type="submit">Salvar alterações</button>
         </form>

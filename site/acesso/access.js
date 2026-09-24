@@ -41,12 +41,13 @@ function renderVideos(videos) {
 
   videos.forEach((video) => {
     const row = document.createElement("article");
-    row.className = "video-row";
+    row.className = "video-row af-list-row af-list-row--compact";
     const title = document.createElement("h2");
+    title.className = "af-list-row__title";
     title.textContent = video.title;
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "watch-button";
+    button.className = "watch-button af-button af-button--compact";
     button.textContent = "Assistir";
     button.addEventListener("click", () => playVideo(video.id, button));
     row.append(title, button);
@@ -62,6 +63,7 @@ async function playVideo(videoId, button) {
   const status = byId("content-status");
   status.textContent = "Abrindo vídeo…";
   button.disabled = true;
+  button.setAttribute("aria-busy", "true");
   try {
     const response = await fetch(`/api/video?id=${encodeURIComponent(videoId)}`, {
       headers: { authorization: `Bearer ${currentSession.access_token}`, accept: "application/json" },
@@ -81,6 +83,7 @@ async function playVideo(videoId, button) {
     status.textContent = protectedContentMessage(error.status);
   } finally {
     button.disabled = false;
+    button.removeAttribute("aria-busy");
   }
 }
 
