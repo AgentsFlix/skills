@@ -97,6 +97,11 @@ def checked(args, *, input_text=None, cwd=None, timeout=3600):
         raise RuntimeError(f"{Path(args[0]).name} falhou (código {result.returncode}).")
 
 
+def upload_filename(suffix):
+    # The filesystem name comes exclusively from these fixed trusted constants.
+    return next(("entrada" + allowed for allowed in SUFFIXES if suffix == allowed), None)
+
+
 def chunks(text, limit=12000):
     result, current = [], ""
     for line in text.splitlines():
@@ -286,7 +291,8 @@ def serve(open_browser=True, on_ready=None):
                 length = int(self.headers.get("Content-Length", "0"))
             except ValueError:
                 length = 0
-            if suffix not in SUFFIXES or not (0 < length <= MAX_UPLOAD):
+            upload_name = upload_filename(suffix)
+            if upload_name is None or not (0 < length <= MAX_UPLOAD):
                 self.reply(400, {"error": "Arquivo inválido ou maior que 4 GB."})
                 return
             with lock:
@@ -295,7 +301,7 @@ def serve(open_browser=True, on_ready=None):
                     return
                 state.update(state="running", status="Recebendo mídia…", text="", error="")
             tempdir = Path(tempfile.mkdtemp(prefix="transcritor-upload-"))
-            source = tempdir / ("entrada" + suffix)
+            source = tempdir / upload_name
             try:
                 with source.open("wb") as target:
                     remaining = length

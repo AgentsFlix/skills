@@ -1248,7 +1248,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
     "assets/archivo-bold.ttf": "bed60488c2f5c0b24e01d931760b6f3e9a82619dcd081ed9bff643d9f4fd9e3d",
     "assets/archivo-regular.ttf": "01170409e32e22123a354fbaa7dcb5ca5300790bb77c05d569ec8fdc394e78c9",
     "assets/index.html": "95d60777da21f63a38bca253f7498d52b24909b46ce29014e9b486c63efe748c",
-    "assets/transcritor.py": "50df7248aacc8f0970675ea68b3393dc110eab11a9bee7d94628b6df3c655163",
+    "assets/transcritor.py": "4f77f53945a44af7480c2818b4e2c4e90cb05821508c5cd40ca040db70e5e28a",
     "references/ativacao.md": "4b70a9cf883be4a2122517522838457d2340c943a84444d6532da6d6917f53f4",
     "references/ciclo-de-vida.md": "b1a7087839a4b315d666b47649c5eb62d0cad102256af4435cc73ac96202906f",
     "references/conhecimento.okf.md": "e9c23afe4ec477b233b2aef2dbf8f32921302bd9b839f84e29cea7d085518101",
