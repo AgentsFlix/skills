@@ -2621,7 +2621,7 @@
       "title": "Criar profile Hermes",
       "title_netflix": "Criar profile Hermes",
       "description": "Configure um novo profile Hermes com Codex, memória inicial, skills padrão, rotina opcional e um bot Telegram próprio, com verificações em cada etapa.",
-      "row": "hermes",
+      "row": "operacao",
       "runtime_only": true,
       "discovery_only": false,
       "files": 11,

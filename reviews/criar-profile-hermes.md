@@ -3,7 +3,7 @@
 Distribuição pública gerada da fonte privada `fontes/skills-autorais/criar-profile-hermes/`.
 PR da fonte: https://github.com/AgentsFlix/agentsflix/pull/205.
 
-O pacote foi preparado como card da fileira Hermes Agent (`catalog.skills`, estado
+O pacote foi preparado como card da fileira Operação (`catalog.skills`, estado
 `draft`), com um único slug e sem entrada duplicada em `catalog.packages`.
 Inclui SKILL.md para Hermes, ZIP portátil e versão colável em `docs/prompt/`.
 O conteúdo preserva seis etapas e exige validação no host antes de declarar operação.
