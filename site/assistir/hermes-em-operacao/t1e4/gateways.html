@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Veja como as seis partes de um profile do Hermes se conectam a WhatsApp, Telegram e Slack, cada canal com sua própria credencial.">
+  <title>Um profile, três canais · T1:E4 · AgentFlix</title>
+  <link rel="stylesheet" href="/design-system/tokens.css">
+  <link rel="stylesheet" href="/design-system/primitives.css">
+  <link rel="stylesheet" href="/design-system/icons.css">
+  <link rel="stylesheet" href="gateways.css">
+  <script src="/design-system/icons.js" defer></script>
+  <script src="/memory.js"></script>
+  <script src="/assistir/access.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o diagrama</a>
+  <header class="top">
+    <a class="back" href="pratica.html"><af-icon name="previous"></af-icon> Voltar à prática</a>
+    <a class="brand" href="../../" aria-label="AgentFlix"><img src="/brand/horizontal-transparente-dark.svg" alt="" width="130" height="26"></a>
+    <span class="episode-label">Temporada 1 · Episódio 4</span>
+  </header>
+
+  <main id="main">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">Página 3 · Anatomia das conexões</p>
+      <h1 id="page-title">Um profile. Três portas de conversa.</h1>
+      <p>As seis peças continuam juntas. O Gateway conecta esse mesmo profile a canais diferentes; cada conexão tem sua própria credencial.</p>
+    </section>
+
+    <section class="diagram" aria-label="Um profile conectado a três canais">
+      <div class="profile af-panel">
+        <div class="profile-heading">
+          <div>
+            <p class="eyebrow">Uma identidade no Hermes</p>
+            <h2>Profile <code>default</code></h2>
+          </div>
+          <span class="profile-count">6 peças</span>
+        </div>
+        <ol class="parts" aria-label="As seis peças do mesmo profile">
+          <li><span class="part-number">01</span><span><strong>Modelo de IA</strong><small>Cérebro</small></span></li>
+          <li><span class="part-number">02</span><span><strong>Memória</strong><small>Cérebro</small></span></li>
+          <li><span class="part-number">03</span><span><strong>Skills</strong><small>Soft skills</small></span></li>
+          <li><span class="part-number">04</span><span><strong>Tools</strong><small>Hard skills</small></span></li>
+          <li><span class="part-number">05</span><span><strong>Cron</strong><small>Rotina</small></span></li>
+          <li class="gateway-part"><span class="part-number">06</span><span><strong>Gateway</strong><small>Comunicação</small></span></li>
+        </ol>
+        <p class="profile-foot">O Gateway abre caminhos para conversar. As outras cinco peças não precisam ser duplicadas para cada canal.</p>
+      </div>
+
+      <div class="connector" aria-hidden="true"><span></span><span></span><span></span></div>
+
+      <div class="channels" aria-label="Conexões do Gateway">
+        <article class="channel af-card" aria-labelledby="whatsapp-title">
+          <div class="channel-head"><div class="logo-frame"><img src="art/logo-whatsapp.png" alt="" width="88" height="88"></div><div><p class="channel-label">Canal 01</p><h3 id="whatsapp-title">WhatsApp</h3></div></div>
+          <p class="channel-role">Mensagens entram e saem pela conta conectada ao Gateway.</p>
+          <div class="credential"><p class="credential-label">Credenciais</p><div class="secret"><span><strong>Sessão da conta</strong><small>Segredo deste canal</small></span><code aria-label="Valor oculto">••••••••</code></div></div>
+        </article>
+        <article class="channel af-card" aria-labelledby="telegram-title">
+          <div class="channel-head"><div class="logo-frame"><img src="art/logo-telegram.png" alt="" width="88" height="88"></div><div><p class="channel-label">Canal 02</p><h3 id="telegram-title">Telegram</h3></div></div>
+          <p class="channel-role">O bot recebe e entrega mensagens usando o mesmo profile.</p>
+          <div class="credential"><p class="credential-label">Credenciais</p><div class="secret"><span><strong>Token do bot</strong><small>Segredo deste canal</small></span><code aria-label="Valor oculto">••••••••</code></div></div>
+        </article>
+        <article class="channel af-card" aria-labelledby="slack-title">
+          <div class="channel-head"><div class="logo-frame"><img src="art/logo-slack.png" alt="" width="88" height="88"></div><div><p class="channel-label">Canal 03</p><h3 id="slack-title">Slack</h3></div></div>
+          <p class="channel-role">O aplicativo leva as conversas da equipe ao mesmo profile.</p>
+          <div class="credential"><p class="credential-label">Credenciais</p><div class="secret"><span><strong>Token do aplicativo</strong><small>Segredo deste canal</small></span><code aria-label="Valor oculto">••••••••</code></div></div>
+        </article>
+      </div>
+    </section>
+
+    <aside class="takeaway af-panel" aria-label="Ideia principal"><strong>O que muda?</strong><p>O canal e a credencial usada para conectá-lo. Modelo, memória, skills, tools e Cron continuam no mesmo profile. Os valores acima são apenas símbolos visuais: nenhuma credencial real é exibida ou solicitada.</p></aside>
+
+    <nav class="page-nav" aria-label="Páginas da aula"><a href="./"><af-icon name="previous"></af-icon> Página 1 · Anatomia</a><a href="pratica.html">Página 2 · Monte o profile</a><span aria-current="page">Página 3 · Canais e credenciais</span></nav>
+  </main>
+</body>
+</html>

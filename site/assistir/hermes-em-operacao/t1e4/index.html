@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore as seis partes de um profile no Hermes: modelo, memória, skills, tools, CRON e gateway.">
+  <title>Anatomia de um profile · T1:E4 · AgentFlix</title>
+  <link rel="stylesheet" href="/design-system/tokens.css">
+  <link rel="stylesheet" href="/design-system/primitives.css">
+  <link rel="stylesheet" href="/design-system/icons.css">
+  <link rel="stylesheet" href="profile.css">
+  <script src="/design-system/icons.js" defer></script>
+  <script src="profile.js" defer></script>
+  <script src="/memory.js"></script>
+  <script src="/assistir/access.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para a aula</a>
+  <header class="top">
+    <a class="back" href="../../?s=hermes-em-operacao"><af-icon name="previous"></af-icon> Voltar à série</a>
+    <a class="brand" href="../../" aria-label="AgentFlix"><img src="/brand/horizontal-transparente-dark.svg" alt="" width="130" height="26"></a>
+    <span class="episode-label">Temporada 1 · Episódio 4</span>
+  </header>
+  <main id="main">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">Hermes em operação</p>
+        <h1>Anatomia de um profile</h1>
+        <p>Você instalou o Hermes. Sua primeira identidade já tem nome: <strong>default</strong>. Abra as seis partes e descubra o que cada uma faz.</p>
+      </div>
+      <span class="format">Uma exploração em 6 etapas</span>
+    </div>
+
+    <nav id="steps" class="steps" aria-label="Partes do profile">
+      <button type="button" class="step" data-step="0" aria-current="step"><span class="step-art step-art--modelo" aria-hidden="true"></span><span class="step-info"><span class="step-number">01</span><span><strong>Modelo de IA</strong><small>Cérebro</small></span></span></button>
+      <button type="button" class="step" data-step="1"><span class="step-art step-art--memoria" aria-hidden="true"></span><span class="step-info"><span class="step-number">02</span><span><strong>Memória</strong><small>Cérebro</small></span></span></button>
+      <button type="button" class="step" data-step="2"><span class="step-art step-art--skills" aria-hidden="true"></span><span class="step-info"><span class="step-number">03</span><span><strong>Skills</strong><small>Soft skills</small></span></span></button>
+      <button type="button" class="step" data-step="3"><span class="step-art step-art--tools" aria-hidden="true"></span><span class="step-info"><span class="step-number">04</span><span><strong>Tools</strong><small>Hard skills</small></span></span></button>
+      <button type="button" class="step" data-step="4"><span class="step-art step-art--cron" aria-hidden="true"></span><span class="step-info"><span class="step-number">05</span><span><strong>Cron</strong><small>Rotina</small></span></span></button>
+      <button type="button" class="step" data-step="5" aria-label="06 Gateway, boca. Ilustração com WhatsApp, Telegram e Slack"><span class="step-art step-art--gateway" aria-hidden="true"></span><span class="step-info"><span class="step-number">06</span><span><strong>Gateway</strong><small>Boca</small></span></span></button>
+    </nav>
+
+    <div class="workspace">
+      <section class="profile-scene af-card" aria-label="Anatomia visual do profile default">
+        <div class="scene-top"><span>Hermes <b>profile</b></span><span>Instalação concluída</span></div>
+        <div class="scene-body">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="profile-core"><span class="core-label">Profile inicial</span><strong>default</strong><code>~/.hermes/</code></div>
+          <div class="organ-grid" aria-label="Seis partes do profile">
+            <button type="button" class="organ" data-step="0" aria-current="step"><span class="organ-number">01</span><span class="organ-copy"><small>Cérebro</small><strong>Modelo de IA</strong><em>config.yaml</em></span></button>
+            <button type="button" class="organ" data-step="1"><span class="organ-number">02</span><span class="organ-copy"><small>Cérebro</small><strong>Memória</strong><em>memories/</em></span></button>
+            <button type="button" class="organ" data-step="2"><span class="organ-number">03</span><span class="organ-copy"><small>Soft skills</small><strong>Skills</strong><em>skills/</em></span></button>
+            <button type="button" class="organ" data-step="3"><span class="organ-number">04</span><span class="organ-copy"><small>Hard skills</small><strong>Tools</strong><em>configuração + conexões</em></span></button>
+            <button type="button" class="organ" data-step="4"><span class="organ-number">05</span><span class="organ-copy"><small>Rotina</small><strong>Cron</strong><em>cron/jobs.json</em></span></button>
+            <button type="button" class="organ" data-step="5"><span class="organ-number">06</span><span class="organ-copy"><small>Boca</small><strong>Gateway</strong><em>canais configurados</em></span></button>
+          </div>
+        </div>
+        <div class="scene-caption"><span class="live-dot" aria-hidden="true"></span><p id="scene-caption">O profile default existe. Agora vamos olhar seu cérebro.</p></div>
+        <div class="structure-note"><af-icon name="information"></af-icon><p>A cena mostra a estrutura possível. Uma peça aparecer aqui não significa que já esteja configurada ou funcionando.</p></div>
+      </section>
+
+      <section class="lesson" aria-labelledby="lesson-title">
+        <div id="lesson-copy" aria-live="polite">
+          <p class="step-index">Parte 1 de 6 · Cérebro</p>
+          <h2 id="lesson-title">O modelo é quem processa o pedido.</h2>
+          <p class="description">Quando você fala com o Hermes, um modelo de IA interpreta a solicitação e produz a resposta. O profile guarda qual modelo e provedor usar.</p>
+        </div>
+        <div class="example af-panel" id="example"><span class="example-label">Pense assim</span><p>Trocar o modelo muda o motor de raciocínio. Não troca, por si só, a memória, as skills ou os canais.</p></div>
+        <div id="practice" class="practice" hidden>
+          <p class="practice-label">Confira se ficou claro</p>
+          <h3>Qual peça ensina o passo a passo de um trabalho?</h3>
+          <div class="practice-actions">
+            <button type="button" class="af-button af-button--outline" data-answer="skill">Skill</button>
+            <button type="button" class="af-button af-button--outline" data-answer="tool">Tool</button>
+          </div>
+          <p id="practice-feedback" role="status"></p>
+        </div>
+        <aside class="concept"><span>No profile</span><p id="concept">O modelo é uma escolha de configuração. Ele não é o profile inteiro.</p></aside>
+      </section>
+    </div>
+
+    <footer class="controls">
+      <button id="prev" type="button" class="af-button af-button--secondary" disabled><af-icon name="previous"></af-icon> Etapa anterior</button>
+      <span id="position" aria-live="polite">1 / 6 · Modelo de IA</span>
+      <button id="next" type="button" class="af-button">Próxima etapa <af-icon name="next"></af-icon></button>
+    </footer>
+    <nav class="episode-pages" aria-label="Páginas da aula"><span>Página 1 · Anatomia de um profile</span><a class="af-button af-button--outline" href="pratica.html">Página 2 · Monte o profile <af-icon name="next"></af-icon></a></nav>
+    <p class="page-end">Página 1 · A anatomia do profile</p>
+  </main>
+</body>
+</html>
