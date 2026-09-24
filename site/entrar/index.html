@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#141414">
-  <meta name="description" content="Entre na AgentFlix por um link seguro enviado ao seu e-mail.">
+  <meta name="description" content="Entre na AgentFlix com Google, GitHub ou um link seguro enviado ao seu e-mail.">
   <title>Entrar | AgentFlix</title>
   <link rel="icon" href="../brand/favicon-dark.ico">
   <link rel="stylesheet" href="login.css">
@@ -32,7 +32,14 @@
 
       <div id="signed-out-state" class="state" hidden>
         <h1 id="login-title">Entre sem senha</h1>
-        <p class="lead">A gente envia um link de acesso para o seu e-mail.</p>
+        <p id="login-lead" class="lead">A gente envia um link de acesso para o seu e-mail.</p>
+
+        <div id="social-actions" class="social-actions" role="group" aria-label="Entrar com uma conta existente" hidden>
+          <button class="af-button af-button--outline social-button" data-provider="google" type="button" hidden>Continuar com Google</button>
+          <button class="af-button af-button--outline social-button" data-provider="github" type="button" hidden>Continuar com GitHub</button>
+        </div>
+        <p id="social-status" class="form-status" role="status" aria-live="polite"></p>
+        <p id="login-divider" class="login-divider" hidden><span>ou receba um link por e-mail</span></p>
 
         <form id="login-form" novalidate>
           <label for="email">Seu e-mail</label>
@@ -41,7 +48,7 @@
         </form>
 
         <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-        <p class="fine-print">O link é pessoal. Não encaminhe para outra pessoa.</p>
+        <p class="fine-print">Para manter seus acessos, use o mesmo e-mail cadastrado na AgentFlix. O link é pessoal; não o encaminhe.</p>
       </div>
 
       <div id="sent-state" class="state" hidden>

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap");
 @import '../design-system/tokens.css';
+@import '../design-system/primitives.css';
 
 :root {
   color-scheme: dark;
@@ -187,6 +188,34 @@ button:disabled { cursor: wait; opacity: .6; }
 }
 
 .secondary:hover { background: #444; }
+
+.social-actions { display: grid; gap: var(--af-space-3); }
+.social-actions[hidden], .social-button[hidden], .login-divider[hidden] { display: none; }
+
+.social-button {
+  width: 100%;
+}
+
+.social-button:hover { border-color: var(--accent); }
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-3);
+  margin: var(--af-space-4) 0;
+  color: var(--muted);
+  font-size: var(--af-text-sm);
+  text-align: center;
+}
+
+.login-divider::before, .login-divider::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--line);
+}
+
+.social-actions + .form-status { margin-top: var(--af-space-2); }
+.social-actions + .form-status:empty { min-height: 0; }
 
 .form-status {
   min-height: 22px;
