@@ -118,7 +118,7 @@ async function loadProfile(session) {
 
   fillProfile(data, session.user);
   show("account");
-  await loadAccesses();
+  await Promise.all([loadAccesses(), window.AgentFlixMemory.connect(client, session.user)]);
 }
 
 async function loadConfig() {
@@ -141,6 +141,7 @@ async function initialize() {
         loadSequence += 1;
         currentUser = null;
         show("signed-out");
+        window.AgentFlixMemory.clearSignedOut();
       } else if (event === "SIGNED_IN" && session.user.id !== currentUser?.id) {
         loadProfile(session);
       }
@@ -210,11 +211,105 @@ byId("sign-out-button").addEventListener("click", async () => {
   const button = byId("sign-out-button");
   button.disabled = true;
   try {
-    await client.auth.signOut();
+    if (!(await window.AgentFlixMemory.signOut())) {
+      setStatus("Há dados pendentes ou a conexão falhou. Sincronize ou baixe seus dados antes de tentar sair novamente.");
+      return;
+    }
     window.location.assign("/entrar/");
   } finally {
     button.disabled = false;
   }
+});
+
+window.addEventListener("agentflix:memory-status", (event) => {
+  const messages = {
+    saved: "Memória sincronizada com sua conta.",
+    saving: "Salvando sua memória…",
+    pending: "Há alterações pendentes. Mantenha esta página aberta; tentaremos novamente.",
+    unavailable: "Não foi possível conectar sua memória. Seus dados locais foram preservados.",
+    local: "Dados locais neste navegador.",
+    conflict: "Há versões diferentes entre dispositivos. Baixe uma cópia antes de escolher qual manter.",
+  };
+  byId("memory-status").textContent = messages[event.detail.state] || messages.pending;
+  const list = byId("memory-conflicts");
+  list.replaceChildren();
+  const conflicts = window.AgentFlixMemory.status.conflicts;
+  list.hidden = !conflicts.length;
+  for (const key of conflicts) {
+    const card = document.createElement("article");
+    card.className = "access-card";
+    const title = document.createElement("p");
+    title.textContent = key;
+    card.append(title);
+    for (const [choice, label] of [["local", "Manter deste navegador"], ["cloud", "Usar versão da conta"]]) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "af-button af-button--outline";
+      button.textContent = label;
+      button.addEventListener("click", async () => {
+        button.disabled = true;
+        if (!(await window.AgentFlixMemory.resolveConflict(key, choice))) {
+          button.disabled = false;
+          setStatus("Não foi possível resolver agora. Seus dados continuam preservados.");
+        }
+      });
+      card.append(button);
+    }
+    list.append(card);
+  }
+});
+
+byId("memory-versions-button").addEventListener("click", async () => {
+  const button = byId("memory-versions-button"), list = byId("memory-versions");
+  const status = byId("memory-versions-status");
+  button.disabled = true;
+  status.textContent = "Carregando versões…";
+  try {
+    const { data, error } = await window.AgentFlixMemory.versions();
+    list.replaceChildren();
+    list.hidden = true;
+    if (error) { status.textContent = "O histórico não está disponível agora. A memória atual não foi alterada."; return; }
+    status.textContent = data?.length ? "Até 100 versões recentes. Restaurar cria uma nova revisão; não apaga a versão atual." : "Ainda não há versões anteriores de exercícios.";
+    for (const version of data || []) {
+      const card = document.createElement("article");
+      card.className = "access-card";
+      const text = document.createElement("p");
+      text.textContent = `${version.memory_key} · revisão ${version.revision} · ${new Date(version.saved_at).toLocaleString("pt-BR")}`;
+      const restore = document.createElement("button");
+      restore.type = "button";
+      restore.className = "af-button af-button--outline";
+      restore.textContent = "Restaurar versão";
+      restore.addEventListener("click", async () => {
+        restore.disabled = true;
+        const ok = await window.AgentFlixMemory.restoreVersion(version.memory_key, version.revision);
+        status.textContent = ok ? "Versão restaurada. Reabra o exercício para carregar o conteúdo." : "Não foi possível restaurar. Sincronize ou resolva os conflitos antes de tentar novamente.";
+        restore.disabled = false;
+      });
+      card.append(text, restore);
+      list.append(card);
+    }
+    list.hidden = !data?.length;
+  } finally { button.disabled = false; }
+});
+
+byId("memory-retry-button").addEventListener("click", async () => {
+  const button = byId("memory-retry-button");
+  button.disabled = true;
+  try { if (currentUser) await window.AgentFlixMemory.connect(client, currentUser); }
+  finally { button.disabled = false; }
+});
+
+byId("memory-export-button").addEventListener("click", () => {
+  if (!currentUser) return;
+  const bundle = { ...window.AgentFlixMemory.exportData(), profile: {
+    email: byId("email").value, name: byId("name").value, phone: byId("phone").value,
+  }};
+  const url = URL.createObjectURL(new Blob([JSON.stringify(bundle, null, 2)], { type: "application/json" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "agentflix-meus-dados.json";
+  link.click();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 
 initialize();

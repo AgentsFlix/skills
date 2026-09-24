@@ -4,7 +4,7 @@
 
 #profile-form { gap: 10px; }
 
-#profile-form label:not(:first-child) { margin-top: 8px; }
+#profile-form label:not(:first-child) { margin-top: var(--af-space-2); }
 
 #email[readonly] {
   color: var(--muted);
@@ -12,10 +12,10 @@
 }
 
 .field-hint {
-  margin: -2px 0 8px;
+  margin: -2px 0 var(--af-space-2);
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: var(--af-text-xs);
+  line-height: var(--af-line-height);
 }
 
 .form-status[data-tone="success"] { color: var(--accent-text); }
@@ -23,13 +23,13 @@
 .admin-access-link {
   min-height: 74px;
   margin-top: 22px;
-  padding: 14px 16px;
+  padding: 14px var(--af-space-4);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
   border: 1px solid #35636c;
-  border-radius: 14px;
+  border-radius: var(--af-radius-dialog);
   background: #142126;
   color: var(--text);
   text-decoration: none;
@@ -39,7 +39,7 @@
 .admin-access-link strong,
 .admin-access-link small { display: block; }
 .admin-access-link strong { font-size: 15px; }
-.admin-access-link small { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.admin-access-link small { margin-top: var(--af-space-1); color: var(--muted); font-size: var(--af-text-xs); line-height: 1.45; }
 .admin-access-link > span:last-child { color: var(--accent-text); font-size: 22px; }
 
 .access-section {
@@ -58,37 +58,37 @@
 .access-status {
   margin: 0;
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: var(--af-text-sm);
+  line-height: var(--af-line-height);
 }
 
-.access-status { margin-top: 16px; }
+.access-status { margin-top: var(--af-space-4); }
 .access-status[data-tone="error"] { color: var(--danger); }
 
 .access-list {
-  margin-top: 16px;
+  margin-top: var(--af-space-4);
   display: grid;
   gap: 10px;
 }
 
 .access-card {
-  padding: 16px;
+  padding: var(--af-space-4);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 16px;
+  gap: var(--af-space-4);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--af-radius-card);
   background: #111;
 }
 
-.access-card h3 { margin: 0 0 5px; font-size: 16px; line-height: 1.3; }
-.access-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.access-card h3 { margin: 0 0 5px; font-size: var(--af-text-md); line-height: 1.3; }
+.access-card p { margin: 0; color: var(--muted); font-size: var(--af-text-xs); line-height: 1.45; }
 
 .access-open,
 .access-retry {
   min-height: 44px;
-  border-radius: 999px;
+  border-radius: var(--af-radius-action);
   padding: 11px 17px;
   background: var(--active);
   color: var(--text);
@@ -102,6 +102,7 @@
 .access-open:hover, .access-retry:hover { background: #444; }
 .access-retry { margin-top: 14px; }
 
+.admin-access-link[hidden],
 .access-list[hidden],
 .access-retry[hidden] {
   display: none;
@@ -109,15 +110,26 @@
 
 .text-link {
   min-height: 44px;
-  margin-top: 12px;
+  margin-top: var(--af-space-3);
   display: inline-flex;
   align-items: center;
   color: var(--muted);
-  font-size: 14px;
+  font-size: var(--af-text-sm);
   font-weight: 600;
 }
 
 .text-link:hover { color: var(--text); }
+
+#memory-conflicts .access-card,
+#memory-versions .access-card { grid-template-columns: minmax(0, 1fr); }
+#memory-conflicts p,
+#memory-versions p { overflow-wrap: anywhere; }
+[aria-labelledby="memory-title"] .af-button {
+  max-width: 100%;
+  margin-top: var(--af-space-3);
+  white-space: normal;
+}
+[aria-labelledby="memory-title"] .field-hint { margin-top: var(--af-space-4); }
 
 @media (max-width: 600px) {
   .account-card { min-height: 590px; }

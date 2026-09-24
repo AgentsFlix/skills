@@ -6,6 +6,7 @@
   "use strict";
 
   const META_KEY = "agentflix-memory-meta-v1";
+  const RECOVERY_PREFIX = "agentflix-memory-recovery-v1:";
   const MAX_BYTES = 2400000;
   const exact = new Map([
     ["agentflix-installed-v1", "skill"],
@@ -90,8 +91,28 @@
   let startPromise = null;
   let applyingCloud = false;
   let flushTimer = null;
+  let flushPromise = null;
+  let generation = 0;
+  let retryDelay = 1000;
+  let signingOut = false;
+  let revisionProtocol = null;
   const pending = new Set();
-  const status = { signedIn: false, available: false, oversized: [] };
+  const status = { signedIn: false, available: false, oversized: [], conflicts: [], pending: 0, state: "local" };
+
+  function publishStatus(state) {
+    status.pending = Object.keys(metadata).filter((key) => metadata[key]?.dirtyAt).length;
+    status.conflicts = Object.keys(metadata).filter((key) => metadata[key]?.conflict);
+    status.state = state || (status.pending ? "pending" : status.available ? "saved" : "local");
+    if (status.conflicts.length && status.state !== "saving") status.state = "conflict";
+    root.dispatchEvent?.(new CustomEvent("agentflix:memory-status", {
+      detail: { state: status.state, pending: status.pending, signedIn: status.signedIn },
+    }));
+  }
+
+  function cancelTimer() {
+    if (flushTimer !== null) root.clearTimeout?.(flushTimer);
+    flushTimer = null;
+  }
 
   function writeMetadata() {
     try {
@@ -103,6 +124,14 @@
 
   function clearOwnedCache() {
     if (!ownerId) return false;
+    // An expired session or another tab may sign out without our safe button.
+    // Keep unsent edits scoped to the old account, never adopt them into another.
+    const dirty = Object.keys(metadata).filter((key) => metadata[key]?.dirtyAt && categoryOf(key));
+    if (dirty.length) nativeSet(RECOVERY_PREFIX + ownerId, JSON.stringify({
+      entries: dirty.map((key) => ({ key, raw: nativeGet(key), info: metadata[key] })),
+    }));
+    generation += 1;
+    cancelTimer();
     applyingCloud = true;
     try {
       trackedLocalKeys().forEach((key) => nativeRemove(key));
@@ -112,13 +141,26 @@
     metadata = {};
     ownerId = null;
     pending.clear();
+    status.oversized = [];
     writeMetadata();
+    publishStatus("local");
     return true;
   }
 
   function claimOwner(nextOwnerId) {
     if (ownerId && ownerId !== nextOwnerId) clearOwnedCache();
     ownerId = nextOwnerId;
+    const recovery = parse(nativeGet(RECOVERY_PREFIX + ownerId) || "null");
+    if (Array.isArray(recovery?.entries)) {
+      for (const entry of recovery.entries) {
+        if (!entry || typeof entry.key !== "string" || !entry.info?.dirtyAt ||
+          !(entry.raw === null || typeof entry.raw === "string") || !categoryOf(entry.key) || metadata[entry.key]) continue;
+        if (entry.raw === null) nativeRemove(entry.key);
+        else nativeSet(entry.key, entry.raw);
+        metadata[entry.key] = entry.info;
+      }
+      // Do not remove the safety copy until the account outbox is acknowledged.
+    }
     writeMetadata();
   }
 
@@ -146,8 +188,9 @@
           detail: { reason: "too-large", key },
         }),
       );
-      return;
     }
+    if (raw === null || byteLength(raw) <= MAX_BYTES)
+      status.oversized = status.oversized.filter((item) => item !== key);
     const now = Date.now();
     metadata[key] = {
       ...(metadata[key] || {}),
@@ -157,6 +200,7 @@
     };
     writeMetadata();
     pending.add(key);
+    publishStatus();
     scheduleFlush();
   }
 
@@ -169,17 +213,21 @@
         configurable: false,
       });
       proto.setItem = function setItem(key, value) {
+        if (this === storage && signingOut && categoryOf(String(key)))
+          throw new Error("Aguarde o encerramento seguro da conta.");
         const result = native.set.call(this, key, value);
         if (this === storage) markDirty(String(key));
         return result;
       };
       proto.removeItem = function removeItem(key) {
         const tracked = this === storage && Boolean(categoryOf(String(key)));
+        if (tracked && signingOut) throw new Error("Aguarde o encerramento seguro da conta.");
         const result = native.remove.call(this, key);
         if (tracked) markDirty(String(key), true);
         return result;
       };
       proto.clear = function clear() {
+        if (this === storage && signingOut) throw new Error("Aguarde o encerramento seguro da conta.");
         const keys = this === storage ? trackedLocalKeys() : [];
         const result = native.clear.call(this);
         keys.forEach((key) => markDirty(key, true));
@@ -188,18 +236,41 @@
     }
   }
 
-  function scheduleFlush() {
-    if (!client || !userId || flushTimer) return;
+  function scheduleFlush(delay = 800) {
+    if (!client || !userId || flushTimer !== null || signingOut) return;
     flushTimer = root.setTimeout(() => {
       flushTimer = null;
-      flush();
-    }, 800);
+      if (status.available) flush();
+      else connect(client, { id: userId });
+    }, delay);
+  }
+
+  async function requestWithDeadline(query) {
+    // Abort only this request. A timed-out write may have reached the server;
+    // the outbox remains dirty until an acknowledged retry.
+    const controller = root.AbortController ? new root.AbortController() : null;
+    if (controller && query.abortSignal) query = query.abortSignal(controller.signal);
+    let timer;
+    try {
+      return await Promise.race([query, new Promise((resolve) => {
+        timer = root.setTimeout(() => {
+          controller?.abort();
+          resolve({ error: { code: "memory_timeout" } });
+        }, 12000);
+      })]);
+    } catch {
+      return { error: { code: "memory_unavailable" } };
+    } finally {
+      root.clearTimeout?.(timer);
+    }
   }
 
   async function saveKey(key) {
     const info = metadata[key];
     const category = categoryOf(key);
     if (!client || !userId || !info?.dirtyAt || !category) return false;
+    if (info.conflict) return false;
+    const requestGeneration = generation;
     const raw = info.deletedAt ? null : nativeGet(key);
     if (!info.deletedAt && raw === null) info.deletedAt = Date.now();
     if (raw !== null && byteLength(raw) > MAX_BYTES) return false;
@@ -213,38 +284,100 @@
       client_updated_at: new Date(info.dirtyAt).toISOString(),
       deleted_at: info.deletedAt ? new Date(info.deletedAt).toISOString() : null,
     };
-    const request = client
+    let response;
+    if (typeof client.rpc === "function" && revisionProtocol !== false) {
+      response = await requestWithDeadline(client.rpc("save_user_memory", {
+        requested_key: key, requested_value: row.value,
+        expected_revision: info.revision || 0, requested_deleted: Boolean(info.deletedAt),
+      }));
+      if (generation !== requestGeneration) return false;
+      // Only an explicitly absent additive RPC permits the legacy rollout path.
+      if (response.error?.code === "PGRST202") revisionProtocol = false;
+      else {
+        revisionProtocol = true;
+        const result = Array.isArray(response.data) ? response.data[0] : response.data;
+        if (!response.error && result?.applied === false) {
+          metadata[key] = { ...metadata[key], conflict: true };
+          writeMetadata();
+          return false;
+        }
+        response = { ...response, data: result };
+      }
+    }
+    if (!response || revisionProtocol === false) response = await requestWithDeadline(client
       .from("user_memory")
       .upsert(row, { onConflict: "user_id,memory_key" })
-      .select("memory_key,updated_at,deleted_at")
-      .maybeSingle();
-    const { data, error } = await request;
+      .select("memory_key,revision,updated_at,deleted_at")
+      .maybeSingle());
+    const { data, error } = response;
+    if (generation !== requestGeneration) return false;
     if (error || !data) return false;
+    // A newer edit owns the dirty marker. Never acknowledge it with an older response.
+    if (metadata[key] !== info) {
+      metadata[key] = { ...metadata[key], revision: data.revision || info.revision || 0 };
+      writeMetadata();
+      return true;
+    }
     metadata[key] = {
       hash: raw === null ? null : hash(raw),
       syncedAt: data.updated_at,
+      revision: data.revision || 0,
       deletedAt: data.deleted_at ? Date.parse(data.deleted_at) || info.deletedAt : null,
     };
     writeMetadata();
     return true;
   }
 
-  async function flush() {
+  function flush() {
+    if (flushPromise) return flushPromise;
+    const active = drain().catch(() => {
+      publishStatus("unavailable");
+      scheduleFlush(retryDelay);
+      return { ok: false, saved: 0 };
+    });
+    flushPromise = active;
+    active.finally(() => { if (flushPromise === active) flushPromise = null; });
+    return active;
+  }
+
+  async function drain() {
     if (!client || !userId) return { ok: false, saved: 0 };
-    const keys = [...pending, ...Object.keys(metadata).filter((key) => metadata[key]?.dirtyAt)];
-    pending.clear();
+    const requestGeneration = generation;
+    cancelTimer();
+    publishStatus("saving");
     let saved = 0;
-    for (const key of [...new Set(keys)]) {
-      if (await saveKey(key)) saved += 1;
-      else if (metadata[key]?.dirtyAt) pending.add(key);
+    // Drain edits made during a request, but yield under continuous typing.
+    for (let pass = 0; pass < 5; pass += 1) {
+      const keys = Object.keys(metadata).filter((key) => metadata[key]?.dirtyAt);
+      pending.clear();
+      let failed = false;
+      for (const key of keys) {
+        if (generation !== requestGeneration) return { ok: false, saved };
+        if (await saveKey(key)) saved += 1;
+        else failed = true;
+      }
+      if (generation !== requestGeneration) return { ok: false, saved };
+      Object.keys(metadata).filter((key) => metadata[key]?.dirtyAt).forEach((key) => pending.add(key));
+      if (failed || pending.size === 0) break;
     }
-    return { ok: pending.size === 0, saved };
+    const ok = pending.size === 0;
+    publishStatus(ok ? "saved" : "pending");
+    if (!ok) {
+      scheduleFlush(retryDelay);
+      retryDelay = Math.min(retryDelay * 2, 30000);
+    } else {
+      retryDelay = 1000;
+      if (ownerId) nativeRemove(RECOVERY_PREFIX + ownerId);
+    }
+    return { ok, saved };
   }
 
   function applyCloudRow(row) {
     const key = row.memory_key;
     if (!categoryOf(key) || metadata[key]?.dirtyAt) return false;
-    const next = row.deleted_at ? null : serialize(row.value);
+    const next = row.deleted_at ? null :
+      key === "agentflix-social-media-document-v2:last" && typeof row.value === "string"
+        ? row.value : serialize(row.value);
     const current = nativeGet(key);
     applyingCloud = true;
     try {
@@ -256,6 +389,7 @@
     metadata[key] = {
       hash: next === null ? null : hash(next),
       syncedAt: row.updated_at,
+      revision: row.revision || 0,
       deletedAt: row.deleted_at ? Date.parse(row.deleted_at) || Date.now() : null,
     };
     return current !== next;
@@ -264,21 +398,38 @@
   async function connect(nextClient, user) {
     if (!nextClient || !user?.id) return { ok: false, signedIn: false, changed: false };
     if (connectPromise && userId === user.id) return connectPromise;
+    if (userId !== user.id) {
+      generation += 1;
+      flushPromise = null;
+      revisionProtocol = null;
+    }
     claimOwner(user.id);
     client = nextClient;
     userId = user.id;
     status.signedIn = true;
-    connectPromise = (async () => {
-      const { data, error } = await client
-        .from("user_memory")
-        .select("memory_key,category,value,schema_version,updated_at,deleted_at");
-      if (error) {
-        status.available = false;
-        return { ok: false, signedIn: true, changed: false };
+    const requestGeneration = generation;
+    const connecting = (async () => {
+      const rows = [];
+      // PostgREST caps responses. Never mistake a truncated result for deleted data.
+      for (let offset = 0; ; offset += 100) {
+        let query = nextClient.from("user_memory")
+          .select("memory_key,category,value,schema_version,revision,updated_at,deleted_at");
+        const paginated = typeof query.range === "function";
+        if (paginated) query = query.order("memory_key").range(offset, offset + 99);
+        const { data, error } = await requestWithDeadline(query);
+        if (requestGeneration !== generation) return { ok: false, signedIn: true, changed: false };
+        if (error || !Array.isArray(data)) {
+          status.available = false;
+          publishStatus("unavailable");
+          scheduleFlush(retryDelay);
+          retryDelay = Math.min(retryDelay * 2, 30000);
+          return { ok: false, signedIn: true, changed: false };
+        }
+        rows.push(...data);
+        if (!paginated || data.length < 100) break;
       }
 
       status.available = true;
-      const rows = Array.isArray(data) ? data : [];
       const cloudKeys = new Set(rows.map((row) => row.memory_key));
       let changed = false;
       rows.forEach((row) => {
@@ -297,7 +448,15 @@
       root.dispatchEvent?.(new CustomEvent("agentflix:memory-ready", { detail }));
       return detail;
     })();
-    return connectPromise;
+    connectPromise = connecting;
+    try { return await connecting; }
+    catch {
+      status.available = false;
+      publishStatus("unavailable");
+      scheduleFlush(retryDelay);
+      return { ok: false, signedIn: true, changed: false };
+    }
+    finally { if (connectPromise === connecting) connectPromise = null; }
   }
 
   async function loadSupabase() {
@@ -340,31 +499,105 @@
         return { ok: false, signedIn: false, changed: false };
       }
     })();
-    return startPromise;
+    const result = await startPromise;
+    if (!result.ok) startPromise = null;
+    return result;
   }
 
   async function signOut() {
     if (!client || !userId) return false;
-    const { error } = await client.auth.signOut();
-    if (error) return false;
-    clearOwnedCache();
-    client = null;
-    userId = null;
-    connectPromise = null;
-    startPromise = null;
-    status.signedIn = false;
-    status.available = false;
-    return true;
+    if (signingOut) return false;
+    signingOut = true;
+    try {
+      const result = await flush();
+      if (!result.ok) return false;
+      const requestGeneration = generation;
+      const { error } = await requestWithDeadline(client.auth.signOut());
+      if (error || requestGeneration !== generation) return false;
+      clearOwnedCache();
+      client = null;
+      userId = null;
+      connectPromise = null;
+      startPromise = null;
+      status.signedIn = false;
+      status.available = false;
+      publishStatus("local");
+      return true;
+    } finally {
+      signingOut = false;
+      if (userId && Object.values(metadata).some((info) => info?.dirtyAt)) scheduleFlush();
+    }
+  }
+
+  async function resolveConflict(key, choice) {
+    if (!client || !userId || !metadata[key]?.conflict || !["local", "cloud"].includes(choice)) return false;
+    const requestGeneration = generation;
+    const info = metadata[key];
+    const { data, error } = await requestWithDeadline(client.from("user_memory")
+      .select("memory_key,value,revision,updated_at,deleted_at").eq("memory_key", key).maybeSingle());
+    if (error || !data || generation !== requestGeneration || metadata[key] !== info) return false;
+    if (choice === "local") metadata[key] = { ...info, revision: data.revision, conflict: false };
+    else {
+      delete metadata[key];
+      applyCloudRow(data);
+    }
+    writeMetadata();
+    return (await flush()).ok;
+  }
+
+  async function versions() {
+    if (!client || !userId) return { data: [], error: true };
+    const requestGeneration = generation;
+    const response = await requestWithDeadline(client.from("user_memory_versions")
+      .select("memory_key,revision,saved_at").order("saved_at", { ascending: false }).limit(100));
+    return generation === requestGeneration ? response : { data: [], error: true };
+  }
+
+  async function restoreVersion(key, revision) {
+    if (!client || !userId || metadata[key]?.dirtyAt) return false;
+    const requestGeneration = generation;
+    const { data, error } = await requestWithDeadline(client.from("user_memory_versions")
+      .select("value").eq("memory_key", key).eq("revision", revision).single());
+    if (error || !data || generation !== requestGeneration || metadata[key]?.dirtyAt) return false;
+    storage.setItem(key, serialize(data.value));
+    return (await flush()).ok;
   }
 
   installCapture();
+  root.addEventListener?.("online", () => {
+    retryDelay = 1000;
+    cancelTimer();
+    if (client && userId) connect(client, { id: userId });
+    else { startPromise = null; start(); }
+  });
+  root.addEventListener?.("beforeunload", (event) => {
+    if (userId && Object.values(metadata).some((info) => info?.dirtyAt)) {
+      event.preventDefault();
+      event.returnValue = "";
+    }
+  });
   return Object.freeze({
     categoryOf,
-    clearSignedOut: clearOwnedCache,
+    clearSignedOut: () => {
+      if (signingOut) return false; // The auth callback must not invalidate our own sign-out.
+      const cleared = clearOwnedCache();
+      client = null; userId = null; connectPromise = null; startPromise = null;
+      status.signedIn = false; status.available = false;
+      return cleared;
+    },
     connect,
     flush,
     signOut,
     start,
     status,
+    resolveConflict,
+    versions,
+    restoreVersion,
+    exportData: () => ({
+      format: "agentflix-memory-export-v1",
+      exportedAt: new Date().toISOString(),
+      pending: Object.keys(metadata).filter((key) => metadata[key]?.dirtyAt).length,
+      entries: trackedLocalKeys().map((key) => ({ key, category: categoryOf(key), value: parse(nativeGet(key)) })),
+    }),
   });
 });

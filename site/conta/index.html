@@ -20,7 +20,7 @@
 
   <main class="login-shell">
     <section class="login-card account-card" aria-label="Minha conta">
-      <div class="eyebrow">MINHA CONTA</div>
+      <div class="eyebrow">Minha conta</div>
 
       <div id="loading-state" class="state" aria-live="polite">
         <span class="spinner" aria-hidden="true"></span>
@@ -29,7 +29,7 @@
 
       <div id="signed-out-state" class="state" hidden>
         <h1>Entre para ver sua conta</h1>
-        <p class="lead">Seus dados ficam disponíveis depois que você acessa pelo link enviado ao seu e-mail.</p>
+        <p class="lead">Seus dados ficam disponíveis depois que você entra com Google, GitHub ou link por e-mail.</p>
         <a class="primary-link" href="/entrar/?next=%2Fconta%2F">Entrar na AgentFlix</a>
       </div>
 
@@ -71,6 +71,21 @@
           <button id="access-retry-button" class="access-retry" type="button" hidden>Tentar novamente</button>
         </section>
 
+        <section class="access-section" aria-labelledby="memory-title" data-clarity-mask="true">
+          <div class="access-heading">
+            <h2 id="memory-title">Sua memória</h2>
+            <p>Progresso, escolhas e exercícios desta conta.</p>
+          </div>
+          <p id="memory-status" class="access-status" role="status" aria-live="polite">Carregando a memória…</p>
+          <button id="memory-retry-button" class="af-button af-button--outline" type="button">Sincronizar agora</button>
+          <button id="memory-export-button" class="af-button af-button--text" type="button">Baixar meus dados</button>
+          <div id="memory-conflicts" class="access-list" hidden></div>
+          <button id="memory-versions-button" class="af-button af-button--text" type="button">Ver versões dos exercícios</button>
+          <p id="memory-versions-status" class="access-status" role="status"></p>
+          <div id="memory-versions" class="access-list" hidden></div>
+          <p class="field-hint">O arquivo pode conter seus exercícios pessoais. Guarde-o em um lugar seguro. Para pedir exclusão da conta e dos dados, use o contato em <a href="/privacidade.html">Privacidade</a>.</p>
+        </section>
+
         <button id="sign-out-button" class="secondary" type="button">Sair desta conta</button>
       </div>
 
@@ -84,11 +99,12 @@
   </main>
 
   <footer class="login-footer">
-    <span>AGENTFLIX · SKILLS PARA AGENTES</span>
+    <span>AgentFlix · Skills para agentes</span>
     <a href="/privacidade.html">Privacidade</a>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js"></script>
+  <script src="../memory.js"></script>
   <script type="module" src="account.js"></script>
 </body>
 </html>
