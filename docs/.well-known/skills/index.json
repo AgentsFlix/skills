@@ -726,6 +726,41 @@
         "references/structured-interview.md",
         "templates/extraction-output-template.md"
       ]
+    },
+    {
+      "name": "transcritor-local",
+      "description": "Instale um app AgentFlix no Mac ou Windows para transcrever áudio e vídeo localmente, revisar o texto com Codex GPT-5.6 Luna e copiar ou baixar em Markdown.",
+      "files": [
+        "LICENSE",
+        "SKILL.md",
+        "assets/TranscritorApp.swift",
+        "assets/TranscritorAppWindows.py",
+        "assets/agentflix-logo.svg",
+        "assets/agentflix-mark.svg",
+        "assets/agentflix.ico",
+        "assets/archivo-OFL.txt",
+        "assets/archivo-bold.ttf",
+        "assets/archivo-regular.ttf",
+        "assets/index.html",
+        "assets/transcritor.py",
+        "integrity.json",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
+        "references/dependencias.md",
+        "references/identidade.json",
+        "references/limites.md",
+        "scripts/auditar.py",
+        "scripts/bootstrap.py",
+        "scripts/bootstrap_windows.ps1",
+        "scripts/install.py",
+        "scripts/install_windows.ps1",
+        "scripts/requirements-windows.txt",
+        "scripts/windows_model.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
+      ]
     }
   ]
 }
