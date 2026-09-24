@@ -194,9 +194,31 @@ button:disabled { cursor: wait; opacity: .6; }
 
 .social-button {
   width: 100%;
+  min-height: 52px;
+  gap: 12px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 20px;
 }
 
-.social-button:hover { border-color: var(--accent); }
+.social-button__icon { width: 24px; height: 24px; flex: none; object-fit: contain; }
+.social-button > svg.social-button__icon { width: 24px; height: 24px; fill: currentColor; stroke: none; }
+
+.social-button--google {
+  background: #131314;
+  border-color: #8e918f;
+  color: #e3e3e3;
+}
+
+.social-button--google:hover { background: #232426; border-color: #c4c7c5; }
+
+.social-button--github {
+  background: #24292f;
+  border-color: #57606a;
+  color: #fff;
+}
+
+.social-button--github:hover { background: #32383f; border-color: #8c959f; }
 
 .login-divider {
   display: flex;
