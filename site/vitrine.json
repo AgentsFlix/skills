@@ -366,6 +366,13 @@
       "passo": 11,
       "antes": [],
       "nota": "Pesquise comentários com JevCloud, organize evidências rastreáveis e prepare escrita quando solicitada, a partir do YouTube ou de um corpus existente."
+    },
+    "transcritor-local": {
+      "fileira": "comece",
+      "colecao": null,
+      "passo": 12,
+      "antes": [],
+      "nota": "O áudio fica no computador. O texto reconhecido segue para revisão pelo Codex, com os limites da sua conta. Windows ARM64 usa emulação x64."
     }
   },
   "colecoes": {
