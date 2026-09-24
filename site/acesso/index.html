@@ -8,6 +8,7 @@
   <title>Conteúdo protegido | AgentFlix</title>
   <link rel="icon" href="../brand/favicon-dark.ico">
   <link rel="stylesheet" href="../entrar/login.css">
+  <link rel="stylesheet" href="../design-system/primitives.css">
   <link rel="stylesheet" href="access.css">
 </head>
 <body>
@@ -20,7 +21,7 @@
 
   <main class="login-shell">
     <section class="login-card protected-card" aria-label="Conteúdo protegido">
-      <div class="eyebrow">CONTEÚDO PROTEGIDO</div>
+      <div class="eyebrow">Conteúdo protegido</div>
 
       <div id="loading-state" class="state" aria-live="polite">
         <span class="spinner" aria-hidden="true"></span>
@@ -42,7 +43,7 @@
       <div id="content-state" class="state" hidden>
         <h1 id="content-title"></h1>
         <p id="content-description" class="lead"></p>
-        <div id="video-list" class="video-list" aria-label="Conteúdos disponíveis"></div>
+        <div id="video-list" class="video-list af-list" aria-label="Conteúdos disponíveis"></div>
         <p id="content-status" class="content-status" role="status" aria-live="polite"></p>
         <div id="player-shell" class="player-shell" hidden>
           <iframe id="protected-player" title="Player do conteúdo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
@@ -59,7 +60,7 @@
   </main>
 
   <footer class="login-footer">
-    <span>AGENTFLIX · SKILLS PARA AGENTES</span>
+    <span>AgentFlix · Skills para agentes</span>
     <a href="/privacidade.html">Privacidade</a>
   </footer>
 
