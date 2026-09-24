@@ -42,7 +42,7 @@
       }
       function home() {
         $('discovery').hidden=false;
-        $('discovery').innerHTML=`<div id="entry-stage"><div class="discovery-intro"><p class="eyebrow">Seu ponto de partida</p><h1 id="entry-title">O que você quer fazer agora?</h1><p>Escolha um caminho. A gente indica por onde começar.</p></div>
+        $('discovery').innerHTML=`<div id="entry-stage"><div class="discovery-intro"><p class="eyebrow">Seu ponto de partida</p><h1 id="entry-title">O que você quer fazer agora?</h1><p>AgentFlix é um hub de skills para Hermes, Claude, ChatGPT, Codex e outros agentes de IA. Escolha um caminho para encontrar por onde começar.</p></div>
           <fieldset class="doors" id="doors" aria-labelledby="entry-title">
           ${entryChoices.map(c=>`<label class="door" data-door="${c.id}" ${c.id==='guia'?'id="guide-open"':''}>
             <input class="sr-only" type="radio" name="entry-choice" value="${c.id}" aria-labelledby="door-title-${c.id}">

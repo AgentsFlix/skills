@@ -3,6 +3,7 @@ import { authErrorMessage, magicLinkRedirect, safeNextPath } from "./auth-utils.
 const byId = (id) => document.getElementById(id);
 const states = ["loading", "signed-out", "sent", "signed-in", "unavailable"];
 const nextPath = safeNextPath(new URLSearchParams(window.location.search).get("next"));
+const callbackFailed = new URLSearchParams(window.location.search).has("error");
 let client = null;
 let redirecting = false;
 
@@ -23,6 +24,9 @@ function signedIn(session) {
 
 function signedOut() {
   show("signed-out");
+  if (callbackFailed) {
+    byId("social-status").textContent = "Não foi possível entrar com essa conta. Tente novamente ou use o link por e-mail.";
+  }
   window.setTimeout(() => byId("email").focus(), 0);
 }
 
@@ -36,10 +40,32 @@ async function loadConfig() {
   return config;
 }
 
+async function loadProviders() {
+  try {
+    const response = await fetch("/api/auth-providers", { cache: "no-store", headers: { accept: "application/json" } });
+    if (!response.ok) return [];
+    const { providers } = await response.json();
+    return Array.isArray(providers) ? providers : [];
+  } catch {
+    return [];
+  }
+}
+
 async function initialize() {
   show("loading");
   try {
     const config = await loadConfig();
+    const available = await loadProviders();
+    document.querySelectorAll("[data-provider]").forEach((button) => {
+      button.hidden = !available.includes(button.dataset.provider);
+    });
+    const hasSocial = available.some((provider) => provider === "google" || provider === "github");
+    byId("social-actions").hidden = !hasSocial;
+    byId("login-divider").hidden = !hasSocial;
+    byId("login-title").textContent = hasSocial ? "Entre na AgentFlix" : "Entre sem senha";
+    byId("login-lead").textContent = hasSocial
+      ? "Escolha como quer acessar sua conta."
+      : "A gente envia um link de acesso para o seu e-mail.";
     client = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
     client.auth.onAuthStateChange((_event, session) => {
       if (session?.user) signedIn(session);
@@ -96,6 +122,26 @@ byId("login-form").addEventListener("submit", async (event) => {
 byId("email").addEventListener("input", () => {
   byId("email").removeAttribute("aria-invalid");
   byId("form-status").textContent = "";
+});
+
+document.querySelectorAll("[data-provider]").forEach((button) => {
+  button.addEventListener("click", async () => {
+    const status = byId("social-status");
+    const buttons = [...document.querySelectorAll("[data-provider]:not([hidden])")];
+    status.textContent = "";
+    buttons.forEach((item) => { item.disabled = true; });
+    try {
+      const { error } = await client.auth.signInWithOAuth({
+        provider: button.dataset.provider,
+        options: { redirectTo: magicLinkRedirect(window.location.origin, nextPath) },
+      });
+      if (error) throw error;
+    } catch {
+      status.textContent = "Não foi possível abrir esse provedor. Tente novamente ou use o link por e-mail.";
+    } finally {
+      buttons.forEach((item) => { item.disabled = false; });
+    }
+  });
 });
 
 byId("send-again-button").addEventListener("click", signedOut);

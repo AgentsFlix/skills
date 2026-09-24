@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap");
 @import '../design-system/tokens.css';
+@import '../design-system/primitives.css';
 
 :root {
   color-scheme: dark;
@@ -188,6 +189,53 @@ button:disabled { cursor: wait; opacity: .6; }
 
 .secondary:hover { background: #444; }
 
+.social-actions { display: grid; gap: var(--af-space-3); }
+.social-actions[hidden], .social-button[hidden], .login-divider[hidden] { display: none; }
+
+.social-button {
+  width: 100%;
+  min-height: 52px;
+  gap: 12px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.social-button__icon { width: 24px; height: 24px; flex: none; object-fit: contain; }
+.social-button > svg.social-button__icon { width: 24px; height: 24px; fill: currentColor; stroke: none; }
+
+.social-button--google {
+  background: #131314;
+  border-color: #8e918f;
+  color: #e3e3e3;
+}
+
+.social-button--google:hover { background: #232426; border-color: #c4c7c5; }
+
+.social-button--github {
+  background: #24292f;
+  border-color: #57606a;
+  color: #fff;
+}
+
+.social-button--github:hover { background: #32383f; border-color: #8c959f; }
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-3);
+  margin: var(--af-space-4) 0;
+  color: var(--muted);
+  font-size: var(--af-text-sm);
+  text-align: center;
+}
+
+.login-divider::before, .login-divider::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--line);
+}
+
 .form-status {
   min-height: 22px;
   margin: var(--af-space-3) 0 0;
@@ -195,6 +243,8 @@ button:disabled { cursor: wait; opacity: .6; }
   font-size: 13px;
   line-height: var(--af-line-height);
 }
+
+.form-status:empty { min-height: 0; margin: 0; }
 
 .fine-print, .hint {
   color: var(--muted);
