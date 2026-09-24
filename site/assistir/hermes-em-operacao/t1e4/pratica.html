@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monte um profile do Hermes para cinco negócios. Escolha modelo, memória, skills, tools, CRON e gateway em cada cenário.">
+  <title>Monte o profile · T1:E4 · AgentFlix</title>
+  <link rel="stylesheet" href="/design-system/tokens.css">
+  <link rel="stylesheet" href="/design-system/primitives.css">
+  <link rel="stylesheet" href="/design-system/icons.css">
+  <link rel="stylesheet" href="pratica.css">
+  <script src="/design-system/icons.js" defer></script>
+  <script src="pratica.js" defer></script>
+  <script src="/memory.js"></script>
+  <script src="/assistir/access.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para a atividade</a>
+  <header class="top">
+    <a class="back" href="./"><af-icon name="previous"></af-icon> Voltar à anatomia</a>
+    <a class="brand" href="../../" aria-label="AgentFlix"><img src="/brand/horizontal-transparente-dark.svg" alt="" width="130" height="26"></a>
+    <span class="episode-label">Temporada 1 · Episódio 4</span>
+  </header>
+  <main id="main">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">Página 2 · Agora é com você</p>
+        <h1>Monte o profile. Faça o negócio funcionar.</h1>
+        <p>Nesta simulação, cinco negócios precisam de uma identidade no Hermes. Em cada um, escolha as seis peças que atendem ao pedido real.</p>
+      </div>
+      <span class="format">5 cenários · 6 escolhas por profile</span>
+    </div>
+
+    <section class="scenario-board af-card" aria-labelledby="scenario-title">
+      <div class="board-head">
+        <div>
+          <p class="eyebrow" id="scenario-count">Cenário 1 de 5</p>
+          <h2 id="scenario-title">Loja virtual</h2>
+        </div>
+        <span class="board-tag" id="scenario-tag">Atendimento sob demanda</span>
+      </div>
+      <ol class="scenario-track" id="scenario-track" aria-label="Progresso dos negócios"></ol>
+      <div class="scenario-task" aria-labelledby="scenario-task-label">
+        <span id="scenario-task-label">Sua missão</span>
+        <p id="scenario-task">Monte um profile que responda pelo WhatsApp onde está o pedido. Consulte o sistema de pedidos antes de informar o status atual.</p>
+      </div>
+    </section>
+
+    <section class="puzzle" id="puzzle" aria-labelledby="puzzle-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" id="round-label">Profile 1 · Loja virtual</p>
+          <h2 id="puzzle-title">Escolha as seis partes</h2>
+          <p>Selecione uma peça na mesa e depois o espaço correspondente. Há duas opções para cada parte; você pode trocar sua escolha antes de conferir.</p>
+        </div>
+        <span class="counter" id="placed-count">0 / 6 escolhas</span>
+      </div>
+      <p class="selection" id="selection" role="status">Escolha uma peça na mesa abaixo.</p>
+      <div class="slots" id="slots" aria-label="Partes do profile"></div>
+      <div class="tray-head"><h3>Mesa de peças</h3><span>Toque ou arraste uma peça. Cada espaço aceita uma escolha.</span></div>
+      <div class="tray" id="tray" aria-label="Opções disponíveis"></div>
+      <div class="check-row">
+        <p id="feedback" role="status">Complete as seis partes para conferir o profile.</p>
+        <button type="button" class="af-button" id="check">Conferir profile</button>
+      </div>
+    </section>
+
+    <section class="gate af-panel" id="gate" hidden aria-labelledby="gate-title">
+      <p class="eyebrow" id="gate-label">Profile montado</p>
+      <h2 id="gate-title">As seis escolhas funcionam juntas.</h2>
+      <p id="gate-copy">O cenário está pronto.</p>
+      <button type="button" class="af-button" id="next-scenario">Próximo negócio <af-icon name="next"></af-icon></button>
+    </section>
+
+    <nav class="page-nav" aria-label="Páginas da aula"><a href="./"><af-icon name="previous"></af-icon> Página 1 · Anatomia de um profile</a><span>Página 2 · Monte o profile</span><a href="gateways.html">Página 3 · Canais e credenciais <af-icon name="next"></af-icon></a></nav>
+    <noscript><p>Ative o JavaScript para montar os profiles nesta atividade.</p></noscript>
+  </main>
+</body>
+</html>
