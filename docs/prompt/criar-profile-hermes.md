@@ -532,7 +532,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "algorithm": "sha256",
   "files": {
     "LICENSE": "6244738960f2a27905404edf750104381130189da33464d197b46c300126a48d",
-    "SKILL.md": "837e9fcc43fb6fc92cb772d7c14d3b525fab7783ba45025256cffcb2bb88ad02",
+    "SKILL.md": "cb9dbc5ce55bf6bd8d5cb6049f8da2f8ef048cc51392c9eafd69d392601cdee1",
     "references/ativacao.md": "0afb174956598f49e339948b69a387a2d6c85af709d521125e723edc7ecef9f6",
     "references/ciclo-de-vida.md": "292984d2e0a69f37354f9489368e75e082344e7572e566cf7248418e6b8c1442",
     "references/conhecimento.okf.md": "79ddc54ca9760e533a6049e69829ad0a7fadd69b9401ebdf155a869cc486eae6",

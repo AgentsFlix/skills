@@ -1,6 +1,6 @@
 ---
 name: criar-profile-hermes
-description: Cria um novo profile Hermes com Codex via /device, memória inicial, skills embutidas, cron opcional e bot Telegram próprio. Use para onboarding completo de um profile novo; não use para reparar um existente.
+description: Cria profile Hermes com Codex via /device, memória inicial, skills embutidas, cron opcional e bot Telegram próprio. Use para onboarding completo de um profile novo; não use para reparar um existente.
 license: MIT
 version: 1.0.0
 compatibility: Requer terminal no host Hermes, conta Codex com acesso ao modelo solicitado, editor local e bot Telegram exclusivo. Comandos devem ser conferidos na versão instalada.
