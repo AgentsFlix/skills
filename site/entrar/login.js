@@ -150,7 +150,12 @@ byId("sign-out-button").addEventListener("click", async () => {
   const button = byId("sign-out-button");
   button.disabled = true;
   try {
-    await client.auth.signOut();
+    const { data } = await client.auth.getSession();
+    if (data?.session?.user) await window.AgentFlixMemory.connect(client, data.session.user);
+    if (!(await window.AgentFlixMemory.signOut())) {
+      byId("social-status").textContent = "Não foi possível salvar seus dados e sair. Abra Minha conta para sincronizar ou baixar seus dados.";
+      return;
+    }
     signedOut();
   } finally {
     button.disabled = false;
