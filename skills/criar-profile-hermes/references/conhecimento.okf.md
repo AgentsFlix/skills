@@ -9,7 +9,7 @@ generated:
 stale_after: '2026-12-24'
 sources:
 - id: metodo
-  resource: https://github.com/AgentsFlix/skills/tree/codex/criar-profile-hermes/skills/criar-profile-hermes
+  resource: https://github.com/AgentsFlix/skills/tree/criar-profile-hermes-v1.0.0/skills/criar-profile-hermes
   title: Pacote de origem fixado pela auditoria
 - id: okf
   resource: https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md

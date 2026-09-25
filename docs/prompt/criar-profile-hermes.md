@@ -8,7 +8,7 @@
 > de ativação abaixo. Claude: envie como conhecimento do Project, ou cole tudo no chat. Qualquer chat: cole tudo.
 > Versão 1.0.0. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
 >
-> **Texto de ativação (cole nas instruções):** Acesse https://raw.githubusercontent.com/AgentsFlix/skills/codex/criar-profile-hermes/skills/criar-profile-hermes/SKILL.md e leia a skill Criar profile Hermes e as referências necessárias. Esta edição usa a referência codex/criar-profile-hermes. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
+> **Texto de ativação (cole nas instruções):** Acesse https://raw.githubusercontent.com/AgentsFlix/skills/criar-profile-hermes-v1.0.0/skills/criar-profile-hermes/SKILL.md e leia a skill Criar profile Hermes e as referências necessárias. Esta edição usa a referência criar-profile-hermes-v1.0.0. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
 >
 > Antes de me fazer perguntas, leia o contrato AgentFlix incluído e cheque nossa conversa, sua memória local acessível e os arquivos relevantes que você já conhece. Identifique os inputs exigidos, quais você já tem e quais faltam. Reaproveite fatos atuais, identifique origem, data, conflitos e inferências. Não invente lembranças nem me peça novamente o que já sabe.
 >
@@ -253,7 +253,7 @@ SOFTWARE.
 
 ## Referência: references/ativacao.md
 
-Acesse https://raw.githubusercontent.com/AgentsFlix/skills/codex/criar-profile-hermes/skills/criar-profile-hermes/SKILL.md e leia a skill Criar profile Hermes e as referências necessárias. Esta edição usa a referência codex/criar-profile-hermes. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
+Acesse https://raw.githubusercontent.com/AgentsFlix/skills/criar-profile-hermes-v1.0.0/skills/criar-profile-hermes/SKILL.md e leia a skill Criar profile Hermes e as referências necessárias. Esta edição usa a referência criar-profile-hermes-v1.0.0. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
 
 Antes de me fazer perguntas, leia o contrato AgentFlix incluído e cheque nossa conversa, sua memória local acessível e os arquivos relevantes que você já conhece. Identifique os inputs exigidos, quais você já tem e quais faltam. Reaproveite fatos atuais, identifique origem, data, conflitos e inferências. Não invente lembranças nem me peça novamente o que já sabe.
 
@@ -393,7 +393,7 @@ generated:
 stale_after: '2026-12-24'
 sources:
 - id: metodo
-  resource: https://github.com/AgentsFlix/skills/tree/codex/criar-profile-hermes/skills/criar-profile-hermes
+  resource: https://github.com/AgentsFlix/skills/tree/criar-profile-hermes-v1.0.0/skills/criar-profile-hermes
   title: Pacote de origem fixado pela auditoria
 - id: okf
   resource: https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
@@ -469,7 +469,7 @@ Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Ne
   "skill_id": "criar-profile-hermes",
   "distribution_version": "1.0.0",
   "content_revision": "1.0.0",
-  "distribution_ref": "codex/criar-profile-hermes"
+  "distribution_ref": "criar-profile-hermes-v1.0.0"
 }
 
 
@@ -541,11 +541,11 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "files": {
     "LICENSE": "6244738960f2a27905404edf750104381130189da33464d197b46c300126a48d",
     "SKILL.md": "06f46fb1ccff20ef0a0ae07059f70ed1dbcb3db9968a127df42f5c8fbe9073a0",
-    "references/ativacao.md": "a1762feb6a7739470093fecb8121f73e1c2a66556c225b2c64fc773659958bc0",
+    "references/ativacao.md": "0afb174956598f49e339948b69a387a2d6c85af709d521125e723edc7ecef9f6",
     "references/ciclo-de-vida.md": "292984d2e0a69f37354f9489368e75e082344e7572e566cf7248418e6b8c1442",
-    "references/conhecimento.okf.md": "3f2756e1a0d24055cb97fff503e63e5e1be6c41557f2b40d24e4aa583cee0ec5",
+    "references/conhecimento.okf.md": "79ddc54ca9760e533a6049e69829ad0a7fadd69b9401ebdf155a869cc486eae6",
     "references/contrato-agentflix.md": "2137cd2f1e4e627a271e1ccffd9874d4a209537cbb107825ca1e424d4787ceff",
-    "references/identidade.json": "3e2c6c9bc4602b6c1ad5d8a1c6aff2cb20ca328bdcf4872fb1062909b3658d78",
+    "references/identidade.json": "b58214d15c1aaefa37b9b1906cd9e9e0babed1bef6b81f04de2081b762f77a51",
     "scripts/auditar.py": "d97f7f9b48b862bedc0999d20a20223055c80e8f70f0adba6088ea8a81f52f40",
     "templates/estado-da-skill.md": "be508b9bee1d466751860e8d39a54e200ee69019a7b6b196508478bac5d92d1e",
     "templates/evento-de-uso.json": "15aa9bb242a1bdb2b69372e6122760942f3d3c3b6dd33509f1bb44980f024638"

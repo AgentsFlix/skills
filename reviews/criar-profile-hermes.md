@@ -4,12 +4,12 @@ Distribuição pública gerada da fonte privada `fontes/skills-autorais/criar-pr
 PR da fonte: https://github.com/AgentsFlix/agentsflix/pull/205.
 
 O pacote foi preparado como card da fileira Operação (`catalog.skills`, estado
-`draft`), com um único slug e sem entrada duplicada em `catalog.packages`.
+`published`), com um único slug e sem entrada duplicada em `catalog.packages`.
 Inclui SKILL.md para Hermes, ZIP portátil e versão colável em `docs/prompt/`.
 O conteúdo preserva seis etapas e exige validação no host antes de declarar operação.
-O `distribution_ref` usa a branch pública do PR enquanto o pacote estiver em
-revisão. O link de instalação da release só será anunciado depois de uma tag
-estável integrada e verificada.
+O `distribution_ref` aponta à tag planejada `criar-profile-hermes-v1.0.0`.
+Criar essa tag apenas no commit integrado, após os checks; verificar os links
+antes de anunciá-los.
 
 Verificações iniciais em 2026-09-24: `validate_skills.py` (55 skills),
 `scan_skills.py` (0 bloqueadas; esta skill sem findings), testes unitários,
@@ -35,5 +35,6 @@ No piloto, a versão colável foi enviada ao Hermes pela CLI com acesso ao termi
 local e criou o profile temporário `afpilot`, sem clone, com 58 skills embutidas.
 O executor inicial tinha terminal desativado e backend Docker, condição que a
 skill agora identifica como bloqueio. A avaliação comportamental permanece
-inconclusiva até os gates de login, memória, `Ok` e bot; o pacote não deve ser
-promovido de `draft` com base apenas nessa etapa e no CI.
+inconclusiva até os gates de login, memória, `Ok` e bot. Em 2026-09-24, José
+autorizou publicar sem exigir o restante do piloto como gate editorial. A
+release não comprova uma instalação funcional nem uma resposta Telegram.
