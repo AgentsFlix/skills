@@ -206,7 +206,9 @@
 
   async function prefetch(uids) {
     const unique = [...new Set(uids)].filter((uid) => /^[a-f0-9]{32}$/.test(uid));
-    await Promise.all(unique.map(tokenFor));
+    // Uma mídia indisponível não impede o aluno de abrir o acervo.
+    // A reprodução ainda exige tokenFor(), que aplica a autorização individual.
+    await Promise.allSettled(unique.map(tokenFor));
   }
 
   window.AgentFlixWatchAccess = Object.freeze({
