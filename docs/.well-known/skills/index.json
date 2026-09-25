@@ -415,6 +415,23 @@
       ]
     },
     {
+      "name": "criar-profile-hermes",
+      "description": "Cria profile Hermes com Codex via /device, memória inicial, skills embutidas, cron opcional e bot Telegram próprio. Use para onboarding completo de um profile novo; não use para reparar um existente.",
+      "files": [
+        "LICENSE",
+        "SKILL.md",
+        "integrity.json",
+        "references/ativacao.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "scripts/auditar.py",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json"
+      ]
+    },
+    {
       "name": "habitos-que-cabem",
       "description": "Crie, registre, ajuste ou retome um hábito com base na sua rotina e na memória disponível. Entrega um plano pequeno, revisão contextualizada e avaliação de acompanhamento.",
       "files": [

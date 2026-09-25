@@ -373,6 +373,13 @@
       "passo": 12,
       "antes": [],
       "nota": "O áudio fica no computador. O texto reconhecido segue para revisão pelo Codex, com os limites da sua conta. Windows ARM64 usa emulação x64."
+    },
+    "criar-profile-hermes": {
+      "fileira": "comece",
+      "colecao": null,
+      "passo": 13,
+      "antes": [],
+      "nota": "Cria uma identidade nova no Hermes em seis etapas. Exige conta Codex, bot Telegram exclusivo e confirmação humana durante o login."
     }
   },
   "colecoes": {
