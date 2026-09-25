@@ -32,6 +32,14 @@ body { min-height: 100vh; }
 
 .state.centered { max-width: 680px; min-height: 420px; margin: 0 auto; justify-content: center; }
 
+#mfa-state > button,
+#mfa-form button { width: auto; min-height: 48px; margin: 20px 0 0; padding: 10px 20px; background: var(--af-brand); color: var(--af-on-brand); }
+#mfa-setup { margin-top: 22px; }
+#mfa-qr { display: block; width: min(240px, 100%); height: auto; margin: 12px 0; padding: 10px; border-radius: 12px; background: #fff; }
+#mfa-form { max-width: 320px; margin-top: 20px; }
+#mfa-form label { display: block; margin-bottom: 8px; }
+#mfa-form input { width: 100%; }
+
 .admin-intro,
 .detail-header,
 .section-heading,

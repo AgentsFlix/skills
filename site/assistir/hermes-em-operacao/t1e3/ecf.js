@@ -9,8 +9,9 @@
   const names=['understand','collect','diagnosis'], headings=['intro-title','collect-title','diagnosis-title'];
   const Native=ECF.Native;
   const chapterSummaryKey='agentflix-t1e3-ecf-summary-v1';
+  const reportKey='agentflix-ecf-diagnosis-v1';
   let currentModel=Native,currentReference=Native.initialReference(),activeData=null,activeDemo=false;
-  let templatePromise, generatedPrompt='', completionPrompt='', pendingRaw='', generation=0, reportGeneration=0;
+  let templatePromise, generatedPrompt='', completionPrompt='', pendingRaw='', pendingName='diagnostico-ecf.json', generation=0, reportGeneration=0;
   function step(n) {
     names.forEach((id,i)=>$(id).hidden=i!==n);
     document.querySelectorAll('[data-step]').forEach(b=>{ if(Number(b.dataset.step)===n)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current'); });
@@ -76,6 +77,30 @@
   }
   $('download-prompt').addEventListener('click',()=>{if(generatedPrompt)download('prompt-diagnostico-ecf.md',generatedPrompt,'text/markdown;charset=utf-8');});
   function clearResults() {reportGeneration++;$('analyze-report').disabled=false;$('report-entry').hidden=false;$('diagnosis').classList.remove('has-report');$('report-results').hidden=true;$('report-results').replaceChildren();$('completion-panel').hidden=true;$('completion-output').value='';completionPrompt='';}
+  function reportSaveStatus(message) {
+    let node=$('report-save-status');
+    if(!node){node=document.createElement('p');node.id='report-save-status';node.className='hint';node.setAttribute('role','status');$('report-results').prepend(node);}
+    node.textContent=message;
+  }
+  async function saveReport(raw,filename) {
+    const revision=reportGeneration;
+    try {
+      localStorage.setItem(reportKey,JSON.stringify({version:1,filename,raw,saved_at:new Date().toISOString()}));
+    } catch (_) { reportSaveStatus('Análise disponível nesta sessão. Não foi possível salvá-la neste navegador; baixe uma cópia.');return; }
+    reportSaveStatus('Salvo neste navegador. Sincronizando com sua conta…');
+    const result=await window.AgentFlixMemory?.flush?.();
+    if(revision===reportGeneration)reportSaveStatus(result?.ok?'Diagnóstico completo sincronizado com sua conta.':'Diagnóstico salvo neste navegador. A sincronização com sua conta está pendente.');
+  }
+  function restoreReport() {
+    if(activeData||!window.AgentFlixMemory?.status?.signedIn||!window.AgentFlixMemory.status.available)return;
+    try {
+      const saved=JSON.parse(localStorage.getItem(reportKey)||'null');
+      if(saved?.version!==1||typeof saved.raw!=='string'||saved.raw.length>200000)return;
+      const imported=ECFImport.read(saved.raw);
+      renderReport(imported.source,false,undefined,imported);
+      reportSaveStatus('Diagnóstico restaurado da sua conta.');
+    } catch (_) { /* Preserve the import form if cached data is invalid. */ }
+  }
   function scoreLabel(value) {return value===null?'Sem medição':String(Math.round(value));}
   function saveChapterSummary(dashboard) {
     const axes=Object.fromEntries(Object.entries(dashboard.axes).map(([id,result])=>[id,{score:result.score===null?null:Math.round(result.score),measured:result.measured,total:3,partial:Boolean(result.partial)}]));
@@ -117,19 +142,20 @@
     $('reset-reference').addEventListener('click',()=>{renderReport(activeData,activeDemo,viewModel.initialReference());$('report-status').textContent='Régua inicial restaurada.';});
     $('report-status').textContent='';$('results-title').focus();
   }
-  function importText(raw) {
+  async function importText(raw) {
     clearResults();
     try {
       if(raw.length>200000)throw Error('Use o resumo agregado de até 200 KB, sem dados brutos de conversas.');
       if(!raw.trim())throw Error('Selecione o arquivo diagnostico-ecf.json ou cole seu conteúdo antes de gerar a análise.');
       const imported=ECFImport.read(raw);
       renderReport(imported.source,false,undefined,imported);
+      await saveReport(raw,pendingName);
       // Keep a record of safe format repairs without changing the original file.
       if(imported.audit.changes.length)$('import-summary').textContent+=' '+imported.audit.changes.length+(imported.audit.changes.length===1?' ajuste aplicado.':' ajustes aplicados.');
     } catch(error) {$('report-status').textContent=error.message;}
   }
   $('example').addEventListener('click',()=>{clearResults();pendingRaw='';$('report-json').value='';$('report-file').value='';renderReport(Native.initialExample(),true);});
-  $('report-json').addEventListener('input',()=>{clearResults();pendingRaw='';$('report-file').value='';$('report-status').textContent='Texto alterado. Clique em Gerar análise e conferir scores.';});
+  $('report-json').addEventListener('input',()=>{clearResults();pendingRaw='';pendingName='diagnostico-ecf.json';$('report-file').value='';$('report-status').textContent='Texto alterado. Clique em Gerar análise e conferir scores.';});
   $('analyze-report').addEventListener('click',()=>importText($('report-json').value.trim()||pendingRaw));
   $('report-file').addEventListener('change',async()=>{
     clearResults();pendingRaw='';$('report-json').value='';
@@ -137,8 +163,10 @@
     const revision=reportGeneration;
     if(file.size>200000) {$('report-status').textContent='Use apenas o resumo agregado de até 200 KB, sem dados brutos.';return;}
     $('analyze-report').disabled=true;$('report-status').textContent='Lendo o arquivo…';
-    try {const raw=await file.text();if(revision===reportGeneration){pendingRaw=raw;$('report-status').textContent='Arquivo carregado. Clique em Gerar análise e conferir scores.';}}
+    try {const raw=await file.text();if(revision===reportGeneration){pendingRaw=raw;pendingName=file.name;$('report-status').textContent='Arquivo carregado. Clique em Gerar análise e conferir scores.';}}
     catch(_) {if(revision===reportGeneration)$('report-status').textContent='Não foi possível ler o arquivo. Abra novamente ou cole o resumo.';}
     finally {if(revision===reportGeneration)$('analyze-report').disabled=false;}
   });
+  window.addEventListener('agentflix:memory-ready',event=>{if(event.detail?.signedIn)restoreReport();});
+  restoreReport();
 })();

@@ -1,5 +1,5 @@
 const byId = (id) => document.getElementById(id);
-const states = ["loading", "signed-out", "forbidden", "admin", "unavailable"];
+const states = ["loading", "signed-out", "forbidden", "mfa", "admin", "unavailable"];
 const dateTime = new Intl.DateTimeFormat("pt-BR", { dateStyle: "short", timeStyle: "short" });
 let client = null;
 let currentUser = null;
@@ -7,6 +7,7 @@ let selectedUser = null;
 let products = [];
 let entitlements = [];
 let users = [];
+let mfaFactorId = null;
 
 function productKindLabel(product) {
   if (product.product_id.startsWith("assistir:")) return "Série";
@@ -286,6 +287,28 @@ async function loadAdmin(session) {
   currentUser = session.user;
   show("loading");
   try {
+    const { data: profile, error: profileError } = await client.from("profiles")
+      .select("role").eq("id", session.user.id).single();
+    if (profileError) throw profileError;
+    if (profile?.role !== "admin") {
+      show("forbidden");
+      return;
+    }
+    const { data: assurance, error: assuranceError } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
+    if (assuranceError) throw assuranceError;
+    if (assurance.currentLevel !== "aal2") {
+      const { data: factors, error: factorsError } = await client.auth.mfa.listFactors();
+      if (factorsError) throw factorsError;
+      const verified = factors.totp?.find((factor) => factor.status === "verified");
+      mfaFactorId = verified?.id || null;
+      byId("mfa-enroll-button").hidden = Boolean(verified);
+      byId("mfa-setup").hidden = true;
+      byId("mfa-qr").removeAttribute("src");
+      byId("mfa-form").hidden = !verified;
+      setStatus("mfa-status", verified ? "Digite o código do seu aplicativo autenticador." : "Configure o segundo fator para proteger concessões e revogações.");
+      show("mfa");
+      return;
+    }
     const { data: allowed, error: roleError } = await client.rpc("is_profile_admin");
     if (roleError) throw roleError;
     if (allowed !== true) {
@@ -344,5 +367,42 @@ byId("search-form").addEventListener("submit", async (event) => {
 });
 byId("refresh-button").addEventListener("click", () => loadSelectedUser());
 byId("retry-button").addEventListener("click", () => window.location.reload());
+byId("mfa-enroll-button").addEventListener("click", async () => {
+  byId("mfa-enroll-button").disabled = true;
+  setStatus("mfa-status", "Preparando o aplicativo autenticador…");
+  try {
+    const { data, error } = await client.auth.mfa.enroll({ factorType: "totp", friendlyName: "AgentFlix Admin" });
+    if (error) throw error;
+    if (!/^data:image\/(?:svg\+xml|png)(?:;[^,]*)?,/.test(data?.totp?.qr_code || "")) throw new Error("QR code unavailable");
+    mfaFactorId = data.id;
+    byId("mfa-qr").src = data.totp.qr_code;
+    byId("mfa-setup").hidden = false;
+    byId("mfa-form").hidden = false;
+    byId("mfa-enroll-button").hidden = true;
+    setStatus("mfa-status", "Escaneie o QR e digite o código para concluir a configuração.");
+  } catch (error) {
+    console.warn("AgentFlix MFA enrollment unavailable", error?.name);
+    setStatus("mfa-status", "Não foi possível configurar o autenticador. Tente novamente.", "error");
+  } finally { byId("mfa-enroll-button").disabled = false; }
+});
+byId("mfa-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const code = byId("mfa-code").value.trim();
+  if (!mfaFactorId || !/^[0-9]{6}$/.test(code)) return;
+  byId("mfa-form").querySelector("button").disabled = true;
+  setStatus("mfa-status", "Conferindo código…");
+  try {
+    const { error } = await client.auth.mfa.challengeAndVerify({ factorId: mfaFactorId, code });
+    if (error) throw error;
+    byId("mfa-code").value = "";
+    byId("mfa-qr").removeAttribute("src");
+    const { data: session, error: sessionError } = await client.auth.getSession();
+    if (sessionError || !session?.session) throw sessionError || new Error("session unavailable");
+    await loadAdmin(session.session);
+  } catch (error) {
+    console.warn("AgentFlix MFA verification unavailable", error?.name);
+    setStatus("mfa-status", "Código inválido ou expirado. Confira no aplicativo e tente novamente.", "error");
+  } finally { byId("mfa-form").querySelector("button").disabled = false; }
+});
 
 initialize();

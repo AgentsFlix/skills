@@ -265,7 +265,9 @@
     const nameInput=document.querySelector('#base-name');
     if(project){nameInput.value=project.business_name;nameInput.readOnly=true;}
     document.querySelectorAll('.base-business-name').forEach(el=>el.textContent=project?.business_name||'Comece pelo nome do negócio na primeira etapa.');
-    const storageNote=unavailable?'O navegador não conseguiu guardar a última alteração. Baixe sua base antes de sair.':loading?'Abrindo sua base…':count?count+'/'+stages.length+' arquivos recebidos · Salvos neste navegador. Você pode baixar uma cópia. Enviar um arquivo não significa aprovar seu conteúdo.':project?'Ainda não há arquivo recebido. O nome será salvo quando chegar o primeiro JSON válido.':entryDraft?.source==='journey'?'Nome trazido da jornada. Seus arquivos serão salvos neste navegador.':'Preencha o nome do negócio para começar. Seus arquivos serão salvos neste navegador.';
+    const memory=window.AgentFlixMemory?.status;
+    const synced=memory?.signedIn&&memory.available&&memory.state==='saved'&&memory.pending===0;
+    const storageNote=unavailable?'O navegador não conseguiu guardar a última alteração. Baixe sua base antes de sair.':loading?'Abrindo sua base…':count?count+'/'+stages.length+' arquivos recebidos · '+(synced?'Sincronizados com sua conta.':'Salvos neste navegador; sincronização com a conta pendente.')+' Você pode baixar uma cópia. Enviar um arquivo não significa aprovar seu conteúdo.':project?'Ainda não há arquivo recebido. O nome será salvo quando chegar o primeiro JSON válido.':entryDraft?.source==='journey'?'Nome trazido da jornada. Seus arquivos serão salvos neste navegador.':'Preencha o nome do negócio para começar. Seus arquivos serão salvos neste navegador.';
     document.querySelectorAll('.base-storage-note').forEach(el=>el.textContent=storageNote);
     document.querySelectorAll('[data-base-nav]').forEach(link=>{const has=Boolean(project?.records[link.dataset.baseNav]);link.classList.toggle('base-nav-saved',has);link.querySelector('.base-nav-check').hidden=!has;});
     stages.forEach((stage,index)=>{
@@ -290,6 +292,7 @@
     window.dispatchEvent(new Event('ecf:base-updated'));
   }
   document.querySelector('#base-name').addEventListener('input',event=>{if(!project&&entryDraft){entryDraft.business_name=event.target.value.trim();saveEntryDraft();}stages.forEach((_,i)=>updatePrompt(i));});
+  window.addEventListener('agentflix:memory-status',()=>{if(!loading)refresh();});
   window.ECFBaseFlow={downloadAll,saveDiagnosis,canDownload:()=>Boolean(project&&Object.keys(project.records).length),isComplete:()=>Boolean(project&&Object.keys(project.records).length===stages.length),project:()=>project};
   try{store=readStore();entryDraft=readEntryDraft();const candidate=entryDraft?.id?store.projects[entryDraft.id]:store.active_id?store.projects[store.active_id]:null;project=candidate&&Object.keys(candidate.records).length?candidate:null;}catch(_){unavailable=true;}
   if(!project&&entryDraft)document.querySelector('#base-name').value=entryDraft.business_name;

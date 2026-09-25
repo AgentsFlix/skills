@@ -39,6 +39,22 @@
         <a class="primary-link" href="/conta/">Voltar à minha conta</a>
       </div>
 
+      <div id="mfa-state" class="state centered" hidden>
+        <h1>Proteja o painel</h1>
+        <p class="lead">Para administrar acessos, confirme um código do seu aplicativo autenticador.</p>
+        <button id="mfa-enroll-button" type="button">Configurar autenticação</button>
+        <div id="mfa-setup" hidden>
+          <p>Escaneie este código no seu aplicativo autenticador. Não compartilhe a imagem.</p>
+          <img id="mfa-qr" alt="Código QR para adicionar a AgentFlix ao aplicativo autenticador">
+        </div>
+        <form id="mfa-form" hidden>
+          <label for="mfa-code">Código de seis dígitos</label>
+          <input id="mfa-code" name="mfa-code" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required>
+          <button type="submit">Confirmar código</button>
+        </form>
+        <p id="mfa-status" class="panel-status" role="status" aria-live="polite"></p>
+      </div>
+
       <div id="admin-state" class="state" hidden>
         <div class="admin-intro">
           <div>
