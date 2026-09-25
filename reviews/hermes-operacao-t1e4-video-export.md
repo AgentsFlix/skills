@@ -16,5 +16,9 @@ O catálogo continua acessível quando uma pré-busca de token de vídeo falha.
 Cada reprodução ainda solicita seu próprio token ao servidor e exige o direito
 da série.
 
+Quando um token ainda não está disponível, as miniaturas mostram a capa da
+série. A prévia local foi conferida em 1440, 768 e 390 px; o Stream assinado
+precisa ser validado no ambiente publicado.
+
 Validação: geração da página permanente, checagem de componentes e catálogo,
 testes do site público e verificação dos endereços em produção após o merge.

@@ -79,7 +79,7 @@
     const streamBase = base(uid);
     return streamBase
       ? `${streamBase}/thumbnails/thumbnail.jpg?height=${h}${t !== undefined ? `&time=${Math.max(0, Math.floor(t))}s` : ""}`
-      : "";
+      : (SERIE.cover_wide || SERIE.cover || "");
   };
   const progKey = (uid) => `agentflix-prog-${uid}`;
   const prog = (e) => {
@@ -300,9 +300,13 @@
     let token;
     try {
       token = await window.AgentFlixWatchAccess.tokenFor(mediaUid(uid));
-    } catch {
+    } catch (error) {
+      const localSigningUnavailable = ["127.0.0.1", "localhost"].includes(location.hostname)
+        && String(error?.message || "").includes("stream token 503");
       if (requestId === state.streamRequest)
-        showErr("Não foi possível liberar este vídeo agora. Recarregue a página; se continuar, avise o Zé com o número do episódio.");
+        showErr(localSigningUnavailable
+          ? "Esta prévia local não tem a chave de assinatura do vídeo. A reprodução será verificada no site publicado."
+          : "Não foi possível liberar este vídeo agora. Recarregue a página; se continuar, avise o Zé com o número do episódio.");
       return;
     }
     if (requestId !== state.streamRequest) return;
