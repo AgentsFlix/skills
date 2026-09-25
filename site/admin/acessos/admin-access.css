@@ -9,6 +9,12 @@
 
 body { min-height: 100vh; }
 
+.admin-card > .eyebrow {
+  color: var(--af-link);
+  font: 600 var(--af-text-sm)/1.5 var(--af-sans);
+  letter-spacing: 0;
+}
+
 .admin-shell {
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
@@ -51,9 +57,10 @@ body { min-height: 100vh; }
   border: 1px solid #35636c;
   border-radius: 999px;
   color: #8adbec;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .09em;
+  font-size: var(--af-text-sm);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
   white-space: nowrap;
 }
 
@@ -95,7 +102,7 @@ body { min-height: 100vh; }
 .user-detail { margin-top: 34px; padding-top: 32px; border-top: 1px solid var(--line); }
 .detail-header h2 { margin: 6px 0; font-size: clamp(26px, 4vw, 40px); letter-spacing: -.035em; }
 .detail-header p { margin: 0; color: var(--muted); }
-.section-label { color: var(--admin-accent); font-size: 11px; font-weight: 800; letter-spacing: .12em; }
+.section-label { color: var(--af-link); font: 600 var(--af-text-sm)/1.5 var(--af-sans); letter-spacing: 0; }
 .role-badge { color: var(--text); border-color: var(--admin-line); }
 
 .detail-section { margin-top: 30px; }
