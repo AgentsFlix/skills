@@ -17,7 +17,7 @@
     return element;
   }
   function button(text, action, kind = "secondary") {
-    const element = node("button", "button button-" + kind, text);
+    const element = node("button", "button af-button button-" + kind, text);
     element.type = "button";
     element.addEventListener("click", action);
     return element;
@@ -95,7 +95,7 @@
     const heading = node("h2", "", title);
     heading.id = "assessment-title";
     heading.tabIndex = -1;
-    content.append(back, node("p", "eyebrow", kicker), heading);
+    content.append(back, node("p", "eyebrow af-type-context", kicker), heading);
     hub.append(content);
     return content;
   }
