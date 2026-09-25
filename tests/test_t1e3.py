@@ -16,8 +16,8 @@ class HermesOperationT1E3(unittest.TestCase):
         data = json.loads((ROOT / "site/assistir/series.json").read_text(encoding="utf-8"))
         series = next(item for item in data["series"] if item["slug"] == "hermes-em-operacao")
         chapters = series["seasons"][0]["atividades"]
-        self.assertEqual([item["n"] for item in chapters], [2, 3])
-        chapter = chapters[-1]
+        self.assertEqual([item["n"] for item in chapters], [2, 3, 4])
+        chapter = next(item for item in chapters if item["n"] == 3)
         self.assertEqual(chapter["url"], "hermes-em-operacao/t1e3/")
         self.assertEqual(chapter["partes"], 5)
         self.assertIn("dashboard", chapter["t"].lower())
