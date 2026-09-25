@@ -2,7 +2,7 @@
   "schema_version": 1,
   "contract_version": "1.0.0",
   "skill_id": "pesquisa-audiencia-jev",
-  "distribution_version": "1.0.0",
-  "content_revision": "1.0.0",
-  "distribution_ref": "pesquisa-audiencia-jev-v1.0.0"
+  "distribution_version": "1.0.1",
+  "content_revision": "1.0.1",
+  "distribution_ref": "pesquisa-audiencia-jev-v1.0.1"
 }

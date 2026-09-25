@@ -7,6 +7,7 @@ import math
 import os
 from pathlib import Path
 import re
+import shutil
 import socket
 import sys
 import time
@@ -26,6 +27,20 @@ def default_credential_path():
 
 
 CREDENTIAL = default_credential_path()
+
+
+def dependency_env_path():
+    """Keep third-party dependencies outside the installed skill."""
+    data_root = os.environ.get("XDG_DATA_HOME")
+    root = Path(data_root).expanduser() if data_root else Path.home() / ".local/share"
+    return root / "agentflix/venvs/pesquisa-audiencia-jev"
+
+
+def yt_dlp_executable():
+    name = "yt-dlp.exe" if os.name == "nt" else "yt-dlp"
+    folder = "Scripts" if os.name == "nt" else "bin"
+    local = dependency_env_path() / folder / name
+    return str(local) if local.is_file() and os.access(local, os.X_OK) else shutil.which("yt-dlp")
 
 
 class JevError(ValueError):

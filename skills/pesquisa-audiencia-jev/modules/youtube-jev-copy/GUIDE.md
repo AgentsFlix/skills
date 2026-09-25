@@ -7,7 +7,7 @@ description: Conduz uma mini elicitação, pesquisa canais e vídeos sobre um te
 
 Conduzir os cinco passos abaixo na tarefa atual. Aproveitar o tema discutido e autorizações existentes. Um pedido para CRIAR esta skill não é um pedido para iniciar outra coleta completa. Quando invocada para executar a pesquisa, prosseguir até a base de conhecimento, pedindo apenas dados indispensáveis ausentes.
 
-Dependências: `yt-dlp`, Python 3, módulos [jev-operar](../jev-operar/GUIDE.md) e [jev-cerne](../jev-cerne/GUIDE.md). Abrir ambos antes das respectivas etapas. Fazer toda a pesquisa real em pasta privada fora do Git, por exemplo `~/.local/share/agentflix/jev-research/<slug>-<data>/`; os comandos abaixo partem da raiz instalada do pacote; fora dela, resolva os caminhos a partir da localização do pacote.
+Dependências: `yt-dlp`, Python 3, módulos [jev-operar](../jev-operar/GUIDE.md) e [jev-cerne](../jev-cerne/GUIDE.md). Abrir ambos antes das respectivas etapas. Se faltar `yt-dlp`, rode `python3 scripts/setup.py install-deps --execute` na raiz instalada; o coletor encontra o executável no ambiente isolado. Fazer toda a pesquisa real em pasta privada fora do Git, por exemplo `~/.local/share/agentflix/jev-research/<slug>-<data>/`; os comandos abaixo partem da raiz instalada do pacote; fora dela, resolva os caminhos a partir da localização do pacote.
 
 ## 0. Mini elicitação: do tema aberto ao briefing de busca
 

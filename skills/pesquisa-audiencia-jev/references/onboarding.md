@@ -15,16 +15,23 @@ python3 scripts/setup.py doctor
 
 Confirme terminal, Python 3.10+, rede e armazenamento privado. `yt-dlp` é necessário para coletar do YouTube;
 o cliente JevCloud usa a biblioteca padrão do Python. PyYAML atende ao runtime opcional de registro/auditoria
-AgentFlix. Para instalar as dependências declaradas em um ambiente isolado:
+AgentFlix. Se `package_complete` for falso, instale a distribuição completa da referência fixada; ler somente
+`SKILL.md` não transfere os scripts e módulos. `jev_client.py` já vem em
+`modules/jev-operar/scripts/jev_client.py`.
+
+Quando a coleta exigir `yt-dlp` e `doctor` indicar `yt_dlp_available: false`, instale as dependências declaradas
+em um ambiente isolado fora da pasta da skill:
 
 ```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
+python3 scripts/setup.py install-deps --execute
+python3 scripts/setup.py doctor
 ```
 
-Se usar esse ambiente, execute os scripts com `.venv/bin/python` e torne `.venv/bin` acessível ao processo
-de coleta, que precisa localizar `yt-dlp`. Verifique a versão efetivamente instalada. Não invente um pin
-de dependência nem substitua o Python global. Se a etapa não usa uma dependência, sua ausência não bloqueia
+O coletor localiza automaticamente o `yt-dlp` desse ambiente; nenhum `source`, ajuste persistente de `PATH`
+ou instalação no Python global é necessário. O ambiente fica em
+`$XDG_DATA_HOME/agentflix/venvs/pesquisa-audiencia-jev` ou, sem XDG, em
+`~/.local/share/agentflix/venvs/pesquisa-audiencia-jev`. Verifique a versão efetivamente instalada. Não invente
+um pin de dependência nem substitua o Python global. Se a etapa não usa uma dependência, sua ausência não bloqueia
 as demais. Instalar o pacote não comprova rede, autenticação ou sucesso da coleta.
 
 Sem terminal/rede ou armazenamento seguro, prepare o briefing e explique qual etapa não pôde executar.
