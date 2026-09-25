@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
   <link rel="stylesheet" href="../design-system/tokens.css">
   <link rel="stylesheet" href="../design-system/icons.css">
+  <link rel="stylesheet" href="../design-system/primitives.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="../design-system/approved.css">
 </head>
@@ -39,10 +40,10 @@
   <main id="conteudo">
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-copy">
-        <p class="eyebrow">Aprofundamento humano</p>
+        <p class="eyebrow af-type-context">Aprofundamento humano</p>
         <h1 id="page-title">Observe seus padrões.<br>Amplie suas escolhas.</h1>
         <p class="hero-lede">Assessments para perceber como você tende a agir, aprender, decidir e se relacionar. Eles oferecem mapas para reflexão, não rótulos definitivos.</p>
-        <a class="button button-primary" href="#disc">Começar pelo DISC <af-icon name="down" aria-hidden="true"></af-icon></a>
+        <a class="button button-primary af-button" href="#disc">Começar pelo DISC <af-icon name="down" aria-hidden="true"></af-icon></a>
       </div>
       <div class="hero-map" aria-hidden="true">
         <span class="map-orbit orbit-one"></span>
@@ -51,19 +52,19 @@
         <span class="map-node node-i">I</span>
         <span class="map-node node-s">S</span>
         <span class="map-node node-c">C</span>
-        <span class="map-center">você</span>
+        <span class="map-center af-type-context">você</span>
       </div>
     </section>
 
-    <section class="catalog assessment-gallery af-gallery" id="catalogo" aria-labelledby="catalog-title" aria-roledescription="galeria de assessments">
+    <section class="catalog assessment-gallery af-gallery" id="catalogo" data-af-composition="spatial-gallery" aria-labelledby="catalog-title" aria-roledescription="galeria de assessments">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Biblioteca de assessments</p>
+          <p class="eyebrow af-type-context">Biblioteca de assessments</p>
           <h2 id="catalog-title">Um mapa diferente para cada pergunta</h2>
         </div>
         <div class="catalog-summary">
           <p>Seis caminhos para observar seus padrões. Escolha uma pergunta que faça sentido para o seu momento e leve a reflexão para a prática.</p>
-          <p class="catalog-availability"><strong>6</strong> assessments disponíveis</p>
+          <p class="catalog-availability af-type-caption"><strong>6</strong> assessments disponíveis</p>
         </div>
       </div>
 
@@ -168,7 +169,7 @@
       <div class="disc-intro" id="disc-intro">
         <div class="assessment-overview">
           <div class="assessment-overview-copy">
-            <p class="eyebrow">Assessment 01</p>
+            <p class="eyebrow af-type-context">Assessment 01</p>
             <h2 id="disc-title">Perfil DISC</h2>
             <p class="assessment-promise"><strong>Você pode ser competente e ainda sair de uma conversa com a sensação de que foi intenso demais, vago demais, cuidadoso demais ou difícil de acompanhar.</strong></p>
             <p class="assessment-empathy">Este mapa ajuda a separar intenção de impacto. Você reconhece seu ritmo natural, antecipa atritos e encontra palavras melhores para pedir o que precisa — sem tentar virar outra pessoa.</p>
@@ -184,12 +185,12 @@
           </figure>
         </div>
         <dl class="disc-facts visual-facts">
-          <div class="fact-card" data-icon="time"><span class="fact-icon" aria-hidden="true"><af-icon name="duration" aria-hidden="true"></af-icon></span><dt>Tempo</dt><dd><strong>6–8</strong><span>minutos</span></dd></div>
-          <div class="fact-card" data-icon="structure"><span class="fact-icon" aria-hidden="true"><af-icon name="structure" aria-hidden="true"></af-icon></span><dt>Estrutura</dt><dd><strong>03</strong><span>rodadas visuais</span></dd></div>
-          <div class="fact-card" data-icon="privacy"><span class="fact-icon" aria-hidden="true"><af-icon name="privacy" aria-hidden="true"></af-icon></span><dt>Privacidade</dt><dd><strong>100%</strong><span>Só neste navegador</span></dd></div>
+          <div class="fact-card" data-icon="time"><span class="fact-icon" aria-hidden="true"><af-icon name="duration" aria-hidden="true"></af-icon></span><dt class="af-type-context">Tempo</dt><dd><strong>6–8</strong><span>minutos</span></dd></div>
+          <div class="fact-card" data-icon="structure"><span class="fact-icon" aria-hidden="true"><af-icon name="structure" aria-hidden="true"></af-icon></span><dt class="af-type-context">Estrutura</dt><dd><strong>03</strong><span>rodadas visuais</span></dd></div>
+          <div class="fact-card" data-icon="privacy"><span class="fact-icon" aria-hidden="true"><af-icon name="privacy" aria-hidden="true"></af-icon></span><dt class="af-type-context">Privacidade</dt><dd><strong>100%</strong><span>Só neste navegador</span></dd></div>
         </dl>
         <div class="intro-actions">
-          <button class="button button-primary" id="start-disc" type="button">Quero enxergar meus padrões <af-icon name="next" aria-hidden="true"></af-icon></button>
+          <button class="button button-primary af-button" id="start-disc" type="button">Quero enxergar meus padrões <af-icon name="next" aria-hidden="true"></af-icon></button>
           <details class="assessment-method intro-method">
             <summary>Como ler este mapa</summary>
             <p>Use como ponto de partida. O resultado descreve tendências de resposta e pode mudar conforme contexto, papel e momento. Não é diagnóstico psicológico.</p>
@@ -199,7 +200,7 @@
 
       <div class="disc-quiz" id="disc-quiz" hidden>
         <div class="quiz-head">
-          <p class="eyebrow">Perfil comportamental · <span id="round-kicker">Rodada 1 de 3</span></p>
+          <p class="eyebrow af-type-context">Perfil comportamental · <span id="round-kicker">Rodada 1 de 3</span></p>
           <p class="answered-count" id="answered-count" aria-live="polite">Questão 01 de 10</p>
         </div>
         <progress class="question-progress" id="question-progress" value="1" max="10" aria-label="Progresso das perguntas">1 de 10</progress>
@@ -217,8 +218,8 @@
             <div class="question-list" id="question-list"></div>
             <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
             <div class="quiz-actions">
-              <button class="button button-secondary" id="previous-round" type="button"><af-icon name="previous" aria-hidden="true"></af-icon> Voltar</button>
-              <button class="button button-primary" id="next-round" type="submit" disabled>Continuar <af-icon name="next" aria-hidden="true"></af-icon></button>
+              <button class="button button-secondary af-button" id="previous-round" type="button"><af-icon name="previous" aria-hidden="true"></af-icon> Voltar</button>
+              <button class="button button-primary af-button" id="next-round" type="submit" disabled>Continuar <af-icon name="next" aria-hidden="true"></af-icon></button>
             </div>
           </form>
           <span class="round-help" id="round-help" data-tone="most"><af-icon name="information" aria-hidden="true"></af-icon><span class="round-help-copy" id="round-help-copy">Em cada pergunta, marque a alternativa que tem <strong class="round-help-emphasis">MAIS</strong> a ver com você do que todas as outras.</span></span>
@@ -228,10 +229,10 @@
       <div class="disc-result" id="disc-result" hidden>
         <div class="result-heading">
           <div>
-            <p class="eyebrow">Seu mapa DISC</p>
+            <p class="eyebrow af-type-context">Seu mapa DISC</p>
             <h2 id="result-title" tabindex="-1">Resultado</h2>
           </div>
-          <button class="button button-secondary" id="copy-result" type="button"><af-icon name="copy" aria-hidden="true"></af-icon> Copiar resultado</button>
+          <button class="button button-secondary af-button" id="copy-result" type="button"><af-icon name="copy" aria-hidden="true"></af-icon> Copiar resultado</button>
         </div>
 
         <p class="result-lede" id="result-lede"></p>
@@ -243,10 +244,10 @@
         <div class="agent-result-bridge">
           <af-icon name="support" aria-hidden="true"></af-icon>
           <div><h3>Seu mapa pode virar uma conversa melhor.</h3><p>Leve seu resultado e orientações de colaboração para o seu agente pessoal.</p></div>
-          <button class="button button-primary" id="disc-agent-prompt" type="button">Levar para meu agente <af-icon name="next" aria-hidden="true"></af-icon></button>
+          <button class="button button-primary af-button" id="disc-agent-prompt" type="button">Levar para meu agente <af-icon name="next" aria-hidden="true"></af-icon></button>
         </div>
         <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
-        <button class="button button-outline" id="restart-disc" type="button"><af-icon name="restart" aria-hidden="true"></af-icon> Refazer o DISC</button>
+        <button class="button button-outline af-button" id="restart-disc" type="button"><af-icon name="restart" aria-hidden="true"></af-icon> Refazer o DISC</button>
       </div>
     </section>
 
@@ -254,7 +255,7 @@
     <noscript><p class="notice">Ative o JavaScript para responder aos assessments. As respostas e o cálculo acontecem neste navegador.</p></noscript>
 
     <section class="principles" aria-labelledby="principles-title">
-      <p class="eyebrow">Como esta área funciona</p>
+      <p class="eyebrow af-type-context">Como esta área funciona</p>
       <h2 id="principles-title">Leitura responsável, sempre</h2>
       <div class="principle-grid">
         <article><span>01</span><h3>Contexto importa</h3><p>Um resultado não explica sozinho quem você é nem prevê tudo o que fará.</p></article>
@@ -272,7 +273,7 @@
   <dialog class="agent-prompt-dialog" id="agent-prompt-dialog" aria-labelledby="agent-prompt-title" aria-describedby="agent-prompt-description">
     <header class="agent-prompt-header">
       <p class="agent-prompt-kicker"><af-icon name="support" aria-hidden="true"></af-icon> Para o seu agente pessoal</p>
-      <button class="button button-secondary" id="agent-prompt-close" type="button">Fechar</button>
+      <button class="button button-secondary af-button" id="agent-prompt-close" type="button">Fechar</button>
     </header>
     <div class="agent-prompt-body">
       <h2 id="agent-prompt-title">Mais contexto.<br>Uma parceria melhor.</h2>
@@ -288,8 +289,8 @@
     </div>
     <div class="agent-prompt-footer">
       <div class="agent-prompt-actions">
-        <button class="button button-primary" id="agent-prompt-copy" type="button"><af-icon name="copy" aria-hidden="true"></af-icon> Copiar prompt</button>
-        <button class="button button-secondary" id="agent-prompt-download" type="button">Baixar prompt .md</button>
+        <button class="button button-primary af-button" id="agent-prompt-copy" type="button"><af-icon name="copy" aria-hidden="true"></af-icon> Copiar prompt</button>
+        <button class="button button-secondary af-button" id="agent-prompt-download" type="button">Baixar prompt .md</button>
       </div>
       <p id="agent-prompt-status" role="status" aria-live="polite"></p>
     </div>

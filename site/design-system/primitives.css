@@ -1,5 +1,9 @@
 /* Primitivas canônicas aprovadas. Carregar depois de tokens.css. */
 
+/* Papéis tipográficos de contexto; não criar uma nova fonte em cada página. */
+.af-type-context { font: 600 var(--af-text-sm)/21px var(--af-sans); }
+.af-type-caption { font: 400 var(--af-text-sm)/21px var(--af-sans); }
+
 /* Ações */
 .af-button {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--af-space-2);
