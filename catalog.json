@@ -2646,7 +2646,7 @@
         "tamanho": "6 etapas",
         "requer": "Hermes no host, conta Codex e bot Telegram exclusivo",
         "sinopse": "Crie um profile Hermes separado, configure Codex, registre a memória inicial e confira as skills padrão. A rotina é opcional; o Telegram só fica concluído depois que o bot novo responde.",
-        "como_usar": "Diga: \"Crie um novo profile Hermes para suporte interno\". O agente confere o host, guia o login por dispositivo e pede apenas os dados que faltarem. Exemplo hipotético: suporte interno; não representa um profile já ativado.",
+        "como_usar": "No Hermes CLI, salve a versão colável e use hermes chat --query-file <arquivo> em um executor com terminal no host de destino. Diga: \"Crie um novo profile Hermes para suporte interno\". O agente guia o login por dispositivo e pede só os dados que faltarem. Exemplo hipotético: suporte interno; não representa um profile já ativado.",
         "elenco": [
           "Hermes Agent",
           "Codex por login de dispositivo",
