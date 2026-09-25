@@ -28,6 +28,10 @@ Conduza **um novo profile** pelas seis etapas abaixo, em português. A instalaç
 host ou contêiner que roda o Hermes. O prompt de entrada está em
 [references/ativacao.md](references/ativacao.md), acrescentado pela distribuição.
 Um arquivo de skill ou profile criado não prova que login, gateway e Telegram funcionam.
+Se esta versão for colada no Hermes pela CLI, o executor precisa ter as ferramentas
+`terminal` e `file` habilitadas e acesso ao **mesmo host** que receberá o profile.
+`hermes chat --query-file <arquivo>` aceita o texto inteiro sem interpretação pelo shell.
+Não confunda o terminal isolado de um contêiner com o terminal do Mac hospedeiro.
 
 ## When to Use
 
@@ -68,7 +72,11 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
    comandos que usará (`profile create`, `auth add`, `skills list`, `cron create`, `gateway
    start`). Adapte à CLI medida. Esta revisão foi conferida no macOS com Hermes v0.21.3
    em 2026-09-24; não transfira essa compatibilidade a outra instalação. Confirme acesso
-   ao terminal e permissão para operar o host. Preserve profiles e gateways existentes.
+   ao terminal e permissão para operar o host. Se estiver executando dentro de outro
+   profile Hermes, confirme `pwd`, `uname -s` e `command -v hermes` por **sua ferramenta
+   de terminal**, antes de criar o novo profile. Se a ferramenta faltar ou apontar a um
+   contêiner isolado do host de destino, marque a instalação incompleta e peça um
+   executor com terminal no host correto. Preserve profiles e gateways existentes.
 3. Obtenha o nome curto e a função **somente se faltarem**. Toda pergunta aberta, inclusive
    as seguintes, traz exemplo de resposta ao lado, baseado no contexto recuperado. Sem
    memória relevante, diga isso e marque o exemplo como hipotético. Exemplo hipotético:
@@ -532,7 +540,7 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "algorithm": "sha256",
   "files": {
     "LICENSE": "6244738960f2a27905404edf750104381130189da33464d197b46c300126a48d",
-    "SKILL.md": "cb9dbc5ce55bf6bd8d5cb6049f8da2f8ef048cc51392c9eafd69d392601cdee1",
+    "SKILL.md": "06f46fb1ccff20ef0a0ae07059f70ed1dbcb3db9968a127df42f5c8fbe9073a0",
     "references/ativacao.md": "a1762feb6a7739470093fecb8121f73e1c2a66556c225b2c64fc773659958bc0",
     "references/ciclo-de-vida.md": "292984d2e0a69f37354f9489368e75e082344e7572e566cf7248418e6b8c1442",
     "references/conhecimento.okf.md": "3f2756e1a0d24055cb97fff503e63e5e1be6c41557f2b40d24e4aa583cee0ec5",
