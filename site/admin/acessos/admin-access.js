@@ -150,7 +150,7 @@ function renderProducts() {
     const badge = document.createElement("span");
     badge.className = "access-badge";
     badge.dataset.active = String(active.length > 0);
-    badge.textContent = active.length ? "ATIVO" : "SEM ACESSO";
+    badge.textContent = active.length ? "Ativo" : "Sem acesso";
     copy.append(title, detail);
     meta.append(copy, badge);
 
@@ -229,7 +229,7 @@ async function selectUser(user) {
   renderUsers(users);
   byId("selected-user-name").textContent = user.name || "Sem nome cadastrado";
   byId("selected-user-email").textContent = user.email;
-  byId("selected-user-role").textContent = user.role === "admin" ? "ADMIN" : "USUÁRIO";
+  byId("selected-user-role").textContent = user.role === "admin" ? "Administrador" : "Usuário";
   byId("user-detail").hidden = false;
   await loadSelectedUser();
   byId("user-detail").scrollIntoView({ behavior: "smooth", block: "start" });
