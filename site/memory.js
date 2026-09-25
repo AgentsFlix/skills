@@ -8,6 +8,9 @@
   const META_KEY = "agentflix-memory-meta-v1";
   const RECOVERY_PREFIX = "agentflix-memory-recovery-v1:";
   const MAX_BYTES = 2400000;
+  const ECF_KEY = "agentflix-ecf-base-v2";
+  const ECF_PREFIX = "agentflix-ecf-base-v3:";
+  const ECF_MANIFEST = ECF_PREFIX + "manifest";
   const exact = new Map([
     ["agentflix-installed-v1", "skill"],
     ["agentflix-list", "saved"],
@@ -16,6 +19,7 @@
     ["agentflix-done", "video"],
     ["agentflix-brand-journey-v1", "exercise"],
     ["agentflix-ecf-base-v2", "exercise"],
+    ["agentflix-ecf-diagnosis-v1", "exercise"],
     ["agentflix-casa-git-premium-v1", "exercise"],
     ["agentflix-target", "preference"],
     ["agentflix-visit-v1", "preference"],
@@ -26,6 +30,7 @@
     ["agentflix-caminho-", "video"],
     ["agentflix-reading-progress-v1:", "reading"],
     ["agentflix-social-media-document-v2:", "exercise"],
+    [ECF_PREFIX, "exercise"],
   ];
 
   const storage = root.localStorage;
@@ -95,7 +100,6 @@
   let generation = 0;
   let retryDelay = 1000;
   let signingOut = false;
-  let revisionProtocol = null;
   const pending = new Set();
   const status = { signedIn: false, available: false, oversized: [], conflicts: [], pending: 0, state: "local" };
 
@@ -178,9 +182,90 @@
     return keys;
   }
 
+  function ecfProjectKey(id, part) {
+    const bytes = new TextEncoder().encode(id);
+    const encoded = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+    const key = `${ECF_PREFIX}p:${encoded}:${part}`;
+    if (key.length > 240) throw new Error("ECF project identifier exceeds memory key limit");
+    return key;
+  }
+
+  function shardEcf(raw) {
+    let value;
+    try { value = JSON.parse(raw); } catch { return false; }
+    if (value?.version !== 2 || !value.projects || Array.isArray(value.projects) ||
+      typeof value.projects !== "object") return false;
+    const shards = new Map();
+    const ids = Object.keys(value.projects);
+    try {
+      for (const id of ids) {
+        const project = value.projects[id];
+        if (!project || project.id !== id || !project.records ||
+          typeof project.records !== "object" || Array.isArray(project.records)) return false;
+        const { records, ...meta } = project;
+        const stages = Object.keys(records);
+        const metaKey = ecfProjectKey(id, "meta");
+        shards.set(metaKey, serialize({ ...meta, stages }));
+        for (const stage of stages) {
+          if (!/^[a-z0-9-]{1,60}$/.test(stage)) return false;
+          shards.set(ecfProjectKey(id, `stage:${stage}`), serialize(records[stage]));
+        }
+      }
+      shards.set(ECF_MANIFEST, serialize({ version: 3, active_id: value.active_id, ids }));
+      if ([...shards].some(([key, content]) => key.length > 240 || byteLength(content) > MAX_BYTES))
+        return false;
+    } catch { return false; }
+    for (const [key, content] of shards) {
+      if (nativeGet(key) !== content) {
+        nativeSet(key, content);
+        markDirty(key);
+      }
+    }
+    for (const key of trackedLocalKeys()) {
+      if (key.startsWith(ECF_PREFIX) && !shards.has(key)) {
+        nativeRemove(key);
+        markDirty(key, true);
+      }
+    }
+    return true;
+  }
+
+  function rebuildEcf() {
+    const manifest = parse(nativeGet(ECF_MANIFEST) || "null");
+    if (!manifest || manifest.version !== 3 || !Array.isArray(manifest.ids)) return false;
+    if (manifest.active_id !== null && !manifest.ids.includes(manifest.active_id)) return false;
+    const projects = Object.create(null);
+    for (const id of manifest.ids) {
+      if (typeof id !== "string" || Object.prototype.hasOwnProperty.call(projects, id)) return false;
+      const meta = parse(nativeGet(ecfProjectKey(id, "meta")) || "null");
+      if (!meta || meta.id !== id || !Array.isArray(meta.stages)) return false;
+      const { stages, ...project } = meta;
+      project.records = Object.create(null);
+      for (const stage of stages) {
+        if (typeof stage !== "string" || !/^[a-z0-9-]{1,60}$/.test(stage)) return false;
+        const raw = nativeGet(ecfProjectKey(id, `stage:${stage}`));
+        if (raw === null) return false;
+        project.records[stage] = parse(raw);
+      }
+      projects[id] = project;
+    }
+    applyingCloud = true;
+    try { nativeSet(ECF_KEY, serialize({ version: 2, active_id: manifest.active_id, projects })); }
+    finally { applyingCloud = false; }
+    return true;
+  }
+
   function markDirty(key, deleted = false) {
     if (applyingCloud || !categoryOf(key)) return;
     const raw = deleted ? null : nativeGet(key);
+    if (key === ECF_KEY && raw !== null) {
+      try {
+        if (shardEcf(raw)) {
+          markDirty(key, true); // Keep the local projection; retire its old cloud row.
+          return;
+        }
+      } catch { /* A failed shard write leaves the original local draft intact. */ }
+    }
     if (!deleted && raw !== null && byteLength(raw) > MAX_BYTES) {
       if (!status.oversized.includes(key)) status.oversized.push(key);
       root.dispatchEvent?.(
@@ -275,42 +360,19 @@
     if (!info.deletedAt && raw === null) info.deletedAt = Date.now();
     if (raw !== null && byteLength(raw) > MAX_BYTES) return false;
 
-    const row = {
-      user_id: userId,
-      memory_key: key,
-      category,
-      value: raw === null ? null : parse(raw),
-      schema_version: 1,
-      client_updated_at: new Date(info.dirtyAt).toISOString(),
-      deleted_at: info.deletedAt ? new Date(info.deletedAt).toISOString() : null,
-    };
-    let response;
-    if (typeof client.rpc === "function" && revisionProtocol !== false) {
-      response = await requestWithDeadline(client.rpc("save_user_memory", {
-        requested_key: key, requested_value: row.value,
-        expected_revision: info.revision || 0, requested_deleted: Boolean(info.deletedAt),
-      }));
-      if (generation !== requestGeneration) return false;
-      // Only an explicitly absent additive RPC permits the legacy rollout path.
-      if (response.error?.code === "PGRST202") revisionProtocol = false;
-      else {
-        revisionProtocol = true;
-        const result = Array.isArray(response.data) ? response.data[0] : response.data;
-        if (!response.error && result?.applied === false) {
-          metadata[key] = { ...metadata[key], conflict: true };
-          writeMetadata();
-          return false;
-        }
-        response = { ...response, data: result };
-      }
-    }
-    if (!response || revisionProtocol === false) response = await requestWithDeadline(client
-      .from("user_memory")
-      .upsert(row, { onConflict: "user_id,memory_key" })
-      .select("memory_key,revision,updated_at,deleted_at")
-      .maybeSingle());
-    const { data, error } = response;
+    if (typeof client.rpc !== "function") return false;
+    const response = await requestWithDeadline(client.rpc("save_user_memory", {
+      requested_key: key, requested_value: raw === null ? null : parse(raw),
+      expected_revision: info.revision || 0, requested_deleted: Boolean(info.deletedAt),
+    }));
+    const data = Array.isArray(response.data) ? response.data[0] : response.data;
+    const { error } = response;
     if (generation !== requestGeneration) return false;
+    if (!error && data?.applied === false) {
+      metadata[key] = { ...metadata[key], conflict: true };
+      writeMetadata();
+      return false;
+    }
     if (error || !data) return false;
     // A newer edit owns the dirty marker. Never acknowledge it with an older response.
     if (metadata[key] !== info) {
@@ -348,11 +410,14 @@
     let saved = 0;
     // Drain edits made during a request, but yield under continuous typing.
     for (let pass = 0; pass < 5; pass += 1) {
-      const keys = Object.keys(metadata).filter((key) => metadata[key]?.dirtyAt);
+      const priority = (key) => key === ECF_KEY ? 2 : key === ECF_MANIFEST ? 1 : 0;
+      const keys = Object.keys(metadata).filter((key) => metadata[key]?.dirtyAt)
+        .sort((a, b) => priority(a) - priority(b));
       pending.clear();
       let failed = false;
       for (const key of keys) {
         if (generation !== requestGeneration) return { ok: false, saved };
+        if ((key === ECF_MANIFEST || key === ECF_KEY) && failed) continue;
         if (await saveKey(key)) saved += 1;
         else failed = true;
       }
@@ -401,7 +466,6 @@
     if (userId !== user.id) {
       generation += 1;
       flushPromise = null;
-      revisionProtocol = null;
     }
     claimOwner(user.id);
     client = nextClient;
@@ -435,6 +499,20 @@
       rows.forEach((row) => {
         changed = applyCloudRow(row) || changed;
       });
+
+      if (nativeGet(ECF_MANIFEST)) {
+        if (!rebuildEcf()) {
+          status.available = false;
+          publishStatus("unavailable");
+          scheduleFlush(retryDelay);
+          return { ok: false, signedIn: true, changed: false };
+        }
+        changed = true;
+        if (rows.some((row) => row.memory_key === ECF_KEY && !row.deleted_at))
+          markDirty(ECF_KEY, true);
+      } else if (nativeGet(ECF_KEY)) {
+        shardEcf(nativeGet(ECF_KEY)) && markDirty(ECF_KEY, true);
+      }
 
       for (const key of trackedLocalKeys()) {
         if (!cloudKeys.has(key) && !metadata[key]?.dirtyAt) markDirty(key);
