@@ -175,12 +175,20 @@ def doctor(path):
     dependency_environment = (jev.dependency_env_path() if jev is not None else
         (Path(data_root).expanduser() if data_root else Path.home() / ".local/share") /
         "agentflix/venvs/pesquisa-audiencia-jev")
+    folder = "Scripts" if os.name == "nt" else "bin"
+    local_yt_dlp = dependency_environment / folder / ("yt-dlp.exe" if os.name == "nt" else "yt-dlp")
+    local_python = dependency_environment / folder / ("python.exe" if os.name == "nt" else "python")
     yt_dlp_available = bool(jev.yt_dlp_executable() if jev is not None else shutil.which("yt-dlp"))
+    yaml_available = importlib.util.find_spec("yaml") is not None
+    if not yaml_available and local_python.is_file():
+        yaml_available = subprocess.run([str(local_python), "-c", "import yaml"],
+            capture_output=True, check=False).returncode == 0
     return {"python_supported": supported, "package_complete": complete,
             "ready_for_execution": supported and complete, "integrity": integrity_status,
             "missing_package_files": missing, "yt_dlp_available": yt_dlp_available,
             "dependency_environment": str(dependency_environment),
-            "yaml_available": importlib.util.find_spec("yaml") is not None,
+            "dependency_environment_ready": local_yt_dlp.is_file() and os.access(local_yt_dlp, os.X_OK),
+            "yaml_available": yaml_available,
             "credential": field_status(path), "network_calls": 0}
 
 
@@ -239,7 +247,9 @@ def main(argv=None):
         # Exceptions from parsers/editor may contain input; never echo them.
         category = "local_configuration"
         advice = "Check the local file format and permissions. Never paste the key in chat."
-        if isinstance(exc, JevError) and jev is not None:
+        if args.command == "install-deps":
+            category, advice = "dependency_installation", "Use Python 3.10+ and check network and package access locally."
+        elif isinstance(exc, JevError) and jev is not None:
             http = re.fullmatch(r"JevCloud HTTP (\d{3}); no automatic retry", str(exc))
             if http:
                 category = "authentication" if http[1] in {"401", "403"} else "provider_rejected"
@@ -248,8 +258,6 @@ def main(argv=None):
                 category, advice = "transient_provider", "Check connectivity/provider availability and retry later."
             elif str(exc).startswith("Previous onboarding backup"):
                 category, advice = "pending_backup", "Run verify after saving, or clean-backup --execute when cancelling."
-        elif isinstance(exc, subprocess.CalledProcessError):
-            category, advice = "dependency_installation", "Dependency installation failed; check Python, network and package access locally."
         print(json.dumps({"status": "error", "action": args.command,
                           "category": category, "message": advice}))
         return 1

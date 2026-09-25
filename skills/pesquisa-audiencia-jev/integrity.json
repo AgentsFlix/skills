@@ -46,7 +46,7 @@
     "requirements.txt": "ba06068b0eb3040d5d2e000e3ef61eec1040704de425ac8ecd7682961e605b4d",
     "scripts/auditar.py": "d97f7f9b48b862bedc0999d20a20223055c80e8f70f0adba6088ea8a81f52f40",
     "scripts/integrity.py": "45fa682134c73b9a3da4f2f31269de5cd6cb14b09f38d67df539f0be04f3895c",
-    "scripts/setup.py": "8fa9fb5b0404f6e482a4f29a395c91a3de14c3eb35dbf6e4e205716ecb6b80bc",
+    "scripts/setup.py": "5e37a29e9540a89023e34e575dc3aca06ded1becf42263ad609110be06f017ac",
     "templates/estado-da-skill.md": "f7ed2c43ce7d75fdde38bad95e2d46e4aabdf7fd22879455c4ab53e7f37433a7",
     "templates/evento-de-uso.json": "2db1fbfeb6c8deeb2cfbaad742dc05a785c9916d366d069a20376d0e289d45b8"
   }

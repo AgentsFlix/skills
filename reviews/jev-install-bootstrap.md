@@ -11,7 +11,8 @@ gerador. Não inclui credenciais nem corpus de terceiros.
 PR privado: https://github.com/AgentsFlix/agentsflix/pull/212. PR público:
 https://github.com/AgentsFlix/skills/pull/147.
 
-Verificações locais: 12 testes específicos do pacote, suíte pública completa, `check_site.py`,
-integridade do ZIP e diagnóstico de cliente interno ausente. Instalação real de dependências
-foi testada em XDG temporário com Python 3.10 no repositório de origem; nenhuma credencial foi usada.
+Verificações locais: 12 testes específicos do pacote, 165 testes públicos, `check_site.py`,
+integridade do ZIP e diagnóstico de cliente interno ausente. O ZIP de 47 arquivos foi extraído
+em diretório temporário; `doctor`, `install-deps --execute` e novo `doctor` passaram com Python
+3.10, `yt-dlp` 2026.08.19 e PyYAML disponíveis no ambiente isolado. Nenhuma credencial foi usada.
 Teste técnico não comprova coleta nem classificação no ambiente da pessoa que relatou o problema.
