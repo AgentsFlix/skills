@@ -67,7 +67,8 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
    com base auditada, conferir evidências e executar a escrita pedida. Não repetir coleta ou classificação já
    aproveitável. Se o pedido é apenas diagnóstico/briefing, não faça chamadas de classificação.
 4. **Verifique o pacote, o ambiente e a credencial quando necessários.** Instale o pacote completo, não apenas
-   este `SKILL.md`. Rode `python3 scripts/setup.py doctor` na pasta instalada. Se `package_complete` for falso,
+   este `SKILL.md`. Rode `python3 scripts/setup.py doctor` na pasta instalada. Se `python_supported` for falso,
+   use um Python 3.10+ disponível no hospedeiro. Se `package_complete` for falso,
    recupere a distribuição integral da referência fixada antes de executar; `jev_client.py` é um arquivo interno
    do pacote, não uma dependência externa. Para coleta do YouTube, rode
    `python3 scripts/setup.py install-deps --execute` se `yt_dlp_available` for falso. Esse comando instala as

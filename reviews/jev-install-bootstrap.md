@@ -8,4 +8,10 @@ Esta revisão publica a ativação que exige o pacote completo, diagnóstico de 
 preparo isolado de dependências. O ZIP, a versão colável e o catálogo são derivados do mesmo
 gerador. Não inclui credenciais nem corpus de terceiros.
 
-PR privado e verificações finais serão registrados após a integração.
+PR privado: https://github.com/AgentsFlix/agentsflix/pull/212. PR público:
+https://github.com/AgentsFlix/skills/pull/147.
+
+Verificações locais: 12 testes específicos do pacote, suíte pública completa, `check_site.py`,
+integridade do ZIP e diagnóstico de cliente interno ausente. Instalação real de dependências
+foi testada em XDG temporário com Python 3.10 no repositório de origem; nenhuma credencial foi usada.
+Teste técnico não comprova coleta nem classificação no ambiente da pessoa que relatou o problema.

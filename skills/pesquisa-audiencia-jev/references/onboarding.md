@@ -15,7 +15,8 @@ python3 scripts/setup.py doctor
 
 Confirme terminal, Python 3.10+, rede e armazenamento privado. `yt-dlp` é necessário para coletar do YouTube;
 o cliente JevCloud usa a biblioteca padrão do Python. PyYAML atende ao runtime opcional de registro/auditoria
-AgentFlix. Se `package_complete` for falso, instale a distribuição completa da referência fixada; ler somente
+AgentFlix. Se `python_supported` for falso, selecione Python 3.10+ antes dos comandos seguintes. Se
+`package_complete` for falso, instale a distribuição completa da referência fixada; ler somente
 `SKILL.md` não transfere os scripts e módulos. `jev_client.py` já vem em
 `modules/jev-operar/scripts/jev_client.py`.
 
