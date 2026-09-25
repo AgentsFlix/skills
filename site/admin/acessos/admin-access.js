@@ -18,6 +18,15 @@ function show(name) {
   states.forEach((state) => { byId(`${state}-state`).hidden = state !== name; });
 }
 
+function showSignedOut() {
+  currentUser = null;
+  show("signed-out");
+}
+
+function isMissingSession(error) {
+  return error?.name === "AuthSessionMissingError";
+}
+
 function setStatus(id, message = "", tone = "") {
   const element = byId(id);
   element.textContent = message;
@@ -289,15 +298,18 @@ async function loadAdmin(session) {
   try {
     const { data: profile, error: profileError } = await client.from("profiles")
       .select("role").eq("id", session.user.id).single();
+    if (currentUser?.id !== session.user.id) return;
     if (profileError) throw profileError;
     if (profile?.role !== "admin") {
       show("forbidden");
       return;
     }
     const { data: assurance, error: assuranceError } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
+    if (currentUser?.id !== session.user.id) return;
     if (assuranceError) throw assuranceError;
     if (assurance.currentLevel !== "aal2") {
       const { data: factors, error: factorsError } = await client.auth.mfa.listFactors();
+      if (currentUser?.id !== session.user.id) return;
       if (factorsError) throw factorsError;
       const verified = factors.totp?.find((factor) => factor.status === "verified");
       mfaFactorId = verified?.id || null;
@@ -310,19 +322,25 @@ async function loadAdmin(session) {
       return;
     }
     const { data: allowed, error: roleError } = await client.rpc("is_profile_admin");
+    if (currentUser?.id !== session.user.id) return;
     if (roleError) throw roleError;
     if (allowed !== true) {
       show("forbidden");
       return;
     }
     const { data: catalog, error: catalogError } = await client.rpc("admin_access_products");
+    if (currentUser?.id !== session.user.id) return;
     if (catalogError) throw catalogError;
     products = catalog || [];
     show("admin");
     await searchUsers("");
   } catch (error) {
-    console.warn("AgentFlix admin panel unavailable", error);
-    show("unavailable");
+    if (isMissingSession(error) || !currentUser) {
+      showSignedOut();
+    } else {
+      console.warn("AgentFlix admin panel unavailable", error);
+      show("unavailable");
+    }
   }
 }
 
@@ -343,8 +361,7 @@ async function initialize() {
     client = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
     client.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_OUT" || !session?.user) {
-        currentUser = null;
-        show("signed-out");
+        showSignedOut();
       } else if (event === "SIGNED_IN" && session.user.id !== currentUser?.id) {
         loadAdmin(session);
       }
@@ -354,8 +371,12 @@ async function initialize() {
     if (data?.session?.user) await loadAdmin(data.session);
     else show("signed-out");
   } catch (error) {
-    console.warn("AgentFlix admin initialization failed", error);
-    show("unavailable");
+    if (isMissingSession(error)) {
+      showSignedOut();
+    } else {
+      console.warn("AgentFlix admin initialization failed", error);
+      show("unavailable");
+    }
   }
 }
 
