@@ -1317,6 +1317,37 @@
                   }
                 }
               ]
+            },
+            {
+              "aula": 4,
+              "t": "Anatomia de um profile",
+              "d": 8054,
+              "uid": "8b6ce764c6208fa0814dcd4ad013b030",
+              "desc": "O encontro começa com uma discussão sobre JEV e depois explora as seis peças de um profile no Hermes, com exemplos de gateways e credenciais.",
+              "n": 4,
+              "share_url": "/aulas/hermes-em-operacao/t1/e4/",
+              "page_version": 2,
+              "preview": {
+                "title": "Anatomia de um profile",
+                "description": "Modelo, memória, skills, tools, CRON e gateway: entenda as seis peças de um profile no Hermes e explore os materiais interativos.",
+                "image": "/aulas/hermes-em-operacao/t1/e4/preview-whatsapp-v1.jpg",
+                "alt": "HERMES EM OPERAÇÃO. Anatomia de um profile. Ilustrações de cérebro e memória. Temporada 1, episódio 4.",
+                "approved": true
+              },
+              "ch": [
+                {
+                  "t": 0,
+                  "n": "JEV e contexto da turma"
+                },
+                {
+                  "t": 3620,
+                  "n": "Anatomia de um profile"
+                },
+                {
+                  "t": 6000,
+                  "n": "Aplicações e perguntas"
+                }
+              ]
             }
           ],
           "atividades": [
@@ -1335,6 +1366,14 @@
               "url": "hermes-em-operacao/t1e3/",
               "tipo": "simulacao",
               "partes": 5
+            },
+            {
+              "n": 4,
+              "t": "Anatomia de um profile",
+              "desc": "Explore as seis peças de um profile, monte perfis para cinco negócios e veja como conectar gateways com credenciais próprias.",
+              "url": "hermes-em-operacao/t1e4/",
+              "tipo": "simulacao",
+              "partes": 3
             }
           ]
         }
