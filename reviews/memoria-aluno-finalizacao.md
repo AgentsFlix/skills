@@ -13,9 +13,12 @@ pela RPC versionada.
 Dependências: a chave de diagnóstico e as chaves fragmentadas precisam da
 migração aditiva 0011 no banco (já conferida). A migração 0012, que remove a
 escrita direta, só pode ser aplicada após o deploy deste cliente. A migração
-0013, que exige sessão `aal2`, só pode ser aplicada após o único administrador
-verificar seu TOTP. Nenhuma das duas migrações de fechamento acompanha o site.
+0013, que exige sessão `aal2`, só pode ser aplicada após o administrador
+confirmar a reentrada com TOTP no Web publicado. Nenhuma das duas migrações de
+fechamento acompanha o site.
 
 Validação automática: suite Web do monorepo, testes de memória/contas e
-PostgreSQL local. Validação visual em 1440, 768 e 390 px e ativação TOTP ainda
-pendentes. PR deve permanecer rascunho até esses gates.
+PostgreSQL local. A prévia Vercel recebeu configuração Supabase restrita a esta
+branch; o painel carregou autenticado com sessão `aal2` e o cabeçalho foi
+inspecionado em 1440, 768 e 390 px. A reentrada no Web publicado e a aplicação
+das migrações restritivas vêm depois deste deploy.
