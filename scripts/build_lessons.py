@@ -64,6 +64,22 @@ def validate_preview(preview, site):
 def render(template, series, season, episode, site):
     preview = episode['preview']
     mime = validate_preview(preview, site)
+    page_version = episode.get('page_version', 1)
+    if page_version == 2:
+        for old, new in {
+            '<b>E</b>': '<b>e</b>',
+            '<b>P</b>': '<b>p</b>',
+            '<b>F</b>': '<b>f</b>',
+            '<b>M</b>': '<b>m</b>',
+            'VOCÊ ESTÁ ASSISTINDO': 'Você está assistindo',
+            '>VELOCIDADE</h5>': '>Velocidade</h5>',
+            '>ESTE EPISÓDIO</b>': '>Este episódio</b>',
+        }.items():
+            if old not in template:
+                raise ValueError(f'Template sem trecho esperado para versão 2: {old}')
+            template = template.replace(old, new)
+    elif page_version != 1:
+        raise ValueError('Versão de página não suportada')
     url = ORIGIN + episode['share_url']
     image = ORIGIN + preview['image']
     values = {

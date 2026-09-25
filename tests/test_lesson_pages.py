@@ -33,6 +33,19 @@ class LessonPagesTest(unittest.TestCase):
         self.assertNotIn('/aulas/hermes-em-operacao/t1/e3', redirected)
         self.assertNotIn('/aulas/hermes-em-operacao/t1/e3/', redirected)
 
+    def test_new_page_copy_uses_sentence_case_without_changing_older_pages(self):
+        pages = builder.outputs(ROOT, self.data)
+        older = pages[ROOT / 'site/aulas/hermes-em-operacao/t1/e3/index.html']
+        current = pages[ROOT / 'site/aulas/hermes-em-operacao/t1/e4/index.html']
+        self.assertIn('VOCÊ ESTÁ ASSISTINDO', older)
+        self.assertIn('Você está assistindo', current)
+        self.assertIn('<h5>Velocidade</h5>', current)
+        self.assertNotIn('VOCÊ ESTÁ ASSISTINDO', current)
+        episode = next(item for item in self.season['eps'] if item.get('n') == 4)
+        episode['page_version'] = 3
+        with self.assertRaisesRegex(ValueError, 'Versão de página não suportada'):
+            builder.outputs(ROOT, self.data)
+
     def test_new_video_requires_approved_preview(self):
         for changes in ({'preview': None}, {'preview': {'approved': False}}):
             with self.subTest(changes=changes):
