@@ -5,11 +5,11 @@ description: Método e procedência editorial desta skill AgentFlix.
 status: draft
 generated:
   by: process:agentflix-skill-authoring
-  at: '2026-09-23'
+  at: '2026-09-25'
 stale_after: '2026-12-23'
 sources:
 - id: metodo
-  resource: https://github.com/AgentsFlix/skills/tree/pesquisa-audiencia-jev-v1.0.0/skills/pesquisa-audiencia-jev
+  resource: https://github.com/AgentsFlix/skills/tree/pesquisa-audiencia-jev-v1.0.1/skills/pesquisa-audiencia-jev
   title: Pacote de origem fixado pela auditoria
 - id: okf
   resource: https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
@@ -17,7 +17,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: pesquisa-audiencia-jev
-  content_revision: 1.0.0
+  content_revision: 1.0.1
   verification_evidence: []
 ---
 

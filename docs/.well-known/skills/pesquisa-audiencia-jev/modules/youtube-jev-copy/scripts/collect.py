@@ -118,7 +118,7 @@ def collect(args):
             "max_comments": None, "sort": "new", "include_replies": True, "guaranteed_platform_exhaustion": False}
     if not args.execute:
         return plan
-    executable = shutil.which("yt-dlp")
+    executable = jev.yt_dlp_executable()
     if not executable:
         raise jev.JevError("yt-dlp is not installed")
     version = subprocess.run([executable, "--version"], check=True, capture_output=True, text=True).stdout.strip()

@@ -5,7 +5,10 @@ import hashlib
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
+import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -184,14 +187,14 @@ class PublishedJevPackageTests(unittest.TestCase):
         catalog = json.loads((ROOT / "catalog.json").read_text())
         entry = next(item for item in catalog["skills"] if item["name"] == SLUG)
         self.assertNotIn(SLUG, [item["name"] for item in catalog.get("packages", [])])
-        self.assertEqual(entry["version"], "1.0.0")
+        self.assertEqual(entry["version"], "1.0.1")
         self.assertTrue(entry["runtime_only"])
         self.assertFalse(entry["discovery_only"])
         self.assertEqual(entry["row"], "objetivo")
         package = ROOT / "skills" / SLUG
         identity = json.loads((package / "references/identidade.json").read_text())
         self.assertEqual(identity["distribution_version"], entry["version"])
-        self.assertEqual(identity["distribution_ref"], SLUG + "-v1.0.0")
+        self.assertEqual(identity["distribution_ref"], SLUG + "-v1.0.1")
         activation = (package / "references/ativacao.md").read_text().strip()
         self.assertEqual(entry["activation_prompt"], activation)
         self.assertEqual(entry["chat_cmd"], activation)
@@ -220,7 +223,7 @@ class PublishedJevPackageTests(unittest.TestCase):
             expected = {p.relative_to(directory).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                         for p in directory.rglob("*") if p.is_file() and p.name != "integrity.json"}
             self.assertEqual(manifest["files"], expected)
-            self.assertEqual(manifest["version"], "1.0.0")
+            self.assertEqual(manifest["version"], "1.0.1")
             self.assertEqual(manifest["algorithm"], "sha256")
         self.assertNotEqual(json.loads((package / "integrity.json").read_text())["files"]["SKILL.md"],
                             json.loads((portable / "integrity.json").read_text())["files"]["SKILL.md"])
@@ -239,6 +242,24 @@ class PublishedJevPackageTests(unittest.TestCase):
                     content = path.read_text(encoding="utf-8")
                     self.assertNotIn("/Users/", content, path)
                     self.assertNotIn(".codex/skills", content, path)
+
+    def test_doctor_reports_missing_internal_client_without_credential(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            package = Path(temporary) / SLUG
+            shutil.copytree(ROOT / "skills" / SLUG, package)
+            environment = os.environ.copy()
+            environment["XDG_CONFIG_HOME"] = str(Path(temporary) / "config")
+            environment["XDG_DATA_HOME"] = str(Path(temporary) / "data")
+            command = [sys.executable, str(package / "scripts/setup.py"), "doctor"]
+            complete = subprocess.run(command, capture_output=True, text=True, env=environment)
+            self.assertTrue(json.loads(complete.stdout)["package_complete"])
+            (package / "modules/jev-operar/scripts/jev_client.py").unlink()
+            broken = subprocess.run(command, capture_output=True, text=True, env=environment)
+            self.assertEqual(broken.returncode, 1)
+            result = json.loads(broken.stdout)
+            self.assertFalse(result["package_complete"])
+            self.assertIn("modules/jev-operar/scripts/jev_client.py", result["missing_package_files"])
+            self.assertEqual(result["integrity"], "failed")
 
 
 if __name__ == "__main__":

@@ -6,9 +6,9 @@
 >
 > **Como usar.** ChatGPT: crie um Project, envie este arquivo em Files e cole nas instruções do projeto o texto
 > de ativação abaixo. Claude: envie como conhecimento do Project, ou cole tudo no chat. Qualquer chat: cole tudo.
-> Versão 1.0.0. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
+> Versão 1.0.1. Instalável como skill de verdade (Hermes, Claude.ai, Claude Code, ChatGPT Skills, Codex) na página.
 >
-> **Texto de ativação (cole nas instruções):** Acesse https://raw.githubusercontent.com/AgentsFlix/skills/pesquisa-audiencia-jev-v1.0.0/skills/pesquisa-audiencia-jev/SKILL.md e leia a skill Pesquisa de audiência com JEV e as referências necessárias. Esta edição usa a referência pesquisa-audiencia-jev-v1.0.0. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
+> **Texto de ativação (cole nas instruções):** Acesse https://raw.githubusercontent.com/AgentsFlix/skills/pesquisa-audiencia-jev-v1.0.1/skills/pesquisa-audiencia-jev/SKILL.md e leia a skill Pesquisa de audiência com JEV e as referências necessárias. Esta edição usa a referência pesquisa-audiencia-jev-v1.0.1. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
 >
 > Antes de me fazer perguntas, leia o contrato AgentFlix incluído e cheque nossa conversa, sua memória local acessível e os arquivos relevantes que você já conhece. Identifique os inputs exigidos, quais você já tem e quais faltam. Reaproveite fatos atuais, identifique origem, data, conflitos e inferências. Não invente lembranças nem me peça novamente o que já sabe.
 >
@@ -18,7 +18,7 @@
 >
 > Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 >
-> Use esta entrada para conduzir a pesquisa de audiência com JEV sem exigir que eu escolha módulos, canais ou Questions. Recupere tema, público/contexto e uso; faça no máximo três perguntas iniciais, cada pergunta aberta com seu exemplo contextualizado. Um corpus existente permite pular coleta; uma base auditada permite começar pela escrita solicitada. TEDx é uma preferência configurável. Confira o terminal e execute python3 scripts/setup.py doctor a partir do pacote instalado antes das etapas executáveis. Reaproveite minha configuração JevCloud; se faltar, oriente-me a criar minha própria chave em https://console.typesafe.ai/keys, prepare o arquivo privado com python3 scripts/setup.py prepare --execute e abra-o com python3 scripts/setup.py open-editor --execute. Nunca peça a chave no chat. Valide sem mostrar valores com python3 scripts/setup.py verify e use python3 scripts/setup.py probe --execute para testar uma chamada pequena quando a etapa JEV estiver autorizada. O arquivo padrão é ~/.config/agentflix/jevcloud.env, respeita XDG_CONFIG_HOME e pode ser substituído por --credential em cada comando; o campo é JEV_API_KEY=. Os scripts exigem Python 3.10+ e terminal. Sem as ferramentas necessárias, entregue o briefing e declare quais etapas não executou. Faça piloto, preserve respostas e evidências privadas, audite a base e entregue cobertura/limitações. Escrita é opcional e vem com mapa separado; publicação e agendamento têm autorização própria. JEV seleciona e classifica; o agente escreve.
+> Use esta entrada para conduzir a pesquisa de audiência com JEV sem exigir que eu escolha módulos, canais ou Questions. Recupere tema, público/contexto e uso; faça no máximo três perguntas iniciais, cada pergunta aberta com seu exemplo contextualizado. Um corpus existente permite pular coleta; uma base auditada permite começar pela escrita solicitada. TEDx é uma preferência configurável. Se houver terminal, instale o pacote completo da referência pesquisa-audiencia-jev-v1.0.1, pelo instalador de skills do hospedeiro ou pelo ZIP https://github.com/AgentsFlix/skills/releases/download/pesquisa-audiencia-jev-v1.0.1/pesquisa-audiencia-jev.zip; o SKILL.md isolado não contém os módulos. O arquivo jev_client.py já faz parte do pacote em modules/jev-operar/scripts/jev_client.py. Na pasta instalada, execute python3 scripts/setup.py doctor; se python_supported for falso, use Python 3.10+ e, se package_complete for falso, corrija a instalação antes de prosseguir. Se a coleta do YouTube precisar de yt-dlp e yt_dlp_available for falso, execute python3 scripts/setup.py install-deps --execute e repita doctor. As dependências ficam em ambiente isolado fora da skill. Reaproveite minha configuração JevCloud; se faltar, oriente-me a criar minha própria chave em https://console.typesafe.ai/keys, prepare o arquivo privado com python3 scripts/setup.py prepare --execute e abra-o com python3 scripts/setup.py open-editor --execute. Nunca peça a chave no chat. Valide sem mostrar valores com python3 scripts/setup.py verify e use python3 scripts/setup.py probe --execute para testar uma chamada pequena quando a etapa JEV estiver autorizada. O arquivo padrão é ~/.config/agentflix/jevcloud.env, respeita XDG_CONFIG_HOME e pode ser substituído por --credential em cada comando; o campo é JEV_API_KEY=. Os scripts exigem Python 3.10+ e terminal. Sem as ferramentas necessárias, entregue o briefing e declare quais etapas não executou. Faça piloto, preserve respostas e evidências privadas, audite a base e entregue cobertura/limitações. Escrita é opcional e vem com mapa separado; publicação e agendamento têm autorização própria. JEV seleciona e classifica; o agente escreve.
 
 ---
 
@@ -74,8 +74,14 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
 3. **Escolha o ponto de partida.** Sem corpus, descobrir e coletar; com corpus, validar origem e classificar;
    com base auditada, conferir evidências e executar a escrita pedida. Não repetir coleta ou classificação já
    aproveitável. Se o pedido é apenas diagnóstico/briefing, não faça chamadas de classificação.
-4. **Verifique o ambiente e a credencial quando necessários.** Rode `python3 scripts/setup.py doctor`.
-   Siga [onboarding.md](references/onboarding.md) para instalar somente dependências necessárias, reaproveitar
+4. **Verifique o pacote, o ambiente e a credencial quando necessários.** Instale o pacote completo, não apenas
+   este `SKILL.md`. Rode `python3 scripts/setup.py doctor` na pasta instalada. Se `python_supported` for falso,
+   use um Python 3.10+ disponível no hospedeiro. Se `package_complete` for falso,
+   recupere a distribuição integral da referência fixada antes de executar; `jev_client.py` é um arquivo interno
+   do pacote, não uma dependência externa. Para coleta do YouTube, rode
+   `python3 scripts/setup.py install-deps --execute` se `yt_dlp_available` for falso. Esse comando instala as
+   dependências declaradas em um ambiente isolado fora da pasta da skill. Siga
+   [onboarding.md](references/onboarding.md) para reaproveitar
    credencial existente e preparar um arquivo vazio caso falte. A pessoa obtém sua chave em
    [JevCloud](https://console.typesafe.ai/keys) e cola no editor privado aberto pelo agente. Valide sem imprimir
    valores; um `probe` pequeno confirma a chamada real. Um chat sem terminal pode preparar briefing e método,
@@ -117,6 +123,8 @@ Avalie sempre: vale sugerir, não vale ou depende de informação, com motivo. P
 - Reentrevistar sobre dados atuais, inventar memória ou transformar hipótese em decisão da pessoa.
 - Enviar pergunta aberta sem exemplo ou impor TEDx e preferências de uma instalação anterior.
 - Pedir chave no chat, passá-la na linha de comando, imprimir seu valor ou executar o arquivo com `source`.
+- Tratar a leitura do `SKILL.md` isolado como instalação completa, ou dizer que `jev_client.py` não existe sem
+  conferir o caminho `modules/jev-operar/scripts/jev_client.py` no pacote fixado.
 - Interpretar formato válido da chave como autenticação comprovada; repetir erro de credencial sem correção.
 - Chamar de “todos os comentários do YouTube” o retorno de vídeos selecionados; converter erro/ausência em zero.
 - Formular perguntas sem alvo explícito `records[i].comment`, confundir índices de score ou esperar dependência
@@ -877,7 +885,7 @@ description: Conduz uma mini elicitação, pesquisa canais e vídeos sobre um te
 
 Conduzir os cinco passos abaixo na tarefa atual. Aproveitar o tema discutido e autorizações existentes. Um pedido para CRIAR esta skill não é um pedido para iniciar outra coleta completa. Quando invocada para executar a pesquisa, prosseguir até a base de conhecimento, pedindo apenas dados indispensáveis ausentes.
 
-Dependências: `yt-dlp`, Python 3, módulos [jev-operar](../jev-operar/GUIDE.md) e [jev-cerne](../jev-cerne/GUIDE.md). Abrir ambos antes das respectivas etapas. Fazer toda a pesquisa real em pasta privada fora do Git, por exemplo `~/.local/share/agentflix/jev-research/<slug>-<data>/`; os comandos abaixo partem da raiz instalada do pacote; fora dela, resolva os caminhos a partir da localização do pacote.
+Dependências: `yt-dlp`, Python 3, módulos [jev-operar](../jev-operar/GUIDE.md) e [jev-cerne](../jev-cerne/GUIDE.md). Abrir ambos antes das respectivas etapas. Se faltar `yt-dlp`, rode `python3 scripts/setup.py install-deps --execute` na raiz instalada; o coletor encontra o executável no ambiente isolado. Fazer toda a pesquisa real em pasta privada fora do Git, por exemplo `~/.local/share/agentflix/jev-research/<slug>-<data>/`; os comandos abaixo partem da raiz instalada do pacote; fora dela, resolva os caminhos a partir da localização do pacote.
 
 ## 0. Mini elicitação: do tema aberto ao briefing de busca
 
@@ -1272,7 +1280,7 @@ Fonte da coleta: [documentação oficial yt-dlp](https://github.com/yt-dlp/yt-dl
 
 ## Referência: references/ativacao.md
 
-Acesse https://raw.githubusercontent.com/AgentsFlix/skills/pesquisa-audiencia-jev-v1.0.0/skills/pesquisa-audiencia-jev/SKILL.md e leia a skill Pesquisa de audiência com JEV e as referências necessárias. Esta edição usa a referência pesquisa-audiencia-jev-v1.0.0. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
+Acesse https://raw.githubusercontent.com/AgentsFlix/skills/pesquisa-audiencia-jev-v1.0.1/skills/pesquisa-audiencia-jev/SKILL.md e leia a skill Pesquisa de audiência com JEV e as referências necessárias. Esta edição usa a referência pesquisa-audiencia-jev-v1.0.1. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.
 
 Antes de me fazer perguntas, leia o contrato AgentFlix incluído e cheque nossa conversa, sua memória local acessível e os arquivos relevantes que você já conhece. Identifique os inputs exigidos, quais você já tem e quais faltam. Reaproveite fatos atuais, identifique origem, data, conflitos e inferências. Não invente lembranças nem me peça novamente o que já sabe.
 
@@ -1282,7 +1290,7 @@ Siga o procedimento da skill e confira seus critérios de entrega. Se faltar alg
 
 Avalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.
 
-Use esta entrada para conduzir a pesquisa de audiência com JEV sem exigir que eu escolha módulos, canais ou Questions. Recupere tema, público/contexto e uso; faça no máximo três perguntas iniciais, cada pergunta aberta com seu exemplo contextualizado. Um corpus existente permite pular coleta; uma base auditada permite começar pela escrita solicitada. TEDx é uma preferência configurável. Confira o terminal e execute python3 scripts/setup.py doctor a partir do pacote instalado antes das etapas executáveis. Reaproveite minha configuração JevCloud; se faltar, oriente-me a criar minha própria chave em https://console.typesafe.ai/keys, prepare o arquivo privado com python3 scripts/setup.py prepare --execute e abra-o com python3 scripts/setup.py open-editor --execute. Nunca peça a chave no chat. Valide sem mostrar valores com python3 scripts/setup.py verify e use python3 scripts/setup.py probe --execute para testar uma chamada pequena quando a etapa JEV estiver autorizada. O arquivo padrão é ~/.config/agentflix/jevcloud.env, respeita XDG_CONFIG_HOME e pode ser substituído por --credential em cada comando; o campo é JEV_API_KEY=. Os scripts exigem Python 3.10+ e terminal. Sem as ferramentas necessárias, entregue o briefing e declare quais etapas não executou. Faça piloto, preserve respostas e evidências privadas, audite a base e entregue cobertura/limitações. Escrita é opcional e vem com mapa separado; publicação e agendamento têm autorização própria. JEV seleciona e classifica; o agente escreve.
+Use esta entrada para conduzir a pesquisa de audiência com JEV sem exigir que eu escolha módulos, canais ou Questions. Recupere tema, público/contexto e uso; faça no máximo três perguntas iniciais, cada pergunta aberta com seu exemplo contextualizado. Um corpus existente permite pular coleta; uma base auditada permite começar pela escrita solicitada. TEDx é uma preferência configurável. Se houver terminal, instale o pacote completo da referência pesquisa-audiencia-jev-v1.0.1, pelo instalador de skills do hospedeiro ou pelo ZIP https://github.com/AgentsFlix/skills/releases/download/pesquisa-audiencia-jev-v1.0.1/pesquisa-audiencia-jev.zip; o SKILL.md isolado não contém os módulos. O arquivo jev_client.py já faz parte do pacote em modules/jev-operar/scripts/jev_client.py. Na pasta instalada, execute python3 scripts/setup.py doctor; se python_supported for falso, use Python 3.10+ e, se package_complete for falso, corrija a instalação antes de prosseguir. Se a coleta do YouTube precisar de yt-dlp e yt_dlp_available for falso, execute python3 scripts/setup.py install-deps --execute e repita doctor. As dependências ficam em ambiente isolado fora da skill. Reaproveite minha configuração JevCloud; se faltar, oriente-me a criar minha própria chave em https://console.typesafe.ai/keys, prepare o arquivo privado com python3 scripts/setup.py prepare --execute e abra-o com python3 scripts/setup.py open-editor --execute. Nunca peça a chave no chat. Valide sem mostrar valores com python3 scripts/setup.py verify e use python3 scripts/setup.py probe --execute para testar uma chamada pequena quando a etapa JEV estiver autorizada. O arquivo padrão é ~/.config/agentflix/jevcloud.env, respeita XDG_CONFIG_HOME e pode ser substituído por --credential em cada comando; o campo é JEV_API_KEY=. Os scripts exigem Python 3.10+ e terminal. Sem as ferramentas necessárias, entregue o briefing e declare quais etapas não executou. Faça piloto, preserve respostas e evidências privadas, audite a base e entregue cobertura/limitações. Escrita é opcional e vem com mapa separado; publicação e agendamento têm autorização própria. JEV seleciona e classifica; o agente escreve.
 
 
 ---
@@ -1338,7 +1346,7 @@ Requer Python 3.10+ e PyYAML. Se ausentes, use os modelos pelo agente, sem insta
 Execute da pasta da skill instalada. Caminhos abaixo são exemplos hipotéticos, não preferências da pessoa.
 
 ```sh
-python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/pesquisa-audiencia-jev" init --version 1.0.0 --revision 1.0.0
+python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/pesquisa-audiencia-jev" init --version 1.0.1 --revision 1.0.1
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/pesquisa-audiencia-jev" record --event /caminho/privado/evento.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/pesquisa-audiencia-jev" configure --policy /caminho/privado/politica.json
 python3 scripts/auditar.py --state "$HOME/.local/share/agentflix/pesquisa-audiencia-jev" audit
@@ -1485,11 +1493,11 @@ description: Método e procedência editorial desta skill AgentFlix.
 status: draft
 generated:
   by: process:agentflix-skill-authoring
-  at: '2026-09-23'
+  at: '2026-09-25'
 stale_after: '2026-12-23'
 sources:
 - id: metodo
-  resource: https://github.com/AgentsFlix/skills/tree/pesquisa-audiencia-jev-v1.0.0/skills/pesquisa-audiencia-jev
+  resource: https://github.com/AgentsFlix/skills/tree/pesquisa-audiencia-jev-v1.0.1/skills/pesquisa-audiencia-jev
   title: Pacote de origem fixado pela auditoria
 - id: okf
   resource: https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
@@ -1497,7 +1505,7 @@ sources:
 agentflix:
   schema_version: 1
   skill_id: pesquisa-audiencia-jev
-  content_revision: 1.0.0
+  content_revision: 1.0.1
   verification_evidence: []
 ---
 
@@ -1563,9 +1571,9 @@ Antes de declarar concluído, confira o aceite da entrega e o mapa de inputs. Ne
   "schema_version": 1,
   "contract_version": "1.0.0",
   "skill_id": "pesquisa-audiencia-jev",
-  "distribution_version": "1.0.0",
-  "content_revision": "1.0.0",
-  "distribution_ref": "pesquisa-audiencia-jev-v1.0.0"
+  "distribution_version": "1.0.1",
+  "content_revision": "1.0.1",
+  "distribution_ref": "pesquisa-audiencia-jev-v1.0.1"
 }
 
 
@@ -1590,16 +1598,24 @@ python3 scripts/setup.py doctor
 
 Confirme terminal, Python 3.10+, rede e armazenamento privado. `yt-dlp` é necessário para coletar do YouTube;
 o cliente JevCloud usa a biblioteca padrão do Python. PyYAML atende ao runtime opcional de registro/auditoria
-AgentFlix. Para instalar as dependências declaradas em um ambiente isolado:
+AgentFlix. Se `python_supported` for falso, selecione Python 3.10+ antes dos comandos seguintes. Se
+`package_complete` for falso, instale a distribuição completa da referência fixada; ler somente
+`SKILL.md` não transfere os scripts e módulos. `jev_client.py` já vem em
+`modules/jev-operar/scripts/jev_client.py`.
+
+Quando a coleta exigir `yt-dlp` e `doctor` indicar `yt_dlp_available: false`, instale as dependências declaradas
+em um ambiente isolado fora da pasta da skill:
 
 ```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
+python3 scripts/setup.py install-deps --execute
+python3 scripts/setup.py doctor
 ```
 
-Se usar esse ambiente, execute os scripts com `.venv/bin/python` e torne `.venv/bin` acessível ao processo
-de coleta, que precisa localizar `yt-dlp`. Verifique a versão efetivamente instalada. Não invente um pin
-de dependência nem substitua o Python global. Se a etapa não usa uma dependência, sua ausência não bloqueia
+O coletor localiza automaticamente o `yt-dlp` desse ambiente; nenhum `source`, ajuste persistente de `PATH`
+ou instalação no Python global é necessário. O ambiente fica em
+`$XDG_DATA_HOME/agentflix/venvs/pesquisa-audiencia-jev` ou, sem XDG, em
+`~/.local/share/agentflix/venvs/pesquisa-audiencia-jev`. Verifique a versão efetivamente instalada. Não invente
+um pin de dependência nem substitua o Python global. Se a etapa não usa uma dependência, sua ausência não bloqueia
 as demais. Instalar o pacote não comprova rede, autenticação ou sucesso da coleta.
 
 Sem terminal/rede ou armazenamento seguro, prepare o briefing e explique qual etapa não pôde executar.
@@ -1865,8 +1881,8 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
   "origin": "human",
   "operation": "create",
   "result": "completed",
-  "version": "1.0.0",
-  "content_revision": "1.0.0",
+  "version": "1.0.1",
+  "content_revision": "1.0.1",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }
@@ -1878,11 +1894,11 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
 
 {
   "schema_version": 1,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "algorithm": "sha256",
   "files": {
     "LICENSE": "6244738960f2a27905404edf750104381130189da33464d197b46c300126a48d",
-    "SKILL.md": "11eaa742f8bbf0a2ff56c29bc8e519a505afe36a8d10b5bb1d77ba15aadb23f0",
+    "SKILL.md": "9119747ae650974c8ba181e48d8ebf0969a192c8bdc853e445db0a85bd365a31",
     "modules/jev-cerne/GUIDE.md": "d98e9c17ed4fde7bf974350d5564e6af2b9810301e0de05b9fd13b4798460927",
     "modules/jev-cerne/assets/depth.json": "09cc36e7ac188c1f0adb52b357bb6475773dbb99b075b36bce00c9db95daea68",
     "modules/jev-cerne/assets/dossie-template.md": "0b5f1a8e63bf1d991dd973f302c7114d5d3d06b1923b54e583bed552020d8c64",
@@ -1902,9 +1918,9 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
     "modules/jev-copy-cambiador/scripts/prepare_turn.py": "a16e84f1830ce7559d501707c120efa72c6f266dbe92718c1c6187e8663e8841",
     "modules/jev-operar/GUIDE.md": "beb31d43700e05a114f09e9f50ee72a932bc05a190dbaec91a43e97ed816c363",
     "modules/jev-operar/references/api-contract.md": "41a90030bd1abe052a1bab9ba2f2e745af6b0e42dc4fae30e72e4dee08fe707e",
-    "modules/jev-operar/scripts/jev_client.py": "65003b524df229c5d03b14e20bb982a07736262f223b1b69f2750189bce13522",
+    "modules/jev-operar/scripts/jev_client.py": "0cafbc3ae6f947d815ab060f1102cd9fe5b883d00e93758097640dfd4d67eea1",
     "modules/jev-operar/scripts/smoke.py": "f05f94b46457712a1906af8ea99453a6ed6b0a3c282283b8c41e6cb7f29fd3f7",
-    "modules/youtube-jev-copy/GUIDE.md": "c3d6df17c87c9834b26b7eb51c2738b7696595c91e30899d9482bd76dcee6f2d",
+    "modules/youtube-jev-copy/GUIDE.md": "ac21711179f01ff292ee1457196853fbe97750641e27a7e4baaf249c3fd91c52",
     "modules/youtube-jev-copy/assets/extraction-contract.json": "1925d8b6dabfe95067a84a0cd4598b14a6362af45715970762a7190125357760",
     "modules/youtube-jev-copy/assets/knowledge-base-contract.json": "081ed0a958c0d2572e331f51cc3fcfe644607ebb1df761b48b2c32249cd16ef7",
     "modules/youtube-jev-copy/assets/knowledge-base-template.md": "bf8bcc74c1b34c1b4a70f2ba0e6fab542fbb6b85731bd865fce8dc1b26892c5e",
@@ -1912,21 +1928,21 @@ Sem evento de execução, não afirmar uso. Sem observação contínua, não afi
     "modules/youtube-jev-copy/references/elicitacao.md": "762e2a392fd70a058bddcccbf501e331a50b1c0b55ce26c4642a736f946bd459",
     "modules/youtube-jev-copy/references/extracao.md": "5b139376f340f4ca38c7600de1b10fac732257b7c23387bd2c29ceee4700c973",
     "modules/youtube-jev-copy/scripts/audit_knowledge.py": "2f4effca025e42abee0550536e78e5434850f3e42e242b97a1f943ab30e4cdfb",
-    "modules/youtube-jev-copy/scripts/collect.py": "1f0b1ba977abf650681712095f4ade869528a51dd1433d26ee1bdbd36dcd9495",
-    "references/ativacao.md": "5bc18656d5a50b2e5239b14ec5aa05d990008ffdeb7fecd1351236923705e7cb",
-    "references/ciclo-de-vida.md": "53bc13603789b2ce6334590e3d029fae77c4441890db4bfafe0c4a0637c3ecb0",
+    "modules/youtube-jev-copy/scripts/collect.py": "950e4dab70b26207a4fe27386210e1b529dec8b4448f4100aaed0c2a539fe63d",
+    "references/ativacao.md": "d3385146b1f1e8e6e5814da8d03d35907f61fba1c8f66a342cf073b6448b832b",
+    "references/ciclo-de-vida.md": "136474a042436dabe141305e60ddf3d91645cc7946a9a36df4f1ca571d3ea1c6",
     "references/compatibilidade-e-atualizacao.md": "28208dbaf3ad3235eadf3f5b29f011873127ac031becb81a6a8ff25e53038989",
-    "references/conhecimento.okf.md": "755e9644c333e1f66c65e5bf3bcbcde9e0b80e1f4ce08708f9ed868abd856fb9",
+    "references/conhecimento.okf.md": "2f7c581e7bff890bcb431cc539e8f701d4d735dff84cd9f52c2e5e1a5ee71a56",
     "references/contrato-agentflix.md": "2137cd2f1e4e627a271e1ccffd9874d4a209537cbb107825ca1e424d4787ceff",
-    "references/identidade.json": "f6cf1092925d09c607d2b338aa7d45e8fe63848fdd871a968746da961b2e8821",
-    "references/onboarding.md": "1a67218ca606fe947bdd3fa0df9d767997016564ce097ff0b1dab1d9d8ab753b",
+    "references/identidade.json": "f2f0b9ad4c558ed155321511cca3a202bd85fe92d600008e57690543844caa62",
+    "references/onboarding.md": "dfa3bc611323f921d186553d12f6054559a2a726abd5ffff49cd8c1a1121d504",
     "references/pesquisa-e-evidencias.md": "26e8b5286f574cc4fa99750d68ad58055cc79efcb8180c4f31faa2f7071e4aef",
     "requirements.txt": "ba06068b0eb3040d5d2e000e3ef61eec1040704de425ac8ecd7682961e605b4d",
     "scripts/auditar.py": "d97f7f9b48b862bedc0999d20a20223055c80e8f70f0adba6088ea8a81f52f40",
     "scripts/integrity.py": "45fa682134c73b9a3da4f2f31269de5cd6cb14b09f38d67df539f0be04f3895c",
-    "scripts/setup.py": "ea94dc3d04a3e13c6364c0c820f737f1012109a3ae56011259bb1571f652c898",
+    "scripts/setup.py": "5e37a29e9540a89023e34e575dc3aca06ded1becf42263ad609110be06f017ac",
     "templates/estado-da-skill.md": "f7ed2c43ce7d75fdde38bad95e2d46e4aabdf7fd22879455c4ab53e7f37433a7",
-    "templates/evento-de-uso.json": "7608c42fd035d08b5a70d79846e33d6ddd84a5ff62ee4d2a261eb375b1cb8089"
+    "templates/evento-de-uso.json": "2db1fbfeb6c8deeb2cfbaad742dc05a785c9916d366d069a20376d0e289d45b8"
   }
 }
 

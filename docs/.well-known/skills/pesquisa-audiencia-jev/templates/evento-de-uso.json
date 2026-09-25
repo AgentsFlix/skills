@@ -7,8 +7,8 @@
   "origin": "human",
   "operation": "create",
   "result": "completed",
-  "version": "1.0.0",
-  "content_revision": "1.0.0",
+  "version": "1.0.1",
+  "content_revision": "1.0.1",
   "artifact_ref": "artefatos/entrega-r1.md",
   "verification": "passed"
 }

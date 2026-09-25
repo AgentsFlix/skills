@@ -5,13 +5,13 @@ license: MIT
 compatibility: Requires a terminal, Python 3.10+, network access and private storage; yt-dlp for YouTube collection. Each user supplies their own JevCloud key in a local private file.
 metadata:
   author: AgentFlix
-  version: 1.0.0
+  version: 1.0.1
   hub: https://agentsflix.ai
-  source: https://github.com/AgentsFlix/skills/tree/pesquisa-audiencia-jev-v1.0.0/skills/pesquisa-audiencia-jev
+  source: https://github.com/AgentsFlix/skills/tree/pesquisa-audiencia-jev-v1.0.1/skills/pesquisa-audiencia-jev
   tags: pesquisa, audiencia, youtube, jev, evidencias, escrita
   contract_version: 1.0.0
-  content_revision: 1.0.0
-  distribution_ref: pesquisa-audiencia-jev-v1.0.0
+  content_revision: 1.0.1
+  distribution_ref: pesquisa-audiencia-jev-v1.0.1
 ---
 
 # Pesquisa de audiência com JEV
@@ -66,8 +66,14 @@ Antes de configurar ou fazer perguntas, leia `references/contrato-agentflix.md`.
 3. **Escolha o ponto de partida.** Sem corpus, descobrir e coletar; com corpus, validar origem e classificar;
    com base auditada, conferir evidências e executar a escrita pedida. Não repetir coleta ou classificação já
    aproveitável. Se o pedido é apenas diagnóstico/briefing, não faça chamadas de classificação.
-4. **Verifique o ambiente e a credencial quando necessários.** Rode `python3 scripts/setup.py doctor`.
-   Siga [onboarding.md](references/onboarding.md) para instalar somente dependências necessárias, reaproveitar
+4. **Verifique o pacote, o ambiente e a credencial quando necessários.** Instale o pacote completo, não apenas
+   este `SKILL.md`. Rode `python3 scripts/setup.py doctor` na pasta instalada. Se `python_supported` for falso,
+   use um Python 3.10+ disponível no hospedeiro. Se `package_complete` for falso,
+   recupere a distribuição integral da referência fixada antes de executar; `jev_client.py` é um arquivo interno
+   do pacote, não uma dependência externa. Para coleta do YouTube, rode
+   `python3 scripts/setup.py install-deps --execute` se `yt_dlp_available` for falso. Esse comando instala as
+   dependências declaradas em um ambiente isolado fora da pasta da skill. Siga
+   [onboarding.md](references/onboarding.md) para reaproveitar
    credencial existente e preparar um arquivo vazio caso falte. A pessoa obtém sua chave em
    [JevCloud](https://console.typesafe.ai/keys) e cola no editor privado aberto pelo agente. Valide sem imprimir
    valores; um `probe` pequeno confirma a chamada real. Um chat sem terminal pode preparar briefing e método,
@@ -109,6 +115,8 @@ Avalie sempre: vale sugerir, não vale ou depende de informação, com motivo. P
 - Reentrevistar sobre dados atuais, inventar memória ou transformar hipótese em decisão da pessoa.
 - Enviar pergunta aberta sem exemplo ou impor TEDx e preferências de uma instalação anterior.
 - Pedir chave no chat, passá-la na linha de comando, imprimir seu valor ou executar o arquivo com `source`.
+- Tratar a leitura do `SKILL.md` isolado como instalação completa, ou dizer que `jev_client.py` não existe sem
+  conferir o caminho `modules/jev-operar/scripts/jev_client.py` no pacote fixado.
 - Interpretar formato válido da chave como autenticação comprovada; repetir erro de credencial sem correção.
 - Chamar de “todos os comentários do YouTube” o retorno de vídeos selecionados; converter erro/ausência em zero.
 - Formular perguntas sem alvo explícito `records[i].comment`, confundir índices de score ou esperar dependência
