@@ -18,14 +18,14 @@ const data = JSON.parse(
 );
 const upcoming = data.series.find(s => s.slug === "hermes-em-operacao");
 assert.ok(model.available(data).some(s => s === upcoming));
-assert.equal(model.episodes(upcoming).length, 2);
+assert.equal(model.episodes(upcoming).length, 3);
 assert.deepEqual(
   Array.from(model.episodes(upcoming), ({ episode }, index) =>
     model.episodeNumber(episode, index),
   ),
-  [2, 3],
+  [2, 3, 4],
 );
-assert.deepEqual(upcoming.seasons[0].atividades.map(item => item.n), [2, 3]);
+assert.deepEqual(upcoming.seasons[0].atividades.map(item => item.n), [2, 3, 4]);
 assert.equal(upcoming.seasons[0].atividades[1].url, 'hermes-em-operacao/t1e3/');
 assert.equal(model.episodeNumber(model.episodes(upcoming)[0].episode, 0), 2);
 const operationEpisode = model.episodes(upcoming)[1].episode;
@@ -158,7 +158,11 @@ const allOperationDone = key => {
   if (key === `agentflix-prog-${upcoming.seasons[0].eps[1].uid}`) return {t: 3100, at: 2};
   return lateProgress(key);
 };
-assert.equal(resume(upcoming, allOperationDone).finished, true);
+assert.deepEqual(resume(upcoming, allOperationDone), {season: 0, ep: 2, fresh: true});
+const finishedE4 = key => key === `agentflix-prog-${upcoming.seasons[0].eps[2].uid}`
+  ? {t: upcoming.seasons[0].eps[2].d, at: 3}
+  : allOperationDone(key);
+assert.equal(resume(upcoming, finishedE4).finished, true);
 
 const shared = {...numbered, slug: 'a-serie'};
 shared.seasons[0].eps[0].share_url = '/aulas/a-serie/t1/e2/';
