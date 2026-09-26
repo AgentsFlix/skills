@@ -1,0 +1,361 @@
+{
+  "status": "passed",
+  "baselineSha": "2887faab93caf581ac4837a2ac97416004834c0e",
+  "testedHead": "708cb02506e80e3973c6150b8f84c7a4c53c0729",
+  "inputHashes": {
+    "catalog": "4cd7877129d7988454d53b89170866f6701f8b8bad09efbf3ddd026266bbaa5d",
+    "vitrine": "6aa873527f3ad8ca2c98c6c445ace9d2d094000fbd3951e31b14912a7f9e896c",
+    "prompt": "97dcbf12a3b99a6445389ddc5a9af2fe80c4a4d9224721c8d078ebe27d25ae56"
+  },
+  "packageVersion": "1.0.1",
+  "distributionRef": "pedagio-da-realidade-v1.0.1",
+  "packageSha256": "fad8fde226d200569b644746bf8392a6da437fa35ab8a6f8898a6ec7ed639ae7",
+  "checks": [
+    {
+      "name": "before-1440-onboarding",
+      "kind": "avulsa",
+      "answers": [
+        4
+      ],
+      "completed": true,
+      "goal": "sop-extrair",
+      "syntheticChoices": true,
+      "stateInjected": false
+    },
+    {
+      "name": "before-1440-absent",
+      "cardCount": 0,
+      "errors": []
+    },
+    {
+      "name": "after-1440-onboarding",
+      "kind": "avulsa",
+      "answers": [
+        4
+      ],
+      "completed": true,
+      "goal": "sop-extrair",
+      "syntheticChoices": true,
+      "stateInjected": false
+    },
+    {
+      "name": "after-1440-rendered",
+      "errors": [],
+      "coverResults": [],
+      "cardBox": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "modalPanelWidth": null,
+        "modalPanelScrollWidth": null,
+        "modalText": null
+      },
+      "modalBox": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "modalPanelWidth": 920,
+        "modalPanelScrollWidth": 920,
+        "modalText": "Pedágio da Realidade"
+      },
+      "heroBox": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "modalPanelWidth": null,
+        "modalPanelScrollWidth": null,
+        "modalText": null
+      },
+      "keyboardOpen": true,
+      "escapeFocusRestored": true,
+      "targets": [
+        {
+          "target": "Hermes CLI",
+          "field": "install_cmd",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Hermes chat",
+          "field": "chat_cmd",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Codex",
+          "field": "npx_codex",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Claude Code",
+          "field": "npx_claude_code",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Outros agentes",
+          "field": "npx_any",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Claude.ai",
+          "field": "zip_url",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "ChatGPT",
+          "field": "zip_url",
+          "literalMatch": true,
+          "clipboardMatch": true
+        }
+      ],
+      "promptLocal200": true,
+      "download": {
+        "fixture": "local generated artifact at catalog URL; public tag verification pending",
+        "sha256": "fad8fde226d200569b644746bf8392a6da437fa35ab8a6f8898a6ec7ed639ae7",
+        "bytes": 29053
+      },
+      "fallback": "native gradient and text after image loading fails; remote cover URLs returned HTTP 403 in separate request",
+      "reducedMotion": true
+    },
+    {
+      "name": "before-768-onboarding",
+      "kind": "avulsa",
+      "answers": [
+        4
+      ],
+      "completed": true,
+      "goal": "sop-extrair",
+      "syntheticChoices": true,
+      "stateInjected": false
+    },
+    {
+      "name": "before-768-absent",
+      "cardCount": 0,
+      "errors": []
+    },
+    {
+      "name": "after-768-onboarding",
+      "kind": "avulsa",
+      "answers": [
+        4
+      ],
+      "completed": true,
+      "goal": "sop-extrair",
+      "syntheticChoices": true,
+      "stateInjected": false
+    },
+    {
+      "name": "after-768-rendered",
+      "errors": [],
+      "coverResults": [],
+      "cardBox": {
+        "width": 768,
+        "documentWidth": 768,
+        "modalPanelWidth": null,
+        "modalPanelScrollWidth": null,
+        "modalText": null
+      },
+      "modalBox": {
+        "width": 768,
+        "documentWidth": 768,
+        "modalPanelWidth": 744,
+        "modalPanelScrollWidth": 744,
+        "modalText": "Pedágio da Realidade"
+      },
+      "heroBox": {
+        "width": 768,
+        "documentWidth": 768,
+        "modalPanelWidth": null,
+        "modalPanelScrollWidth": null,
+        "modalText": null
+      },
+      "keyboardOpen": true,
+      "escapeFocusRestored": true,
+      "targets": [
+        {
+          "target": "Hermes CLI",
+          "field": "install_cmd",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Hermes chat",
+          "field": "chat_cmd",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Codex",
+          "field": "npx_codex",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Claude Code",
+          "field": "npx_claude_code",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Outros agentes",
+          "field": "npx_any",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Claude.ai",
+          "field": "zip_url",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "ChatGPT",
+          "field": "zip_url",
+          "literalMatch": true,
+          "clipboardMatch": true
+        }
+      ],
+      "promptLocal200": true,
+      "download": {
+        "fixture": "local generated artifact at catalog URL; public tag verification pending",
+        "sha256": "fad8fde226d200569b644746bf8392a6da437fa35ab8a6f8898a6ec7ed639ae7",
+        "bytes": 29053
+      },
+      "fallback": "native gradient and text after image loading fails; remote cover URLs returned HTTP 403 in separate request",
+      "reducedMotion": true
+    },
+    {
+      "name": "before-390-onboarding",
+      "kind": "avulsa",
+      "answers": [
+        4
+      ],
+      "completed": true,
+      "goal": "sop-extrair",
+      "syntheticChoices": true,
+      "stateInjected": false
+    },
+    {
+      "name": "before-390-absent",
+      "cardCount": 0,
+      "errors": []
+    },
+    {
+      "name": "after-390-onboarding",
+      "kind": "avulsa",
+      "answers": [
+        4
+      ],
+      "completed": true,
+      "goal": "sop-extrair",
+      "syntheticChoices": true,
+      "stateInjected": false
+    },
+    {
+      "name": "after-390-rendered",
+      "errors": [],
+      "coverResults": [],
+      "cardBox": {
+        "width": 390,
+        "documentWidth": 390,
+        "modalPanelWidth": null,
+        "modalPanelScrollWidth": null,
+        "modalText": null
+      },
+      "modalBox": {
+        "width": 390,
+        "documentWidth": 390,
+        "modalPanelWidth": 366,
+        "modalPanelScrollWidth": 366,
+        "modalText": "Pedágio da Realidade"
+      },
+      "heroBox": {
+        "width": 390,
+        "documentWidth": 390,
+        "modalPanelWidth": null,
+        "modalPanelScrollWidth": null,
+        "modalText": null
+      },
+      "keyboardOpen": true,
+      "escapeFocusRestored": true,
+      "targets": [
+        {
+          "target": "Hermes CLI",
+          "field": "install_cmd",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Hermes chat",
+          "field": "chat_cmd",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Codex",
+          "field": "npx_codex",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Claude Code",
+          "field": "npx_claude_code",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Outros agentes",
+          "field": "npx_any",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "Claude.ai",
+          "field": "zip_url",
+          "literalMatch": true,
+          "clipboardMatch": true
+        },
+        {
+          "target": "ChatGPT",
+          "field": "zip_url",
+          "literalMatch": true,
+          "clipboardMatch": true
+        }
+      ],
+      "promptLocal200": true,
+      "download": {
+        "fixture": "local generated artifact at catalog URL; public tag verification pending",
+        "sha256": "fad8fde226d200569b644746bf8392a6da437fa35ab8a6f8898a6ec7ed639ae7",
+        "bytes": 29053
+      },
+      "fallback": "native gradient and text after image loading fails; remote cover URLs returned HTTP 403 in separate request",
+      "reducedMotion": true
+    }
+  ],
+  "captures": [
+    "before-search-1440.png",
+    "after-card-1440.png",
+    "after-modal-1440.png",
+    "after-command-1440.png",
+    "after-highlight-1440.png",
+    "before-search-768.png",
+    "after-card-768.png",
+    "after-modal-768.png",
+    "after-command-768.png",
+    "after-highlight-768.png",
+    "before-search-390.png",
+    "after-card-390.png",
+    "after-modal-390.png",
+    "after-command-390.png",
+    "after-highlight-390.png"
+  ],
+  "limitations": [
+    "Local browser QA; production and public tag not verified here.",
+    "Guest /api/config fixture disables store and account access.",
+    "Onboarding completed by actual controls with synthetic choices; no saved completion injected.",
+    "Download intercepted to exact local generated ZIP because publication is pending.",
+    "No skill installation or execution.",
+    "Existing legacy shell preserved; screenshots do not certify complete accessibility."
+  ]
+}
