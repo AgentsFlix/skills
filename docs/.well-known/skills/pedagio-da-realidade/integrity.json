@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "version": "1.0.1",
+  "algorithm": "sha256",
+  "files": {
+    "LICENSE": "6244738960f2a27905404edf750104381130189da33464d197b46c300126a48d",
+    "SKILL.md": "4bc206987cd50e636f1874bc9dde4dc2e9a73d46674395b9d3581e0cded4b8c2",
+    "references/ativacao.md": "177b581ad703f230c62208569ed17abc1a288c47fd50c93d787cbed5b8c7a0e7",
+    "references/avaliacao-de-rotina.md": "591447d1aa20a48b0f90823422e4bc43cb847b52dd0d3adab75810821a52f8cd",
+    "references/ciclo-de-vida.md": "442e5e22f689a219b3c81b0a4793ad6d62fa56817079074bd64a34e75d27af80",
+    "references/conhecimento.okf.md": "b5f00d6786a1202acf74849cc17c9b6f276b750a40bf366d3592609bf34fa138",
+    "references/contrato-agentflix.md": "2137cd2f1e4e627a271e1ccffd9874d4a209537cbb107825ca1e424d4787ceff",
+    "references/identidade.json": "31fc996ad6e2bc22d34c52d3e38dcfe35ccd6942c937e1e57bc9662defbf81c0",
+    "references/memoria-e-rotina.md": "2a878c075a8c97db4b4320baf4a0ea00eb56c22e9ad4769f2c8fed07d64a72ab",
+    "references/metodo.md": "41b02a4e84cd84fe5e51adb28416189ed9b44bc499ad1bd8799aa675b371016d",
+    "scripts/auditar.py": "d97f7f9b48b862bedc0999d20a20223055c80e8f70f0adba6088ea8a81f52f40",
+    "templates/cartao-de-acao.md": "19c63bbca66d849fe28eeb4e8f1babdb3c7d8144a1f291135f5404536801d13e",
+    "templates/estado-da-skill.md": "968c09c33ca227ffc22918807bb3a2865d58876998cb720f7ea51bc2919217c8",
+    "templates/evento-de-uso.json": "44d9b55cc4f711448118d8c4f2ebe0c88314ade7c97fef68934b6fa3ce840f18",
+    "templates/registro-de-retorno.md": "bfab86e76490b3a00b9bf9de024110182993f0bd79670244786873f5948ad194"
+  }
+}

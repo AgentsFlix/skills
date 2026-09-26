@@ -380,6 +380,13 @@
       "passo": 13,
       "antes": [],
       "nota": "Cria uma identidade nova no Hermes em seis etapas. Exige conta Codex, bot Telegram exclusivo e confirmação humana durante o login."
+    },
+    "pedagio-da-realidade": {
+      "fileira": "comece",
+      "colecao": null,
+      "passo": 14,
+      "antes": [],
+      "nota": "Transforme uma ideia ou plano em uma ação verificável, registre o retorno e escolha o próximo passo com base no que aconteceu."
     }
   },
   "colecoes": {
