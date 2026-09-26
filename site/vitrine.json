@@ -1,5 +1,11 @@
 {
   "schema_version": 1,
+  "destaques": [
+    "pesquisa-audiencia-jev",
+    "transcritor-local",
+    "criar-profile-hermes",
+    "pedagio-da-realidade"
+  ],
   "fileiras": [
     {
       "id": "comece",
