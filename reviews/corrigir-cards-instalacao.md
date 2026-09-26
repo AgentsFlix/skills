@@ -4,16 +4,18 @@
 
 - `site/vitrine.js` exportado de `apps/web/vitrine.js` no repositório privado AgentFlix.
 - `chat_cmd` de 51 cards gerados a partir de `hermes_chat_command` em `build_hub.py` no repositório privado. Os demais campos e os três cards autorais foram preservados.
+- `tests/fixtures/installation-dn1.json`: atualizados apenas os 51 hashes dos comandos `Hermes chat` alterados; os demais destinos permanecem idênticos.
 
 ## Resultado esperado
 
 - Um clique na área de um card vizinho coberta pela prévia ampliada abre o card sob o ponteiro.
-- O comando de chat tenta uma cópia no domínio AgentFlix quando a URL da tag retorna vazia ou falha, confirma o nome da skill e impede instalação vazia.
+- O comando de chat tenta uma cópia no domínio AgentFlix quando a URL da tag retorna vazia ou falha, confirma o nome e a versão da skill e impede instalação vazia.
 - `hybrid-fundador` e `hybrid-marca` continuam apontando para a tag `v0.4.5`; os arquivos foram verificados com HTTP 200 e conteúdo em 25/09/2026.
 
 ## Testes
 
-- Validação do repositório público e QA funcional do clique após exportação.
+- 166 testes do repositório público e `check_site.py` passaram.
+- QA funcional local: Cliente ideal e Marca abrem corretamente quando a prévia do card anterior cobre a borda; fichas verificadas em 1440, 768 e 390 px.
 - Verificação dos dois links e dos comandos publicados após o deploy.
 
 ## Limite
