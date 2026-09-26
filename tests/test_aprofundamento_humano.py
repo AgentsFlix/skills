@@ -34,7 +34,7 @@ class AprofundamentoHumanoTests(unittest.TestCase):
         for target in ("disc", "aprendizagem", "acao", "big-five", "eneagrama", "jung"):
             self.assertIn(f'href="#{target}"', page)
         self.assertIn("Não é diagnóstico psicológico", page)
-        self.assertIn("Só neste navegador", page)
+        self.assertIn("Acessa seus resultados", page)
 
     def test_catalog_reuses_the_approved_manual_spatial_gallery(self):
         page = (AREA / "index.html").read_text()
