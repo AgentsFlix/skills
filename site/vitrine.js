@@ -88,7 +88,7 @@
       }
       function resume() {
         // Navegar não reinicia perguntas nem apaga o filtro e o objetivo.
-        const destination=completeOnboarding?$('recommendation'):kind?$('guide'):$('discovery');
+        const destination=completeOnboarding?journeyHost:kind?$('guide'):$('discovery');
         event('caminho_consultado');scroll(destination);titleFocus(destination);
       }
       function recommendation(compact=false) {
@@ -100,6 +100,11 @@
       }
       let featuredIndex = 0, featuredTimer = null, featuredPaused = false;
       const featureHost = $('recommendation');
+      const journeyHost = document.createElement('section');
+      journeyHost.id = 'journey-summary';
+      journeyHost.setAttribute('aria-label', 'Seu caminho');
+      $('chips').insertAdjacentElement('afterend', journeyHost);
+      featureHost.setAttribute('aria-label', 'Skills em destaque');
       const featureSlide = () => featured[featuredIndex];
       function featureMarkup() {
         if (!featured.length) return '';
@@ -146,7 +151,9 @@
       document.addEventListener('visibilitychange',scheduleFeature);
       matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',scheduleFeature);
       function renderRecommendation() {
-        featureHost.innerHTML = completeOnboarding ? `<div class="selection-heading"><div><h2 class="eyebrow">Seu caminho</h2><p>Objetivo: ${esc(name(result.skill))}</p></div><button data-discover-reset>Refazer minhas escolhas</button></div>${recommendation(true)}${featureMarkup()}` : '';
+        featureHost.innerHTML = completeOnboarding ? featureMarkup() : '';
+        journeyHost.innerHTML = completeOnboarding ? `<div class="selection-heading"><div><h2 class="eyebrow">Seu caminho</h2><p>Objetivo: ${esc(name(result.skill))}</p></div><button data-discover-reset>Refazer minhas escolhas</button></div>${recommendation(true)}` : '';
+        journeyHost.hidden = !completeOnboarding;
         scheduleFeature();
       }
       function optionArt(nodeId,option,index) {

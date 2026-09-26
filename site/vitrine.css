@@ -1,6 +1,6 @@
 /* Descoberta: tokens e regras em ../design.md. */
 [hidden]{display:none!important}
-#discovery button,#recommendation button,.discovery-detail button,.installation-state button{cursor:pointer;font-family:inherit}
+#discovery button,#recommendation button,#journey-summary button,.discovery-detail button,.installation-state button{cursor:pointer;font-family:inherit}
 .guide-nav button,#lens-usage button,.clear-door,.selection-heading button{background:transparent;border:0;padding:0}
 .guide-primary,.sample-controls button{border:0;cursor:pointer;font-family:inherit}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -38,7 +38,7 @@
 .door:has(input:checked),.guide-option:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 3px rgba(48,176,199,.1)}
 .door:has(input:checked) .choice-check,.guide-option:has(input:checked) .choice-check{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .door:has(input:focus-visible),.guide-option:has(input:focus-visible){outline:2px solid white;outline-offset:5px}
-#discovery button:focus-visible,#recommendation button:focus-visible,.installation-state button:focus-visible{outline:2px solid #fff;outline-offset:4px}
+#discovery button:focus-visible,#recommendation button:focus-visible,#journey-summary button:focus-visible,.installation-state button:focus-visible{outline:2px solid #fff;outline-offset:4px}
 .door-body{position:relative;display:flex;flex:1;flex-direction:column;padding:0 24px 24px;gap:12px;margin-top:-4px;z-index:3}
 .door-label{font-size:11px;letter-spacing:.04em;color:var(--muted);font-weight:600}
 .door-title{display:block;font-size:24px;line-height:1.15;letter-spacing:-.025em;font-weight:700}
@@ -118,7 +118,9 @@
 .guide-primary:hover{background:#ddd}
 .enter-selection{margin-top:24px}
 #recommendation{margin:28px var(--gutter) 40px;scroll-margin-top:100px}
-.recommended-inline{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 20px;padding:14px 20px;border:2px solid var(--accent);border-radius:var(--radius-choice);background:var(--panel)}
+#journey-summary{margin:0 var(--gutter) 40px;scroll-margin-top:100px}
+#recommendation[hidden]~#journey-summary{display:none}
+.recommended-inline{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0;padding:14px 20px;border:2px solid var(--accent);border-radius:var(--radius-choice);background:var(--panel)}
 .recommended-inline .eyebrow{color:var(--accent-text);margin-bottom:4px}
 .recommended-inline p:not(.eyebrow){margin:0;color:var(--muted);font-size:14px;line-height:1.5}
 .recommended-inline strong{color:var(--text)}
@@ -130,6 +132,7 @@
 .featured-copy{position:absolute;left:clamp(24px,4vw,64px);bottom:clamp(28px,4vw,58px);z-index:1;max-width:min(420px,43%);text-shadow:0 2px 14px rgba(0,0,0,.55)}
 .featured-kicker{margin:0 0 12px;color:var(--text);font-size:14px;font-weight:600}
 .featured-copy h2{margin:0 0 10px;font-size:clamp(28px,3.6vw,48px);line-height:1.06;letter-spacing:-.035em}
+.featured-copy h2:focus{outline:none}
 .featured-copy>p:not(.featured-kicker){margin:0 0 20px;font-size:15px;line-height:1.5;color:var(--text)}
 .featured-copy .guide-primary{text-shadow:none}
 .featured-actions{display:flex;align-items:center;gap:12px}

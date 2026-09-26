@@ -5,8 +5,9 @@ Exportação dos arquivos públicos `site/vitrine.js`, `site/vitrine.css` e
 fornecida por José: Pesquisa de audiência com JEV, Transcritor AgentFlix,
 Criar profile Hermes e Pedágio da Realidade.
 
-Depois do onboarding, a recomendação pessoal permanece no topo em uma faixa
-compacta com borda ciano. O banner avança automaticamente a cada nove segundos,
+Depois do onboarding, o banner vem antes das tags Tudo e Minha lista. A pedido
+de José, o bloco Seu caminho e a recomendação pessoal aparecem logo abaixo
+dessas tags, em uma faixa compacta com borda ciano. O banner avança automaticamente a cada nove segundos,
 permite navegar pelos quatro destaques e oferece Pausar/Reproduzir. Movimento
 reduzido suspende a rotação; o botão Ver detalhes abre a ficha existente.
 
