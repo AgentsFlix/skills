@@ -3,7 +3,7 @@
 
   const data = window.AgentFlixDiscData;
   const model = window.AgentFlixDiscModel;
-  const storageKey = "agentflix-disc-v1";
+  let storageKey;
   const dimensions = ["D", "I", "S", "C"];
 
   const elements = {
@@ -31,7 +31,7 @@
     restart: document.getElementById("restart-disc")
   };
 
-  let state = loadState();
+  let state;
 
   function setButtonText(button, text) {
     const textNode = Array.from(button.childNodes).find(function (child) { return child.nodeType === Node.TEXT_NODE; });
@@ -262,6 +262,7 @@
     state.result = { scores: scores, primary: primary };
     window.AgentFlixAgentPrompt.ensure(state, window.AgentFlixAgentPrompt.disc(data, scores), state.answers, completed);
     saveState();
+    window.AgentFlixAssessmentResults.mount(document.getElementById("disc-save-state"), state.agentRecord, completed);
 
     elements.quiz.hidden = true;
     elements.intro.hidden = true;
@@ -361,9 +362,12 @@
   document.getElementById("disc-agent-prompt").addEventListener("click", openAgentPrompt);
   elements.restart.addEventListener("click", restartAssessment);
 
-  if (state.result && state.result.scores && state.result.primary) {
-    showResult();
-  } else if (state.started) {
-    setButtonText(elements.start, "Continuar assessment");
-  }
+  elements.start.disabled = true;
+  window.AgentFlixAssessmentResults.ready.then(() => {
+    storageKey = window.AgentFlixAssessmentResults.key("agentflix-disc-v1");
+    state = loadState();
+    elements.start.disabled = false;
+    if (state.result && state.result.scores && state.result.primary) showResult();
+    else if (state.started) setButtonText(elements.start, "Continuar assessment");
+  });
 })();

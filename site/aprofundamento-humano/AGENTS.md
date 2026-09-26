@@ -11,7 +11,9 @@ resultado. Leia `AGENT-PROMPT.md` antes de alterar motores ou exportação.
   ID e validade. Resultado legado sem data permanece explicitamente desconhecido.
 - Exporte OKF com proveniência, versão e revisão em 30 dias. Não exporte respostas
   individuais, não renove validade por uso e não prometa memória/agendamento externo.
-- O prompt é local e privado até a pessoa escolher compartilhar. Nunca envie esse
+- O registro de resultado pode ser salvo na conta por `auth.uid()`, conforme `AGENT-PROMPT.md`.
+  Respostas individuais e fingerprint permanecem fora do banco.
+- A geração do prompt é local; o compartilhamento externo depende da pessoa. Nunca envie esse
   conteúdo a analytics, APIs de modelo ou terceiros como efeito da conclusão.
 - Preserve modal acessível, foco, Escape, cópia manual alternativa e download .md.
 - Rode os testes de assessments e o QA `agent-prompt.cjs` em 1440/768/390 px;

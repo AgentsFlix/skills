@@ -149,6 +149,7 @@ button, input, textarea { font: inherit; }
 }
 .topbar nav a {
   display: inline-flex;
+  flex-shrink: 0;
   min-width: var(--af-target);
   align-items: center;
   justify-content: center;
@@ -775,3 +776,22 @@ footer p { margin: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
 }
+
+/* Resultados privados da conta: a mesma superfície e ações do assessment. */
+.account-results { margin: var(--af-space-8) var(--af-gutter); scroll-margin-top: var(--af-space-6); }
+.result-history { display: grid; gap: var(--af-space-3); margin-block: var(--af-space-4); }
+.result-history-item { padding: var(--af-space-4); }
+.result-history-item > summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--af-space-3); min-height: var(--af-target); }
+.result-history-item > summary:focus-visible { outline: var(--af-focus-width) solid var(--af-brand); outline-offset: var(--af-focus-offset); }
+.result-history-item > summary span { color: var(--af-muted); }
+.result-history-body { margin-top: var(--af-space-4); }
+.result-history-scores { display: grid; gap: var(--af-space-4); margin-block: var(--af-space-5); }
+.result-history-scores > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--af-space-2); }
+.result-history-scores dd { margin: 0; }
+.result-history-scores dd:last-child { grid-column: 1 / -1; color: var(--af-muted); }
+.result-history-actions { display: flex; flex-wrap: wrap; gap: var(--af-space-3); }
+.result-save-state { margin-block: var(--af-space-5); padding: var(--af-space-4); border-radius: var(--af-radius-hero); background: var(--af-surface); }
+.result-save-state p { margin: 0 0 var(--af-space-3); }
+.result-delete-confirm { margin-top: var(--af-space-4); }
+.result-delete-confirm .af-button { margin-right: var(--af-space-2); }
+.account-results, .result-save-state { overflow-wrap: anywhere; }
