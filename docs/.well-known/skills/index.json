@@ -629,6 +629,28 @@
       ]
     },
     {
+      "name": "pedagio-da-realidade",
+      "description": "Converte uma ideia ou plano em uma ação verificável, registra o que aconteceu e usa essa evidência para escolher o próximo passo. Use ao planejar sem avançar ou ao retomar uma tentativa.",
+      "files": [
+        "LICENSE",
+        "SKILL.md",
+        "integrity.json",
+        "references/ativacao.md",
+        "references/avaliacao-de-rotina.md",
+        "references/ciclo-de-vida.md",
+        "references/conhecimento.okf.md",
+        "references/contrato-agentflix.md",
+        "references/identidade.json",
+        "references/memoria-e-rotina.md",
+        "references/metodo.md",
+        "scripts/auditar.py",
+        "templates/cartao-de-acao.md",
+        "templates/estado-da-skill.md",
+        "templates/evento-de-uso.json",
+        "templates/registro-de-retorno.md"
+      ]
+    },
+    {
       "name": "pesquisa-audiencia-jev",
       "description": "Pesquise uma audiência no YouTube ou analise um corpus existente com JevCloud. Entrega uma base de evidências rastreáveis e, quando solicitado, escrita com mapa de fontes separado.",
       "files": [

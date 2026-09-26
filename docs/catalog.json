@@ -2665,6 +2665,58 @@
         ]
       },
       "prompt_truncated": []
+    },
+    {
+      "name": "pedagio-da-realidade",
+      "version": "1.0.1",
+      "path": "skills/pedagio-da-realidade/SKILL.md",
+      "title": "Pedágio da Realidade",
+      "title_netflix": "Pedágio da Realidade",
+      "description": "Transforme uma ideia ou plano em uma ação verificável, registre o retorno e escolha o próximo passo com base no que aconteceu.",
+      "row": "operacao",
+      "runtime_only": false,
+      "discovery_only": false,
+      "files": 16,
+      "activation_prompt": "Acesse https://raw.githubusercontent.com/AgentsFlix/skills/pedagio-da-realidade-v1.0.1/skills/pedagio-da-realidade/SKILL.md e leia a skill Pedágio da Realidade e as referências necessárias. Esta edição usa a referência pedagio-da-realidade-v1.0.1. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.\n\nAntes de me fazer perguntas, leia o contrato AgentFlix incluído e cheque nossa conversa, sua memória local acessível e os arquivos relevantes que você já conhece. Identifique os inputs exigidos, quais você já tem e quais faltam. Reaproveite fatos atuais, identifique origem, data, conflitos e inferências. Não invente lembranças nem me peça novamente o que já sabe.\n\nMostre uma síntese curta e pergunte só pelas lacunas necessárias. TODA pergunta aberta, inclusive de configuração, referência, revisão e rotina, deve trazer junto um exemplo de resposta baseado no contexto que você recuperou de mim. Deixe claro que é sugestão. Sem memória relevante, declare isso e rotule o exemplo como hipotético; use minhas novas respostas nos exemplos seguintes. Não grave o exemplo como minha resposta.\n\nSiga o procedimento da skill e confira seus critérios de entrega. Se faltar algo obrigatório, mantenha a etapa aguardando. Registre apenas uso e resultados observados, em armazenamento privado, com a identidade e a revisão desta skill. Sem persistência ou script, entregue um resumo reutilizável e explique os limites de auditoria. Confira o status e o prazo editorial do OKF; usar não renova a validade.\n\nAvalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.\n\nParta do que já existe no meu contexto e ajude a definir ou realizar uma ação verificável que reduza uma incerteza concreta. Preserve a IA que ajuda, adapte às minhas condições e revise o próximo passo com a evidência disponível. Não abra uma pesquisa de audiência para me ajudar. Faça perguntas só sobre lacunas, sempre com exemplo; avalie acompanhamento sem ativar rotina automaticamente.",
+      "chat_cmd": "Acesse https://raw.githubusercontent.com/AgentsFlix/skills/pedagio-da-realidade-v1.0.1/skills/pedagio-da-realidade/SKILL.md e leia a skill Pedágio da Realidade e as referências necessárias. Esta edição usa a referência pedagio-da-realidade-v1.0.1. Se eu já tiver anexado o pacote ou a versão colável, use esse material, incluindo as seções Referência, sem depender de novo acesso à rede. Confira se a skill já está instalada; se não estiver e houver suporte, inspecione a licença, o SKILL.md e os arquivos de apoio e instale pelo mecanismo disponível. Sem instalação, aplique o procedimento nesta conversa e informe o limite.\n\nAntes de me fazer perguntas, leia o contrato AgentFlix incluído e cheque nossa conversa, sua memória local acessível e os arquivos relevantes que você já conhece. Identifique os inputs exigidos, quais você já tem e quais faltam. Reaproveite fatos atuais, identifique origem, data, conflitos e inferências. Não invente lembranças nem me peça novamente o que já sabe.\n\nMostre uma síntese curta e pergunte só pelas lacunas necessárias. TODA pergunta aberta, inclusive de configuração, referência, revisão e rotina, deve trazer junto um exemplo de resposta baseado no contexto que você recuperou de mim. Deixe claro que é sugestão. Sem memória relevante, declare isso e rotule o exemplo como hipotético; use minhas novas respostas nos exemplos seguintes. Não grave o exemplo como minha resposta.\n\nSiga o procedimento da skill e confira seus critérios de entrega. Se faltar algo obrigatório, mantenha a etapa aguardando. Registre apenas uso e resultados observados, em armazenamento privado, com a identidade e a revisão desta skill. Sem persistência ou script, entregue um resumo reutilizável e explique os limites de auditoria. Confira o status e o prazo editorial do OKF; usar não renova a validade.\n\nAvalie se vale transformar parte desta tarefa em rotina. Diga vale sugerir, não vale ou depende, com motivo. Se valer, apresente uma proposta concreta de frequência, horário, fuso, inputs, resultado, canal, silêncio, pausa e encerramento. Respeite recusas anteriores. Instalar não autoriza CRON. Só configure com minha autorização e um agendador disponível, conferindo duplicatas e o ID retornado. Não prometa alertas sem monitor; minha falta de resposta não confirma atividade ou decisão.\n\nParta do que já existe no meu contexto e ajude a definir ou realizar uma ação verificável que reduza uma incerteza concreta. Preserve a IA que ajuda, adapte às minhas condições e revise o próximo passo com a evidência disponível. Não abra uma pesquisa de audiência para me ajudar. Faça perguntas só sobre lacunas, sempre com exemplo; avalie acompanhamento sem ativar rotina automaticamente.",
+      "distribution_ref": "pedagio-da-realidade-v1.0.1",
+      "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/pedagio-da-realidade-v1.0.1/skills/pedagio-da-realidade/SKILL.md",
+      "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/pedagio-da-realidade-v1.0.1/skills/pedagio-da-realidade/SKILL.md",
+      "github_url": "https://github.com/AgentsFlix/skills/blob/pedagio-da-realidade-v1.0.1/skills/pedagio-da-realidade/SKILL.md",
+      "prompt_url": "https://raw.githubusercontent.com/AgentsFlix/skills/pedagio-da-realidade-v1.0.1/docs/prompt/pedagio-da-realidade.md",
+      "npx_claude_code": "npx skills add \"https://github.com/AgentsFlix/skills#pedagio-da-realidade-v1.0.1\" --skill pedagio-da-realidade -a claude-code -g",
+      "npx_codex": "npx skills add \"https://github.com/AgentsFlix/skills#pedagio-da-realidade-v1.0.1\" --skill pedagio-da-realidade -a codex -g",
+      "npx_any": "npx skills add \"https://github.com/AgentsFlix/skills#pedagio-da-realidade-v1.0.1\" --skill pedagio-da-realidade -g",
+      "zip_url": "https://raw.githubusercontent.com/AgentsFlix/skills/pedagio-da-realidade-v1.0.1/docs/packages/pedagio-da-realidade.zip",
+      "distribution_status": "published",
+      "subtitle": "Situação → incerteza → ação → evidência → próximo passo",
+      "genre": "tech-cool",
+      "since": "0.4.5",
+      "needs_photo": false,
+      "painel": {
+        "ano": 2026,
+        "tamanho": "Um ciclo de ação e retorno",
+        "requer": "Uma ideia, plano ou tentativa para trabalhar com seu agente",
+        "sinopse": "Transforme uma ideia ou plano em uma ação verificável, registre o retorno e escolha o próximo passo com base no que aconteceu.",
+        "como_usar": "Parta do que já existe no meu contexto e ajude a definir ou realizar uma ação verificável que reduza uma incerteza concreta. Preserve a IA que ajuda, adapte às minhas condições e revise o próximo passo com a evidência disponível. Não abra uma pesquisa de audiência para me ajudar. Faça perguntas só sobre lacunas, sempre com exemplo; avalie acompanhamento sem ativar rotina automaticamente.",
+        "elenco": [
+          "Cartão de ação",
+          "Critério de conclusão",
+          "Registro de retorno",
+          "Próximo passo"
+        ],
+        "generos": [
+          "Execução",
+          "Aprendizado",
+          "IA"
+        ],
+        "esta_skill_e": [
+          "Prática",
+          "Adaptável",
+          "Verificável"
+        ]
+      },
+      "prompt_truncated": []
     }
   ],
   "repo": "AgentsFlix/skills",
