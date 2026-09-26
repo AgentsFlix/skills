@@ -42,7 +42,7 @@
     row.append(mark, term, description);
     return row;
   }
-  function key() { return "agentflix-assessment-" + test.id + "-v" + test.version; }
+  function key() { return window.AgentFlixAssessmentResults.key("agentflix-assessment-" + test.id + "-v" + test.version); }
   function fresh() {
     return { version: test.version, screen: "intro", page: 0, answers: Array.from({ length: test.items.length }, () => test.kind === "ranking" ? [] : null) };
   }
@@ -84,7 +84,7 @@
     parent.append(details);
   }
   function storageNote(parent) {
-    parent.append(node("p", "session-note", storageAvailable ? "Suas respostas ficam nesta aba e podem ser retomadas durante a sessão. Nenhuma resposta é enviada à sua conta." : "A retomada está indisponível neste navegador. Você pode concluir e copiar o resultado, mas recarregar a página perderá as respostas."));
+    parent.append(node("p", "session-note", storageAvailable ? "Suas respostas ficam nesta aba. Com login, o resultado concluído é salvo na sua conta; as respostas individuais não são enviadas." : "A retomada está indisponível neste navegador. Você pode concluir e copiar o resultado, mas recarregar a página perderá as respostas."));
   }
   function shell(kicker, title) {
     hub.replaceChildren();
@@ -135,7 +135,7 @@
     facts.append(
       visualFact("Tempo", time[0], time.slice(1).join(" ") || "minutos", "duration", "time"),
       visualFact("Estrutura", String(test.items.length).padStart(2, "0"), test.kind === "ranking" ? "perguntas guiadas" : "afirmações", "structure", "structure"),
-      visualFact("Privacidade", "100%", "neste navegador", "privacy", "privacy")
+      visualFact("Privacidade", "Só você", "acessa seus resultados", "privacy", "privacy")
     );
 
     const actions = node("div", "intro-actions");
@@ -157,7 +157,7 @@
   function complete() {
     const result = model.score(test, state.answers);
     window.AgentFlixAgentPrompt.ensure(state, window.AgentFlixAgentPrompt.assessment(test, result, model), state.answers, true);
-    state.screen = "result"; save(); render();
+    state.screen = "result"; save(); render(true);
     window.AgentFlixAgentPromptUI.open(state.agentRecord, hub.querySelector(".agent-prompt-launch"));
   }
   function actions(content, isComplete) {
@@ -246,7 +246,7 @@
     if (order.length) content.append(button("Desfazer última escolha", () => { order.pop(); save(); render(); }, "outline"));
     actions(content, () => model.validAnswer(test, order)); storageNote(content);
   }
-  function renderResult() {
+  function renderResult(completed = false) {
     const result = model.score(test, state.answers);
     window.AgentFlixAgentPrompt.ensure(state, window.AgentFlixAgentPrompt.assessment(test, result, model), state.answers);
     save();
@@ -273,6 +273,8 @@
       scores.append(card);
     });
     content.append(scores);
+    const saveState = node("div"); content.append(saveState);
+    window.AgentFlixAssessmentResults.mount(saveState, state.agentRecord, completed);
     const bridge = node("div", "agent-result-bridge");
     const bridgeCopy = node("div");
     bridgeCopy.append(node("h3", "", "Seu mapa pode virar uma conversa melhor."), node("p", "", "Leve seu resultado e orientações de colaboração para o seu agente pessoal."));
@@ -297,9 +299,9 @@
     row.append(button("Refazer", () => { reset.hidden = false; reset.querySelector("button").focus(); }, "outline"));
     content.append(row, status, fallback, reset); sources(content); storageNote(content);
   }
-  function render() {
+  function render(completed = false) {
     if (state.screen === "intro") renderIntro();
-    else if (state.screen === "result") renderResult();
+    else if (state.screen === "result") renderResult(completed);
     else if (test.kind === "ranking") renderRanking();
     else renderLikert();
     focusTitle();
@@ -316,6 +318,8 @@
     disc.hidden = true; hub.hidden = false;
     render();
   }
-  window.addEventListener("hashchange", route);
-  route();
+  window.AgentFlixAssessmentResults.ready.then(() => {
+    window.addEventListener("hashchange", route);
+    route();
+  });
 })();

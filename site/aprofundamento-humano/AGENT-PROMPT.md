@@ -37,8 +37,11 @@ Revisão: data civil da conclusão + 30 dias, às 09:00 no fuso capturado, a con
 pelo agente receptor. Sem data, sem agendador ou com prazo vencido, o prompt explicita
 a alternativa. Cron recorrente exige guard de data/ano e encerramento após aviso.
 Reimportar não renova a validade; o receptor deve deduplicar por ID, preservar versões
-e verificar gravação/agendamento antes de relatar sucesso. O navegador mantém apenas
-o resultado da sessão, não um histórico permanente de avaliações.
+e verificar gravação/agendamento antes de relatar sucesso. O navegador mantém as respostas somente na aba. Resultados concluídos com login
+são salvos em `assessment_results`, vinculados a `auth.uid()`, com histórico privado.
+Resultados anônimos/legados exigem a ação explícita de salvar na conta. Somente o
+registro portátil é persistido: respostas e fingerprint ficam fora do banco. Reabrir
+o histórico preserva ID, versão, escores e datas; o dono pode excluir um resultado.
 
 ## Interface e verificação
 
