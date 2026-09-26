@@ -229,3 +229,17 @@
     }
   };
 })();
+
+// A prévia ampliada pode cobrir parte do card vizinho. Nesse trecho, o clique
+// deve abrir o card que está sob o ponteiro, não a prévia anterior.
+document.addEventListener('click', event => {
+  const preview = event.target.closest('#preview');
+  if (!preview || preview.hidden) return;
+  const underneath = document.elementsFromPoint(event.clientX, event.clientY)
+    .map(element => element.closest?.('.card[data-slug]'))
+    .find(Boolean);
+  if (!underneath || underneath.dataset.slug === preview.querySelector('.preview-open')?.dataset.slug) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  underneath.click();
+}, true);

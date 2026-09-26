@@ -18,7 +18,7 @@
       "badge": "Atualizada",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-halbert/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-halbert/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-halbert/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-halbert. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-halbert/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-halbert/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-halbert e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-halbert/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -69,7 +69,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-ogilvy/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-ogilvy/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-ogilvy/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-ogilvy. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-ogilvy/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-ogilvy/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-ogilvy e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-ogilvy/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -120,7 +120,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-schwartz/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-schwartz/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-schwartz/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-schwartz. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-schwartz/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-schwartz/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-schwartz e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-schwartz/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -171,7 +171,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-hopkins/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-hopkins/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-hopkins/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-hopkins. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-hopkins/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-hopkins/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-hopkins e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-hopkins/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -222,7 +222,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-kennedy/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-kennedy/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-kennedy/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-kennedy. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-kennedy/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-kennedy/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-kennedy e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-kennedy/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -273,7 +273,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-bencivenga/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-bencivenga/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-bencivenga/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-bencivenga. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-bencivenga/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-bencivenga/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-bencivenga e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-bencivenga/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -323,7 +323,7 @@
       "badge": "Atualizada",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-sugarman/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-sugarman/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-sugarman/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-sugarman. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-sugarman/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-sugarman/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-sugarman e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-sugarman/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -373,7 +373,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-kern/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-kern/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-kern/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-kern. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-kern/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-kern/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-kern e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-kern/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -423,7 +423,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-benson/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-benson/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-benson/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-benson. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-benson/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-benson/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-benson e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-benson/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -473,7 +473,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-sethi/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-sethi/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-sethi/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-sethi. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-sethi/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-sethi/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-sethi e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-sethi/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -523,7 +523,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-hormozi/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-hormozi/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-hormozi/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-hormozi. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-hormozi/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-hormozi/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-hormozi e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-hormozi/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -573,7 +573,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-koe/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-koe/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-koe/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-koe. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-koe/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-koe/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-koe e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-koe/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -623,7 +623,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-khayat/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-khayat/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-khayat/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-khayat. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-khayat/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-khayat/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-khayat e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-khayat/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -672,7 +672,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-brown/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-brown/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-brown/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-metodo-brown. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-metodo-brown/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-metodo-brown/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-metodo-brown e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-metodo-brown/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -721,7 +721,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-headlines/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-headlines/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-headlines/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-headlines. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-headlines/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-headlines/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-headlines e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-headlines/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -771,7 +771,7 @@
       "badge": "Atualizada",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-sales-page/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-sales-page/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-sales-page/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-sales-page. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-sales-page/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-sales-page/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-sales-page e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-sales-page/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -820,7 +820,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-oferta/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-oferta/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-oferta/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-oferta. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-oferta/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-oferta/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-oferta e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-oferta/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -868,7 +868,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-email/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-email/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-email/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-email. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-email/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-email/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-email e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-email/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -917,7 +917,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-anuncios/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-anuncios/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-anuncios/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-anuncios. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-anuncios/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-anuncios/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-anuncios e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-anuncios/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -966,7 +966,7 @@
       "badge": "Atualizada",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-vsl-webinar/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-vsl-webinar/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-vsl-webinar/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-vsl-webinar. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-vsl-webinar/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-vsl-webinar/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-vsl-webinar e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-vsl-webinar/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1014,7 +1014,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-vendas-por-chamada/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-vendas-por-chamada/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-vendas-por-chamada/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-vendas-por-chamada. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-vendas-por-chamada/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-vendas-por-chamada/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-vendas-por-chamada e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-vendas-por-chamada/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1062,7 +1062,7 @@
       "badge": "Atualizada",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-pesquisa-avatar/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-pesquisa-avatar/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-pesquisa-avatar/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-pesquisa-avatar. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-pesquisa-avatar/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-pesquisa-avatar/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-pesquisa-avatar e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-pesquisa-avatar/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1110,7 +1110,7 @@
       "badge": "Atualizada",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-big-idea-lead-magnet/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-big-idea-lead-magnet/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-big-idea-lead-magnet/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-big-idea-lead-magnet. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-big-idea-lead-magnet/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-big-idea-lead-magnet/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-big-idea-lead-magnet e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-big-idea-lead-magnet/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1158,7 +1158,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-voz/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-voz/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-voz/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-voz. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-voz/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-voz/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-voz e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-voz/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1205,7 +1205,7 @@
       "badge": "Atualizada",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-auditoria/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-auditoria/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-auditoria/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-auditoria. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-auditoria/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-auditoria/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-auditoria e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-auditoria/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1253,7 +1253,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-pipeline/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-pipeline/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-pipeline/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-pipeline. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-pipeline/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-pipeline/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-pipeline e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-pipeline/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1306,7 +1306,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-lancamento/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-lancamento/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-lancamento/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill copy-lancamento. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/copy-lancamento/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/copy-lancamento/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: copy-lancamento e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/copy-lancamento/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1363,7 +1363,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-rotear-tarefa/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-rotear-tarefa/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-rotear-tarefa/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ops-rotear-tarefa. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-rotear-tarefa/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ops-rotear-tarefa/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ops-rotear-tarefa e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ops-rotear-tarefa/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1411,7 +1411,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-briefing/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-briefing/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-briefing/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ops-briefing. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-briefing/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ops-briefing/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ops-briefing e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ops-briefing/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1458,7 +1458,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-revisao-semanal/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-revisao-semanal/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-revisao-semanal/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ops-revisao-semanal. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-revisao-semanal/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ops-revisao-semanal/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ops-revisao-semanal e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ops-revisao-semanal/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1506,7 +1506,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-avaliar-fit/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-avaliar-fit/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-avaliar-fit/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ops-avaliar-fit. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ops-avaliar-fit/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ops-avaliar-fit/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ops-avaliar-fit e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ops-avaliar-fit/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1554,7 +1554,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-gate-compliance/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-gate-compliance/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-gate-compliance/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ads-gate-compliance. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-gate-compliance/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ads-gate-compliance/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ads-gate-compliance e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ads-gate-compliance/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1601,7 +1601,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-plano/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-plano/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-plano/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ads-plano. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-plano/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ads-plano/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ads-plano e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ads-plano/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1648,7 +1648,7 @@
       "badge": null,
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-otimizar/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-otimizar/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-otimizar/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ads-otimizar. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-otimizar/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ads-otimizar/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ads-otimizar e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ads-otimizar/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1696,7 +1696,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-pesquisa/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-pesquisa/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-pesquisa/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ads-pesquisa. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-pesquisa/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ads-pesquisa/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ads-pesquisa e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ads-pesquisa/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1745,7 +1745,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-criativos/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-criativos/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-criativos/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ads-criativos. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-criativos/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ads-criativos/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ads-criativos e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ads-criativos/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1794,7 +1794,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-tracking/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-tracking/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-tracking/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill ads-tracking. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/ads-tracking/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/ads-tracking/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: ads-tracking e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/ads-tracking/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1843,7 +1843,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-diagnostico/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-diagnostico/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-diagnostico/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-diagnostico. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-diagnostico/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-diagnostico/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-diagnostico e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-diagnostico/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1892,7 +1892,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-proxima-acao/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-proxima-acao/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-proxima-acao/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-proxima-acao. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-proxima-acao/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-proxima-acao/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-proxima-acao e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-proxima-acao/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1940,7 +1940,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-perfil/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-perfil/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-perfil/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-perfil. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-perfil/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-perfil/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-perfil e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-perfil/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -1989,7 +1989,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-fundador/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-fundador/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-fundador/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-fundador. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-fundador/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-fundador/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-fundador e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-fundador/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2037,7 +2037,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-icp/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-icp/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-icp/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-icp. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-icp/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-icp/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-icp e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-icp/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2086,7 +2086,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-marca/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-marca/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-marca/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-marca. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-marca/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-marca/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-marca e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-marca/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2135,7 +2135,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-oferta/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-oferta/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-oferta/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-oferta. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-oferta/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-oferta/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-oferta e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-oferta/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2184,7 +2184,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-cultura/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-cultura/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-cultura/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-cultura. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-cultura/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-cultura/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-cultura e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-cultura/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2233,7 +2233,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-time/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-time/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-time/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-time. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-time/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-time/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-time e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-time/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2281,7 +2281,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-tech/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-tech/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-tech/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-tech. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-tech/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-tech/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-tech e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-tech/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2330,7 +2330,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-etl/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-etl/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-etl/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill hybrid-etl. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/hybrid-etl/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/hybrid-etl/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: hybrid-etl e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/hybrid-etl/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2379,7 +2379,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-extrair/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-extrair/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-extrair/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill sop-extrair. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-extrair/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/sop-extrair/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: sop-extrair e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/sop-extrair/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2427,7 +2427,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-criar/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-criar/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-criar/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill sop-criar. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-criar/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/sop-criar/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: sop-criar e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/sop-criar/SKILL.md",
       "painel": {
         "ano": 2026,
@@ -2476,7 +2476,7 @@
       "badge": "Nova",
       "install_url": "https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-auditar/SKILL.md",
       "install_cmd": "hermes skills install https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-auditar/SKILL.md",
-      "chat_cmd": "Inspecione e instale esta skill: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-auditar/SKILL.md\nAntes de instalar, leia a licença, o SKILL.md e qualquer arquivo de apoio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
+      "chat_cmd": "Inspecione e instale a skill sop-auditar. Leia o SKILL.md da versão 0.4.5: https://raw.githubusercontent.com/AgentsFlix/skills/v0.4.5/skills/sop-auditar/SKILL.md\nSe a leitura falhar ou vier vazia, tente a cópia no AgentFlix: https://agentsflix.ai/.well-known/skills/sop-auditar/SKILL.md\nConfirme que recebeu um SKILL.md não vazio com name: sop-auditar e version: 0.4.5 antes de instalar. Leia a licença e os arquivos de apoio. Se os dois endereços falharem, informe a falha de acesso sem concluir que a skill não existe e sem tentar instalar conteúdo vazio. Não execute scripts nem forneça credenciais sem explicar antes o que acontecerá.",
       "github_url": "https://github.com/AgentsFlix/skills/blob/main/skills/sop-auditar/SKILL.md",
       "painel": {
         "ano": 2026,
