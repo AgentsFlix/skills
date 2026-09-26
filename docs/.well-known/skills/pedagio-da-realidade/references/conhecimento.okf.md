@@ -10,8 +10,8 @@ tags:
 - realidade
 generated:
   by: process:agentflix-skill-authoring
-  at: 2026-09-26 00:00:00+00:00
-stale_after: 2026-12-26 00:00:00+00:00
+  at: '2026-09-26T00:00:00Z'
+stale_after: '2026-12-26T00:00:00Z'
 sources:
 - id: metodo-autoral
   resource: metodo.md
@@ -27,7 +27,7 @@ agentflix:
   - kind: editorial_approval
     content_revision: 1.0.1
     resource: metodo.md
-    sha256: 8d2aa495be24bb05f82ef957829dbe57cc0803c13db348b8500ef4a14604f362
+    sha256: 41b02a4e84cd84fe5e51adb28416189ed9b44bc499ad1bd8799aa675b371016d
     scope: Aprovação do método e autorização de publicação pelo fundador. Não é validação de eficácia humana.
 verified:
 - by: human:agentflix-founder

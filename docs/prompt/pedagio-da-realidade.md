@@ -369,8 +369,8 @@ tags:
 - realidade
 generated:
   by: process:agentflix-skill-authoring
-  at: 2026-09-26 00:00:00+00:00
-stale_after: 2026-12-26 00:00:00+00:00
+  at: '2026-09-26T00:00:00Z'
+stale_after: '2026-12-26T00:00:00Z'
 sources:
 - id: metodo-autoral
   resource: metodo.md
@@ -386,7 +386,7 @@ agentflix:
   - kind: editorial_approval
     content_revision: 1.0.1
     resource: metodo.md
-    sha256: 8d2aa495be24bb05f82ef957829dbe57cc0803c13db348b8500ef4a14604f362
+    sha256: 41b02a4e84cd84fe5e51adb28416189ed9b44bc499ad1bd8799aa675b371016d
     scope: Aprovação do método e autorização de publicação pelo fundador. Não é validação de eficácia humana.
 verified:
 - by: human:agentflix-founder
@@ -730,7 +730,7 @@ Sem evidência de execução ou retorno, manter desconhecido. Não completar por
     "references/ativacao.md": "177b581ad703f230c62208569ed17abc1a288c47fd50c93d787cbed5b8c7a0e7",
     "references/avaliacao-de-rotina.md": "591447d1aa20a48b0f90823422e4bc43cb847b52dd0d3adab75810821a52f8cd",
     "references/ciclo-de-vida.md": "442e5e22f689a219b3c81b0a4793ad6d62fa56817079074bd64a34e75d27af80",
-    "references/conhecimento.okf.md": "04d141c8687f9f4955bd684daaf1e47071b68b2219748b260d8089f666519f91",
+    "references/conhecimento.okf.md": "b5f00d6786a1202acf74849cc17c9b6f276b750a40bf366d3592609bf34fa138",
     "references/contrato-agentflix.md": "2137cd2f1e4e627a271e1ccffd9874d4a209537cbb107825ca1e424d4787ceff",
     "references/identidade.json": "31fc996ad6e2bc22d34c52d3e38dcfe35ccd6942c937e1e57bc9662defbf81c0",
     "references/memoria-e-rotina.md": "2a878c075a8c97db4b4320baf4a0ea00eb56c22e9ad4769f2c8fed07d64a72ab",
