@@ -11,6 +11,18 @@
       const available = Object.keys(data.skills).filter(slug => by[slug]);
       const legends = Object.values(by).filter(s => s.cat === 'lendas');
       if (Object.values(by).some(s=>s.cat!=='lendas'&&!s.readingOnly&&!data.skills[s.slug]) || available.some(slug=>!Array.isArray(data.skills[slug].antes))) throw Error('Curadoria incompleta');
+      // A vitrine recompõe hero e ficha por innerHTML. Reaplique o layout da capa
+      // inteira aos consumidores configurados, sem alterar o renderizador legado.
+      const wideCovers = available.filter(slug => data.skills[slug].cover_layout === 'editorial-wide');
+      if (wideCovers.length) {
+        const syncCover = target => {
+          const src = target?.querySelector('img.hero-cover, img.pcover')?.getAttribute('src') || '';
+          if (wideCovers.some(slug => src.includes(`/covers/${slug}-desktop.jpg/`))) target.classList.add('editorial-cover');
+        };
+        const hero = $('hero'), modal = $('modal');
+        if (hero) new MutationObserver(() => syncCover(hero)).observe(hero, {childList:true,subtree:true});
+        if (modal) new MutationObserver(() => syncCover(modal.querySelector('.panel .top'))).observe(modal, {childList:true,subtree:true});
+      }
       const journey = window.AgentFlixJourney(data, Object.keys(by), {getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)});
       let door = null, trail = ['inicio'], result = null, completeOnboarding = false;
       let kind = null, answers = [];
