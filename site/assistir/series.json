@@ -1414,7 +1414,7 @@
             },
             {
               "t": "Encerramento da turma: Hermes no Telegram",
-              "d": 10753,
+              "d": 11611,
               "uid": "4315257809bfb0051aae0192a1656c0d",
               "desc": "No encerramento da turma, você organiza o Hermes no Telegram com pastas, grupos e tópicos, configura permissões e aplica a estrutura em um exercício de marketing para uma cafeteria.",
               "n": 6,
@@ -1456,7 +1456,8 @@
                   "t": 8496,
                   "n": "Aplicação a clientes, escopo e encerramento"
                 }
-              ]
+              ],
+              "stream_uid": "66848488e2bcae78d0a45292e5d15348"
             }
           ],
           "atividades": [
