@@ -1,6 +1,10 @@
 {
   "catalog": true,
-  "series": ["agente-pessoal", "hermes-agent", "hermes-em-operacao"],
+  "series": [
+    "agente-pessoal",
+    "hermes-agent",
+    "hermes-em-operacao"
+  ],
   "lessons": [
     {
       "path": "/aulas/hermes-em-operacao/t1/e4/",
@@ -8,6 +12,15 @@
       "season": 1,
       "episode": 4,
       "uid": "8b6ce764c6208fa0814dcd4ad013b030"
+    }
+  ],
+  "restricted": [
+    {
+      "path": "/aulas/hermes-em-operacao/t1/e6/",
+      "series": "hermes-em-operacao",
+      "season": 1,
+      "episode": 6,
+      "uid": "4315257809bfb0051aae0192a1656c0d"
     }
   ]
 }
