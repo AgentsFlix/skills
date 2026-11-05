@@ -10,9 +10,10 @@ function AgentFlixMountWatchAccess(options) {
   let client = null;
   let session = null;
   let publicLessons = [];
+  let restrictedLessons = [];
   let publicSeries = [];
   let publicCatalog = false;
-  let publicOnly = false;
+  let publicAccess = false;
 
   const pendingStyle = document.createElement("style");
   pendingStyle.textContent = "html.watch-access-pending body{visibility:hidden}";
@@ -69,17 +70,27 @@ function AgentFlixMountWatchAccess(options) {
     return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug || "") ? slug : null;
   }
 
+  function allowsAccount(slug) {
+    return accessScope.catalog || accessScope.series.has(slug);
+  }
+
   function allowsSeries(slug) {
-    return publicOnly
-      ? publicSeries.includes(slug) || publicLessons.some((lesson) => lesson.series === slug)
-      : accessScope.catalog || accessScope.series.has(slug);
+    return allowsAccount(slug) || (publicAccess
+      && (publicSeries.includes(slug) || publicLessons.some((lesson) => lesson.series === slug)));
   }
 
   function allowsEpisode(slug, season, episode, uid) {
-    return publicOnly
-      ? publicSeries.includes(slug) || publicLessons.some((lesson) => lesson.series === slug && lesson.season === season
-        && lesson.episode === episode && lesson.uid === uid)
-      : allowsSeries(slug);
+    if (allowsAccount(slug)) return true;
+    if (!publicAccess || restrictedLessons.some((lesson) => lesson.uid === uid)) return false;
+    return publicSeries.includes(slug) || publicLessons.some((lesson) => lesson.series === slug
+      && lesson.season === season && lesson.episode === episode && lesson.uid === uid);
+  }
+
+  function matchesLessonRoute(lesson) {
+    return routeURL.pathname.replace(/\/$/, "") === lesson.path.replace(/\/$/, "")
+      || (routeURL.pathname.replace(/\/$/, "") === "/assistir"
+        && routeURL.searchParams.get("s") === lesson.series
+        && routeURL.hash === `#t${lesson.season}e${lesson.episode}`);
   }
 
   async function isPublicLessonRoute() {
@@ -91,18 +102,16 @@ function AgentFlixMountWatchAccess(options) {
       const value = await response.json();
       if (!Array.isArray(value?.lessons)) return false;
       publicLessons = value.lessons.filter((lesson) => /^[a-f0-9]{32}$/.test(lesson?.uid));
+      restrictedLessons = (Array.isArray(value.restricted) ? value.restricted : [])
+        .filter((lesson) => /^[a-f0-9]{32}$/.test(lesson?.uid) && typeof lesson.path === "string");
       publicSeries = (Array.isArray(value.series) ? value.series : [])
         .filter((slug) => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug));
       publicCatalog = value.catalog === true;
+      if (restrictedLessons.some(matchesLessonRoute)) return false;
       if (publicCatalog && routeURL.pathname.replace(/\/$/, "") === "/assistir"
         && !requestedSeriesSlug()) return true;
       if (publicSeries.includes(requestedSeriesSlug())) return true;
-      return publicLessons.some((lesson) =>
-        routeURL.pathname.replace(/\/$/, "") === lesson.path.replace(/\/$/, "")
-        || (routeURL.pathname.replace(/\/$/, "") === "/assistir"
-          && routeURL.searchParams.get("s") === lesson.series
-          && routeURL.hash === `#t${lesson.season}e${lesson.episode}`),
-      );
+      return publicLessons.some(matchesLessonRoute);
     } catch {
       return false;
     }
@@ -150,15 +159,21 @@ function AgentFlixMountWatchAccess(options) {
     });
   }
 
+  function showAuthorizedSurface() {
+    if (life.signal.aborted) return false;
+    document.documentElement.classList.remove("watch-access-pending");
+    pendingStyle.remove();
+    return true;
+  }
+
   async function authorize() {
     try {
-      if (await isPublicLessonRoute()) {
+      publicAccess = await isPublicLessonRoute();
+      const slug = requestedSeriesSlug();
+      const hasRestrictedLessons = restrictedLessons.some((lesson) => !slug || lesson.series === slug);
+      if (publicAccess && !hasRestrictedLessons) {
         await loadMemory();
-        if (life.signal.aborted) return false;
-        publicOnly = true;
-        document.documentElement.classList.remove("watch-access-pending");
-        pendingStyle.remove();
-        return true;
+        return showAuthorizedSurface();
       }
       await Promise.all([loadSupabase(), loadMemory()]);
       const publicConfig = await config();
@@ -168,6 +183,7 @@ function AgentFlixMountWatchAccess(options) {
       if (life.signal.aborted) return false;
       session = result.data?.session || null;
       if (!session?.user) {
+        if (publicAccess) return showAuthorizedSurface();
         window.AgentFlixMemory.clearSignedOut();
         const login = `/entrar/?next=${encodeURIComponent(nextPath())}`;
         showState(
@@ -207,6 +223,7 @@ function AgentFlixMountWatchAccess(options) {
         }
       }
       if (!(await resolveAccessScope())) {
+        if (publicAccess) return showAuthorizedSurface();
         showState(
           "Seu acesso ainda não está liberado",
           "Se você já é aluno, entre com o mesmo e-mail usado na compra. Para ajuda, fale com o suporte.",
@@ -223,10 +240,9 @@ function AgentFlixMountWatchAccess(options) {
         );
         return false;
       }
-      document.documentElement.classList.remove("watch-access-pending");
-      pendingStyle.remove();
-      return true;
+      return showAuthorizedSurface();
     } catch {
+      if (publicAccess) return showAuthorizedSurface();
       showState(
         "Não foi possível confirmar seu acesso",
         "Atualize a página. Se continuar acontecendo, tente novamente em alguns minutos.",
@@ -238,8 +254,8 @@ function AgentFlixMountWatchAccess(options) {
 
   async function tokenFor(uid) {
     // Para séries inteiras, o servidor confirma série, produto e mídia ativa por UID.
-    const publicVideo = publicOnly && (publicCatalog || publicSeries.includes(requestedSeriesSlug())
-      || publicLessons.some((lesson) => lesson.uid === uid));
+    const publicVideo = publicAccess && !restrictedLessons.some((lesson) => lesson.uid === uid)
+      && (publicCatalog || publicSeries.includes(requestedSeriesSlug()) || publicLessons.some((lesson) => lesson.uid === uid));
     if (!/^[a-f0-9]{32}$/.test(uid) || (!publicVideo && !session?.access_token)) throw new Error("invalid stream request");
     const now = Math.floor(Date.now() / 1000);
     const cached = tokenCache.get(uid);

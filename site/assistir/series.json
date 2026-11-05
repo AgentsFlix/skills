@@ -1411,6 +1411,52 @@
                   "n": "Encerramento e organização do Hermes"
                 }
               ]
+            },
+            {
+              "t": "Encerramento da turma: Hermes no Telegram",
+              "d": 10753,
+              "uid": "4315257809bfb0051aae0192a1656c0d",
+              "desc": "No encerramento da turma, você organiza o Hermes no Telegram com pastas, grupos e tópicos, configura permissões e aplica a estrutura em um exercício de marketing para uma cafeteria.",
+              "n": 6,
+              "share_url": "/aulas/hermes-em-operacao/t1/e6/",
+              "page_version": 2,
+              "preview": {
+                "title": "Encerramento da turma: Hermes no Telegram",
+                "description": "No encerramento da turma, você organiza o Hermes no Telegram com pastas, grupos e tópicos, configura permissões e aplica a estrutura em um exercício de marketing para uma cafeteria.",
+                "image": "/aulas/hermes-em-operacao/t1/e5/preview-whatsapp-v1.jpg",
+                "alt": "Capa ilustrada de Hermes em Operação, com ciclistas ao anoitecer.",
+                "approved": true
+              },
+              "ch": [
+                {
+                  "t": 0,
+                  "n": "Chegada da turma"
+                },
+                {
+                  "t": 568,
+                  "n": "Abertura do encontro"
+                },
+                {
+                  "t": 924,
+                  "n": "Pastas, grupos e tópicos no Telegram"
+                },
+                {
+                  "t": 2560,
+                  "n": "Permissões do bot no grupo"
+                },
+                {
+                  "t": 5092,
+                  "n": "Exercício da cafeteria"
+                },
+                {
+                  "t": 6392,
+                  "n": "Organização de perfis e rotinas"
+                },
+                {
+                  "t": 8496,
+                  "n": "Aplicação a clientes, escopo e encerramento"
+                }
+              ]
             }
           ],
           "atividades": [

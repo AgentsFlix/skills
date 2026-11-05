@@ -7,6 +7,7 @@ import publicLessons from "../assistir/public-lessons.json" with { type: "json" 
 
 const TTL_SECONDS = 60 * 60;
 const PUBLIC_TTL_SECONDS = 3 * 60 * 60;
+const RESTRICTED_LESSON_TTL_SECONDS = 4 * 60 * 60;
 const UID = /^[a-f0-9]{32}$/;
 
 const base64Url = (value) => Buffer.from(JSON.stringify(value)).toString("base64url");
@@ -45,7 +46,8 @@ export async function GET(request) {
   const streamUid = new URL(request.url).searchParams.get("uid") || "";
   if (!UID.test(streamUid)) return json({ error: "vídeo inválido" }, 400);
 
-  const publicLesson = publicLessons.lessons.find((lesson) => lesson.uid === streamUid);
+  const restricted = publicLessons.restricted?.some((lesson) => lesson.uid === streamUid);
+  const publicLesson = !restricted && publicLessons.lessons.find((lesson) => lesson.uid === streamUid);
   const user = publicLesson ? null : await currentUser(request);
 
   const { data: video } = await admin
@@ -54,7 +56,7 @@ export async function GET(request) {
     .eq("stream_uid", streamUid)
     .eq("active", true)
     .maybeSingle();
-  const publicSeries = video && Array.isArray(publicLessons.series)
+  const publicSeries = !restricted && video && Array.isArray(publicLessons.series)
     && publicLessons.series.includes(video.series_slug)
     && video.product_id === `assistir:${video.series_slug}`;
   if (!publicLesson && !publicSeries && !user) return json({ error: "faça login" }, 401);
@@ -75,8 +77,9 @@ export async function GET(request) {
     if (error || allowed !== true) return json({ error: "sem acesso a este conteúdo" }, 403);
   }
 
-  // A janela pública cobre as aulas longas e pequenas pausas.
-  const signed = signedStreamToken(video.stream_uid, publicLesson || publicSeries ? PUBLIC_TTL_SECONDS : TTL_SECONDS);
+  // A janela da aula restrita cobre sua duração e pausas no player.
+  const ttl = restricted ? RESTRICTED_LESSON_TTL_SECONDS : publicLesson || publicSeries ? PUBLIC_TTL_SECONDS : TTL_SECONDS;
+  const signed = signedStreamToken(video.stream_uid, ttl);
   if (!signed) return json({ error: "proteção de vídeo ainda não configurada" }, 503);
   return json(signed);
 }
